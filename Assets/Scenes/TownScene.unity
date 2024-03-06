@@ -1395,11 +1395,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e7e2df3cd37dd40af8b310f3088832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  character: {fileID: 3728519884485556248, guid: 90bf53f229251ef408b4513b0a3aebda, type: 3}
   equip:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 4257143844775907500, guid: 2ed6b8eee6e63474aaaddefb1792ae9d, type: 3}
+  - {fileID: 8755453857241616021, guid: e174925a1a52a364b8e1b80df099fa38, type: 3}
+  - {fileID: 3743336860696703801, guid: c7e2ba0a01c9e4c4ea407b20545a6bbd, type: 3}
 --- !u!1 &875279560
 GameObject:
   m_ObjectHideFlags: 0
