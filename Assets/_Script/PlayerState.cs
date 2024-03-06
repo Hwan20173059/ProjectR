@@ -7,5 +7,11 @@ public class PlayerState : MonoBehaviour
     public Character character;
     public Equip[] equip;
 
-    
+    public Transform playerArea;
+    public GameObject characterPrefab;
+
+    private void Start()
+    {
+        Instantiate(characterPrefab,playerArea);
+    }
 }
