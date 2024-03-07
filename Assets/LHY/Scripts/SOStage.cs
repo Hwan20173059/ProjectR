@@ -12,12 +12,13 @@ public class SOStage : ScriptableObject
     {
         if (Slime.Count <= 0)
         {
+            //여기말고 몬스터 호출할때 걸리긴함.
             Debug.Log("몬스터가 설정되어 있지 않습니다.");
             return;
         }
         for (int i = 0; i < Slime.Count; i++)
         {
-            Debug.Log("를 생성합니다.");
+            Debug.Log("슬라임을 생성합니다.");
             Instantiate(Slime[i], enemyArea);
         }
     }

@@ -16,4 +16,4 @@ MonoBehaviour:
   hp: 30
   attack: 5
   exp: 10
-  monster: {fileID: 0}
+  monster: {fileID: 9186449830861633639, guid: 5011235a0995cef4ab058b8b6f1c0dba, type: 3}
