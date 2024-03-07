@@ -15,7 +15,7 @@ public class DetailArea : MonoBehaviour
     public void ChangeSelectedItem(EquipItem e)
     {
         ChangeDetailActivation(false);
-        _image.sprite = e.data.itemSprite;
+        _image.sprite = e.data.equipSprite;
         _text.text = e.data.info;
         if(e.isEquipped)
         {

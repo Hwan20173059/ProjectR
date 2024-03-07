@@ -15,7 +15,7 @@ public class EquipSlot : MonoBehaviour
             _item = value;
             if (_item != null)
             {
-                image.sprite = item.data.itemSprite;
+                image.sprite = item.data.equipSprite;
                 image.color = new Color(1, 1, 1, 1);
             }
             else
