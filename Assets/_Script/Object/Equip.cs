@@ -16,7 +16,7 @@ public enum Type
 [CreateAssetMenu(fileName = "EquipData", menuName = "Scriptable Object/equip Data")]
 public class Equip : ScriptableObject
 {
-    public Sprite sprite;
+    public Sprite equipSprite;
     public string equipName;
     public Type type;
     public int attack;
