@@ -10,6 +10,8 @@ public class PlayerState : MonoBehaviour
     public Transform playerArea;
     public GameObject characterPrefab;
 
+    public int selectDungeonID;
+
     private void Start()
     {
         Instantiate(characterPrefab,playerArea);
