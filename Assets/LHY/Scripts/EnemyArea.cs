@@ -7,7 +7,7 @@ public class EnemyArea : MonoBehaviour
 {
     HorizontalLayoutGroup horizontalLayoutGroup;
 
-    public float monsterCount;
+    private float monsterCount = 100;
     //todo : 이 부분 던전에서 데이터 받아와야 함.
     void Awake()
     {
@@ -23,5 +23,6 @@ public class EnemyArea : MonoBehaviour
     {
         if (monsterCount != 0)
             horizontalLayoutGroup.spacing = monsterCount;
+        //반복문 통해서 몬스터 생성
     }
 }

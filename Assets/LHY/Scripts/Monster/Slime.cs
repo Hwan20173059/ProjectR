@@ -25,6 +25,6 @@ public class Slime : MonoBehaviour
         attack = level * soMonster.attack;
         exp = level * soMonster.exp;
 
-        Debug.Log("HP : " + hp + "/ Attack : " + attack + "/ Exp : " + exp + "의 몬스터를 소환했습니다.");
+        
     }
 }
