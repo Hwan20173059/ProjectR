@@ -19,6 +19,7 @@ public class ButtonManager : MonoBehaviour
     {
         playerState.selectDungeonID = 1;
         SceneManager.LoadScene("DungeonScene");
+
     }
 
     public void DungeonUIOn()

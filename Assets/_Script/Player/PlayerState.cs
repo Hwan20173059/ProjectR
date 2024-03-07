@@ -7,6 +7,8 @@ public class PlayerState : MonoBehaviour
     public Character character;
     public List<EquipItem> equip;
 
+    public int gold;
+
     public Transform playerArea;
     public GameObject characterPrefab;
 

@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2012f0fceadf04849a5ca050d5b25bd0, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
-  monsterType: 0
-  hp: 30
+  sprite: {fileID: 21300000, guid: f4ba7a5e8b25ae241a6c94d4d6df858d, type: 3}
+  name: Slime
+  maxHp: 50
+  currentHp: 50
   attack: 5
-  exp: 10
-  monster: {fileID: 9186449830861633639, guid: 5011235a0995cef4ab058b8b6f1c0dba, type: 3}
+  rewardExp: 5

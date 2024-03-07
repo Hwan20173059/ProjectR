@@ -6,20 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class DungeonManager : MonoBehaviour
 {
-    //던전에 관한 목록 저장
+    [Header("Dungeons")]
     public List<SODungeon> dungeon = new List<SODungeon>();
+    public SODungeon currentDungeon;
 
-    public Transform EnemyArea;
+    [Header("Areas")]
+    public Transform enemyArea;
+    public Transform playerArea;
+
+    [Header("PlayerState")]
     public PlayerState player;
-    int currentDungeon;//static
-    int currentStage;//private
-    int maxStage;//private
+
+    int selectedDungeon;//static
+
     private void Start()
     {
-        currentDungeon = player.selectDungeonID;
-        maxStage = dungeon[currentDungeon].stage.Count;
-        Debug.Log(maxStage);
-        SetDungeon();
+        player = SingletonManager.instance.GetComponentInChildren<PlayerState>();
+        selectedDungeon = player.selectDungeonID;
+
+        //maxStage = dungeon[currentDungeon].stage.Count;
+        //Debug.Log(maxStage);
+
+        SetDungeon(selectedDungeon);
         SetStage();
     }
     
@@ -27,13 +35,14 @@ public class DungeonManager : MonoBehaviour
     void MonsterSpawn()
     {
         //예외처리 필요
-        dungeon[currentDungeon].stage[currentStage].MonsterSpawn(EnemyArea);
+        //dungeon[currentDungeon].stage[currentStage].MonsterSpawn(enemyArea);
     }
 
-    void SetDungeon()
+    void SetDungeon(int selectedDungeon)
     {
-        Debug.Log("현재 스테이지 : " + dungeon[currentDungeon].stage[currentStage].name);
+        currentDungeon = dungeon[selectedDungeon - 1];
 
+        //Debug.Log("현재 스테이지 : " + dungeon[currentDungeon].stage[currentStage].name);
     }
     void SetStage()
     {
@@ -42,25 +51,25 @@ public class DungeonManager : MonoBehaviour
     public void NextStage()
     {
         //Clear조건 충족시
-        if (currentStage == maxStage - 1)
-        {
-            DungeonReward();
-            Debug.Log("다음 스테이지는 없어 끝이야");
-            BattleEnd();
-        }
-        else
-        {
-            Debug.Log("다음 스테이지로 이동한다.");
-            currentStage++;
-            SetStage();
-        }
+        //if (currentStage == maxStage - 1)
+        //{
+        //    DungeonReward();
+        //    Debug.Log("다음 스테이지는 없어 끝이야");
+        //    BattleEnd();
+        //}
+        //else
+        //{
+        //    Debug.Log("다음 스테이지로 이동한다.");
+        //    currentStage++;
+        //    SetStage();
+        //}
     }
 
     void DungeonReward()
     {
-        Debug.Log("EXP : " + player.character.currentExp + "->" + (player.character.currentExp + dungeon[currentDungeon].stage[currentStage].stageClearExp));
-        player.character.currentExp += dungeon[currentDungeon].stage[currentStage].stageClearExp;
-        Debug.Log("모든 던전을 클리어했음.");
+        //Debug.Log("EXP : " + player.character.currentExp + "->" + (player.character.currentExp + dungeon[currentDungeon].stage[currentStage].stageClearExp));
+        //player.character.currentExp += dungeon[currentDungeon].stage[currentStage].stageClearExp;
+        //Debug.Log("모든 던전을 클리어했음.");
         //보상을 준다.
     }
     void BattleEnd()

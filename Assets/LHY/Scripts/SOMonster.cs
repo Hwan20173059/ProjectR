@@ -5,18 +5,12 @@ using UnityEngine;
 [CreateAssetMenu]
 public class SOMonster : ScriptableObject
 {
-    public enum MonsterType
-    {
-        Fire,
-        Water,
-        Wind,
-        Dark,
-        Light,
-        Ground
-    }
-    public MonsterType monsterType;
-    public int hp;
+    public Sprite sprite;
+    public string name;
+
+    public int maxHp;
+    public int currentHp;
     public int attack;
-    public int exp;
-    public GameObject monster;
+
+    public int rewardExp;
 }

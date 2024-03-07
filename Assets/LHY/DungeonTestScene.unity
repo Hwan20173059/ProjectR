@@ -1624,58 +1624,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1027674303
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1027674305}
-  - component: {fileID: 1027674304}
-  m_Layer: 0
-  m_Name: PlayerState
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1027674304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027674303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e7e2df3cd37dd40af8b310f3088832, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 11400000, guid: 10b8919727a3f5540901c34815a8e419, type: 2}
-  equip:
-  - {fileID: 11400000, guid: 94b082ed33894314e92a924d1c0e9e82, type: 2}
-  - {fileID: 11400000, guid: 472c916165621b14e89a13bdc381ebde, type: 2}
-  - {fileID: 11400000, guid: 9587bb6e007c22a48bce4fe1910f1d11, type: 2}
-  playerArea: {fileID: 228707134}
-  characterPrefab: {fileID: 5985689637940919686, guid: 6d2c77a9bd02fd84ca88059a23b47663, type: 3}
-  selectDungeonID: 0
---- !u!4 &1027674305
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027674303}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 943.2906, y: 713.00854, z: 2.128897}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1027817338
 GameObject:
   m_ObjectHideFlags: 0
@@ -2649,7 +2597,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6883253c1aef6c94db6b2c0f37f1e59b, type: 2}
   - {fileID: 11400000, guid: 53fd7b9e88fd97d46a4eef2c17c4c34f, type: 2}
   EnemyArea: {fileID: 1027817339}
-  player: {fileID: 1027674304}
+  player: {fileID: 0}
 --- !u!4 &1671843944
 Transform:
   m_ObjectHideFlags: 0
