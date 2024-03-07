@@ -228,7 +228,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7755477465921095281
 RectTransform:
   m_ObjectHideFlags: 0
@@ -423,7 +423,7 @@ GameObject:
   - component: {fileID: 3414394097096163534}
   - component: {fileID: 4415110067783731078}
   m_Layer: 5
-  m_Name: Image
+  m_Name: CharacterSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -436,7 +436,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6574088182900035225}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -503,9 +503,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928132760f9c6c3409f840a51d1edc80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 11400000, guid: 1702c8cf77d019b48a36b22a164343d9, type: 2}
-  characterImage: {fileID: 0}
-  isBuy: 0
+  character: {fileID: 0}
+  characterSlotImage: []
+  characterSlotText: []
+  characterButton: []
+  isSelected: 0
+  isBuy: 1
 --- !u!1 &6837876924376593849
 GameObject:
   m_ObjectHideFlags: 0

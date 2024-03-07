@@ -18,4 +18,6 @@ public class Character : ScriptableObject
     public int maxHp;
     public int currentHp;
     public int attack;
+    public bool isSelected;
+    public bool isBuy;
 }
