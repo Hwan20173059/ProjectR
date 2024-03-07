@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class DungeonManager : MonoBehaviour
@@ -10,10 +11,14 @@ public class DungeonManager : MonoBehaviour
     public List<SODungeon> dungeon = new List<SODungeon>();
 
     public Transform EnemyArea;
-    public PlayerState player;
+    private PlayerState player;
     int currentDungeon;//static
     int currentStage;//private
     int maxStage;//private
+    private void Awake()
+    {
+        player = SingletonManager.instance.GetComponentInChildren<PlayerState>();
+    }
     private void Start()
     {
         currentDungeon = player.selectDungeonID;
@@ -46,7 +51,7 @@ public class DungeonManager : MonoBehaviour
         {
             DungeonReward();
             Debug.Log("다음 스테이지는 없어 끝이야");
-            BattleEnd();
+            //BattleEnd();
         }
         else
         {

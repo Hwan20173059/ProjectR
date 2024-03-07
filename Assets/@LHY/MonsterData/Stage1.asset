@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Stage1
   m_EditorClassIdentifier: 
   Slime:
-  - {fileID: 2352383529948380065, guid: 5011235a0995cef4ab058b8b6f1c0dba, type: 3}
+  - {fileID: 7922413834828837551, guid: b8ae2aac37396d6428162a3bfa6fa167, type: 3}
   stageClearExp: 5
