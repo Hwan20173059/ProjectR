@@ -24,7 +24,5 @@ public class Slime : MonoBehaviour
         hp = level * soMonster.hp;
         attack = level * soMonster.attack;
         exp = level * soMonster.exp;
-
-        
     }
 }
