@@ -13,11 +13,11 @@ public enum Type
     Light
 }
 
-[CreateAssetMenu(fileName = "EquipData", menuName = "Scriptable Object/equip Data")]
+[CreateAssetMenu(fileName = "items", menuName = "data/Item")]
 public class Equip : ScriptableObject
 {
-    public Sprite sprite;
-    public string equipName;
+    public Sprite itemSprite;
+    public string itemName;
     public Type type;
     public int attack;
     public string info;
