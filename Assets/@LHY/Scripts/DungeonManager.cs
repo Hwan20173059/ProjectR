@@ -11,24 +11,31 @@ public class DungeonManager : MonoBehaviour
     public List<SODungeon> dungeon = new List<SODungeon>();
 
     public Transform EnemyArea;
-    private PlayerState player;
+    public Transform PlayerArea;
+    private PlayerState playerState;
+    public GameObject player;
     int currentDungeon;//static
     int currentStage;//private
     int maxStage;//private
+
     private void Awake()
     {
-        player = SingletonManager.instance.GetComponentInChildren<PlayerState>();
+        playerState = SingletonManager.instance.GetComponentInChildren<PlayerState>();
     }
     private void Start()
     {
-        currentDungeon = player.selectDungeonID;
+        currentDungeon = playerState.selectDungeonID;
         maxStage = dungeon[currentDungeon].stage.Count;
         Debug.Log(maxStage);
+        PlayerSpawn();
         SetDungeon();
         SetStage();
     }
     
-    
+    void PlayerSpawn()
+    {
+        Instantiate(player, PlayerArea);
+    }
     void MonsterSpawn()
     {
         //예외처리 필요
@@ -63,8 +70,8 @@ public class DungeonManager : MonoBehaviour
 
     void DungeonReward()
     {
-        Debug.Log("EXP : " + player.character.currentExp + "->" + (player.character.currentExp + dungeon[currentDungeon].stage[currentStage].stageClearExp));
-        player.character.currentExp += dungeon[currentDungeon].stage[currentStage].stageClearExp;
+        Debug.Log("EXP : " + playerState.character.currentExp + "->" + (playerState.character.currentExp + dungeon[currentDungeon].stage[currentStage].stageClearExp));
+        playerState.character.currentExp += dungeon[currentDungeon].stage[currentStage].stageClearExp;
         Debug.Log("모든 던전을 클리어했음.");
         //보상을 준다.
     }
