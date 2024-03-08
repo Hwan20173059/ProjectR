@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public PlayerState playerState;
     public Character character;
 
+    public Sprite sprite;
     public string name;
 
     public int level;
@@ -28,6 +29,7 @@ public class Player : MonoBehaviour
     {
         character = playerState.character;
 
+        sprite = character.sprite;
         name = character.name;
 
         level = character.level;

@@ -13,9 +13,6 @@ public class CharacterSlot : MonoBehaviour
     public Image[] characterSlotImage;
     public TextMeshProUGUI[] characterSlotText;
 
-    public bool isSelected;
-    public bool isBuy;
-
     private void Start()
     {
         characterSlotImage = GetComponentsInChildren<Image>();
