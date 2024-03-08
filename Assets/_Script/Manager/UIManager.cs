@@ -9,10 +9,10 @@ public class UIManager : Singleton<UIManager>
     public PlayerManager playerManager;
     public GameObject characterUI;
     public GameObject dungeonUI;
-    public GameObject equipInventoryUI;
+
 
     [Header("UI")]
-    public GameObject equipInventory;
+    public GameObject equipInventoryUI;
     public NowEquippedItemSlot nEquipItemSlot;
     public DetailArea detailArea;
     public EquipItem nowSelectedEquip;
@@ -46,12 +46,6 @@ public class UIManager : Singleton<UIManager>
     public void CharacterUIOff()
     {
         characterUI.SetActive(false);
-    }
-
-    public void BattleTestScene()
-    {
-        playerManager.selectDungeonID = 1;
-        SceneManager.LoadScene("BattleTestScene");
     }
 
     public void OpenInventory()

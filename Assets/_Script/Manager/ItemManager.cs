@@ -11,12 +11,13 @@ public class EquipItem
     public Equip data;
 }
 
-public class ItemManager : Singleton<ItemManager>
+public class ItemManager : MonoBehaviour
 {
     public EquipItem baseItem;
     [SerializeField] private Equip baseEquip;
-    public PlayerManager playerManager;
+
     public List<EquipItem> eInventory;
+
 
     private void Start()
     {

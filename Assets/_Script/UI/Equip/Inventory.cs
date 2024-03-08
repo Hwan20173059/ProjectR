@@ -11,6 +11,8 @@ public class Inventory : MonoBehaviour //Inventory
     [SerializeField] protected Transform slotParent;
     [SerializeField] protected List<EquipSlot> slots;
 
+    public ItemManager itemManager;
+
     private void OnValidate() // change slots if changed by editor
     {
         slotParent.GetComponentsInChildren<EquipSlot>(includeInactive: true, result: slots);
@@ -24,9 +26,9 @@ public class Inventory : MonoBehaviour //Inventory
     public void FreshSlot() // reload slots & show items
     {
         int i = 0;
-        for(; i < ItemManager.Instance.eInventory.Count && i < slots.Count; i++)
+        for(; i < itemManager.eInventory.Count && i < slots.Count; i++)
         {
-            slots[i].item = ItemManager.Instance.eInventory[i];
+            slots[i].item = itemManager.eInventory[i];
         }
         for(; i < slots.Count; i++)
         {

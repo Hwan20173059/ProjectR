@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
+    public ItemManager itemManager;
+
     public Character character;
     public List<EquipItem> equip;
 
@@ -16,10 +18,13 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void Start()
     {
+
+
         for (int i = 0; i < 3; i++)
         {
-            equip.Add(ItemManager.Instance.baseItem);
+            equip.Add(itemManager.baseItem);
         }
+
         ReFreshPlayer();
     }
 
@@ -35,7 +40,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void EquipNewItem()
     {
-        if (equip.Contains(ItemManager.Instance.baseItem))
+        if (equip.Contains(itemManager.baseItem))
         {
             equip.RemoveAt(0);
             equip.Add(UIManager.Instance.nowSelectedEquip);
@@ -48,7 +53,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public void UnEquipItem()
     {
         equip.Remove(UIManager.Instance.nowSelectedEquip);
-        equip.Add(ItemManager.Instance.baseItem);
+        equip.Add(itemManager.baseItem);
         UIManager.Instance.nowSelectedEquip.isEquipped = false;
         UIManager.Instance.detailArea.ChangeDetailActivation(false);
         UIManager.Instance.nEquipItemSlot.FreshEquippedSlot();

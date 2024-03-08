@@ -1267,7 +1267,6 @@ MonoBehaviour:
   characterUI: {fileID: 1822648823}
   dungeonUI: {fileID: 388925218}
   equipInventoryUI: {fileID: 501002939}
-  equipInventory: {fileID: 501002939}
   nEquipItemSlot: {fileID: 907160600}
   detailArea: {fileID: 256640398}
   nowSelectedEquip:
@@ -2972,6 +2971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e7e2df3cd37dd40af8b310f3088832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemManager: {fileID: 1569666160}
   character: {fileID: 11400000, guid: 1702c8cf77d019b48a36b22a164343d9, type: 2}
   equip: []
   playerArea: {fileID: 182095471}
@@ -4542,6 +4542,7 @@ MonoBehaviour:
   slotParent: {fileID: 1149580014}
   slots:
   - {fileID: 1370035124}
+  itemManager: {fileID: 1569666160}
   itemSlotPrefab: {fileID: 1370035123}
   maxSlots: 18
 --- !u!1 &1098051162
@@ -5366,7 +5367,6 @@ Transform:
   - {fileID: 853112286}
   - {fileID: 2129462497}
   - {fileID: 294579728}
-  - {fileID: 1569666159}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6189,7 +6189,7 @@ GameObject:
   - component: {fileID: 1415062135}
   - component: {fileID: 1415062136}
   m_Layer: 0
-  m_Name: InventoryManager
+  m_Name: CharacterManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7299,11 +7299,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569666158}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.2740712, y: 0.15865855, z: -200.19365}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1219794587}
+  m_Father: {fileID: 1794985524}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1569666160
@@ -7322,7 +7322,6 @@ MonoBehaviour:
     isEquipped: 0
     data: {fileID: 0}
   baseEquip: {fileID: 11400000, guid: e54b941b6d2033940b23208ba8498f4f, type: 2}
-  playerManager: {fileID: 0}
   eInventory:
   - isEquipped: 0
     data: {fileID: 11400000, guid: 94b082ed33894314e92a924d1c0e9e82, type: 2}
@@ -8883,6 +8882,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1415062135}
+  - {fileID: 1569666159}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
