@@ -24,28 +24,33 @@ public class CharacterSlot : MonoBehaviour
         characterSlotText = GetComponentsInChildren<TextMeshProUGUI>();
         characterSlotText[0].text = character.name;
 
-        isBuy = character.isBuy;
-
-        if (isBuy == true)
-            characterSlotImage[3].gameObject.SetActive(false);
-        else
-            characterSlotImage[3].gameObject.SetActive(true);
+        Refresh();
     }
 
     public void CharacterSelect()
     {
         character.isSelected = true;
+
+        Refresh();
+    }
+
+    public void CharacterUnSelect()
+    {
+        character.isSelected = false;
+
+        Refresh();
     }
 
     public void Refresh()
     {
-        if (isSelected == true)
-
-
-
-        if (isBuy == true)
-            characterSlotImage[3].gameObject.SetActive(false);
+        if (character.isBuy == true)
+            characterSlotText[2].text = "장착중";
         else
+            characterSlotText[2].text = "미보유";
+
+        if (character.isSelected == true || character.isBuy == false)
             characterSlotImage[3].gameObject.SetActive(true);
+        else
+            characterSlotImage[3].gameObject.SetActive(false);
     }
 }
