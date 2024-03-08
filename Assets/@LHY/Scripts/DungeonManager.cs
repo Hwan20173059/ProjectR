@@ -18,9 +18,12 @@ public class DungeonManager : MonoBehaviour
     int currentStage;//private
     int maxStage;//private
 
+    BattleManager battleManager;
+
     private void Awake()
     {
         playerState = PlayerState.Instance.GetComponent<PlayerState>();
+        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
     }
     private void Start()
     {
@@ -51,6 +54,7 @@ public class DungeonManager : MonoBehaviour
     void SetStage()
     {
         MonsterSpawn();
+        battleManager.FieldInit();
     }
     public void NextStage()
     {
@@ -76,7 +80,7 @@ public class DungeonManager : MonoBehaviour
         Debug.Log("모든 던전을 클리어했음.");
         //보상을 준다.
     }
-    void BattleEnd()
+    public void BattleEnd()
     {
         SceneManager.LoadScene("TownScene");
     }
