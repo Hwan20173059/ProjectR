@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bfb107a85de9bf4ba05989ee504daed, type: 3}
+  m_Name: Dungeon1
+  m_EditorClassIdentifier: 
+  dungeonType: 0
+  stage:
+  - {fileID: 11400000, guid: 57da713337d67894ab8c3f489e991784, type: 2}
+  - {fileID: 11400000, guid: 7f342152b5600b94ca4092df899ce9ea, type: 2}
+  dungeonClearExp: 30
+  dungeonLevel: 1
