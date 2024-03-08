@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CharacterSelectSlot : MonoBehaviour
 {
-    public PlayerState playerState;
+    public PlayerManager playerState;
     public GameObject[] characterSlot;
     public CharacterManager characterManager;
 
@@ -21,7 +21,7 @@ public class CharacterSelectSlot : MonoBehaviour
 
     private void Start()
     {
-        playerState = PlayerState.Instance.GetComponent<PlayerState>();
+        playerState = PlayerManager.Instance.GetComponent<PlayerManager>();
     }
 
     public void SelectCharacter(int index)

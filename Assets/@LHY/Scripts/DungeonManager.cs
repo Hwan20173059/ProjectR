@@ -12,7 +12,7 @@ public class DungeonManager : MonoBehaviour
 
     public Transform EnemyArea;
     public Transform PlayerArea;
-    private PlayerState playerState;
+    private PlayerManager playerManager;
     public GameObject player;
     int currentDungeon;//static
     int currentStage;//private
@@ -22,12 +22,12 @@ public class DungeonManager : MonoBehaviour
 
     private void Awake()
     {
-        playerState = PlayerState.Instance.GetComponent<PlayerState>();
+        playerManager = PlayerManager.Instance.GetComponent<PlayerManager>();
         battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
     }
     private void Start()
     {
-        currentDungeon = playerState.selectDungeonID;
+        currentDungeon = playerManager.selectDungeonID;
         maxStage = dungeon[currentDungeon].stage.Count;
         Debug.Log(maxStage);
         PlayerSpawn();
@@ -75,8 +75,8 @@ public class DungeonManager : MonoBehaviour
 
     void DungeonReward()
     {
-        Debug.Log("EXP : " + playerState.character.currentExp + "->" + (playerState.character.currentExp + dungeon[currentDungeon].stage[currentStage].stageClearExp));
-        playerState.character.currentExp += dungeon[currentDungeon].stage[currentStage].stageClearExp;
+        Debug.Log("EXP : " + playerManager.character.currentExp + "->" + (playerManager.character.currentExp + dungeon[currentDungeon].stage[currentStage].stageClearExp));
+        playerManager.character.currentExp += dungeon[currentDungeon].stage[currentStage].stageClearExp;
         Debug.Log("모든 던전을 클리어했음.");
         //보상을 준다.
     }

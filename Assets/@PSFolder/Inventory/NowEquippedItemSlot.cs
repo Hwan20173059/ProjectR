@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class NowEquippedItemSlot : MonoBehaviour
 {
-    [SerializeField] private PlayerState _playerState;
+    [SerializeField] private PlayerManager playerManager;
     [SerializeField] protected Transform nowEquipParent; 
     [SerializeField] protected List<EquipSlot> nowEquipSlots;
 
@@ -16,19 +16,21 @@ public class NowEquippedItemSlot : MonoBehaviour
     }
     private void Start()
     {
+        playerManager = PlayerManager.Instance.GetComponent<PlayerManager>();
+
         FreshEquippedSlot();
     }
 
     public void FreshEquippedSlot() // reload slots & show items
     {
         int i = 0;
-        if (_playerState.equip.Count == 0)
+        if (playerManager.equip.Count == 0)
         {
-            _playerState.equip.Add(ItemManager.Instance.baseItem);
+            playerManager.equip.Add(ItemManager.Instance.baseItem);
         }
-        for (; i < _playerState.equip.Count && i < nowEquipSlots.Count; i++)
+        for (; i < playerManager.equip.Count && i < nowEquipSlots.Count; i++)
         {
-            nowEquipSlots[i].item = _playerState.equip[i];
+            nowEquipSlots[i].item = playerManager.equip[i];
         }
         for (; i < nowEquipSlots.Count; i++)
         {

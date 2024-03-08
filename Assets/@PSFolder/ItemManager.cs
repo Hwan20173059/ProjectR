@@ -15,7 +15,7 @@ public class ItemManager : Singleton<ItemManager>
 {
     public EquipItem baseItem;
     [SerializeField] private Equip baseEquip;
-    public PlayerState playerState;
+    public PlayerManager playerManager;
     public List<EquipItem> eInventory;
 
     private void Start()

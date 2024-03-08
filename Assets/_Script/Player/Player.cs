@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public PlayerState playerState;
+    public PlayerManager playerManager;
     public Character character;
 
     public SpriteRenderer sprite;
@@ -22,8 +22,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        playerState = PlayerState.Instance.GetComponent<PlayerState>();
-        PlayerState.Instance.playerPrefab = this.gameObject;
+        playerManager = PlayerManager.Instance.GetComponent<PlayerManager>();
+        PlayerManager.Instance.playerPrefab = this.gameObject;
 
         Refresh();
     }
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
     public void Refresh()
     {
-        character = playerState.character;
+        character = playerManager.character;
 
         sprite.sprite = character.sprite;
         name = character.name;
