@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [CreateAssetMenu]
 public class SOStage : ScriptableObject
 {
-    public List<Slime> Slime = new List<Slime>();
+    public List<GameObject> Slime = new List<GameObject>();
     public int stageClearExp;
     
-    public void MonsterSpawn(Transform enemyArea)
+    public void MonsterSpawn(Transform transform)
     {
         if (Slime.Count <= 0)
         {
@@ -18,8 +19,14 @@ public class SOStage : ScriptableObject
         }
         for (int i = 0; i < Slime.Count; i++)
         {
+            //Instantiate(Slime[i], transform);
+
+            // 오브젝트를 아래에 위치의 맞는 위치를 가져와서.
+            // [2]  [1]  [3]  순으로 생성되게 함.
+
             Debug.Log("슬라임을 생성합니다.");
-            Instantiate(Slime[i], enemyArea);
+            GameObject item = Instantiate(Slime[i]);
+            item.transform.position = new Vector3(transform.GetChild(i).position.x, transform.GetChild(i).position.y, transform.GetChild(i).position.z);
         }
     }
 }
