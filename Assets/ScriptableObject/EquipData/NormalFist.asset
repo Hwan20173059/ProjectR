@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cb23c4f0bceb4b4c816e4012aaaab3b, type: 3}
-  m_Name: FireApple
+  m_Name: NormalFist
   m_EditorClassIdentifier: 
-  equipSprite: {fileID: 21300000, guid: 61d01e8616313344b978a6518fd86ed6, type: 3}
-  equipName: "\uBD88\uAF43\uC758\uC0AC\uACFC"
-  type: 1
-  attack: 12
-  info: "\uD0C0\uC624\uB974\uB294 \uC815\uC5F4\uC758 \uBE68\uAC04 \uC0AC\uACFC\uC774\uB2E4."
+  equipSprite: {fileID: 21300000, guid: 7dd21f826a119274bb085376073e5cbd, type: 3}
+  equipName: "\uC815\uC758\uC758 \uC8FC\uBA39"
+  type: 0
+  attack: 5
+  info: "\uC815\uC758(\uBB3C\uB9AC)\uB294 \uC0B4\uC544\uC788\uB2E4"

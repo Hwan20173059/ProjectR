@@ -20,4 +20,5 @@ MonoBehaviour:
   maxHp: 100
   currentHp: 100
   attack: 7
+  isSelected: 0
   isBuy: 1

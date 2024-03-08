@@ -40,14 +40,20 @@ public class CharacterSlot : MonoBehaviour
 
     public void Refresh()
     {
+        characterSlotImage[4].gameObject.SetActive(false);
+
         if (character.isBuy == true)
             characterSlotText[2].text = "장착중";
         else
+        {
             characterSlotText[2].text = "미보유";
+            characterSlotImage[4].gameObject.SetActive(true);
+        }
 
         if (character.isSelected == true || character.isBuy == false)
             characterSlotImage[3].gameObject.SetActive(true);
         else
             characterSlotImage[3].gameObject.SetActive(false);
+
     }
 }

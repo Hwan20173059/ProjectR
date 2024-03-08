@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public PlayerState playerState;
     public Character character;
 
-    public Sprite sprite;
+    public SpriteRenderer sprite;
     public string name;
 
     public int level;
@@ -21,15 +21,22 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        playerState = SingletonManager.instance.GetComponentInChildren<PlayerState>();
+        playerState = PlayerState.Instance.GetComponent<PlayerState>();
+
         Refresh();
     }
+
+    public void DestroyPlayer()
+    {
+        Destroy(this);
+    }
+    
 
     public void Refresh()
     {
         character = playerState.character;
 
-        sprite = character.sprite;
+        sprite.sprite = character.sprite;
         name = character.name;
 
         level = character.level;
