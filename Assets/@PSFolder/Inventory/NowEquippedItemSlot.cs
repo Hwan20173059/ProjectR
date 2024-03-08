@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
@@ -21,6 +22,10 @@ public class NowEquippedItemSlot : MonoBehaviour
     public void FreshEquippedSlot() // reload slots & show items
     {
         int i = 0;
+        if (_playerState.equip.Count == 0)
+        {
+            _playerState.equip.Add(ItemManager.Instance.baseItem);
+        }
         for (; i < _playerState.equip.Count && i < nowEquipSlots.Count; i++)
         {
             nowEquipSlots[i].item = _playerState.equip[i];

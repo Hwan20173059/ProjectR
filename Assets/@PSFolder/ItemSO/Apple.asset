@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb23c4f0bceb4b4c816e4012aaaab3b, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 61d01e8616313344b978a6518fd86ed6, type: 3}
-  itemName: "\uC0AC\uACFC"
+  equipSprite: {fileID: 21300000, guid: 61d01e8616313344b978a6518fd86ed6, type: 3}
+  equipName: "\uC0AC\uACFC"
   type: 1
   attack: 10
   info: "\uBD89\uC740 \uC0AC\uACFC\uC774\uB2E4."

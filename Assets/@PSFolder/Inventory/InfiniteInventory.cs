@@ -21,29 +21,39 @@ public class InfiniteInventory : Inventory
     private void SetMaxSlots(int value)
     {
         if(value <= 0)
-            maxSlots = 1;
+            maxSlots = 24;
         else
             maxSlots = value;
 
         if (maxSlots <= slots.Count)
         {
-            for(int i = maxSlots; i < slots.Count; i++)
-            {
-                Destroy(slots[i].transform.parent.gameObject);
-            }
-            int diff = slots.Count - maxSlots;
-            slots.RemoveRange(maxSlots, diff);
+            DestroyEmptySlot();
         }
         else if (maxSlots > slots.Count)
         {
-            int diff = maxSlots - slots.Count;
-
-            for (int i = 0; i < diff; i++)
-            {
-                GameObject itemSlotGameObj = Instantiate(itemSlotPrefab);
-                itemSlotGameObj.transform.SetParent(slotParent, worldPositionStays: false);
-                slots.Add(itemSlotGameObj.GetComponentInChildren<EquipSlot>());
-            }
+            AddNewSlot();
         }
+    }
+
+    private void AddNewSlot()
+    {
+        int diff = maxSlots - slots.Count;
+
+        for (int i = 0; i < diff; i++)
+        {
+            GameObject itemSlotGameObj = Instantiate(itemSlotPrefab);
+            itemSlotGameObj.transform.SetParent(slotParent, worldPositionStays: false);
+            slots.Add(itemSlotGameObj.GetComponent<EquipSlot>());
+        }
+    }
+
+    private void DestroyEmptySlot()
+    {
+        for (int i = maxSlots; i < slots.Count; i++)
+        {
+            Destroy(slots[i].transform.parent.gameObject);
+        }
+        int diff = slots.Count - maxSlots;
+        slots.RemoveRange(maxSlots, diff);
     }
 }

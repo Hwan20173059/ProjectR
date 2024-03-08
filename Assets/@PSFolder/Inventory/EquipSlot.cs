@@ -27,7 +27,7 @@ public class EquipSlot : MonoBehaviour
 
     public void OnClickItem()
     {
-        UIManager.instance.nowSelectedEquip = item;
-        UIManager.instance.detailArea.ChangeSelectedItem(item);
+        UIManager.Instance.nowSelectedEquip = item;
+        UIManager.Instance.detailArea.ChangeSelectedItem(item);
     }
 }

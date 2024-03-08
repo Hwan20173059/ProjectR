@@ -17,13 +17,16 @@ public class DetailArea : MonoBehaviour
         ChangeDetailActivation(false);
         _image.sprite = e.data.equipSprite;
         _text.text = e.data.info;
-        if(e.isEquipped)
+        if(e.data.type != Type.Normal)
         {
-            _unEquipButton.gameObject.SetActive(true);
-        }
-        else
-        {
-            _equipButton.gameObject.SetActive(true);
+            if(e.isEquipped)
+            {
+                _unEquipButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                _equipButton.gameObject.SetActive(true);
+            }
         }
         ChangeDetailActivation(true);
     }

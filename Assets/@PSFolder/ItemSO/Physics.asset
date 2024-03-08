@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cb23c4f0bceb4b4c816e4012aaaab3b, type: 3}
-  m_Name: Bread
+  m_Name: Physics
   m_EditorClassIdentifier: 
-  equipSprite: {fileID: 21300000, guid: c728868677dfad541b6543a1f2aec055, type: 3}
-  equipName: "\uBE75"
-  type: 4
-  attack: 13
-  info: "\uAC13 \uAD6C\uC6B4 \uBE75\uC774\uB2E4."
+  equipSprite: {fileID: 0}
+  equipName: 
+  type: 0
+  attack: 0
+  info: 

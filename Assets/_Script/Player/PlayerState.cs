@@ -32,20 +32,28 @@ public class PlayerState : Singleton<PlayerState>
     public void EquipNewItem()
     {
         int len = equip.Count;
+        if (len == 1 && equip[0] == ItemManager.Instance.baseItem)
+        {
+            equip.RemoveAt(0);
+        }
         if (len < 3)
         {
-            equip.Add(UIManager.instance.nowSelectedEquip);
-            UIManager.instance.nowSelectedEquip.isEquipped = true;
+            equip.Add(UIManager.Instance.nowSelectedEquip);
+            UIManager.Instance.nowSelectedEquip.isEquipped = true;
         }
-        UIManager.instance.detailArea.ChangeDetailActivation(false);
-        UIManager.instance.nEquipItemSlot.FreshEquippedSlot();
+        UIManager.Instance.detailArea.ChangeDetailActivation(false);
+        UIManager.Instance.nEquipItemSlot.FreshEquippedSlot();
     }
 
     public void UnEquipItem()
     {
-        equip.Remove(UIManager.instance.nowSelectedEquip);
-        UIManager.instance.nowSelectedEquip.isEquipped = false;
-        UIManager.instance.detailArea.ChangeDetailActivation(false);
-        UIManager.instance.nEquipItemSlot.FreshEquippedSlot();
+        if(equip.Count == 1)
+        {
+            equip.Add(ItemManager.Instance.baseItem);
+        }
+        equip.Remove(UIManager.Instance.nowSelectedEquip);
+        UIManager.Instance.nowSelectedEquip.isEquipped = false;
+        UIManager.Instance.detailArea.ChangeDetailActivation(false);
+        UIManager.Instance.nEquipItemSlot.FreshEquippedSlot();
     }
 }
