@@ -18,9 +18,12 @@ public class DungeonManager : MonoBehaviour
     int currentStage;//private
     int maxStage;//private
 
+    BattleManager battleManager;
+
     private void Awake()
     {
         playerState = SingletonManager.instance.GetComponentInChildren<PlayerState>();
+        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
     }
     private void Start()
     {
@@ -30,6 +33,8 @@ public class DungeonManager : MonoBehaviour
         PlayerSpawn();
         SetDungeon();
         SetStage();
+
+        battleManager.FieldInit();
     }
     
     void PlayerSpawn()
