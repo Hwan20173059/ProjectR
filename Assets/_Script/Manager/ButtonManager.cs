@@ -40,4 +40,10 @@ public class ButtonManager : MonoBehaviour
     {
         characterUI.SetActive(false);
     }
+
+    public void BattleTestScene()
+    {
+        playerState.selectDungeonID = 1;
+        SceneManager.LoadScene("BattleTestScene");
+    }
 }
