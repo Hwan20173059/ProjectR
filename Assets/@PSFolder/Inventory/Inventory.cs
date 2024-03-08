@@ -24,9 +24,9 @@ public class Inventory : MonoBehaviour //Inventory
     public void FreshSlot() // reload slots & show items
     {
         int i = 0;
-        for(; i < GameManager.instance.eInventory.Count && i < slots.Count; i++)
+        for(; i < ItemManager.instance.eInventory.Count && i < slots.Count; i++)
         {
-            slots[i].item = GameManager.instance.eInventory[i];
+            slots[i].item = ItemManager.instance.eInventory[i];
         }
         for(; i < slots.Count; i++)
         {

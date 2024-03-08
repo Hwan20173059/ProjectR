@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb23c4f0bceb4b4c816e4012aaaab3b, type: 3}
   m_Name: Fish
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 9008780582d3efe4fb4acfc2a510a77d, type: 3}
-  itemName: "\uC0DD\uC120"
+  equipSprite: {fileID: 21300000, guid: 9008780582d3efe4fb4acfc2a510a77d, type: 3}
+  equipName: "\uC0DD\uC120"
   type: 2
   attack: 8
   info: "\uC2F1\uC2F1\uD55C \uC0DD\uC120\uC774\uB2E4."
