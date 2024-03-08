@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class BattleManager : MonoBehaviour
 {
-    Character character;
+    Player player;
     List<Slime> monsters = new List<Slime>();
 
     [SerializeField] private Transform PlayerArea;
@@ -49,7 +49,7 @@ public class BattleManager : MonoBehaviour
 
     public void FieldInit()
     {
-        character = PlayerArea.GetComponentInChildren<Character>();
+        player = PlayerArea.GetComponentInChildren<Player>();
 
         for (int i = 0; i < EnemyArea.childCount; i++)
         {
@@ -64,9 +64,9 @@ public class BattleManager : MonoBehaviour
         UIController.VoidPanel.SetActive(true);
 
         int beforeHp = monsters[index].hp;
-        monsters[index].hp -= character.attack;
+        monsters[index].hp -= player.attack;
 
-        UIController.BattleText.text = $"{character.name}의 공격!\n{monsters[index].name}이 {beforeHp - monsters[index].hp}의 데미지를 받았다!";
+        UIController.BattleText.text = $"{player.name}의 공격!\n{monsters[index].name}이 {beforeHp - monsters[index].hp}의 데미지를 받았다!";
         StopGame();
 
         if (monsters[index].hp <= 0)
@@ -82,10 +82,10 @@ public class BattleManager : MonoBehaviour
 
     void MonsterReward(int index)
     {
-        character.currentExp += monsters[index].exp;
+        player.CurrentExp += monsters[index].exp;
         UIController.BattleText.text = $"경험치 {monsters[index].exp} 획득!";
         monsters.RemoveAt(index);
-        Destroy(EnemyArea.GetChild(index));
+        Destroy(EnemyArea.GetChild(index).gameObject);
         StopGame();
 
         if (monsters.Count == 0)
@@ -102,22 +102,22 @@ public class BattleManager : MonoBehaviour
     {
         for (int i = 0; i < monsters.Count; i++)
         {
-            int beforeHp = character.currentHp;
-            character.currentHp -= monsters[i].attack;
+            int beforeHp = player.currentHp;
+            player.currentHp -= monsters[i].attack;
 
-            UIController.BattleText.text = $"{monsters[i].name}의 공격!\n{character.name}이 {beforeHp - character.currentHp}의 데미지를 받았다!";
+            UIController.BattleText.text = $"{monsters[i].name}의 공격!\n{player.name}이 {beforeHp - player.currentHp}의 데미지를 받았다!";
             StopGame();
 
-            if (character.currentHp <= 0)
+            if (player.currentHp <= 0)
             {
-                character.currentHp = 0;
-                UIController.BattleText.text = $"{character.name}이 죽었습니다.\n게임 오버";
+                player.currentHp = 0;
+                UIController.BattleText.text = $"{player.name}이 죽었습니다.\n게임 오버";
                 StopGame();
                 dungeonManager.BattleEnd();
             }
         }
 
-        UIController.BattleText.text = $"{character.name}의 차례!";
+        UIController.BattleText.text = $"{player.name}의 차례!";
         UIController.VoidPanel.SetActive(false);
     }
 
