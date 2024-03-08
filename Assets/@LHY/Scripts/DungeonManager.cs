@@ -20,7 +20,7 @@ public class DungeonManager : MonoBehaviour
 
     private void Awake()
     {
-        playerState = SingletonManager.instance.GetComponentInChildren<PlayerState>();
+        playerState = PlayerState.Instance.GetComponent<PlayerState>();
     }
     private void Start()
     {
