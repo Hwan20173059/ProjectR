@@ -9,18 +9,24 @@ public class PlayerState : Singleton<PlayerState>
     public List<EquipItem> equip;
 
     public Transform playerArea;
-    public GameObject characterPrefab;
+    public GameObject playerPrefab;
 
     public int selectDungeonID;
 
+
     private void Start()
     {
-        SpawnPlayer();
+        ReFreshPlayer();
+    }
+
+    public void ReFreshPlayer()
+    {
+        playerPrefab.GetComponent<Player>().Refresh();
     }
 
     public void SpawnPlayer()
     {
-        Instantiate(characterPrefab, playerArea);
+        Instantiate(playerPrefab, playerArea);
     }
 
     public void EquipNewItem()

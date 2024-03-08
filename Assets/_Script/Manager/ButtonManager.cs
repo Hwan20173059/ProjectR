@@ -15,9 +15,9 @@ public class ButtonManager : MonoBehaviour
         playerState = PlayerState.Instance.GetComponent<PlayerState>();
     }
 
-    public void GoDungeon() 
+    public void GoDungeon(int index) 
     {
-        playerState.selectDungeonID = 1;
+        playerState.selectDungeonID = index;
         SceneManager.LoadScene("DungeonScene");
     }
 
