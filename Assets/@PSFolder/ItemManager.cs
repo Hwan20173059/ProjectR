@@ -13,6 +13,8 @@ public class EquipItem
 
 public class ItemManager : MonoBehaviour
 {
+    public EquipItem baseItem;
+    [SerializeField] private Equip baseEquip;
     public PlayerState playerState;
     public List<EquipItem> eInventory;
     public static ItemManager instance;
@@ -21,5 +23,10 @@ public class ItemManager : MonoBehaviour
     {
         if(instance == null) instance = this;
         else Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        baseItem.data = baseEquip;
     }
 }

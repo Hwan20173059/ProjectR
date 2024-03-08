@@ -32,6 +32,10 @@ public class PlayerState : Singleton<PlayerState>
     public void EquipNewItem()
     {
         int len = equip.Count;
+        if (len == 1 && equip[0] == ItemManager.instance.baseItem)
+        {
+            equip.RemoveAt(0);
+        }
         if (len < 3)
         {
             equip.Add(UIManager.instance.nowSelectedEquip);
@@ -43,6 +47,10 @@ public class PlayerState : Singleton<PlayerState>
 
     public void UnEquipItem()
     {
+        if(equip.Count == 1)
+        {
+            equip.Add(ItemManager.instance.baseItem);
+        }
         equip.Remove(UIManager.instance.nowSelectedEquip);
         UIManager.instance.nowSelectedEquip.isEquipped = false;
         UIManager.instance.detailArea.ChangeDetailActivation(false);

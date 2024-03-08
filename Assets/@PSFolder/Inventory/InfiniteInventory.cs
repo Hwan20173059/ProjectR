@@ -43,7 +43,7 @@ public class InfiniteInventory : Inventory
         {
             GameObject itemSlotGameObj = Instantiate(itemSlotPrefab);
             itemSlotGameObj.transform.SetParent(slotParent, worldPositionStays: false);
-            slots.Add(itemSlotGameObj.GetComponentInChildren<EquipSlot>());
+            slots.Add(itemSlotGameObj.GetComponent<EquipSlot>());
         }
     }
 
