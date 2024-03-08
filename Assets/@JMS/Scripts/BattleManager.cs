@@ -18,8 +18,10 @@ public class BattleManager : MonoBehaviour
     public PlayerInput Input { get; private set; }
     public BattleUIController UIController { get; private set; }
 
-
     public bool selectingMonster;
+
+    WaitForSeconds WaitFor1sec = new WaitForSeconds(1f);
+
 
     private void Awake()
     {
@@ -28,13 +30,7 @@ public class BattleManager : MonoBehaviour
     }
     private void Start()
     {
-        Input.ClickActions.MouseClick.started += OnClickStart;
         Input.ClickActions.MouseClick.canceled += OnClickCancel;
-    }
-
-    private void OnClickStart(InputAction.CallbackContext context)
-    {
-        Time.timeScale = 1.0f;
     }
 
     private void OnClickCancel(InputAction.CallbackContext context)
@@ -43,7 +39,7 @@ public class BattleManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
         if (selectingMonster && hit.collider != null && hit.collider.CompareTag("Monster"))
         {
-            CharacterAttack(hit.collider.transform.GetSiblingIndex());
+            StartCoroutine(PlayerAttack(hit.collider.transform.GetSiblingIndex()));
         }
     }
 
@@ -58,7 +54,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    void CharacterAttack(int index)
+    IEnumerator PlayerAttack(int index)
     {
         selectingMonster = false;
         UIController.AttackCancelPanel.SetActive(false);
@@ -70,18 +66,20 @@ public class BattleManager : MonoBehaviour
         UIController.BattleText.text = $"{player.name}의 공격!\n{monsters[index].name}이 {beforeHp - monsters[index].hp}의 데미지를 받았다!";
         Debug.Log($"{player.name}의 공격!\n{monsters[index].name}이 {beforeHp - monsters[index].hp}의 데미지를 받았다!");
 
+        yield return WaitFor1sec;
+
         if (monsters[index].hp <= 0)
         {
             monsters[index].hp = 0;
-            MonsterReward(index);
+            StartCoroutine(MonsterReward(index));
         }
         else
         {
-            MonsterAttack();
+            StartCoroutine(MonsterAttack());
         }
     }
 
-    void MonsterReward(int index)
+    IEnumerator MonsterReward(int index)
     {
         player.CurrentExp += monsters[index].exp;
         UIController.BattleText.text = $"경험치 {monsters[index].exp} 획득!";
@@ -89,18 +87,23 @@ public class BattleManager : MonoBehaviour
         monsters.RemoveAt(index);
         Destroy(EnemyArea.GetChild(index).gameObject);
 
+        yield return WaitFor1sec;
+
         if (monsters.Count == 0)
         {
             UIController.BattleText.text = $"모든 적을 처치했다!\n다음 스테이지로.";
             Debug.Log($"모든 적을 처치했다!\n다음 스테이지로.");
+
+            yield return WaitFor1sec;
+
             UIController.VoidPanel.SetActive(false);
             dungeonManager.NextStage();
         }
         else
-            MonsterAttack();
+            StartCoroutine(MonsterAttack());
     }
 
-    void MonsterAttack()
+    IEnumerator MonsterAttack()
     {
         for (int i = 0; i < monsters.Count; i++)
         {
@@ -110,11 +113,16 @@ public class BattleManager : MonoBehaviour
             UIController.BattleText.text = $"{monsters[i].name}의 공격!\n{player.name}이 {beforeHp - player.currentHp}의 데미지를 받았다!";
             Debug.Log($"{monsters[i].name}의 공격!\n{player.name}이 {beforeHp - player.currentHp}의 데미지를 받았다!");
 
+            yield return WaitFor1sec;
+
             if (player.currentHp <= 0)
             {
                 player.currentHp = 0;
                 UIController.BattleText.text = $"{player.name}이 죽었습니다.\n게임 오버";
                 Debug.Log($"{player.name}이 죽었습니다.\n게임 오버");
+
+                yield return WaitFor1sec;
+
                 dungeonManager.BattleEnd();
             }
         }
