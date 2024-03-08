@@ -24,7 +24,7 @@ public class NowEquippedItemSlot : MonoBehaviour
         int i = 0;
         if (_playerState.equip.Count == 0)
         {
-            _playerState.equip.Add(ItemManager.instance.baseItem);
+            _playerState.equip.Add(ItemManager.Instance.baseItem);
         }
         for (; i < _playerState.equip.Count && i < nowEquipSlots.Count; i++)
         {

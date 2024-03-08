@@ -2,20 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
     public GameObject equipInventory;
     public NowEquippedItemSlot nEquipItemSlot;
     public DetailArea detailArea;
     public EquipItem nowSelectedEquip;
-
-    public static UIManager instance;
-
-    private void Awake()
-    {
-        if (instance == null) instance = this;
-        else Destroy(gameObject);
-    }
 
     public void OpenInventory()
     {

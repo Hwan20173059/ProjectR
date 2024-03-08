@@ -11,19 +11,12 @@ public class EquipItem
     public Equip data;
 }
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : Singleton<ItemManager>
 {
     public EquipItem baseItem;
     [SerializeField] private Equip baseEquip;
     public PlayerState playerState;
     public List<EquipItem> eInventory;
-    public static ItemManager instance;
-
-    private void Awake() 
-    {
-        if(instance == null) instance = this;
-        else Destroy(gameObject);
-    }
 
     private void Start()
     {
