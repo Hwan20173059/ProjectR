@@ -17,7 +17,7 @@ public class DungeonManager : MonoBehaviour
     int maxStage;//private
     private void Awake()
     {
-        player = SingletonManager.instance.GetComponentInChildren<PlayerState>();
+        player = PlayerState.Instance.GetComponent<PlayerState>();
     }
     private void Start()
     {

@@ -12,7 +12,7 @@ public class ButtonManager : MonoBehaviour
 
     private void Start()
     {
-        playerState = SingletonManager.instance.GetComponentInChildren<PlayerState>();
+        playerState = PlayerState.Instance.GetComponentInChildren<PlayerState>();
     }
 
     public void GoDungeon() 

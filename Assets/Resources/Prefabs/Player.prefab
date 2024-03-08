@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6703128501129441286}
+  - component: {fileID: 3548127805557171680}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -32,6 +33,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3548127805557171680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554603052869525265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93959a7db18d82d4481dd6cb72c0c509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerState: {fileID: 0}
+  character: {fileID: 0}
+  sprite: {fileID: 6977148365831712635}
+  name: 
+  level: 0
+  needExp: 0
+  CurrentExp: 0
+  maxHp: 0
+  currentHp: 0
+  attack: 0
 --- !u!1 &7327005522474997532
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,9 +65,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4247329743148943210}
   - component: {fileID: 6977148365831712635}
-  - component: {fileID: 5877203613581173590}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,15 +139,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5877203613581173590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7327005522474997532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93959a7db18d82d4481dd6cb72c0c509, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

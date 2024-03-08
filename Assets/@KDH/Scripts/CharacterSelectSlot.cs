@@ -21,7 +21,7 @@ public class CharacterSelectSlot : MonoBehaviour
 
     private void Start()
     {
-        playerState = SingletonManager.instance.GetComponentInChildren<PlayerState>();
+        playerState = PlayerState.Instance.GetComponent<PlayerState>();
     }
 
     public void SelectCharacter(int index)
@@ -31,5 +31,7 @@ public class CharacterSelectSlot : MonoBehaviour
 
         characterSlot[index].GetComponent<CharacterSlot>().CharacterSelect();
         playerState.character = characterSlot[index].GetComponent<CharacterSlot>().character;
+
+        playerState.SpawnPlayer();
     }
 }
