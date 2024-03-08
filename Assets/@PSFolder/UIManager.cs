@@ -8,9 +8,10 @@ public class UIManager : MonoBehaviour
     public NowEquippedItemSlot nEquipItemSlot;
     public DetailArea detailArea;
     public EquipItem nowSelectedEquip;
+
     public static UIManager instance;
 
-    private void Start()
+    private void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
