@@ -1,8 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class DungeonManager : MonoBehaviour
@@ -24,9 +21,6 @@ public class DungeonManager : MonoBehaviour
     }
     private void Start()
     {
-        currentDungeon = playerState.selectDungeonID;
-        maxStage = dungeon[currentDungeon].stage.Count;
-        Debug.Log(maxStage);
         PlayerSpawn();
         SetDungeon();
         SetStage();
@@ -44,6 +38,8 @@ public class DungeonManager : MonoBehaviour
 
     void SetDungeon()
     {
+        currentDungeon = playerState.selectDungeonID;
+        maxStage = dungeon[currentDungeon].stage.Count;
         Debug.Log("현재 스테이지 : " + dungeon[currentDungeon].stage[currentStage].name);
 
     }
@@ -75,6 +71,7 @@ public class DungeonManager : MonoBehaviour
         Debug.Log("모든 던전을 클리어했음.");
         //보상을 준다.
     }
+
     void BattleEnd()
     {
         SceneManager.LoadScene("TownScene");

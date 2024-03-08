@@ -16,5 +16,15 @@ MonoBehaviour:
   stage:
   - {fileID: 11400000, guid: 57da713337d67894ab8c3f489e991784, type: 2}
   - {fileID: 11400000, guid: 7f342152b5600b94ca4092df899ce9ea, type: 2}
+  EquipReward:
+  - {fileID: 11400000, guid: b4003db6da4e5dd4ca786f3eade562fb, type: 2}
+  - {fileID: 11400000, guid: 27b5ad7a4c183fb43947b15915692c91, type: 2}
+  - {fileID: 11400000, guid: 028022eaddb883d45b686eecfbf56885, type: 2}
+  - {fileID: 11400000, guid: 0049f738d1999af448c5ffa753c2bed2, type: 2}
+  - {fileID: 11400000, guid: ff807ab432be08c48af0c0c6b92cb470, type: 2}
+  - {fileID: 11400000, guid: 515056db653ad804ea52e876ee02a085, type: 2}
+  ItemReward:
+  - {fileID: 11400000, guid: 4aeb5d062dd7b7f4584afde9a06586ca, type: 2}
+  - {fileID: 11400000, guid: e224a2ec287e91444b1ce7de9fa46581, type: 2}
+  - {fileID: 11400000, guid: dc43c2ca2a40d4643b0bf849e10c4213, type: 2}
   dungeonClearExp: 30
-  dungeonLevel: 1

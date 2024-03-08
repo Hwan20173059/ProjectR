@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb23c4f0bceb4b4c816e4012aaaab3b, type: 3}
+  m_Name: FireApple
+  m_EditorClassIdentifier: 
+  equipSprite: {fileID: 21300000, guid: 8fa37c2c8b9bd654c96a4fae10f387a1, type: 3}
+  equipName: "\uBD88\uAF43\uC758\uC0AC\uACFC"
+  type: 1
+  attack: 12
+  info: "\uD0C0\uC624\uB974\uB294 \uC815\uC5F4\uC758 \uBE68\uAC04 \uC0AC\uACFC\uC774\uB2E4."

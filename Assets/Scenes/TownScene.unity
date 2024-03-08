@@ -2344,9 +2344,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 11400000, guid: 1702c8cf77d019b48a36b22a164343d9, type: 2}
   equip:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - isEquipped: 0
+    data: {fileID: 0}
+  - isEquipped: 0
+    data: {fileID: 0}
+  - isEquipped: 0
+    data: {fileID: 0}
   playerArea: {fileID: 182095471}
   characterPrefab: {fileID: 1554603052869525265, guid: e81142ed84377404690b02caa43c28bd, type: 3}
   selectDungeonID: 0
