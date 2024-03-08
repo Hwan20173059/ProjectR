@@ -16,6 +16,10 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void Start()
     {
+        for (int i = 0; i < 3; i++)
+        {
+            equip.Add(ItemManager.Instance.baseItem);
+        }
         ReFreshPlayer();
     }
 
@@ -31,13 +35,9 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void EquipNewItem()
     {
-        int len = equip.Count;
-        if (len == 1 && equip[0] == ItemManager.Instance.baseItem)
+        if (equip.Contains(ItemManager.Instance.baseItem))
         {
             equip.RemoveAt(0);
-        }
-        if (len < 3)
-        {
             equip.Add(UIManager.Instance.nowSelectedEquip);
             UIManager.Instance.nowSelectedEquip.isEquipped = true;
         }
@@ -47,11 +47,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void UnEquipItem()
     {
-        if(equip.Count == 1)
-        {
-            equip.Add(ItemManager.Instance.baseItem);
-        }
         equip.Remove(UIManager.Instance.nowSelectedEquip);
+        equip.Add(ItemManager.Instance.baseItem);
         UIManager.Instance.nowSelectedEquip.isEquipped = false;
         UIManager.Instance.detailArea.ChangeDetailActivation(false);
         UIManager.Instance.nEquipItemSlot.FreshEquippedSlot();

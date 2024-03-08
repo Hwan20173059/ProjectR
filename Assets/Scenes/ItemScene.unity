@@ -3234,10 +3234,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1002228291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9724cef6295e5334fafe1d87b0875faf, type: 3}
+  m_Script: {fileID: 11500000, guid: e84230751d2fea146b001599bdcaa2f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerState: {fileID: 2065172013}
+  baseItem:
+    isEquipped: 0
+    data: {fileID: 0}
+  baseEquip: {fileID: 11400000, guid: e54b941b6d2033940b23208ba8498f4f, type: 2}
+  playerManager: {fileID: 0}
   eInventory:
   - isEquipped: 0
     data: {fileID: 11400000, guid: 94b082ed33894314e92a924d1c0e9e82, type: 2}
@@ -3297,7 +3301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f560b59ae8e6c34429e53324be87c17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerState: {fileID: 2065172013}
+  playerManager: {fileID: 0}
   nowEquipParent: {fileID: 1020743615}
   nowEquipSlots:
   - {fileID: 1744323947}
@@ -5845,7 +5849,7 @@ MonoBehaviour:
   character: {fileID: 3728519884485556248, guid: 90bf53f229251ef408b4513b0a3aebda, type: 3}
   equip: []
   playerArea: {fileID: 0}
-  characterPrefab: {fileID: 0}
+  playerPrefab: {fileID: 0}
   selectDungeonID: 0
 --- !u!1 &2119406198
 GameObject:

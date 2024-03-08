@@ -23,18 +23,9 @@ public class NowEquippedItemSlot : MonoBehaviour
 
     public void FreshEquippedSlot() // reload slots & show items
     {
-        int i = 0;
-        if (playerManager.equip.Count == 0)
+        for (int i = 0; i < 3; i++)
         {
-            playerManager.equip.Add(ItemManager.Instance.baseItem);
-        }
-        for (; i < playerManager.equip.Count && i < nowEquipSlots.Count; i++)
-        {
-            nowEquipSlots[i].item = playerManager.equip[i];
-        }
-        for (; i < nowEquipSlots.Count; i++)
-        {
-            nowEquipSlots[i].item = null;
+            nowEquipSlots[i].item = playerManager.equip[2 - i];
         }
     }
 }
