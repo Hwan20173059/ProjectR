@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterSelectSlot : MonoBehaviour
 {
+    public PlayerState playerState;
     public GameObject[] characterSlot;
     public CharacterManager characterManager;
 
@@ -15,7 +16,19 @@ public class CharacterSelectSlot : MonoBehaviour
 
             _charactorSlot.character = characterManager.characterList[i];
         }
+    }
 
+    private void Start()
+    {
+        playerState = SingletonManager.instance.GetComponentInChildren<PlayerState>();
+    }
 
+    public void SelectCharacter(int index)
+    {
+        for (int i = 0; i < characterSlot.Length; i++)
+            characterSlot[i].GetComponent<CharacterSlot>().CharacterUnSelect();
+
+        characterSlot[index].GetComponent<CharacterSlot>().CharacterSelect();
+        playerState.character = characterSlot[index].GetComponent<CharacterSlot>().character;
     }
 }
