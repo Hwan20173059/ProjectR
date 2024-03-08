@@ -92,6 +92,7 @@ public class BattleManager : MonoBehaviour
         {
             UIController.BattleText.text = $"모든 적을 처치했다!\n다음 스테이지로.";
             StopGame();
+            UIController.VoidPanel.SetActive(false);
             dungeonManager.NextStage();
         }
         else

@@ -33,8 +33,6 @@ public class DungeonManager : MonoBehaviour
         PlayerSpawn();
         SetDungeon();
         SetStage();
-
-        battleManager.FieldInit();
     }
     
     void PlayerSpawn()
@@ -55,6 +53,7 @@ public class DungeonManager : MonoBehaviour
     void SetStage()
     {
         MonsterSpawn();
+        battleManager.FieldInit();
     }
     public void NextStage()
     {
