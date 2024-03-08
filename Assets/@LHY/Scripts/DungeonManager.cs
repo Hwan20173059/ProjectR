@@ -75,7 +75,7 @@ public class DungeonManager : MonoBehaviour
         Debug.Log("모든 던전을 클리어했음.");
         //보상을 준다.
     }
-    void BattleEnd()
+    public void BattleEnd()
     {
         SceneManager.LoadScene("TownScene");
     }
