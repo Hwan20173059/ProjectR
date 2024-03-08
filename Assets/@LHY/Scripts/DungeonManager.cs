@@ -7,37 +7,45 @@ using UnityEngine.SceneManagement;
 
 public class DungeonManager : MonoBehaviour
 {
-    //´øÀü¿¡ °üÇÑ ¸ñ·Ï ÀúÀå
+    //ë˜ì „ì— ê´€í•œ ëª©ë¡ ì €ì¥
     public List<SODungeon> dungeon = new List<SODungeon>();
 
     public Transform EnemyArea;
-    private PlayerState player;
+    public Transform PlayerArea;
+    private PlayerState playerState;
+    public GameObject player;
     int currentDungeon;//static
     int currentStage;//private
     int maxStage;//private
+
     private void Awake()
     {
-        player = PlayerState.Instance.GetComponent<PlayerState>();
+        playerState = SingletonManager.instance.GetComponentInChildren<PlayerState>();
     }
     private void Start()
     {
-        currentDungeon = player.selectDungeonID;
+        currentDungeon = playerState.selectDungeonID;
         maxStage = dungeon[currentDungeon].stage.Count;
         Debug.Log(maxStage);
+        PlayerSpawn();
         SetDungeon();
         SetStage();
     }
     
-    
+    void PlayerSpawn()
+    {
+        Instantiate(player, PlayerArea);
+    }
+
     void MonsterSpawn()
     {
-        //¿¹¿ÜÃ³¸® ÇÊ¿ä
+        //ì˜ˆì™¸ì²˜ë¦¬ í•„ìš”
         dungeon[currentDungeon].stage[currentStage].MonsterSpawn(EnemyArea);
     }
 
     void SetDungeon()
     {
-        Debug.Log("ÇöÀç ½ºÅ×ÀÌÁö : " + dungeon[currentDungeon].stage[currentStage].name);
+        Debug.Log("í˜„ì¬ ìŠ¤í…Œì´ì§€ : " + dungeon[currentDungeon].stage[currentStage].name);
 
     }
     void SetStage()
@@ -46,16 +54,16 @@ public class DungeonManager : MonoBehaviour
     }
     public void NextStage()
     {
-        //ClearÁ¶°Ç ÃæÁ·½Ã
+        //Clearì¡°ê±´ ì¶©ì¡±ì‹œ
         if (currentStage == maxStage - 1)
         {
             DungeonReward();
-            Debug.Log("´ÙÀ½ ½ºÅ×ÀÌÁö´Â ¾ø¾î ³¡ÀÌ¾ß");
+            Debug.Log("ë‹¤ìŒ ìŠ¤í…Œì´ì§€ëŠ” ì—†ì–´ ëì´ì•¼");
             //BattleEnd();
         }
         else
         {
-            Debug.Log("´ÙÀ½ ½ºÅ×ÀÌÁö·Î ÀÌµ¿ÇÑ´Ù.");
+            Debug.Log("ë‹¤ìŒ ìŠ¤í…Œì´ì§€ë¡œ ì´ë™í•œë‹¤.");
             currentStage++;
             SetStage();
         }
@@ -63,10 +71,10 @@ public class DungeonManager : MonoBehaviour
 
     void DungeonReward()
     {
-        Debug.Log("EXP : " + player.character.currentExp + "->" + (player.character.currentExp + dungeon[currentDungeon].stage[currentStage].stageClearExp));
-        player.character.currentExp += dungeon[currentDungeon].stage[currentStage].stageClearExp;
-        Debug.Log("¸ğµç ´øÀüÀ» Å¬¸®¾îÇßÀ½.");
-        //º¸»óÀ» ÁØ´Ù.
+        Debug.Log("EXP : " + playerState.character.currentExp + "->" + (playerState.character.currentExp + dungeon[currentDungeon].stage[currentStage].stageClearExp));
+        playerState.character.currentExp += dungeon[currentDungeon].stage[currentStage].stageClearExp;
+        Debug.Log("ëª¨ë“  ë˜ì „ì„ í´ë¦¬ì–´í–ˆìŒ.");
+        //ë³´ìƒì„ ì¤€ë‹¤.
     }
     void BattleEnd()
     {
