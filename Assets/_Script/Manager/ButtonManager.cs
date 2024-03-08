@@ -9,15 +9,15 @@ public class ButtonManager : MonoBehaviour
     public PlayerState playerState;
     public GameObject characterUI;
     public GameObject DungeonUI;
-
+    //.
     private void Start()
     {
         playerState = PlayerState.Instance.GetComponent<PlayerState>();
     }
 
-    public void GoDungeon() 
+    public void GoDungeon(int index) 
     {
-        playerState.selectDungeonID = 1;
+        playerState.selectDungeonID = index;
         SceneManager.LoadScene("DungeonScene");
     }
 
