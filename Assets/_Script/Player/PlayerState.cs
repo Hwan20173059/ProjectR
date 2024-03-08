@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerState : MonoBehaviour
@@ -14,7 +15,12 @@ public class PlayerState : MonoBehaviour
 
     private void Start()
     {
-        Instantiate(characterPrefab,playerArea);
+        SpawnPlayer();
+    }
+
+    public void SpawnPlayer()
+    {
+        Instantiate(characterPrefab, playerArea);
     }
 
     public void EquipNewItem()
