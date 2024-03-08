@@ -25,8 +25,9 @@ public class SOStage : ScriptableObject
             // [2]  [1]  [3]  순으로 생성되게 함.
 
             Debug.Log("슬라임을 생성합니다.");
-            GameObject item = Instantiate(Slime[i]);
-            item.transform.position = new Vector3(transform.GetChild(i).position.x, transform.GetChild(i).position.y, transform.GetChild(i).position.z);
+            GameObject item = Instantiate(Slime[i], transform);
+            item.transform.position = new Vector3(i, 0, 0);
+            //todo : [2]  [1]  [3]  순으로 생성되게 함.
         }
     }
 }
