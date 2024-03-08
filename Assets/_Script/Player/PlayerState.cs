@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerState : MonoBehaviour
+public class PlayerState : Singleton<PlayerState>
 {
     public Character character;
     public List<EquipItem> equip;

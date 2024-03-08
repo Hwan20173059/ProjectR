@@ -3240,11 +3240,11 @@ MonoBehaviour:
   playerState: {fileID: 2065172013}
   eInventory:
   - isEquipped: 0
-    data: {fileID: 11400000, guid: cbfa5a430e4d5e9439276900d67c9bea, type: 2}
+    data: {fileID: 11400000, guid: 94b082ed33894314e92a924d1c0e9e82, type: 2}
   - isEquipped: 0
-    data: {fileID: 11400000, guid: 19794573686b63b4a86319cf1fd8b998, type: 2}
+    data: {fileID: 11400000, guid: 472c916165621b14e89a13bdc381ebde, type: 2}
   - isEquipped: 0
-    data: {fileID: 11400000, guid: 9993e52f9b3ed634fb4dca2bf31de67f, type: 2}
+    data: {fileID: 11400000, guid: 9587bb6e007c22a48bce4fe1910f1d11, type: 2}
 --- !u!1 &1020743614
 GameObject:
   m_ObjectHideFlags: 0
@@ -5844,6 +5844,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 3728519884485556248, guid: 90bf53f229251ef408b4513b0a3aebda, type: 3}
   equip: []
+  playerArea: {fileID: 0}
+  characterPrefab: {fileID: 0}
+  selectDungeonID: 0
 --- !u!1 &2119406198
 GameObject:
   m_ObjectHideFlags: 0
