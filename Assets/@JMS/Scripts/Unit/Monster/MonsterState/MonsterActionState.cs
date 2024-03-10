@@ -16,8 +16,8 @@ public class MonsterActionState : MonsterBaseState
             case MonsterActions.BASEATTACK:
                 CoroutineHelper.StartCoroutine(BaseAttack());
                 break;
-            case MonsterActions.HEAL:
-                CoroutineHelper.StartCoroutine(Heal());
+            case MonsterActions.JUMP:
+                CoroutineHelper.StartCoroutine(Jump());
                 break;
         }
     }
@@ -29,7 +29,7 @@ public class MonsterActionState : MonsterBaseState
         stateMachine.Monster.Animator.SetBool("Idle", false);
         stateMachine.Monster.Animator.SetTrigger("BaseAttack");
         stateMachine.Monster.battleManager.Character.TakeDamage(stateMachine.Monster.atk);
-        while (!AnimEnd(GetNormalizedTime(stateMachine.Monster.Animator, "Attack"))) { yield return null; }
+        while (!IsAnimationEnd(GetNormalizedTime(stateMachine.Monster.Animator, "Attack"))) { yield return null; }
         stateMachine.Monster.Animator.SetBool("Idle", true);
 
         while (MoveTowardsMonster(stateMachine.Monster.startPosition)) { yield return null; }
@@ -38,18 +38,21 @@ public class MonsterActionState : MonsterBaseState
         stateMachine.Monster.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.ReadyState);
     }
-    IEnumerator Heal()
+    IEnumerator Jump()
     {
-        // todo
-        yield return null;
+        stateMachine.Monster.Animator.SetBool("Idle", false);
+        stateMachine.Monster.Animator.SetTrigger("Jump");
+        while (!IsAnimationEnd(GetNormalizedTime(stateMachine.Monster.Animator, "Jump"))) { yield return null; }
+        stateMachine.Monster.Animator.SetBool("Idle", true);
+
         stateMachine.Monster.battleManager.stateMachine.ChangeState(stateMachine.Monster.battleManager.stateMachine.WaitState);
         stateMachine.Monster.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.ReadyState);
     }
 
-    private bool AnimEnd(float anim)
+    private bool IsAnimationEnd(float animNormalizedTime)
     {
-        return anim >= 1f;
+        return animNormalizedTime >= 1f;
     }
 
     private bool MoveTowardsMonster(Vector3 target)

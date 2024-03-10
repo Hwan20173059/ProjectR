@@ -5,7 +5,7 @@ using UnityEngine;
 public enum MonsterActions
 {
     BASEATTACK,
-    HEAL
+    JUMP
 }
 
 [CreateAssetMenu(fileName = "MonsterData", menuName = "Scriptable Object/MonsterData")]
