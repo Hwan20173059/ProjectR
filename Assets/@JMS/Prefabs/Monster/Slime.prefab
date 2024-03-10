@@ -51,6 +51,14 @@ MonoBehaviour:
   curHP: 0
   atk: 0
   exp: 0
+  actions: 
+  selectAction: 0
+  curCoolTime: 0
+  maxCoolTime: 0
+  monsterNumber: 0
+  startPosition: {x: 0, y: 0, z: 0}
+  animSpeed: 5
+  battleManager: {fileID: 0}
 --- !u!1 &3598398549311246115
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,8 +69,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4400600531444747753}
   - component: {fileID: 3668188602439089985}
+  - component: {fileID: 6433489956782538058}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,3 +144,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6433489956782538058
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3598398549311246115}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 950baf8d16396394a94bf0342a972ef9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

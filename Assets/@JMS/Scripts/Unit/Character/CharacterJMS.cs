@@ -6,15 +6,17 @@ using UnityEngine.UI;
 public class CharacterJMS : MonoBehaviour
 {
     public CharacterSO BaseData;
+
     public int level = 1;
     public int maxHP;
     public int curHP;
     public int atk;
     public int curExp;
     public int needExp;
+    public bool IsDead => curHP <= 0;
+
     public float curCoolTime;
     public float maxCoolTime;
-    public bool IsDead => curHP <= 0;
 
     public Animator Animator {  get; private set; }
     public Image ActionBar;
@@ -58,5 +60,11 @@ public class CharacterJMS : MonoBehaviour
         atk = BaseData.atk * level;
         needExp = BaseData.needExp * level;
         maxCoolTime = BaseData.actionCoolTime;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        curHP -= damage;
+        if(curHP < 0 ) { curHP = 0; }
     }
 }

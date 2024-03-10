@@ -12,15 +12,23 @@ public class Monster : MonoBehaviour
     public int curHP;
     public int atk;
     public int exp;
-    public float curCoolTime;
-    public float maxCoolTime;
     public bool IsDead => curHP <= 0;
 
+    public List<MonsterActions> actions;
+    public MonsterActions selectAction;
+
+    public float curCoolTime;
+    public float maxCoolTime;
+
+    public int monsterNumber;
+
     public Animator Animator { get; private set; }
+    public Vector3 startPosition;
+    public float moveAnimSpeed = 10f;
 
     public MonsterStateMachine stateMachine;
 
-    private BattleManager battleManager;
+    public BattleManager battleManager;
 
     private void Awake()
     {
@@ -55,6 +63,7 @@ public class Monster : MonoBehaviour
         curHP = BaseData.hp * level;
         atk = BaseData.atk * level;
         exp = BaseData.exp * level;
+        actions = BaseData.actions;
         maxCoolTime = BaseData.actionCoolTime;
     }
 }
