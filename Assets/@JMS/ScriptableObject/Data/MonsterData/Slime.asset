@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b21781bf43ac70f45a4fddd58b0e29aa, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: 
-  monsterName: Slime
   hp: 30
   atk: 5
   exp: 5
+  actionCoolTime: 6

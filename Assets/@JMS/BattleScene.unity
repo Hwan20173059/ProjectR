@@ -1041,7 +1041,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &925995629
 GameObject:
@@ -2160,7 +2160,7 @@ RectTransform:
   m_GameObject: {fileID: 1728171200}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 644500680}
@@ -2654,7 +2654,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2141367375}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2670,8 +2671,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f7946424b73d74589673be09c37ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dungeons: []
-  character: {fileID: 0}
+  Dungeons:
+  - {fileID: 11400000, guid: 71db69544ce65d54e9172c988afe3f85, type: 2}
+  CharacterPrefab: {fileID: 8902153403540484996, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
+  ActionBar: {fileID: 1728171202}
+  selectDungeon: 0
+  curStage: 0
+  Character: {fileID: 0}
+  Monsters: []
 --- !u!1 &2141367371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2768,8 +2775,8 @@ RectTransform:
   m_Children:
   - {fileID: 938060296}
   - {fileID: 1670152843}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1861630717}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

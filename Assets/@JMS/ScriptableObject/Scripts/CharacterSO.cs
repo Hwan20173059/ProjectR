@@ -9,4 +9,5 @@ public class CharacterSO : ScriptableObject
     public int atk;
     public int needExp;
     public int maxLevel;
+    public float actionCoolTime;
 }

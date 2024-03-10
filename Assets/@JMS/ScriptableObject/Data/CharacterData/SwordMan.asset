@@ -16,3 +16,4 @@ MonoBehaviour:
   atk: 15
   needExp: 30
   maxLevel: 20
+  actionCoolTime: 5

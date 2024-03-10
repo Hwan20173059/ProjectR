@@ -8,4 +8,5 @@ public class MonsterSO : ScriptableObject
     public int hp;
     public int atk;
     public int exp;
+    public float actionCoolTime;
 }

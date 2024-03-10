@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterJMS : MonoBehaviour
 {
@@ -11,16 +12,26 @@ public class CharacterJMS : MonoBehaviour
     public int atk;
     public int curExp;
     public int needExp;
+    public float curCoolTime;
+    public float maxCoolTime;
+    public bool IsDead => curHP <= 0;
 
     public Animator Animator {  get; private set; }
+    public Image ActionBar;
 
     public CharacterStateMachine stateMachine;
 
+    public BattleManager BattleManager;
+
     private void Awake()
     {
-        Animator = GetComponentInChildren<Animator>();
+        BattleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
 
         stateMachine = new CharacterStateMachine(this);
+
+        Animator = GetComponentInChildren<Animator>();
+        ActionBar = BattleManager.ActionBar;
+
     }
     private void Start()
     {
@@ -42,10 +53,10 @@ public class CharacterJMS : MonoBehaviour
     }
     public void Init(int level)
     {
-        this.level = level;
         maxHP = BaseData.hp * level;
         curHP = BaseData.hp * level;
         atk = BaseData.atk * level;
         needExp = BaseData.needExp * level;
+        maxCoolTime = BaseData.actionCoolTime;
     }
 }

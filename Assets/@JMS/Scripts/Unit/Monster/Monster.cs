@@ -12,16 +12,23 @@ public class Monster : MonoBehaviour
     public int curHP;
     public int atk;
     public int exp;
+    public float curCoolTime;
+    public float maxCoolTime;
+    public bool IsDead => curHP <= 0;
 
     public Animator Animator { get; private set; }
 
     public MonsterStateMachine stateMachine;
 
+    private BattleManager battleManager;
+
     private void Awake()
     {
-        Animator = GetComponentInChildren<Animator>();
+        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
 
         stateMachine = new MonsterStateMachine(this);
+
+        Animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -44,10 +51,10 @@ public class Monster : MonoBehaviour
     }
     public void Init(int level)
     {
-        this.level = level;
         maxHP = BaseData.hp * level;
         curHP = BaseData.hp * level;
         atk = BaseData.atk * level;
         exp = BaseData.exp * level;
+        maxCoolTime = BaseData.actionCoolTime;
     }
 }
