@@ -19,21 +19,17 @@ public class Character : MonoBehaviour
     public float maxCoolTime;
 
     public Animator Animator {  get; private set; }
-    public Image ActionBar;
 
     public CharacterStateMachine stateMachine;
 
-    public BattleManager BattleManager;
+    public BattleManager battleManager;
+    public Image ActionBar;
 
     private void Awake()
     {
-        BattleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-
         stateMachine = new CharacterStateMachine(this);
 
         Animator = GetComponentInChildren<Animator>();
-        ActionBar = BattleManager.ActionBar;
-
     }
     private void Start()
     {

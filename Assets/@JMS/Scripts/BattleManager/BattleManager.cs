@@ -18,6 +18,8 @@ public class BattleManager : MonoBehaviour
 
     public Character Character;
     public List<Monster> Monsters;
+    public IState characterPrevState;
+    public IState[] monstersPrevState;
 
     public BattleStateMachine stateMachine;
 
@@ -46,6 +48,8 @@ public class BattleManager : MonoBehaviour
         GameObject character = Instantiate(CharacterPrefab);
         character.transform.position = CharacterSpawnPosition;
         Character = character.GetComponent<Character>();
+        Character.battleManager = this;
+        Character.ActionBar = ActionBar;
     }
 
     void SpawnMonster()
@@ -78,7 +82,11 @@ public class BattleManager : MonoBehaviour
         {
             Monsters[i].monsterNumber = i;
             Monsters[i].startPosition = Monsters[i].transform.position;
+            Monsters[i].battleManager = this;
         }
+
+        MonsterSpawnPosition = new Vector3(-1, 3, 0);
+        monstersPrevState = new IState[Monsters.Count];
     }
 
     void ChangeSpawnPosition()

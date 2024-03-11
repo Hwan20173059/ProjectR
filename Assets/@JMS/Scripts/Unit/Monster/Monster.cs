@@ -32,8 +32,6 @@ public class Monster : MonoBehaviour
 
     private void Awake()
     {
-        battleManager = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-
         stateMachine = new MonsterStateMachine(this);
 
         Animator = GetComponentInChildren<Animator>();
