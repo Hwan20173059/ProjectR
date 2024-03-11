@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class CharacterSlot : MonoBehaviour
 {
-    public Character character;
+    public CharacterSO characterSO;
     
     public Image[] characterSlotImage;
     public TextMeshProUGUI[] characterSlotText;
@@ -16,44 +16,44 @@ public class CharacterSlot : MonoBehaviour
     private void Start()
     {
         characterSlotImage = GetComponentsInChildren<Image>();
-        //characterSlotImage[1].sprite = character.sprite;
+        characterSlotImage[1].sprite = characterSO.sprite;
 
         characterSlotText = GetComponentsInChildren<TextMeshProUGUI>();
-        characterSlotText[0].text = character.name;
+        characterSlotText[0].text = characterSO.name;
 
-        //Refresh();
+        Refresh();
     }
 
-    //public void CharacterSelect()
-    //{
-    //    character.isSelected = true;
+    public void CharacterSelect()
+    {
+        characterSO.isSelected = true;
 
-    //    Refresh();
-    //}
+        Refresh();
+    }
 
-    //public void CharacterUnSelect()
-    //{
-    //    character.isSelected = false;
+    public void CharacterUnSelect()
+    {
+        characterSO.isSelected = false;
 
-    //    Refresh();
-    //}
+        Refresh();
+    }
 
-    //public void Refresh()
-    //{
-    //    characterSlotImage[4].gameObject.SetActive(false);
+    public void Refresh()
+    {
+        characterSlotImage[4].gameObject.SetActive(false);
 
-    //    if (character.isBuy == true)
-    //        characterSlotText[2].text = "장착중";
-    //    else
-    //    {
-    //        characterSlotText[2].text = "미보유";
-    //        characterSlotImage[4].gameObject.SetActive(true);
-    //    }
+        if (characterSO.isBuy == true)
+            characterSlotText[2].text = "장착중";
+        else
+        {
+            characterSlotText[2].text = "미보유";
+            characterSlotImage[4].gameObject.SetActive(true);
+        }
 
-    //    if (character.isSelected == true || character.isBuy == false)
-    //        characterSlotImage[3].gameObject.SetActive(true);
-    //    else
-    //        characterSlotImage[3].gameObject.SetActive(false);
+        if (characterSO.isSelected == true || characterSO.isBuy == false)
+            characterSlotImage[3].gameObject.SetActive(true);
+        else
+            characterSlotImage[3].gameObject.SetActive(false);
 
-    //}
+    }
 }

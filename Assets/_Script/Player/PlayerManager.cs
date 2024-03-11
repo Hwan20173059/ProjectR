@@ -6,8 +6,9 @@ using UnityEngine;
 public class PlayerManager : Singleton<PlayerManager>
 {
     public ItemManager itemManager;
+    public TownUiManager townUiManager;
 
-    public Character character;
+    public CharacterSO characterSO;
     public List<EquipItem> equip;
 
     public Transform playerArea;
@@ -18,8 +19,6 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void Start()
     {
-
-
         for (int i = 0; i < 3; i++)
         {
             equip.Add(itemManager.baseItem);
@@ -30,7 +29,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void ReFreshPlayer()
     {
-        //playerPrefab.GetComponent<Character>().Refresh();
+        playerPrefab.GetComponent<TownPlayer>().Refresh();
     }
 
     public void SpawnPlayer()
@@ -43,19 +42,19 @@ public class PlayerManager : Singleton<PlayerManager>
         if (equip.Contains(itemManager.baseItem))
         {
             equip.RemoveAt(0);
-            equip.Add(UIManager.Instance.nowSelectedEquip);
-            UIManager.Instance.nowSelectedEquip.isEquipped = true;
+            equip.Add(townUiManager.nowSelectedEquip);
+            townUiManager.nowSelectedEquip.isEquipped = true;
         }
-        UIManager.Instance.detailArea.ChangeDetailActivation(false);
-        UIManager.Instance.nEquipItemSlot.FreshEquippedSlot();
+        townUiManager.detailArea.ChangeDetailActivation(false);
+        townUiManager.nEquipItemSlot.FreshEquippedSlot();
     }
 
     public void UnEquipItem()
     {
-        equip.Remove(UIManager.Instance.nowSelectedEquip);
+        equip.Remove(townUiManager.nowSelectedEquip);
         equip.Add(itemManager.baseItem);
-        UIManager.Instance.nowSelectedEquip.isEquipped = false;
-        UIManager.Instance.detailArea.ChangeDetailActivation(false);
-        UIManager.Instance.nEquipItemSlot.FreshEquippedSlot();
+        townUiManager.nowSelectedEquip.isEquipped = false;
+        townUiManager.detailArea.ChangeDetailActivation(false);
+        townUiManager.nEquipItemSlot.FreshEquippedSlot();
     }
 }

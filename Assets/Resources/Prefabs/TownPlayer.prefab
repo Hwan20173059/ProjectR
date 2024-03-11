@@ -148,16 +148,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4993744543130146367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 93959a7db18d82d4481dd6cb72c0c509, type: 3}
+  m_Script: {fileID: 11500000, guid: f7b3256ae96554d499ec98d5d3bb6a22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerState: {fileID: 0}
-  character: {fileID: 0}
-  sprite: {fileID: 4738381987064539055}
-  name: 
-  level: 0
-  needExp: 0
-  CurrentExp: 0
-  maxHp: 0
-  currentHp: 0
-  attack: 0
+  characterSO: {fileID: 0}
+  playerManager: {fileID: 0}
