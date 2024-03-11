@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterJMS : MonoBehaviour
+public class Character : MonoBehaviour
 {
     public CharacterSO BaseData;
 

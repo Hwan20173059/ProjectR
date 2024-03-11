@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CharacterStateMachine : StateMachine
 {
-    public CharacterJMS Character { get; }
+    public Character Character { get; }
     public CharacterWaitState WaitState { get; }
     public CharacterReadyState ReadyState { get; }
     public CharacterSelectActionState SelectActionState { get; }
     public CharacterSelectTargetState SelectTargetState { get; }
     public CharacterActionState ActionState { get; }
     public CharacterDeadState DeadState { get; }
-    public CharacterStateMachine(CharacterJMS character)
+    public CharacterStateMachine(Character character)
     {
         Character = character;
 

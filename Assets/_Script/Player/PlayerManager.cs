@@ -30,7 +30,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void ReFreshPlayer()
     {
-        playerPrefab.GetComponent<Player>().Refresh();
+        //playerPrefab.GetComponent<Character>().Refresh();
     }
 
     public void SpawnPlayer()

@@ -16,7 +16,7 @@ public class BattleManager : MonoBehaviour
     public int curStage;
     private WaitForSeconds WaitFor1Sec = new WaitForSeconds(1f);
 
-    public CharacterJMS Character;
+    public Character Character;
     public List<Monster> Monsters;
 
     public BattleStateMachine stateMachine;
@@ -45,7 +45,7 @@ public class BattleManager : MonoBehaviour
     {
         GameObject character = Instantiate(CharacterPrefab);
         character.transform.position = CharacterSpawnPosition;
-        Character = character.GetComponent<CharacterJMS>();
+        Character = character.GetComponent<Character>();
     }
 
     void SpawnMonster()
