@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class TownPlayer : MonoBehaviour
 {
-    public CharacterSO characterSO;
+    public CharacterSO selectedCharacter;
 
     private void Start()
     {
-        PlayerManager.Instance.playerPrefab = this.gameObject;
+        PlayerManager.Instance.townPlayer = this.gameObject;
 
-        characterSO = PlayerManager.Instance.characterSO;
+        selectedCharacter = PlayerManager.Instance.selectedCharacter;
     }
 
     public void Refresh()
     {
-        characterSO = PlayerManager.Instance.characterSO;
+        selectedCharacter = PlayerManager.Instance.selectedCharacter;
 
-        //Sprite sprite = GetComponentInChildren<Sprite>();
-        //sprite = characterSO.sprite;
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.sprite = selectedCharacter.sprite;
     }
 }
