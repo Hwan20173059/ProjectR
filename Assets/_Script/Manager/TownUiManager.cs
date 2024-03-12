@@ -18,6 +18,7 @@ public class TownUiManager : MonoBehaviour
     public NowEquippedItemSlot nEquipItemSlot;
     public DetailArea detailArea;
     public EquipItem nowSelectedEquip;
+    public EquipItem lastSelectedEquip;
 
     private void Start()
     {
@@ -58,5 +59,13 @@ public class TownUiManager : MonoBehaviour
     public void CloseInventory()
     {
         equipInventoryUI.SetActive(false);
+    }
+
+    public void FreshAfterEquip()
+    {
+        nowSelectedEquip = null;
+        lastSelectedEquip = null;
+        detailArea.ChangeDetailActivation(false);
+        nEquipItemSlot.FreshEquippedSlot();
     }
 }

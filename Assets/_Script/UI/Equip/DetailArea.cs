@@ -11,6 +11,8 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private Button _equipButton;
     [SerializeField] private Button _unEquipButton;
+    [SerializeField] private GameObject _activateFalseObj;
+    public bool isEquipping;
 
     public void ChangeSelectedItem(EquipItem e)
     {
@@ -39,5 +41,17 @@ public class DetailArea : MonoBehaviour
             _equipButton.gameObject.SetActive(false);
             _unEquipButton.gameObject.SetActive(false);
         }
+    }
+
+    public void ActiveEquippingState()
+    {
+        _activateFalseObj.SetActive(true);
+        isEquipping = true;
+    }
+
+    public void UnActiveEquippingState()
+    {
+        _activateFalseObj.SetActive(false);
+        isEquipping = false;
     }
 }

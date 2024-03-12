@@ -17,15 +17,14 @@ public class NowEquippedItemSlot : MonoBehaviour
     private void Start()
     {
         playerManager = PlayerManager.Instance.GetComponent<PlayerManager>();
-
-        FreshEquippedSlot();
+        Invoke("FreshEquippedSlot", 0.1f);
     }
 
     public void FreshEquippedSlot() // reload slots & show items
     {
         for (int i = 0; i < 3; i++)
         {
-            nowEquipSlots[i].item = playerManager.equip[2 - i];
+            nowEquipSlots[i].item = playerManager.equip[i];
         }
     }
 }
