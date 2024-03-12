@@ -30,7 +30,7 @@ public class CharacterSelectSlot : MonoBehaviour
             characterSlot[i].GetComponent<CharacterSlot>().CharacterUnSelect();
 
         characterSlot[index].GetComponent<CharacterSlot>().CharacterSelect();
-        playerManager.selectedCharacter = characterSlot[index].GetComponent<CharacterSlot>().characterData;
+        playerManager.selectedCharacter = characterSlot[index].GetComponent<CharacterSlot>().characterData.character;
 
         playerManager.ReFreshPlayer();
     }

@@ -6376,12 +6376,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterList:
-  - {fileID: -98113491264426746, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
-  - {fileID: -98113491264426746, guid: f5c05503425cab047a2776dd442804d6, type: 3}
-  - {fileID: -98113491264426746, guid: aa60afc2210649643a94ccf61c061b9b, type: 3}
-  - {fileID: -98113491264426746, guid: aa60afc2210649643a94ccf61c061b9b, type: 3}
-  - {fileID: -98113491264426746, guid: aa60afc2210649643a94ccf61c061b9b, type: 3}
-  - {fileID: -98113491264426746, guid: aa60afc2210649643a94ccf61c061b9b, type: 3}
+  - character: {fileID: -98113491264426746, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
+    isSelected: 1
+    isBuy: 1
+  - character: {fileID: -98113491264426746, guid: f5c05503425cab047a2776dd442804d6, type: 3}
+    isSelected: 0
+    isBuy: 1
+  - character: {fileID: -98113491264426746, guid: aa60afc2210649643a94ccf61c061b9b, type: 3}
+    isSelected: 0
+    isBuy: 0
+  - character: {fileID: -98113491264426746, guid: aa60afc2210649643a94ccf61c061b9b, type: 3}
+    isSelected: 0
+    isBuy: 0
+  - character: {fileID: -98113491264426746, guid: aa60afc2210649643a94ccf61c061b9b, type: 3}
+    isSelected: 0
+    isBuy: 0
+  - character: {fileID: -98113491264426746, guid: aa60afc2210649643a94ccf61c061b9b, type: 3}
+    isSelected: 0
+    isBuy: 0
 --- !u!1 &1426868132
 GameObject:
   m_ObjectHideFlags: 0
