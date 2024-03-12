@@ -20,7 +20,7 @@ public class InfiniteInventory : Inventory
 
     private void SetMaxSlots(int value)
     {
-        if(value <= 0)
+        if(value <= 24)
             maxSlots = 24;
         else
             maxSlots = value;

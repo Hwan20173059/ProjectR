@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
@@ -11,7 +12,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public GameObject townPlayer;
 
     public Character selectedCharacter;
-    public List<EquipItem> equip;
+    public EquipItem[] equip = new EquipItem[3];
 
     public int selectDungeonID;
 
@@ -20,9 +21,8 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         for (int i = 0; i < 3; i++)
         {
-            equip.Add(itemManager.baseItem);
+            equip[i] = itemManager.baseItem;
         }
-
         ReFreshPlayer();
     }
 
@@ -31,24 +31,31 @@ public class PlayerManager : Singleton<PlayerManager>
         townPlayer.GetComponent<TownPlayer>().Refresh();
     }
 
-    public void EquipNewItem()
+    public void EquipNewItem(int n)
     {
-        if (equip.Contains(itemManager.baseItem))
+        if(townUiManager.detailArea.isEquipping)
         {
-            equip.RemoveAt(0);
-            equip.Add(townUiManager.nowSelectedEquip);
-            townUiManager.nowSelectedEquip.isEquipped = true;
+            equip[n].isEquipped = false;
+            equip[n] = townUiManager.lastSelectedEquip;
+            equip[n].isEquipped = true;
+
+            townUiManager.detailArea.isEquipping = false;
+            townUiManager.detailArea.UnActiveEquippingState();
+            townUiManager.FreshAfterEquip();
         }
-        townUiManager.detailArea.ChangeDetailActivation(false);
-        townUiManager.nEquipItemSlot.FreshEquippedSlot();
     }
 
     public void UnEquipItem()
     {
-        equip.Remove(townUiManager.nowSelectedEquip);
-        equip.Add(itemManager.baseItem);
-        townUiManager.nowSelectedEquip.isEquipped = false;
-        townUiManager.detailArea.ChangeDetailActivation(false);
-        townUiManager.nEquipItemSlot.FreshEquippedSlot();
+        for(int i = 0; i < 3; i++)
+        {
+            if(equip[i] == townUiManager.nowSelectedEquip)
+            {
+                equip[i].isEquipped = false;
+                equip[i] = itemManager.baseItem;
+                break;
+            }
+        }
+        townUiManager.FreshAfterEquip();
     }
 }

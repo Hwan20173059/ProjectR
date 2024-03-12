@@ -28,6 +28,7 @@ public class EquipSlot : MonoBehaviour
 
     public void OnClickItem()
     {
+        townUiManager.lastSelectedEquip = townUiManager.nowSelectedEquip;
         townUiManager.nowSelectedEquip = item;
         townUiManager.detailArea.ChangeSelectedItem(item);
     }
