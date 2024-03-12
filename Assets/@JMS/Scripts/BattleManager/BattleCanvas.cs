@@ -21,12 +21,14 @@ public class BattleCanvas : MonoBehaviour
     private void Update()
     {
         if (battleManager.Character != null)
-            ActionBar.transform.localScale = new Vector3(Mathf.Clamp(battleManager.Character.curCoolTime / battleManager.Character.maxCoolTime, 0, battleManager.Character.maxCoolTime), 1, 1);
+            ActionBar.transform.localScale =
+                new Vector3(Mathf.Clamp(battleManager.Character.curCoolTime / battleManager.Character.maxCoolTime, 0, battleManager.Character.maxCoolTime), 1, 1);
     }
 
     void OnClickAttackButton()
     {
-        if (battleManager.Character.stateMachine.currentState is CharacterSelectActionState && battleManager.selectMonster != null)
+        if (battleManager.Character.stateMachine.currentState is CharacterSelectActionState && battleManager.selectMonster != null
+            &&!(battleManager.selectMonster.stateMachine.currentState is MonsterDeadState))
         {
             battleManager.Character.selectAction = CharacterAction.Attack;
             battleManager.PerformList.Add(100);

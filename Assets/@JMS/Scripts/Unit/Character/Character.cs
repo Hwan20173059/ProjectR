@@ -63,9 +63,30 @@ public class Character : MonoBehaviour
         maxCoolTime = BaseData.actionCoolTime;
     }
 
-    public void TakeDamage(int damage)
+    public void ChangeHP(int change)
     {
-        curHP -= damage;
-        if(curHP < 0 ) { curHP = 0; }
+        curHP += change;
+        curHP = curHP > maxHP ? maxHP : curHP;
+        curHP = curHP < 0 ? 0 : curHP;
+
+        if (curHP <= 0)
+        {
+            stateMachine.ChangeState(stateMachine.DeadState);
+        }
+    }
+
+    public void ChangeExp(int change)
+    {
+        curExp += change;
+        curExp = curExp >= needExp ? LevelUp() : curExp;
+    }
+
+    public int LevelUp()
+    {
+        curExp = curExp - needExp;
+        curExp = curExp >= needExp ? LevelUp() : curExp;
+        level++;
+        level = level > BaseData.maxLevel ? BaseData.maxLevel : level;
+        return curExp;
     }
 }

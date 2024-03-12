@@ -18,11 +18,13 @@ public class BattleTakeActionState : BattleBaseState
             stateMachine.BattleManager.monstersPrevState[i] = stateMachine.BattleManager.Monsters[i].stateMachine.currentState;
         }
         // 캐릭터 현재 상태 Wait으로 변경
-        stateMachine.BattleManager.Character.stateMachine.ChangeState(stateMachine.BattleManager.Character.stateMachine.WaitState);
+        if (!(stateMachine.BattleManager.Character.stateMachine.currentState is CharacterDeadState))
+            stateMachine.BattleManager.Character.stateMachine.ChangeState(stateMachine.BattleManager.Character.stateMachine.WaitState);
         // 몬스터들의 현재 상태 Wait으로 변경
         for (int i = 0; i < stateMachine.BattleManager.Monsters.Count; i++)
         {
-            stateMachine.BattleManager.Monsters[i].stateMachine.ChangeState(stateMachine.BattleManager.Monsters[i].stateMachine.WaitState);
+            if (!(stateMachine.BattleManager.Monsters[i].stateMachine.currentState is MonsterDeadState))
+                stateMachine.BattleManager.Monsters[i].stateMachine.ChangeState(stateMachine.BattleManager.Monsters[i].stateMachine.WaitState);
         }
         // 수행 리스트에 가장 먼저 입력한 유닛의 상태를 Aciton으로 변경
         if (stateMachine.BattleManager.PerformList[0] == 100)

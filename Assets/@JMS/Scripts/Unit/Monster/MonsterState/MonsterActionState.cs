@@ -28,7 +28,7 @@ public class MonsterActionState : MonsterBaseState
 
         stateMachine.Monster.Animator.SetBool("Idle", false);
         stateMachine.Monster.Animator.SetTrigger("BaseAttack");
-        stateMachine.Monster.battleManager.Character.TakeDamage(stateMachine.Monster.atk);
+        stateMachine.Monster.battleManager.Character.ChangeHP(-stateMachine.Monster.atk);
         while (!IsAnimationEnd(GetNormalizedTime(stateMachine.Monster.Animator, "Attack"))) { yield return null; }
         stateMachine.Monster.Animator.SetBool("Idle", true);
 
