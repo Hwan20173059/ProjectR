@@ -14,10 +14,22 @@ public class BattleCanvas : MonoBehaviour
     private void Awake()
     {
         battleManager = GetComponentInParent<BattleManager>();
+        
+        AttackButton.onClick.AddListener(OnClickAttackButton);
+
     }
     private void Update()
     {
         if (battleManager.Character != null)
             ActionBar.transform.localScale = new Vector3(Mathf.Clamp(battleManager.Character.curCoolTime / battleManager.Character.maxCoolTime, 0, battleManager.Character.maxCoolTime), 1, 1);
+    }
+
+    void OnClickAttackButton()
+    {
+        if (battleManager.Character.stateMachine.currentState is CharacterSelectActionState && battleManager.selectMonster != null)
+        {
+            battleManager.Character.selectAction = CharacterAction.Attack;
+            battleManager.Character.stateMachine.ChangeState(battleManager.Character.stateMachine.ActionState);
+        }
     }
 }

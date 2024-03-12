@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum MonsterActions
+public enum MonsterAction
 {
     BASEATTACK,
     JUMP
@@ -15,5 +15,5 @@ public class MonsterSO : ScriptableObject
     public int atk;
     public int exp;
     public float actionCoolTime;
-    public List<MonsterActions> actions;
+    public List<MonsterAction> actions;
 }

@@ -14,8 +14,8 @@ public class Monster : MonoBehaviour
     public int exp;
     public bool IsDead => curHP <= 0;
 
-    public List<MonsterActions> actions;
-    public MonsterActions selectAction;
+    public List<MonsterAction> actions;
+    public MonsterAction selectAction;
 
     public float curCoolTime;
     public float maxCoolTime;
@@ -63,5 +63,11 @@ public class Monster : MonoBehaviour
         exp = BaseData.exp * level;
         actions = BaseData.actions;
         maxCoolTime = BaseData.actionCoolTime;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        curHP -= damage;
+        if (curHP < 0) { curHP = 0; }
     }
 }

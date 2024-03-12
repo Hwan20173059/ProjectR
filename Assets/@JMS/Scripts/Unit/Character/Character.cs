@@ -15,10 +15,15 @@ public class Character : MonoBehaviour
     public int needExp;
     public bool IsDead => curHP <= 0;
 
+    public List<CharacterAction> actions;
+    public CharacterAction selectAction;
+
     public float curCoolTime;
     public float maxCoolTime;
 
     public Animator Animator {  get; private set; }
+    public Vector3 startPosition;
+    public float moveAnimSpeed = 10f;
 
     public CharacterStateMachine stateMachine;
 
@@ -54,6 +59,7 @@ public class Character : MonoBehaviour
         curHP = BaseData.hp * level;
         atk = BaseData.atk * level;
         needExp = BaseData.needExp * level;
+        actions = BaseData.actions;
         maxCoolTime = BaseData.actionCoolTime;
     }
 

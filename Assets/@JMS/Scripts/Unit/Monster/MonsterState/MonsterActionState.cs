@@ -13,10 +13,10 @@ public class MonsterActionState : MonsterBaseState
         base.Enter();
         switch (stateMachine.Monster.selectAction)
         {
-            case MonsterActions.BASEATTACK:
+            case MonsterAction.BASEATTACK:
                 CoroutineHelper.StartCoroutine(BaseAttack());
                 break;
-            case MonsterActions.JUMP:
+            case MonsterAction.JUMP:
                 CoroutineHelper.StartCoroutine(Jump());
                 break;
         }

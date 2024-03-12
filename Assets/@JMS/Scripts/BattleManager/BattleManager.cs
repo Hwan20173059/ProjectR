@@ -70,6 +70,7 @@ public class BattleManager : MonoBehaviour
         GameObject character = Instantiate(CharacterPrefab);
         character.transform.position = CharacterSpawnPosition;
         Character = character.GetComponent<Character>();
+        Character.startPosition = character.transform.position;
         Character.battleManager = this;
     }
 
