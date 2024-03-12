@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1885347763152511646}
   - component: {fileID: 2147369543675840706}
+  - component: {fileID: 4953894491026359991}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -84,6 +85,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &4953894491026359991
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 10294871151791817}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 983245a3212c9cd469d2a0c3f7528c79, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8902153403540484996
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,9 +161,13 @@ MonoBehaviour:
   maxHP: 0
   curHP: 0
   atk: 0
+  actions: 
+  selectAction: 0
   curCoolTime: 0
   maxCoolTime: 0
+  startPosition: {x: 0, y: 0, z: 0}
+  moveAnimSpeed: 10
   isSelected: 1
   isBuy: 1
   ActionBar: {fileID: 0}
-  BattleManager: {fileID: 0}
+  battleManager: {fileID: 0}

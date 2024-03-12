@@ -40,10 +40,7 @@ public class Character : MonoBehaviour
     public bool isBuy;
 
     [Header("System")]
-    public Image ActionBar;
-
     public CharacterStateMachine stateMachine;
-
     public BattleManager battleManager;
 
     private void Awake()
