@@ -34,11 +34,6 @@ public class Character : MonoBehaviour
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
-
-    [Header("State")]
-    public bool isSelected;
-    public bool isBuy;
-
     [Header("System")]
     public CharacterStateMachine stateMachine;
     public BattleManager battleManager;

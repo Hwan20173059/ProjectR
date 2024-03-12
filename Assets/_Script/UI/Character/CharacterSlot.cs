@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class CharacterSlot : MonoBehaviour
 {
-    public Character characterData;
+    public CharacterData characterData;
     
     public Image[] characterSlotImage;
     public TextMeshProUGUI[] characterSlotText;
@@ -16,10 +16,10 @@ public class CharacterSlot : MonoBehaviour
     private void Start()
     {
         characterSlotImage = GetComponentsInChildren<Image>();
-        characterSlotImage[1].sprite = characterData.sprite;
+        characterSlotImage[1].sprite = characterData.character.sprite;
 
         characterSlotText = GetComponentsInChildren<TextMeshProUGUI>();
-        characterSlotText[0].text = characterData.name;
+        characterSlotText[0].text = characterData.character.name;
 
         Refresh();
     }
