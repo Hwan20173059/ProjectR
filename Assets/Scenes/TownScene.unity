@@ -1666,8 +1666,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 480.00003, y: 20}
-  m_SizeDelta: {x: -500.00003, y: 400}
+  m_AnchoredPosition: {x: 20, y: 20}
+  m_SizeDelta: {x: -499.99997, y: 400}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &358459195
 MonoBehaviour:
@@ -3339,7 +3339,7 @@ MonoBehaviour:
   itemManager: {fileID: 1569666160}
   townUiManager: {fileID: 0}
   townPlayer: {fileID: 0}
-  selectedCharacter: {fileID: 0}
+  selectedCharacter: {fileID: 4033862442166739324, guid: 4c15f87d6e2e699409a9fc6a3af461b5, type: 3}
   equip: []
   selectDungeonID: 0
 --- !u!1 &875279560
@@ -4005,11 +4005,11 @@ RectTransform:
   m_Father: {fileID: 221353472}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20, y: 20}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -20, y: 20}
   m_SizeDelta: {x: 450, y: 400}
-  m_Pivot: {x: 0, y: 0}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &946171472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6207,12 +6207,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterList:
-  - {fileID: 11400000, guid: ca14b6ec022d4794dad23727fa69841f, type: 2}
-  - {fileID: 11400000, guid: 88944850401bc4549b8a0a5ce4196c1c, type: 2}
-  - {fileID: 11400000, guid: b5f698ae2d022174bafa43bdbacb08da, type: 2}
-  - {fileID: 11400000, guid: b5f698ae2d022174bafa43bdbacb08da, type: 2}
-  - {fileID: 11400000, guid: b5f698ae2d022174bafa43bdbacb08da, type: 2}
-  - {fileID: 11400000, guid: b5f698ae2d022174bafa43bdbacb08da, type: 2}
+  - {fileID: 4033862442166739324, guid: 4c15f87d6e2e699409a9fc6a3af461b5, type: 3}
+  - {fileID: 4033862442166739324, guid: 2b24472dd1aa05b40a5fc1ee209e681a, type: 3}
+  - {fileID: 6052824925107791765, guid: c4e3a00a722e6744ca5a1fb6eafa15fc, type: 3}
+  - {fileID: 6052824925107791765, guid: c4e3a00a722e6744ca5a1fb6eafa15fc, type: 3}
+  - {fileID: 6052824925107791765, guid: c4e3a00a722e6744ca5a1fb6eafa15fc, type: 3}
+  - {fileID: 6052824925107791765, guid: c4e3a00a722e6744ca5a1fb6eafa15fc, type: 3}
 --- !u!1 &1426868132
 GameObject:
   m_ObjectHideFlags: 0
