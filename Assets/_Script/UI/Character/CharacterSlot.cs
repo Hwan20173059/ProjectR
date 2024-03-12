@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class CharacterSlot : MonoBehaviour
 {
-    public PlayerCharacter characterData;
+    public Character characterData;
     
     public Image[] characterSlotImage;
     public TextMeshProUGUI[] characterSlotText;

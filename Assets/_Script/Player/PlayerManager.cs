@@ -10,7 +10,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public TownUiManager townUiManager;
     public GameObject townPlayer;
 
-    public PlayerCharacter selectedCharacter;
+    public Character selectedCharacter;
     public List<EquipItem> equip;
 
     public int selectDungeonID;

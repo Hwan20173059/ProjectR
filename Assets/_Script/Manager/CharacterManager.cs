@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
-    public List<PlayerCharacter> characterList = new List<PlayerCharacter>();
+    public List<Character> characterList = new List<Character>();
 }

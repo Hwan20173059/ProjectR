@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TownPlayer : MonoBehaviour
 {
-    public PlayerCharacter selectedCharacter;
+    public Character selectedCharacter;
 
     private void Start()
     {
