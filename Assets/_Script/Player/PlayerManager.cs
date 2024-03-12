@@ -6,13 +6,12 @@ using UnityEngine;
 public class PlayerManager : Singleton<PlayerManager>
 {
     public ItemManager itemManager;
+
     public TownUiManager townUiManager;
+    public GameObject townPlayer;
 
-    public CharacterSO characterSO;
+    public Character selectedCharacter;
     public List<EquipItem> equip;
-
-    public Transform playerArea;
-    public GameObject playerPrefab;
 
     public int selectDungeonID;
 
@@ -29,12 +28,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void ReFreshPlayer()
     {
-        playerPrefab.GetComponent<TownPlayer>().Refresh();
-    }
-
-    public void SpawnPlayer()
-    {
-        Instantiate(playerPrefab, playerArea);
+        townPlayer.GetComponent<TownPlayer>().Refresh();
     }
 
     public void EquipNewItem()

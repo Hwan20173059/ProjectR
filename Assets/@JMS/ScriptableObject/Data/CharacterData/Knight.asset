@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c910e22a145341a46ba215730706acd3, type: 3}
-  m_Name: SwordMan2
+  m_Name: Knight
   m_EditorClassIdentifier: 
   sprite: {fileID: -3154150011874791226, guid: 4d701fb8bab94204e92af20e3e7b6a8a, type: 3}
   name: "\uC18C\uB4DC\uB9E82"

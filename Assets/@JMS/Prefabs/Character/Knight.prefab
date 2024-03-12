@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4914306110802463779}
   - component: {fileID: -98113491264426746}
   m_Layer: 0
-  m_Name: SwordMan
+  m_Name: Knight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,10 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9675c8f93c837aa47a1ee406b72f99d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseData: {fileID: 11400000, guid: ca14b6ec022d4794dad23727fa69841f, type: 2}
-  sprite: {fileID: -7808734593389313954, guid: 4d701fb8bab94204e92af20e3e7b6a8a, type: 3}
-  name: "\uC18C\uB4DC\uB9E8"
-  desc: "\uAC80\uC744 \uC798 \uB2E4\uB8E8\uB294 \uBAA8\uD5D8\uAC00\uC774\uB2E4"
+  BaseData: {fileID: 11400000, guid: 88944850401bc4549b8a0a5ce4196c1c, type: 2}
+  sprite: {fileID: -3154150011874791226, guid: 4d701fb8bab94204e92af20e3e7b6a8a, type: 3}
+  name: "\uB098\uC774\uD2B8"
+  desc: "\uAC80\uC220\uC744 \uC798 \uC5F0\uB9C8\uD55C \uD6CC\uB96D\uD55C \uBAA8\uD5D8\uAC00\uC774\uB2E4."
   level: 1
   curExp: 0
   needExp: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   atk: 0
   curCoolTime: 0
   maxCoolTime: 0
-  isSelected: 1
+  isSelected: 0
   isBuy: 1
   ActionBar: {fileID: 0}
   BattleManager: {fileID: 0}

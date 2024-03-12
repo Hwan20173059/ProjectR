@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class CharacterSlot : MonoBehaviour
 {
-    public CharacterSO characterSO;
+    public Character characterData;
     
     public Image[] characterSlotImage;
     public TextMeshProUGUI[] characterSlotText;
@@ -16,24 +16,24 @@ public class CharacterSlot : MonoBehaviour
     private void Start()
     {
         characterSlotImage = GetComponentsInChildren<Image>();
-        characterSlotImage[1].sprite = characterSO.sprite;
+        characterSlotImage[1].sprite = characterData.sprite;
 
         characterSlotText = GetComponentsInChildren<TextMeshProUGUI>();
-        characterSlotText[0].text = characterSO.name;
+        characterSlotText[0].text = characterData.name;
 
         Refresh();
     }
 
     public void CharacterSelect()
     {
-        characterSO.isSelected = true;
+        characterData.isSelected = true;
 
         Refresh();
     }
 
     public void CharacterUnSelect()
     {
-        characterSO.isSelected = false;
+        characterData.isSelected = false;
 
         Refresh();
     }
@@ -42,7 +42,7 @@ public class CharacterSlot : MonoBehaviour
     {
         characterSlotImage[4].gameObject.SetActive(false);
 
-        if (characterSO.isBuy == true)
+        if (characterData.isBuy == true)
             characterSlotText[2].text = "¿Â¬¯¡ﬂ";
         else
         {
@@ -50,7 +50,7 @@ public class CharacterSlot : MonoBehaviour
             characterSlotImage[4].gameObject.SetActive(true);
         }
 
-        if (characterSO.isSelected == true || characterSO.isBuy == false)
+        if (characterData.isSelected == true || characterData.isBuy == false)
             characterSlotImage[3].gameObject.SetActive(true);
         else
             characterSlotImage[3].gameObject.SetActive(false);
