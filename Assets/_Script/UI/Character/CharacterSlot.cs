@@ -24,20 +24,6 @@ public class CharacterSlot : MonoBehaviour
         Refresh();
     }
 
-    public void CharacterSelect()
-    {
-        characterData.isSelected = true;
-
-        Refresh();
-    }
-
-    public void CharacterUnSelect()
-    {
-        characterData.isSelected = false;
-
-        Refresh();
-    }
-
     public void Refresh()
     {
         characterSlotImage[4].gameObject.SetActive(false);
