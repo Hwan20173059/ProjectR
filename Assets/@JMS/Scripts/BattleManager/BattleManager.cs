@@ -13,6 +13,8 @@ public class BattleManager : MonoBehaviour
     public List<DungeonSO> Dungeons;
     public int selectDungeon;
     public int curStage;
+    public bool isStageClear { get { return StageClearCheck(); } }
+
     Vector3 MonsterSpawnPosition = new Vector3 (-1, 3, 0);
     public GameObject CharacterPrefab;
     Vector3 CharacterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
@@ -127,5 +129,16 @@ public class BattleManager : MonoBehaviour
         {
             monster.stateMachine.ChangeState(monster.stateMachine.ReadyState);
         }
+    }
+    private bool StageClearCheck()
+    {
+        for(int i = 0; i < Monsters.Count; i++)
+        {
+            if(!(Monsters[i].stateMachine.currentState is MonsterDeadState))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

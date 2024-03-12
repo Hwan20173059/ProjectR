@@ -7,6 +7,21 @@ public class BattleWaitState : BattleBaseState
     public BattleWaitState(BattleStateMachine battleStateMachine) : base(battleStateMachine)
     {
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        if (stateMachine.BattleManager.Character.stateMachine.currentState is CharacterDeadState)
+        {
+            stateMachine.ChangeState(stateMachine.DefeatState);
+        }
+        if (stateMachine.BattleManager.isStageClear)
+        {
+            stateMachine.ChangeState(stateMachine.VictoryState);
+        }
+    }
+
     public override void Update()
     {
         base.Update();

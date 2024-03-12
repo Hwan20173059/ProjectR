@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BattleCanvas : MonoBehaviour
@@ -8,16 +11,18 @@ public class BattleCanvas : MonoBehaviour
     private BattleManager battleManager;
 
     public Image ActionBar;
-
     public Button AttackButton;
+    public GameObject BattleEndPanel;
+    public Button ReturnTownButton;
 
     private void Awake()
     {
         battleManager = GetComponentInParent<BattleManager>();
         
         AttackButton.onClick.AddListener(OnClickAttackButton);
-
+        ReturnTownButton.onClick.AddListener(TownSceneLoad);
     }
+
     private void Update()
     {
         if (battleManager.Character != null)
@@ -34,5 +39,11 @@ public class BattleCanvas : MonoBehaviour
             battleManager.PerformList.Add(100);
             battleManager.Character.stateMachine.ChangeState(battleManager.Character.stateMachine.ReadyState);
         }
+    }
+
+    void TownSceneLoad()
+    {
+        BattleEndPanel.SetActive(false);
+        SceneManager.LoadScene("BattleEndTestScene");
     }
 }
