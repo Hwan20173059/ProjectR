@@ -304,6 +304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1861630717}
   - component: {fileID: 1861630718}
+  - component: {fileID: 1861630719}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -339,6 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f7946424b73d74589673be09c37ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectMonster: {fileID: 0}
   Dungeons:
   - {fileID: 11400000, guid: 71db69544ce65d54e9172c988afe3f85, type: 2}
   CharacterPrefab: {fileID: 8902153403540484996, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
@@ -348,6 +350,18 @@ MonoBehaviour:
   curStage: 0
   Character: {fileID: 0}
   Monsters: []
+--- !u!114 &1861630719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861630716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6f55ac1c1b7f345984cfb7d4957bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2141367375 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1089221672241789212, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}

@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
+    public PlayerInput Input {  get; private set; }
+    public Monster selectMonster;
+
     public List<DungeonSO> Dungeons;
     public GameObject CharacterPrefab;
     public List<int> PerformList;
@@ -25,17 +28,32 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
+        Input = GetComponent<PlayerInput>();
+
         PerformList = new List<int>();
 
         stateMachine = new BattleStateMachine(this);
     }
     private void Start()
     {
+        Input.ClickActions.MouseClick.started += OnClickStart;
+
         SpawnCharacter();
         SpawnMonster();
         stateMachine.ChangeState(stateMachine.WaitState);
         StartCoroutine(BattleStart());
     }
+
+    private void OnClickStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.ClickActions.MousePos.ReadValue<Vector2>());
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+        if (hit.collider != null && hit.collider.CompareTag("Monster"))
+        {
+            selectMonster = hit.collider.GetComponent<Monster>();
+        }
+    }
+
     private void Update()
     {
         stateMachine.HandleInput();
