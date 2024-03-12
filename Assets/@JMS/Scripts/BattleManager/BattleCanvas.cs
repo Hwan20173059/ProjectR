@@ -29,7 +29,8 @@ public class BattleCanvas : MonoBehaviour
         if (battleManager.Character.stateMachine.currentState is CharacterSelectActionState && battleManager.selectMonster != null)
         {
             battleManager.Character.selectAction = CharacterAction.Attack;
-            battleManager.Character.stateMachine.ChangeState(battleManager.Character.stateMachine.ActionState);
+            battleManager.PerformList.Add(100);
+            battleManager.Character.stateMachine.ChangeState(battleManager.Character.stateMachine.ReadyState);
         }
     }
 }

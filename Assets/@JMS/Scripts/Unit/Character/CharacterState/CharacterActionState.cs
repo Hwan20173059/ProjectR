@@ -36,9 +36,9 @@ public class CharacterActionState : CharacterBaseState
 
         while (MoveTowardsCharacter(stateMachine.Character.startPosition)) { yield return null; }
 
-        stateMachine.Character.battleManager.stateMachine.ChangeState(stateMachine.Character.battleManager.stateMachine.WaitState);
         stateMachine.Character.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.ReadyState);
+        stateMachine.Character.battleManager.stateMachine.ChangeState(stateMachine.Character.battleManager.stateMachine.WaitState);
     }
 
     private bool MoveTowardsCharacter(Vector3 target)

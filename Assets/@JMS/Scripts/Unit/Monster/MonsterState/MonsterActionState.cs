@@ -34,9 +34,9 @@ public class MonsterActionState : MonsterBaseState
 
         while (MoveTowardsMonster(stateMachine.Monster.startPosition)) { yield return null; }
 
-        stateMachine.Monster.battleManager.stateMachine.ChangeState(stateMachine.Monster.battleManager.stateMachine.WaitState);
         stateMachine.Monster.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.ReadyState);
+        stateMachine.Monster.battleManager.stateMachine.ChangeState(stateMachine.Monster.battleManager.stateMachine.WaitState);
     }
     IEnumerator Jump()
     {
@@ -45,9 +45,9 @@ public class MonsterActionState : MonsterBaseState
         while (!IsAnimationEnd(GetNormalizedTime(stateMachine.Monster.Animator, "Jump"))) { yield return null; }
         stateMachine.Monster.Animator.SetBool("Idle", true);
 
-        stateMachine.Monster.battleManager.stateMachine.ChangeState(stateMachine.Monster.battleManager.stateMachine.WaitState);
         stateMachine.Monster.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.ReadyState);
+        stateMachine.Monster.battleManager.stateMachine.ChangeState(stateMachine.Monster.battleManager.stateMachine.WaitState);
     }
 
     private bool IsAnimationEnd(float animNormalizedTime)
