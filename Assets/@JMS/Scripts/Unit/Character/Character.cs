@@ -23,7 +23,6 @@ public class Character : MonoBehaviour
     public CharacterStateMachine stateMachine;
 
     public BattleManager battleManager;
-    public Image ActionBar;
 
     private void Awake()
     {

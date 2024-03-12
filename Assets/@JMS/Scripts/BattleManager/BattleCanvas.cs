@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class BattleCanvas : MonoBehaviour
+{
+    private BattleManager battleManager;
+
+    public Image ActionBar;
+
+    public Button AttackButton;
+
+    private void Awake()
+    {
+        battleManager = GetComponentInParent<BattleManager>();
+    }
+    private void Update()
+    {
+        if (battleManager.Character != null)
+            ActionBar.transform.localScale = new Vector3(Mathf.Clamp(battleManager.Character.curCoolTime / battleManager.Character.maxCoolTime, 0, battleManager.Character.maxCoolTime), 1, 1);
+    }
+}

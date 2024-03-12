@@ -341,13 +341,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectMonster: {fileID: 0}
+  BattleCanvas: {fileID: 0}
   Dungeons:
   - {fileID: 11400000, guid: 71db69544ce65d54e9172c988afe3f85, type: 2}
-  CharacterPrefab: {fileID: 8902153403540484996, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
-  PerformList: 
-  ActionBar: {fileID: 1728171202}
   selectDungeon: 0
   curStage: 0
+  CharacterPrefab: {fileID: 8902153403540484996, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
+  PerformList: 
   Character: {fileID: 0}
   Monsters: []
 --- !u!114 &1861630719
@@ -360,6 +360,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da6f55ac1c1b7f345984cfb7d4957bb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2138287370 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9053509120964034648, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+  m_PrefabInstance: {fileID: 3347963604529829583}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &2141367375 stripped
@@ -463,6 +474,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6469726948990513712, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: ActionBar
+      value: 
+      objectReference: {fileID: 1728171202}
+    - target: {fileID: 6469726948990513712, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: AttackButton
+      value: 
+      objectReference: {fileID: 2138287370}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

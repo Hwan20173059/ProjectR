@@ -8,27 +8,31 @@ public class BattleManager : MonoBehaviour
     public PlayerInput Input {  get; private set; }
     public Monster selectMonster;
 
-    public List<DungeonSO> Dungeons;
-    public GameObject CharacterPrefab;
-    public List<int> PerformList;
-    public Image ActionBar;
+    public BattleCanvas BattleCanvas;
 
-    Vector3 CharacterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
-    Vector3 MonsterSpawnPosition = new Vector3 (-1, 3, 0);
+    public List<DungeonSO> Dungeons;
     public int selectDungeon;
     public int curStage;
-    private WaitForSeconds WaitFor1Sec = new WaitForSeconds(1f);
+    Vector3 MonsterSpawnPosition = new Vector3 (-1, 3, 0);
+    public GameObject CharacterPrefab;
+    Vector3 CharacterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
+
+    public List<int> PerformList;
 
     public Character Character;
-    public List<Monster> Monsters;
     public IState characterPrevState;
+    public List<Monster> Monsters;
     public IState[] monstersPrevState;
+
+    private WaitForSeconds WaitFor1Sec = new WaitForSeconds(1f);
 
     public BattleStateMachine stateMachine;
 
     private void Awake()
     {
         Input = GetComponent<PlayerInput>();
+
+        BattleCanvas = GetComponentInChildren<BattleCanvas>();
 
         PerformList = new List<int>();
 
@@ -67,7 +71,6 @@ public class BattleManager : MonoBehaviour
         character.transform.position = CharacterSpawnPosition;
         Character = character.GetComponent<Character>();
         Character.battleManager = this;
-        Character.ActionBar = ActionBar;
     }
 
     void SpawnMonster()

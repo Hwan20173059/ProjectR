@@ -18,8 +18,8 @@ public class CharacterReadyState : CharacterBaseState
         if(stateMachine.Character.curCoolTime < stateMachine.Character.maxCoolTime)
         {
             stateMachine.Character.curCoolTime += Time.deltaTime;
-            stateMachine.Character.ActionBar.transform.localScale = new Vector3
-                (Mathf.Clamp(stateMachine.Character.curCoolTime / stateMachine.Character.maxCoolTime, 0, stateMachine.Character.maxCoolTime), 1, 1);
+            //stateMachine.Character.ActionBar.transform.localScale = new Vector3
+            //    (Mathf.Clamp(stateMachine.Character.curCoolTime / stateMachine.Character.maxCoolTime, 0, stateMachine.Character.maxCoolTime), 1, 1);
         }
         else
         {
