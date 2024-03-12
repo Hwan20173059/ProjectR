@@ -5,6 +5,7 @@ using UnityEngine;
 public class BattleStateMachine : StateMachine
 {
     public BattleManager BattleManager;
+    public BattleStartState StartState { get; }
     public BattleWaitState WaitState { get; }
     public BattleTakeActionState TakeActionState { get; }
     public BattlePerformActionState PerformActionState {  get; }
@@ -15,7 +16,7 @@ public class BattleStateMachine : StateMachine
     public BattleStateMachine(BattleManager battleManager)
     {
         BattleManager = battleManager;
-        
+        StartState = new BattleStartState(this);
         WaitState = new BattleWaitState(this);
         TakeActionState = new BattleTakeActionState(this);
         PerformActionState = new BattlePerformActionState(this);

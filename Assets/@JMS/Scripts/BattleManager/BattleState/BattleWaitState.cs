@@ -18,6 +18,7 @@ public class BattleWaitState : BattleBaseState
         }
         if (stateMachine.BattleManager.isStageClear)
         {
+            stateMachine.BattleManager.Character.stateMachine.ChangeState(stateMachine.BattleManager.Character.stateMachine.WaitState);
             stateMachine.ChangeState(stateMachine.VictoryState);
         }
     }

@@ -15,6 +15,8 @@ public class BattleManager : MonoBehaviour
     public int curStage;
     public bool isStageClear { get { return StageClearCheck(); } }
 
+    public GameObject monsterPool;
+
     Vector3 MonsterSpawnPosition = new Vector3 (-1, 3, 0);
     public GameObject CharacterPrefab;
     Vector3 CharacterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
@@ -44,10 +46,11 @@ public class BattleManager : MonoBehaviour
     {
         Input.ClickActions.MouseClick.started += OnClickStart;
 
-        SpawnCharacter();
-        SpawnMonster();
-        stateMachine.ChangeState(stateMachine.WaitState);
-        StartCoroutine(BattleStart());
+        stateMachine.ChangeState(stateMachine.StartState);
+        //SpawnCharacter();
+        //SpawnMonster();
+        //stateMachine.ChangeState(stateMachine.WaitState);
+        //StartCoroutine(BattleStart());
     }
 
     private void OnClickStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -67,7 +70,7 @@ public class BattleManager : MonoBehaviour
         stateMachine.Update();
     }
     
-    void SpawnCharacter()
+    public void SpawnCharacter()
     {
         GameObject character = Instantiate(CharacterPrefab);
         character.transform.position = CharacterSpawnPosition;
@@ -76,15 +79,21 @@ public class BattleManager : MonoBehaviour
         Character.battleManager = this;
     }
 
-    void SpawnMonster()
+    public void SpawnMonster()
     {
+        if(monsterPool == null)
+        {
+            GameObject monsterPool = new GameObject("MonsterPool");
+            this.monsterPool = monsterPool;
+        }
+
         int randomSpawnAmount = Random.Range(Dungeons[selectDungeon].Stages[curStage].randomSpawnMinAmount, Dungeons[selectDungeon].Stages[curStage].randomSpawnMaxAmount + 1);
         if(randomSpawnAmount > 0)
         {
             for (int i = 0; i < randomSpawnAmount; i++)
             {
                 int monsterIndex = Random.Range(0, Dungeons[selectDungeon].Stages[curStage].RandomSpawnMonsters.Count);
-                GameObject monster = Instantiate(Dungeons[selectDungeon].Stages[curStage].RandomSpawnMonsters[monsterIndex]);
+                GameObject monster = Instantiate(Dungeons[selectDungeon].Stages[curStage].RandomSpawnMonsters[monsterIndex], monsterPool.transform);
                 Monsters.Add(monster.GetComponent<Monster>());
                 monster.transform.position = MonsterSpawnPosition;
                 ChangeSpawnPosition();
@@ -95,7 +104,7 @@ public class BattleManager : MonoBehaviour
         {
             foreach (var monster in Dungeons[selectDungeon].Stages[curStage].SpawnMonsters)
             {
-                GameObject _monster = Instantiate(monster);
+                GameObject _monster = Instantiate(monster, monsterPool.transform);
                 Monsters.Add(_monster.GetComponent<Monster>());
                 _monster.transform.position = MonsterSpawnPosition;
                 ChangeSpawnPosition();
@@ -113,7 +122,7 @@ public class BattleManager : MonoBehaviour
         monstersPrevState = new IState[Monsters.Count];
     }
 
-    void ChangeSpawnPosition()
+    public void ChangeSpawnPosition()
     {
         if (MonsterSpawnPosition.y == 3)
             MonsterSpawnPosition = new Vector3(MonsterSpawnPosition.x, MonsterSpawnPosition.y - 2.5f, MonsterSpawnPosition.z);
@@ -121,7 +130,7 @@ public class BattleManager : MonoBehaviour
             MonsterSpawnPosition = new Vector3(MonsterSpawnPosition.x + 2.5f, MonsterSpawnPosition.y + 2.5f, MonsterSpawnPosition.z);
     }
 
-    IEnumerator BattleStart()
+    public IEnumerator BattleStart()
     {
         yield return WaitFor1Sec;
         Character.stateMachine.ChangeState(Character.stateMachine.ReadyState);

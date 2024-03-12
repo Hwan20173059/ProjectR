@@ -11,10 +11,6 @@ public class BattleDefeatState : BattleBaseState
     {
         base.Enter();
 
-        stateMachine.ChangeState(stateMachine.EndState);
-    }
-    public override void Exit()
-    {
-        base.Exit();
+        stateMachine.BattleManager.BattleCanvas.BattleDefeatPanel.SetActive(true);
     }
 }

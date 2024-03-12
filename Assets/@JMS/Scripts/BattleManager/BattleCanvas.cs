@@ -12,8 +12,12 @@ public class BattleCanvas : MonoBehaviour
 
     public Image ActionBar;
     public Button AttackButton;
-    public GameObject BattleEndPanel;
+    public GameObject BattleDefeatPanel;
     public Button ReturnTownButton;
+    public GameObject NextStagePanel;
+    public Button NextStageButton;
+    public GameObject DungeonClearPanel;
+    public Button DungeonClearButton;
 
     private void Awake()
     {
@@ -21,6 +25,8 @@ public class BattleCanvas : MonoBehaviour
         
         AttackButton.onClick.AddListener(OnClickAttackButton);
         ReturnTownButton.onClick.AddListener(TownSceneLoad);
+        NextStageButton.onClick.AddListener(NextStageStart);
+        DungeonClearButton.onClick.AddListener(TownSceneLoad);
     }
 
     private void Update()
@@ -41,9 +47,19 @@ public class BattleCanvas : MonoBehaviour
         }
     }
 
+    void NextStageStart()
+    {
+        NextStagePanel.SetActive(false);
+        battleManager.Character.curCoolTime = 0;
+        Destroy(battleManager.monsterPool);
+        battleManager.monsterPool = null;
+        battleManager.Monsters.Clear();
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.StartState);
+    }
+
     void TownSceneLoad()
     {
-        BattleEndPanel.SetActive(false);
+        BattleDefeatPanel.SetActive(false);
         SceneManager.LoadScene("BattleEndTestScene");
     }
 }

@@ -12,6 +12,6 @@ public class BattleEndState : BattleBaseState
     {
         base.Enter();
 
-        stateMachine.BattleManager.BattleCanvas.BattleEndPanel.SetActive(true);
+        
     }
 }
