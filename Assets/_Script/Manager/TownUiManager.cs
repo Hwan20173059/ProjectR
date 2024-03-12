@@ -11,6 +11,8 @@ public class TownUiManager : MonoBehaviour
     [Header("UI")]
     public GameObject characterUI;
     public GameObject dungeonUI;
+    public GameObject guildUI;
+    public GameObject storeUI;
 
 
     [Header("EquipUI")]
@@ -32,6 +34,16 @@ public class TownUiManager : MonoBehaviour
         SceneManager.LoadScene("DungeonScene");
     }
 
+    public void CharacterUIOn()
+    {
+        characterUI.SetActive(true);
+    }
+
+    public void CharacterUIOff()
+    {
+        characterUI.SetActive(false);
+    }
+
     public void DungeonUIOn()
     {
         dungeonUI.SetActive(true);
@@ -42,14 +54,24 @@ public class TownUiManager : MonoBehaviour
         dungeonUI.SetActive(false);
     }
 
-    public void CharacterUIOn()
+    public void GuildUIOn()
     {
-        characterUI.SetActive(true);
+        guildUI.SetActive(true);
     }
 
-    public void CharacterUIOff()
+    public void GuildUIOff()
     {
-        characterUI.SetActive(false);
+        guildUI.SetActive(false);
+    }
+
+    public void StoreUIOn()
+    {
+        storeUI.SetActive(true);
+    }
+
+    public void StoreUIOff()
+    {
+        storeUI.SetActive(false);
     }
 
     public void OpenInventory()
