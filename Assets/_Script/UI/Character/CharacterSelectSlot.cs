@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CharacterSelectSlot : MonoBehaviour
 {
-    public PlayerManager playerState;
+    public PlayerManager playerManager;
     public GameObject[] characterSlot;
     public CharacterManager characterManager;
 
@@ -15,23 +15,23 @@ public class CharacterSelectSlot : MonoBehaviour
         {
             CharacterSlot _charactorSlot = characterSlot[i].GetComponent<CharacterSlot>();
 
-            _charactorSlot.character = characterManager.characterList[i];
+            _charactorSlot.characterData = characterManager.characterList[i];
         }
     }
 
     private void Start()
     {
-        playerState = PlayerManager.Instance.GetComponent<PlayerManager>();
+        playerManager = PlayerManager.Instance.GetComponent<PlayerManager>();
     }
 
     public void SelectCharacter(int index)
     {
-        //for (int i = 0; i < characterSlot.Length; i++)
-        //    characterSlot[i].GetComponent<CharacterSlot>().CharacterUnSelect();
+        for (int i = 0; i < characterSlot.Length; i++)
+            characterSlot[i].GetComponent<CharacterSlot>().CharacterUnSelect();
 
-        //characterSlot[index].GetComponent<CharacterSlot>().CharacterSelect();
-        playerState.character = characterSlot[index].GetComponent<CharacterSlot>().character;
+        characterSlot[index].GetComponent<CharacterSlot>().CharacterSelect();
+        playerManager.selectedCharacter = characterSlot[index].GetComponent<CharacterSlot>().characterData;
 
-        playerState.ReFreshPlayer();
+        playerManager.ReFreshPlayer();
     }
 }

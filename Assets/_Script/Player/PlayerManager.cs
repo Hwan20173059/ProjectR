@@ -2,60 +2,60 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
     public ItemManager itemManager;
 
-    public Character character;
-    public List<EquipItem> equip;
+    public TownUiManager townUiManager;
+    public GameObject townPlayer;
 
-    public Transform playerArea;
-    public GameObject playerPrefab;
+    public Character selectedCharacter;
+    public EquipItem[] equip = new EquipItem[3];
 
     public int selectDungeonID;
 
 
     private void Start()
     {
-
-
         for (int i = 0; i < 3; i++)
         {
-            equip.Add(itemManager.baseItem);
+            equip[i] = itemManager.baseItem;
         }
-
         ReFreshPlayer();
     }
 
     public void ReFreshPlayer()
     {
-        //playerPrefab.GetComponent<Character>().Refresh();
+        townPlayer.GetComponent<TownPlayer>().Refresh();
     }
 
-    public void SpawnPlayer()
+    public void EquipNewItem(int n)
     {
-        Instantiate(playerPrefab, playerArea);
-    }
-
-    public void EquipNewItem()
-    {
-        if (equip.Contains(itemManager.baseItem))
+        if(townUiManager.detailArea.isEquipping)
         {
-            equip.RemoveAt(0);
-            equip.Add(UIManager.Instance.nowSelectedEquip);
-            UIManager.Instance.nowSelectedEquip.isEquipped = true;
+            equip[n].isEquipped = false;
+            equip[n] = townUiManager.lastSelectedEquip;
+            equip[n].isEquipped = true;
+
+            townUiManager.detailArea.isEquipping = false;
+            townUiManager.detailArea.UnActiveEquippingState();
+            townUiManager.FreshAfterEquip();
         }
-        UIManager.Instance.detailArea.ChangeDetailActivation(false);
-        UIManager.Instance.nEquipItemSlot.FreshEquippedSlot();
     }
 
     public void UnEquipItem()
     {
-        equip.Remove(UIManager.Instance.nowSelectedEquip);
-        equip.Add(itemManager.baseItem);
-        UIManager.Instance.nowSelectedEquip.isEquipped = false;
-        UIManager.Instance.detailArea.ChangeDetailActivation(false);
-        UIManager.Instance.nEquipItemSlot.FreshEquippedSlot();
+        for(int i = 0; i < 3; i++)
+        {
+            if(equip[i] == townUiManager.nowSelectedEquip)
+            {
+                equip[i].isEquipped = false;
+                equip[i] = itemManager.baseItem;
+                break;
+            }
+        }
+        townUiManager.FreshAfterEquip();
     }
 }

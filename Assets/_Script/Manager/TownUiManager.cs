@@ -4,22 +4,26 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
-public class UIManager : Singleton<UIManager>
+public class TownUiManager : MonoBehaviour
 {
     public PlayerManager playerManager;
+
+    [Header("UI")]
     public GameObject characterUI;
     public GameObject dungeonUI;
 
 
-    [Header("UI")]
+    [Header("EquipUI")]
     public GameObject equipInventoryUI;
     public NowEquippedItemSlot nEquipItemSlot;
     public DetailArea detailArea;
     public EquipItem nowSelectedEquip;
+    public EquipItem lastSelectedEquip;
 
     private void Start()
     {
         playerManager = PlayerManager.Instance.GetComponent<PlayerManager>();
+        playerManager.townUiManager = this;
     }
 
     public void GoDungeon(int index) 
@@ -55,5 +59,13 @@ public class UIManager : Singleton<UIManager>
     public void CloseInventory()
     {
         equipInventoryUI.SetActive(false);
+    }
+
+    public void FreshAfterEquip()
+    {
+        nowSelectedEquip = null;
+        lastSelectedEquip = null;
+        detailArea.ChangeDetailActivation(false);
+        nEquipItemSlot.FreshEquippedSlot();
     }
 }

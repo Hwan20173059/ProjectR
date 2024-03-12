@@ -5,14 +5,23 @@ using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
+    [Header("Data")]
     public CharacterSO BaseData;
 
+    [Header("Info")]
+    public Sprite sprite;
+    public string name;
+    public string desc;
+
+    [Header("Level")]
     public int level = 1;
+    public int curExp;
+    public int needExp;
+
+    [Header("Stat")]
     public int maxHP;
     public int curHP;
     public int atk;
-    public int curExp;
-    public int needExp;
     public bool IsDead => curHP <= 0;
 
     public List<CharacterAction> actions;
@@ -24,6 +33,14 @@ public class Character : MonoBehaviour
     public Animator Animator {  get; private set; }
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
+
+
+    [Header("State")]
+    public bool isSelected;
+    public bool isBuy;
+
+    [Header("System")]
+    public Image ActionBar;
 
     public CharacterStateMachine stateMachine;
 
