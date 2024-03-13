@@ -16,12 +16,13 @@ public class BattlePerformActionState : BattleBaseState
             character.stateMachine.ChangeState(characterPrevState);
         }
 
-        for (int i = 0; i < stateMachine.battleManager.Monsters.Count; i++)
+        for (int i = 0; i < monsters.Count; i++)
         {
-            if (!(stateMachine.battleManager.Monsters[i].IsDead))
+            if (!(monsters[i].IsDead))
             {
                 // 몬스터들의 상태를 이전 상태로 변경
-                monsters[i].stateMachine.ChangeState(monstersPrevState[i]);
+                monsterPrevStateIndex = i;
+                monsters[i].stateMachine.ChangeState(monsterPrevState);
             }
         }
     }

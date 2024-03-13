@@ -71,6 +71,7 @@ public class BattleManager : MonoBehaviour
         GameObject character = Instantiate(CharacterPrefab);
         character.transform.position = CharacterSpawnPosition;
         Character = character.GetComponent<Character>();
+        Character.Init(1);
         Character.startPosition = character.transform.position;
         Character.battleManager = this;
     }
@@ -111,6 +112,7 @@ public class BattleManager : MonoBehaviour
         {
             Monsters[i].monsterNumber = i;
             Monsters[i].startPosition = Monsters[i].transform.position;
+            Monsters[i].Init(1);
             Monsters[i].battleManager = this;
         }
 

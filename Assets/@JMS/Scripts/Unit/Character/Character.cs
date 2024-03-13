@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
     public string desc;
 
     [Header("Level")]
-    public int level = 1;
+    public int level;
     public int curExp;
     public int needExp;
 
@@ -48,8 +48,6 @@ public class Character : MonoBehaviour
     private void Start()
     {
         stateMachine.ChangeState(stateMachine.WaitState);
-
-        Init(level);
     }
 
     private void Update()

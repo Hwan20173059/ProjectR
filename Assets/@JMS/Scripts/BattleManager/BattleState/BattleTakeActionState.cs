@@ -15,7 +15,8 @@ public class BattleTakeActionState : BattleBaseState
         // 몬스터들의 현재 상태 저장
         for (int i = 0; i < monsters.Count; i++)
         {
-            monstersPrevState[i] = monsters[i].stateMachine.currentState;
+            monsterPrevStateIndex = i;
+            monsterPrevState = monsters[i].stateMachine.currentState;
         }
         // 캐릭터 현재 상태 Wait으로 변경
         if (!(character.IsDead))

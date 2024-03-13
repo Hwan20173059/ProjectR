@@ -5,24 +5,18 @@ using UnityEngine;
 public class BattleBaseState : IState
 {
     protected BattleStateMachine stateMachine;
-    protected BattleManager battleManager;
-    protected Character character;
-    protected IState characterPrevState;
-    protected List<Monster> monsters;
-    protected IState[] monstersPrevState;
-    protected List<int> performList;
-    protected BattleCanvas battleCanvas;
+    protected BattleManager battleManager { get { return stateMachine.battleManager; } }
+    protected Character character { get { return battleManager.Character; } }
+    protected IState characterPrevState { get { return battleManager.characterPrevState; } set { battleManager.characterPrevState = value; } }
+    protected List<Monster> monsters { get { return battleManager.Monsters; } }
+    protected IState monsterPrevState { get { return battleManager.monstersPrevState[monsterPrevStateIndex]; } set { battleManager.monstersPrevState[monsterPrevStateIndex] = value; } }
+    protected int monsterPrevStateIndex;
+    protected List<int> performList { get { return battleManager.PerformList; } }
+    protected BattleCanvas battleCanvas { get { return battleManager.BattleCanvas; } }
 
     public BattleBaseState(BattleStateMachine battleStateMachine)
     {
         stateMachine = battleStateMachine;
-        battleManager = battleStateMachine.battleManager;
-        character = battleManager.Character;
-        characterPrevState = battleManager.characterPrevState;
-        monsters = battleManager.Monsters;
-        monstersPrevState = battleManager.monstersPrevState;
-        performList = battleManager.PerformList;
-        battleCanvas = battleManager.BattleCanvas;
     }
     public virtual void Enter()
     {

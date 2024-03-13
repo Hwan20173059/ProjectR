@@ -7,7 +7,7 @@ public class Monster : MonoBehaviour
 {
     public MonsterSO BaseData;
 
-    public int level = 1;
+    public int level;
     public int maxHP;
     public int curHP;
     public int atk;
@@ -40,8 +40,6 @@ public class Monster : MonoBehaviour
     private void Start()
     {
         stateMachine.ChangeState(stateMachine.WaitState);
-
-        Init(level);
     }
 
     private void Update()
