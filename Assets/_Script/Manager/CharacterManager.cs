@@ -12,20 +12,38 @@ public class CharacterData
 
 public class CharacterManager : MonoBehaviour
 {
+    public PlayerManager playerManager;
     public List<CharacterData> characterList = new List<CharacterData>();
-    public Character selectedCharacter;
+    public CharacterSelectSlot characterSelectslot;    
+
+    private void Start()
+    {
+        playerManager = PlayerManager.Instance;
+    }
 
     public void SelectCharacter(int index)
     {
-        for(int i = 0; i < characterList.Count; i++)
-            characterList[i].isSelected = false;
+        SelectInCharacterList(index);
+        SelectInCharacterSlot(index);
 
-        selectedCharacter = characterList[index].character;
-        characterList[index].isSelected = true;
+        characterSelectslot.RefreshAll();
     }
 
-    public void BuyCharacter(int index)
+    private void SelectInCharacterList(int index)
     {
-        characterList[index].isBuy = true;
+        for (int i = 0; i < characterList.Count; i++)
+            characterList[i].isSelected = false;
+
+        characterList[index].isSelected = true;
+
+        playerManager.selectedCharacter = characterList[index].character;
+    }
+
+    private void SelectInCharacterSlot(int index)
+    {
+        for (int i = 0; i < characterSelectslot.characterSlots.Count; i++)
+            characterSelectslot.characterSlots[i].characterData.isSelected = false;
+
+        characterSelectslot.characterSlots[index].characterData.isSelected = true;
     }
 }

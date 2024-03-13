@@ -5,33 +5,31 @@ using UnityEngine;
 
 public class CharacterSelectSlot : MonoBehaviour
 {
-    public PlayerManager playerManager;
-    public GameObject[] characterSlot;
     public CharacterManager characterManager;
 
-    private void Awake()
-    {
-        for (int i = 0; i < characterSlot.Length; i++)
-        {
-            CharacterSlot _charactorSlot = characterSlot[i].GetComponent<CharacterSlot>();
-
-            _charactorSlot.characterData = characterManager.characterList[i];
-        }
-    }
+    public CharacterSlot slotPrefab;
+    public List<CharacterSlot> characterSlots = new List<CharacterSlot>();
 
     private void Start()
     {
-        playerManager = PlayerManager.Instance.GetComponent<PlayerManager>();
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        int width = 325 * characterManager.characterList.Count;
+        rectTransform.sizeDelta = new Vector2(width, 410);
+
+        for (int i = 0; i < characterManager.characterList.Count; i++)
+        {
+            slotPrefab.index = i;
+            slotPrefab.characterData = characterManager.characterList[i];
+            slotPrefab.characterSelectSlot = this;
+            characterSlots.Add(Instantiate(slotPrefab, this.transform));
+        }
     }
 
-    public void SelectCharacter(int index)
+    public void RefreshAll()
     {
-        characterManager.SelectCharacter(index);
-        playerManager.selectedCharacter = characterManager.selectedCharacter;
-
-        for (int i = 0; i < characterSlot.Length; i++) 
-            characterSlot[i].GetComponent<CharacterSlot>().Refresh();
-
-        playerManager.ReFreshPlayer();
+        for(int i = 0; i < characterSlots.Count; i++)
+        {
+            characterSlots[i].Refresh();
+        }
     }
 }

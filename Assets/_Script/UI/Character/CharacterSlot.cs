@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class CharacterSlot : MonoBehaviour
 {
+    public int index;
+    public CharacterSelectSlot characterSelectSlot;
     public CharacterData characterData;
     
     public Image[] characterSlotImage;
@@ -22,6 +24,11 @@ public class CharacterSlot : MonoBehaviour
         characterSlotText[0].text = characterData.character.name;
 
         Refresh();
+    }
+
+    public void SelectButtonClick()
+    {
+        characterSelectSlot.characterManager.SelectCharacter(index);
     }
 
     public void Refresh()
