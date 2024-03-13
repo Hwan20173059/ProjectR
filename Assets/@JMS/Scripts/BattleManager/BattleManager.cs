@@ -134,7 +134,7 @@ public class BattleManager : MonoBehaviour
     {
         yield return WaitFor1Sec;
         Character.stateMachine.ChangeState(Character.stateMachine.ReadyState);
-        foreach (var monster in Monsters)
+        foreach (Monster monster in Monsters)
         {
             monster.stateMachine.ChangeState(monster.stateMachine.ReadyState);
         }
