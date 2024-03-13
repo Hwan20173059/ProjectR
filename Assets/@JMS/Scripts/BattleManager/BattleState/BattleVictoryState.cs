@@ -12,15 +12,15 @@ public class BattleVictoryState : BattleBaseState
     {
         base.Enter();
 
-        stateMachine.BattleManager.curStage++;
+        battleManager.curStage++;
 
-        if (stateMachine.BattleManager.curStage == stateMachine.BattleManager.Dungeons[stateMachine.BattleManager.selectDungeon].Stages.Count)
+        if (battleManager.curStage == battleManager.Dungeons[battleManager.selectDungeon].Stages.Count)
         {
-            stateMachine.BattleManager.BattleCanvas.DungeonClearPanel.SetActive(true);
+            battleCanvas.DungeonClearPanel.SetActive(true);
         }
         else
         {
-            stateMachine.BattleManager.BattleCanvas.NextStagePanel.SetActive(true);
+            battleCanvas.NextStagePanel.SetActive(true);
         }
     }
 }

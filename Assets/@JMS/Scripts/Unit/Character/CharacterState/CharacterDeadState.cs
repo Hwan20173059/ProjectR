@@ -11,13 +11,13 @@ public class CharacterDeadState : CharacterBaseState
     {
         base.Enter();
 
-        stateMachine.Character.Animator.SetBool("Dead", true);
+        character.Animator.SetBool("Dead", true);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        stateMachine.Character.Animator.SetBool("Dead", false);
+        character.Animator.SetBool("Dead", false);
     }
 }

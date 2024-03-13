@@ -47,10 +47,6 @@ public class BattleManager : MonoBehaviour
         Input.ClickActions.MouseClick.started += OnClickStart;
 
         stateMachine.ChangeState(stateMachine.StartState);
-        //SpawnCharacter();
-        //SpawnMonster();
-        //stateMachine.ChangeState(stateMachine.WaitState);
-        //StartCoroutine(BattleStart());
     }
 
     private void OnClickStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -102,11 +98,11 @@ public class BattleManager : MonoBehaviour
 
         if(Dungeons[selectDungeon].Stages[curStage].SpawnMonsters.Count > 0)
         {
-            foreach (var monster in Dungeons[selectDungeon].Stages[curStage].SpawnMonsters)
+            foreach (GameObject monsterPrefab in Dungeons[selectDungeon].Stages[curStage].SpawnMonsters)
             {
-                GameObject _monster = Instantiate(monster, monsterPool.transform);
-                Monsters.Add(_monster.GetComponent<Monster>());
-                _monster.transform.position = MonsterSpawnPosition;
+                GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
+                Monsters.Add(monster.GetComponent<Monster>());
+                monster.transform.position = MonsterSpawnPosition;
                 ChangeSpawnPosition();
             }
         }

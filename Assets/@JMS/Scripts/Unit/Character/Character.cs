@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
     public int curHP;
     public int atk;
     public bool IsDead => curHP <= 0;
+    public bool IsSelectingAction = false;
 
     public List<CharacterAction> actions;
     public CharacterAction selectAction;
