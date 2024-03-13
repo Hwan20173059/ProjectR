@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SlimeDungeon
   m_EditorClassIdentifier: 
   dungeonName: SlimeDungeon
-  Stages:
+  stages:
   - {fileID: 11400000, guid: 7c6e37cd2d6b9134f857a8440c5d6fea, type: 2}
   - {fileID: 11400000, guid: ce27b3adf290a314eb98b67e288a9fd5, type: 2}
