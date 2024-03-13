@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "QuestInfoSO", menuName = "ScriptableObjects/QuestInfoSO", order = 1)]
+public class QuestInfoSO : ScriptableObject
+{
+    [field: SerializeField] public string id { get; private set; }
+
+    [Header("General")]
+    public string displayName;
+
+    [Header("Requirements")]
+    public int levelRequirement;
+    public QuestInfoSO[] questPrerequisites;
+
+    [Header("Steps")]
+    public GameObject[] questStepPrefebs;
+
+    [Header("Rewards")]
+    public int goldReward;
+    public int expReward;
+    //public Item itemID;??????????????
+    //todo : 보상에 아이템 추가
+
+    private void OnValidate() 
+    {
+        //Unity상에서 파일명이랑 id를 고정시켜버리자.
+        //id는 퀘스트의 key로써 너무 중요하고 다를 필요도 없음.
+//#if UNITY_EDITOR
+        //id = this.name;
+        //UnityEditor.EditorUtility.SetDirty(this);
+//#endif
+    } 
+    private void Awake()
+    {
+        
+    }
+}
