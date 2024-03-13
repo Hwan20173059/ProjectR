@@ -23,10 +23,11 @@ public class CharacterManager : MonoBehaviour
 
     public void SelectCharacter(int index)
     {
-        SelectInCharacterList(index);
-        SelectInCharacterSlot(index);
+        SelectInCharacterList(index); // CharacterList에서 캐릭터 선택
+        SelectInCharacterSlot(index); // CharacterSlot에서 캐릭터 선택
 
-        characterSelectslot.RefreshAll();
+        playerManager.ReFreshPlayer(); // TownCharacter도 refresh
+        characterSelectslot.RefreshAll(); // Refresh를 통해 UI 상태 조절
     }
 
     private void SelectInCharacterList(int index)
@@ -36,6 +37,7 @@ public class CharacterManager : MonoBehaviour
 
         characterList[index].isSelected = true;
 
+        // PlayerManager에 선택한 캐릭터 전달
         playerManager.selectedCharacter = characterList[index].character;
     }
 
