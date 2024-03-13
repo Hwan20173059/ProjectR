@@ -5,7 +5,7 @@ using UnityEngine;
 public class CharacterBaseState : IState
 {
     protected CharacterStateMachine stateMachine;
-    protected Character character { get { return stateMachine.Character; } }
+    protected Character character { get { return stateMachine.character; } }
     protected BattleManager battleManager { get { return character.battleManager; } }
     protected Monster selectMonster { get { return battleManager.selectMonster; } }
     public CharacterBaseState(CharacterStateMachine characterStateMachine)

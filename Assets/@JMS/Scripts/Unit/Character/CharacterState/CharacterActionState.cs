@@ -28,17 +28,17 @@ public class CharacterActionState : CharacterBaseState
 
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
-        character.Animator.SetBool("Idle", false);
-        character.Animator.SetTrigger("Attack");
+        character.animator.SetBool("Idle", false);
+        character.animator.SetTrigger("Attack");
         selectMonster.ChangeHP(-character.atk);
-        while (!IsAnimationEnd(GetNormalizedTime(character.Animator, "Attack"))) { yield return null; }
-        character.Animator.SetBool("Idle", true);
+        while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
+        character.animator.SetBool("Idle", true);
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
 
         character.curCoolTime = 0f;
-        stateMachine.ChangeState(stateMachine.ReadyState);
-        battleManager.stateMachine.ChangeState(battleManager.stateMachine.WaitState);
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
     private bool MoveTowardsCharacter(Vector3 target)

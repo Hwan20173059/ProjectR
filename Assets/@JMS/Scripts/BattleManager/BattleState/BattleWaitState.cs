@@ -14,12 +14,12 @@ public class BattleWaitState : BattleBaseState
 
         if (character.IsDead)
         {
-            stateMachine.ChangeState(stateMachine.DefeatState);
+            stateMachine.ChangeState(stateMachine.defeatState);
         }
         if (stateMachine.battleManager.isStageClear)
         {
-            character.stateMachine.ChangeState(character.stateMachine.WaitState);
-            stateMachine.ChangeState(stateMachine.VictoryState);
+            character.stateMachine.ChangeState(character.stateMachine.waitState);
+            stateMachine.ChangeState(stateMachine.victoryState);
         }
     }
 
@@ -28,7 +28,7 @@ public class BattleWaitState : BattleBaseState
         base.Update();
         if(performList.Count > 0)
         {
-            stateMachine.ChangeState(stateMachine.TakeActionState);
+            stateMachine.ChangeState(stateMachine.takeActionState);
         }
     }
 }

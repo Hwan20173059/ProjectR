@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class CharacterStateMachine : StateMachine
 {
-    public Character Character { get; }
-    public CharacterWaitState WaitState { get; }
-    public CharacterReadyState ReadyState { get; }
-    public CharacterSelectActionState SelectActionState { get; }
-    public CharacterActionState ActionState { get; }
-    public CharacterDeadState DeadState { get; }
+    public Character character { get; }
+    public CharacterWaitState waitState { get; }
+    public CharacterReadyState readyState { get; }
+    public CharacterSelectActionState selectActionState { get; }
+    public CharacterActionState actionState { get; }
+    public CharacterDeadState deadState { get; }
     public CharacterStateMachine(Character character)
     {
-        Character = character;
+        this.character = character;
 
-        WaitState = new CharacterWaitState(this);
-        ReadyState = new CharacterReadyState(this);
-        SelectActionState = new CharacterSelectActionState(this);
-        ActionState = new CharacterActionState(this);
-        DeadState = new CharacterDeadState(this);
+        waitState = new CharacterWaitState(this);
+        readyState = new CharacterReadyState(this);
+        selectActionState = new CharacterSelectActionState(this);
+        actionState = new CharacterActionState(this);
+        deadState = new CharacterDeadState(this);
     }
 }

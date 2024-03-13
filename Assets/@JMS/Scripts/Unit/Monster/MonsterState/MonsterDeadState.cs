@@ -14,13 +14,13 @@ public class MonsterDeadState : MonsterBaseState
 
         character.ChangeExp(monster.exp);
 
-        monster.Animator.SetBool("Dead", true);
+        monster.animator.SetBool("Dead", true);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        monster.Animator.SetBool("Dead", false);
+        monster.animator.SetBool("Dead", false);
     }
 }

@@ -21,7 +21,7 @@ public class MonsterReadyState : MonsterBaseState
         }
         else
         {
-            stateMachine.ChangeState(stateMachine.SelectActionState);
+            stateMachine.ChangeState(stateMachine.selectActionState);
         }
     }
 }

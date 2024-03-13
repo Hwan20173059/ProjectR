@@ -9,58 +9,58 @@ using UnityEngine.UI;
 public class BattleCanvas : MonoBehaviour
 {
     private BattleManager battleManager;
+    private Character character { get { return battleManager.character; } set { battleManager.character = value; } }
+    private Monster selectMonster { get { return battleManager.selectMonster; } set { battleManager.selectMonster = value; } }
 
-    public Image ActionBar;
-    public Button AttackButton;
-    public GameObject BattleDefeatPanel;
-    public Button ReturnTownButton;
-    public GameObject NextStagePanel;
-    public Button NextStageButton;
-    public GameObject DungeonClearPanel;
-    public Button DungeonClearButton;
+    public Image actionBar;
+    public Button attackButton;
+    public GameObject battleDefeatPanel;
+    public Button returnTownButton;
+    public GameObject nextStagePanel;
+    public Button nextStageButton;
+    public GameObject dungeonClearPanel;
+    public Button dungeonClearButton;
 
     private void Awake()
     {
         battleManager = GetComponentInParent<BattleManager>();
 
-
-        
-        AttackButton.onClick.AddListener(OnClickAttackButton);
-        ReturnTownButton.onClick.AddListener(TownSceneLoad);
-        NextStageButton.onClick.AddListener(NextStageStart);
-        DungeonClearButton.onClick.AddListener(TownSceneLoad);
+        attackButton.onClick.AddListener(OnClickAttackButton);
+        returnTownButton.onClick.AddListener(TownSceneLoad);
+        nextStageButton.onClick.AddListener(NextStageStart);
+        dungeonClearButton.onClick.AddListener(TownSceneLoad);
     }
 
     private void Update()
     {
-        if (battleManager.Character != null)
-            ActionBar.transform.localScale =
-                new Vector3(Mathf.Clamp(battleManager.Character.curCoolTime / battleManager.Character.maxCoolTime, 0, battleManager.Character.maxCoolTime), 1, 1);
+        if (character != null)
+            actionBar.transform.localScale =
+                new Vector3(Mathf.Clamp(character.curCoolTime / character.maxCoolTime, 0, character.maxCoolTime), 1, 1);
     }
 
     void OnClickAttackButton()
     {
-        if (battleManager.Character.IsSelectingAction && battleManager.selectMonster != null &&!(battleManager.selectMonster.IsDead))
+        if (character.IsSelectingAction && selectMonster != null &&!(selectMonster.IsDead))
         {
-            battleManager.Character.selectAction = CharacterAction.Attack;
-            battleManager.PerformList.Add(100);
-            battleManager.Character.stateMachine.ChangeState(battleManager.Character.stateMachine.ReadyState);
+            character.selectAction = CharacterAction.Attack;
+            battleManager.performList.Add(100);
+            character.stateMachine.ChangeState(character.stateMachine.readyState);
         }
     }
 
     void NextStageStart()
     {
-        NextStagePanel.SetActive(false);
-        battleManager.Character.curCoolTime = 0;
+        nextStagePanel.SetActive(false);
+        character.curCoolTime = 0;
         Destroy(battleManager.monsterPool);
         battleManager.monsterPool = null;
-        battleManager.Monsters.Clear();
-        battleManager.stateMachine.ChangeState(battleManager.stateMachine.StartState);
+        battleManager.monsters.Clear();
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.startState);
     }
 
     void TownSceneLoad()
     {
-        BattleDefeatPanel.SetActive(false);
+        battleDefeatPanel.SetActive(false);
         SceneManager.LoadScene("BattleEndTestScene");
     }
 }

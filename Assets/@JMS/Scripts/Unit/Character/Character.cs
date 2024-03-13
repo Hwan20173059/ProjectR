@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Character : MonoBehaviour
 {
     [Header("Data")]
-    public CharacterSO BaseData;
+    public CharacterSO baseData;
 
     [Header("Info")]
     public Sprite sprite;
@@ -31,7 +31,7 @@ public class Character : MonoBehaviour
     public float curCoolTime;
     public float maxCoolTime;
 
-    public Animator Animator {  get; private set; }
+    public Animator animator {  get; private set; }
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
@@ -43,11 +43,11 @@ public class Character : MonoBehaviour
     {
         stateMachine = new CharacterStateMachine(this);
 
-        Animator = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
     private void Start()
     {
-        stateMachine.ChangeState(stateMachine.WaitState);
+        stateMachine.ChangeState(stateMachine.waitState);
     }
 
     private void Update()
@@ -63,12 +63,12 @@ public class Character : MonoBehaviour
     }
     public void Init(int level)
     {
-        maxHP = BaseData.hp * level;
-        curHP = BaseData.hp * level;
-        atk = BaseData.atk * level;
-        needExp = BaseData.needExp * level;
-        actions = BaseData.actions;
-        maxCoolTime = BaseData.actionCoolTime;
+        maxHP = baseData.hp * level;
+        curHP = baseData.hp * level;
+        atk = baseData.atk * level;
+        needExp = baseData.needExp * level;
+        actions = baseData.actions;
+        maxCoolTime = baseData.actionCoolTime;
     }
 
     public void ChangeHP(int change)
@@ -79,7 +79,7 @@ public class Character : MonoBehaviour
 
         if (curHP <= 0)
         {
-            stateMachine.ChangeState(stateMachine.DeadState);
+            stateMachine.ChangeState(stateMachine.deadState);
         }
     }
 
@@ -94,7 +94,7 @@ public class Character : MonoBehaviour
         curExp = curExp - needExp;
         curExp = curExp >= needExp ? LevelUp() : curExp;
         level++;
-        level = level > BaseData.maxLevel ? BaseData.maxLevel : level;
+        level = level > baseData.maxLevel ? baseData.maxLevel : level;
         return curExp;
     }
 }

@@ -4,20 +4,20 @@ using UnityEngine;
 
 public class MonsterStateMachine : StateMachine
 {
-    public Monster Monster { get; }
-    public MonsterWaitState WaitState { get; }
-    public MonsterReadyState ReadyState { get; }
-    public MonsterSelectActionState SelectActionState { get; }
-    public MonsterActionState ActionState { get; }
-    public MonsterDeadState DeadState { get; }
+    public Monster monster { get; }
+    public MonsterWaitState waitState { get; }
+    public MonsterReadyState readyState { get; }
+    public MonsterSelectActionState selectActionState { get; }
+    public MonsterActionState actionState { get; }
+    public MonsterDeadState deadState { get; }
     public MonsterStateMachine(Monster monster)
     {
-        Monster = monster;
+        this.monster = monster;
 
-        WaitState = new MonsterWaitState(this);
-        ReadyState = new MonsterReadyState(this);
-        SelectActionState = new MonsterSelectActionState(this);
-        ActionState = new MonsterActionState(this);
-        DeadState = new MonsterDeadState(this);
+        waitState = new MonsterWaitState(this);
+        readyState = new MonsterReadyState(this);
+        selectActionState = new MonsterSelectActionState(this);
+        actionState = new MonsterActionState(this);
+        deadState = new MonsterDeadState(this);
     }
 }

@@ -14,13 +14,13 @@ public class BattleVictoryState : BattleBaseState
 
         battleManager.curStage++;
 
-        if (battleManager.curStage == battleManager.Dungeons[battleManager.selectDungeon].Stages.Count)
+        if (battleManager.curStage == battleManager.dungeons[battleManager.selectDungeon].stages.Count)
         {
-            battleCanvas.DungeonClearPanel.SetActive(true);
+            battleCanvas.dungeonClearPanel.SetActive(true);
         }
         else
         {
-            battleCanvas.NextStagePanel.SetActive(true);
+            battleCanvas.nextStagePanel.SetActive(true);
         }
     }
 }

@@ -22,8 +22,9 @@ public class Monster : MonoBehaviour
 
     public int monsterNumber;
 
-    public Animator Animator { get; private set; }
+    public Animator animator { get; private set; }
     public Vector3 startPosition;
+    public Vector3 attackPosition = new Vector3(-5.5f, 1.5f, 0);
     public float moveAnimSpeed = 10f;
 
     public MonsterStateMachine stateMachine;
@@ -34,12 +35,12 @@ public class Monster : MonoBehaviour
     {
         stateMachine = new MonsterStateMachine(this);
 
-        Animator = GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
     {
-        stateMachine.ChangeState(stateMachine.WaitState);
+        stateMachine.ChangeState(stateMachine.waitState);
     }
 
     private void Update()
@@ -71,7 +72,7 @@ public class Monster : MonoBehaviour
 
         if (curHP <= 0)
         {
-            stateMachine.ChangeState(stateMachine.DeadState);
+            stateMachine.ChangeState(stateMachine.deadState);
         }
     }
 }

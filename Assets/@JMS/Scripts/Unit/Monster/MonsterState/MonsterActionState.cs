@@ -24,30 +24,30 @@ public class MonsterActionState : MonsterBaseState
 
     IEnumerator BaseAttack()
     {
-        while (MoveTowardsMonster(new Vector3(-5.5f, 1.5f, 0))) { yield return null; }
+        while (MoveTowardsMonster(monster.attackPosition)) { yield return null; }
 
-        monster.Animator.SetBool("Idle", false);
-        monster.Animator.SetTrigger("BaseAttack");
-        battleManager.Character.ChangeHP(-monster.atk);
-        while (!IsAnimationEnd(GetNormalizedTime(monster.Animator, "Attack"))) { yield return null; }
-        monster.Animator.SetBool("Idle", true);
+        monster.animator.SetBool("Idle", false);
+        monster.animator.SetTrigger("BaseAttack");
+        battleManager.character.ChangeHP(-monster.atk);
+        while (!IsAnimationEnd(GetNormalizedTime(monster.animator, "Attack"))) { yield return null; }
+        monster.animator.SetBool("Idle", true);
 
         while (MoveTowardsMonster(monster.startPosition)) { yield return null; }
 
         monster.curCoolTime = 0f;
-        stateMachine.ChangeState(stateMachine.ReadyState);
-        battleManager.stateMachine.ChangeState(battleManager.stateMachine.WaitState);
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
     IEnumerator Jump()
     {
-        monster.Animator.SetBool("Idle", false);
-        monster.Animator.SetTrigger("Jump");
-        while (!IsAnimationEnd(GetNormalizedTime(monster.Animator, "Jump"))) { yield return null; }
-        monster.Animator.SetBool("Idle", true);
+        monster.animator.SetBool("Idle", false);
+        monster.animator.SetTrigger("Jump");
+        while (!IsAnimationEnd(GetNormalizedTime(monster.animator, "Jump"))) { yield return null; }
+        monster.animator.SetBool("Idle", true);
 
         monster.curCoolTime = 0f;
-        stateMachine.ChangeState(stateMachine.ReadyState);
-        battleManager.stateMachine.ChangeState(battleManager.stateMachine.WaitState);
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
     private bool IsAnimationEnd(float animNormalizedTime)

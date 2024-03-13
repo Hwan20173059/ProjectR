@@ -8,27 +8,27 @@ public class BattleManager : MonoBehaviour
     public PlayerInput Input {  get; private set; }
     public Monster selectMonster;
 
-    public BattleCanvas BattleCanvas;
+    public BattleCanvas battleCanvas;
 
-    public List<DungeonSO> Dungeons;
+    public List<DungeonSO> dungeons;
     public int selectDungeon;
     public int curStage;
     public bool isStageClear { get { return StageClearCheck(); } }
 
     public GameObject monsterPool;
 
-    Vector3 MonsterSpawnPosition = new Vector3 (-1, 3, 0);
-    public GameObject CharacterPrefab;
-    Vector3 CharacterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
+    Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
+    public GameObject characterPrefab;
+    Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
 
-    public List<int> PerformList;
+    public List<int> performList;
 
-    public Character Character;
+    public Character character;
     public IState characterPrevState;
-    public List<Monster> Monsters;
+    public List<Monster> monsters;
     public IState[] monstersPrevState;
 
-    private WaitForSeconds WaitFor1Sec = new WaitForSeconds(1f);
+    private WaitForSeconds waitFor1Sec = new WaitForSeconds(1f);
 
     public BattleStateMachine stateMachine;
 
@@ -36,9 +36,9 @@ public class BattleManager : MonoBehaviour
     {
         Input = GetComponent<PlayerInput>();
 
-        BattleCanvas = GetComponentInChildren<BattleCanvas>();
+        battleCanvas = GetComponentInChildren<BattleCanvas>();
 
-        PerformList = new List<int>();
+        performList = new List<int>();
 
         stateMachine = new BattleStateMachine(this);
     }
@@ -46,7 +46,7 @@ public class BattleManager : MonoBehaviour
     {
         Input.ClickActions.MouseClick.started += OnClickStart;
 
-        stateMachine.ChangeState(stateMachine.StartState);
+        stateMachine.ChangeState(stateMachine.startState);
     }
 
     private void OnClickStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -68,12 +68,12 @@ public class BattleManager : MonoBehaviour
     
     public void SpawnCharacter()
     {
-        GameObject character = Instantiate(CharacterPrefab);
-        character.transform.position = CharacterSpawnPosition;
-        Character = character.GetComponent<Character>();
-        Character.Init(1);
-        Character.startPosition = character.transform.position;
-        Character.battleManager = this;
+        GameObject character = Instantiate(characterPrefab);
+        character.transform.position = characterSpawnPosition;
+        this.character = character.GetComponent<Character>();
+        this.character.Init(1);
+        this.character.startPosition = character.transform.position;
+        this.character.battleManager = this;
     }
 
     public void SpawnMonster()
@@ -84,64 +84,64 @@ public class BattleManager : MonoBehaviour
             this.monsterPool = monsterPool;
         }
 
-        int randomSpawnAmount = Random.Range(Dungeons[selectDungeon].Stages[curStage].randomSpawnMinAmount, Dungeons[selectDungeon].Stages[curStage].randomSpawnMaxAmount + 1);
+        int randomSpawnAmount = Random.Range(dungeons[selectDungeon].stages[curStage].randomSpawnMinAmount, dungeons[selectDungeon].stages[curStage].randomSpawnMaxAmount + 1);
         if(randomSpawnAmount > 0)
         {
             for (int i = 0; i < randomSpawnAmount; i++)
             {
-                int monsterIndex = Random.Range(0, Dungeons[selectDungeon].Stages[curStage].RandomSpawnMonsters.Count);
-                GameObject monster = Instantiate(Dungeons[selectDungeon].Stages[curStage].RandomSpawnMonsters[monsterIndex], monsterPool.transform);
-                Monsters.Add(monster.GetComponent<Monster>());
-                monster.transform.position = MonsterSpawnPosition;
+                int monsterIndex = Random.Range(0, dungeons[selectDungeon].stages[curStage].randomSpawnMonsters.Count);
+                GameObject monster = Instantiate(dungeons[selectDungeon].stages[curStage].randomSpawnMonsters[monsterIndex], monsterPool.transform);
+                monsters.Add(monster.GetComponent<Monster>());
+                monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
         }
 
-        if(Dungeons[selectDungeon].Stages[curStage].SpawnMonsters.Count > 0)
+        if(dungeons[selectDungeon].stages[curStage].spawnMonsters.Count > 0)
         {
-            foreach (GameObject monsterPrefab in Dungeons[selectDungeon].Stages[curStage].SpawnMonsters)
+            foreach (GameObject monsterPrefab in dungeons[selectDungeon].stages[curStage].spawnMonsters)
             {
                 GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
-                Monsters.Add(monster.GetComponent<Monster>());
-                monster.transform.position = MonsterSpawnPosition;
+                monsters.Add(monster.GetComponent<Monster>());
+                monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
         }
 
-        for (int i = 0; i < Monsters.Count; i++)
+        for (int i = 0; i < monsters.Count; i++)
         {
-            Monsters[i].monsterNumber = i;
-            Monsters[i].startPosition = Monsters[i].transform.position;
-            Monsters[i].Init(1);
-            Monsters[i].battleManager = this;
+            monsters[i].monsterNumber = i;
+            monsters[i].startPosition = monsters[i].transform.position;
+            monsters[i].Init(1);
+            monsters[i].battleManager = this;
         }
 
-        MonsterSpawnPosition = new Vector3(-1, 3, 0);
-        monstersPrevState = new IState[Monsters.Count];
+        monsterSpawnPosition = new Vector3(-1, 3, 0);
+        monstersPrevState = new IState[monsters.Count];
     }
 
     public void ChangeSpawnPosition()
     {
-        if (MonsterSpawnPosition.y == 3)
-            MonsterSpawnPosition = new Vector3(MonsterSpawnPosition.x, MonsterSpawnPosition.y - 2.5f, MonsterSpawnPosition.z);
+        if (monsterSpawnPosition.y == 3)
+            monsterSpawnPosition = new Vector3(monsterSpawnPosition.x, monsterSpawnPosition.y - 2.5f, monsterSpawnPosition.z);
         else
-            MonsterSpawnPosition = new Vector3(MonsterSpawnPosition.x + 2.5f, MonsterSpawnPosition.y + 2.5f, MonsterSpawnPosition.z);
+            monsterSpawnPosition = new Vector3(monsterSpawnPosition.x + 2.5f, monsterSpawnPosition.y + 2.5f, monsterSpawnPosition.z);
     }
 
     public IEnumerator BattleStart()
     {
-        yield return WaitFor1Sec;
-        Character.stateMachine.ChangeState(Character.stateMachine.ReadyState);
-        foreach (Monster monster in Monsters)
+        yield return waitFor1Sec;
+        character.stateMachine.ChangeState(character.stateMachine.readyState);
+        foreach (Monster monster in monsters)
         {
-            monster.stateMachine.ChangeState(monster.stateMachine.ReadyState);
+            monster.stateMachine.ChangeState(monster.stateMachine.readyState);
         }
     }
     private bool StageClearCheck()
     {
-        for(int i = 0; i < Monsters.Count; i++)
+        for(int i = 0; i < monsters.Count; i++)
         {
-            if(!(Monsters[i].stateMachine.currentState is MonsterDeadState))
+            if(!(monsters[i].stateMachine.currentState is MonsterDeadState))
             {
                 return false;
             }

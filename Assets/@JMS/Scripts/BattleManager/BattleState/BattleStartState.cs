@@ -16,7 +16,7 @@ public class BattleStartState : BattleBaseState
             battleManager.SpawnCharacter();
         }
         battleManager.SpawnMonster();
-        stateMachine.ChangeState(stateMachine.WaitState);
+        stateMachine.ChangeState(stateMachine.waitState);
         battleManager.StartCoroutine(battleManager.BattleStart());
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class StageSO : ScriptableObject
 {
     public string stageName;
-    public List<GameObject> SpawnMonsters;
-    public List<GameObject> RandomSpawnMonsters;
+    public List<GameObject> spawnMonsters;
+    public List<GameObject> randomSpawnMonsters;
     public int randomSpawnMinAmount;
     public int randomSpawnMaxAmount;
 }

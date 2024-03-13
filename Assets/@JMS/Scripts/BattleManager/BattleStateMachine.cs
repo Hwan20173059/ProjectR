@@ -5,23 +5,23 @@ using UnityEngine;
 public class BattleStateMachine : StateMachine
 {
     public BattleManager battleManager;
-    public BattleStartState StartState { get; }
-    public BattleWaitState WaitState { get; }
-    public BattleTakeActionState TakeActionState { get; }
-    public BattlePerformActionState PerformActionState {  get; }
-    public BattleVictoryState VictoryState { get; }
-    public BattleDefeatState DefeatState { get; }
-    public BattleEndState EndState { get; }
+    public BattleStartState startState { get; }
+    public BattleWaitState waitState { get; }
+    public BattleTakeActionState takeActionState { get; }
+    public BattlePerformActionState performActionState {  get; }
+    public BattleVictoryState victoryState { get; }
+    public BattleDefeatState defeatState { get; }
+    public BattleEndState endState { get; }
 
     public BattleStateMachine(BattleManager battleManager)
     {
         this.battleManager = battleManager;
-        StartState = new BattleStartState(this);
-        WaitState = new BattleWaitState(this);
-        TakeActionState = new BattleTakeActionState(this);
-        PerformActionState = new BattlePerformActionState(this);
-        EndState = new BattleEndState(this);
-        VictoryState = new BattleVictoryState(this);
-        DefeatState = new BattleDefeatState(this);
+        startState = new BattleStartState(this);
+        waitState = new BattleWaitState(this);
+        takeActionState = new BattleTakeActionState(this);
+        performActionState = new BattlePerformActionState(this);
+        endState = new BattleEndState(this);
+        victoryState = new BattleVictoryState(this);
+        defeatState = new BattleDefeatState(this);
     }
 }

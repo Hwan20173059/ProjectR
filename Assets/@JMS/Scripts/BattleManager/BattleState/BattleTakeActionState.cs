@@ -20,24 +20,24 @@ public class BattleTakeActionState : BattleBaseState
         }
         // 캐릭터 현재 상태 Wait으로 변경
         if (!(character.IsDead))
-            character.stateMachine.ChangeState(character.stateMachine.WaitState);
+            character.stateMachine.ChangeState(character.stateMachine.waitState);
         // 몬스터들의 현재 상태 Wait으로 변경
         for (int i = 0; i < monsters.Count; i++)
         {
             if (!(monsters[i].IsDead))
-                monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.WaitState);
+                monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.waitState);
         }
         // 수행 리스트에 가장 먼저 입력한 유닛의 상태를 Aciton으로 변경
         if (performList[0] == 100)
         {
-            character.stateMachine.ChangeState(character.stateMachine.ActionState);
+            character.stateMachine.ChangeState(character.stateMachine.actionState);
         }
         else
         {
-            monsters[performList[0]].stateMachine.ChangeState(monsters[performList[0]].stateMachine.ActionState);
+            monsters[performList[0]].stateMachine.ChangeState(monsters[performList[0]].stateMachine.actionState);
         }
         // 수행 리스트에서 제거
         performList.RemoveAt(0);
-        stateMachine.ChangeState(stateMachine.PerformActionState);
+        stateMachine.ChangeState(stateMachine.performActionState);
     }
 }

@@ -21,7 +21,7 @@ public class CharacterReadyState : CharacterBaseState
         }
         else
         {
-            stateMachine.ChangeState(stateMachine.SelectActionState);
+            stateMachine.ChangeState(stateMachine.selectActionState);
         }
     }
 }
