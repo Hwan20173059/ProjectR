@@ -10,18 +10,18 @@ public class BattlePerformActionState : BattleBaseState
     public override void Exit()
     {
         base.Exit();
-        if (!(stateMachine.BattleManager.Character.stateMachine.currentState is CharacterDeadState))
+        if (!(character.IsDead))
         {
              // 캐릭터 상태를 이전 상태로 변경
-            stateMachine.BattleManager.Character.stateMachine.ChangeState(stateMachine.BattleManager.characterPrevState);
+            character.stateMachine.ChangeState(characterPrevState);
         }
 
-        for (int i = 0; i < stateMachine.BattleManager.Monsters.Count; i++)
+        for (int i = 0; i < stateMachine.battleManager.Monsters.Count; i++)
         {
-            if (!(stateMachine.BattleManager.Monsters[i].stateMachine.currentState is MonsterDeadState))
+            if (!(stateMachine.battleManager.Monsters[i].IsDead))
             {
                 // 몬스터들의 상태를 이전 상태로 변경
-                stateMachine.BattleManager.Monsters[i].stateMachine.ChangeState(stateMachine.BattleManager.monstersPrevState[i]);
+                monsters[i].stateMachine.ChangeState(monstersPrevState[i]);
             }
         }
     }

@@ -5,9 +5,17 @@ using UnityEngine;
 public class MonsterBaseState : IState
 {
     protected MonsterStateMachine stateMachine;
+    protected Monster monster;
+    protected BattleManager battleManager;
+    protected Character character;
+    protected List<int> performList;
     public MonsterBaseState(MonsterStateMachine monsterStateMachine)
     {
         stateMachine = monsterStateMachine;
+        monster = monsterStateMachine.Monster;
+        battleManager = monster.battleManager;
+        character = battleManager.Character;
+        performList = battleManager.PerformList;
     }
     public virtual void Enter()
     {

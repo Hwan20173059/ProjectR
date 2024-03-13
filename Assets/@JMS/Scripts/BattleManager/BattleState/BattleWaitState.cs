@@ -12,13 +12,13 @@ public class BattleWaitState : BattleBaseState
     {
         base.Enter();
 
-        if (stateMachine.BattleManager.Character.stateMachine.currentState is CharacterDeadState)
+        if (character.IsDead)
         {
             stateMachine.ChangeState(stateMachine.DefeatState);
         }
-        if (stateMachine.BattleManager.isStageClear)
+        if (stateMachine.battleManager.isStageClear)
         {
-            stateMachine.BattleManager.Character.stateMachine.ChangeState(stateMachine.BattleManager.Character.stateMachine.WaitState);
+            character.stateMachine.ChangeState(character.stateMachine.WaitState);
             stateMachine.ChangeState(stateMachine.VictoryState);
         }
     }
@@ -26,7 +26,7 @@ public class BattleWaitState : BattleBaseState
     public override void Update()
     {
         base.Update();
-        if(stateMachine.BattleManager.PerformList.Count > 0)
+        if(performList.Count > 0)
         {
             stateMachine.ChangeState(stateMachine.TakeActionState);
         }

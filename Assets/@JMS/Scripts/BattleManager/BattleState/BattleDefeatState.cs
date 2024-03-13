@@ -11,6 +11,6 @@ public class BattleDefeatState : BattleBaseState
     {
         base.Enter();
 
-        stateMachine.BattleManager.BattleCanvas.BattleDefeatPanel.SetActive(true);
+        battleCanvas.BattleDefeatPanel.SetActive(true);
     }
 }

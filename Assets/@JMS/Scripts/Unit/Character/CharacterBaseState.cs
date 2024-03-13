@@ -5,9 +5,15 @@ using UnityEngine;
 public class CharacterBaseState : IState
 {
     protected CharacterStateMachine stateMachine;
+    protected Character character;
+    protected BattleManager battleManager;
+    protected Monster selectMonster;
     public CharacterBaseState(CharacterStateMachine characterStateMachine)
     {
         stateMachine = characterStateMachine;
+        character = characterStateMachine.Character;
+        battleManager = character.battleManager;
+        selectMonster = character.battleManager.selectMonster;
     }
     public virtual void Enter()
     {
