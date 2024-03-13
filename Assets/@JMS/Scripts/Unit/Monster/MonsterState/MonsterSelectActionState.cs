@@ -11,8 +11,8 @@ public class MonsterSelectActionState : MonsterBaseState
     public override void Enter()
     {
         base.Enter();
-        monster.selectAction = monster.actions[Random.Range(0, monster.actions.Count)];
-        performList.Add(monster.monsterNumber);
+        stateMachine.Monster.selectAction = stateMachine.Monster.actions[Random.Range(0, stateMachine.Monster.actions.Count)];
+        stateMachine.Monster.battleManager.PerformList.Add(stateMachine.Monster.monsterNumber);
         stateMachine.ChangeState(stateMachine.ReadyState);
     }
 }

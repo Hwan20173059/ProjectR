@@ -11,13 +11,13 @@ public class MonsterActionState : MonsterBaseState
     public override void Enter()
     {
         base.Enter();
-        switch (monster.selectAction)
+        switch (stateMachine.Monster.selectAction)
         {
             case MonsterAction.BASEATTACK:
-                monster.StartCoroutine(BaseAttack());
+                stateMachine.Monster.StartCoroutine(BaseAttack());
                 break;
             case MonsterAction.JUMP:
-                monster.StartCoroutine(Jump());
+                stateMachine.Monster.StartCoroutine(Jump());
                 break;
         }
     }
@@ -26,28 +26,28 @@ public class MonsterActionState : MonsterBaseState
     {
         while (MoveTowardsMonster(new Vector3(-5.5f, 1.5f, 0))) { yield return null; }
 
-        monster.Animator.SetBool("Idle", false);
-        monster.Animator.SetTrigger("BaseAttack");
-        battleManager.Character.ChangeHP(-monster.atk);
-        while (!IsAnimationEnd(GetNormalizedTime(monster.Animator, "Attack"))) { yield return null; }
-        monster.Animator.SetBool("Idle", true);
+        stateMachine.Monster.Animator.SetBool("Idle", false);
+        stateMachine.Monster.Animator.SetTrigger("BaseAttack");
+        stateMachine.Monster.battleManager.Character.ChangeHP(-stateMachine.Monster.atk);
+        while (!IsAnimationEnd(GetNormalizedTime(stateMachine.Monster.Animator, "Attack"))) { yield return null; }
+        stateMachine.Monster.Animator.SetBool("Idle", true);
 
-        while (MoveTowardsMonster(monster.startPosition)) { yield return null; }
+        while (MoveTowardsMonster(stateMachine.Monster.startPosition)) { yield return null; }
 
-        monster.curCoolTime = 0f;
+        stateMachine.Monster.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.ReadyState);
-        battleManager.stateMachine.ChangeState(battleManager.stateMachine.WaitState);
+        stateMachine.Monster.battleManager.stateMachine.ChangeState(stateMachine.Monster.battleManager.stateMachine.WaitState);
     }
     IEnumerator Jump()
     {
-        monster.Animator.SetBool("Idle", false);
-        monster.Animator.SetTrigger("Jump");
-        while (!IsAnimationEnd(GetNormalizedTime(monster.Animator, "Jump"))) { yield return null; }
-        monster.Animator.SetBool("Idle", true);
+        stateMachine.Monster.Animator.SetBool("Idle", false);
+        stateMachine.Monster.Animator.SetTrigger("Jump");
+        while (!IsAnimationEnd(GetNormalizedTime(stateMachine.Monster.Animator, "Jump"))) { yield return null; }
+        stateMachine.Monster.Animator.SetBool("Idle", true);
 
-        monster.curCoolTime = 0f;
+        stateMachine.Monster.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.ReadyState);
-        battleManager.stateMachine.ChangeState(battleManager.stateMachine.WaitState);
+        stateMachine.Monster.battleManager.stateMachine.ChangeState(stateMachine.Monster.battleManager.stateMachine.WaitState);
     }
 
     private bool IsAnimationEnd(float animNormalizedTime)
@@ -57,7 +57,7 @@ public class MonsterActionState : MonsterBaseState
 
     private bool MoveTowardsMonster(Vector3 target)
     {
-        return target != (monster.transform.position =
-            Vector3.MoveTowards(monster.transform.position, target, monster.moveAnimSpeed * Time.deltaTime));
+        return target != (stateMachine.Monster.transform.position =
+            Vector3.MoveTowards(stateMachine.Monster.transform.position, target, stateMachine.Monster.moveAnimSpeed * Time.deltaTime));
     }
 }

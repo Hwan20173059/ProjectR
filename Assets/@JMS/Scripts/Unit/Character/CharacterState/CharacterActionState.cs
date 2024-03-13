@@ -14,37 +14,37 @@ public class CharacterActionState : CharacterBaseState
     {
         base.Enter();
 
-        switch (character.selectAction)
+        switch (stateMachine.Character.selectAction)
         {
             case CharacterAction.Attack:
-                character.StartCoroutine(Attack());
+                stateMachine.Character.StartCoroutine(Attack());
                 break;
         }
     }
 
     IEnumerator Attack()
     {
-        selectMonsterPosition = new Vector3(selectMonster.startPosition.x -1f, selectMonster.startPosition.y, 0);
+        selectMonsterPosition = new Vector3(stateMachine.Character.battleManager.selectMonster.startPosition.x -1f, stateMachine.Character.battleManager.selectMonster.startPosition.y, 0);
 
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
-        character.Animator.SetBool("Idle", false);
-        character.Animator.SetTrigger("Attack");
-        selectMonster.ChangeHP(-character.atk);
-        while (!IsAnimationEnd(GetNormalizedTime(character.Animator, "Attack"))) { yield return null; }
-        character.Animator.SetBool("Idle", true);
+        stateMachine.Character.Animator.SetBool("Idle", false);
+        stateMachine.Character.Animator.SetTrigger("Attack");
+        stateMachine.Character.battleManager.selectMonster.ChangeHP(-stateMachine.Character.atk);
+        while (!IsAnimationEnd(GetNormalizedTime(stateMachine.Character.Animator, "Attack"))) { yield return null; }
+        stateMachine.Character.Animator.SetBool("Idle", true);
 
-        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+        while (MoveTowardsCharacter(stateMachine.Character.startPosition)) { yield return null; }
 
-        character.curCoolTime = 0f;
+        stateMachine.Character.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.ReadyState);
-        battleManager.stateMachine.ChangeState(battleManager.stateMachine.WaitState);
+        stateMachine.Character.battleManager.stateMachine.ChangeState(stateMachine.Character.battleManager.stateMachine.WaitState);
     }
 
     private bool MoveTowardsCharacter(Vector3 target)
     {
-        return target != (character.transform.position =
-            Vector3.MoveTowards(character.transform.position, target, character.moveAnimSpeed * Time.deltaTime));
+        return target != (stateMachine.Character.transform.position =
+            Vector3.MoveTowards(stateMachine.Character.transform.position, target, stateMachine.Character.moveAnimSpeed * Time.deltaTime));
     }
     private bool IsAnimationEnd(float animNormalizedTime)
     {

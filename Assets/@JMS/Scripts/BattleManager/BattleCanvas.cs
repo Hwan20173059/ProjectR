@@ -22,8 +22,6 @@ public class BattleCanvas : MonoBehaviour
     private void Awake()
     {
         battleManager = GetComponentInParent<BattleManager>();
-
-
         
         AttackButton.onClick.AddListener(OnClickAttackButton);
         ReturnTownButton.onClick.AddListener(TownSceneLoad);
@@ -40,7 +38,8 @@ public class BattleCanvas : MonoBehaviour
 
     void OnClickAttackButton()
     {
-        if (battleManager.Character.IsSelectingAction && battleManager.selectMonster != null &&!(battleManager.selectMonster.IsDead))
+        if (battleManager.Character.stateMachine.currentState is CharacterSelectActionState && battleManager.selectMonster != null
+            &&!(battleManager.selectMonster.stateMachine.currentState is MonsterDeadState))
         {
             battleManager.Character.selectAction = CharacterAction.Attack;
             battleManager.PerformList.Add(100);

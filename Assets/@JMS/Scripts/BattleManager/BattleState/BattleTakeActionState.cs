@@ -11,32 +11,33 @@ public class BattleTakeActionState : BattleBaseState
     {
         base.Enter();
         // 캐릭터 현재 상태 저장
-        characterPrevState = character.stateMachine.currentState;
+        stateMachine.BattleManager.characterPrevState = stateMachine.BattleManager.Character.stateMachine.currentState;
         // 몬스터들의 현재 상태 저장
-        for (int i = 0; i < monsters.Count; i++)
+        for (int i = 0; i < stateMachine.BattleManager.Monsters.Count; i++)
         {
-            monstersPrevState[i] = monsters[i].stateMachine.currentState;
+            stateMachine.BattleManager.monstersPrevState[i] = stateMachine.BattleManager.Monsters[i].stateMachine.currentState;
         }
         // 캐릭터 현재 상태 Wait으로 변경
-        if (!(character.IsDead))
-            character.stateMachine.ChangeState(character.stateMachine.WaitState);
+        if (!(stateMachine.BattleManager.Character.stateMachine.currentState is CharacterDeadState))
+            stateMachine.BattleManager.Character.stateMachine.ChangeState(stateMachine.BattleManager.Character.stateMachine.WaitState);
         // 몬스터들의 현재 상태 Wait으로 변경
-        for (int i = 0; i < monsters.Count; i++)
+        for (int i = 0; i < stateMachine.BattleManager.Monsters.Count; i++)
         {
-            if (!(monsters[i].IsDead))
-                monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.WaitState);
+            if (!(stateMachine.BattleManager.Monsters[i].stateMachine.currentState is MonsterDeadState))
+                stateMachine.BattleManager.Monsters[i].stateMachine.ChangeState(stateMachine.BattleManager.Monsters[i].stateMachine.WaitState);
         }
         // 수행 리스트에 가장 먼저 입력한 유닛의 상태를 Aciton으로 변경
-        if (performList[0] == 100)
+        if (stateMachine.BattleManager.PerformList[0] == 100)
         {
-            character.stateMachine.ChangeState(character.stateMachine.ActionState);
+            stateMachine.BattleManager.Character.stateMachine.ChangeState(stateMachine.BattleManager.Character.stateMachine.ActionState);
         }
         else
         {
-            monsters[performList[0]].stateMachine.ChangeState(monsters[performList[0]].stateMachine.ActionState);
+            stateMachine.BattleManager.Monsters[stateMachine.BattleManager.PerformList[0]].stateMachine.
+                ChangeState(stateMachine.BattleManager.Monsters[stateMachine.BattleManager.PerformList[0]].stateMachine.ActionState);
         }
         // 수행 리스트에서 제거
-        performList.RemoveAt(0);
+        stateMachine.BattleManager.PerformList.RemoveAt(0);
         stateMachine.ChangeState(stateMachine.PerformActionState);
     }
 }

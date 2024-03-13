@@ -12,15 +12,15 @@ public class MonsterDeadState : MonsterBaseState
     {
         base.Enter();
 
-        character.ChangeExp(monster.exp);
+        stateMachine.Monster.battleManager.Character.ChangeExp(stateMachine.Monster.exp);
 
-        monster.Animator.SetBool("Dead", true);
+        stateMachine.Monster.Animator.SetBool("Dead", true);
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        monster.Animator.SetBool("Dead", false);
+        stateMachine.Monster.Animator.SetBool("Dead", false);
     }
 }

@@ -15,9 +15,9 @@ public class CharacterReadyState : CharacterBaseState
 
     void CoolTimeUpdate()
     {
-        if(character.curCoolTime < character.maxCoolTime)
+        if(stateMachine.Character.curCoolTime < stateMachine.Character.maxCoolTime)
         {
-            character.curCoolTime += Time.deltaTime;
+            stateMachine.Character.curCoolTime += Time.deltaTime;
         }
         else
         {
