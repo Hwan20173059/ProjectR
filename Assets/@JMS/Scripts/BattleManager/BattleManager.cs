@@ -165,5 +165,6 @@ public class BattleManager : MonoBehaviour
     {
         rouletteResult.Clear();
         battleCanvas.ClearRoulette();
+        battleCanvas.rouletteButton.gameObject.SetActive(true);
     }
 }

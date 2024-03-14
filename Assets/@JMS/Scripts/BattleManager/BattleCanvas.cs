@@ -62,6 +62,8 @@ public class BattleCanvas : MonoBehaviour
         {
             battleManager.StartCoroutine(battleManager.Roulette());
             battleManager.IsRouletteUsed = true;
+
+            rouletteButton.gameObject.SetActive(false);
         } 
     }
 
