@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Android;
 /*
@@ -11,15 +12,29 @@ using UnityEngine.Android;
  */
 public class QuestManager : MonoBehaviour
 {
-    private Dictionary<string, Quest> questMap;
+    private static Dictionary<string, Quest> questMap;
 
 
     //진행가능 요구사항 현재 레벨만 구현
     private int currentPlayerLevel = 1;//수정필요
 
 
+    public QuestState currentState;
+    public static QuestManager instance;
+
+
+    public QuestSlot[] questSlots;//todo : selectQuestSlots
+
     private void Awake()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+
         questMap = CreatQuestMap();
     }
 
@@ -48,6 +63,8 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
+        questSlots[0].currentQuestState = currentState;
+
         foreach (Quest quest in questMap.Values)
         {
             if (quest.state == QuestState.Requirments_Not && CheckRequirements(quest))
@@ -60,6 +77,8 @@ public class QuestManager : MonoBehaviour
     // todo : 
     private void StartQuest(string id)
     {
+        currentState = QuestState.In_Progress;
+
         Quest quest = GetQuestByID(id);
         Debug.Log("퀘스트스타트" + id);
         quest.InstantiateCurrentQuestStep(this.transform);
