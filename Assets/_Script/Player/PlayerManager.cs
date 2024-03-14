@@ -21,8 +21,10 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         for (int i = 0; i < 3; i++)
         {
-            equip[i] = itemManager.baseItem;
+            if (equip[i] == null)
+                equip[i] = itemManager.baseItem;
         }
+
         ReFreshPlayer();
     }
 

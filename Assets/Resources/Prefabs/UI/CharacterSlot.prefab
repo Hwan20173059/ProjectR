@@ -545,10 +545,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CharacterSelectSlot, Assembly-CSharp
-        m_MethodName: SelectCharacter
-        m_Mode: 3
+      - m_Target: {fileID: 4415110067783731078}
+        m_TargetAssemblyTypeName: CharacterSlot, Assembly-CSharp
+        m_MethodName: SelectButtonClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -651,11 +651,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928132760f9c6c3409f840a51d1edc80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  character: {fileID: 0}
+  characterData:
+    character: {fileID: 0}
+    isSelected: 0
+    isBuy: 0
   characterSlotImage: []
   characterSlotText: []
-  isSelected: 0
-  isBuy: 1
 --- !u!1 &6837876924376593849
 GameObject:
   m_ObjectHideFlags: 0

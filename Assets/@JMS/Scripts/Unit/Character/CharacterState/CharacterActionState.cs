@@ -17,7 +17,7 @@ public class CharacterActionState : CharacterBaseState
         switch (stateMachine.Character.selectAction)
         {
             case CharacterAction.Attack:
-                CoroutineHelper.StartCoroutine(Attack());
+                stateMachine.Character.StartCoroutine(Attack());
                 break;
         }
     }
