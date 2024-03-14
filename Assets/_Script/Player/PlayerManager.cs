@@ -19,11 +19,11 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void Start()
     {
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    equip[i] = itemManager.baseItem;
-        //}
-        //ReFreshPlayer();
+        for (int i = 0; i < 3; i++)
+        {
+            equip[i] = itemManager.baseItem;
+        }
+        ReFreshPlayer();
     }
 
     public void ReFreshPlayer()
