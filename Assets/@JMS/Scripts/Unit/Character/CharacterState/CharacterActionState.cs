@@ -31,9 +31,12 @@ public class CharacterActionState : CharacterBaseState
         character.animator.SetBool("Idle", false);
         character.animator.SetTrigger("Attack");
         selectMonster.ChangeHP(-character.atk);
-        selectMonster.ChangeHP(-ItemValue(0));
-        selectMonster.ChangeHP(-ItemValue(1));
-        selectMonster.ChangeHP(-ItemValue(2));
+        if(battleManager.rouletteResult.Count > 0)
+        {
+            selectMonster.ChangeHP(-ItemValue(0));
+            selectMonster.ChangeHP(-ItemValue(1));
+            selectMonster.ChangeHP(-ItemValue(2));
+        }
         while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
         character.animator.SetBool("Idle", true);
 
