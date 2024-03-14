@@ -31,6 +31,9 @@ public class CharacterActionState : CharacterBaseState
         character.animator.SetBool("Idle", false);
         character.animator.SetTrigger("Attack");
         selectMonster.ChangeHP(-character.atk);
+        selectMonster.ChangeHP(-ItemValue(0));
+        selectMonster.ChangeHP(-ItemValue(1));
+        selectMonster.ChangeHP(-ItemValue(2));
         while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
         character.animator.SetBool("Idle", true);
 
@@ -48,5 +51,10 @@ public class CharacterActionState : CharacterBaseState
     private bool IsAnimationEnd(float animNormalizedTime)
     {
         return animNormalizedTime >= 1f;
+    }
+
+    int ItemValue(int idx)
+    {
+        return battleManager.rouletteResult[idx].attack;
     }
 }
