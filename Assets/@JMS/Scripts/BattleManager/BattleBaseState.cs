@@ -11,6 +11,7 @@ public class BattleBaseState : IState
     protected List<Monster> monsters { get { return battleManager.monsters; } }
     protected IState[] monstersPrevState { get { return battleManager.monstersPrevState; } set { battleManager.monstersPrevState = value; } }
     protected List<int> performList { get { return battleManager.performList; } }
+    protected TargetCircle targetCircle { get { return battleManager.targetCircle; } set { battleManager.targetCircle = value; } }
     protected BattleCanvas battleCanvas { get { return battleManager.battleCanvas; } }
 
     public BattleBaseState(BattleStateMachine battleStateMachine)

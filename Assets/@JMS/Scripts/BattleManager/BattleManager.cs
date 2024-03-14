@@ -25,6 +25,9 @@ public class BattleManager : MonoBehaviour
     Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
 
+    public GameObject targetCirclePrefab;
+    public TargetCircle targetCircle;
+
     public GameObject monsterPool;
     public PlayerInput Input {  get; private set; }
 
@@ -55,11 +58,21 @@ public class BattleManager : MonoBehaviour
 
     private void OnClickStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        if (targetCircle == null)
+        {
+            targetCircle = Instantiate(targetCirclePrefab).GetComponent<TargetCircle>();
+            targetCircle.gameObject.SetActive(false);
+        }
+
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.ClickActions.MousePos.ReadValue<Vector2>());
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
         if (hit.collider != null && hit.collider.CompareTag("Monster"))
         {
             selectMonster = hit.collider.GetComponent<Monster>();
+            
+            targetCircle.targetTransform = selectMonster.transform;
+            targetCircle.gameObject.SetActive(true);
         }
     }
 
