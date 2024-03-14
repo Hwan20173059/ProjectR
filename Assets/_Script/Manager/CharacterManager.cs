@@ -19,6 +19,8 @@ public class CharacterManager : MonoBehaviour
     private void Start()
     {
         playerManager = PlayerManager.Instance;
+
+        playerManager.selectedCharacter = characterList[0].character.gameObject;
     }
 
     public void SelectCharacter(int index)
