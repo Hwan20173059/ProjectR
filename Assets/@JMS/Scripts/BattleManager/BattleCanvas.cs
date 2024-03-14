@@ -14,6 +14,7 @@ public class BattleCanvas : MonoBehaviour
 
     public Image actionBar;
     public Button attackButton;
+    public Button rouletteButton;
     public GameObject battleDefeatPanel;
     public Button returnTownButton;
     public GameObject nextStagePanel;
@@ -21,11 +22,17 @@ public class BattleCanvas : MonoBehaviour
     public GameObject dungeonClearPanel;
     public Button dungeonClearButton;
 
+    public Image roulette3;
+    public Image roulette2;
+    public Image roulette1;
+    public Sprite voidRoulette;
+
     private void Awake()
     {
         battleManager = GetComponentInParent<BattleManager>();
 
         attackButton.onClick.AddListener(OnClickAttackButton);
+        rouletteButton.onClick.AddListener(OnClickRouletteButton);
         returnTownButton.onClick.AddListener(TownSceneLoad);
         nextStageButton.onClick.AddListener(NextStageStart);
         dungeonClearButton.onClick.AddListener(TownSceneLoad);
@@ -40,12 +47,39 @@ public class BattleCanvas : MonoBehaviour
 
     void OnClickAttackButton()
     {
-        if (character.IsSelectingAction && selectMonster != null &&!(selectMonster.IsDead))
+        if (battleManager.IsSelectingAction && selectMonster != null &&!(selectMonster.IsDead))
         {
             character.selectAction = CharacterAction.Attack;
+            character.curCoolTime = 0f;
             battleManager.performList.Add(100);
             character.stateMachine.ChangeState(character.stateMachine.readyState);
         }
+    }
+
+    void OnClickRouletteButton()
+    {
+        if (!battleManager.IsRouletteUsed)
+        {
+            battleManager.StartCoroutine(battleManager.Roulette());
+            battleManager.IsRouletteUsed = true;
+        } 
+    }
+
+    public void SetRoulette(int i)
+    {
+        switch (i)
+        {
+            case 0: roulette1.sprite = battleManager.rouletteResult[i].equipSprite; break;
+            case 1: roulette2.sprite = battleManager.rouletteResult[i].equipSprite; break;
+            case 2: roulette3.sprite = battleManager.rouletteResult[i].equipSprite; break;
+        }
+    }
+
+    public void ClearRoulette()
+    {
+        roulette1.sprite = voidRoulette;
+        roulette2.sprite = voidRoulette;
+        roulette3.sprite = voidRoulette;
     }
 
     void NextStageStart()

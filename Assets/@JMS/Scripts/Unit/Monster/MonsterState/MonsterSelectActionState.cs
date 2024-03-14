@@ -12,6 +12,7 @@ public class MonsterSelectActionState : MonsterBaseState
     {
         base.Enter();
         monster.selectAction = monster.actions[Random.Range(0, monster.actions.Count)];
+        monster.curCoolTime = 0f;
         performList.Add(monster.monsterNumber);
         stateMachine.ChangeState(stateMachine.readyState);
     }

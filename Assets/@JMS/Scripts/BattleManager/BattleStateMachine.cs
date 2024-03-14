@@ -7,6 +7,7 @@ public class BattleStateMachine : StateMachine
     public BattleManager battleManager;
     public BattleStartState startState { get; }
     public BattleWaitState waitState { get; }
+    public BattlePlayerSelectingActionState playerSelectingActionState { get; }
     public BattleTakeActionState takeActionState { get; }
     public BattlePerformActionState performActionState {  get; }
     public BattleVictoryState victoryState { get; }
@@ -18,6 +19,7 @@ public class BattleStateMachine : StateMachine
         this.battleManager = battleManager;
         startState = new BattleStartState(this);
         waitState = new BattleWaitState(this);
+        playerSelectingActionState = new BattlePlayerSelectingActionState(this);
         takeActionState = new BattleTakeActionState(this);
         performActionState = new BattlePerformActionState(this);
         endState = new BattleEndState(this);

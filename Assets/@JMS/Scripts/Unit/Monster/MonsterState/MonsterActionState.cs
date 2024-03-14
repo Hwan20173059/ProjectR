@@ -34,7 +34,6 @@ public class MonsterActionState : MonsterBaseState
 
         while (MoveTowardsMonster(monster.startPosition)) { yield return null; }
 
-        monster.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.readyState);
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
@@ -45,7 +44,6 @@ public class MonsterActionState : MonsterBaseState
         while (!IsAnimationEnd(GetNormalizedTime(monster.animator, "Jump"))) { yield return null; }
         monster.animator.SetBool("Idle", true);
 
-        monster.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.readyState);
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }

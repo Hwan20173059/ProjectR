@@ -12,13 +12,17 @@ public class CharacterSelectActionState : CharacterBaseState
     public override void Enter()
     {
         base.Enter();
-
-        character.IsSelectingAction = true;
+        battleManager.RouletteClear();
+        battleManager.IsRouletteUsed = false;
+        battleManager.IsSelectingAction = true;
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.playerSelectingActionState);
     }
     public override void Exit()
     {
         base .Exit();
 
-        character.IsSelectingAction = false;
+        battleManager.IsRouletteUsed = true;
+        battleManager.IsSelectingAction = false;
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 }

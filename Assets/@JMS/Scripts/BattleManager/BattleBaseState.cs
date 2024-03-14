@@ -7,6 +7,8 @@ public class BattleBaseState : IState
     protected BattleStateMachine stateMachine;
     protected BattleManager battleManager { get { return stateMachine.battleManager; } }
     protected Character character { get { return battleManager.character; } }
+    protected Equip rouletteRetult { get { return battleManager.rouletteResult[rouletteIndex]; } set { battleManager.rouletteResult[rouletteIndex] = value; } }
+    protected int rouletteIndex;
     protected IState characterPrevState { get { return battleManager.characterPrevState; } set { battleManager.characterPrevState = value; } }
     protected List<Monster> monsters { get { return battleManager.monsters; } }
     protected IState monsterPrevState { get { return battleManager.monstersPrevState[monsterPrevStateIndex]; } set { battleManager.monstersPrevState[monsterPrevStateIndex] = value; } }

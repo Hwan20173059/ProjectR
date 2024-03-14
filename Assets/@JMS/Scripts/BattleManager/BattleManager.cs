@@ -5,40 +5,42 @@ using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
-    public PlayerInput Input {  get; private set; }
+    public List<DungeonSO> dungeonList;
+    public int selectDungeon;
+    public int curStage;
+    public GameObject characterPrefab;
+    public List<Equip> rouletteResult;
+
+    public Character character;
+    public bool IsSelectingAction = false;
+    public bool IsRouletteUsed = true;
     public Monster selectMonster;
+    public List<Monster> monsters;
+    public IState characterPrevState;
+    public IState[] monstersPrevState;
+    public List<int> performList;
+
+    public bool isStageClear { get { return StageClearCheck(); } }
+
+    Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
+    Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
+
+    public GameObject monsterPool;
+    public PlayerInput Input {  get; private set; }
 
     public BattleCanvas battleCanvas;
 
-    public List<DungeonSO> dungeons;
-    public int selectDungeon;
-    public int curStage;
-    public bool isStageClear { get { return StageClearCheck(); } }
-
-    public GameObject monsterPool;
-
-    Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
-    public GameObject characterPrefab;
-    Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
-
-    public List<int> performList;
-
-    public Character character;
-    public IState characterPrevState;
-    public List<Monster> monsters;
-    public IState[] monstersPrevState;
+    public BattleStateMachine stateMachine;
 
     private WaitForSeconds waitFor1Sec = new WaitForSeconds(1f);
 
-    public BattleStateMachine stateMachine;
-
     private void Awake()
     {
+        performList = new List<int>();
+
         Input = GetComponent<PlayerInput>();
 
         battleCanvas = GetComponentInChildren<BattleCanvas>();
-
-        performList = new List<int>();
 
         stateMachine = new BattleStateMachine(this);
     }
@@ -84,22 +86,22 @@ public class BattleManager : MonoBehaviour
             this.monsterPool = monsterPool;
         }
 
-        int randomSpawnAmount = Random.Range(dungeons[selectDungeon].stages[curStage].randomSpawnMinAmount, dungeons[selectDungeon].stages[curStage].randomSpawnMaxAmount + 1);
+        int randomSpawnAmount = Random.Range(dungeonList[selectDungeon].stages[curStage].randomSpawnMinAmount, dungeonList[selectDungeon].stages[curStage].randomSpawnMaxAmount + 1);
         if(randomSpawnAmount > 0)
         {
             for (int i = 0; i < randomSpawnAmount; i++)
             {
-                int monsterIndex = Random.Range(0, dungeons[selectDungeon].stages[curStage].randomSpawnMonsters.Count);
-                GameObject monster = Instantiate(dungeons[selectDungeon].stages[curStage].randomSpawnMonsters[monsterIndex], monsterPool.transform);
+                int monsterIndex = Random.Range(0, dungeonList[selectDungeon].stages[curStage].randomSpawnMonsters.Count);
+                GameObject monster = Instantiate(dungeonList[selectDungeon].stages[curStage].randomSpawnMonsters[monsterIndex], monsterPool.transform);
                 monsters.Add(monster.GetComponent<Monster>());
                 monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
         }
 
-        if(dungeons[selectDungeon].stages[curStage].spawnMonsters.Count > 0)
+        if(dungeonList[selectDungeon].stages[curStage].spawnMonsters.Count > 0)
         {
-            foreach (GameObject monsterPrefab in dungeons[selectDungeon].stages[curStage].spawnMonsters)
+            foreach (GameObject monsterPrefab in dungeonList[selectDungeon].stages[curStage].spawnMonsters)
             {
                 GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
                 monsters.Add(monster.GetComponent<Monster>());
@@ -147,5 +149,21 @@ public class BattleManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public IEnumerator Roulette()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            rouletteResult.Add(PlayerManager.Instance.equip[Random.Range(0, 3)].data);
+            battleCanvas.SetRoulette(i);
+        }
+        yield return null;
+    }
+
+    public void RouletteClear()
+    {
+        rouletteResult.Clear();
+        battleCanvas.ClearRoulette();
     }
 }

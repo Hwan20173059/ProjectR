@@ -36,7 +36,6 @@ public class CharacterActionState : CharacterBaseState
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
 
-        character.curCoolTime = 0f;
         stateMachine.ChangeState(stateMachine.readyState);
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
