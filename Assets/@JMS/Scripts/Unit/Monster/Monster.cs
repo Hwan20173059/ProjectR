@@ -27,12 +27,16 @@ public class Monster : MonoBehaviour
     public Vector3 attackPosition = new Vector3(-5.5f, 1.5f, 0);
     public float moveAnimSpeed = 10f;
 
+    public MonsterHpBar hpBar;
+
     public MonsterStateMachine stateMachine;
 
     public BattleManager battleManager;
 
     private void Awake()
     {
+        hpBar = GetComponentInChildren<MonsterHpBar>();
+
         stateMachine = new MonsterStateMachine(this);
 
         animator = GetComponentInChildren<Animator>();
@@ -62,6 +66,8 @@ public class Monster : MonoBehaviour
         exp = BaseData.exp * level;
         actions = BaseData.actions;
         maxCoolTime = BaseData.actionCoolTime;
+
+        hpBar.Init();
     }
 
     public void ChangeHP(int change)
@@ -69,6 +75,8 @@ public class Monster : MonoBehaviour
         curHP += change;
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;
+
+        hpBar.SetHpBar();
 
         if (curHP <= 0)
         {

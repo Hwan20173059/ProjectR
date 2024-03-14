@@ -12,6 +12,8 @@ public class MonsterDeadState : MonsterBaseState
     {
         base.Enter();
 
+        monster.hpBar.gameObject.SetActive(false);
+
         character.ChangeExp(monster.exp);
 
         monster.animator.SetBool("Dead", true);
@@ -20,6 +22,8 @@ public class MonsterDeadState : MonsterBaseState
     public override void Exit()
     {
         base.Exit();
+
+        monster.hpBar.gameObject.SetActive(true);
 
         monster.animator.SetBool("Dead", false);
     }

@@ -20,7 +20,14 @@ public class CharacterManager : MonoBehaviour
     {
         playerManager = PlayerManager.Instance;
 
-        playerManager.selectedCharacter = characterList[0].character.gameObject;
+        for (int i = 0; i < characterList.Count; i++)
+        {
+            if (characterList[i].isSelected == true)
+            {
+                playerManager.selectedCharacter = characterList[i].character.gameObject;
+                break;
+            }
+        }
     }
 
     public void SelectCharacter(int index)

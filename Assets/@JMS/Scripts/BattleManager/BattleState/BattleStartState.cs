@@ -11,6 +11,10 @@ public class BattleStartState : BattleBaseState
     public override void Enter()
     {
         base.Enter();
+        if(targetCircle != null)
+        {
+            targetCircle.gameObject.SetActive(false);
+        }
         if(character == null)
         {
             battleManager.SpawnCharacter();
