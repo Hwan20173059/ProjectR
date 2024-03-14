@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class tmp : MonoBehaviour
 {
-    public void submitclick()
-    {
-        GameEventManager.instance.questEvent.SubmitPressed();
-    }
+    
 
     public void dungeonclick()
     {

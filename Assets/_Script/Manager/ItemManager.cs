@@ -21,6 +21,7 @@ public class ItemManager : MonoBehaviour
 
     private void Start()
     {
+        PlayerManager.Instance.itemManager = this;
         baseItem.data = baseEquip;
     }
 }

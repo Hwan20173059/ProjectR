@@ -105,6 +105,8 @@ public class QuestManager : MonoBehaviour
                 Debug.Log("ID : " + questInfo.id + " 에 Error");
             }
             idToQuestMap.Add(questInfo.id, new Quest(questInfo));
+
+            Debug.Log(questInfo.id + "퀘스트 추가");
         }
         return idToQuestMap;
     }
