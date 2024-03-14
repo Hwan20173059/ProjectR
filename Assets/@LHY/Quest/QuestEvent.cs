@@ -63,13 +63,13 @@ public class QuestEvent
         }
     }
     //
-    public event Action onSubmitPressed;
-    public void SubmitPressed()
+    public event Action<string> onSubmitPressed;
+    public void SubmitPressed(string id)
     {
         
         if (onSubmitPressed != null)
         {
-            onSubmitPressed();
+            onSubmitPressed(id);
         }
     }
 }
