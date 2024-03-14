@@ -1447,7 +1447,7 @@ Transform:
   m_Children:
   - {fileID: 6518005525221262378}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &205523724
 GameObject:
@@ -5001,7 +5001,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 853112287}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: EquipNewItem
         m_Mode: 3
@@ -5173,7 +5173,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 853112287}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: UnEquipItem
         m_Mode: 1
@@ -6133,62 +6133,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840070034}
   m_CullTransparentMesh: 1
---- !u!1 &853112285
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 853112286}
-  - component: {fileID: 853112287}
-  m_Layer: 0
-  m_Name: PlayerManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &853112286
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853112285}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.2740712, y: 0.15865855, z: -200.19365}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1219794587}
-  m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &853112287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 853112285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59e7e2df3cd37dd40af8b310f3088832, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemManager: {fileID: 1569666160}
-  townUiManager: {fileID: 0}
-  townPlayer: {fileID: 0}
-  selectedCharacter: {fileID: 8902153403540484996, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
-  equip:
-  - isEquipped: 1
-    data: {fileID: 11400000, guid: 94b082ed33894314e92a924d1c0e9e82, type: 2}
-  - isEquipped: 1
-    data: {fileID: 11400000, guid: 472c916165621b14e89a13bdc381ebde, type: 2}
-  - isEquipped: 1
-    data: {fileID: 11400000, guid: 9587bb6e007c22a48bce4fe1910f1d11, type: 2}
-  selectDungeonID: 0
 --- !u!1 &858733815
 GameObject:
   m_ObjectHideFlags: 0
@@ -7430,7 +7374,7 @@ RectTransform:
   - {fileID: 1053907911}
   - {fileID: 1504164269}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8908,38 +8852,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1216465395}
   m_CullTransparentMesh: 1
---- !u!1 &1219794586
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1219794587}
-  m_Layer: 0
-  m_Name: Manager(Singleton)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1219794587
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1219794586}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2740712, y: -0.15865855, z: 200.19365}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 853112286}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1235845094
 GameObject:
   m_ObjectHideFlags: 0
@@ -9264,7 +9176,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 853112287}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: EquipNewItem
         m_Mode: 3
@@ -12158,7 +12070,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 853112287}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
         m_MethodName: EquipNewItem
         m_Mode: 3
@@ -12564,7 +12476,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1714508620
 GameObject:
