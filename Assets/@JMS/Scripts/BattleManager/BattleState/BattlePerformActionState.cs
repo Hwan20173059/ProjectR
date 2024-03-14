@@ -21,8 +21,7 @@ public class BattlePerformActionState : BattleBaseState
             if (!(monsters[i].IsDead))
             {
                 // 몬스터들의 상태를 이전 상태로 변경
-                monsterPrevStateIndex = i;
-                monsters[i].stateMachine.ChangeState(monsterPrevState);
+                monsters[i].stateMachine.ChangeState(monstersPrevState[i]);
             }
         }
     }

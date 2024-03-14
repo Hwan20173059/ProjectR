@@ -31,7 +31,7 @@ public class CharacterActionState : CharacterBaseState
         character.animator.SetBool("Idle", false);
         character.animator.SetTrigger("Attack");
         selectMonster.ChangeHP(-character.atk);
-        if(battleManager.rouletteResult.Count > 0)
+        if(rouletteResult.Count > 0)
         {
             selectMonster.ChangeHP(-ItemValue(0));
             selectMonster.ChangeHP(-ItemValue(1));
@@ -58,6 +58,6 @@ public class CharacterActionState : CharacterBaseState
 
     int ItemValue(int idx)
     {
-        return battleManager.rouletteResult[idx].attack;
+        return rouletteResult[idx].attack;
     }
 }
