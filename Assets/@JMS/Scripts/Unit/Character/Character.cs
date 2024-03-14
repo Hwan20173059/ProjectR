@@ -35,11 +35,14 @@ public class Character : MonoBehaviour
     public float moveAnimSpeed = 10f;
 
     [Header("System")]
+    public CharacterHpBar hpBar;
     public CharacterStateMachine stateMachine;
     public BattleManager battleManager;
 
     private void Awake()
     {
+        hpBar = GetComponentInChildren<CharacterHpBar>();
+
         stateMachine = new CharacterStateMachine(this);
 
         animator = GetComponentInChildren<Animator>();
@@ -68,6 +71,8 @@ public class Character : MonoBehaviour
         needExp = baseData.needExp * level;
         actions = baseData.actions;
         maxCoolTime = baseData.actionCoolTime;
+
+        hpBar.Init();
     }
 
     public void ChangeHP(int change)
@@ -75,6 +80,8 @@ public class Character : MonoBehaviour
         curHP += change;
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;
+
+        hpBar.SetHpBar();
 
         if (curHP <= 0)
         {

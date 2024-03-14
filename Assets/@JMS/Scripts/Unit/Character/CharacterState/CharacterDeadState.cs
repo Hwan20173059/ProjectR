@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class CharacterDeadState : CharacterBaseState
@@ -11,12 +12,16 @@ public class CharacterDeadState : CharacterBaseState
     {
         base.Enter();
 
+        character.hpBar.gameObject.SetActive(false);
+
         character.animator.SetBool("Dead", true);
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        character.hpBar.gameObject.SetActive(true);
 
         character.animator.SetBool("Dead", false);
     }
