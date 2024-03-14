@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <id>k__BackingField: ClearDungeonQuest
   displayName: Clear the Dungeon
+  questDescription: "\uB358\uC804\uC744 1\uD68C \uD074\uB9AC\uC5B4\uD558\uC138\uC694."
   levelRequirement: 1
   questPrerequisites: []
   questStepPrefebs:
