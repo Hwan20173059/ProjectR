@@ -11,12 +11,12 @@ public class BattleStartState : BattleBaseState
     public override void Enter()
     {
         base.Enter();
-        if(stateMachine.BattleManager.Character == null)
+        if(character == null)
         {
-            stateMachine.BattleManager.SpawnCharacter();
+            battleManager.SpawnCharacter();
         }
-        stateMachine.BattleManager.SpawnMonster();
-        stateMachine.ChangeState(stateMachine.WaitState);
-        stateMachine.BattleManager.StartCoroutine(stateMachine.BattleManager.BattleStart());
+        battleManager.SpawnMonster();
+        stateMachine.ChangeState(stateMachine.waitState);
+        battleManager.StartCoroutine(battleManager.BattleStart());
     }
 }

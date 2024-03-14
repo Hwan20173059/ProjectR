@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Stage 1
   m_EditorClassIdentifier: 
   stageName: Stage 1
-  SpawnMonsters:
+  spawnMonsters:
   - {fileID: 1764871778550068475, guid: e0fb39f53ebde96418c86bf200c05e69, type: 3}
-  RandomSpawnMonsters:
+  - {fileID: 1764871778550068475, guid: e0fb39f53ebde96418c86bf200c05e69, type: 3}
+  randomSpawnMonsters:
   - {fileID: 1764871778550068475, guid: e0fb39f53ebde96418c86bf200c05e69, type: 3}
   randomSpawnMinAmount: 0
   randomSpawnMaxAmount: 1

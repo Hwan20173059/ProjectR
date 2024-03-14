@@ -6,5 +6,5 @@ using UnityEngine;
 public class DungeonSO : ScriptableObject
 {
     public string dungeonName;
-    public List<StageSO> Stages;
+    public List<StageSO> stages;
 }

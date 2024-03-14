@@ -5,52 +5,52 @@ using UnityEngine.UI;
 
 public class BattleManager : MonoBehaviour
 {
-    public PlayerInput Input {  get; private set; }
-    public Monster selectMonster;
-
-    public BattleCanvas BattleCanvas;
-
-    public List<DungeonSO> Dungeons;
+    public List<DungeonSO> dungeonList;
     public int selectDungeon;
     public int curStage;
+    public GameObject characterPrefab;
+    public List<Equip> rouletteResult;
+
+    public Character character;
+    public bool IsSelectingAction = false;
+    public bool IsRouletteUsed = true;
+    public Monster selectMonster;
+    public List<Monster> monsters;
+    public IState characterPrevState;
+    public IState[] monstersPrevState;
+    public List<int> performList;
+
     public bool isStageClear { get { return StageClearCheck(); } }
 
+    Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
+    Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
+
     public GameObject monsterPool;
+    public PlayerInput Input {  get; private set; }
 
-    Vector3 MonsterSpawnPosition = new Vector3 (-1, 3, 0);
-    public GameObject CharacterPrefab;
-    Vector3 CharacterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
-
-    public List<int> PerformList;
-
-    public Character Character;
-    public IState characterPrevState;
-    public List<Monster> Monsters;
-    public IState[] monstersPrevState;
-
-    private WaitForSeconds WaitFor1Sec = new WaitForSeconds(1f);
+    public BattleCanvas battleCanvas;
 
     public BattleStateMachine stateMachine;
 
+    private WaitForSeconds waitFor1Sec = new WaitForSeconds(1f);
+
     private void Awake()
     {
+        performList = new List<int>();
+
         Input = GetComponent<PlayerInput>();
 
-        BattleCanvas = GetComponentInChildren<BattleCanvas>();
-
-        PerformList = new List<int>();
+        battleCanvas = GetComponentInChildren<BattleCanvas>();
 
         stateMachine = new BattleStateMachine(this);
+
+        characterPrefab = PlayerManager.Instance.selectedCharacter;
     }
     private void Start()
     {
         Input.ClickActions.MouseClick.started += OnClickStart;
 
-        stateMachine.ChangeState(stateMachine.StartState);
-        //SpawnCharacter();
-        //SpawnMonster();
-        //stateMachine.ChangeState(stateMachine.WaitState);
-        //StartCoroutine(BattleStart());
+        stateMachine.ChangeState(stateMachine.startState);
     }
 
     private void OnClickStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -72,11 +72,12 @@ public class BattleManager : MonoBehaviour
     
     public void SpawnCharacter()
     {
-        GameObject character = Instantiate(CharacterPrefab);
-        character.transform.position = CharacterSpawnPosition;
-        Character = character.GetComponent<Character>();
-        Character.startPosition = character.transform.position;
-        Character.battleManager = this;
+        GameObject character = Instantiate(characterPrefab);
+        character.transform.position = characterSpawnPosition;
+        this.character = character.GetComponent<Character>();
+        this.character.Init(1);
+        this.character.startPosition = character.transform.position;
+        this.character.battleManager = this;
     }
 
     public void SpawnMonster()
@@ -87,67 +88,85 @@ public class BattleManager : MonoBehaviour
             this.monsterPool = monsterPool;
         }
 
-        int randomSpawnAmount = Random.Range(Dungeons[selectDungeon].Stages[curStage].randomSpawnMinAmount, Dungeons[selectDungeon].Stages[curStage].randomSpawnMaxAmount + 1);
+        int randomSpawnAmount = Random.Range(dungeonList[selectDungeon].stages[curStage].randomSpawnMinAmount, dungeonList[selectDungeon].stages[curStage].randomSpawnMaxAmount + 1);
         if(randomSpawnAmount > 0)
         {
             for (int i = 0; i < randomSpawnAmount; i++)
             {
-                int monsterIndex = Random.Range(0, Dungeons[selectDungeon].Stages[curStage].RandomSpawnMonsters.Count);
-                GameObject monster = Instantiate(Dungeons[selectDungeon].Stages[curStage].RandomSpawnMonsters[monsterIndex], monsterPool.transform);
-                Monsters.Add(monster.GetComponent<Monster>());
-                monster.transform.position = MonsterSpawnPosition;
+                int monsterIndex = Random.Range(0, dungeonList[selectDungeon].stages[curStage].randomSpawnMonsters.Count);
+                GameObject monster = Instantiate(dungeonList[selectDungeon].stages[curStage].randomSpawnMonsters[monsterIndex], monsterPool.transform);
+                monsters.Add(monster.GetComponent<Monster>());
+                monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
         }
 
-        if(Dungeons[selectDungeon].Stages[curStage].SpawnMonsters.Count > 0)
+        if(dungeonList[selectDungeon].stages[curStage].spawnMonsters.Count > 0)
         {
-            foreach (var monster in Dungeons[selectDungeon].Stages[curStage].SpawnMonsters)
+            foreach (GameObject monsterPrefab in dungeonList[selectDungeon].stages[curStage].spawnMonsters)
             {
-                GameObject _monster = Instantiate(monster, monsterPool.transform);
-                Monsters.Add(_monster.GetComponent<Monster>());
-                _monster.transform.position = MonsterSpawnPosition;
+                GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
+                monsters.Add(monster.GetComponent<Monster>());
+                monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
         }
 
-        for (int i = 0; i < Monsters.Count; i++)
+        for (int i = 0; i < monsters.Count; i++)
         {
-            Monsters[i].monsterNumber = i;
-            Monsters[i].startPosition = Monsters[i].transform.position;
-            Monsters[i].battleManager = this;
+            monsters[i].monsterNumber = i;
+            monsters[i].startPosition = monsters[i].transform.position;
+            monsters[i].Init(1);
+            monsters[i].battleManager = this;
         }
 
-        MonsterSpawnPosition = new Vector3(-1, 3, 0);
-        monstersPrevState = new IState[Monsters.Count];
+        monsterSpawnPosition = new Vector3(-1, 3, 0);
+        monstersPrevState = new IState[monsters.Count];
     }
 
     public void ChangeSpawnPosition()
     {
-        if (MonsterSpawnPosition.y == 3)
-            MonsterSpawnPosition = new Vector3(MonsterSpawnPosition.x, MonsterSpawnPosition.y - 2.5f, MonsterSpawnPosition.z);
+        if (monsterSpawnPosition.y == 3)
+            monsterSpawnPosition = new Vector3(monsterSpawnPosition.x, monsterSpawnPosition.y - 2.5f, monsterSpawnPosition.z);
         else
-            MonsterSpawnPosition = new Vector3(MonsterSpawnPosition.x + 2.5f, MonsterSpawnPosition.y + 2.5f, MonsterSpawnPosition.z);
+            monsterSpawnPosition = new Vector3(monsterSpawnPosition.x + 2.5f, monsterSpawnPosition.y + 2.5f, monsterSpawnPosition.z);
     }
 
     public IEnumerator BattleStart()
     {
-        yield return WaitFor1Sec;
-        Character.stateMachine.ChangeState(Character.stateMachine.ReadyState);
-        foreach (Monster monster in Monsters)
+        yield return waitFor1Sec;
+        character.stateMachine.ChangeState(character.stateMachine.readyState);
+        foreach (Monster monster in monsters)
         {
-            monster.stateMachine.ChangeState(monster.stateMachine.ReadyState);
+            monster.stateMachine.ChangeState(monster.stateMachine.readyState);
         }
     }
     private bool StageClearCheck()
     {
-        for(int i = 0; i < Monsters.Count; i++)
+        for(int i = 0; i < monsters.Count; i++)
         {
-            if(!(Monsters[i].stateMachine.currentState is MonsterDeadState))
+            if(!(monsters[i].stateMachine.currentState is MonsterDeadState))
             {
                 return false;
             }
         }
         return true;
+    }
+
+    public IEnumerator Roulette()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            rouletteResult.Add(PlayerManager.Instance.equip[Random.Range(0, 3)].data);
+            battleCanvas.SetRoulette(i);
+        }
+        yield return null;
+    }
+
+    public void RouletteClear()
+    {
+        rouletteResult.Clear();
+        battleCanvas.ClearRoulette();
+        battleCanvas.rouletteButton.gameObject.SetActive(true);
     }
 }

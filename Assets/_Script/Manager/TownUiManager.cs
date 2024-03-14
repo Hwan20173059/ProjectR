@@ -13,6 +13,8 @@ public class TownUiManager : MonoBehaviour
     public GameObject dungeonUI;
     public GameObject guildUI;
     public GameObject storeUI;
+    public GameObject homeUI;
+    public GameObject optionUI;
 
 
     [Header("EquipUI")]
@@ -72,6 +74,26 @@ public class TownUiManager : MonoBehaviour
     public void StoreUIOff()
     {
         storeUI.SetActive(false);
+    }
+
+    public void HomeUIOn()
+    {
+        homeUI.SetActive(true);
+    }
+
+    public void HomeUIOff()
+    {
+        homeUI.SetActive(false);
+    }
+
+    public void OptionUIOn()
+    {
+        optionUI.SetActive(true);
+    }
+
+    public void OptionUIOff()
+    {
+        optionUI.SetActive(false);
     }
 
     public void OpenInventory()

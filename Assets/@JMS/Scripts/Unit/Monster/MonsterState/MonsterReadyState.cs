@@ -15,13 +15,13 @@ public class MonsterReadyState : MonsterBaseState
 
     void CoolTimeUpdate()
     {
-        if (stateMachine.Monster.curCoolTime < stateMachine.Monster.maxCoolTime)
+        if (monster.curCoolTime < monster.maxCoolTime)
         {
-            stateMachine.Monster.curCoolTime += Time.deltaTime;
+            monster.curCoolTime += Time.deltaTime;
         }
         else
         {
-            stateMachine.ChangeState(stateMachine.SelectActionState);
+            stateMachine.ChangeState(stateMachine.selectActionState);
         }
     }
 }

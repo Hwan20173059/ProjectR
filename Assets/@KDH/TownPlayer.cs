@@ -11,12 +11,12 @@ public class TownPlayer : MonoBehaviour
     {
         PlayerManager.Instance.townPlayer = this.gameObject;
 
-        selectedCharacter = PlayerManager.Instance.selectedCharacter;
+        selectedCharacter = PlayerManager.Instance.selectedCharacter.GetComponent<Character>();
     }
 
     public void Refresh()
     {
-        selectedCharacter = PlayerManager.Instance.selectedCharacter;
+        selectedCharacter = PlayerManager.Instance.selectedCharacter.GetComponent<Character>();
 
         SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.sprite = selectedCharacter.sprite;
