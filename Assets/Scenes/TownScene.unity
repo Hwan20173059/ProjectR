@@ -6180,14 +6180,14 @@ MonoBehaviour:
   itemManager: {fileID: 1569666160}
   townUiManager: {fileID: 0}
   townPlayer: {fileID: 0}
-  selectedCharacter: {fileID: -98113491264426746, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
+  selectedCharacter: {fileID: 8902153403540484996, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
   equip:
-  - isEquipped: 0
-    data: {fileID: 0}
-  - isEquipped: 0
-    data: {fileID: 0}
-  - isEquipped: 0
-    data: {fileID: 0}
+  - isEquipped: 1
+    data: {fileID: 11400000, guid: 94b082ed33894314e92a924d1c0e9e82, type: 2}
+  - isEquipped: 1
+    data: {fileID: 11400000, guid: 472c916165621b14e89a13bdc381ebde, type: 2}
+  - isEquipped: 1
+    data: {fileID: 11400000, guid: 9587bb6e007c22a48bce4fe1910f1d11, type: 2}
   selectDungeonID: 0
 --- !u!1 &858733815
 GameObject:

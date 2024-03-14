@@ -38,7 +38,7 @@ public class CharacterManager : MonoBehaviour
         characterList[index].isSelected = true;
 
         // PlayerManager에 선택한 캐릭터 전달
-        playerManager.selectedCharacter = characterList[index].character;
+        playerManager.selectedCharacter = characterList[index].character.gameObject;
     }
 
     private void SelectInCharacterSlot(int index)

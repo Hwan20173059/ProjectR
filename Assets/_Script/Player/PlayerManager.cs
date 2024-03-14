@@ -11,7 +11,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public TownUiManager townUiManager;
     public GameObject townPlayer;
 
-    public Character selectedCharacter;
+    public GameObject selectedCharacter;
     public EquipItem[] equip = new EquipItem[3];
 
     public int selectDungeonID;

@@ -43,6 +43,8 @@ public class BattleManager : MonoBehaviour
         battleCanvas = GetComponentInChildren<BattleCanvas>();
 
         stateMachine = new BattleStateMachine(this);
+
+        characterPrefab = PlayerManager.Instance.selectedCharacter;
     }
     private void Start()
     {
