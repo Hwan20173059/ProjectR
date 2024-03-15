@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,12 +14,13 @@ public enum Type
     Light
 }
 
-[CreateAssetMenu(fileName = "EquipData", menuName = "Scriptable Object/equip Data")]
-public class Equip : ScriptableObject
+[System.Serializable]
+public class Equip
 {
-    public Sprite equipSprite;
+    public int id;
+    public string spritePath;
     public string equipName;
-    public Type type;
+    public string type;
     public int attack;
     public string info;
 }

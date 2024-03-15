@@ -8,7 +8,7 @@ public class CharacterBaseState : IState
     protected Character character { get { return stateMachine.character; } }
     protected BattleManager battleManager { get { return character.battleManager; } }
     protected Monster selectMonster { get { return battleManager.selectMonster; } }
-    protected List<Equip> rouletteResult { get{ return battleManager.rouletteResult; } }
+    protected List<EquipItem> rouletteResult { get{ return battleManager.rouletteResult; } }
     public CharacterBaseState(CharacterStateMachine characterStateMachine)
     {
         stateMachine = characterStateMachine;

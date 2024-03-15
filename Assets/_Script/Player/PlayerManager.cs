@@ -6,8 +6,6 @@ using UnityEngine.Assertions.Must;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
-    public ItemManager itemManager;
-
     public TownUiManager townUiManager;
     public GameObject townPlayer;
 
@@ -19,10 +17,12 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void Start()
     {
+        DataManager.Instance.Init();
+        EquipItem baseEquip = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(0));
         for (int i = 0; i < 3; i++)
         {
             if (equip[i] == null)
-                equip[i] = itemManager.baseItem;
+                equip[i] = baseEquip;
         }
 
         ReFreshPlayer();
@@ -35,29 +35,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void EquipNewItem(int n)
     {
-        if(townUiManager.detailArea.isEquipping)
-        {
-            equip[n].isEquipped = false;
-            equip[n] = townUiManager.lastSelectedEquip;
-            equip[n].isEquipped = true;
-
-            townUiManager.detailArea.isEquipping = false;
-            townUiManager.detailArea.UnActiveEquippingState();
-            townUiManager.FreshAfterEquip();
-        }
-    }
-
-    public void UnEquipItem()
-    {
-        for(int i = 0; i < 3; i++)
-        {
-            if(equip[i] == townUiManager.nowSelectedEquip)
-            {
-                equip[i].isEquipped = false;
-                equip[i] = itemManager.baseItem;
-                break;
-            }
-        }
-        townUiManager.FreshAfterEquip();
+        equip[n].isEquipped = false;
+        equip[n] = townUiManager.lastSelectedEquip;
+        equip[n].isEquipped = true;
     }
 }
