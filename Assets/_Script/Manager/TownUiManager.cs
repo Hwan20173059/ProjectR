@@ -26,7 +26,7 @@ public class TownUiManager : MonoBehaviour
 
     private void Start()
     {
-        playerManager = PlayerManager.Instance.GetComponent<PlayerManager>();
+        playerManager = PlayerManager.Instance;
         playerManager.townUiManager = this;
     }
 

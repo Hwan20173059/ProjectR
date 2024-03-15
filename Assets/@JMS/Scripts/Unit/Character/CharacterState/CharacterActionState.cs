@@ -58,6 +58,6 @@ public class CharacterActionState : CharacterBaseState
 
     int ItemValue(int idx)
     {
-        return rouletteResult[idx].attack;
+        return rouletteResult[idx].data.attack;
     }
 }
