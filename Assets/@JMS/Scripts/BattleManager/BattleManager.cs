@@ -158,7 +158,7 @@ public class BattleManager : MonoBehaviour
     {
         for(int i = 0; i < monsters.Count; i++)
         {
-            if(!(monsters[i].stateMachine.currentState is MonsterDeadState))
+            if(!(monsters[i].IsDead))
             {
                 return false;
             }
