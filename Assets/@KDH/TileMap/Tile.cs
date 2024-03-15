@@ -17,6 +17,8 @@ public class Tile : MonoBehaviour
     public FieldManager fieldManager;
     public TileState tileState;
     public GameObject onTile;
+    public GameObject highlight;
+    public GameObject player;
 
     private void Start()
     {
@@ -29,22 +31,35 @@ public class Tile : MonoBehaviour
         if (onTile)
         {
             tileState = TileState.player;
-            Instantiate(onTile, this.gameObject.transform);
+            player = Instantiate(onTile, this.gameObject.transform);
         }
         else
             return;
     }
 
-    public void MoveButton()
+    private void OnMouseEnter()
     {
+        highlight.SetActive(true);
+    }
+
+    private void OnMouseDown()
+    {
+        fieldManager.selectedTile = this;
+        fieldManager.PlayerMoveTile();
         tileState = TileState.player;
         onTile = fieldManager.fieldPlayer;
         RefreshTile();
+    }
+
+    private void OnMouseExit()
+    {
+        highlight.SetActive(false);
     }
 
     public void ClearTile()
     {
         tileState = TileState.empty;
         onTile = null;
+        Destroy(player);
     }
 }

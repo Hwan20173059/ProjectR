@@ -10,26 +10,19 @@ public class FieldManager : MonoBehaviour
 
     public Tile selectedTile;
 
-    private void Awake()
-    {
-        Input = GetComponent<PlayerInput>();
-    }
 
-    private void Start()
+    public void PlayerMoveTile()
     {
-        Input.ClickActions.MouseClick.started += OnClickStart;
-    }
-
-    private void OnClickStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.ClickActions.MousePos.ReadValue<Vector2>());
-        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
-
-        if (hit.collider != null && CompareTag("Tile"))
+        for (int i =0; i < field.tileRaw.Length; i++)
         {
-            selectedTile = hit.collider.GetComponent<Tile>();
-            selectedTile.MoveButton();
+            for(int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
+            {
+                if (field.tileRaw[i].fieldTiles[j].tileState == TileState.player)
+                {
+                    field.tileRaw[i].fieldTiles[j].ClearTile();
+                    field.tileRaw[i].fieldTiles[j].RefreshTile();
+                }
+            }
         }
-
     }
 }

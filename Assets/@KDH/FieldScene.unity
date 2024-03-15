@@ -994,6 +994,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 305973022}
     - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
+      propertyPath: tileState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: fieldManager
       value: 
       objectReference: {fileID: 305973022}
@@ -1069,6 +1073,10 @@ PrefabInstance:
       propertyPath: fieldManager
       value: 
       objectReference: {fileID: 305973022}
+    - target: {fileID: 8621853828782436741, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
+      propertyPath: tileState
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8621853828782436741, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: fieldManager
       value: 
