@@ -341,6 +341,8 @@ MonoBehaviour:
   selectMonster: {fileID: 0}
   monsters: []
   performList: 
+  targetCirclePrefab: {fileID: 387042340656938697, guid: 1f77bce04544eac49af459f4a8656ff5, type: 3}
+  targetCircle: {fileID: 0}
   monsterPool: {fileID: 0}
   battleCanvas: {fileID: 0}
 --- !u!114 &1861630719

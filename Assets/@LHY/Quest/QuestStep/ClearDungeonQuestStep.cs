@@ -7,7 +7,7 @@ using System;
 public class ClearDungeonQuestStep : QuestStep
 {
     public int dungeonCleared = 0;
-    private int dungeonComplete = 5;
+    private int dungeonComplete = 0;
 
 
 
@@ -38,6 +38,7 @@ public class ClearDungeonQuestStep : QuestStep
         {
             print("finish");
             FinishQuestStep();
+            QuestManager.instance.currentState = QuestState.Can_Finish;
         }
     }
 

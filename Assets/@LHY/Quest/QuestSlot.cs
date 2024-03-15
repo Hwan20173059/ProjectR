@@ -45,6 +45,7 @@ public class QuestSlot : MonoBehaviour
     private void Start()
     {
         Debug.Log(questId);
+        currentQuestState = QuestManager.instance.currentState;
     }
     //수락 버튼 press
     public void SubmitPressed(string selectQuestId)
@@ -66,6 +67,7 @@ public class QuestSlot : MonoBehaviour
         else if (currentQuestState.Equals(QuestState.Can_Finish))
         {
             Debug.Log(questId + "퀘스트를 완료했습니다.");
+            currentQuestState = QuestState.Finished;
             GameEventManager.instance.questEvent.FinishQuest(questId);
         }
         infoUpdate();
@@ -99,9 +101,11 @@ public class QuestSlot : MonoBehaviour
         QuestSlottext.text = questInfoForPoint.displayName;
         questName.text = questInfoForPoint.displayName;
         if (currentQuestState == QuestState.In_Progress)
-            QuestSlottext.color = Color.red;
-        if (currentQuestState == QuestState.Finished)
+            QuestSlottext.color = Color.gray;
+        if (currentQuestState == QuestState.Can_Finish)
             QuestSlottext.color = Color.green;
+        if (currentQuestState == QuestState.Finished)
+            QuestSlottext.color = Color.blue;
         questDescription.text = questInfoForPoint.questDescription;
         questSubmitButtonText.text = currentQuestState.ToString();
     }
