@@ -15388,6 +15388,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 182095471}
     m_Modifications:
+    - target: {fileID: 3301451480719811008, guid: 16330f972d89ece4fbb766e851e69fdf, type: 3}
+      propertyPath: selectedCharacter
+      value: 
+      objectReference: {fileID: -98113491264426746, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
     - target: {fileID: 4993744543130146367, guid: 16330f972d89ece4fbb766e851e69fdf, type: 3}
       propertyPath: m_Name
       value: TownPlayer
