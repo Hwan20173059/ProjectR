@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour //Inventory
     protected virtual void Start() 
     {
         itemManager.Init();
-        for (int i = 1; i <= 3; i++)
+        for (int i = 1; i <= 4; i++)
         {
             EquipItem eItem = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(i));
             itemManager.eInventory.Add(eItem);

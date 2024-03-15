@@ -31,6 +31,14 @@
 			"type": "Water",
 			"attack": 11,
 			"info": "바다에서 잡은 싱싱한 생선이다."
+		},
+		{
+			"id": 4,
+			"spritePath": "Sprite/Food/Beer",
+			"equipName": "승리의 잔",
+			"type": "Water",
+			"attack": 10,
+			"info": "축배를 들어라."
 		}
 	]
 }

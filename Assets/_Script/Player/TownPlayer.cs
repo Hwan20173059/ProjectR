@@ -11,7 +11,6 @@ public class TownPlayer : MonoBehaviour
     {
         PlayerManager.Instance.townPlayer = this.gameObject;
 
-        selectedCharacter = PlayerManager.Instance.selectedCharacter.GetComponent<Character>();
     }
 
     public void Refresh()
