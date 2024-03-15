@@ -1,0 +1,36 @@
+{
+	"equipDatas": [
+		{
+			"id": 0,
+			"spritePath": "Sprite/Food/Potato",
+			"equipName": "정의의 주먹",
+			"type": "Normal",
+			"attack": 5,
+			"info": "정의(물리)는 살아있다."
+		},
+		{
+			"id": 1,
+			"spritePath": "Sprite/Food/Apple",
+			"equipName": "불꽃의 사과",
+			"type": "Fire",
+			"attack": 12,
+			"info": "타오르는 정열의 빨간 사과이다."
+		},
+		{
+			"id": 2,
+			"spritePath": "Sprite/Food/Bread",
+			"equipName": "대지의 빵",
+			"type": "Ground",
+			"attack": 8,
+			"info": "풍요의 대지에서 수확한 빵이다."
+		},
+		{
+			"id": 3,
+			"spritePath": "Sprite/Food/Fish",
+			"equipName": "바다의 생선",
+			"type": "Water",
+			"attack": 11,
+			"info": "바다에서 잡은 싱싱한 생선이다."
+		}
+	]
+}

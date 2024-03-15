@@ -9,7 +9,7 @@ public class BattleManager : MonoBehaviour
     public int selectDungeon;
     public int curStage;
     public GameObject characterPrefab;
-    public List<Equip> rouletteResult;
+    public List<EquipItem> rouletteResult;
 
     public Character character;
     public bool IsSelectingAction = false;
@@ -170,7 +170,7 @@ public class BattleManager : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            rouletteResult.Add(PlayerManager.Instance.equip[Random.Range(0, 3)].data);
+            rouletteResult.Add(PlayerManager.Instance.equip[Random.Range(0, 3)]);
             battleCanvas.SetRoulette(i);
         }
         yield return null;
