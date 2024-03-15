@@ -18,16 +18,19 @@ public class Tile : MonoBehaviour
     public TileState tileState;
     public GameObject onTile;
 
-
     private void Start()
     {
         RefreshTile();
     }
 
+
     public void RefreshTile()
     {
         if (onTile)
+        {
+            tileState = TileState.player;
             Instantiate(onTile, this.gameObject.transform);
+        }
         else
             return;
     }
@@ -36,6 +39,7 @@ public class Tile : MonoBehaviour
     {
         tileState = TileState.player;
         onTile = fieldManager.fieldPlayer;
+        RefreshTile();
     }
 
     public void ClearTile()
