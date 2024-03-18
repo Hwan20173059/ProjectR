@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c910e22a145341a46ba215730706acd3, type: 3}
   m_Name: SwordMan
   m_EditorClassIdentifier: 
+  characterName: "\uC18C\uB4DC\uB9E8"
   hp: 100
   atk: 15
   needExp: 30

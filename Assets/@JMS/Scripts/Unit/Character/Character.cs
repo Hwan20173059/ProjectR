@@ -10,7 +10,7 @@ public class Character : MonoBehaviour
 
     [Header("Info")]
     public Sprite sprite;
-    public string name;
+    public string characterName;
     public string desc;
 
     [Header("Level")]
@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
     public int curHP;
     public int atk;
     public bool IsDead => curHP <= 0;
+    public string currentState = "´ë±âÁß";
 
     public List<CharacterAction> actions;
     public CharacterAction selectAction;
@@ -34,10 +35,10 @@ public class Character : MonoBehaviour
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
-    [Header("System")]
     public CharacterHpBar hpBar;
     public CharacterStateMachine stateMachine;
     public BattleManager battleManager;
+    public BattleCanvas battleCanvas { get {  return battleManager.battleCanvas; } }
 
     private void Awake()
     {
@@ -65,6 +66,7 @@ public class Character : MonoBehaviour
     }
     public void Init(int level)
     {
+        characterName = baseData.characterName;
         maxHP = baseData.hp * level;
         curHP = baseData.hp * level;
         atk = baseData.atk * level;
@@ -87,6 +89,8 @@ public class Character : MonoBehaviour
         {
             stateMachine.ChangeState(stateMachine.deadState);
         }
+
+        battleCanvas.CharacterStateUpdate();
     }
 
     public void ChangeExp(int change)

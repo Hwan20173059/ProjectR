@@ -17,6 +17,7 @@ public class CharacterActionState : CharacterBaseState
         switch (character.selectAction)
         {
             case CharacterAction.Attack:
+                StateUpdate("°ø°ÝÁß");
                 character.StartCoroutine(Attack());
                 break;
         }

@@ -10,6 +10,7 @@ public enum CharacterAction
 [CreateAssetMenu(fileName = "CharacterData", menuName = "Scriptable Object/CharacterData")]
 public class CharacterSO : ScriptableObject
 {
+    public string characterName;
     public int hp;
     public int atk;
     public int needExp;

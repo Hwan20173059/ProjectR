@@ -23,7 +23,7 @@ public class CharacterSlot : MonoBehaviour
 
         // Slot의 UI에 CharacterData의 Name을 적용
         characterSlotText = GetComponentsInChildren<TextMeshProUGUI>();
-        characterSlotText[0].text = characterData.character.name;
+        characterSlotText[0].text = characterData.character.characterName;
 
         Refresh();
     }

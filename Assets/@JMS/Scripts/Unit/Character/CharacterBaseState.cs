@@ -56,4 +56,10 @@ public class CharacterBaseState : IState
             return 0f;
         }
     }
+
+    protected void StateUpdate(string state)
+    {
+        character.currentState = state;
+        battleManager.battleCanvas.CharacterStateUpdate();
+    }
 }

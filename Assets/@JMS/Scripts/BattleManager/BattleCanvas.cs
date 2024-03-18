@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,9 @@ public class BattleCanvas : MonoBehaviour
     public Button nextStageButton;
     public GameObject dungeonClearPanel;
     public Button dungeonClearButton;
+    public GameObject monsterInfoPanel;
+    public TMP_Text characterStateText;
+    public TMP_Text monsterStateText;
 
     public Image roulette3;
     public Image roulette2;
@@ -98,5 +102,18 @@ public class BattleCanvas : MonoBehaviour
     {
         battleDefeatPanel.SetActive(false);
         SceneManager.LoadScene("TownScene");
+    }
+
+    public void CharacterStateUpdate()
+    {
+        if (character == null) return;
+        characterStateText.text = $"캐릭터 : {character.characterName}\n레벨 : {character.level}\n" +
+            $"체력 : {character.curHP} / {character.maxHP}\n상태 : {character.currentState}";
+    }
+
+    public void MonsterStateUpdate()
+    {
+        if (selectMonster == null) return;
+        monsterStateText.text = $"{selectMonster.monsterName} {selectMonster.curHP} / {selectMonster.maxHP}";
     }
 }

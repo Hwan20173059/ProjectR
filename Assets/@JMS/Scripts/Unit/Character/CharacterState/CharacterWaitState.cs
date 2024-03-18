@@ -7,4 +7,10 @@ public class CharacterWaitState : CharacterBaseState
     public CharacterWaitState(CharacterStateMachine characterStateMachine) : base(characterStateMachine)
     {
     }
+    public override void Enter()
+    {
+        base.Enter();
+
+        StateUpdate("¥Î±‚¡ﬂ");
+    }
 }
