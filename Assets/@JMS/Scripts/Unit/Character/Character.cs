@@ -36,9 +36,12 @@ public class Character : MonoBehaviour
     public float moveAnimSpeed = 10f;
 
     public CharacterHpBar hpBar;
-    public CharacterStateMachine stateMachine;
+    public Monster selectMonster;
+
     public BattleManager battleManager;
     public BattleCanvas battleCanvas { get {  return battleManager.battleCanvas; } }
+
+    public CharacterStateMachine stateMachine;
 
     private void Awake()
     {

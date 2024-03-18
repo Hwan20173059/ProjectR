@@ -25,6 +25,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator Attack()
     {
+        selectMonster = battleManager.selectMonster;
         selectMonsterPosition = new Vector3(selectMonster.startPosition.x -1f, selectMonster.startPosition.y, 0);
 
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
