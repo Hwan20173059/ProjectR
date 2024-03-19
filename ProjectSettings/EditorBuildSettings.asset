@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/@JMS/Scene/BattleEndTestScene.unity
     guid: 3cfbbb33ddd6868468f8638c2ac32ed7
+  - enabled: 1
+    path: Assets/@KDH/FieldScene.unity
+    guid: 54058f6bb5818b64a8d0bcd8a58e3585
   m_configObjects: {}

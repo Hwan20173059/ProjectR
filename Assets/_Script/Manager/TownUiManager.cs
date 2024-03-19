@@ -30,10 +30,9 @@ public class TownUiManager : MonoBehaviour
         playerManager.townUiManager = this;
     }
 
-    public void GoDungeon(int index) 
+    public void GoField(int index) 
     {
-        playerManager.selectDungeonID = index;
-        SceneManager.LoadScene("DungeonScene");
+        SceneManager.LoadScene("FieldScene");
     }
 
     public void CharacterUIOn()
@@ -48,7 +47,10 @@ public class TownUiManager : MonoBehaviour
 
     public void DungeonUIOn()
     {
-        dungeonUI.SetActive(true);
+        playerManager.fieldX = 0;
+        playerManager.fieldY = 1;
+        SceneManager.LoadScene("FieldScene");
+        //dungeonUI.SetActive(true);
     }
 
     public void DungeonUIOff()

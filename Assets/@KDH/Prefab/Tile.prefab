@@ -100,9 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldManager: {fileID: 0}
-  tileState: 0
+  tileState: 1
   onTile: {fileID: 0}
   highlight: {fileID: 6198214977604834620}
+  player: {fileID: 0}
 --- !u!61 &7844664491775871747
 BoxCollider2D:
   m_ObjectHideFlags: 0
