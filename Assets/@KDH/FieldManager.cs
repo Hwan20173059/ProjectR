@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -13,27 +14,36 @@ public enum FieldState
 
 public class FieldManager : MonoBehaviour
 {
+    [Header("Manager")]
     public PlayerManager playerManager;    
-
-    public FieldState fieldState;
     public Field field;
     public Tile selectedTile;
 
+    [Header("State")]
+    public FieldState fieldState;
     public bool isSelect = false;
     public bool isPlayerturn = true;
 
-    public GameObject selectUI;
+    [Header("Player")]
     public GameObject fieldPlayer;
+
+    [Header("Monster")]
+    public List<GameObject> fieldMonster = new List<GameObject>();
+
+    [Header("UI")]
     public TextMeshProUGUI turnState;
+    public GameObject selectUI;
     public TextMeshProUGUI infoUI;
+
+    
 
     void Start()
     {
         playerManager = PlayerManager.Instance;
 
-        field.tileRaw[playerManager.fieldY].fieldTiles[playerManager.fieldX].onObject = fieldPlayer;
-        field.tileRaw[playerManager.fieldY].fieldTiles[playerManager.fieldX].tileState = TileState.player;
-        field.tileRaw[playerManager.fieldY].fieldTiles[playerManager.fieldX].RefreshTile();
+        //PlayerSpriteSetting(playerManager);
+        PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
+        SpawnRandomMonster(4);
 
         PlayerTurn();
     }
@@ -62,6 +72,19 @@ public class FieldManager : MonoBehaviour
         PlayerTurn();
     }
 
+    private void PlayerSpriteSetting(PlayerManager playermanager)
+    {
+        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        spriteRenderer.sprite = playermanager.selectedCharacter.GetComponent<Character>().sprite;
+    }
+
+    private void PlayerFieldSetting(int x, int y)
+    {
+        field.tileRaw[y].fieldTiles[x].onObject = fieldPlayer;
+        field.tileRaw[y].fieldTiles[x].tileState = TileState.player;
+        field.tileRaw[y].fieldTiles[x].RefreshTile();
+    }
+
     public void PlayerMoveTile()
     {
         for (int i =0; i < field.tileRaw.Length; i++)
@@ -75,5 +98,10 @@ public class FieldManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void SpawnRandomMonster(int index)
+    {
+
     }
 }

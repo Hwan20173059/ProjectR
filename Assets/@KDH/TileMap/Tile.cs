@@ -17,9 +17,7 @@ public class Tile : MonoBehaviour
     public TileState tileState;
 
     public GameObject onObject;
-
     public GameObject highlight;
-    
 
     SpriteRenderer spriteRenderer;
 

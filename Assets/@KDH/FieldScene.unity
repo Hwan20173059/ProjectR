@@ -381,6 +381,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1490224712}
     m_Modifications:
     - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
+      propertyPath: onObject
+      value: 
+      objectReference: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
+    - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState
       value: 3
       objectReference: {fileID: 0}
@@ -533,14 +537,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
-  fieldState: 0
   field: {fileID: 1490224713}
   selectedTile: {fileID: 0}
+  fieldState: 0
   isSelect: 0
   isPlayerturn: 1
-  selectUI: {fileID: 1298999661}
   fieldPlayer: {fileID: 230179430662417554, guid: 9eff73ecd7738d844ba706486e4079ae, type: 3}
+  fieldMonster: []
   turnState: {fileID: 145535765}
+  selectUI: {fileID: 1298999661}
   infoUI: {fileID: 1823751509}
 --- !u!4 &305973023
 Transform:
@@ -753,6 +758,10 @@ PrefabInstance:
       propertyPath: fieldManager
       value: 
       objectReference: {fileID: 305973022}
+    - target: {fileID: 2756926616834506451, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
+      propertyPath: onObject
+      value: 
+      objectReference: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
     - target: {fileID: 2756926616834506451, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState
       value: 3
@@ -1201,6 +1210,10 @@ PrefabInstance:
       value: TileRaw
       objectReference: {fileID: 0}
     - target: {fileID: 4932777783448802169, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
+      propertyPath: onObject
+      value: 
+      objectReference: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
+    - target: {fileID: 4932777783448802169, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState
       value: 3
       objectReference: {fileID: 0}
@@ -1637,6 +1650,10 @@ PrefabInstance:
       propertyPath: fieldManager
       value: 
       objectReference: {fileID: 305973022}
+    - target: {fileID: 6439402351628001335, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
+      propertyPath: onObject
+      value: 
+      objectReference: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
     - target: {fileID: 6439402351628001335, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState
       value: 3
