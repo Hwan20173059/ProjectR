@@ -383,10 +383,10 @@ PrefabInstance:
     - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: onObject
       value: 
-      objectReference: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: fieldManager
@@ -543,6 +543,7 @@ MonoBehaviour:
   isSelect: 0
   isPlayerturn: 1
   fieldPlayer: {fileID: 230179430662417554, guid: 9eff73ecd7738d844ba706486e4079ae, type: 3}
+  monsterPrefab: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
   fieldMonster: []
   turnState: {fileID: 145535765}
   selectUI: {fileID: 1298999661}
@@ -761,10 +762,10 @@ PrefabInstance:
     - target: {fileID: 2756926616834506451, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: onObject
       value: 
-      objectReference: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 2756926616834506451, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2756926616834506451, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: fieldManager
@@ -1212,10 +1213,10 @@ PrefabInstance:
     - target: {fileID: 4932777783448802169, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: onObject
       value: 
-      objectReference: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4932777783448802169, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4932777783448802169, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: fieldManager
@@ -1653,10 +1654,10 @@ PrefabInstance:
     - target: {fileID: 6439402351628001335, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: onObject
       value: 
-      objectReference: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6439402351628001335, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6439402351628001335, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: fieldManager

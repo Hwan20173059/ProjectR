@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,6 +27,7 @@ public class FieldManager : MonoBehaviour
     public GameObject fieldPlayer;
 
     [Header("Monster")]
+    public GameObject monsterPrefab;
     public List<GameObject> fieldMonster = new List<GameObject>();
 
     [Header("UI")]
@@ -41,7 +41,6 @@ public class FieldManager : MonoBehaviour
     {
         playerManager = PlayerManager.Instance;
 
-        //PlayerSpriteSetting(playerManager);
         PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
         SpawnRandomMonster(4);
 
@@ -72,16 +71,17 @@ public class FieldManager : MonoBehaviour
         PlayerTurn();
     }
 
-    private void PlayerSpriteSetting(PlayerManager playermanager)
-    {
-        SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.sprite = playermanager.selectedCharacter.GetComponent<Character>().sprite;
-    }
-
     private void PlayerFieldSetting(int x, int y)
     {
         field.tileRaw[y].fieldTiles[x].onObject = fieldPlayer;
         field.tileRaw[y].fieldTiles[x].tileState = TileState.player;
+        field.tileRaw[y].fieldTiles[x].RefreshTile();
+    }
+
+    private void MonsterFieldSetting(int x, int y)
+    {
+        field.tileRaw[y].fieldTiles[x].onObject = monsterPrefab;
+        field.tileRaw[y].fieldTiles[x].tileState = TileState.monster;
         field.tileRaw[y].fieldTiles[x].RefreshTile();
     }
 
@@ -102,6 +102,20 @@ public class FieldManager : MonoBehaviour
 
     private void SpawnRandomMonster(int index)
     {
+        for (int i = 0; i < index; i++)
+        {
+            int randomY = Random.Range(0, field.tileRaw.Length);
+            int randomX = Random.Range(0, field.tileRaw[randomY].fieldTiles.Length);
 
+            if (field.tileRaw[randomY].fieldTiles[randomX].tileState == TileState.empty)
+            {
+                fieldMonster.Add(Instantiate(monsterPrefab, field.tileRaw[randomY].fieldTiles[randomX].gameObject.transform));
+                MonsterFieldSetting(randomX, randomY);
+            }
+            else
+            {
+                SpawnRandomMonster(1);
+            }
+        }
     }
 }

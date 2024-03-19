@@ -64,7 +64,7 @@ public class Tile : MonoBehaviour
 
         if (onObject)
         {
-            if (tileState == TileState.player || tileState == TileState.monster)
+            if (tileState == TileState.player)
                 onObject = Instantiate(onObject, this.gameObject.transform);
         }
         else
