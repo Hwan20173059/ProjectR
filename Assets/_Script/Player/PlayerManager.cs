@@ -12,8 +12,8 @@ public class PlayerManager : Singleton<PlayerManager>
     public GameObject selectedCharacter;
     public EquipItem[] equip = new EquipItem[3];
 
-    public int fieldX;
-    public int fieldY;
+    public int fieldX = 0;
+    public int fieldY = 1;
 
     public int selectDungeonID;
 
