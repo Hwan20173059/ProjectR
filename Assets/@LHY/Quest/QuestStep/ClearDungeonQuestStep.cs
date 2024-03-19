@@ -7,8 +7,9 @@ using System;
 public class ClearDungeonQuestStep : QuestStep
 {
     public int dungeonCleared = 0;
-    private int dungeonComplete = 0;
+    private int dungeonComplete = 1;
 
+    public QuestState currentState = QuestState.In_Progress;
 
 
     private void Start()
@@ -19,34 +20,43 @@ public class ClearDungeonQuestStep : QuestStep
     private void OnEnable()
     {
         GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
+        GameEventManager.instance.questEvent.onFinishQuest += FinishQuest;
     }
 
     private void OnDisable()
     {
         GameEventManager.instance.questEvent.onDungeonClear -= DungeonClear;
+        GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
     }
     //todo : 던전 클리어 체크
     public void DungeonClear()//todo : private화
     {
+        dungeonCleared++;
         if (dungeonCleared < dungeonComplete)
         {
-            print("던전 클리어");
-            dungeonCleared++;
             UpdateState();
         }
         else
         {
-            print("finish");
-            FinishQuestStep();
-            QuestManager.instance.currentState = QuestState.Can_Finish;
+            currentState = QuestState.Can_Finish;
         }
+    }
+
+
+    public void FinishQuest(string id)
+    {
+        if (id != gameObject.name)
+        {
+            //
+        }
+        FinishQuestStep();
     }
 
     private void UpdateState()
     {
         print("state업데이트");
         string state = dungeonCleared.ToString();
-        string status = "Collected " + dungeonCleared + " / " + dungeonComplete + " coins.";
+        string status = dungeonCleared + " / " + dungeonComplete;
         ChangeState(state, status);
     }
 
