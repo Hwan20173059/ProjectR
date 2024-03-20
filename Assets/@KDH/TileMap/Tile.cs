@@ -43,49 +43,53 @@ public class Tile : MonoBehaviour
         switch (tileState)
         {
             case TileState.empty:
+                ClearTile(TileState.empty);
                 spriteRenderer.color = Color.white;
                 break;
 
             case TileState.player:
+                ClearTile(TileState.player);
+                onObject = Instantiate(fieldManager.playerPrefab, this.transform);
                 spriteRenderer.color = Color.blue;
                 break;
 
             case TileState.cango:
+                ClearTile(TileState.cango);
                 spriteRenderer.color = Color.cyan;
                 break;
 
             case TileState.cantgo:
+                ClearTile(TileState.cantgo);
                 spriteRenderer.color = Color.black;
                 break;
 
             case TileState.monster:
+                ClearTile(TileState.monster);
+                onObject = Instantiate(fieldManager.monsterPrefab, this.transform);
                 spriteRenderer.color = Color.yellow;
                 break;
 
             case TileState.chest:
+                ClearTile(TileState.chest);
                 spriteRenderer.color = Color.gray;
                 break;
 
             case TileState.town:
+                ClearTile(TileState.town);
                 spriteRenderer.color = Color.green;
                 break;
 
             case TileState.dungeon:
+                ClearTile(TileState.dungeon);
                 spriteRenderer.color = Color.red;
                 break;
 
             case TileState.canfight:
+                ClearTile(TileState.canfight);
+                onObject = Instantiate(fieldManager.monsterPrefab, this.transform);
                 spriteRenderer.color = Color.magenta;
                 break;
         }
-
-        if (onObject)
-        {
-            if (tileState == TileState.player || tileState == TileState.cango || tileState == TileState.canfight)
-                onObject = Instantiate(onObject, this.gameObject.transform);
-        }
-        else
-            return;
     }
 
     private void OnMouseEnter()
@@ -136,7 +140,7 @@ public class Tile : MonoBehaviour
 
                         fieldManager.PlayerMoveTile();
                         tileState = TileState.player;
-                        onObject = fieldManager.fieldPlayer;
+                        onObject = fieldManager.playerPrefab;
                         RefreshTile();
 
                         fieldManager.isSelect = false;
@@ -226,9 +230,9 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void ClearTile()
+    public void ClearTile(TileState tileState)
     {
-        tileState = TileState.empty;
+        this.tileState = tileState;
         if (onObject != null)
         {
             Destroy(onObject);

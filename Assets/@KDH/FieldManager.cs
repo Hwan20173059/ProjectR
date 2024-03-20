@@ -24,7 +24,8 @@ public class FieldManager : MonoBehaviour
     public bool isPlayerturn = true;
 
     [Header("Player")]
-    public GameObject fieldPlayer;
+    public GameObject playerPrefab;
+    public GameObject monsterPrefab;
 
     [Header("Monster")]
     public List<Tile> fieldMonster = new List<Tile>();
@@ -77,7 +78,7 @@ public class FieldManager : MonoBehaviour
                 case 0:
                     if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.empty)
                     {
-                        field.tileRaw[Y].fieldTiles[X].ClearTile();
+                        field.tileRaw[Y].fieldTiles[X].ClearTile(TileState.empty);
                         field.tileRaw[Y].fieldTiles[X].RefreshTile();
                         fieldMonster[i] = field.tileRaw[Y].fieldTiles[X - 1];
 
@@ -89,7 +90,7 @@ public class FieldManager : MonoBehaviour
                 case 1:
                     if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.empty)
                     {
-                        field.tileRaw[Y].fieldTiles[X].ClearTile();
+                        field.tileRaw[Y].fieldTiles[X].ClearTile(TileState.empty);
                         field.tileRaw[Y].fieldTiles[X].RefreshTile();
                         fieldMonster[i] = field.tileRaw[Y].fieldTiles[X + 1];
 
@@ -101,7 +102,7 @@ public class FieldManager : MonoBehaviour
                 case 2:
                     if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.empty)
                     {
-                        field.tileRaw[Y].fieldTiles[X].ClearTile();
+                        field.tileRaw[Y].fieldTiles[X].ClearTile(TileState.empty);
                         field.tileRaw[Y].fieldTiles[X].RefreshTile();
                         fieldMonster[i] = field.tileRaw[Y - 1].fieldTiles[X];
 
@@ -113,7 +114,7 @@ public class FieldManager : MonoBehaviour
                 case 3:
                     if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.empty)
                     {
-                        field.tileRaw[Y].fieldTiles[X].ClearTile();
+                        field.tileRaw[Y].fieldTiles[X].ClearTile(TileState.empty);
                         field.tileRaw[Y].fieldTiles[X].RefreshTile();
                         fieldMonster[i] = field.tileRaw[Y + 1].fieldTiles[X];
 
@@ -132,7 +133,6 @@ public class FieldManager : MonoBehaviour
 
     private void PlayerFieldSetting(int x, int y)
     {
-        field.tileRaw[y].fieldTiles[x].onObject = fieldPlayer;
         field.tileRaw[y].fieldTiles[x].tileState = TileState.player;
         field.tileRaw[y].fieldTiles[x].RefreshTile();
     }
@@ -151,7 +151,7 @@ public class FieldManager : MonoBehaviour
             {
                 if (field.tileRaw[i].fieldTiles[j].tileState == TileState.player || field.tileRaw[i].fieldTiles[j].tileState == TileState.cango)
                 {
-                    field.tileRaw[i].fieldTiles[j].ClearTile();
+                    field.tileRaw[i].fieldTiles[j].ClearTile(TileState.empty);
                     field.tileRaw[i].fieldTiles[j].RefreshTile();
                 }
                 else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canfight)
