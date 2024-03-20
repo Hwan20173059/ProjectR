@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public enum RouletteResult
 {
-    Different,
+    Triple,
     FrontPair,
     SidePair,
     BackPair,
-    Triple,
+    Different,
 }
 public class BattleManager : MonoBehaviour
 {
@@ -219,5 +219,72 @@ public class BattleManager : MonoBehaviour
         rouletteEquip.Clear();
         battleCanvas.ClearRoulette();
         battleCanvas.rouletteButton.gameObject.SetActive(true);
+    }
+
+    public void ChangeValue(RouletteResult rouletteResult, ref int baseValue)
+    {
+        switch(rouletteResult)
+        {
+            case RouletteResult.Triple:
+                {
+                    if (rouletteEquip[2].tripleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[2].data.tripleValue;
+                    else
+                        baseValue *= rouletteEquip[2].data.tripleValue;
+                } break;
+            case RouletteResult.FrontPair:
+                {
+                    if (rouletteEquip[0].doubleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[0].data.doubleValue;
+                    else
+                        baseValue *= rouletteEquip[0].data.doubleValue;
+
+                    if (rouletteEquip[2].singleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[2].data.singleValue;
+                    else
+                        baseValue *= rouletteEquip[2].data.singleValue;
+                } break;
+            case RouletteResult.SidePair:
+                {
+                    if (rouletteEquip[0].doubleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[0].data.doubleValue;
+                    else
+                        baseValue *= rouletteEquip[0].data.doubleValue;
+
+                    if (rouletteEquip[1].singleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[1].data.singleValue;
+                    else
+                        baseValue *= rouletteEquip[1].data.singleValue;
+                } break;
+            case RouletteResult.BackPair:
+                {
+                    if (rouletteEquip[1].doubleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[1].data.doubleValue;
+                    else
+                        baseValue *= rouletteEquip[1].data.doubleValue;
+
+                    if (rouletteEquip[0].singleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[0].data.singleValue;
+                    else
+                        baseValue *= rouletteEquip[0].data.singleValue;
+                } break;
+            case RouletteResult.Different:
+                {
+                    if (rouletteEquip[0].singleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[0].data.singleValue;
+                    else
+                        baseValue *= rouletteEquip[0].data.singleValue;
+
+                    if (rouletteEquip[1].singleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[1].data.singleValue;
+                    else
+                        baseValue *= rouletteEquip[1].data.singleValue;
+
+                    if (rouletteEquip[2].singleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[2].data.singleValue;
+                    else
+                        baseValue *= rouletteEquip[2].data.singleValue;
+                } break;
+        }
     }
 }

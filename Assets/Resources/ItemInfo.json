@@ -5,7 +5,12 @@
 			"spritePath": "Sprite/Food/Potato",
 			"equipName": "정의의 주먹",
 			"type": "Normal",
-			"attack": 5,
+			"singleValue": 5,
+			"singleChangeType": "ADD",
+			"doubleValue": 5,
+			"doubleChangeType": "ADD",
+			"tripleValue": 5,
+			"tripleChangeType": "ADD",
 			"info": "정의(물리)는 살아있다."
 		},
 		{
@@ -13,7 +18,12 @@
 			"spritePath": "Sprite/Food/Apple",
 			"equipName": "불꽃의 사과",
 			"type": "Fire",
-			"attack": 12,
+			"singleValue": 12,
+			"singleChangeType": "ADD",
+			"doubleValue": 12,
+			"doubleChangeType": "ADD",
+			"tripleValue": 12,
+			"tripleChangeType": "ADD",
 			"info": "타오르는 정열의 빨간 사과이다."
 		},
 		{
@@ -21,7 +31,12 @@
 			"spritePath": "Sprite/Food/Bread",
 			"equipName": "대지의 빵",
 			"type": "Ground",
-			"attack": 8,
+			"singleValue": 8,
+			"singleChangeType": "ADD",
+			"doubleValue": 8,
+			"doubleChangeType": "ADD",
+			"tripleValue": 8,
+			"tripleChangeType": "ADD",
 			"info": "풍요의 대지에서 수확한 빵이다."
 		},
 		{
@@ -29,7 +44,12 @@
 			"spritePath": "Sprite/Food/Fish",
 			"equipName": "바다의 생선",
 			"type": "Water",
-			"attack": 11,
+			"singleValue": 11,
+			"singleChangeType": "ADD",
+			"doubleValue": 11,
+			"doubleChangeType": "ADD",
+			"tripleValue": 11,
+			"tripleChangeType": "ADD",
 			"info": "바다에서 잡은 싱싱한 생선이다."
 		},
 		{
@@ -37,7 +57,12 @@
 			"spritePath": "Sprite/Food/Beer",
 			"equipName": "승리의 잔",
 			"type": "Water",
-			"attack": 10,
+			"singleValue": 10,
+			"singleChangeType": "ADD",
+			"doubleValue": 10,
+			"doubleChangeType": "ADD",
+			"tripleValue": 10,
+			"tripleChangeType": "ADD",
 			"info": "축배를 들어라."
 		}
 	]

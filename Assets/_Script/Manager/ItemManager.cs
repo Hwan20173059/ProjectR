@@ -12,12 +12,18 @@ public class EquipItem
     public Sprite equipSprite;
     public Type type;
     public Equip data;
+    public ValueChangeType singleChangeType;
+    public ValueChangeType doubleChangeType;
+    public ValueChangeType tripleChangeType;
 
     public EquipItem(Equip data)
     {
         this.data = data;
         equipSprite = Resources.Load(data.spritePath, typeof(Sprite)) as Sprite;
         type = (Type)Enum.Parse(typeof(Type), data.type);
+        singleChangeType = (ValueChangeType)Enum.Parse(typeof(ValueChangeType), data.singleChangeType);
+        doubleChangeType = (ValueChangeType)Enum.Parse(typeof(ValueChangeType), data.doubleChangeType);
+        tripleChangeType = (ValueChangeType)Enum.Parse(typeof(ValueChangeType), data.tripleChangeType);
     }
 }
 

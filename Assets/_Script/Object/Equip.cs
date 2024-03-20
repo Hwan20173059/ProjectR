@@ -14,6 +14,12 @@ public enum Type
     Light
 }
 
+public enum ValueChangeType
+{
+    ADD,
+    MUL,
+}
+
 [System.Serializable]
 public class Equip
 {
@@ -21,6 +27,11 @@ public class Equip
     public string spritePath;
     public string equipName;
     public string type;
-    public int attack;
+    public int singleValue;
+    public string singleChangeType;
+    public int doubleValue;
+    public string doubleChangeType;
+    public int tripleValue;
+    public string tripleChangeType;
     public string info;
 }

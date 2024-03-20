@@ -14,13 +14,8 @@ public class CharacterActionState : CharacterBaseState
     {
         base.Enter();
 
-        switch (battleManager.rouletteResult)
-        {
-            case RouletteResult.Triple:
-                character.selectAction = CharacterAction.AllAttack;
-                break;
-            default : break;
-        }
+        if (battleManager.rouletteResult == RouletteResult.Triple)
+            character.selectAction = CharacterAction.AllAttack;
 
         switch (character.selectAction)
         {
@@ -44,13 +39,11 @@ public class CharacterActionState : CharacterBaseState
 
         character.animator.SetBool("Idle", false);
         character.animator.SetTrigger("Attack");
-        selectMonster.ChangeHP(-character.atk);
-        if(rouletteResult.Count > 0)
-        {
-            selectMonster.ChangeHP(-ItemValue(0));
-            selectMonster.ChangeHP(-ItemValue(1));
-            selectMonster.ChangeHP(-ItemValue(2));
-        }
+
+        int damage = character.atk;
+        battleManager.ChangeValue(battleManager.rouletteResult, ref damage);
+        selectMonster.ChangeHP(-damage);
+
         while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
         character.animator.SetBool("Idle", true);
 
@@ -65,12 +58,12 @@ public class CharacterActionState : CharacterBaseState
         character.animator.SetBool("Idle", false);
         character.animator.SetTrigger("Attack");
 
+        int damage = character.atk;
+        battleManager.ChangeValue(battleManager.rouletteResult, ref damage);
+
         for (int i = 0; i < battleManager.monsters.Count; i++)
         {
-            battleManager.monsters[i].ChangeHP(-character.atk);
-            battleManager.monsters[i].ChangeHP(-ItemValue(0));
-            battleManager.monsters[i].ChangeHP(-ItemValue(1));
-            battleManager.monsters[i].ChangeHP(-ItemValue(2));
+            battleManager.monsters[i].ChangeHP(-damage);
         }
 
         while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
@@ -89,10 +82,5 @@ public class CharacterActionState : CharacterBaseState
     private bool IsAnimationEnd(float animNormalizedTime)
     {
         return animNormalizedTime >= 1f;
-    }
-
-    int ItemValue(int idx)
-    {
-        return rouletteResult[idx].data.attack;
     }
 }
