@@ -189,7 +189,6 @@ public class FieldManager : MonoBehaviour
             if (field.tileRaw[randomY].fieldTiles[randomX].tileState == TileState.empty)
             {
                 fieldMonster.Add(field.tileRaw[randomY].fieldTiles[randomX]);
-                
                 MonsterFieldSetting(randomX, randomY);
             }
             else
@@ -225,69 +224,10 @@ public class FieldManager : MonoBehaviour
         int X = selectedTile.indexX;
         int Y = selectedTile.indexY;
 
-        if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.empty)
-        {
-            field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.cango;
-            field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
-        }
-        else if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.monster)
-        {
-            field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.canfight;
-            field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
-        }
-        else if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.town)
-        {
-            field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.canEnter;
-            field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
-        }
-
-        if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.empty)
-        {
-            field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.cango;
-            field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
-        }
-        else if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.monster)
-        {
-            field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.canfight;
-            field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
-        }
-        else if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.town)
-        {
-            field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.canEnter;
-            field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
-        }
-
-        if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.empty)
-        {
-            field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.cango;
-            field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
-        }
-        else if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.monster)
-        {
-            field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.canfight;
-            field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
-        }
-        else if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.town)
-        {
-            field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.canEnter;
-            field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
-        }
-
-        if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.empty)
-        {
-            field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.cango;
-            field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
-        }
-        else if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.monster)
-        {
-            field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.canfight;
-            field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
-        }
-        else if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.town)
-        {
-            field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.canEnter;
-            field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
-        }
+        TileOn(X - 1, Y);
+        TileOn(X + 1, Y);
+        TileOn(X, Y - 1);
+        TileOn(X, Y + 1);
     }
 
     public void MoveTileOff()
@@ -295,68 +235,40 @@ public class FieldManager : MonoBehaviour
         int X = selectedTile.indexX;
         int Y = selectedTile.indexY;
 
-        if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.cango)
-        {
-            field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.empty;
-            field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
-        }
-        else if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.canfight)
-        {
-            field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.monster;
-            field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
-        }
-        else if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.canEnter)
-        {
-            field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.town;
-            field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
-        }
+        TileOff(X - 1, Y);
+        TileOff(X + 1, Y);
+        TileOff(X, Y - 1);
+        TileOff(X, Y + 1);
+    }
 
-        if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.cango)
-        {
-            field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.empty;
-            field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
-        }
-        else if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.canfight)
-        {
-            field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.monster;
-            field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
-        }
-        else if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.canEnter)
-        {
-            field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.town;
-            field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
-        }
+    private void TileOn(int X, int Y)
+    {
+        if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.empty))
+            TileStateSetting(X, Y, TileState.cango);
+        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.monster))
+            TileStateSetting(X, Y, TileState.canfight);
+        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.town))
+            TileStateSetting(X, Y, TileState.canEnter);
+    }
 
-        if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.cango)
-        {
-            field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.empty;
-            field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
-        }
-        else if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.canfight)
-        {
-            field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.monster;
-            field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
-        }
-        else if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.canEnter)
-        {
-            field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.town;
-            field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
-        }
+    private void TileOff(int X, int Y)
+    {
+        if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.cango))
+            TileStateSetting(X, Y, TileState.empty);
+        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.canfight))
+            TileStateSetting(X, Y, TileState.monster);
+        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.canEnter))
+            TileStateSetting(X, Y, TileState.town);
+    }
 
-        if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.cango)
-        {
-            field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.empty;
-            field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
-        }
-        else if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.canfight)
-        {
-            field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.monster;
-            field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
-        }
-        else if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.canEnter)
-        {
-            field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.town;
-            field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
-        }
+    private bool TileStateCheck(int X, int Y, TileState tileState)
+    {
+        return field.tileRaw[Y].fieldTiles[X].tileState == tileState;
+    }
+
+    private void TileStateSetting(int X, int Y, TileState tileState)
+    {
+        field.tileRaw[Y].fieldTiles[X].tileState = tileState;
+        field.tileRaw[Y].fieldTiles[X].RefreshTile();
     }
 }
