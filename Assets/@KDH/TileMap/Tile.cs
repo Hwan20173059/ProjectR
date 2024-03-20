@@ -9,7 +9,7 @@ public enum TileState
     player,
     empty, cango, cantgo,    
     monster, chest, town, dungeon,
-    canfight
+    canfight, canEnter
 }
 
 public class Tile : MonoBehaviour
@@ -89,6 +89,11 @@ public class Tile : MonoBehaviour
             case TileState.canfight:
                 ClearTile(TileState.canfight);
                 onObject = Instantiate(fieldManager.monsterPrefab, this.transform);
+                spriteRenderer.color = Color.magenta;
+                break;
+
+            case TileState.canEnter:
+                ClearTile(TileState.canEnter);
                 spriteRenderer.color = Color.magenta;
                 break;
         }
@@ -192,10 +197,9 @@ public class Tile : MonoBehaviour
                 case TileState.town:
                     if (fieldManager.isSelect == true)
                     {
-                        fieldManager.playerManager.isEnterTown = true;
-                        fieldManager.playerManager.selectTownID = townID;
-
-                        SceneManager.LoadScene("TownScene");
+                        fieldManager.infoUI.text = "마을 정보";
+                        fieldManager.selectUI.SetActive(true);
+                        // 마을 정보 제공
                         break;
                     }
                     else
@@ -235,6 +239,23 @@ public class Tile : MonoBehaviour
 
                         fieldManager.playerManager.selectDungeonID = 0;
                         SceneManager.LoadScene("DungeonScene");
+                        break;
+                    }
+                    else
+                    {
+                        fieldManager.infoUI.text = "몬스터 정보";
+                        fieldManager.selectUI.SetActive(true);
+                        // 몬스터 정보 제공
+                        break;
+                    }
+
+                case TileState.canEnter:
+                    if (fieldManager.isSelect == true)
+                    {
+                        fieldManager.playerManager.isEnterTown = true;
+                        fieldManager.playerManager.selectTownID = townID;
+
+                        SceneManager.LoadScene("TownScene");
                         break;
                     }
                     else

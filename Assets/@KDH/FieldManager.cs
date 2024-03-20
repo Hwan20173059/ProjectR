@@ -170,6 +170,11 @@ public class FieldManager : MonoBehaviour
                     field.tileRaw[i].fieldTiles[j].tileState = TileState.monster;
                     field.tileRaw[i].fieldTiles[j].RefreshTile();
                 }
+                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canEnter)
+                {
+                    field.tileRaw[i].fieldTiles[j].tileState = TileState.town;
+                    field.tileRaw[i].fieldTiles[j].RefreshTile();
+                }
             }
         }
     }
@@ -230,6 +235,11 @@ public class FieldManager : MonoBehaviour
             field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.canfight;
             field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
         }
+        else if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.town)
+        {
+            field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.canEnter;
+            field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
+        }
 
         if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.empty)
         {
@@ -239,6 +249,11 @@ public class FieldManager : MonoBehaviour
         else if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.monster)
         {
             field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.canfight;
+            field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
+        }
+        else if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.town)
+        {
+            field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.canEnter;
             field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
         }
 
@@ -252,6 +267,11 @@ public class FieldManager : MonoBehaviour
             field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.canfight;
             field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
         }
+        else if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.town)
+        {
+            field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.canEnter;
+            field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
+        }
 
         if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.empty)
         {
@@ -261,6 +281,11 @@ public class FieldManager : MonoBehaviour
         else if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.monster)
         {
             field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.canfight;
+            field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
+        }
+        else if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.town)
+        {
+            field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.canEnter;
             field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
         }
     }
@@ -280,6 +305,11 @@ public class FieldManager : MonoBehaviour
             field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.monster;
             field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
         }
+        else if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.canEnter)
+        {
+            field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.town;
+            field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
+        }
 
         if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.cango)
         {
@@ -289,6 +319,11 @@ public class FieldManager : MonoBehaviour
         else if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.canfight)
         {
             field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.monster;
+            field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
+        }
+        else if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.canEnter)
+        {
+            field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.town;
             field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
         }
 
@@ -302,6 +337,11 @@ public class FieldManager : MonoBehaviour
             field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.monster;
             field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
         }
+        else if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.canEnter)
+        {
+            field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.town;
+            field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
+        }
 
         if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.cango)
         {
@@ -311,6 +351,11 @@ public class FieldManager : MonoBehaviour
         else if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.canfight)
         {
             field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.monster;
+            field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
+        }
+        else if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.canEnter)
+        {
+            field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.town;
             field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
         }
     }
