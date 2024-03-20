@@ -258,15 +258,15 @@ public class BattleManager : MonoBehaviour
                 } break;
             case RouletteResult.BackPair:
                 {
-                    if (rouletteEquip[1].doubleChangeType == ValueChangeType.ADD)
-                        baseValue += rouletteEquip[1].data.doubleValue;
-                    else
-                        baseValue *= rouletteEquip[1].data.doubleValue;
-
                     if (rouletteEquip[0].singleChangeType == ValueChangeType.ADD)
                         baseValue += rouletteEquip[0].data.singleValue;
                     else
                         baseValue *= rouletteEquip[0].data.singleValue;
+
+                    if (rouletteEquip[1].doubleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[1].data.doubleValue;
+                    else
+                        baseValue *= rouletteEquip[1].data.doubleValue;
                 } break;
             case RouletteResult.Different:
                 {
