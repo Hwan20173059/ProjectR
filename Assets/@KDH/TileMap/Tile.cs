@@ -8,7 +8,8 @@ public enum TileState
 {
     player,
     empty, cango, cantgo,    
-    monster, chest, town, dungeon
+    monster, chest, town, dungeon,
+    canfight
 }
 
 public class Tile : MonoBehaviour
@@ -72,11 +73,15 @@ public class Tile : MonoBehaviour
             case TileState.dungeon:
                 spriteRenderer.color = Color.red;
                 break;
+
+            case TileState.canfight:
+                spriteRenderer.color = Color.magenta;
+                break;
         }
 
         if (onObject)
         {
-            if (tileState == TileState.player || tileState == TileState.cango)
+            if (tileState == TileState.player || tileState == TileState.cango || tileState == TileState.canfight)
                 onObject = Instantiate(onObject, this.gameObject.transform);
         }
         else
@@ -149,8 +154,8 @@ public class Tile : MonoBehaviour
                 case TileState.monster:
                     if (fieldManager.isSelect == true)
                     {
-                        fieldManager.playerManager.selectDungeonID = 0;
-                        SceneManager.LoadScene("DungeonScene");
+                        fieldManager.selectUI.SetActive(false);
+                        // 몬스터 정보 제공
                         break;
                     }
                     else
@@ -200,6 +205,21 @@ public class Tile : MonoBehaviour
                         fieldManager.infoUI.text = "던전 정보";
                         fieldManager.selectUI.SetActive(true);
                         // 던전 정보 제공
+                        break;
+                    }
+
+                case TileState.canfight:
+                    if (fieldManager.isSelect == true)
+                    {
+                        fieldManager.playerManager.selectDungeonID = 0;
+                        SceneManager.LoadScene("DungeonScene");
+                        break;
+                    }
+                    else
+                    {
+                        fieldManager.infoUI.text = "몬스터 정보";
+                        fieldManager.selectUI.SetActive(true);
+                        // 몬스터 정보 제공
                         break;
                     }
             }
