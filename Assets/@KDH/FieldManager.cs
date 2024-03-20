@@ -27,8 +27,7 @@ public class FieldManager : MonoBehaviour
     public GameObject fieldPlayer;
 
     [Header("Monster")]
-    public GameObject monsterPrefab;
-    public List<GameObject> fieldMonster = new List<GameObject>();
+    public List<Tile> fieldMonster = new List<Tile>();
 
     [Header("UI")]
     public TextMeshProUGUI turnState;
@@ -65,9 +64,69 @@ public class FieldManager : MonoBehaviour
         turnState.text = "ÇÊµå Â÷·Ê";
         isPlayerturn = false;
 
-        //EnemyTurn
+        yield return new WaitForSeconds(0.5f);
 
-        yield return new WaitForSeconds(2f);
+        for (int i = 0; i < fieldMonster.Count; i++)
+        {
+            int randomMove = Random.Range(0, 4);
+            int X = fieldMonster[i].indexX;
+            int Y = fieldMonster[i].indexY;
+
+            switch (randomMove)
+            {
+                case 0:
+                    if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.empty)
+                    {
+                        field.tileRaw[Y].fieldTiles[X].ClearTile();
+                        field.tileRaw[Y].fieldTiles[X].RefreshTile();
+                        fieldMonster[i] = field.tileRaw[Y].fieldTiles[X - 1];
+
+                        MonsterFieldSetting(X - 1, Y);
+                        field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
+                    }
+                    break;
+
+                case 1:
+                    if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.empty)
+                    {
+                        field.tileRaw[Y].fieldTiles[X].ClearTile();
+                        field.tileRaw[Y].fieldTiles[X].RefreshTile();
+                        fieldMonster[i] = field.tileRaw[Y].fieldTiles[X + 1];
+
+                        MonsterFieldSetting(X + 1, Y);
+                        field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
+                    }
+                    break;
+
+                case 2:
+                    if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.empty)
+                    {
+                        field.tileRaw[Y].fieldTiles[X].ClearTile();
+                        field.tileRaw[Y].fieldTiles[X].RefreshTile();
+                        fieldMonster[i] = field.tileRaw[Y - 1].fieldTiles[X];
+
+                        MonsterFieldSetting(X, Y - 1);
+                        field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
+                    }
+                    break;
+
+                case 3:
+                    if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.empty)
+                    {
+                        field.tileRaw[Y].fieldTiles[X].ClearTile();
+                        field.tileRaw[Y].fieldTiles[X].RefreshTile();
+                        fieldMonster[i] = field.tileRaw[Y + 1].fieldTiles[X];
+
+                        MonsterFieldSetting(X, Y + 1);
+                        field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
+                    }
+                    break;
+            }
+
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        yield return new WaitForSeconds(0.5f);
         PlayerTurn();
     }
 
@@ -80,7 +139,6 @@ public class FieldManager : MonoBehaviour
 
     private void MonsterFieldSetting(int x, int y)
     {
-        field.tileRaw[y].fieldTiles[x].onObject = monsterPrefab;
         field.tileRaw[y].fieldTiles[x].tileState = TileState.monster;
         field.tileRaw[y].fieldTiles[x].RefreshTile();
     }
@@ -114,7 +172,8 @@ public class FieldManager : MonoBehaviour
 
             if (field.tileRaw[randomY].fieldTiles[randomX].tileState == TileState.empty)
             {
-                fieldMonster.Add(Instantiate(monsterPrefab, field.tileRaw[randomY].fieldTiles[randomX].gameObject.transform));
+                fieldMonster.Add(field.tileRaw[randomY].fieldTiles[randomX]);
+                
                 MonsterFieldSetting(randomX, randomY);
             }
             else

@@ -229,7 +229,10 @@ public class Tile : MonoBehaviour
     public void ClearTile()
     {
         tileState = TileState.empty;
-        Destroy(onObject);
-        onObject = null;
+        if (onObject != null)
+        {
+            Destroy(onObject);
+            onObject = null;
+        }
     }
 }
