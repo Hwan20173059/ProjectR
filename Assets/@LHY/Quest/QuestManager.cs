@@ -62,7 +62,7 @@ public class QuestManager : MonoBehaviour
         {
             if ((quest.state == QuestState.Requirments_Not || quest.state == QuestState.Can_Start) && CheckRequirements(quest))
             {
-                Debug.Log(quest.state);
+                //Debug.Log(quest.state);
                 GameEventManager.instance.questEvent.QuestStateChange(quest);
                 ChangeQuestState(quest.info.id, QuestState.Can_Start);
             }
