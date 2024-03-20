@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum CharacterAction
-{
-    Attack
-}
-
 [CreateAssetMenu(fileName = "CharacterData", menuName = "Scriptable Object/CharacterData")]
 public class CharacterSO : ScriptableObject
 {

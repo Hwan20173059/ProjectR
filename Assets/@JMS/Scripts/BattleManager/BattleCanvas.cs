@@ -53,7 +53,7 @@ public class BattleCanvas : MonoBehaviour
     {
         if (battleManager.IsSelectingAction && selectMonster != null &&!(selectMonster.IsDead))
         {
-            character.selectAction = CharacterAction.Attack;
+            character.selectAction = CharacterAction.BaseAttack;
             character.curCoolTime = 0f;
             battleManager.performList.Add(100);
             character.stateMachine.ChangeState(character.stateMachine.readyState);
@@ -75,9 +75,9 @@ public class BattleCanvas : MonoBehaviour
     {
         switch (i)
         {
-            case 0: roulette1.sprite = battleManager.rouletteResult[i].equipSprite; break;
-            case 1: roulette2.sprite = battleManager.rouletteResult[i].equipSprite; break;
-            case 2: roulette3.sprite = battleManager.rouletteResult[i].equipSprite; break;
+            case 0: roulette1.sprite = battleManager.rouletteEquip[i].equipSprite; break;
+            case 1: roulette2.sprite = battleManager.rouletteEquip[i].equipSprite; break;
+            case 2: roulette3.sprite = battleManager.rouletteEquip[i].equipSprite; break;
         }
     }
 

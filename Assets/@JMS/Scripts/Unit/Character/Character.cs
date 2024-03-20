@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum CharacterAction
+{
+    BaseAttack,
+    AllAttack,
+}
 public class Character : MonoBehaviour
 {
     [Header("Data")]
@@ -71,7 +76,7 @@ public class Character : MonoBehaviour
     {
         characterName = baseData.characterName;
         maxHP = baseData.hp * level;
-        curHP = baseData.hp * level;
+        curHP = maxHP;
         atk = baseData.atk * level;
         needExp = baseData.needExp * level;
         actions = baseData.actions;

@@ -3,27 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+public enum RouletteResult
+{
+    Different,
+    FrontPair,
+    SidePair,
+    BackPair,
+    Triple,
+}
 public class BattleManager : MonoBehaviour
 {
     public List<DungeonSO> dungeonList;
     public int selectDungeon;
     public int curStage;
     public GameObject characterPrefab;
-    public List<EquipItem> rouletteResult;
+    public List<EquipItem> rouletteEquip;
+    public RouletteResult rouletteResult;
 
     public Character character;
-    public bool IsSelectingAction = false;
-    public bool IsRouletteUsed = true;
-    public Monster selectMonster;
     public List<Monster> monsters;
+    public Monster selectMonster;
+    public List<int> performList;
     public IState characterPrevState;
     public IState[] monstersPrevState;
-    public List<int> performList;
+    public bool IsSelectingAction = false;
+    public bool IsRouletteUsed = true;
 
     public bool isStageClear { get { return StageClearCheck(); } }
 
-    Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
+    Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
 
     public GameObject targetCirclePrefab;
     public TargetCircle targetCircle;
@@ -49,11 +59,19 @@ public class BattleManager : MonoBehaviour
 
         characterPrefab = PlayerManager.Instance.selectedCharacter;
     }
+
     private void Start()
     {
         Input.ClickActions.MouseClick.started += OnClickStart;
 
         stateMachine.ChangeState(stateMachine.startState);
+    }
+
+    private void Update()
+    {
+        stateMachine.HandleInput();
+
+        stateMachine.Update();
     }
 
     private void OnClickStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -76,13 +94,6 @@ public class BattleManager : MonoBehaviour
             battleCanvas.MonsterStateUpdate();
             battleCanvas.monsterInfoPanel.gameObject.SetActive(true);
         }
-    }
-
-    private void Update()
-    {
-        stateMachine.HandleInput();
-
-        stateMachine.Update();
     }
     
     public void SpawnCharacter()
@@ -172,15 +183,40 @@ public class BattleManager : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            rouletteResult.Add(PlayerManager.Instance.equip[Random.Range(0, 3)]);
+            rouletteEquip.Add(PlayerManager.Instance.equip[Random.Range(0, 3)]);
             battleCanvas.SetRoulette(i);
         }
+
+        if (rouletteEquip[0] == rouletteEquip[1])
+        {
+            if (rouletteEquip[1] == rouletteEquip[2])
+            {
+                rouletteResult = RouletteResult.Triple;
+            }
+            else
+            {
+                rouletteResult = RouletteResult.FrontPair;
+            }
+        }
+        else if (rouletteEquip[0] == rouletteEquip[2])
+        {
+            rouletteResult = RouletteResult.SidePair;
+        }
+        else if (rouletteEquip[1] == rouletteEquip[2])
+        {
+            rouletteResult = RouletteResult.BackPair;
+        }
+        else
+        {
+            rouletteResult = RouletteResult.Different;
+        }
+
         yield return null;
     }
 
     public void RouletteClear()
     {
-        rouletteResult.Clear();
+        rouletteEquip.Clear();
         battleCanvas.ClearRoulette();
         battleCanvas.rouletteButton.gameObject.SetActive(true);
     }

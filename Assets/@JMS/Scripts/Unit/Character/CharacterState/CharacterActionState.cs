@@ -14,16 +14,28 @@ public class CharacterActionState : CharacterBaseState
     {
         base.Enter();
 
+        switch (battleManager.rouletteResult)
+        {
+            case RouletteResult.Triple:
+                character.selectAction = CharacterAction.AllAttack;
+                break;
+            default : break;
+        }
+
         switch (character.selectAction)
         {
-            case CharacterAction.Attack:
+            case CharacterAction.BaseAttack:
                 StateUpdate("공격중");
-                character.StartCoroutine(Attack());
+                character.StartCoroutine(BaseAttack());
+                break;
+            case CharacterAction.AllAttack:
+                StateUpdate("공격중");
+                character.StartCoroutine(AllAttack());
                 break;
         }
     }
 
-    IEnumerator Attack()
+    IEnumerator BaseAttack()
     {
         selectMonster = battleManager.selectMonster;
         selectMonsterPosition = new Vector3(selectMonster.startPosition.x -1f, selectMonster.startPosition.y, 0);
@@ -44,6 +56,27 @@ public class CharacterActionState : CharacterBaseState
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
 
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+
+    IEnumerator AllAttack()
+    {
+        character.animator.SetBool("Idle", false);
+        character.animator.SetTrigger("Attack");
+
+        for (int i = 0; i < battleManager.monsters.Count; i++)
+        {
+            battleManager.monsters[i].ChangeHP(-character.atk);
+            battleManager.monsters[i].ChangeHP(-ItemValue(0));
+            battleManager.monsters[i].ChangeHP(-ItemValue(1));
+            battleManager.monsters[i].ChangeHP(-ItemValue(2));
+        }
+
+        while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
+        character.animator.SetBool("Idle", true);
+
+        character.selectAction = CharacterAction.BaseAttack;
         stateMachine.ChangeState(stateMachine.readyState);
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
