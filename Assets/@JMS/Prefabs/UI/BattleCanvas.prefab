@@ -2286,6 +2286,7 @@ MonoBehaviour:
   monsterInfoPanel: {fileID: 1402336891127017973}
   characterStateText: {fileID: 6856873867726635225}
   monsterStateText: {fileID: 8125145798157382332}
+  battleStateText: {fileID: 8998691890841330037}
   roulette3: {fileID: 8381893417035059760}
   roulette2: {fileID: 1496210395049910469}
   roulette1: {fileID: 2155854552997713176}
@@ -2491,8 +2492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD50C\uB808\uC774\uC5B4\uC758 \uACF5\uACA9!!\n\uC2AC\uB77C\uC784\uC5D0\uAC8C
-    15\uC758 \uD53C\uD574!"
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3bce599ad1a7d43bd5ec65b4ab8b0f, type: 2}
   m_sharedMaterial: {fileID: 50626751937510570, guid: 0a3bce599ad1a7d43bd5ec65b4ab8b0f, type: 2}

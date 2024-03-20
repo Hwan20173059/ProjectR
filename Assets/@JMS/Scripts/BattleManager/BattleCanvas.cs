@@ -25,6 +25,7 @@ public class BattleCanvas : MonoBehaviour
     public GameObject monsterInfoPanel;
     public TMP_Text characterStateText;
     public TMP_Text monsterStateText;
+    public TMP_Text battleStateText;
 
     public Image roulette3;
     public Image roulette2;
@@ -115,5 +116,10 @@ public class BattleCanvas : MonoBehaviour
     {
         if (selectMonster == null) return;
         monsterStateText.text = $"{selectMonster.monsterName} {selectMonster.curHP} / {selectMonster.maxHP}";
+    }
+
+    public void BattleStateUpdate(string text)
+    {
+        battleStateText.text = $"{text}";
     }
 }

@@ -334,13 +334,14 @@ MonoBehaviour:
   selectDungeon: 0
   curStage: 0
   characterPrefab: {fileID: 0}
-  rouletteResult: []
+  rouletteEquip: []
+  rouletteResult: 0
   character: {fileID: 0}
+  monsters: []
+  selectMonster: {fileID: 0}
+  performList: 
   IsSelectingAction: 0
   IsRouletteUsed: 1
-  selectMonster: {fileID: 0}
-  monsters: []
-  performList: 
   targetCirclePrefab: {fileID: 387042340656938697, guid: 1f77bce04544eac49af459f4a8656ff5, type: 3}
   targetCircle: {fileID: 0}
   monsterPool: {fileID: 0}
