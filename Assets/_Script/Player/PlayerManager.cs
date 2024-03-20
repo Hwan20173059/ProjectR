@@ -15,14 +15,15 @@ public class PlayerManager : Singleton<PlayerManager>
     public GameObject townPlayer;    
 
     [Header("Field")]
-    public int fieldX = 0;
-    public int fieldY = 1;
+    public int fieldX;
+    public int fieldY;
 
     public bool isEnterTown = true;
 
     public List<int> monsterPosition = new List<int>();
 
     [Header("Dungeon")]
+    public int selectTownID;
     public int selectDungeonID;
 
 

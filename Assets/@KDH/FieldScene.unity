@@ -676,6 +676,7 @@ MonoBehaviour:
   field: {fileID: 1490224713}
   selectedTile: {fileID: 0}
   fieldState: 0
+  playerPosition: 0000000000000000
   isSelect: 0
   isPlayerturn: 1
   playerPrefab: {fileID: 230179430662417554, guid: 9eff73ecd7738d844ba706486e4079ae, type: 3}
@@ -1835,6 +1836,10 @@ PrefabInstance:
     - target: {fileID: 7541206588015949744, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: indexY
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7541206588015949744, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
+      propertyPath: townID
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7541206588015949744, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState

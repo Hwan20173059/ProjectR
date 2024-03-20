@@ -19,6 +19,8 @@ public class Tile : MonoBehaviour
 
     [Header("State")]
     public TileState tileState;
+    public int dungeonID;
+    public int townID;
 
     [Header("Object")]
     public GameObject onObject;
@@ -141,6 +143,9 @@ public class Tile : MonoBehaviour
                         fieldManager.PlayerMoveTile();
                         tileState = TileState.player;
 
+                        fieldManager.playerPosition[0] = indexX;
+                        fieldManager.playerPosition[1] = indexY;
+
                         RefreshTile();
 
                         fieldManager.isSelect = false;
@@ -187,8 +192,9 @@ public class Tile : MonoBehaviour
                 case TileState.town:
                     if (fieldManager.isSelect == true)
                     {
-                        //플레이어의 위치 기억
                         fieldManager.playerManager.isEnterTown = true;
+                        fieldManager.playerManager.selectTownID = townID;
+
                         SceneManager.LoadScene("TownScene");
                         break;
                     }
@@ -203,7 +209,10 @@ public class Tile : MonoBehaviour
                 case TileState.dungeon:
                     if (fieldManager.isSelect == true)
                     {
-                        // 해당 던전으 이동 + 던전에서 나올때 위치 기억
+                        fieldManager.playerManager.isEnterTown = true;
+                        fieldManager.playerManager.selectDungeonID = dungeonID;
+
+                        // 로드 씬 던전
                         break;
                     }
                     else

@@ -47,8 +47,16 @@ public class TownUiManager : MonoBehaviour
 
     public void DungeonUIOn()
     {
-        playerManager.fieldX = 0;
-        playerManager.fieldY = 1;
+        if (playerManager.selectTownID == 0)
+        {
+            playerManager.fieldX = 0;
+            playerManager.fieldY = 1;
+        }
+        else if (playerManager.selectTownID == 1) 
+        {
+            playerManager.fieldX = 4;
+            playerManager.fieldY = 7;
+        }
         SceneManager.LoadScene("FieldScene");
         //dungeonUI.SetActive(true);
     }
