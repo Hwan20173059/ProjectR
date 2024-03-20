@@ -140,7 +140,7 @@ public class Tile : MonoBehaviour
 
                         fieldManager.PlayerMoveTile();
                         tileState = TileState.player;
-                        onObject = fieldManager.playerPrefab;
+
                         RefreshTile();
 
                         fieldManager.isSelect = false;
@@ -187,6 +187,8 @@ public class Tile : MonoBehaviour
                 case TileState.town:
                     if (fieldManager.isSelect == true)
                     {
+                        //플레이어의 위치 기억
+                        fieldManager.playerManager.isEnterTown = true;
                         SceneManager.LoadScene("TownScene");
                         break;
                     }
@@ -215,6 +217,13 @@ public class Tile : MonoBehaviour
                 case TileState.canfight:
                     if (fieldManager.isSelect == true)
                     {
+                        fieldManager.playerManager.fieldX = indexX;
+                        fieldManager.playerManager.fieldY = indexY;
+
+                        fieldManager.fieldMonster.Remove(this);
+                        fieldManager.playerManager.isEnterTown = false;
+                        fieldManager.SaveMonster();
+
                         fieldManager.playerManager.selectDungeonID = 0;
                         SceneManager.LoadScene("DungeonScene");
                         break;
@@ -233,6 +242,7 @@ public class Tile : MonoBehaviour
     public void ClearTile(TileState tileState)
     {
         this.tileState = tileState;
+
         if (onObject != null)
         {
             Destroy(onObject);

@@ -678,7 +678,7 @@ MonoBehaviour:
   fieldState: 0
   isSelect: 0
   isPlayerturn: 1
-  fieldPlayer: {fileID: 230179430662417554, guid: 9eff73ecd7738d844ba706486e4079ae, type: 3}
+  playerPrefab: {fileID: 230179430662417554, guid: 9eff73ecd7738d844ba706486e4079ae, type: 3}
   monsterPrefab: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
   fieldMonster: []
   turnState: {fileID: 145535765}

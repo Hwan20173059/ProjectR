@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,6 +21,7 @@ public class FieldManager : MonoBehaviour
 
     [Header("State")]
     public FieldState fieldState;
+    public int[] playerPosition = new int[2];
     public bool isSelect = false;
     public bool isPlayerturn = true;
 
@@ -42,7 +44,15 @@ public class FieldManager : MonoBehaviour
         playerManager = PlayerManager.Instance;
 
         PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
-        SpawnRandomMonster(4);
+
+        if (playerManager.isEnterTown == true)
+        {
+            SpawnRandomMonster(4);
+        }
+        else
+        {
+            LoadMonster();
+        }
 
         PlayerTurn();
     }
@@ -69,7 +79,7 @@ public class FieldManager : MonoBehaviour
 
         for (int i = 0; i < fieldMonster.Count; i++)
         {
-            int randomMove = Random.Range(0, 4);
+            int randomMove = UnityEngine.Random.Range(0, 4);
             int X = fieldMonster[i].indexX;
             int Y = fieldMonster[i].indexY;
 
@@ -80,6 +90,7 @@ public class FieldManager : MonoBehaviour
                     {
                         field.tileRaw[Y].fieldTiles[X].ClearTile(TileState.empty);
                         field.tileRaw[Y].fieldTiles[X].RefreshTile();
+
                         fieldMonster[i] = field.tileRaw[Y].fieldTiles[X - 1];
 
                         MonsterFieldSetting(X - 1, Y);
@@ -167,8 +178,8 @@ public class FieldManager : MonoBehaviour
     {
         for (int i = 0; i < index; i++)
         {
-            int randomY = Random.Range(0, field.tileRaw.Length);
-            int randomX = Random.Range(0, field.tileRaw[randomY].fieldTiles.Length);
+            int randomY = UnityEngine.Random.Range(0, field.tileRaw.Length);
+            int randomX = UnityEngine.Random.Range(0, field.tileRaw[randomY].fieldTiles.Length);
 
             if (field.tileRaw[randomY].fieldTiles[randomX].tileState == TileState.empty)
             {
@@ -180,6 +191,27 @@ public class FieldManager : MonoBehaviour
             {
                 SpawnRandomMonster(1);
             }
+        }
+    }
+
+    public void SaveMonster()
+    {
+        for (int i = 0; i < fieldMonster.Count; i++)
+        {
+            playerManager.monsterPosition.Add(fieldMonster[i].indexX);
+            playerManager.monsterPosition.Add(fieldMonster[i].indexY);
+        }
+    }
+
+    private void LoadMonster()
+    {
+        for (int i = 0; i < playerManager.monsterPosition.Count; i += 2)
+        {
+            int Y = playerManager.monsterPosition[i + 1];
+            int X = playerManager.monsterPosition[i];
+
+            fieldMonster.Add(field.tileRaw[Y].fieldTiles[X]);
+            MonsterFieldSetting(X, Y);
         }
     }
 

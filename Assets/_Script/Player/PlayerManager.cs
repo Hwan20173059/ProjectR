@@ -6,15 +6,23 @@ using UnityEngine.Assertions.Must;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
-    public TownUiManager townUiManager;
-    public GameObject townPlayer;
-
+    [Header("Equip")]
     public GameObject selectedCharacter;
     public EquipItem[] equip = new EquipItem[3];
 
+    [Header("Town")]
+    public TownUiManager townUiManager;
+    public GameObject townPlayer;    
+
+    [Header("Field")]
     public int fieldX = 0;
     public int fieldY = 1;
 
+    public bool isEnterTown = true;
+
+    public List<int> monsterPosition = new List<int>();
+
+    [Header("Dungeon")]
     public int selectDungeonID;
 
 
