@@ -91,7 +91,7 @@ public class FieldManager : MonoBehaviour
         {
             for(int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
             {
-                if (field.tileRaw[i].fieldTiles[j].tileState == TileState.player)
+                if (field.tileRaw[i].fieldTiles[j].tileState == TileState.player || field.tileRaw[i].fieldTiles[j].tileState == TileState.cango)
                 {
                     field.tileRaw[i].fieldTiles[j].ClearTile();
                     field.tileRaw[i].fieldTiles[j].RefreshTile();
@@ -116,6 +116,66 @@ public class FieldManager : MonoBehaviour
             {
                 SpawnRandomMonster(1);
             }
+        }
+    }
+
+    public void MoveTileOn()
+    {
+        int X = selectedTile.indexX;
+        int Y = selectedTile.indexY;
+
+        if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.empty)
+        {
+            field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.cango;
+            field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
+        }
+
+        if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.empty)
+        {
+            field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.cango;
+            field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
+        }
+
+        if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.empty)
+        {
+            field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.cango;
+            field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
+        }
+
+        if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.empty)
+        {
+            field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.cango;
+            field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
+        }
+    }
+
+    public void MoveTileOff()
+    {
+        int X = selectedTile.indexX;
+        int Y = selectedTile.indexY;
+
+        if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.cango)
+        {
+            field.tileRaw[Y].fieldTiles[X - 1].tileState = TileState.empty;
+            field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
+        }
+
+        if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.cango)
+        {
+            field.tileRaw[Y].fieldTiles[X + 1].tileState = TileState.empty;
+            field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
+        }
+
+        if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.cango)
+        {
+            field.tileRaw[Y - 1].fieldTiles[X].tileState = TileState.empty;
+            field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
+        }
+
+        if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.cango)
+        {
+            field.tileRaw[Y + 1].fieldTiles[X].tileState = TileState.empty;
+            field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
         }
     }
 }

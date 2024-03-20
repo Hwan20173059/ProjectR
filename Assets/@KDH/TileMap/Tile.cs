@@ -7,17 +7,25 @@ using UnityEngine.SceneManagement;
 public enum TileState
 {
     player,
-    empty, cantgo,    
+    empty, cango, cantgo,    
     monster, chest, town, dungeon
 }
 
 public class Tile : MonoBehaviour
 {
+    [Header("Manager")]
     public FieldManager fieldManager;
+
+    [Header("State")]
     public TileState tileState;
 
+    [Header("Object")]
     public GameObject onObject;
     public GameObject highlight;
+
+    [Header("index")]
+    public int indexX;
+    public int indexY;
 
     SpriteRenderer spriteRenderer;
 
@@ -39,6 +47,10 @@ public class Tile : MonoBehaviour
 
             case TileState.player:
                 spriteRenderer.color = Color.blue;
+                break;
+
+            case TileState.cango:
+                spriteRenderer.color = Color.cyan;
                 break;
 
             case TileState.cantgo:
@@ -64,7 +76,7 @@ public class Tile : MonoBehaviour
 
         if (onObject)
         {
-            if (tileState == TileState.player)
+            if (tileState == TileState.player || tileState == TileState.cango)
                 onObject = Instantiate(onObject, this.gameObject.transform);
         }
         else
@@ -94,18 +106,25 @@ public class Tile : MonoBehaviour
                     if (fieldManager.isSelect == true)
                     {
                         fieldManager.isSelect = false;
+                        fieldManager.MoveTileOff();
                         fieldManager.selectUI.SetActive(false);
                         break;
                     }
                     else
                     {
+                        fieldManager.selectedTile = this;
                         fieldManager.isSelect = true;
                         fieldManager.infoUI.text = "플레이어";
+
+                        fieldManager.MoveTileOn();
                         fieldManager.selectUI.SetActive(true);
                         break;
                     }
 
                 case TileState.empty:
+                        break;
+
+                case TileState.cango:
                     if (fieldManager.isSelect == true)
                     {
                         fieldManager.selectedTile = this;
