@@ -98,7 +98,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator DoubleAttack()
     {
-        if(battleManager.monsters.Count > 1)
+        if(battleManager.aliveMonsterCount > 1)
         {
             selectMonster = battleManager.selectMonster;
             Vector3 selectMonsterPosition = new Vector3(selectMonster.startPosition.x - 1f, selectMonster.startPosition.y);
