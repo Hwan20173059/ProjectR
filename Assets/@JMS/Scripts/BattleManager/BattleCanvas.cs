@@ -101,7 +101,7 @@ public class BattleCanvas : MonoBehaviour
     void TownSceneLoad()
     {
         battleDefeatPanel.SetActive(false);
-        SceneManager.LoadScene("TownScene");
+        SceneManager.LoadScene("FieldScene");
     }
 
     public void UpdateCharacterState()
