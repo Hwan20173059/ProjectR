@@ -4,7 +4,6 @@
 			"id": 0,
 			"spritePath": "Sprite/Food/Potato",
 			"equipName": "정의의 주먹",
-			"type": "Normal",
 			"singleValue": 5,
 			"singleChangeType": "ADD",
 			"doubleValue": 5,
@@ -17,7 +16,6 @@
 			"id": 1,
 			"spritePath": "Sprite/Food/Apple",
 			"equipName": "불꽃의 사과",
-			"type": "Fire",
 			"singleValue": 12,
 			"singleChangeType": "ADD",
 			"doubleValue": 12,
@@ -30,7 +28,6 @@
 			"id": 2,
 			"spritePath": "Sprite/Food/Bread",
 			"equipName": "대지의 빵",
-			"type": "Ground",
 			"singleValue": 8,
 			"singleChangeType": "ADD",
 			"doubleValue": 8,
@@ -43,7 +40,6 @@
 			"id": 3,
 			"spritePath": "Sprite/Food/Fish",
 			"equipName": "바다의 생선",
-			"type": "Water",
 			"singleValue": 11,
 			"singleChangeType": "ADD",
 			"doubleValue": 11,
@@ -56,7 +52,6 @@
 			"id": 4,
 			"spritePath": "Sprite/Food/Beer",
 			"equipName": "승리의 잔",
-			"type": "Water",
 			"singleValue": 10,
 			"singleChangeType": "ADD",
 			"doubleValue": 10,
@@ -64,6 +59,35 @@
 			"tripleValue": 10,
 			"tripleChangeType": "ADD",
 			"info": "축배를 들어라."
+		}
+	],
+	"consumeDatas": [
+		{
+			"id": 0,
+			"spritePath": "Sprite/Food/Beer",
+			"equipName": "소비아이템1",
+			"type": "Potion",
+			"Value": 10,
+			"info": "id0.",
+			"price": 100
+		},
+		{
+			"id": 1,
+			"spritePath": "Sprite/Food/Apple",
+			"equipName": "소비아이템2",
+			"type": "Potion",
+			"Value": 10,
+			"info": "id1.",
+			"price": 100
+		},
+		{
+			"id": 2,
+			"spritePath": "Sprite/Food/Bread",
+			"equipName": "소비아이템3",
+			"type": "Potion",
+			"Value": 10,
+			"info": "id2.",
+			"price": 100
 		}
 	]
 }
