@@ -45,55 +45,55 @@ public class Tile : MonoBehaviour
         switch (tileState)
         {
             case TileState.empty:
-                ClearTile(TileState.empty);
+                SetTile(TileState.empty);
                 spriteRenderer.color = Color.white;
                 break;
 
             case TileState.player:
-                ClearTile(TileState.player);
+                SetTile(TileState.player);
                 onObject = Instantiate(fieldManager.playerPrefab, this.transform);
                 spriteRenderer.color = Color.blue;
                 break;
 
             case TileState.cango:
-                ClearTile(TileState.cango);
+                SetTile(TileState.cango);
                 spriteRenderer.color = Color.cyan;
                 break;
 
             case TileState.cantgo:
-                ClearTile(TileState.cantgo);
+                SetTile(TileState.cantgo);
                 spriteRenderer.color = Color.black;
                 break;
 
             case TileState.monster:
-                ClearTile(TileState.monster);
+                SetTile(TileState.monster);
                 onObject = Instantiate(fieldManager.monsterPrefab, this.transform);
                 spriteRenderer.color = Color.yellow;
                 break;
 
             case TileState.chest:
-                ClearTile(TileState.chest);
+                SetTile(TileState.chest);
                 spriteRenderer.color = Color.gray;
                 break;
 
             case TileState.town:
-                ClearTile(TileState.town);
+                SetTile(TileState.town);
                 spriteRenderer.color = Color.green;
                 break;
 
             case TileState.dungeon:
-                ClearTile(TileState.dungeon);
+                SetTile(TileState.dungeon);
                 spriteRenderer.color = Color.red;
                 break;
 
             case TileState.canfight:
-                ClearTile(TileState.canfight);
+                SetTile(TileState.canfight);
                 onObject = Instantiate(fieldManager.monsterPrefab, this.transform);
                 spriteRenderer.color = Color.magenta;
                 break;
 
             case TileState.canEnter:
-                ClearTile(TileState.canEnter);
+                SetTile(TileState.canEnter);
                 spriteRenderer.color = Color.magenta;
                 break;
         }
@@ -145,7 +145,7 @@ public class Tile : MonoBehaviour
                     {
                         fieldManager.selectedTile = this;
 
-                        fieldManager.PlayerMoveTile();
+                        fieldManager.FieldMoveAfter();
                         tileState = TileState.player;
 
                         fieldManager.playerPosition[0] = indexX;
@@ -269,7 +269,7 @@ public class Tile : MonoBehaviour
         }
     }
 
-    public void ClearTile(TileState tileState)
+    public void SetTile(TileState tileState)
     {
         this.tileState = tileState;
 

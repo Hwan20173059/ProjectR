@@ -86,52 +86,23 @@ public class FieldManager : MonoBehaviour
             switch (randomMove)
             {
                 case 0:
-                    if (X - 1 >= 0 && field.tileRaw[Y].fieldTiles[X - 1].tileState == TileState.empty)
-                    {
-                        field.tileRaw[Y].fieldTiles[X].ClearTile(TileState.empty);
-                        field.tileRaw[Y].fieldTiles[X].RefreshTile();
-
-                        fieldMonster[i] = field.tileRaw[Y].fieldTiles[X - 1];
-
-                        MonsterFieldSetting(X - 1, Y);
-                        field.tileRaw[Y].fieldTiles[X - 1].RefreshTile();
-                    }
+                    if (FieldStateEmptyCheck(X - 1, Y))
+                        MoveTileMonsterState(i, X, Y, X - 1, Y);
                     break;
 
                 case 1:
-                    if (X + 1 < 9 && field.tileRaw[Y].fieldTiles[X + 1].tileState == TileState.empty)
-                    {
-                        field.tileRaw[Y].fieldTiles[X].ClearTile(TileState.empty);
-                        field.tileRaw[Y].fieldTiles[X].RefreshTile();
-                        fieldMonster[i] = field.tileRaw[Y].fieldTiles[X + 1];
-
-                        MonsterFieldSetting(X + 1, Y);
-                        field.tileRaw[Y].fieldTiles[X + 1].RefreshTile();
-                    }
+                    if (FieldStateEmptyCheck(X + 1, Y))
+                        MoveTileMonsterState(i, X, Y, X + 1, Y);
                     break;
 
                 case 2:
-                    if (Y - 1 >= 0 && field.tileRaw[Y - 1].fieldTiles[X].tileState == TileState.empty)
-                    {
-                        field.tileRaw[Y].fieldTiles[X].ClearTile(TileState.empty);
-                        field.tileRaw[Y].fieldTiles[X].RefreshTile();
-                        fieldMonster[i] = field.tileRaw[Y - 1].fieldTiles[X];
-
-                        MonsterFieldSetting(X, Y - 1);
-                        field.tileRaw[Y - 1].fieldTiles[X].RefreshTile();
-                    }
+                    if (FieldStateEmptyCheck(X, Y - 1))
+                        MoveTileMonsterState(i, X, Y, X, Y - 1);
                     break;
 
                 case 3:
-                    if (Y + 1 < 9 && field.tileRaw[Y + 1].fieldTiles[X].tileState == TileState.empty)
-                    {
-                        field.tileRaw[Y].fieldTiles[X].ClearTile(TileState.empty);
-                        field.tileRaw[Y].fieldTiles[X].RefreshTile();
-                        fieldMonster[i] = field.tileRaw[Y + 1].fieldTiles[X];
-
-                        MonsterFieldSetting(X, Y + 1);
-                        field.tileRaw[Y + 1].fieldTiles[X].RefreshTile();
-                    }
+                    if (FieldStateEmptyCheck(X, Y + 1))
+                        MoveTileMonsterState(i, X, Y, X, Y + 1);
                     break;
             }
 
@@ -140,6 +111,20 @@ public class FieldManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
         PlayerTurn();
+    }
+
+    private void MoveTileMonsterState(int monsterIndex, int X, int Y, int MoveX, int MoveY)
+    {
+        field.tileRaw[Y].fieldTiles[X].SetTile(TileState.empty);
+        field.tileRaw[Y].fieldTiles[X].RefreshTile();
+
+        fieldMonster[monsterIndex] = field.tileRaw[MoveY].fieldTiles[MoveX];
+        MonsterFieldSetting(MoveX, MoveY);
+    }
+
+    private bool FieldStateEmptyCheck(int X, int Y)
+    {
+        return X > -1 && X < 9 && Y > -1 && Y < 9 && field.tileRaw[Y].fieldTiles[X].tileState == TileState.empty;
     }
 
     private void PlayerFieldSetting(int x, int y)
@@ -154,7 +139,7 @@ public class FieldManager : MonoBehaviour
         field.tileRaw[y].fieldTiles[x].RefreshTile();
     }
 
-    public void PlayerMoveTile()
+    public void FieldMoveAfter()
     {
         for (int i =0; i < field.tileRaw.Length; i++)
         {
@@ -162,7 +147,7 @@ public class FieldManager : MonoBehaviour
             {
                 if (field.tileRaw[i].fieldTiles[j].tileState == TileState.player || field.tileRaw[i].fieldTiles[j].tileState == TileState.cango)
                 {
-                    field.tileRaw[i].fieldTiles[j].ClearTile(TileState.empty);
+                    field.tileRaw[i].fieldTiles[j].SetTile(TileState.empty);
                     field.tileRaw[i].fieldTiles[j].RefreshTile();
                 }
                 else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canfight)
