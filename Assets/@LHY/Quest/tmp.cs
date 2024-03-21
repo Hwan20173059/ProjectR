@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class tmp : MonoBehaviour
 {
@@ -11,4 +12,11 @@ public class tmp : MonoBehaviour
         GameEventManager.instance.questEvent.DungeonClear();
         //GameEventManager.instance.questEvent.QuestStateChange();
     }
+
+    public void dungeonenter(string str)
+    {
+        SceneManager.LoadScene(str);
+    }
+
+
 }

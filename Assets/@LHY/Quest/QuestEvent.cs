@@ -72,4 +72,14 @@ public class QuestEvent
             onSubmitPressed(id);
         }
     }
+
+    public event Action<QuestSlot> onQuestSelect;
+    public void QuestSelect(QuestSlot questslot)
+    {
+
+        if (onQuestSelect != null)
+        {
+            onQuestSelect(questslot);
+        }
+    }
 }
