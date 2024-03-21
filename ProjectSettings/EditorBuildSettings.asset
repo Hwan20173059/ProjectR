@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/DungeonScene.unity
     guid: 499c3ec51a3e1f942851fa90cd2ec608
   - enabled: 1
-    path: Assets/@JMS/Scene/BattleEndTestScene.unity
+    path: Assets/@JMS/Scene/BattleTestTownScene.unity
     guid: 3cfbbb33ddd6868468f8638c2ac32ed7
   - enabled: 1
     path: Assets/@KDH/FieldScene.unity

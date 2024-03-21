@@ -11,6 +11,7 @@ public enum CharacterAction
 public class Character : MonoBehaviour
 {
     [Header("Data")]
+    public int id;
     public CharacterSO baseData;
 
     [Header("Info")]
