@@ -31,6 +31,7 @@ public class BattleManager : MonoBehaviour
     public bool IsRouletteUsed = true;
 
     public bool isStageClear { get { return StageClearCheck(); } }
+    public int aliveMonsterCount { get { return AliveMonsterCount(); } }
 
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
     Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
@@ -177,6 +178,17 @@ public class BattleManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private int AliveMonsterCount()
+    {
+        int count = 0;
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            if (!monsters[i].IsDead)
+                count++;
+        }
+        return count;
     }
 
     public IEnumerator Roulette()
