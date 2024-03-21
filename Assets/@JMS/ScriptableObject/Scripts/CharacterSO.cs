@@ -11,5 +11,4 @@ public class CharacterSO : ScriptableObject
     public int needExp;
     public int maxLevel;
     public float actionCoolTime;
-    public List<CharacterAction> actions;
 }

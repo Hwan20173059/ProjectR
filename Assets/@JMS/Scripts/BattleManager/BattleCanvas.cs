@@ -54,7 +54,6 @@ public class BattleCanvas : MonoBehaviour
     {
         if (battleManager.IsSelectingAction && selectMonster != null &&!(selectMonster.IsDead))
         {
-            character.selectAction = CharacterAction.BaseAttack;
             character.curCoolTime = 0f;
             battleManager.performList.Add(100);
             character.stateMachine.ChangeState(character.stateMachine.readyState);

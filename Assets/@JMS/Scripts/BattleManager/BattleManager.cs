@@ -221,7 +221,7 @@ public class BattleManager : MonoBehaviour
         battleCanvas.rouletteButton.gameObject.SetActive(true);
     }
 
-    public void ChangeValue(RouletteResult rouletteResult, ref int baseValue)
+    public int GetChangeValue(RouletteResult rouletteResult, int baseValue)
     {
         switch(rouletteResult)
         {
@@ -231,7 +231,8 @@ public class BattleManager : MonoBehaviour
                         baseValue += rouletteEquip[2].data.tripleValue;
                     else
                         baseValue *= rouletteEquip[2].data.tripleValue;
-                } break;
+                    return baseValue;
+                }
             case RouletteResult.FrontPair:
                 {
                     if (rouletteEquip[0].doubleChangeType == ValueChangeType.ADD)
@@ -243,7 +244,8 @@ public class BattleManager : MonoBehaviour
                         baseValue += rouletteEquip[2].data.singleValue;
                     else
                         baseValue *= rouletteEquip[2].data.singleValue;
-                } break;
+                    return baseValue;
+                }
             case RouletteResult.SidePair:
                 {
                     if (rouletteEquip[0].doubleChangeType == ValueChangeType.ADD)
@@ -255,7 +257,8 @@ public class BattleManager : MonoBehaviour
                         baseValue += rouletteEquip[1].data.singleValue;
                     else
                         baseValue *= rouletteEquip[1].data.singleValue;
-                } break;
+                    return baseValue;
+                }
             case RouletteResult.BackPair:
                 {
                     if (rouletteEquip[0].singleChangeType == ValueChangeType.ADD)
@@ -267,7 +270,8 @@ public class BattleManager : MonoBehaviour
                         baseValue += rouletteEquip[1].data.doubleValue;
                     else
                         baseValue *= rouletteEquip[1].data.doubleValue;
-                } break;
+                    return baseValue;
+                }
             case RouletteResult.Different:
                 {
                     if (rouletteEquip[0].singleChangeType == ValueChangeType.ADD)
@@ -284,7 +288,9 @@ public class BattleManager : MonoBehaviour
                         baseValue += rouletteEquip[2].data.singleValue;
                     else
                         baseValue *= rouletteEquip[2].data.singleValue;
-                } break;
+                    return baseValue;
+                }
+            default: return baseValue;
         }
     }
 }

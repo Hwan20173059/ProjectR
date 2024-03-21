@@ -35,7 +35,7 @@ public class CharacterBaseState : IState
 
     public virtual void Update()
     {
-
+        Debug.DrawRay(character.transform.position, Vector3.right * 4f, new Color(0, 100, 0));
     }
 
     protected float GetNormalizedTime(Animator animator, string tag)

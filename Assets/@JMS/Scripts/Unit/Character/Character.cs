@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum CharacterAction
-{
-    BaseAttack,
-    AllAttack,
-}
 public class Character : MonoBehaviour
 {
     [Header("Data")]
@@ -29,9 +24,6 @@ public class Character : MonoBehaviour
     public int atk;
     public bool IsDead => curHP <= 0;
     public string currentState = "´ë±âÁß";
-
-    public List<CharacterAction> actions;
-    public CharacterAction selectAction;
 
     public float curCoolTime;
     public float maxCoolTime;
@@ -79,7 +71,6 @@ public class Character : MonoBehaviour
         curHP = maxHP;
         atk = baseData.atk * level;
         needExp = baseData.needExp * level;
-        actions = baseData.actions;
         maxCoolTime = baseData.actionCoolTime;
 
         hpBar.Init();
