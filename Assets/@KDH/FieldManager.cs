@@ -47,6 +47,7 @@ public class FieldManager : MonoBehaviour
 
         if (playerManager.isEnterTown == true)
         {
+            playerManager.monsterPosition = new List<int>();
             SpawnRandomMonster(4);
         }
         else
