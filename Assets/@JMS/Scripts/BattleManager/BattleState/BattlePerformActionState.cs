@@ -10,6 +10,9 @@ public class BattlePerformActionState : BattleBaseState
     public override void Exit()
     {
         base.Exit();
+
+        performList.RemoveAt(0);
+
         if (!(character.IsDead))
         {
              // 캐릭터 상태를 이전 상태로 변경

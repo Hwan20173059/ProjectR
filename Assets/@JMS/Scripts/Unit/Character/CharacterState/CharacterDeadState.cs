@@ -12,6 +12,8 @@ public class CharacterDeadState : CharacterBaseState
     {
         base.Enter();
 
+        StateUpdate("행동 불능");
+
         character.hpBar.gameObject.SetActive(false);
 
         character.animator.SetBool("Dead", true);

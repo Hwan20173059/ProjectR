@@ -12,6 +12,9 @@ public class CharacterSelectActionState : CharacterBaseState
     public override void Enter()
     {
         base.Enter();
+
+        StateUpdate("행동 선택중");
+
         battleManager.RouletteClear();
         battleManager.IsRouletteUsed = false;
         battleManager.IsSelectingAction = true;

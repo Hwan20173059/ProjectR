@@ -7,6 +7,13 @@ public class CharacterReadyState : CharacterBaseState
     public CharacterReadyState(CharacterStateMachine characterStateMachine) : base(characterStateMachine)
     {
     }
+    public override void Enter()
+    {
+        base.Enter();
+
+        StateUpdate("행동 준비중");
+    }
+
     public override void Update()
     {
         base.Update();
@@ -18,6 +25,7 @@ public class CharacterReadyState : CharacterBaseState
         if(character.curCoolTime < character.maxCoolTime)
         {
             character.curCoolTime += Time.deltaTime;
+            battleManager.battleCanvas.UpdateActionBar();
         }
         else
         {

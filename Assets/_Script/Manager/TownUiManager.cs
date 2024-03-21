@@ -24,16 +24,18 @@ public class TownUiManager : MonoBehaviour
     public EquipItem nowSelectedEquip;
     public EquipItem lastSelectedEquip;
 
+    public GameObject consumeInventoryUI;
+    public ConsumeItem nowSelectedConsume;
+
     private void Start()
     {
         playerManager = PlayerManager.Instance;
         playerManager.townUiManager = this;
     }
 
-    public void GoDungeon(int index) 
+    public void GoField(int index) 
     {
-        playerManager.selectDungeonID = index;
-        SceneManager.LoadScene("DungeonScene");
+        SceneManager.LoadScene("FieldScene");
     }
 
     public void CharacterUIOn()
@@ -48,7 +50,18 @@ public class TownUiManager : MonoBehaviour
 
     public void DungeonUIOn()
     {
-        dungeonUI.SetActive(true);
+        if (playerManager.selectTownID == 0)
+        {
+            playerManager.fieldX = 0;
+            playerManager.fieldY = 1;
+        }
+        else if (playerManager.selectTownID == 1) 
+        {
+            playerManager.fieldX = 4;
+            playerManager.fieldY = 7;
+        }
+        SceneManager.LoadScene("FieldScene");
+        //dungeonUI.SetActive(true);
     }
 
     public void DungeonUIOff()
@@ -101,11 +114,15 @@ public class TownUiManager : MonoBehaviour
 
     public void OpenInventory()
     {
+        detailArea.ChangeDetailActivation(false);
         equipInventoryUI.SetActive(true);
+        detailArea.gameObject.SetActive(true);
     }
     public void CloseInventory()
     {
         equipInventoryUI.SetActive(false);
+        consumeInventoryUI.SetActive(false);
+        detailArea.gameObject.SetActive(false);
     }
 
     public void FreshAfterEquip()

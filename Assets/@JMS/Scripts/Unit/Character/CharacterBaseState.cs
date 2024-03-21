@@ -7,8 +7,8 @@ public class CharacterBaseState : IState
     protected CharacterStateMachine stateMachine;
     protected Character character { get { return stateMachine.character; } }
     protected BattleManager battleManager { get { return character.battleManager; } }
-    protected Monster selectMonster { get { return battleManager.selectMonster; } }
-    protected List<EquipItem> rouletteResult { get{ return battleManager.rouletteResult; } }
+    protected Monster selectMonster { get { return character.selectMonster; } set { character.selectMonster = value; } }
+    protected List<EquipItem> rouletteResult { get{ return battleManager.rouletteEquip; } }
     public CharacterBaseState(CharacterStateMachine characterStateMachine)
     {
         stateMachine = characterStateMachine;
@@ -35,7 +35,7 @@ public class CharacterBaseState : IState
 
     public virtual void Update()
     {
-
+        Debug.DrawRay(character.transform.position, Vector3.right * 4f, new Color(0, 100, 0));
     }
 
     protected float GetNormalizedTime(Animator animator, string tag)
@@ -55,5 +55,11 @@ public class CharacterBaseState : IState
         {
             return 0f;
         }
+    }
+
+    protected void StateUpdate(string state)
+    {
+        character.currentState = state;
+        battleManager.battleCanvas.UpdateCharacterState();
     }
 }

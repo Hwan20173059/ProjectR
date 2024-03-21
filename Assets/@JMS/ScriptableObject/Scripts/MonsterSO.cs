@@ -11,6 +11,7 @@ public enum MonsterAction
 [CreateAssetMenu(fileName = "MonsterData", menuName = "Scriptable Object/MonsterData")]
 public class MonsterSO : ScriptableObject
 {
+    public string monsterName;
     public int hp;
     public int atk;
     public int exp;

@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseData: {fileID: 11400000, guid: ca14b6ec022d4794dad23727fa69841f, type: 2}
   sprite: {fileID: -7808734593389313954, guid: 4d701fb8bab94204e92af20e3e7b6a8a, type: 3}
-  name: "\uC18C\uB4DC\uB9E8"
+  characterName: "\uC18C\uB4DC\uB9E8"
   desc: "\uAC80\uC744 \uC798 \uB2E4\uB8E8\uB294 \uBAA8\uD5D8\uAC00\uC774\uB2E4"
   level: 1
   curExp: 0

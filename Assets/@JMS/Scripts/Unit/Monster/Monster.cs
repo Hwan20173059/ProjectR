@@ -7,6 +7,7 @@ public class Monster : MonoBehaviour
 {
     public MonsterSO BaseData;
 
+    public string monsterName;
     public int level;
     public int maxHP;
     public int curHP;
@@ -32,6 +33,7 @@ public class Monster : MonoBehaviour
     public MonsterStateMachine stateMachine;
 
     public BattleManager battleManager;
+    public BattleCanvas battleCanvas { get {  return battleManager.battleCanvas; } }
 
     private void Awake()
     {
@@ -60,6 +62,7 @@ public class Monster : MonoBehaviour
     }
     public void Init(int level)
     {
+        monsterName = BaseData.monsterName;
         maxHP = BaseData.hp * level;
         curHP = BaseData.hp * level;
         atk = BaseData.atk * level;
@@ -82,5 +85,7 @@ public class Monster : MonoBehaviour
         {
             stateMachine.ChangeState(stateMachine.deadState);
         }
+
+        battleCanvas.UpdateMonsterState();
     }
 }

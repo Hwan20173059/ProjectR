@@ -35,8 +35,7 @@ public class BattleTakeActionState : BattleBaseState
         {
             monsters[performList[0]].stateMachine.ChangeState(monsters[performList[0]].stateMachine.actionState);
         }
-        // 수행 리스트에서 제거
-        performList.RemoveAt(0);
+
         stateMachine.ChangeState(stateMachine.performActionState);
     }
 }
