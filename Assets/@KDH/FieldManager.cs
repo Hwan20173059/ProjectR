@@ -186,6 +186,8 @@ public class FieldManager : MonoBehaviour
 
     public void SaveMonster()
     {
+        playerManager.monsterPosition = new List<int>();
+
         for (int i = 0; i < fieldMonster.Count; i++)
         {
             playerManager.monsterPosition.Add(fieldMonster[i].indexX);
