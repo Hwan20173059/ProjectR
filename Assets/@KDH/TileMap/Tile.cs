@@ -238,7 +238,7 @@ public class Tile : MonoBehaviour
                         fieldManager.SaveMonster();
 
                         fieldManager.playerManager.selectDungeonID = 0;
-                        SceneManager.LoadScene("DungeonScene");
+                        SceneManager.LoadScene("BattleScene");
                         break;
                     }
                     else

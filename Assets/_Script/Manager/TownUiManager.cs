@@ -24,6 +24,9 @@ public class TownUiManager : MonoBehaviour
     public EquipItem nowSelectedEquip;
     public EquipItem lastSelectedEquip;
 
+    public GameObject consumeInventoryUI;
+    public ConsumeItem nowSelectedConsume;
+
     private void Start()
     {
         playerManager = PlayerManager.Instance;
@@ -108,11 +111,15 @@ public class TownUiManager : MonoBehaviour
 
     public void OpenInventory()
     {
+        detailArea.ChangeDetailActivation(false);
         equipInventoryUI.SetActive(true);
+        detailArea.gameObject.SetActive(true);
     }
     public void CloseInventory()
     {
         equipInventoryUI.SetActive(false);
+        consumeInventoryUI.SetActive(false);
+        detailArea.gameObject.SetActive(false);
     }
 
     public void FreshAfterEquip()
