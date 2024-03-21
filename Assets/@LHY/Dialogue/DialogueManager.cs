@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
+using UnityEngine.TextCore.Text;
 
 public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager instance;
+
+    public GameObject talkUI;//todo : talkUI관련 UIManager로 이동
+    private GameObject selectUI;
+
+    
 
     private void Awake()
     {
@@ -29,8 +35,10 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
     }
 
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, GameObject popUpUI)
     {
+        talkUISetActive();
+        selectUI = popUpUI;
         nameText.text = dialogue.name;
 
         sentences.Clear();
@@ -70,8 +78,13 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void EndDialogue()
+    public void EndDialogue()
     {
+        selectUI.SetActive(!selectUI.activeSelf);
+    }
 
+    public void talkUISetActive()
+    {
+        talkUI.SetActive(!talkUI.activeSelf);
     }
 }

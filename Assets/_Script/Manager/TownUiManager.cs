@@ -15,7 +15,7 @@ public class TownUiManager : MonoBehaviour
     public GameObject storeUI;
     public GameObject homeUI;
     public GameObject optionUI;
-
+    public GameObject talkUI;
 
     [Header("EquipUI")]
     public GameObject equipInventoryUI;
@@ -64,6 +64,7 @@ public class TownUiManager : MonoBehaviour
     public void GuildUIOff()
     {
         guildUI.SetActive(false);
+        talkUI.SetActive(false);
     }
 
     public void StoreUIOn()
@@ -74,6 +75,7 @@ public class TownUiManager : MonoBehaviour
     public void StoreUIOff()
     {
         storeUI.SetActive(false);
+        talkUI.SetActive(false);
     }
 
     public void HomeUIOn()
@@ -84,6 +86,7 @@ public class TownUiManager : MonoBehaviour
     public void HomeUIOff()
     {
         homeUI.SetActive(false);
+        talkUI.SetActive(false);
     }
 
     public void OptionUIOn()
