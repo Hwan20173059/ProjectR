@@ -19,9 +19,9 @@ public class DetailArea : MonoBehaviour
         ChangeDetailActivation(false);
         _image.sprite = e.equipSprite;
         _text.text = e.data.info;
-        if(e.type != Type.Normal)
+        if (e.data.id != 0)
         {
-            if(e.isEquipped)
+            if (e.isEquipped)
             {
                 _unEquipButton.gameObject.SetActive(true);
             }
@@ -36,7 +36,7 @@ public class DetailArea : MonoBehaviour
     public void ChangeDetailActivation(bool detailActive)
     {
         detailObject.SetActive(detailActive);
-        if(!detailActive)
+        if (!detailActive)
         {
             _equipButton.gameObject.SetActive(false);
             _unEquipButton.gameObject.SetActive(false);
@@ -53,5 +53,12 @@ public class DetailArea : MonoBehaviour
     {
         _activateFalseObj.SetActive(false);
         isEquipping = false;
+    }
+    public void ChangeSelectedItem(ConsumeItem c)
+    {
+        ChangeDetailActivation(false);
+        _image.sprite = c.consumeSprite;
+        _text.text = c.data.info;
+        ChangeDetailActivation(true);
     }
 }
