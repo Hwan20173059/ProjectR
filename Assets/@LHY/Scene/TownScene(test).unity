@@ -2180,25 +2180,50 @@ MonoBehaviour:
   nowSelectedEquip:
     isEquipped: 0
     equipSprite: {fileID: 0}
-    type: 0
     data:
       id: 0
       spritePath: 
       equipName: 
-      type: 
-      attack: 0
+      singleValue: 0
+      singleChangeType: 
+      doubleValue: 0
+      doubleChangeType: 
+      tripleValue: 0
+      tripleChangeType: 
       info: 
+    singleChangeType: 0
+    doubleChangeType: 0
+    tripleChangeType: 0
   lastSelectedEquip:
     isEquipped: 0
     equipSprite: {fileID: 0}
-    type: 0
     data:
       id: 0
       spritePath: 
       equipName: 
-      type: 
-      attack: 0
+      singleValue: 0
+      singleChangeType: 
+      doubleValue: 0
+      doubleChangeType: 
+      tripleValue: 0
+      tripleChangeType: 
       info: 
+    singleChangeType: 0
+    doubleChangeType: 0
+    tripleChangeType: 0
+  consumeInventoryUI: {fileID: 0}
+  nowSelectedConsume:
+    count: 0
+    consumeSprite: {fileID: 0}
+    type: 0
+    data:
+      id: 0
+      spritePath: 
+      consumeName: 
+      type: 
+      value: 0
+      info: 
+      price: 0
 --- !u!1 &335431903
 GameObject:
   m_ObjectHideFlags: 0
@@ -7748,9 +7773,15 @@ MonoBehaviour:
   slotParent: {fileID: 1149580014}
   slots:
   - {fileID: 1370035124}
+  cbag: {fileID: 0}
+  cslotParent: {fileID: 0}
+  cslots: []
   itemManager: {fileID: 1569666160}
+  townUiManager: {fileID: 0}
   itemSlotPrefab: {fileID: 1370035123}
+  consumeSlotPrefab: {fileID: 0}
   maxSlots: 18
+  cmaxSlots: 0
 --- !u!1 &1057166729
 GameObject:
   m_ObjectHideFlags: 0
@@ -11567,15 +11598,22 @@ MonoBehaviour:
   baseItem:
     isEquipped: 0
     equipSprite: {fileID: 0}
-    type: 0
     data:
       id: 0
       spritePath: 
       equipName: 
-      type: 
-      attack: 0
+      singleValue: 0
+      singleChangeType: 
+      doubleValue: 0
+      doubleChangeType: 
+      tripleValue: 0
+      tripleChangeType: 
       info: 
+    singleChangeType: 0
+    doubleChangeType: 0
+    tripleChangeType: 0
   eInventory: []
+  cInventory: []
 --- !u!1 &1584150237
 GameObject:
   m_ObjectHideFlags: 0

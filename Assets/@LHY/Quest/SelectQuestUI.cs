@@ -13,7 +13,9 @@ public class SelectQuestUI : MonoBehaviour
     public TextMeshProUGUI questName;
     public TextMeshProUGUI questDescription;
     public TextMeshProUGUI questSubmitButtonText;
- 
+    public TextMeshProUGUI selectQuestButton;
+
+    
     public QuestSlot selectQuestSlot;
     public string selectQuestID;
     public QuestState selectQuestState;
@@ -77,6 +79,7 @@ public class SelectQuestUI : MonoBehaviour
         questName.text = selectQuestSlot.questInfoForPoint.displayName;
         questDescription.text = selectQuestSlot.questInfoForPoint.questDescription;
         //questSubmitButtonText.text = selectQuestState.ToString();
+        selectQuestButton.text = selectQuestSlot.currentQuestState.ToString();
     }
     public void SetSelectQuestPanel()
     {
@@ -106,6 +109,7 @@ public class SelectQuestUI : MonoBehaviour
             selectQuestState = QuestState.Finished;
             GameEventManager.instance.questEvent.FinishQuest(selectQuestID);
         }
+        infoUpdate();
     }
 
 }
