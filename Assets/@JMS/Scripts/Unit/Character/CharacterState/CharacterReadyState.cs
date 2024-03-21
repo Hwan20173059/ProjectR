@@ -25,6 +25,7 @@ public class CharacterReadyState : CharacterBaseState
         if(character.curCoolTime < character.maxCoolTime)
         {
             character.curCoolTime += Time.deltaTime;
+            battleManager.battleCanvas.UpdateActionBar();
         }
         else
         {

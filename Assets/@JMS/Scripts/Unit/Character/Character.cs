@@ -98,7 +98,7 @@ public class Character : MonoBehaviour
             stateMachine.ChangeState(stateMachine.deadState);
         }
 
-        battleCanvas.CharacterStateUpdate();
+        battleCanvas.UpdateCharacterState();
     }
 
     public void ChangeExp(int change)

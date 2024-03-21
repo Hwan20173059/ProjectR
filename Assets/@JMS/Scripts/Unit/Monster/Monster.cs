@@ -86,6 +86,6 @@ public class Monster : MonoBehaviour
             stateMachine.ChangeState(stateMachine.deadState);
         }
 
-        battleCanvas.MonsterStateUpdate();
+        battleCanvas.UpdateMonsterState();
     }
 }

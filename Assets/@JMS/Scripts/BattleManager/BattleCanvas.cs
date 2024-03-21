@@ -43,7 +43,7 @@ public class BattleCanvas : MonoBehaviour
         dungeonClearButton.onClick.AddListener(TownSceneLoad);
     }
 
-    private void Update()
+    public void UpdateActionBar()
     {
         if (character != null)
             actionBar.transform.localScale =
@@ -105,20 +105,20 @@ public class BattleCanvas : MonoBehaviour
         SceneManager.LoadScene("TownScene");
     }
 
-    public void CharacterStateUpdate()
+    public void UpdateCharacterState()
     {
         if (character == null) return;
         characterStateText.text = $"캐릭터 : {character.characterName}\n레벨 : {character.level}\n" +
             $"체력 : {character.curHP} / {character.maxHP}\n상태 : {character.currentState}";
     }
 
-    public void MonsterStateUpdate()
+    public void UpdateMonsterState()
     {
         if (selectMonster == null) return;
         monsterStateText.text = $"{selectMonster.monsterName} {selectMonster.curHP} / {selectMonster.maxHP}";
     }
 
-    public void BattleStateUpdate(string text)
+    public void UpdateBattleState(string text)
     {
         battleStateText.text = $"{text}";
     }

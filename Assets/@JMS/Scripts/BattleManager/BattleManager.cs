@@ -91,7 +91,7 @@ public class BattleManager : MonoBehaviour
             
             targetCircle.targetTransform = selectMonster.transform;
             targetCircle.gameObject.SetActive(true);
-            battleCanvas.MonsterStateUpdate();
+            battleCanvas.UpdateMonsterState();
             battleCanvas.monsterInfoPanel.gameObject.SetActive(true);
         }
     }

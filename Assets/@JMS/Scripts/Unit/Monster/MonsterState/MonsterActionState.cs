@@ -31,7 +31,7 @@ public class MonsterActionState : MonsterBaseState
 
         int prevHp = character.curHP;
         battleManager.character.ChangeHP(-monster.atk);
-        battleManager.battleCanvas.BattleStateUpdate($"{monster.monsterName}의 공격!\n{character.characterName}에게 {prevHp - character.curHP}의 피해!");
+        battleManager.battleCanvas.UpdateBattleState($"{monster.monsterName}의 공격!\n{character.characterName}에게 {prevHp - character.curHP}의 피해!");
 
         while (!IsAnimationEnd(GetNormalizedTime(monster.animator, "Attack"))) { yield return null; }
         monster.animator.SetBool("Idle", true);

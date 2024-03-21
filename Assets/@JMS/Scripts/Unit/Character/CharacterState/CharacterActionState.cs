@@ -44,7 +44,7 @@ public class CharacterActionState : CharacterBaseState
         battleManager.ChangeValue(battleManager.rouletteResult, ref damage);
         int prevHp = selectMonster.curHP;
         selectMonster.ChangeHP(-damage);
-        battleManager.battleCanvas.BattleStateUpdate($"{character.characterName}의 공격!\n{selectMonster.monsterName}에게 {prevHp - selectMonster.curHP}의 피해!");
+        battleManager.battleCanvas.UpdateBattleState($"{character.characterName}의 공격!\n{selectMonster.monsterName}에게 {prevHp - selectMonster.curHP}의 피해!");
 
         while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
         character.animator.SetBool("Idle", true);
@@ -67,7 +67,7 @@ public class CharacterActionState : CharacterBaseState
         {
             battleManager.monsters[i].ChangeHP(-damage);
         }
-        battleManager.battleCanvas.BattleStateUpdate($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+        battleManager.battleCanvas.UpdateBattleState($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
 
         while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
         character.animator.SetBool("Idle", true);
