@@ -147,7 +147,6 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator HorizontalAttack()
     {
-        Debug.DrawRay(character.transform.position, Vector3.right * 3f, new Color(0, 100, 0));
         selectMonster = battleManager.selectMonster;
         Vector3 selectMonsterPosition = new Vector3(selectMonster.startPosition.x - 1f, selectMonster.startPosition.y);
 
