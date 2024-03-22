@@ -1,16 +1,16 @@
 using UnityEngine;
 using System;
+using Unity.VisualScripting.FullSerializer;
 
 
 public class QuestEvent
 {
     public event Action<string> onStartQuest;
-    //QuestID가 입력되어야 함
-
     public void StartQuest(string id)
     {
         if (onStartQuest != null)
         {
+            Debug.Log("QuestStart");
             onStartQuest(id);
         }
     }

@@ -38,7 +38,7 @@ public class ClearDungeonQuestStep : QuestStep
         }
         else
         {
-            currentState = QuestState.Can_Finish;
+            GameEventManager.instance.questEvent.AdvanceQuest("ClearDungeonQuest");
         }
     }
 
@@ -52,6 +52,7 @@ public class ClearDungeonQuestStep : QuestStep
         FinishQuestStep();
     }
 
+    //사용하지 않음.
     private void UpdateState()
     {
         print("state업데이트");

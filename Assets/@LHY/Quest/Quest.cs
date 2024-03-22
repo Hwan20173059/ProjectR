@@ -47,6 +47,7 @@ public class Quest
     }
     private GameObject GetCurrentQuestStepPrefeb()
     {
+        //초기화 이후 다음 퀘스트 진행(현재 연결 퀘스트 구현 X)
         GameObject questStepPrefeb = null;
         if (CurrentStepExists())
         {

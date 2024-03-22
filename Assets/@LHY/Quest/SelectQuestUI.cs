@@ -9,7 +9,6 @@ public class SelectQuestUI : MonoBehaviour
 
     public SelectQuestUI selectQuestUI;
     public GameObject selectQuest;
-    //public TextMeshProUGUI QuestSlottext;
     public TextMeshProUGUI questName;
     public TextMeshProUGUI questDescription;
     public TextMeshProUGUI questSubmitButtonText;
@@ -61,25 +60,42 @@ public class SelectQuestUI : MonoBehaviour
     {
         selectQuestID = id;
         selectQuestState = selectQuestSlot.currentQuestState;
-        //이거는 퀘스트가 진행중일때 받아와야함.
-        //selectQuestState = QuestManager.instance.GetComponentInChildren<ClearDungeonQuestStep>().currentState;
-
-
-        //print(QuestManager.instance.GetComponentInChildren<ClearDungeonQuestStep>().dungeonCleared);
+        
     }
 
     private void Update()
     {
-        //print(QuestManager.instance.GetComponentInChildren<ClearDungeonQuestStep>().dungeonCleared);
+        
     }
     public void infoUpdate()
     {
-        Debug.Log(selectQuestSlot.questInfoForPoint.displayName);
-        //QuestSlottext.text = selectQuestSlot.questInfoForPoint.displayName;
         questName.text = selectQuestSlot.questInfoForPoint.displayName;
         questDescription.text = selectQuestSlot.questInfoForPoint.questDescription;
-        //questSubmitButtonText.text = selectQuestState.ToString();
-        selectQuestButton.text = selectQuestSlot.currentQuestState.ToString();
+        if (selectQuestSlot.currentQuestState == QuestState.Requirments_Not)
+        {
+            selectQuestButton.text = "요구사항 미충족";
+            selectQuestButton.color = Color.red;
+        }
+        if (selectQuestSlot.currentQuestState == QuestState.Can_Start)
+        {
+            selectQuestButton.text = "수락";
+            selectQuestButton.color = Color.black;
+        }
+        if (selectQuestSlot.currentQuestState == QuestState.In_Progress)
+        {
+            selectQuestButton.text = "진행중";
+            selectQuestButton.color = Color.gray;
+        }
+        if (selectQuestSlot.currentQuestState == QuestState.Can_Finish)
+        {
+            selectQuestButton.text = "완료 가능";
+            selectQuestButton.color = Color.green;
+        }
+        if (selectQuestSlot.currentQuestState == QuestState.Finished)
+        {
+            selectQuestButton.text = "퀘스트 완료";
+            selectQuestButton.color = Color.blue;
+        }
     }
     public void SetSelectQuestPanel()
     {
@@ -100,7 +116,7 @@ public class SelectQuestUI : MonoBehaviour
         }
         if (selectQuestState.Equals(QuestState.Can_Start))
         {
-            Debug.Log(selectQuestID + "퀘스트를 시작합니다.");
+            Debug.Log(GameEventManager.instance.questEvent);
             GameEventManager.instance.questEvent.StartQuest(selectQuestID);
         }
         else if (selectQuestState.Equals(QuestState.Can_Finish))

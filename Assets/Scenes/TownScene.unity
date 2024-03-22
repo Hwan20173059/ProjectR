@@ -12455,6 +12455,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286a7e194642f624d803305ea7bd4c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  guildUI: {fileID: 1101682878}
   questSteps: []
 --- !u!4 &1669283410
 Transform:
