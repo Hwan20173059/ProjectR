@@ -24,7 +24,7 @@ public class QuestSlot : MonoBehaviour
     {
         questId = questInfoForPoint.id;
         Debug.Log(questId);
-        tmp();
+        QuestUpdate();
     }
 
     private void OnEnable()
@@ -32,7 +32,7 @@ public class QuestSlot : MonoBehaviour
         GameEventManager.instance.questEvent.onQuestStateChange += QuestStateChange;
     }
 
-    public void tmp()
+    public void QuestUpdate()
     {
         Quest quest;
         quest = QuestManager.instance.QuestStateCheck(this);

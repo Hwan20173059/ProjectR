@@ -21,9 +21,7 @@ public class QuestManager : MonoBehaviour
 
     public static QuestManager instance;
 
-    public GameObject guildUI;
 
-    public QuestStep[] questSteps;//todo : selectQuestSlots
 
     private void Awake()
     {
@@ -89,7 +87,10 @@ public class QuestManager : MonoBehaviour
         Debug.Log(id);
         Quest quest = GetQuestByID(id);
         ChangeQuestState(quest.info.id, QuestState.Can_Finish);
-
+        
+        
+        
+        //현재 NextStep 구조 변경 진행중
         /*
         quest.MoveToNextStep();
 

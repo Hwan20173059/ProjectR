@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//퀘스트 step에 이용, 단일퀘스트용 
 public abstract class QuestStep : MonoBehaviour
 {
     private bool isFinished = false;
