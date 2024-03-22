@@ -17,7 +17,7 @@ public class QuestInfoSO : ScriptableObject
     public QuestInfoSO[] questPrerequisites;
 
     [Header("Steps")]
-    public GameObject[] questStepPrefebs;
+    public GameObject[] questStepPrefebs;//todo : 변경된 계획) 연결되는 퀘스트는 General in NextID를 통해 요구사항 체크 퀘스트로 반영
 
     [Header("Rewards")]
     public int goldReward;

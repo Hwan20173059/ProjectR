@@ -75,10 +75,8 @@ public class SelectQuestUI : MonoBehaviour
     public void infoUpdate()
     {
         Debug.Log(selectQuestSlot.questInfoForPoint.displayName);
-        //QuestSlottext.text = selectQuestSlot.questInfoForPoint.displayName;
         questName.text = selectQuestSlot.questInfoForPoint.displayName;
         questDescription.text = selectQuestSlot.questInfoForPoint.questDescription;
-        //questSubmitButtonText.text = selectQuestState.ToString();
         selectQuestButton.text = selectQuestSlot.currentQuestState.ToString();
     }
     public void SetSelectQuestPanel()
@@ -100,7 +98,7 @@ public class SelectQuestUI : MonoBehaviour
         }
         if (selectQuestState.Equals(QuestState.Can_Start))
         {
-            Debug.Log(selectQuestID + "퀘스트를 시작합니다.");
+            Debug.Log(GameEventManager.instance.questEvent);
             GameEventManager.instance.questEvent.StartQuest(selectQuestID);
         }
         else if (selectQuestState.Equals(QuestState.Can_Finish))
