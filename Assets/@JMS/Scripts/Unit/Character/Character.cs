@@ -101,9 +101,12 @@ public class Character : MonoBehaviour
     public int LevelUp()
     {
         curExp = curExp - needExp;
-        curExp = curExp >= needExp ? LevelUp() : curExp;
         level++;
         level = level > baseData.maxLevel ? baseData.maxLevel : level;
+        maxHP = baseData.hp * level;
+        atk = baseData.atk * level;
+        needExp = baseData.needExp * level;
+        curExp = curExp >= needExp ? LevelUp() : curExp;
         return curExp;
     }
 }
