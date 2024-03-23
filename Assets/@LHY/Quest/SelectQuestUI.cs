@@ -6,31 +6,30 @@ using UnityEngine.Rendering;
 
 public class SelectQuestUI : MonoBehaviour
 {
-
-    public SelectQuestUI selectQuestUI;
-    public GameObject selectQuest;
+    [Header("Quest")]
     public TextMeshProUGUI questName;
     public TextMeshProUGUI questDescription;
     public TextMeshProUGUI questSubmitButtonText;
     public TextMeshProUGUI selectQuestButton;
+    public TextMeshProUGUI reward;
+    public TextMeshProUGUI Requirement;
 
-    
     public QuestSlot selectQuestSlot;
     public string selectQuestID;
     public QuestState selectQuestState;
 
-    QuestManager questManager;
 
     public QuestInfoSO questInfoSO;
 
+    GameEventManager gameEventManager;
     private void Awake()
     {
-        questManager = GetComponent<QuestManager>();
+        gameEventManager = GameEventManager.instance;
     }
     private void OnEnable()
     {
-        GameEventManager.instance.questEvent.onQuestSelect += QuestSelect;
-        GameEventManager.instance.questEvent.onSubmitPressed += SubmitPressed;
+        gameEventManager.questEvent.onQuestSelect += QuestSelect;
+        gameEventManager.questEvent.onSubmitPressed += SubmitPressed;
     }
 
     private void OnDisable()
@@ -71,6 +70,8 @@ public class SelectQuestUI : MonoBehaviour
     {
         questName.text = selectQuestSlot.questInfoForPoint.displayName;
         questDescription.text = selectQuestSlot.questInfoForPoint.questDescription;
+        reward.text = "보상\n" + "경험치 : " + selectQuestSlot.expReward.ToString() + "\n골드 : " + selectQuestSlot.goldReward.ToString();
+        Requirement.text = "요구사항\n레벨 : " + selectQuestSlot.levelRequirement.ToString();
         if (selectQuestSlot.currentQuestState == QuestState.Requirments_Not)
         {
             selectQuestButton.text = "요구사항 미충족";
@@ -97,10 +98,7 @@ public class SelectQuestUI : MonoBehaviour
             selectQuestButton.color = Color.blue;
         }
     }
-    public void SetSelectQuestPanel()
-    {
-        selectQuest.SetActive(!selectQuest.activeSelf);
-    }
+
     public void SubmitPressed(string id)
     {
         Debug.Log(selectQuestState);

@@ -14,15 +14,18 @@ public class QuestSlot : MonoBehaviour
     public string questId;
     public QuestState currentQuestState;
 
-    public GameObject selectQuest;
-
-    public SelectQuestUI selectQuestUI;
-
-
+    public int goldReward;
+    public int expReward;
+    public int levelRequirement;
+    public int goldRequirement;
 
     private void Awake()
     {
         questId = questInfoForPoint.id;
+        levelRequirement = questInfoForPoint.levelRequirement;
+        //goldRequirement = questInfoForPoint.goldRequirement;
+        //todo : 퀘스트에 gold 요구 추가 예정
+
         Debug.Log(questId);
         QuestUpdate();
     }
@@ -32,26 +35,26 @@ public class QuestSlot : MonoBehaviour
         GameEventManager.instance.questEvent.onQuestStateChange += QuestStateChange;
     }
 
+    private void OnDisable()
+    {
+        GameEventManager.instance.questEvent.onQuestStateChange -= QuestStateChange;
+    }
+
     public void QuestUpdate()
     {
         Quest quest;
         quest = QuestManager.instance.QuestStateCheck(this);
         Debug.Log(quest.state);
         currentQuestState = quest.state;
+        goldReward = quest.info.goldReward;
+        expReward = quest.info.expReward;
     }
 
-    private void OnDisable()
-    {
-        GameEventManager.instance.questEvent.onQuestStateChange -= QuestStateChange;
-    }
 
     private void Start()
     {
 
     }
-
-    //현재 진행중인지 확인하는 메서드
-
 
     private void QuestStateChange(Quest quest)
     {

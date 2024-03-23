@@ -51,8 +51,12 @@ public class QuestEvent
         }
     }
 
-    //todo : 다른 event로 분리
-    //임시
+
+
+
+
+
+    //todo : DungeonEvent등으로 분리
     public event Action onDungeonClear;
     public void DungeonClear()
     {
@@ -62,7 +66,20 @@ public class QuestEvent
             onDungeonClear();
         }
     }
-    //
+
+    public event Action onKillSlime;
+    public void KillSlime()
+    {
+        if (onKillSlime != null)
+        {
+            onKillSlime();
+        }
+    }
+
+
+
+
+    //todo : UIEvent 등으로 분리
     public event Action<string> onSubmitPressed;
     public void SubmitPressed(string id)
     {

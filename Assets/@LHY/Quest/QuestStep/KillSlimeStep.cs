@@ -1,47 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-//todo : 구독
-public class ClearDungeonQuestStep : QuestStep
+public class KillSlimeStep : QuestStep
 {
-    public int dungeonCleared = 0;
-    private int dungeonComplete = 1;
+    public int killSlimeCount = 0;
+    private int killSlimeComplete = 5;
 
     public QuestState currentState = QuestState.In_Progress;
 
 
     private void Start()
     {
-        UpdateState();
+        UpdateState();//Json에 데이터 저장 구현중..
     }
 
     private void OnEnable()
     {
-        GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
+        GameEventManager.instance.questEvent.onKillSlime += KillSlime;
         GameEventManager.instance.questEvent.onFinishQuest += FinishQuest;
     }
 
     private void OnDisable()
     {
-        GameEventManager.instance.questEvent.onDungeonClear -= DungeonClear;
+        GameEventManager.instance.questEvent.onKillSlime -= KillSlime;
         GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
     }
+
     //todo : 던전 클리어 체크
-    public void DungeonClear()//todo : private화
+    public void KillSlime()//todo : private화
     {
-        dungeonCleared++;
-        if (dungeonCleared < dungeonComplete)
+        killSlimeCount++;
+        if (killSlimeCount < killSlimeComplete)
         {
             UpdateState();
         }
         else
         {
-            GameEventManager.instance.questEvent.AdvanceQuest("ClearDungeonQuest");
+            GameEventManager.instance.questEvent.AdvanceQuest("KillSlime");
         }
     }
-
 
     public void FinishQuest(string id)
     {
@@ -52,18 +50,18 @@ public class ClearDungeonQuestStep : QuestStep
         FinishQuestStep();
     }
 
-    //사용하지 않음.
+    //Json 데이터 저장
     private void UpdateState()
     {
         print("state업데이트");
-        string state = dungeonCleared.ToString();
-        string status = dungeonCleared + " / " + dungeonComplete;
+        string state = killSlimeCount.ToString();
+        string status = killSlimeCount + " / " + killSlimeComplete;
         ChangeState(state, status);
     }
 
     protected override void SetQuestStepState(string state)
     {
-        this.dungeonCleared = int.Parse(state);
+        this.killSlimeCount = int.Parse(state);
         UpdateState();
     }
 }
