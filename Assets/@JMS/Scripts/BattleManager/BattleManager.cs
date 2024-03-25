@@ -90,7 +90,7 @@ public class BattleManager : MonoBehaviour
             targetCircle.targetTransform = selectMonster.transform;
             targetCircle.gameObject.SetActive(true);
             battleCanvas.UpdateMonsterState();
-            battleCanvas.monsterInfoPanel.gameObject.SetActive(true);
+            battleCanvas.MonsterStatePanelOn();
         }
     }
     
@@ -164,6 +164,16 @@ public class BattleManager : MonoBehaviour
         {
             monster.stateMachine.ChangeState(monster.stateMachine.readyState);
         }
+    }
+
+    public void NextStageStart()
+    {
+        battleCanvas.NextStagePanelOff();
+        character.curCoolTime = 0;
+        Destroy(monsterPool);
+        monsterPool = null;
+        monsters.Clear();
+        stateMachine.ChangeState(stateMachine.startState);
     }
 
     public void SaveUnitState()
@@ -244,6 +254,27 @@ public class BattleManager : MonoBehaviour
         return count;
     }
 
+    public void OnClickAttackButton()
+    {
+        if (IsSelectingAction && selectMonster != null && !(selectMonster.IsDead))
+        {
+            character.curCoolTime = 0f;
+            performList.Add(100);
+            character.stateMachine.ChangeState(character.stateMachine.readyState);
+        }
+    }
+
+    public void OnClickRouletteButton()
+    {
+        if (!IsRouletteUsed)
+        {
+            StartCoroutine(Roulette());
+            IsRouletteUsed = true;
+
+            battleCanvas.RouletteButtonOff();
+        }
+    }
+
     public IEnumerator Roulette()
     {
         for (int i = 0; i < 3; i++)
@@ -283,7 +314,7 @@ public class BattleManager : MonoBehaviour
     {
         rouletteEquip.Clear();
         battleCanvas.ClearRoulette();
-        battleCanvas.rouletteButton.gameObject.SetActive(true);
+        battleCanvas.RouletteButtonOn();
     }
 
     public int GetChangeValue(RouletteResult rouletteResult, int baseValue)
