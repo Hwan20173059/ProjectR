@@ -19,12 +19,14 @@ public class PlayerManager : Singleton<PlayerManager>
     public int fieldY;
 
     public bool isEnterTown = true;
+    public bool isEnterBattle = false;
 
     public List<int> monsterPosition = new List<int>();
 
     [Header("Dungeon")]
     public int selectTownID;
     public int selectDungeonID;
+    public int selectBattleID;
 
 
     private void Start()

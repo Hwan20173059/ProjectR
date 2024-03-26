@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7808734593389313954, guid: 4d701fb8bab94204e92af20e3e7b6a8a, type: 3}
+  m_Sprite: {fileID: -3154150011874791226, guid: 4d701fb8bab94204e92af20e3e7b6a8a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -129,20 +129,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9675c8f93c837aa47a1ee406b72f99d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 2
   baseData: {fileID: 11400000, guid: 88944850401bc4549b8a0a5ce4196c1c, type: 2}
   sprite: {fileID: -3154150011874791226, guid: 4d701fb8bab94204e92af20e3e7b6a8a, type: 3}
-  name: "\uB098\uC774\uD2B8"
-  desc: "\uAC80\uC220\uC744 \uC798 \uC5F0\uB9C8\uD55C \uD6CC\uB96D\uD55C \uBAA8\uD5D8\uAC00\uC774\uB2E4."
+  characterName: "\uB098\uC774\uD2B8"
+  desc: "\uAC80\uC220\uC744 \uC81C\uBC95 \uC219\uB828\uD55C \uBAA8\uD5D8\uAC00\uC774\uB2E4."
   level: 1
   curExp: 0
   needExp: 0
   maxHP: 0
   curHP: 0
   atk: 0
-  actions: 
-  selectAction: 0
+  currentState: "\uB300\uAE30\uC911"
   curCoolTime: 0
   maxCoolTime: 0
   startPosition: {x: 0, y: 0, z: 0}
   moveAnimSpeed: 10
+  hpBar: {fileID: 0}
+  selectMonster: {fileID: 0}
   battleManager: {fileID: 0}
