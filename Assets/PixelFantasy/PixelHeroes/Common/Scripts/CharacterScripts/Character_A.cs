@@ -6,7 +6,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.CharacterScripts
     /// <summary>
     /// The main character script.
     /// </summary>
-    public class Character : Creature
+    public class Character_A : Creature
     {
         public Animator Animator;
         public CharacterController CharacterController;
