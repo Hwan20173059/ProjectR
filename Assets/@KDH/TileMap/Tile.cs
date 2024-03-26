@@ -6,10 +6,9 @@ using UnityEngine.SceneManagement;
 
 public enum TileState
 {
-    player,
-    empty, cango, cantgo,    
+    player, empty, canGO, cantGo,
     monster, chest, town, dungeon,
-    canfight, canEnter
+    canFight, canTownEnter, canDungeonEnter, canOpenChest
 }
 
 public class Tile : MonoBehaviour
@@ -19,8 +18,10 @@ public class Tile : MonoBehaviour
 
     [Header("State")]
     public TileState tileState;
+    public int battleID;
     public int dungeonID;
     public int townID;
+    public int chestID;
 
     [Header("Object")]
     public GameObject onObject;
@@ -55,13 +56,13 @@ public class Tile : MonoBehaviour
                 spriteRenderer.color = Color.blue;
                 break;
 
-            case TileState.cango:
-                SetTile(TileState.cango);
+            case TileState.canGO:
+                SetTile(TileState.canGO);
                 spriteRenderer.color = Color.cyan;
                 break;
 
-            case TileState.cantgo:
-                SetTile(TileState.cantgo);
+            case TileState.cantGo:
+                SetTile(TileState.cantGo);
                 spriteRenderer.color = Color.black;
                 break;
 
@@ -73,6 +74,7 @@ public class Tile : MonoBehaviour
 
             case TileState.chest:
                 SetTile(TileState.chest);
+                onObject = Instantiate(fieldManager.chestPrefab, this.transform);
                 spriteRenderer.color = Color.gray;
                 break;
 
@@ -86,14 +88,25 @@ public class Tile : MonoBehaviour
                 spriteRenderer.color = Color.red;
                 break;
 
-            case TileState.canfight:
-                SetTile(TileState.canfight);
+            case TileState.canFight:
+                SetTile(TileState.canFight);
                 onObject = Instantiate(fieldManager.monsterPrefab, this.transform);
                 spriteRenderer.color = Color.magenta;
                 break;
 
-            case TileState.canEnter:
-                SetTile(TileState.canEnter);
+            case TileState.canTownEnter:
+                SetTile(TileState.canTownEnter);
+                spriteRenderer.color = Color.magenta;
+                break;
+
+            case TileState.canDungeonEnter:
+                SetTile(TileState.canDungeonEnter);
+                spriteRenderer.color = Color.magenta;
+                break;
+
+            case TileState.canOpenChest:
+                SetTile(TileState.canOpenChest);
+                onObject = Instantiate(fieldManager.chestPrefab, this.transform);
                 spriteRenderer.color = Color.magenta;
                 break;
         }
@@ -140,7 +153,7 @@ public class Tile : MonoBehaviour
                 case TileState.empty:
                         break;
 
-                case TileState.cango:
+                case TileState.canGO:
                     if (fieldManager.isSelect == true)
                     {
                         fieldManager.playerTurnIndex--;
@@ -173,7 +186,7 @@ public class Tile : MonoBehaviour
                     else
                         break;
 
-                case TileState.cantgo:
+                case TileState.cantGo:
                     break;
 
                 case TileState.monster:
@@ -238,7 +251,7 @@ public class Tile : MonoBehaviour
                         break;
                     }
 
-                case TileState.canfight:
+                case TileState.canFight:
                     if (fieldManager.isSelect == true)
                     {
                         fieldManager.playerManager.fieldX = indexX;
@@ -260,7 +273,7 @@ public class Tile : MonoBehaviour
                         break;
                     }
 
-                case TileState.canEnter:
+                case TileState.canTownEnter:
                     if (fieldManager.isSelect == true)
                     {
                         fieldManager.playerManager.isEnterTown = true;

@@ -676,13 +676,11 @@ MonoBehaviour:
   field: {fileID: 1490224713}
   selectedTile: {fileID: 0}
   fieldState: 0
-  playerTurnIndex: 0
   playerPosition: 0000000000000000
   isSelect: 0
   isPlayerturn: 1
   playerPrefab: {fileID: 230179430662417554, guid: 9eff73ecd7738d844ba706486e4079ae, type: 3}
   monsterPrefab: {fileID: 3648627258176495412, guid: 43e41fe6c4ed9f34584bfc475f31f498, type: 3}
-  chestPrefab: {fileID: 3648627258176495412, guid: f999dad9a87ba804ea4a3fbf4902d7c1, type: 3}
   fieldMonster: []
   turnState: {fileID: 145535765}
   selectUI: {fileID: 1298999661}
