@@ -10,7 +10,7 @@ public class BattleTextPanel : MonoBehaviour
         battleText = GetComponentInChildren<BattleText>();
     }
 
-    public void UpdateBattleState(string text)
+    public void UpdateBattleText(string text)
     {
         battleText.text = $"{text}";
     }

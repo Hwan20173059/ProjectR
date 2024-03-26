@@ -80,9 +80,9 @@ public class BattleCanvas : MonoBehaviour
         monsterStatePanel.UpdateMonsterState(selectMonster);
     }
 
-    public void UpdateBattleState(string text)
+    public void UpdateBattleText(string text)
     {
-        battleTextPanel.UpdateBattleState(text);
+        battleTextPanel.UpdateBattleText(text);
     }
 
     public void RouletteButtonOn()
