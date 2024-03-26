@@ -22,7 +22,6 @@ public class QuestManager : MonoBehaviour
     public static QuestManager instance;
 
 
-    public QuestStep[] questSteps;//todo : selectQuestSlots
 
     private void Awake()
     {
@@ -60,19 +59,19 @@ public class QuestManager : MonoBehaviour
     {
         foreach (Quest quest in questMap.Values)
         {
-            if ((quest.state == QuestState.Requirments_Not || quest.state == QuestState.Can_Start) && CheckRequirements(quest))
+            if (quest.state == QuestState.Requirments_Not && CheckRequirements(quest))
             {
-                //Debug.Log(quest.state);
                 GameEventManager.instance.questEvent.QuestStateChange(quest);
                 ChangeQuestState(quest.info.id, QuestState.Can_Start);
             }
         }
     }
 
-    public void QuestStateCheck(Quest quest)
+    public Quest QuestStateCheck(QuestSlot questslot)
     {
-        quest.state = QuestState.Can_Start;
+        return questMap[questslot.questId];
     }
+
 
     // todo : 
     private void StartQuest(string id)
@@ -87,7 +86,12 @@ public class QuestManager : MonoBehaviour
     {
         Debug.Log(id);
         Quest quest = GetQuestByID(id);
-
+        ChangeQuestState(quest.info.id, QuestState.Can_Finish);
+        
+        
+        
+        //현재 NextStep 구조 변경 진행중
+        /*
         quest.MoveToNextStep();
 
         if (quest.CurrentStepExists())
@@ -100,6 +104,8 @@ public class QuestManager : MonoBehaviour
             Debug.Log("완료가능");
             ChangeQuestState(quest.info.id, QuestState.Can_Finish);
         }
+        */
+
     }
     private void FinishQuest(string id)
     {

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Character : MonoBehaviour
 {
     [Header("Data")]
+    public int id;
     public CharacterSO baseData;
 
     [Header("Info")]

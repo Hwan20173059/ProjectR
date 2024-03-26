@@ -143,6 +143,8 @@ public class Tile : MonoBehaviour
                 case TileState.cango:
                     if (fieldManager.isSelect == true)
                     {
+                        fieldManager.playerTurnIndex--;
+
                         fieldManager.selectedTile = this;
 
                         fieldManager.FieldMoveAfter();
@@ -156,7 +158,16 @@ public class Tile : MonoBehaviour
                         fieldManager.isSelect = false;
                         fieldManager.selectUI.SetActive(false);
 
-                        fieldManager.AEnemyTurn();
+                        if (fieldManager.playerTurnIndex > 0)
+                        {
+                            fieldManager.PlayerTurn();
+                        }
+                        else
+                        {
+                            fieldManager.playerTurnIndex = 3;
+                            fieldManager.AEnemyTurn();
+                        }
+
                         break;
                     }
                     else

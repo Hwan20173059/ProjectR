@@ -21,6 +21,7 @@ public class FieldManager : MonoBehaviour
 
     [Header("State")]
     public FieldState fieldState;
+    public int playerTurnIndex;
     public int[] playerPosition = new int[2];
     public bool isSelect = false;
     public bool isPlayerturn = true;
@@ -47,6 +48,7 @@ public class FieldManager : MonoBehaviour
 
         if (playerManager.isEnterTown == true)
         {
+            playerTurnIndex = 3;
             playerManager.monsterPosition = new List<int>();
             SpawnRandomMonster(4);
         }
@@ -58,10 +60,10 @@ public class FieldManager : MonoBehaviour
         PlayerTurn();
     }
 
-    void PlayerTurn()
+    public void PlayerTurn()
     {
         fieldState = FieldState.playerTurn;
-        turnState.text = "플레이어 차례";
+        turnState.text = "플레이어 차례\n" + "남은 횟수 " + playerTurnIndex;
         isPlayerturn = true;
     }
 

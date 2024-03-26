@@ -24,29 +24,30 @@ public class QuestSlot : MonoBehaviour
     {
         questId = questInfoForPoint.id;
         Debug.Log(questId);
+        QuestUpdate();
     }
 
     private void OnEnable()
     {
         GameEventManager.instance.questEvent.onQuestStateChange += QuestStateChange;
-        //GameEventManager.instance.questEvent.onSubmitPressed += SubmitPressed;
     }
 
-    
+    public void QuestUpdate()
+    {
+        Quest quest;
+        quest = QuestManager.instance.QuestStateCheck(this);
+        Debug.Log(quest.state);
+        currentQuestState = quest.state;
+    }
 
     private void OnDisable()
     {
         GameEventManager.instance.questEvent.onQuestStateChange -= QuestStateChange;
-        //GameEventManager.instance.questEvent.onSubmitPressed -= SubmitPressed;
     }
 
     private void Start()
     {
-        Debug.Log(questId);
-        if (QuestManager.instance.GetComponentInChildren<ClearDungeonQuestStep>() != null)
-        {
-            currentQuestState = QuestManager.instance.GetComponentInChildren<ClearDungeonQuestStep>().currentState;
-        }
+
     }
 
     //현재 진행중인지 확인하는 메서드
