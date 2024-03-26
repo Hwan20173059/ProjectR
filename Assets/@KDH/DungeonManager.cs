@@ -3,15 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DungeonManager : MonoBehaviour
+public class DungeonManager : TileMapManager
 {
-    public PlayerManager playerManager;
-
-    private void Start()
-    {
-        playerManager = PlayerManager.Instance;
-    }
-
     public void ExitButton()
     {
         if (playerManager.selectBattleID == 0)

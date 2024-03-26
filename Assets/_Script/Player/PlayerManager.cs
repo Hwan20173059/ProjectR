@@ -38,15 +38,13 @@ public class PlayerManager : Singleton<PlayerManager>
             if (equip[i] == null)
                 equip[i] = baseEquip;
         }
-
-        ReFreshPlayer();
     }
-
+    
     public void ReFreshPlayer()
     {
         townPlayer.GetComponent<TownPlayer>().Refresh();
     }
-
+    
     public void EquipNewItem(int n)
     {
         equip[n].isEquipped = false;
