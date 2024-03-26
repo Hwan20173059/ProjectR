@@ -26,9 +26,12 @@ public class FieldManager : MonoBehaviour
     public bool isSelect = false;
     public bool isPlayerturn = true;
 
-    [Header("Player")]
+    [Header("FieldObject")]
     public GameObject playerPrefab;
+    public GameObject slimePrefab;
     public GameObject monsterPrefab;
+    public GameObject chest0Prefab;
+    public GameObject chest1Prefab;
 
     [Header("Monster")]
     public List<Tile> fieldMonster = new List<Tile>();
@@ -37,8 +40,6 @@ public class FieldManager : MonoBehaviour
     public TextMeshProUGUI turnState;
     public GameObject selectUI;
     public TextMeshProUGUI infoUI;
-
-    
 
     void Start()
     {
@@ -54,6 +55,7 @@ public class FieldManager : MonoBehaviour
         }
         else
         {
+            playerTurnIndex = 3;
             LoadMonster();
         }
 
@@ -118,10 +120,14 @@ public class FieldManager : MonoBehaviour
 
     private void MoveTileMonsterState(int monsterIndex, int X, int Y, int MoveX, int MoveY)
     {
-        field.tileRaw[Y].fieldTiles[X].SetTile(TileState.empty);
+        field.tileRaw[Y].fieldTiles[X].SetTile(TileState.empty);        
         field.tileRaw[Y].fieldTiles[X].RefreshTile();
 
+        field.tileRaw[MoveY].fieldTiles[MoveX].battleID = field.tileRaw[Y].fieldTiles[X].battleID;
+        field.tileRaw[Y].fieldTiles[X].battleID = 0;
+
         fieldMonster[monsterIndex] = field.tileRaw[MoveY].fieldTiles[MoveX];
+
         MonsterFieldSetting(MoveX, MoveY);
     }
 
@@ -148,19 +154,29 @@ public class FieldManager : MonoBehaviour
         {
             for(int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
             {
-                if (field.tileRaw[i].fieldTiles[j].tileState == TileState.player || field.tileRaw[i].fieldTiles[j].tileState == TileState.cango)
+                if (field.tileRaw[i].fieldTiles[j].tileState == TileState.player || field.tileRaw[i].fieldTiles[j].tileState == TileState.canGO)
                 {
                     field.tileRaw[i].fieldTiles[j].SetTile(TileState.empty);
                     field.tileRaw[i].fieldTiles[j].RefreshTile();
                 }
-                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canfight)
+                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canFight)
                 {
                     field.tileRaw[i].fieldTiles[j].tileState = TileState.monster;
                     field.tileRaw[i].fieldTiles[j].RefreshTile();
                 }
-                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canEnter)
+                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canTownEnter)
                 {
                     field.tileRaw[i].fieldTiles[j].tileState = TileState.town;
+                    field.tileRaw[i].fieldTiles[j].RefreshTile();
+                }
+                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canDungeonEnter)
+                {
+                    field.tileRaw[i].fieldTiles[j].tileState = TileState.dungeon;
+                    field.tileRaw[i].fieldTiles[j].RefreshTile();
+                }
+                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canOpenChest)
+                {
+                    field.tileRaw[i].fieldTiles[j].tileState = TileState.chest;
                     field.tileRaw[i].fieldTiles[j].RefreshTile();
                 }
             }
@@ -176,7 +192,10 @@ public class FieldManager : MonoBehaviour
 
             if (field.tileRaw[randomY].fieldTiles[randomX].tileState == TileState.empty)
             {
+                int randomID = UnityEngine.Random.Range(0, 2);
+
                 fieldMonster.Add(field.tileRaw[randomY].fieldTiles[randomX]);
+                field.tileRaw[randomY].fieldTiles[randomX].battleID = randomID;
                 MonsterFieldSetting(randomX, randomY);
             }
             else
@@ -234,21 +253,29 @@ public class FieldManager : MonoBehaviour
     private void TileOn(int X, int Y)
     {
         if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.empty))
-            TileStateSetting(X, Y, TileState.cango);
+            TileStateSetting(X, Y, TileState.canGO);
         else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.monster))
-            TileStateSetting(X, Y, TileState.canfight);
+            TileStateSetting(X, Y, TileState.canFight);
         else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.town))
-            TileStateSetting(X, Y, TileState.canEnter);
+            TileStateSetting(X, Y, TileState.canTownEnter);
+        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.dungeon))
+            TileStateSetting(X, Y, TileState.canDungeonEnter);
+        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.chest))
+            TileStateSetting(X, Y, TileState.canOpenChest);
     }
 
     private void TileOff(int X, int Y)
     {
-        if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.cango))
+        if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.canGO))
             TileStateSetting(X, Y, TileState.empty);
-        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.canfight))
+        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.canFight))
             TileStateSetting(X, Y, TileState.monster);
-        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.canEnter))
+        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.canTownEnter))
             TileStateSetting(X, Y, TileState.town);
+        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.canDungeonEnter))
+            TileStateSetting(X, Y, TileState.dungeon);
+        else if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.canOpenChest))
+            TileStateSetting(X, Y, TileState.chest);
     }
 
     private bool TileStateCheck(int X, int Y, TileState tileState)
