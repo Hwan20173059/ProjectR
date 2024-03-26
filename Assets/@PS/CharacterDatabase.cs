@@ -5,18 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterDatabase
 {
-    public List<AssetCharacter> characterDatas;
-    public Dictionary<int, AssetCharacter> characterDic = new();
+    public List<Character> characterDatas;
+    public Dictionary<int, Character> characterDic = new();
 
     public void Initialize()
     {
-        foreach (AssetCharacter character in characterDatas)
+        foreach (Character character in characterDatas)
         {
             characterDic.Add(character.id, character);
         }
     }
 
-    public AssetCharacter GetCharacterByKey(int id)
+    public Character GetCharacterByKey(int id)
     {
         if (characterDic.ContainsKey(id))
             return characterDic[id];

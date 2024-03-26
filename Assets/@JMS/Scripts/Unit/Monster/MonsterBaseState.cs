@@ -7,7 +7,7 @@ public class MonsterBaseState : IState
     protected MonsterStateMachine stateMachine;
     protected Monster monster { get { return stateMachine.monster; } }
     protected BattleManager battleManager { get { return monster.battleManager; } }
-    protected AssetCharacter character { get { return battleManager.character; } }
+    protected Character character { get { return battleManager.character; } }
     protected List<int> performList { get { return battleManager.performList; } }
     public MonsterBaseState(MonsterStateMachine monsterStateMachine)
     {

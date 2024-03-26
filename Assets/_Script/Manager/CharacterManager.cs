@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class CharacterData
 {
-    public AssetCharacter character;
+    public Character character;
     public bool isSelected;
     public bool isBuy;
 }

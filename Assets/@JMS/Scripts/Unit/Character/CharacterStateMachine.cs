@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CharacterStateMachine : StateMachine
 {
-    public AssetCharacter character { get; }
+    public Character character { get; }
     public CharacterWaitState waitState { get; }
     public CharacterReadyState readyState { get; }
     public CharacterSelectActionState selectActionState { get; }
     public CharacterActionState actionState { get; }
     public CharacterDeadState deadState { get; }
-    public CharacterStateMachine(AssetCharacter character)
+    public CharacterStateMachine(Character character)
     {
         this.character = character;
 

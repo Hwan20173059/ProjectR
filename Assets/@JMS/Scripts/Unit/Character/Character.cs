@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AssetCharacter : MonoBehaviour
+public class Character : MonoBehaviour
 {
     [Header("Data")]
     public int id;
