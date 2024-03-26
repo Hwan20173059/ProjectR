@@ -126,15 +126,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 8902153403540484996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39b041a45e8a4604893c84e136b8b076, type: 3}
+  m_Script: {fileID: 11500000, guid: 9675c8f93c837aa47a1ee406b72f99d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 2
   baseData: {fileID: 11400000, guid: 88944850401bc4549b8a0a5ce4196c1c, type: 2}
-  sprite: {fileID: 0}
-  characterName: 
-  desc: 
-  level: 0
+  sprite: {fileID: -3154150011874791226, guid: 4d701fb8bab94204e92af20e3e7b6a8a, type: 3}
+  characterName: "\uB098\uC774\uD2B8"
+  desc: "\uAC80\uC220\uC744 \uC81C\uBC95 \uC219\uB828\uD55C \uBAA8\uD5D8\uAC00\uC774\uB2E4."
+  level: 1
   curExp: 0
   needExp: 0
   maxHP: 0
