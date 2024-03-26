@@ -26,10 +26,12 @@ public class FieldManager : MonoBehaviour
     public bool isSelect = false;
     public bool isPlayerturn = true;
 
-    [Header("Player")]
+    [Header("FieldObject")]
     public GameObject playerPrefab;
+    public GameObject slimePrefab;
     public GameObject monsterPrefab;
-    public GameObject chestPrefab;
+    public GameObject chest0Prefab;
+    public GameObject chest1Prefab;
 
     [Header("Monster")]
     public List<Tile> fieldMonster = new List<Tile>();
@@ -117,10 +119,14 @@ public class FieldManager : MonoBehaviour
 
     private void MoveTileMonsterState(int monsterIndex, int X, int Y, int MoveX, int MoveY)
     {
-        field.tileRaw[Y].fieldTiles[X].SetTile(TileState.empty);
+        field.tileRaw[Y].fieldTiles[X].SetTile(TileState.empty);        
         field.tileRaw[Y].fieldTiles[X].RefreshTile();
 
+        field.tileRaw[MoveY].fieldTiles[MoveX].battleID = field.tileRaw[Y].fieldTiles[X].battleID;
+        field.tileRaw[Y].fieldTiles[X].battleID = 0;
+
         fieldMonster[monsterIndex] = field.tileRaw[MoveY].fieldTiles[MoveX];
+
         MonsterFieldSetting(MoveX, MoveY);
     }
 
@@ -137,7 +143,6 @@ public class FieldManager : MonoBehaviour
 
     private void MonsterFieldSetting(int x, int y)
     {
-        field.tileRaw[y].fieldTiles[x].battleID = 0;
         field.tileRaw[y].fieldTiles[x].tileState = TileState.monster;
         field.tileRaw[y].fieldTiles[x].RefreshTile();
     }
@@ -186,7 +191,10 @@ public class FieldManager : MonoBehaviour
 
             if (field.tileRaw[randomY].fieldTiles[randomX].tileState == TileState.empty)
             {
+                int randomID = UnityEngine.Random.Range(0, 2);
+
                 fieldMonster.Add(field.tileRaw[randomY].fieldTiles[randomX]);
+                field.tileRaw[randomY].fieldTiles[randomX].battleID = randomID;
                 MonsterFieldSetting(randomX, randomY);
             }
             else
