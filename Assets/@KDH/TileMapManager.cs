@@ -41,26 +41,7 @@ public class TileMapManager : MonoBehaviour
     public GameObject selectUI;
     public TextMeshProUGUI infoUI;
 
-    void Start()
-    {
-        playerManager = PlayerManager.Instance;
 
-        PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
-
-        if (playerManager.isEnterTown == true)
-        {
-            playerTurnIndex = 3;
-            playerManager.monsterPosition = new List<int>();
-            SpawnRandomMonster(4);
-        }
-        else
-        {
-            playerTurnIndex = 3;
-            LoadMonster();
-        }
-
-        PlayerTurn();
-    }
 
     public void PlayerTurn()
     {
@@ -118,7 +99,7 @@ public class TileMapManager : MonoBehaviour
         PlayerTurn();
     }
 
-    private void MoveTileMonsterState(int monsterIndex, int X, int Y, int MoveX, int MoveY)
+    protected void MoveTileMonsterState(int monsterIndex, int X, int Y, int MoveX, int MoveY)
     {
         field.tileRaw[Y].fieldTiles[X].SetTile(TileState.empty);        
         field.tileRaw[Y].fieldTiles[X].RefreshTile();
@@ -131,18 +112,18 @@ public class TileMapManager : MonoBehaviour
         MonsterFieldSetting(MoveX, MoveY);
     }
 
-    private bool FieldStateEmptyCheck(int X, int Y)
+    protected bool FieldStateEmptyCheck(int X, int Y)
     {
         return X > -1 && X < 9 && Y > -1 && Y < 9 && field.tileRaw[Y].fieldTiles[X].tileState == TileState.empty;
     }
 
-    private void PlayerFieldSetting(int x, int y)
+    protected void PlayerFieldSetting(int x, int y)
     {
         field.tileRaw[y].fieldTiles[x].tileState = TileState.player;
         field.tileRaw[y].fieldTiles[x].RefreshTile();
     }
 
-    private void MonsterFieldSetting(int x, int y)
+    protected void MonsterFieldSetting(int x, int y)
     {
         field.tileRaw[y].fieldTiles[x].tileState = TileState.monster;
         field.tileRaw[y].fieldTiles[x].RefreshTile();
@@ -183,7 +164,7 @@ public class TileMapManager : MonoBehaviour
         }
     }
 
-    private void SpawnRandomMonster(int index)
+    protected void SpawnRandomMonster(int index)
     {
         for (int i = 0; i < index; i++)
         {
@@ -216,7 +197,7 @@ public class TileMapManager : MonoBehaviour
         }
     }
 
-    private void LoadMonster()
+    protected void LoadMonster()
     {
         for (int i = 0; i < playerManager.monsterPosition.Count; i += 2)
         {
@@ -250,7 +231,7 @@ public class TileMapManager : MonoBehaviour
         TileOff(X, Y + 1);
     }
 
-    private void TileOn(int X, int Y)
+    protected void TileOn(int X, int Y)
     {
         if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.empty))
             TileStateSetting(X, Y, TileState.canGO);
@@ -264,7 +245,7 @@ public class TileMapManager : MonoBehaviour
             TileStateSetting(X, Y, TileState.canOpenChest);
     }
 
-    private void TileOff(int X, int Y)
+    protected void TileOff(int X, int Y)
     {
         if (X > -1 && X < 9 && Y > -1 && Y < 9 && TileStateCheck(X, Y, TileState.canGO))
             TileStateSetting(X, Y, TileState.empty);
@@ -278,12 +259,12 @@ public class TileMapManager : MonoBehaviour
             TileStateSetting(X, Y, TileState.chest);
     }
 
-    private bool TileStateCheck(int X, int Y, TileState tileState)
+    protected bool TileStateCheck(int X, int Y, TileState tileState)
     {
         return field.tileRaw[Y].fieldTiles[X].tileState == tileState;
     }
 
-    private void TileStateSetting(int X, int Y, TileState tileState)
+    protected void TileStateSetting(int X, int Y, TileState tileState)
     {
         field.tileRaw[Y].fieldTiles[X].tileState = tileState;
         field.tileRaw[Y].fieldTiles[X].RefreshTile();
