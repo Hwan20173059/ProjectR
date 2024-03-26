@@ -1714,6 +1714,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
+      propertyPath: tileState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: fieldManager
       value: 
       objectReference: {fileID: 305973022}

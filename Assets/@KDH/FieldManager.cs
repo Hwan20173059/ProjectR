@@ -55,6 +55,7 @@ public class FieldManager : MonoBehaviour
         }
         else
         {
+            playerTurnIndex = 3;
             LoadMonster();
         }
 

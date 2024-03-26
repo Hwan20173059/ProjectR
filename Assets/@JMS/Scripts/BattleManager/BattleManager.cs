@@ -21,7 +21,7 @@ public class BattleManager : MonoBehaviour
     public List<EquipItem> rouletteEquip;
     public RouletteResult rouletteResult;
 
-    public AssetCharacter character;
+    public Character character;
     public List<Monster> monsters;
     public Monster selectMonster;
     public List<int> performList;
@@ -101,7 +101,7 @@ public class BattleManager : MonoBehaviour
     {
         GameObject character = Instantiate(characterPrefab);
         character.transform.position = characterSpawnPosition;
-        this.character = character.GetComponent<AssetCharacter>();
+        this.character = character.GetComponent<Character>();
         this.character.Init(1);
         this.character.startPosition = character.transform.position;
         this.character.battleManager = this;

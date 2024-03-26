@@ -6,7 +6,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 {
     public class CharacterControls : MonoBehaviour
     {
-        public AssetCharacter AssetCharacter;
+        public Character AssetCharacter;
         public CharacterController Controller; // https://docs.unity3d.com/ScriptReference/CharacterController.html
         public float RunSpeed = 1f;
         public float JumpSpeed = 3f;
