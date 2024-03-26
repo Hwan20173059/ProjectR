@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TownPlayer : MonoBehaviour
 {
-    public Character selectedCharacter;
+    public AssetCharacter selectedCharacter;
 
     private void Start()
     {
@@ -15,7 +15,7 @@ public class TownPlayer : MonoBehaviour
 
     public void Refresh()
     {
-        selectedCharacter = PlayerManager.Instance.selectedCharacter.GetComponent<Character>();
+        selectedCharacter = PlayerManager.Instance.selectedCharacter.GetComponent<AssetCharacter>();
 
         SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         spriteRenderer.sprite = selectedCharacter.sprite;

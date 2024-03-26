@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class CharacterHpBar : MonoBehaviour
 {
-    private Character character;
+    private AssetCharacter character;
 
     private RectTransform characterMaxHpBar;
     private RectTransform characterCurHpBar;
 
     public void Init()
     {
-        character = GetComponentInParent<Character>();
+        character = GetComponentInParent<AssetCharacter>();
 
         characterMaxHpBar = transform.GetChild(0).GetComponent<RectTransform>();
         characterCurHpBar = transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();

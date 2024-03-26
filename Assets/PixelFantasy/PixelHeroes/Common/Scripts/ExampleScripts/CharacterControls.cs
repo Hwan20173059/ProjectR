@@ -6,7 +6,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 {
     public class CharacterControls : MonoBehaviour
     {
-        public Character Character;
+        public AssetCharacter AssetCharacter;
         public CharacterController Controller; // https://docs.unity3d.com/ScriptReference/CharacterController.html
         public float RunSpeed = 1f;
         public float JumpSpeed = 3f;
@@ -19,31 +19,32 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
         private int _inputX, _inputY;
         private float _activityTime;
         
+        /*
         public void Start()
         {
-            Character.SetState(AnimationState.Idle);
+            AssetCharacter.SetState(AnimationState.Idle);
         }
 
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.A)) Character.Animator.SetTrigger("Attack");
-            else if (Input.GetKeyDown(KeyCode.J)) Character.Animator.SetTrigger("Jab");
-            else if (Input.GetKeyDown(KeyCode.P)) Character.Animator.SetTrigger("Push");
-            else if (Input.GetKeyDown(KeyCode.H)) Character.Animator.SetTrigger("Hit");
-            else if (Input.GetKeyDown(KeyCode.I)) { Character.SetState(AnimationState.Idle); _activityTime = 0; }
-            else if (Input.GetKeyDown(KeyCode.R)) { Character.SetState(AnimationState.Ready); _activityTime = Time.time; }
-            else if (Input.GetKeyDown(KeyCode.B)) Character.SetState(AnimationState.Blocking);
-            else if (Input.GetKeyUp(KeyCode.B)) Character.SetState(AnimationState.Ready);
-            else if (Input.GetKeyDown(KeyCode.D)) Character.SetState(AnimationState.Dead);
+            if (Input.GetKeyDown(KeyCode.A)) AssetCharacter.Animator.SetTrigger("Attack");
+            else if (Input.GetKeyDown(KeyCode.J)) AssetCharacter.Animator.SetTrigger("Jab");
+            else if (Input.GetKeyDown(KeyCode.P)) AssetCharacter.Animator.SetTrigger("Push");
+            else if (Input.GetKeyDown(KeyCode.H)) AssetCharacter.Animator.SetTrigger("Hit");
+            else if (Input.GetKeyDown(KeyCode.I)) { AssetCharacter.SetState(AnimationState.Idle); _activityTime = 0; }
+            else if (Input.GetKeyDown(KeyCode.R)) { AssetCharacter.SetState(AnimationState.Ready); _activityTime = Time.time; }
+            else if (Input.GetKeyDown(KeyCode.B)) AssetCharacter.SetState(AnimationState.Blocking);
+            else if (Input.GetKeyUp(KeyCode.B)) AssetCharacter.SetState(AnimationState.Ready);
+            else if (Input.GetKeyDown(KeyCode.D)) AssetCharacter.SetState(AnimationState.Dead);
 
             // Builder characters only.
-            else if (Input.GetKeyDown(KeyCode.S)) Character.Animator.SetTrigger("Slash");
-            else if (Input.GetKeyDown(KeyCode.O)) Character.Animator.SetTrigger("Shot");
-            else if (Input.GetKeyDown(KeyCode.F)) Character.Animator.SetTrigger("Fire1H");
-            else if (Input.GetKeyDown(KeyCode.E)) Character.Animator.SetTrigger("Fire2H");
-            else if (Input.GetKeyDown(KeyCode.C)) Character.SetState(AnimationState.Climbing);
-            else if (Input.GetKeyUp(KeyCode.C)) Character.SetState(AnimationState.Ready);
-            else if (Input.GetKeyUp(KeyCode.L)) Character.Blink();
+            else if (Input.GetKeyDown(KeyCode.S)) AssetCharacter.Animator.SetTrigger("Slash");
+            else if (Input.GetKeyDown(KeyCode.O)) AssetCharacter.Animator.SetTrigger("Shot");
+            else if (Input.GetKeyDown(KeyCode.F)) AssetCharacter.Animator.SetTrigger("Fire1H");
+            else if (Input.GetKeyDown(KeyCode.E)) AssetCharacter.Animator.SetTrigger("Fire2H");
+            else if (Input.GetKeyDown(KeyCode.C)) AssetCharacter.SetState(AnimationState.Climbing);
+            else if (Input.GetKeyUp(KeyCode.C)) AssetCharacter.SetState(AnimationState.Ready);
+            else if (Input.GetKeyUp(KeyCode.L)) AssetCharacter.Blink();
 
             if (Controller.isGrounded)
             {
@@ -90,13 +91,13 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 return;
             }
 
-            var state = Character.GetState();
+            var state = AssetCharacter.GetState();
 
             if (state == AnimationState.Dead)
             {
                 if (_inputX == 0) return;
 
-                Character.SetState(AnimationState.Running);
+                AssetCharacter.SetState(AnimationState.Running);
             }
 
             if (_inputX != 0)
@@ -114,8 +115,8 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                     }
                     else
                     {
-                        Character.Animator.SetTrigger("Landed");
-                        Character.SetState(AnimationState.Ready);
+                        AssetCharacter.Animator.SetTrigger("Landed");
+                        AssetCharacter.SetState(AnimationState.Ready);
                         JumpDust.Play(true);
                     }
                 }
@@ -128,7 +129,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                 {
                     if (_inputY > 0)
                     {
-                        Character.SetState(AnimationState.Jumping);
+                        AssetCharacter.SetState(AnimationState.Jumping);
                     }
                     else
                     {
@@ -136,7 +137,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
                         {
                             case AnimationState.Idle:
                             case AnimationState.Ready:
-                                Character.SetState(AnimationState.Running);
+                                AssetCharacter.SetState(AnimationState.Running);
                                 break;
                         }
                     }
@@ -154,7 +155,7 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
                             if (state != targetState)
                             {
-                                Character.SetState(targetState);
+                                AssetCharacter.SetState(targetState);
                             }
 
                             break;
@@ -164,18 +165,18 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
             else
             {
                 _motion = new Vector3(RunSpeed * _inputX, _motion.y);
-                Character.SetState(AnimationState.Jumping);
+                AssetCharacter.SetState(AnimationState.Jumping);
             }
 
             _motion.y += Gravity;
 
             Controller.Move(_motion * Time.fixedDeltaTime);
 
-            Character.Animator.SetBool("Grounded", Controller.isGrounded);
-            Character.Animator.SetBool("Moving", Controller.isGrounded && _inputX != 0);
-            Character.Animator.SetBool("Falling", !Controller.isGrounded && Controller.velocity.y < 0);
+            AssetCharacter.Animator.SetBool("Grounded", Controller.isGrounded);
+            AssetCharacter.Animator.SetBool("Moving", Controller.isGrounded && _inputX != 0);
+            AssetCharacter.Animator.SetBool("Falling", !Controller.isGrounded && Controller.velocity.y < 0);
 
-            if (_inputX != 0 && _inputY != 0 || Character.Animator.GetBool("Action"))
+            if (_inputX != 0 && _inputY != 0 || AssetCharacter.Animator.GetBool("Action"))
             {
                 _activityTime = Time.time;
             }
@@ -201,21 +202,23 @@ namespace Assets.PixelFantasy.PixelHeroes.Common.Scripts.ExampleScripts
 
         private void Turn(int direction)
         {
-            var scale = Character.transform.localScale;
+            var scale = AssetCharacter.transform.localScale;
 
             scale.x = Mathf.Sign(direction) * Mathf.Abs(scale.x);
 
-            Character.transform.localScale = scale;
+            AssetCharacter.transform.localScale = scale;
         }
 
         private void GetDown()
         {
-            Character.Animator.SetTrigger("GetDown");
+            AssetCharacter.Animator.SetTrigger("GetDown");
         }
 
         private void GetUp()
         {
-            Character.Animator.SetTrigger("GetUp");
+            AssetCharacter.Animator.SetTrigger("GetUp");
         }
+        */
     }
+        
 }

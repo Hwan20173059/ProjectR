@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class BattleCanvas : MonoBehaviour
 {
     private BattleManager battleManager;
-    private Character character { get { return battleManager.character; } set { battleManager.character = value; } }
+    private AssetCharacter character { get { return battleManager.character; } set { battleManager.character = value; } }
     private Monster selectMonster { get { return battleManager.selectMonster; } set { battleManager.selectMonster = value; } }
 
     public Image actionBar;
