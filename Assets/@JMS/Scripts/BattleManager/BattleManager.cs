@@ -102,6 +102,8 @@ public class BattleManager : MonoBehaviour
         this.character.Init(1);
         this.character.startPosition = character.transform.position;
         this.character.battleManager = this;
+
+        battleCanvas.CreateCharacterHpBar(this.character);
     }
 
     public void SpawnMonster()
@@ -142,6 +144,8 @@ public class BattleManager : MonoBehaviour
             monsters[i].startPosition = monsters[i].transform.position;
             monsters[i].Init(1);
             monsters[i].battleManager = this;
+
+            battleCanvas.CreateMonsterHpBar(monsters[i]);
         }
 
         monsterSpawnPosition = new Vector3(-1, 3, 0);

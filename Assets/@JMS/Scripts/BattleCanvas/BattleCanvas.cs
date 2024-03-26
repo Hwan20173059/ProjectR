@@ -22,6 +22,9 @@ public class BattleCanvas : MonoBehaviour
     MonsterStatePanel monsterStatePanel;
     BattleTextPanel battleTextPanel;
 
+    public GameObject characterHpBarPrefab;
+    public GameObject monsterHpBarPrefab;
+
     private void Awake()
     {
         battleManager = GetComponentInParent<BattleManager>();
@@ -53,6 +56,22 @@ public class BattleCanvas : MonoBehaviour
         battleDefeatPanel.gameObject.SetActive(false);
         dungeonClearPanel.gameObject.SetActive(false);
         monsterStatePanel.gameObject.SetActive(false);
+    }
+
+    public void CreateCharacterHpBar(Character character)
+    {
+        GameObject go = Instantiate(characterHpBarPrefab, gameObject.transform.GetChild(0).transform);
+        CharacterHpBar hpBar = go.GetComponent<CharacterHpBar>();
+        hpBar.Init(character);
+        character.hpBar = hpBar;
+    }
+
+    public void CreateMonsterHpBar(Monster monster)
+    {
+        GameObject go = Instantiate(monsterHpBarPrefab, gameObject.transform.GetChild(0).transform);
+        MonsterHpBar hpBar = go.GetComponent<MonsterHpBar>();
+        hpBar.Init(monster);
+        monster.hpBar = hpBar;
     }
 
     public void UpdateActionBar()

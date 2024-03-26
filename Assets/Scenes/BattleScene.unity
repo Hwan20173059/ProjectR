@@ -455,25 +455,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1120988200817400211, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402336891127017973, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4167268074760536097, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: m_Name
       value: BattleCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 4904664844065954377, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6741654941446310057, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

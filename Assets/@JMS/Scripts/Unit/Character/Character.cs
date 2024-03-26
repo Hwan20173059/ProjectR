@@ -34,6 +34,7 @@ public class Character : MonoBehaviour
     public float moveAnimSpeed = 10f;
 
     public CharacterHpBar hpBar;
+
     public Monster selectMonster;
 
     public BattleManager battleManager;
@@ -43,8 +44,6 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-        hpBar = GetComponentInChildren<CharacterHpBar>();
-
         stateMachine = new CharacterStateMachine(this);
 
         animator = GetComponentInChildren<Animator>();
@@ -73,8 +72,6 @@ public class Character : MonoBehaviour
         atk = baseData.atk * level;
         needExp = baseData.needExp * level;
         maxCoolTime = baseData.actionCoolTime;
-
-        hpBar.Init();
     }
 
     public void ChangeHP(int change)
