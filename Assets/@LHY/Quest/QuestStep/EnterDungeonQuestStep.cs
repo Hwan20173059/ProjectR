@@ -18,12 +18,12 @@ public class EnterDungeonQuestStep : QuestStep
 
     private void OnEnable()
     {
-        GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
+        GameEventManager.instance.battleEvent.onDungeonClear += DungeonClear;
     }
 
     private void OnDisable()
     {
-        GameEventManager.instance.questEvent.onDungeonClear -= DungeonClear;
+        GameEventManager.instance.battleEvent.onDungeonClear -= DungeonClear;
     }
     //todo : 던전 클리어 체크
     public void DungeonClear()//todo : private화

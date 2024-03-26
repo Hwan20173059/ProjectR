@@ -8,6 +8,9 @@ public class GameEventManager : MonoBehaviour
     public static GameEventManager instance { get; private set; }
     
     public QuestEvent questEvent;
+    public BattleEvent battleEvent;
+    public UIEvent uiEvent;
+
 
     private void Awake()
     {
@@ -18,6 +21,9 @@ public class GameEventManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+
         questEvent = new QuestEvent();
+        battleEvent = new BattleEvent();
+        uiEvent = new UIEvent();
     }
 }

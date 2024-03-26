@@ -19,13 +19,13 @@ public class ClearDungeonQuestStep : QuestStep
 
     private void OnEnable()
     {
-        GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
+        GameEventManager.instance.battleEvent.onDungeonClear += DungeonClear;
         GameEventManager.instance.questEvent.onFinishQuest += FinishQuest;
     }
 
     private void OnDisable()
     {
-        GameEventManager.instance.questEvent.onDungeonClear -= DungeonClear;
+        GameEventManager.instance.battleEvent.onDungeonClear -= DungeonClear;
         GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
     }
     //todo : 던전 클리어 체크

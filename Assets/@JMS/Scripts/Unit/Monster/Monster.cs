@@ -83,7 +83,6 @@ public class Monster : MonoBehaviour
 
         if (curHP <= 0)
         {
-            GameEventManager.instance.questEvent.KillSlime();
             stateMachine.ChangeState(stateMachine.deadState);
         }
 

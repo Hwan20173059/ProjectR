@@ -9,7 +9,7 @@ public class tmp : MonoBehaviour
 
     public void dungeonclick()
     {
-        GameEventManager.instance.questEvent.DungeonClear();
+        GameEventManager.instance.battleEvent.DungeonClear();
         //GameEventManager.instance.questEvent.QuestStateChange();
     }
 

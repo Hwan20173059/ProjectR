@@ -28,21 +28,21 @@ public class SelectQuestUI : MonoBehaviour
     }
     private void OnEnable()
     {
-        gameEventManager.questEvent.onQuestSelect += QuestSelect;
-        gameEventManager.questEvent.onSubmitPressed += SubmitPressed;
+        gameEventManager.uiEvent.onQuestSelect += QuestSelect;
+        gameEventManager.uiEvent.onSubmitPressed += SubmitPressed;
     }
 
     private void OnDisable()
     {
-        GameEventManager.instance.questEvent.onQuestSelect -= QuestSelect;
-        GameEventManager.instance.questEvent.onSubmitPressed += SubmitPressed;
+        GameEventManager.instance.uiEvent.onQuestSelect -= QuestSelect;
+        GameEventManager.instance.uiEvent.onSubmitPressed += SubmitPressed;
     }
 
 
     public void SubmitOnClick()
     {
         Debug.Log("Select");
-        GameEventManager.instance.questEvent.SubmitPressed(selectQuestID);
+        GameEventManager.instance.uiEvent.SubmitPressed(selectQuestID);
         SetQuest(selectQuestID);
     }
 

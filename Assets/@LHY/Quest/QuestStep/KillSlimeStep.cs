@@ -17,13 +17,13 @@ public class KillSlimeStep : QuestStep
 
     private void OnEnable()
     {
-        GameEventManager.instance.questEvent.onKillSlime += KillSlime;
+        GameEventManager.instance.battleEvent.onKillSlime += KillSlime;
         GameEventManager.instance.questEvent.onFinishQuest += FinishQuest;
     }
 
     private void OnDisable()
     {
-        GameEventManager.instance.questEvent.onKillSlime -= KillSlime;
+        GameEventManager.instance.battleEvent.onKillSlime -= KillSlime;
         GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
     }
 
