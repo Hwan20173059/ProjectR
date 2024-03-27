@@ -17,6 +17,9 @@ public class DungeonClearPanel : MonoBehaviour
     void TownSceneLoad()
     {
         gameObject.SetActive(false);
-        SceneManager.LoadScene("FieldScene");
+        if (PlayerManager.Instance.isField == true)
+            SceneManager.LoadScene("FieldScene");
+        else if (PlayerManager.Instance.isDungeon == true)
+            SceneManager.LoadScene("DungeonScene");
     }
 }
