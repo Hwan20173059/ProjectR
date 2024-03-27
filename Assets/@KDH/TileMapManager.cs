@@ -243,4 +243,15 @@ public class TileMapManager : MonoBehaviour
         field.tileRaw[Y].fieldTiles[X].tileState = tileState;
         field.tileRaw[Y].fieldTiles[X].RefreshTile();
     }
+
+    protected void AllRefreshTile()
+    {
+        for(int i = 0; i < field.tileRaw.Length; i++)
+        {
+            for(int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
+            {
+                field.tileRaw[i].fieldTiles[j].RefreshTile();
+            }
+        }
+    }
 }
