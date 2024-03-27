@@ -7,7 +7,7 @@ public class CharacterBaseState : IState
     protected CharacterStateMachine stateMachine;
     protected Character character { get { return stateMachine.character; } }
     protected BattleManager battleManager { get { return character.battleManager; } }
-    protected Monster selectMonster { get { return character.selectMonster; } set { character.selectMonster = value; } }
+    protected Monster selectMonster { get { return battleManager.selectMonster; } set { battleManager.selectMonster = value; } }
     protected List<EquipItem> rouletteResult { get{ return battleManager.rouletteEquip; } }
     public CharacterBaseState(CharacterStateMachine characterStateMachine)
     {
@@ -59,7 +59,7 @@ public class CharacterBaseState : IState
 
     protected void StateUpdate(string state)
     {
-        character.currentState = state;
+        character.currentStateText = state;
         battleManager.battleCanvas.UpdateCharacterState();
     }
 }

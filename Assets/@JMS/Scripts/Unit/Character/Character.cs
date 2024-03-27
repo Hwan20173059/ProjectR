@@ -12,7 +12,6 @@ public class Character : MonoBehaviour
     [Header("Info")]
     public Sprite sprite;
     public string characterName;
-    public string desc;
 
     [Header("Level")]
     public int level;
@@ -24,7 +23,7 @@ public class Character : MonoBehaviour
     public int curHP;
     public int atk;
     public bool IsDead => curHP <= 0;
-    public string currentState = "대기중";
+    public string currentStateText = "대기중";
 
     public float curCoolTime;
     public float maxCoolTime;
@@ -34,8 +33,6 @@ public class Character : MonoBehaviour
     public float moveAnimSpeed = 10f;
 
     public CharacterHpBar hpBar;
-
-    public Monster selectMonster;
 
     public BattleManager battleManager;
     public BattleCanvas battleCanvas { get {  return battleManager.battleCanvas; } }
