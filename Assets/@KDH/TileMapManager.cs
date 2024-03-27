@@ -35,6 +35,7 @@ public class TileMapManager : MonoBehaviour
 
     [Header("Monster")]
     public List<Tile> fieldMonster = new List<Tile>();
+    public Tile chestPosition;
 
     [Header("UI")]
     public TextMeshProUGUI turnState;
@@ -205,6 +206,26 @@ public class TileMapManager : MonoBehaviour
             fieldMonster.Add(field.tileRaw[Y].fieldTiles[X]);
             MonsterFieldSetting(playerManager.monsterPosition[i], X, Y);
         }
+    }
+
+    protected void ChestSetting(int chestID, int x, int y)
+    {
+        field.tileRaw[y].fieldTiles[x].chestID = chestID;
+        field.tileRaw[y].fieldTiles[x].tileState = TileState.chest;
+        field.tileRaw[y].fieldTiles[x].RefreshTile();
+    }
+
+    protected void LoadChest()
+    {
+        chestPosition = field.tileRaw[playerManager.chestPosition[2]].fieldTiles[playerManager.chestPosition[1]];
+        ChestSetting(playerManager.chestPosition[0], playerManager.chestPosition[1], playerManager.chestPosition[2]);
+    }
+
+    public void SaveChest()
+    {
+        playerManager.chestPosition.Add(chestPosition.chestID);
+        playerManager.chestPosition.Add(chestPosition.indexX);
+        playerManager.chestPosition.Add(chestPosition.indexY);
     }
 
     public void MoveTileOn()

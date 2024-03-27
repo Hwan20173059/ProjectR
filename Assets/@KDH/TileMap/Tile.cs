@@ -278,6 +278,8 @@ public class Tile : MonoBehaviour
                     tileMapManager.fieldMonster.Remove(this);
 
                     tileMapManager.SaveMonster();
+                    if(tileMapManager.chestPosition != null)
+                        tileMapManager.SaveChest();
 
                     tileMapManager.playerManager.selectBattleID = 0;
                     SceneManager.LoadScene("BattleScene");

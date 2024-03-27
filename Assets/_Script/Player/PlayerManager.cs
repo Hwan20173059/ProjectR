@@ -25,11 +25,13 @@ public class PlayerManager : Singleton<PlayerManager>
     public TownUiManager townUiManager;
     public GameObject townPlayer;    
 
-    [Header("Field")]
+    [Header("SaveInfo")]
     public int fieldX;
     public int fieldY;
 
     public List<int> monsterPosition = new List<int>();
+    public List<int> chestPosition = new List<int>();
+    public int[] dungeonMap = new int[4];
 
     [Header("Dungeon")]
     public int selectTownID;

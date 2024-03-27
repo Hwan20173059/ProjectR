@@ -776,6 +776,7 @@ MonoBehaviour:
   chest0Prefab: {fileID: 3648627258176495412, guid: f999dad9a87ba804ea4a3fbf4902d7c1, type: 3}
   chest1Prefab: {fileID: 3648627258176495412, guid: 06b919bf6c2fe7546a369906630f13ac, type: 3}
   fieldMonster: []
+  chestPosition: {fileID: 0}
   turnState: {fileID: 145535765}
   selectUI: {fileID: 1298999661}
   infoUI: {fileID: 1823751509}
@@ -1765,11 +1766,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9062936119970784779, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: chestID
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9062936119970784779, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9062936119970784779, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: fieldManager
@@ -2284,7 +2285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: tileState
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2481982910253295961, guid: 18b6e10f1f0c2a547836c50399386651, type: 3}
       propertyPath: fieldManager
