@@ -12,20 +12,6 @@ public class BattlePerformActionState : BattleBaseState
         base.Exit();
 
         performList.RemoveAt(0);
-
-        if (!(character.IsDead))
-        {
-             // 캐릭터 상태를 이전 상태로 변경
-            character.stateMachine.ChangeState(characterPrevState);
-        }
-
-        for (int i = 0; i < monsters.Count; i++)
-        {
-            if (!(monsters[i].IsDead))
-            {
-                // 몬스터들의 상태를 이전 상태로 변경
-                monsters[i].stateMachine.ChangeState(monstersPrevState[i]);
-            }
-        }
+        battleManager.LoadUnitState();
     }
 }

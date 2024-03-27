@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -56,7 +57,7 @@ public class CharacterActionState : CharacterBaseState
         character.animator.SetTrigger("Attack");
         int prevHp = target.curHP;
         target.ChangeHP(-damage);
-        battleManager.battleCanvas.UpdateBattleState($"{character.characterName}의 공격!\n{target.monsterName}에게 {prevHp - target.curHP}의 피해!");
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 공격!\n{target.monsterName}에게 {prevHp - target.curHP}의 피해!");
         while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
         character.animator.SetBool("Idle", true);
     }
@@ -88,7 +89,7 @@ public class CharacterActionState : CharacterBaseState
         {
             battleManager.monsters[i].ChangeHP(-damage);
         }
-        battleManager.battleCanvas.UpdateBattleState($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
         while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
         character.animator.SetBool("Idle", true);
 
@@ -98,7 +99,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator DoubleAttack()
     {
-        if(battleManager.aliveMonsterCount > 1)
+        if(battleManager.AliveMonsterCount() > 1)
         {
             selectMonster = battleManager.selectMonster;
             Vector3 selectMonsterPosition = new Vector3(selectMonster.startPosition.x - 1f, selectMonster.startPosition.y);
@@ -138,7 +139,7 @@ public class CharacterActionState : CharacterBaseState
         character.animator.SetTrigger("Jump");
         int prevHp = character.curHP;
         character.ChangeHP(battleManager.rouletteEquip[0].data.singleValue);
-        battleManager.battleCanvas.UpdateBattleState($"{character.characterName}이 {character.curHP - prevHp}의 체력을 회복!");
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}이 {character.curHP - prevHp}의 체력을 회복!");
         while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Jump"))) { yield return null; }
         character.animator.SetBool("Idle", true);
 
@@ -147,7 +148,6 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator HorizontalAttack()
     {
-        Debug.DrawRay(character.transform.position, Vector3.right * 3f, new Color(0, 100, 0));
         selectMonster = battleManager.selectMonster;
         Vector3 selectMonsterPosition = new Vector3(selectMonster.startPosition.x - 1f, selectMonster.startPosition.y);
 
@@ -168,7 +168,7 @@ public class CharacterActionState : CharacterBaseState
                     hitMonster.ChangeHP(-damage);
             }
         }
-        battleManager.battleCanvas.UpdateBattleState($"{character.characterName}의 가로 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 가로 공격!\n몬스터들에게 {damage}의 데미지 공격!");
         while (!IsAnimationEnd(GetNormalizedTime(character.animator, "Attack"))) { yield return null; }
         character.animator.SetBool("Idle", true);
 

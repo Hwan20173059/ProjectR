@@ -30,9 +30,6 @@ public class BattleManager : MonoBehaviour
     public bool IsSelectingAction = false;
     public bool IsRouletteUsed = true;
 
-    public bool isStageClear { get { return StageClearCheck(); } }
-    public int aliveMonsterCount { get { return AliveMonsterCount(); } }
-
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
     Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
 
@@ -93,7 +90,7 @@ public class BattleManager : MonoBehaviour
             targetCircle.targetTransform = selectMonster.transform;
             targetCircle.gameObject.SetActive(true);
             battleCanvas.UpdateMonsterState();
-            battleCanvas.monsterInfoPanel.gameObject.SetActive(true);
+            battleCanvas.MonsterStatePanelOn();
         }
     }
     
@@ -105,6 +102,8 @@ public class BattleManager : MonoBehaviour
         this.character.Init(1);
         this.character.startPosition = character.transform.position;
         this.character.battleManager = this;
+
+        battleCanvas.CreateCharacterHpBar(this.character);
     }
 
     public void SpawnMonster()
@@ -145,6 +144,8 @@ public class BattleManager : MonoBehaviour
             monsters[i].startPosition = monsters[i].transform.position;
             monsters[i].Init(1);
             monsters[i].battleManager = this;
+
+            battleCanvas.CreateMonsterHpBar(monsters[i]);
         }
 
         monsterSpawnPosition = new Vector3(-1, 3, 0);
@@ -168,7 +169,73 @@ public class BattleManager : MonoBehaviour
             monster.stateMachine.ChangeState(monster.stateMachine.readyState);
         }
     }
-    private bool StageClearCheck()
+
+    public void NextStageStart()
+    {
+        battleCanvas.NextStagePanelOff();
+        character.curCoolTime = 0;
+        Destroy(monsterPool);
+        monsterPool = null;
+        monsters.Clear();
+        stateMachine.ChangeState(stateMachine.startState);
+    }
+
+    public void SaveUnitState()
+    {
+        // 캐릭터 현재 상태 저장
+        characterPrevState = character.stateMachine.currentState;
+        // 몬스터들의 현재 상태 저장
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            monstersPrevState[i] = monsters[i].stateMachine.currentState;
+        }
+    }
+
+    public void LoadUnitState()
+    {
+        if (!(character.IsDead))
+        {
+            // 캐릭터 상태를 이전 상태로 변경
+            character.stateMachine.ChangeState(characterPrevState);
+        }
+
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            if (!(monsters[i].IsDead))
+            {
+                // 몬스터들의 상태를 이전 상태로 변경
+                monsters[i].stateMachine.ChangeState(monstersPrevState[i]);
+            }
+        }
+    }
+
+    public void ChangeUnitStateToWait()
+    {
+        // 캐릭터 현재 상태 Wait으로 변경
+        if (!(character.IsDead))
+            character.stateMachine.ChangeState(character.stateMachine.waitState);
+        // 몬스터들의 현재 상태 Wait으로 변경
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            if (!(monsters[i].IsDead))
+                monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.waitState);
+        }
+    }
+
+    public void StartActionByFirstUnit()
+    {
+        // 수행 리스트에 가장 먼저 입력한 유닛의 상태를 Aciton으로 변경
+        if (performList[0] == 100)
+        {
+            character.stateMachine.ChangeState(character.stateMachine.actionState);
+        }
+        else
+        {
+            monsters[performList[0]].stateMachine.ChangeState(monsters[performList[0]].stateMachine.actionState);
+        }
+    }
+
+    public bool StageClearCheck()
     {
         for(int i = 0; i < monsters.Count; i++)
         {
@@ -180,7 +247,7 @@ public class BattleManager : MonoBehaviour
         return true;
     }
 
-    private int AliveMonsterCount()
+    public int AliveMonsterCount()
     {
         int count = 0;
         for (int i = 0; i < monsters.Count; i++)
@@ -189,6 +256,27 @@ public class BattleManager : MonoBehaviour
                 count++;
         }
         return count;
+    }
+
+    public void OnClickAttackButton()
+    {
+        if (IsSelectingAction && selectMonster != null && !(selectMonster.IsDead))
+        {
+            character.curCoolTime = 0f;
+            performList.Add(100);
+            character.stateMachine.ChangeState(character.stateMachine.readyState);
+        }
+    }
+
+    public void OnClickRouletteButton()
+    {
+        if (!IsRouletteUsed)
+        {
+            StartCoroutine(Roulette());
+            IsRouletteUsed = true;
+
+            battleCanvas.RouletteButtonOff();
+        }
     }
 
     public IEnumerator Roulette()
@@ -230,7 +318,7 @@ public class BattleManager : MonoBehaviour
     {
         rouletteEquip.Clear();
         battleCanvas.ClearRoulette();
-        battleCanvas.rouletteButton.gameObject.SetActive(true);
+        battleCanvas.RouletteButtonOn();
     }
 
     public int GetChangeValue(RouletteResult rouletteResult, int baseValue)

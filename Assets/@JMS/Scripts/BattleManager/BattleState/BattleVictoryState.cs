@@ -16,12 +16,12 @@ public class BattleVictoryState : BattleBaseState
 
         if (battleManager.curStage == battleManager.dungeonList[battleManager.selectDungeon].stages.Count)
         {
-            battleCanvas.dungeonClearPanel.SetActive(true);
+            battleCanvas.DungeonClearPanelOn();
             GameEventManager.instance.questEvent.DungeonClear();
         }
         else
         {
-            battleCanvas.nextStagePanel.SetActive(true);
+            battleCanvas.NextStagePanelOn();
         }
     }
 }
