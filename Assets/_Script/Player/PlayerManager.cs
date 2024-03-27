@@ -10,6 +10,11 @@ public class PlayerManager : Singleton<PlayerManager>
     public GameObject selectedCharacter;
     public EquipItem[] equip = new EquipItem[3];
 
+    [Header("State")]
+    public bool isTown;
+    public bool isField;
+    public bool isDungeon;
+
     [Header("Town")]
     public TownUiManager townUiManager;
     public GameObject townPlayer;    
@@ -27,7 +32,6 @@ public class PlayerManager : Singleton<PlayerManager>
     public int selectTownID;
     public int selectDungeonID;
     public int selectBattleID;
-
 
     private void Start()
     {

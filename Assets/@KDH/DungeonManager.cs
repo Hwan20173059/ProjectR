@@ -11,17 +11,9 @@ public class DungeonManager : TileMapManager
 
         PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
 
-        if (playerManager.isEnterTown == true)
-        {
-            playerTurnIndex = 3;
-            playerManager.monsterPosition = new List<int>();
-            SpawnRandomMonster(4);
-        }
-        else
-        {
-            playerTurnIndex = 3;
-            LoadMonster();
-        }
+        playerTurnIndex = 3;
+        playerManager.monsterPosition = new List<int>();
+        SpawnRandomMonster(2);
 
         PlayerTurn();
     }

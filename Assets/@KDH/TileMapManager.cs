@@ -109,7 +109,7 @@ public class TileMapManager : MonoBehaviour
 
         fieldMonster[monsterIndex] = field.tileRaw[MoveY].fieldTiles[MoveX];
 
-        MonsterFieldSetting(MoveX, MoveY);
+        MonsterFieldSetting(field.tileRaw[Y].fieldTiles[X].battleID, MoveX, MoveY);
     }
 
     protected bool FieldStateEmptyCheck(int X, int Y)
@@ -123,8 +123,9 @@ public class TileMapManager : MonoBehaviour
         field.tileRaw[y].fieldTiles[x].RefreshTile();
     }
 
-    protected void MonsterFieldSetting(int x, int y)
+    protected void MonsterFieldSetting(int battleID, int x, int y)
     {
+        field.tileRaw[y].fieldTiles[x].battleID = battleID;
         field.tileRaw[y].fieldTiles[x].tileState = TileState.monster;
         field.tileRaw[y].fieldTiles[x].RefreshTile();
     }
@@ -177,7 +178,7 @@ public class TileMapManager : MonoBehaviour
 
                 fieldMonster.Add(field.tileRaw[randomY].fieldTiles[randomX]);
                 field.tileRaw[randomY].fieldTiles[randomX].battleID = randomID;
-                MonsterFieldSetting(randomX, randomY);
+                MonsterFieldSetting(randomID, randomX, randomY);
             }
             else
             {
@@ -192,20 +193,21 @@ public class TileMapManager : MonoBehaviour
 
         for (int i = 0; i < fieldMonster.Count; i++)
         {
+            playerManager.monsterPosition.Add(fieldMonster[i].battleID);
             playerManager.monsterPosition.Add(fieldMonster[i].indexX);
-            playerManager.monsterPosition.Add(fieldMonster[i].indexY);
+            playerManager.monsterPosition.Add(fieldMonster[i].indexY);            
         }
     }
 
     protected void LoadMonster()
     {
-        for (int i = 0; i < playerManager.monsterPosition.Count; i += 2)
+        for (int i = 0; i < playerManager.monsterPosition.Count; i += 3)
         {
-            int Y = playerManager.monsterPosition[i + 1];
-            int X = playerManager.monsterPosition[i];
+            int Y = playerManager.monsterPosition[i + 2];
+            int X = playerManager.monsterPosition[i + 1];
 
             fieldMonster.Add(field.tileRaw[Y].fieldTiles[X]);
-            MonsterFieldSetting(X, Y);
+            MonsterFieldSetting(playerManager.monsterPosition[i], X, Y);
         }
     }
 
