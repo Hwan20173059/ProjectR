@@ -6,6 +6,12 @@ using UnityEngine.Assertions.Must;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
+    [Header("Info")]
+    public int playerLevel;
+    public int needExp;
+    public int currentExp;
+    public int gold;
+
     [Header("Equip")]
     public GameObject selectedCharacter;
     public EquipItem[] equip = new EquipItem[3];
@@ -22,9 +28,6 @@ public class PlayerManager : Singleton<PlayerManager>
     [Header("Field")]
     public int fieldX;
     public int fieldY;
-
-    public bool isEnterTown = true;
-    public bool isEnterBattle = false;
 
     public List<int> monsterPosition = new List<int>();
 

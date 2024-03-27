@@ -276,7 +276,7 @@ public class Tile : MonoBehaviour
                     tileMapManager.playerManager.fieldY = indexY;
 
                     tileMapManager.fieldMonster.Remove(this);
-                    tileMapManager.playerManager.isEnterTown = false;
+
                     tileMapManager.SaveMonster();
 
                     tileMapManager.playerManager.selectBattleID = 0;
@@ -285,16 +285,13 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.canTownEnter:
-                    tileMapManager.playerManager.isEnterTown = true;
                     tileMapManager.playerManager.selectTownID = townID;
-
                     SceneManager.LoadScene("TownScene");
                     break;
 
 
                 case TileState.canDungeonEnter:
                     tileMapManager.playerManager.selectDungeonID = dungeonID;
-
                     SceneManager.LoadScene("DungeonScene");
                     break;
             }
