@@ -49,7 +49,6 @@ public class DungeonManager : TileMapManager
         PlayerTurn();
     }
 
-
     public void ExitButton()
     {
         if (playerManager.selectDungeonID == 0)
@@ -268,7 +267,7 @@ public class DungeonManager : TileMapManager
                     field.tileRaw[Y * 4 + 2].fieldTiles[X * 4 + 3].tileState = TileState.cantGo;
 
                     field.tileRaw[Y * 4 + 3].fieldTiles[X * 4].tileState = TileState.empty;
-                    field.tileRaw[Y * 4 + 3].fieldTiles[X * 4 + 1].tileState = TileState.cantGo;
+                    field.tileRaw[Y * 4 + 3].fieldTiles[X * 4 + 1].tileState = TileState.empty;
                     field.tileRaw[Y * 4 + 3].fieldTiles[X * 4 + 2].tileState = TileState.empty;
                     field.tileRaw[Y * 4 + 3].fieldTiles[X * 4 + 3].tileState = TileState.empty;
                     break;

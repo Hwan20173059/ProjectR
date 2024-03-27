@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
 
 public enum TileState
@@ -295,6 +296,25 @@ public class Tile : MonoBehaviour
                 case TileState.canDungeonEnter:
                     tileMapManager.playerManager.selectDungeonID = dungeonID;
                     SceneManager.LoadScene("DungeonScene");
+                    break;
+
+                case TileState.canOpenChest:
+                    tileMapManager.playerTurnIndex--;
+
+                    tileMapManager.selectedTile = this;
+
+                    tileMapManager.FieldMoveAfter();
+                    tileState = TileState.player;
+
+                    tileMapManager.playerPosition[0] = indexX;
+                    tileMapManager.playerPosition[1] = indexY;
+
+                    RefreshTile();
+
+                    tileMapManager.isSelect = false;
+                    tileMapManager.selectUI.SetActive(false);
+
+                    tileMapManager.ChestUI.SetActive(true);
                     break;
             }
         }

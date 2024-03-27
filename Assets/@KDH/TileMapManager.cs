@@ -41,7 +41,7 @@ public class TileMapManager : MonoBehaviour
     public TextMeshProUGUI turnState;
     public GameObject selectUI;
     public TextMeshProUGUI infoUI;
-
+    public GameObject ChestUI;
 
 
     public void PlayerTurn()
@@ -263,6 +263,19 @@ public class TileMapManager : MonoBehaviour
     {
         field.tileRaw[Y].fieldTiles[X].tileState = tileState;
         field.tileRaw[Y].fieldTiles[X].RefreshTile();
+    }
+
+    public void ChestUIExitButton()
+    {
+        ChestUI.SetActive(false);
+
+        if (playerTurnIndex > 0)
+            PlayerTurn();
+        else
+        {
+            playerTurnIndex = 3;
+            AEnemyTurn();
+        }
     }
 
     protected void AllRefreshTile()
