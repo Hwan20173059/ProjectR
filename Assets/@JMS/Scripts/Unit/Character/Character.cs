@@ -28,9 +28,9 @@ public class Character : MonoBehaviour
     public float curCoolTime;
     public float maxCoolTime;
 
-    public Animator animator {  get; private set; }
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
+    public Animator animator {  get; private set; }
 
     public CharacterHpBar hpBar;
 
@@ -61,6 +61,12 @@ public class Character : MonoBehaviour
     {
         stateMachine.PhysicsUpdate();
     }
+
+    public void CharacterLoad(Character character)
+    {
+
+    }
+
     public void Init(int level)
     {
         characterName = baseData.characterName;

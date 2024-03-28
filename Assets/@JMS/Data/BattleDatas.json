@@ -1,0 +1,67 @@
+{
+	"characterDatas": [
+		{
+			"id": 0,
+			"characterName": "소드맨",
+			"spritePath": "Resources/Sprite/Player/Character/Idle",
+			"hp": 100,
+			"atk": 15,
+			"needExp": 30,
+			"maxLevel": 20,
+			"actionCoolTime": 5
+		}
+	],
+	"monsterDatas": [
+		{
+			"id": 0,
+			"monsterName": "슬라임",
+			"spritePath": "Resources/Sprite/Monster/Jelly 0",
+			"hp": 30,
+			"atk": 5,
+			"exp": 5,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		}
+	],
+	"stageDatas": [
+		{
+			"id": 0,
+			"stageName": "슬라임 던전1",
+			"spawnMonsters": [
+				0,
+				0
+			],
+			"randomSpawnMonsters": [
+				0
+			],
+			"randomSpawnMinAmount": 0,
+			"randomSpawnMaxAmount": 1
+		},
+		{
+			"id": 1,
+			"stageName": "슬라임 던전2",
+			"spawnMonsters": [
+				0,
+				0
+			],
+			"randomSpawnMonsters": [
+				0
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 2
+		}
+	],
+	"dungeonDatas": [
+		{
+			"id": 0,
+			"dungeonName": "슬라임 던전",
+			"stages": [
+				0,
+				1
+			]
+		}
+	]
+}

@@ -10,7 +10,7 @@ public class CharacterSlot : MonoBehaviour
 {
     public int index;
     public CharacterSelectSlot characterSelectSlot;
-    public CharacterData characterData;
+    public CharacterBase characterData;
     
     public Image[] characterSlotImage;
     public TextMeshProUGUI[] characterSlotText;

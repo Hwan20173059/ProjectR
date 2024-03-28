@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class CharacterBase
+public class CharacterData
 {
     public int id;
     public string characterName;
