@@ -2901,6 +2901,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
   characterUI: {fileID: 1822648823}
+  inventoryUI: {fileID: 1095651770}
+  detailArea1: {fileID: 256640396}
   dungeonUI: {fileID: 388925218}
   guildUI: {fileID: 1101682878}
   storeUI: {fileID: 1975985146}
@@ -6023,8 +6025,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 294579729}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OpenInventory
+        m_TargetAssemblyTypeName: TownUiManager, Assembly-CSharp
+        m_MethodName: InventoryUIOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

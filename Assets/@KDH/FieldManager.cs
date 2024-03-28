@@ -12,13 +12,13 @@ public class FieldManager : TileMapManager
 
         if (playerManager.isField == false)
         {
-            playerTurnIndex = 3;
+            playerTurnIndex = 1;
             playerManager.monsterPosition = new List<int>();
-            SpawnRandomMonster(2);
+            SpawnRandomMonster(4);
         }
         else
         {
-            playerTurnIndex = 3;
+            playerTurnIndex = 1;
             LoadMonster();
         }
 
