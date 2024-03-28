@@ -16,6 +16,6 @@ public class BattleDefeatPanel : MonoBehaviour
     void TownSceneLoad()
     {
         gameObject.SetActive(false);
-        SceneManager.LoadScene("FieldScene");
+        SceneManager.LoadScene("TownScene");
     }
 }
