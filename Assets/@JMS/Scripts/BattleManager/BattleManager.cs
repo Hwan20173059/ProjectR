@@ -14,11 +14,14 @@ public enum RouletteResult
 }
 public class BattleManager : MonoBehaviour
 {
-    public DungeonData dungeon;
-    public List<StageData> stages;
-    public int curStage;
     public GameObject characterPrefab;
     public GameObject monsterPrefab;
+    public GameObject targetCirclePrefab;
+
+    DungeonData dungeon;
+    public List<StageData> stages { get; private set; }
+    public int curStage;
+
     public List<EquipItem> rouletteEquip;
     public RouletteResult rouletteResult;
 
@@ -34,7 +37,6 @@ public class BattleManager : MonoBehaviour
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
     Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
 
-    public GameObject targetCirclePrefab;
     public TargetCircle targetCircle;
 
     public GameObject monsterPool;
@@ -48,6 +50,8 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
+        DungeonInit();
+
         performList = new List<int>();
 
         Input = GetComponent<PlayerInput>();
@@ -93,6 +97,16 @@ public class BattleManager : MonoBehaviour
         }
     }
     
+    void DungeonInit()
+    {
+        dungeon = DataManager.Instance.battleDatabase.GetDungeonByKey(PlayerManager.Instance.selectDungeonID);
+        
+        for (int i = 0; i < dungeon.stages.Length; i++)
+        {
+            stages.Add(DataManager.Instance.battleDatabase.GetStageByKey(dungeon.stages[i]));
+        }
+    }
+
     public void SpawnCharacter()
     {
         GameObject character = Instantiate(characterPrefab);
@@ -122,6 +136,7 @@ public class BattleManager : MonoBehaviour
                 int monsterIndex = Random.Range(0, stages[curStage].randomSpawnMonsters.Length);
                 GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
                 monsters.Add(monster.GetComponent<Monster>());
+                monsters[i].SetMonsterData(DataManager.Instance.battleDatabase.GetMonsterByKey(stages[curStage].randomSpawnMonsters[monsterIndex]));
                 monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
@@ -133,6 +148,7 @@ public class BattleManager : MonoBehaviour
             {
                 GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
                 monsters.Add(monster.GetComponent<Monster>());
+                monsters[randomSpawnAmount+i].SetMonsterData(DataManager.Instance.battleDatabase.GetMonsterByKey(stages[curStage].spawnMonsters[i]));
                 monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
