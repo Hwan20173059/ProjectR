@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
 
 public enum TileState
@@ -14,7 +15,7 @@ public enum TileState
 public class Tile : MonoBehaviour
 {
     [Header("Manager")]
-    public FieldManager fieldManager;
+    public TileMapManager tileMapManager;
 
     [Header("State")]
     public TileState tileState;
@@ -31,9 +32,9 @@ public class Tile : MonoBehaviour
     public int indexX;
     public int indexY;
 
-    SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
 
-    private void Start()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -47,12 +48,12 @@ public class Tile : MonoBehaviour
         {
             case TileState.empty:
                 SetTile(TileState.empty);
-                spriteRenderer.color = Color.white;
+                spriteRenderer.color = new Color(1, 1, 1, 0.5f);
                 break;
 
             case TileState.player:
                 SetTile(TileState.player);
-                onObject = Instantiate(fieldManager.playerPrefab, this.transform);
+                onObject = Instantiate(tileMapManager.playerPrefab, this.transform);
                 spriteRenderer.color = Color.blue;
                 break;
 
@@ -63,24 +64,24 @@ public class Tile : MonoBehaviour
 
             case TileState.cantGo:
                 SetTile(TileState.cantGo);
-                spriteRenderer.color = Color.black;
+                spriteRenderer.color = new Color(0, 0, 0, 0.5f);
                 break;
 
             case TileState.monster:
                 SetTile(TileState.monster);
                 if (battleID == 0)
-                    onObject = Instantiate(fieldManager.slimePrefab, this.transform);
+                    onObject = Instantiate(tileMapManager.slimePrefab, this.transform);
                 else if (battleID == 1)
-                    onObject = Instantiate(fieldManager.monsterPrefab, this.transform); 
+                    onObject = Instantiate(tileMapManager.monsterPrefab, this.transform); 
                 spriteRenderer.color = Color.yellow;
                 break;
 
             case TileState.chest:
                 SetTile(TileState.chest);
                 if (chestID == 0)
-                    onObject = Instantiate(fieldManager.chest0Prefab, this.transform);
+                    onObject = Instantiate(tileMapManager.chest0Prefab, this.transform);
                 else if (chestID == 1)
-                    onObject = Instantiate(fieldManager.chest1Prefab, this.transform);
+                    onObject = Instantiate(tileMapManager.chest1Prefab, this.transform);
                 spriteRenderer.color = Color.gray;
                 break;
 
@@ -97,9 +98,9 @@ public class Tile : MonoBehaviour
             case TileState.canFight:
                 SetTile(TileState.canFight);
                 if (battleID == 0)
-                    onObject = Instantiate(fieldManager.slimePrefab, this.transform);
+                    onObject = Instantiate(tileMapManager.slimePrefab, this.transform);
                 else if (battleID == 1)
-                    onObject = Instantiate(fieldManager.monsterPrefab, this.transform);
+                    onObject = Instantiate(tileMapManager.monsterPrefab, this.transform);
                 spriteRenderer.color = Color.magenta;
                 break;
 
@@ -116,9 +117,9 @@ public class Tile : MonoBehaviour
             case TileState.canOpenChest:
                 SetTile(TileState.canOpenChest);
                 if (chestID == 0)
-                    onObject = Instantiate(fieldManager.chest0Prefab, this.transform);
+                    onObject = Instantiate(tileMapManager.chest0Prefab, this.transform);
                 else if (chestID == 1)
-                    onObject = Instantiate(fieldManager.chest1Prefab, this.transform);
+                    onObject = Instantiate(tileMapManager.chest1Prefab, this.transform);
                 spriteRenderer.color = Color.magenta;
                 break;
         }
@@ -126,7 +127,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (fieldManager.isPlayerturn == true)
+        if (tileMapManager.isPlayerturn == true)
         {
             highlight.SetActive(true);
         }
@@ -139,75 +140,75 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (fieldManager.isPlayerturn == true)
+        if (tileMapManager.isPlayerturn == true)
         {
             switch (tileState)
             {
                 case TileState.player:
-                    if (fieldManager.isSelect == true)
+                    if (tileMapManager.isSelect == true)
                     {
-                        fieldManager.isSelect = false;
-                        fieldManager.MoveTileOff();
-                        fieldManager.selectUI.SetActive(false);
+                        tileMapManager.isSelect = false;
+                        tileMapManager.MoveTileOff();
+                        tileMapManager.selectUI.SetActive(false);
                         break;
                     }
                     else
                     {
-                        fieldManager.selectedTile = this;
-                        fieldManager.isSelect = true;
-                        fieldManager.infoUI.text = "플레이어";
+                        tileMapManager.selectedTile = this;
+                        tileMapManager.isSelect = true;
+                        tileMapManager.infoUI.text = "플레이어";
 
-                        fieldManager.MoveTileOn();
-                        fieldManager.selectUI.SetActive(true);
+                        tileMapManager.MoveTileOn();
+                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
 
                 case TileState.empty:
-                    fieldManager.selectUI.SetActive(false);
+                    tileMapManager.selectUI.SetActive(false);
                     break;
 
                 case TileState.canGO:
-                    fieldManager.playerTurnIndex--;
+                    tileMapManager.playerTurnIndex--;
 
-                    fieldManager.selectedTile = this;
+                    tileMapManager.selectedTile = this;
 
-                    fieldManager.FieldMoveAfter();
+                    tileMapManager.FieldMoveAfter();
                     tileState = TileState.player;
 
-                    fieldManager.playerPosition[0] = indexX;
-                    fieldManager.playerPosition[1] = indexY;
+                    tileMapManager.playerPosition[0] = indexX;
+                    tileMapManager.playerPosition[1] = indexY;
 
                     RefreshTile();
 
-                    fieldManager.isSelect = false;
-                    fieldManager.selectUI.SetActive(false);
+                    tileMapManager.isSelect = false;
+                    tileMapManager.selectUI.SetActive(false);
 
-                    if (fieldManager.playerTurnIndex > 0)
-                        fieldManager.PlayerTurn();
+                    if (tileMapManager.playerTurnIndex > 0)
+                        tileMapManager.PlayerTurn();
                     else
                     {
-                        fieldManager.playerTurnIndex = 3;
-                        fieldManager.AEnemyTurn();
+                        tileMapManager.playerTurnIndex = 3;
+                        tileMapManager.AEnemyTurn();
                     }
                     break;
 
 
                 case TileState.cantGo:
-                    fieldManager.selectUI.SetActive(false);
+                    tileMapManager.selectUI.SetActive(false);
                     break;
 
 
                 case TileState.monster:
                     if (battleID == 0)
                     {
-                        fieldManager.infoUI.text = "슬라임 무리";
-                        fieldManager.selectUI.SetActive(true);
+                        tileMapManager.infoUI.text = "슬라임 무리";
+                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else if (battleID == 1)
                     {
-                        fieldManager.infoUI.text = "몬스터 무리";
-                        fieldManager.selectUI.SetActive(true);
+                        tileMapManager.infoUI.text = "몬스터 무리";
+                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else
@@ -217,14 +218,14 @@ public class Tile : MonoBehaviour
                 case TileState.chest:
                     if (chestID == 0)
                     {
-                        fieldManager.infoUI.text = "초라한 상자";
-                        fieldManager.selectUI.SetActive(true);
+                        tileMapManager.infoUI.text = "초라한 상자";
+                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else if (chestID == 1)
                     {
-                        fieldManager.infoUI.text = "화려한 상자";
-                        fieldManager.selectUI.SetActive(true);
+                        tileMapManager.infoUI.text = "화려한 상자";
+                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else
@@ -234,14 +235,14 @@ public class Tile : MonoBehaviour
                 case TileState.town:
                     if (townID == 0)
                     {
-                        fieldManager.infoUI.text = "첫번째 마을";
-                        fieldManager.selectUI.SetActive(true);
+                        tileMapManager.infoUI.text = "초심자의 마을";
+                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else if(townID == 1)
                     {
-                        fieldManager.infoUI.text = "두번째 마을";
-                        fieldManager.selectUI.SetActive(true);
+                        tileMapManager.infoUI.text = "수도 엘더";
+                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else
@@ -251,20 +252,26 @@ public class Tile : MonoBehaviour
                 case TileState.dungeon:
                     if (dungeonID == 0)
                     {
-                        fieldManager.infoUI.text = "슬라임 동굴";
-                        fieldManager.selectUI.SetActive(true);
+                        tileMapManager.infoUI.text = "고블린의 거처";
+                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else if (dungeonID == 1)
                     {
-                        fieldManager.infoUI.text = "고블린 동굴";
-                        fieldManager.selectUI.SetActive(true);
+                        tileMapManager.infoUI.text = "슬라임의 둥지";
+                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else if (dungeonID == 2)
                     {
-                        fieldManager.infoUI.text = "마지막 던전";
-                        fieldManager.selectUI.SetActive(true);
+                        tileMapManager.infoUI.text = "미궁의 바다";
+                        tileMapManager.selectUI.SetActive(true);
+                        break;
+                    }
+                    else if (dungeonID == 3)
+                    {
+                        tileMapManager.infoUI.text = "지옥의 숲";
+                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else
@@ -272,30 +279,48 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.canFight:
-                    fieldManager.playerManager.fieldX = indexX;
-                    fieldManager.playerManager.fieldY = indexY;
+                    tileMapManager.playerManager.fieldX = indexX;
+                    tileMapManager.playerManager.fieldY = indexY;
 
-                    fieldManager.fieldMonster.Remove(this);
-                    fieldManager.playerManager.isEnterTown = false;
-                    fieldManager.SaveMonster();
+                    tileMapManager.fieldMonster.Remove(this);
 
-                    fieldManager.playerManager.selectBattleID = 0;
+                    tileMapManager.SaveMonster();
+                    if(tileMapManager.chestPosition != null)
+                        tileMapManager.SaveChest();
+
+                    tileMapManager.playerManager.selectBattleID = 0;
                     SceneManager.LoadScene("BattleScene");
                     break;
 
 
                 case TileState.canTownEnter:
-                    fieldManager.playerManager.isEnterTown = true;
-                    fieldManager.playerManager.selectTownID = townID;
-
+                    tileMapManager.playerManager.selectTownID = townID;
                     SceneManager.LoadScene("TownScene");
                     break;
 
 
                 case TileState.canDungeonEnter:
-                    fieldManager.playerManager.selectBattleID = dungeonID;
-
+                    tileMapManager.playerManager.selectDungeonID = dungeonID;
                     SceneManager.LoadScene("DungeonScene");
+                    break;
+
+                case TileState.canOpenChest:
+                    tileMapManager.playerTurnIndex--;
+
+                    tileMapManager.selectedTile = this;
+
+                    tileMapManager.FieldMoveAfter();
+                    tileState = TileState.player;
+
+                    tileMapManager.playerPosition[0] = indexX;
+                    tileMapManager.playerPosition[1] = indexY;
+
+                    RefreshTile();
+
+                    tileMapManager.isSelect = false;
+                    tileMapManager.selectUI.SetActive(false);
+
+                    tileMapManager.ChestUI.SetActive(true);
                     break;
             }
         }

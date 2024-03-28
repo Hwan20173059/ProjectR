@@ -16,7 +16,7 @@ public class BattleWaitState : BattleBaseState
         {
             stateMachine.ChangeState(stateMachine.defeatState);
         }
-        if (stateMachine.battleManager.isStageClear)
+        if (stateMachine.battleManager.StageClearCheck())
         {
             character.stateMachine.ChangeState(character.stateMachine.waitState);
             stateMachine.ChangeState(stateMachine.victoryState);

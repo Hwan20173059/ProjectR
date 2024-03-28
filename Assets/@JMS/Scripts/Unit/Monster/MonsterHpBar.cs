@@ -6,15 +6,19 @@ using UnityEngine.TextCore.Text;
 
 public class MonsterHpBar : MonoBehaviour
 {
-    private Monster monster;
+    Monster monster;
 
-    private RectTransform monsterMaxHpBar;
-    private RectTransform monsterCurHpBar;
+    RectTransform monsterMaxHpBar;
+    RectTransform monsterCurHpBar;
 
-    public void Init()
+    private void Update()
     {
-        monster = GetComponentInParent<Monster>();
+        SetHpBarPosition();
+    }
 
+    public void Init(Monster monster)
+    {
+        this.monster = monster;
         monsterMaxHpBar = transform.GetChild(0).GetComponent<RectTransform>();
         monsterCurHpBar = transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
 
@@ -24,5 +28,14 @@ public class MonsterHpBar : MonoBehaviour
     public void SetHpBar()
     {
         monsterCurHpBar.localScale = new Vector3((float)monster.curHP / monster.maxHP, monsterCurHpBar.localScale.y);
+    }
+
+    void SetHpBarPosition()
+    {
+        if (monster != null)
+        {
+            Vector2 screenPos = Camera.main.WorldToScreenPoint(monster.transform.position);
+            transform.position = new Vector2(screenPos.x, screenPos.y + 130f);
+        }
     }
 }

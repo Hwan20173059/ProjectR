@@ -31,11 +31,9 @@ public class TownUiManager : MonoBehaviour
     {
         playerManager = PlayerManager.Instance;
         playerManager.townUiManager = this;
-    }
 
-    public void GoField(int index) 
-    {
-        SceneManager.LoadScene("FieldScene");
+        playerManager.isField = false;
+        playerManager.isTown = true;
     }
 
     public void CharacterUIOn()
@@ -52,16 +50,16 @@ public class TownUiManager : MonoBehaviour
     {
         if (playerManager.selectTownID == 0)
         {
-            playerManager.fieldX = 0;
+            playerManager.fieldX = 2;
             playerManager.fieldY = 1;
         }
         else if (playerManager.selectTownID == 1) 
         {
-            playerManager.fieldX = 4;
-            playerManager.fieldY = 7;
+            playerManager.fieldX = 8;
+            playerManager.fieldY = 6;
         }
+
         SceneManager.LoadScene("FieldScene");
-        //dungeonUI.SetActive(true);
     }
 
     public void DungeonUIOff()

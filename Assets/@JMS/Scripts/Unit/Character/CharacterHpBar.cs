@@ -5,15 +5,19 @@ using UnityEngine;
 
 public class CharacterHpBar : MonoBehaviour
 {
-    private Character character;
+    Character character;
 
-    private RectTransform characterMaxHpBar;
-    private RectTransform characterCurHpBar;
+    RectTransform characterMaxHpBar;
+    RectTransform characterCurHpBar;
 
-    public void Init()
+    private void Update()
     {
-        character = GetComponentInParent<Character>();
+        SetHpBarPosition();
+    }
 
+    public void Init(Character character)
+    {
+        this.character = character;
         characterMaxHpBar = transform.GetChild(0).GetComponent<RectTransform>();
         characterCurHpBar = transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
 
@@ -23,5 +27,14 @@ public class CharacterHpBar : MonoBehaviour
     public void SetHpBar()
     {
         characterCurHpBar.localScale = new Vector3((float)character.curHP / character.maxHP, characterCurHpBar.localScale.y);
+    }
+
+    void SetHpBarPosition()
+    {
+        if (character != null)
+        {
+            Vector2 screenPos = Camera.main.WorldToScreenPoint(character.transform.position);
+            transform.position = new Vector2(screenPos.x, screenPos.y + 130f);
+        }
     }
 }

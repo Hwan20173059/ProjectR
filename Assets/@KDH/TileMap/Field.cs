@@ -5,5 +5,5 @@ using UnityEngine;
 public class Field : MonoBehaviour
 {
     public TileRaw[] tileRaw;
-    public FieldManager fieldManager;
+    public TileMapManager tileMapManager;
 }

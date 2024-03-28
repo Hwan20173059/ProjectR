@@ -37,8 +37,6 @@ public class Monster : MonoBehaviour
 
     private void Awake()
     {
-        hpBar = GetComponentInChildren<MonsterHpBar>();
-
         stateMachine = new MonsterStateMachine(this);
 
         animator = GetComponentInChildren<Animator>();
@@ -69,8 +67,6 @@ public class Monster : MonoBehaviour
         exp = BaseData.exp * level;
         actions = BaseData.actions;
         maxCoolTime = BaseData.actionCoolTime;
-
-        hpBar.Init();
     }
 
     public void ChangeHP(int change)
