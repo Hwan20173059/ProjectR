@@ -10,7 +10,7 @@ public class CharacterSlot : MonoBehaviour
 {
     public int index;
     public CharacterSelectSlot characterSelectSlot;
-    public CharacterData characterData;
+    public CharacterBase characterData;
     
     public Image[] characterSlotImage;
     public TextMeshProUGUI[] characterSlotText;
@@ -19,7 +19,7 @@ public class CharacterSlot : MonoBehaviour
     {
         // Slot의 UI에 CharacterData의 Sprite를 적용
         characterSlotImage = GetComponentsInChildren<Image>();
-        characterSlotImage[1].sprite = characterData.character.sprite;
+        characterSlotImage[1].sprite = characterData.character.spriteRenderer.sprite;
 
         // Slot의 UI에 CharacterData의 Name을 적용
         characterSlotText = GetComponentsInChildren<TextMeshProUGUI>();

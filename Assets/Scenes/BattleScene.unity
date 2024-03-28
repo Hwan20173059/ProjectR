@@ -333,7 +333,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 71db69544ce65d54e9172c988afe3f85, type: 2}
   selectDungeon: 0
   curStage: 0
-  characterPrefab: {fileID: 0}
+  characterPrefab: {fileID: 8898277193291602514, guid: b6e7bbf231fbf2746ba859558282fe35, type: 3}
   rouletteEquip: []
   rouletteResult: 0
   character: {fileID: 0}

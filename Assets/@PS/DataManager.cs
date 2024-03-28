@@ -8,11 +8,12 @@ using UnityEngine;
 public class DataManager : Singleton<DataManager>
 {
     public ItemDatabase itemDatabase;
-    public CharacterDatabase characterDatabase;
+    public BattleDataBase battleDatabase;
 
     public void Init()
     {
         LoadEquipDatas();
+        LoadBattleDatas();
     }
 
     // 데이터를 불러와서 딕셔너리에 값을 저장하는 메소드
@@ -27,15 +28,15 @@ public class DataManager : Singleton<DataManager>
             itemDatabase.Initialize();
         }
     }
-    public void LoadCharacterDatas()
+    public void LoadBattleDatas()
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>("CharacterInfo");
+        TextAsset jsonFile = Resources.Load<TextAsset>("BattleDatas");
 
         if (jsonFile != null)
         {
             string json = jsonFile.text;
-            characterDatabase = JsonUtility.FromJson<CharacterDatabase>(json);
-            characterDatabase.Initialize();
+            battleDatabase = JsonUtility.FromJson<BattleDataBase>(json);
+            battleDatabase.Initialize();
         }
     }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class CharacterData
+public class CharacterBase
 {
     public Character character;
     public bool isSelected;
@@ -13,7 +13,7 @@ public class CharacterData
 public class CharacterManager : MonoBehaviour
 {
     public PlayerManager playerManager;
-    public List<CharacterData> characterList = new List<CharacterData>();
+    public List<CharacterBase> characterList = new List<CharacterBase>();
     public CharacterSelectSlot characterSelectslot;    
 
     private void Start()

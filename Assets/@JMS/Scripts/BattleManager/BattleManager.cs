@@ -14,10 +14,11 @@ public enum RouletteResult
 }
 public class BattleManager : MonoBehaviour
 {
-    public List<DungeonSO> dungeonList;
-    public int selectDungeon;
+    public DungeonData dungeon;
+    public List<StageData> stages;
     public int curStage;
     public GameObject characterPrefab;
+    public GameObject monsterPrefab;
     public List<EquipItem> rouletteEquip;
     public RouletteResult rouletteResult;
 
@@ -54,8 +55,6 @@ public class BattleManager : MonoBehaviour
         battleCanvas = GetComponentInChildren<BattleCanvas>();
 
         stateMachine = new BattleStateMachine(this);
-
-        characterPrefab = PlayerManager.Instance.selectedCharacter;
     }
 
     private void Start()
@@ -99,7 +98,8 @@ public class BattleManager : MonoBehaviour
         GameObject character = Instantiate(characterPrefab);
         character.transform.position = characterSpawnPosition;
         this.character = character.GetComponent<Character>();
-        this.character.Init(1);
+        //this.character.CharacterLoad(PlayerManager.Instance.selectedCharacter);
+        this.character.Init();
         this.character.startPosition = character.transform.position;
         this.character.battleManager = this;
 
@@ -114,22 +114,22 @@ public class BattleManager : MonoBehaviour
             this.monsterPool = monsterPool;
         }
 
-        int randomSpawnAmount = Random.Range(dungeonList[selectDungeon].stages[curStage].randomSpawnMinAmount, dungeonList[selectDungeon].stages[curStage].randomSpawnMaxAmount + 1);
+        int randomSpawnAmount = Random.Range(stages[curStage].randomSpawnMinAmount, stages[curStage].randomSpawnMaxAmount + 1);
         if(randomSpawnAmount > 0)
         {
             for (int i = 0; i < randomSpawnAmount; i++)
             {
-                int monsterIndex = Random.Range(0, dungeonList[selectDungeon].stages[curStage].randomSpawnMonsters.Count);
-                GameObject monster = Instantiate(dungeonList[selectDungeon].stages[curStage].randomSpawnMonsters[monsterIndex], monsterPool.transform);
+                int monsterIndex = Random.Range(0, stages[curStage].randomSpawnMonsters.Length);
+                GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
                 monsters.Add(monster.GetComponent<Monster>());
                 monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
         }
 
-        if(dungeonList[selectDungeon].stages[curStage].spawnMonsters.Count > 0)
+        if(stages[curStage].spawnMonsters.Length > 0)
         {
-            foreach (GameObject monsterPrefab in dungeonList[selectDungeon].stages[curStage].spawnMonsters)
+            for(int i = 0; i < stages[curStage].spawnMonsters.Length; i++)
             {
                 GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
                 monsters.Add(monster.GetComponent<Monster>());
