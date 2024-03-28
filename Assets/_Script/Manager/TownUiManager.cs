@@ -123,6 +123,13 @@ public class TownUiManager : MonoBehaviour
         detailArea.gameObject.SetActive(false);
     }
 
+    public void OpenConsumeInventory()
+    {
+        detailArea.ChangeDetailActivation(false);
+        consumeInventoryUI.SetActive(true);
+        detailArea.gameObject.SetActive(true);
+    }
+
     public void FreshAfterEquip()
     {
         nowSelectedEquip = null;
