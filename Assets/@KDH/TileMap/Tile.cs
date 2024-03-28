@@ -48,7 +48,7 @@ public class Tile : MonoBehaviour
         {
             case TileState.empty:
                 SetTile(TileState.empty);
-                spriteRenderer.color = Color.white;
+                spriteRenderer.color = new Color(1, 1, 1, 0.5f);
                 break;
 
             case TileState.player:
@@ -64,7 +64,7 @@ public class Tile : MonoBehaviour
 
             case TileState.cantGo:
                 SetTile(TileState.cantGo);
-                spriteRenderer.color = Color.black;
+                spriteRenderer.color = new Color(0, 0, 0, 0.5f);
                 break;
 
             case TileState.monster:
@@ -235,13 +235,13 @@ public class Tile : MonoBehaviour
                 case TileState.town:
                     if (townID == 0)
                     {
-                        tileMapManager.infoUI.text = "첫번째 마을";
+                        tileMapManager.infoUI.text = "초심자의 마을";
                         tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else if(townID == 1)
                     {
-                        tileMapManager.infoUI.text = "두번째 마을";
+                        tileMapManager.infoUI.text = "수도 엘더";
                         tileMapManager.selectUI.SetActive(true);
                         break;
                     }
@@ -252,19 +252,25 @@ public class Tile : MonoBehaviour
                 case TileState.dungeon:
                     if (dungeonID == 0)
                     {
-                        tileMapManager.infoUI.text = "슬라임 동굴";
+                        tileMapManager.infoUI.text = "고블린의 거처";
                         tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else if (dungeonID == 1)
                     {
-                        tileMapManager.infoUI.text = "고블린 동굴";
+                        tileMapManager.infoUI.text = "슬라임의 둥지";
                         tileMapManager.selectUI.SetActive(true);
                         break;
                     }
                     else if (dungeonID == 2)
                     {
-                        tileMapManager.infoUI.text = "마지막 던전";
+                        tileMapManager.infoUI.text = "미궁의 바다";
+                        tileMapManager.selectUI.SetActive(true);
+                        break;
+                    }
+                    else if (dungeonID == 3)
+                    {
+                        tileMapManager.infoUI.text = "지옥의 숲";
                         tileMapManager.selectUI.SetActive(true);
                         break;
                     }

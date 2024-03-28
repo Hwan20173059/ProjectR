@@ -53,18 +53,23 @@ public class DungeonManager : TileMapManager
     {
         if (playerManager.selectDungeonID == 0)
         {
-            playerManager.fieldX = 5;
+            playerManager.fieldX = 4;
             playerManager.fieldY = 1;
         }
         else if (playerManager.selectDungeonID == 1)
         {
-            playerManager.fieldX = 2;
-            playerManager.fieldY = 7;
+            playerManager.fieldX = 12;
+            playerManager.fieldY = 1;
         }
         else if (playerManager.selectDungeonID == 2)
         {
-            playerManager.fieldX = 8;
-            playerManager.fieldY = 7;
+            playerManager.fieldX = 1;
+            playerManager.fieldY = 9;
+        }
+        else if (playerManager.selectDungeonID == 3)
+        {
+            playerManager.fieldX = 15;
+            playerManager.fieldY = 10;
         }
 
         SceneManager.LoadScene("FieldScene");
