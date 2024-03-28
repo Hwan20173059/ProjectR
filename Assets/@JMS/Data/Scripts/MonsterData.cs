@@ -7,6 +7,7 @@ public class MonsterData
     public int id;
     public string monsterName;
     public string spritePath;
+    public string animatorPath;
     public int hp;
     public int atk;
     public int exp;

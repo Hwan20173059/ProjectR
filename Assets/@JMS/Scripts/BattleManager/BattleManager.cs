@@ -54,8 +54,6 @@ public class BattleManager : MonoBehaviour
         battleCanvas = GetComponentInChildren<BattleCanvas>();
 
         stateMachine = new BattleStateMachine(this);
-
-        characterPrefab = PlayerManager.Instance.selectedCharacter;
     }
 
     private void Start()
@@ -99,7 +97,8 @@ public class BattleManager : MonoBehaviour
         GameObject character = Instantiate(characterPrefab);
         character.transform.position = characterSpawnPosition;
         this.character = character.GetComponent<Character>();
-        this.character.Init(1);
+        //TODO. this.character.CharacterLoad()
+        this.character.Init();
         this.character.startPosition = character.transform.position;
         this.character.battleManager = this;
 

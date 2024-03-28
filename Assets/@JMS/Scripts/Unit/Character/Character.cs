@@ -6,11 +6,9 @@ using UnityEngine.UI;
 public class Character : MonoBehaviour
 {
     [Header("Data")]
-    public int id;
-    public CharacterSO baseData;
+    public CharacterData baseData;
 
     [Header("Info")]
-    public Sprite sprite;
     public string characterName;
 
     [Header("Level")]
@@ -30,6 +28,8 @@ public class Character : MonoBehaviour
 
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
+
+    public SpriteRenderer spriteRenderer { get; private set; }
     public Animator animator {  get; private set; }
 
     public CharacterHpBar hpBar;
@@ -42,6 +42,8 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         stateMachine = new CharacterStateMachine(this);
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         animator = GetComponentInChildren<Animator>();
     }
@@ -64,17 +66,22 @@ public class Character : MonoBehaviour
 
     public void CharacterLoad(Character character)
     {
+        baseData = character.baseData;
+        level = character.level;
+        curExp = character.curExp;
+        curHP = character.curHP;
+}
 
-    }
-
-    public void Init(int level)
+    public void Init()
     {
         characterName = baseData.characterName;
         maxHP = baseData.hp * level;
-        curHP = maxHP;
         atk = baseData.atk * level;
         needExp = baseData.needExp * level;
         maxCoolTime = baseData.actionCoolTime;
+
+        spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
+        animator = Resources.Load<Animator>(baseData.animatorPath);
     }
 
     public void ChangeHP(int change)

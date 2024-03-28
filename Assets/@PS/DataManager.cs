@@ -13,6 +13,7 @@ public class DataManager : Singleton<DataManager>
     public void Init()
     {
         LoadEquipDatas();
+        LoadBattleDatas();
     }
 
     // 데이터를 불러와서 딕셔너리에 값을 저장하는 메소드

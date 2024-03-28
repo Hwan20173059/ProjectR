@@ -18,6 +18,6 @@ public class TownPlayer : MonoBehaviour
         selectedCharacter = PlayerManager.Instance.selectedCharacter.GetComponent<Character>();
 
         SpriteRenderer spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        spriteRenderer.sprite = selectedCharacter.sprite;
+        spriteRenderer.sprite = selectedCharacter.spriteRenderer.sprite;
     }
 }

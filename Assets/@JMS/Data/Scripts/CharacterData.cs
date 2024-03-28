@@ -8,6 +8,7 @@ public class CharacterData
     public int id;
     public string characterName;
     public string spritePath;
+    public string animatorPath;
     public int hp;
     public int atk;
     public int needExp;

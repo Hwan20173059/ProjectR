@@ -3,7 +3,8 @@
 		{
 			"id": 0,
 			"characterName": "소드맨",
-			"spritePath": "Resources/Sprite/Player/Character/Idle",
+			"spritePath": "Sprite/Player/Character/Idle",
+			"animationPath": "Animations/SwordMan/SwordMan",
 			"hp": 100,
 			"atk": 15,
 			"needExp": 30,
@@ -15,7 +16,8 @@
 		{
 			"id": 0,
 			"monsterName": "슬라임",
-			"spritePath": "Resources/Sprite/Monster/Jelly 0",
+			"spritePath": "Sprite/Monster/Jelly 0",
+			"animationPath": "Animations/Slime/Slime",
 			"hp": 30,
 			"atk": 5,
 			"exp": 5,
