@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: f3d3f99279c7f724da3278bb059f7d25
+=======
+<<<<<<< HEAD:Assets/@LHY/Scene/RewardTestScene.unity.meta
+guid: 35bb601b1a1be5f4e92ff5a6cb74c786
+=======
+guid: f3d3f99279c7f724da3278bb059f7d25
+>>>>>>> origin/Dev_Branch:Assets/@JMS/Scene/JMS_FieldScene.unity.meta
+>>>>>>> origin/Dev_Branch
 DefaultImporter:
   externalObjects: {}
   userData: 
