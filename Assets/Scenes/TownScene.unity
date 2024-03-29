@@ -2908,6 +2908,7 @@ MonoBehaviour:
   homeUI: {fileID: 1372420373}
   optionUI: {fileID: 695438818}
   talkUI: {fileID: 1472894681}
+  inventory: {fileID: 1053907912}
   equipInventoryUI: {fileID: 501002939}
   nEquipItemSlot: {fileID: 907160600}
   detailArea: {fileID: 256640398}
