@@ -14,10 +14,14 @@ public enum RouletteResult
 }
 public class BattleManager : MonoBehaviour
 {
-    public List<DungeonSO> dungeonList;
-    public int selectDungeon;
-    public int curStage;
     public GameObject characterPrefab;
+    public GameObject monsterPrefab;
+    public GameObject targetCirclePrefab;
+
+    DungeonData dungeon;
+    public List<StageData> stages = new List<StageData>();
+    public int curStage;
+
     public List<EquipItem> rouletteEquip;
     public RouletteResult rouletteResult;
 
@@ -33,7 +37,6 @@ public class BattleManager : MonoBehaviour
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
     Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
 
-    public GameObject targetCirclePrefab;
     public TargetCircle targetCircle;
 
     public GameObject monsterPool;
@@ -47,6 +50,8 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
+        DungeonInit();
+
         performList = new List<int>();
 
         Input = GetComponent<PlayerInput>();
@@ -54,8 +59,6 @@ public class BattleManager : MonoBehaviour
         battleCanvas = GetComponentInChildren<BattleCanvas>();
 
         stateMachine = new BattleStateMachine(this);
-
-        characterPrefab = PlayerManager.Instance.selectedCharacter;
     }
 
     private void Start()
@@ -94,12 +97,23 @@ public class BattleManager : MonoBehaviour
         }
     }
     
+    void DungeonInit()
+    {
+        dungeon = DataManager.Instance.battleDatabase.GetDungeonByKey(PlayerManager.Instance.selectBattleID);
+        
+        for (int i = 0; i < dungeon.stages.Length; i++)
+        {
+            stages.Add(DataManager.Instance.battleDatabase.GetStageByKey(dungeon.stages[i]));
+        }
+    }
+
     public void SpawnCharacter()
     {
         GameObject character = Instantiate(characterPrefab);
         character.transform.position = characterSpawnPosition;
         this.character = character.GetComponent<Character>();
-        this.character.Init(1);
+        this.character.CharacterLoad(PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
+        this.character.Init();
         this.character.startPosition = character.transform.position;
         this.character.battleManager = this;
 
@@ -114,25 +128,27 @@ public class BattleManager : MonoBehaviour
             this.monsterPool = monsterPool;
         }
 
-        int randomSpawnAmount = Random.Range(dungeonList[selectDungeon].stages[curStage].randomSpawnMinAmount, dungeonList[selectDungeon].stages[curStage].randomSpawnMaxAmount + 1);
+        int randomSpawnAmount = Random.Range(stages[curStage].randomSpawnMinAmount, stages[curStage].randomSpawnMaxAmount + 1);
         if(randomSpawnAmount > 0)
         {
             for (int i = 0; i < randomSpawnAmount; i++)
             {
-                int monsterIndex = Random.Range(0, dungeonList[selectDungeon].stages[curStage].randomSpawnMonsters.Count);
-                GameObject monster = Instantiate(dungeonList[selectDungeon].stages[curStage].randomSpawnMonsters[monsterIndex], monsterPool.transform);
+                int monsterIndex = Random.Range(0, stages[curStage].randomSpawnMonsters.Length);
+                GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
                 monsters.Add(monster.GetComponent<Monster>());
+                monsters[i].SetMonsterData(DataManager.Instance.battleDatabase.GetMonsterByKey(stages[curStage].randomSpawnMonsters[monsterIndex]));
                 monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
         }
 
-        if(dungeonList[selectDungeon].stages[curStage].spawnMonsters.Count > 0)
+        if(stages[curStage].spawnMonsters.Length > 0)
         {
-            foreach (GameObject monsterPrefab in dungeonList[selectDungeon].stages[curStage].spawnMonsters)
+            for(int i = 0; i < stages[curStage].spawnMonsters.Length; i++)
             {
                 GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
                 monsters.Add(monster.GetComponent<Monster>());
+                monsters[randomSpawnAmount+i].SetMonsterData(DataManager.Instance.battleDatabase.GetMonsterByKey(stages[curStage].spawnMonsters[i]));
                 monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }

@@ -115,7 +115,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9096707497719188621}
-  - component: {fileID: 3301451480719811008}
+  - component: {fileID: 7998339683275430841}
   m_Layer: 0
   m_Name: TownPlayer
   m_TagString: Untagged
@@ -139,7 +139,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3301451480719811008
+--- !u!114 &7998339683275430841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 4993744543130146367}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b3256ae96554d499ec98d5d3bb6a22, type: 3}
+  m_Script: {fileID: 11500000, guid: 74acda785a35f1442b7d465550aaa59b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterSO: {fileID: 0}
-  playerManager: {fileID: 0}
+  character: {fileID: 0}
+  spriteRenderer: {fileID: 0}

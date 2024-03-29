@@ -151,21 +151,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9675c8f93c837aa47a1ee406b72f99d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 1
-  baseData: {fileID: 11400000, guid: ca14b6ec022d4794dad23727fa69841f, type: 2}
-  sprite: {fileID: -7808734593389313954, guid: 4d701fb8bab94204e92af20e3e7b6a8a, type: 3}
+  baseData:
+    id: 0
+    characterName: "\uC18C\uB4DC\uB9E8"
+    spritePath: Sprite/Player/Character/Idle
+    animatorPath: Animations/SwordMan/SwordMan
+    hp: 100
+    atk: 15
+    needExp: 30
+    maxLevel: 20
+    actionCoolTime: 5
   characterName: "\uC18C\uB4DC\uB9E8"
-  desc: "\uAC80\uC744 \uC798 \uB2E4\uB8E8\uB294 \uBAA8\uD5D8\uAC00\uC774\uB2E4"
   level: 1
   curExp: 0
-  needExp: 0
-  maxHP: 0
-  curHP: 0
-  atk: 0
-  currentState: "\uB300\uAE30\uC911"
+  needExp: 20
+  maxHP: 100
+  curHP: 100
+  atk: 15
+  currentStateText: "\uB300\uAE30\uC911"
   curCoolTime: 0
-  maxCoolTime: 0
+  maxCoolTime: 5
   startPosition: {x: 0, y: 0, z: 0}
   moveAnimSpeed: 10
-  selectMonster: {fileID: 0}
+  hpBar: {fileID: 0}
   battleManager: {fileID: 0}

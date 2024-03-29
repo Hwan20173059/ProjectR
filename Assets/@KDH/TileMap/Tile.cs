@@ -187,7 +187,7 @@ public class Tile : MonoBehaviour
                         tileMapManager.PlayerTurn();
                     else
                     {
-                        tileMapManager.playerTurnIndex = 3;
+                        tileMapManager.playerTurnIndex = 1;
                         tileMapManager.AEnemyTurn();
                     }
                     break;

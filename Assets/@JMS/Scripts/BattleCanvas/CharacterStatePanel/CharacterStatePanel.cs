@@ -25,6 +25,6 @@ public class CharacterStatePanel : MonoBehaviour
     {
         if (character == null) return;
         characterStateText.text = $"캐릭터 : {character.characterName}\n레벨 : {character.level}\n" +
-            $"체력 : {character.curHP} / {character.maxHP}\n상태 : {character.currentState}";
+            $"체력 : {character.curHP} / {character.maxHP}\n상태 : {character.currentStateText}";
     }
 }

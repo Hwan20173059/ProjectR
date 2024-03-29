@@ -8,7 +8,12 @@ using UnityEngine;
 public class DataManager : Singleton<DataManager>
 {
     public ItemDatabase itemDatabase;
-    public CharacterDatabase characterDatabase;
+    public BattleDataBase battleDatabase;
+
+    private void Start()
+    {
+        LoadBattleDatas();
+    }
 
     public void Init()
     {
@@ -27,15 +32,15 @@ public class DataManager : Singleton<DataManager>
             itemDatabase.Initialize();
         }
     }
-    public void LoadCharacterDatas()
+    public void LoadBattleDatas()
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>("CharacterInfo");
+        TextAsset jsonFile = Resources.Load<TextAsset>("BattleDatas");
 
         if (jsonFile != null)
         {
             string json = jsonFile.text;
-            characterDatabase = JsonUtility.FromJson<CharacterDatabase>(json);
-            characterDatabase.Initialize();
+            battleDatabase = JsonUtility.FromJson<BattleDataBase>(json);
+            battleDatabase.Initialize();
         }
     }
 

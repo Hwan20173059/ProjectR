@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Character : MonoBehaviour
 {
     [Header("Data")]
-    public int id;
-    public CharacterSO baseData;
+    public CharacterData baseData;
 
     [Header("Info")]
-    public Sprite sprite;
     public string characterName;
-    public string desc;
 
     [Header("Level")]
     public int level;
@@ -24,18 +22,18 @@ public class Character : MonoBehaviour
     public int curHP;
     public int atk;
     public bool IsDead => curHP <= 0;
-    public string currentState = "대기중";
+    public string currentStateText = "대기중";
 
     public float curCoolTime;
     public float maxCoolTime;
 
-    public Animator animator {  get; private set; }
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
-    public CharacterHpBar hpBar;
+    public SpriteRenderer spriteRenderer { get; private set; }
+    public Animator animator {  get; private set; }
 
-    public Monster selectMonster;
+    public CharacterHpBar hpBar;
 
     public BattleManager battleManager;
     public BattleCanvas battleCanvas { get {  return battleManager.battleCanvas; } }
@@ -45,6 +43,8 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         stateMachine = new CharacterStateMachine(this);
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         animator = GetComponentInChildren<Animator>();
     }
@@ -64,7 +64,16 @@ public class Character : MonoBehaviour
     {
         stateMachine.PhysicsUpdate();
     }
-    public void Init(int level)
+
+    public void CharacterLoad(Character character)
+    {
+        baseData = character.baseData;
+        level = character.level;
+        curExp = character.curExp;
+        curHP = character.curHP;
+}
+
+    public void Init()
     {
         characterName = baseData.characterName;
         maxHP = baseData.hp * level;
@@ -72,6 +81,9 @@ public class Character : MonoBehaviour
         atk = baseData.atk * level;
         needExp = baseData.needExp * level;
         maxCoolTime = baseData.actionCoolTime;
+
+        spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
+        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
     }
 
     public void ChangeHP(int change)
