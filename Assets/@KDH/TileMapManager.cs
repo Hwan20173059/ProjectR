@@ -233,10 +233,38 @@ public class TileMapManager : MonoBehaviour
         int X = selectedTile.indexX;
         int Y = selectedTile.indexY;
 
+        TileOn(X - 3, Y);
+
+        TileOn(X - 2, Y - 1);
+        TileOn(X - 2, Y);
+        TileOn(X - 2, Y + 1);
+
+        TileOn(X - 1, Y - 2);
+        TileOn(X - 1, Y - 1);
         TileOn(X - 1, Y);
-        TileOn(X + 1, Y);
+        TileOn(X - 1, Y + 1);
+        TileOn(X - 1, Y + 2);
+
+        TileOn(X, Y - 3);
+        TileOn(X, Y - 2);
         TileOn(X, Y - 1);
+        TileOn(X, Y);
         TileOn(X, Y + 1);
+        TileOn(X, Y + 2);
+        TileOn(X, Y + 3);
+
+        TileOn(X + 1, Y - 2);
+        TileOn(X + 1, Y - 1);
+        TileOn(X + 1, Y);
+        TileOn(X + 1, Y + 1);
+        TileOn(X + 1, Y + 2);
+
+        TileOn(X + 2, Y - 1);
+        TileOn(X + 2, Y);
+        TileOn(X + 2, Y + 1);
+
+        TileOn(X + 3, Y);
+
     }
 
     public void MoveTileOff()
@@ -244,10 +272,37 @@ public class TileMapManager : MonoBehaviour
         int X = selectedTile.indexX;
         int Y = selectedTile.indexY;
 
+        TileOff(X - 3, Y);
+
+        TileOff(X - 2, Y - 1);
+        TileOff(X - 2, Y);
+        TileOff(X - 2, Y + 1);
+
+        TileOff(X - 1, Y - 2);
+        TileOff(X - 1, Y - 1);
         TileOff(X - 1, Y);
-        TileOff(X + 1, Y);
+        TileOff(X - 1, Y + 1);
+        TileOff(X - 1, Y + 2);
+
+        TileOff(X, Y - 3);
+        TileOff(X, Y - 2);
         TileOff(X, Y - 1);
+        TileOff(X, Y);
         TileOff(X, Y + 1);
+        TileOff(X, Y + 2);
+        TileOff(X, Y + 3);
+
+        TileOff(X + 1, Y - 2);
+        TileOff(X + 1, Y - 1);
+        TileOff(X + 1, Y);
+        TileOff(X + 1, Y + 1);
+        TileOff(X + 1, Y + 2);
+
+        TileOff(X + 2, Y - 1);
+        TileOff(X + 2, Y);
+        TileOff(X + 2, Y + 1);
+
+        TileOff(X + 3, Y);
     }
 
     protected virtual void TileOn(int X, int Y) { }

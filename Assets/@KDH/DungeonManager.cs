@@ -11,7 +11,7 @@ public class DungeonManager : TileMapManager
     void Start()
     {
         playerManager = PlayerManager.Instance;
-        playerTurnIndex = 3;
+        playerTurnIndex = 1;
 
         if (playerManager.isDungeon == false)
         {

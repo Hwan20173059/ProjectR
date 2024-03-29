@@ -12,18 +12,15 @@ public class PlayerManager : Singleton<PlayerManager>
     public int currentExp;
     public int gold;
 
-    [Header("Equip")]
-    public GameObject selectedCharacter;
-    public EquipItem[] equip = new EquipItem[3];
+    [Header("Character")]
+    public List<Character> characterList = new List<Character>();
+    public int selectedCharacterIndex = 0;
 
-    [Header("State")]
-    public bool isTown;
-    public bool isField;
-    public bool isDungeon;
+    [Header("Equip")]
+    public EquipItem[] equip = new EquipItem[3];
 
     [Header("Town")]
     public TownUiManager townUiManager;
-    public GameObject townPlayer;    
 
     [Header("SaveInfo")]
     public int fieldX;
@@ -33,7 +30,12 @@ public class PlayerManager : Singleton<PlayerManager>
     public List<int> chestPosition = new List<int>();
     public int[] dungeonMap = new int[4];
 
-    [Header("Dungeon")]
+    [Header("State")]
+    public bool isTown;
+    public bool isField;
+    public bool isDungeon;
+
+    [Header("IDinfo")]
     public int selectTownID;
     public int selectDungeonID;
     public int selectBattleID;
@@ -47,11 +49,11 @@ public class PlayerManager : Singleton<PlayerManager>
             if (equip[i] == null)
                 equip[i] = baseEquip;
         }
-    }
-    
-    public void ReFreshPlayer()
-    {
-        townPlayer.GetComponent<TownPlayer>().Refresh();
+
+        characterList.Add(townUiManager.character);
+        characterList.Add(townUiManager.character);
+        characterList.Add(townUiManager.character);
+        characterList.Add(townUiManager.character);
     }
     
     public void EquipNewItem(int n)
