@@ -12,6 +12,8 @@ public class DungeonClearPanel : MonoBehaviour
         dungeonClearButton = GetComponentInChildren<DungeonClearButton>();
 
         dungeonClearButton.button.onClick.AddListener(TownSceneLoad);
+
+        gameObject.SetActive(false);
     }
 
     void TownSceneLoad()

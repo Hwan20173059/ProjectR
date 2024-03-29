@@ -10,6 +10,7 @@ public class CharacterStateMachine : StateMachine
     public CharacterSelectActionState selectActionState { get; }
     public CharacterActionState actionState { get; }
     public CharacterDeadState deadState { get; }
+    public CharacterAutoSelectState autoSelectState { get; }
     public CharacterStateMachine(Character character)
     {
         this.character = character;
@@ -19,5 +20,6 @@ public class CharacterStateMachine : StateMachine
         selectActionState = new CharacterSelectActionState(this);
         actionState = new CharacterActionState(this);
         deadState = new CharacterDeadState(this);
+        autoSelectState = new CharacterAutoSelectState(this);
     }
 }

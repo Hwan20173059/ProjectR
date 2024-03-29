@@ -11,6 +11,8 @@ public class BattleDefeatPanel : MonoBehaviour
     {
         returnTownButton = GetComponentInChildren<ReturnTownButton>();
         returnTownButton.button.onClick.AddListener(TownSceneLoad);
+
+        gameObject.SetActive(false);
     }
 
     void TownSceneLoad()

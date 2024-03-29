@@ -9,6 +9,8 @@ public class MonsterStatePanel : MonoBehaviour
     public void Init()
     {
         monsterStateText = GetComponentInChildren<MonsterStateText>();
+
+        gameObject.SetActive(false);
     }
 
     public void UpdateMonsterState(Monster selectMonster)

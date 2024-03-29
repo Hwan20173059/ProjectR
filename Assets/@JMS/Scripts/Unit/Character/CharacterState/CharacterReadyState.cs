@@ -29,7 +29,10 @@ public class CharacterReadyState : CharacterBaseState
         }
         else
         {
-            stateMachine.ChangeState(stateMachine.selectActionState);
+            if (battleManager.IsAutoBattle)
+                stateMachine.ChangeState(stateMachine.autoSelectState);
+            else
+                stateMachine.ChangeState(stateMachine.selectActionState);
         }
     }
 }

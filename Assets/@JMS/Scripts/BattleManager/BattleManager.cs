@@ -33,6 +33,7 @@ public class BattleManager : MonoBehaviour
     public IState[] monstersPrevState;
     public bool IsSelectingAction = false;
     public bool IsRouletteUsed = true;
+    public bool IsAutoBattle = false;
 
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
     Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
@@ -272,6 +273,19 @@ public class BattleManager : MonoBehaviour
                 count++;
         }
         return count;
+    }
+
+    public void CharacterAutoSelect()
+    {
+        OnClickRouletteButton();
+
+        while (selectMonster == null || selectMonster.IsDead)
+        {
+            int idx = Random.Range(0, monsters.Count);
+            selectMonster = monsters[idx];
+        }
+
+        OnClickAttackButton();
     }
 
     public void OnClickAttackButton()

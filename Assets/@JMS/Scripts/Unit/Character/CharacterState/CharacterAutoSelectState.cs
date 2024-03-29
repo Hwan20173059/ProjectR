@@ -1,12 +1,10 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class CharacterSelectActionState : CharacterBaseState
+public class CharacterAutoSelectState : CharacterBaseState
 {
-    public CharacterSelectActionState(CharacterStateMachine characterStateMachine) : base(characterStateMachine)
+    public CharacterAutoSelectState(CharacterStateMachine characterStateMachine) : base(characterStateMachine)
     {
     }
     public override void Enter()
@@ -19,10 +17,13 @@ public class CharacterSelectActionState : CharacterBaseState
         battleManager.IsRouletteUsed = false;
         battleManager.IsSelectingAction = true;
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.playerSelectingActionState);
+
+        battleManager.CharacterAutoSelect();
     }
+
     public override void Exit()
     {
-        base .Exit();
+        base.Exit();
 
         battleManager.IsSelectingAction = false;
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
