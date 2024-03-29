@@ -1,18 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RewardUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject rewardUI;
+    public void Off()
     {
-        
+        rewardUI.SetActive(!rewardUI.activeSelf);
+        //rewardUI.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+
+    //todo : 모든 슬롯 없애는 함수
+    public void DestorySlot(GameObject obj)
     {
-        
+        rewardUI.SetActive(false);
     }
 }

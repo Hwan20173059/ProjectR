@@ -25,6 +25,7 @@ public class QuestInfoSO : ScriptableObject
     [Header("Rewards")]
     public int goldReward;
     public int expReward;
+    public List<ItemReward> rewards;
     //public Item itemID;??????????????
     //todo : 보상에 아이템 추가
 

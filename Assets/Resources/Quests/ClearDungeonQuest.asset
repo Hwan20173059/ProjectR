@@ -15,9 +15,22 @@ MonoBehaviour:
   <id>k__BackingField: ClearDungeonQuest
   displayName: Clear the Dungeon
   questDescription: "\uB358\uC804\uC744 1\uD68C \uD074\uB9AC\uC5B4\uD558\uC138\uC694."
-  levelRequirement: 0
+  levelRequirement: 1
   questPrerequisites: []
   questStepPrefebs:
   - {fileID: 8035313293239625195, guid: d10a9e81a6b10614db604d015db3f584, type: 3}
-  goldReward: 5
-  expReward: 10
+  goldReward: 1000
+  expReward: 300
+  rewards:
+  - ItemType: 0
+    itemID: 0
+    itemProbability: 100
+  - ItemType: 0
+    itemID: 1
+    itemProbability: 100
+  - ItemType: 1
+    itemID: 0
+    itemProbability: 100
+  - ItemType: 1
+    itemID: 1
+    itemProbability: 100

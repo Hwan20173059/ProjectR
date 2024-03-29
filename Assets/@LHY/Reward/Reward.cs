@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Reward
+public class ItemReward
 {
-    public ItemType itemType;
-    public string itemID;
+    public ItemType ItemType;
+
+    public int itemID;
     [Range(0, 100)]
     public float itemProbability;
 }
@@ -14,5 +15,5 @@ public class Reward
 public enum ItemType
 {
     Equip,
-    Consume
+    Consume,
 }

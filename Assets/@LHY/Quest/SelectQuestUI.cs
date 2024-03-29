@@ -22,7 +22,6 @@ public class SelectQuestUI : MonoBehaviour
     QuestManager questManager;
 
     public QuestInfoSO questInfoSO;
-
     private void Awake()
     {
         questManager = GetComponent<QuestManager>();
@@ -60,7 +59,6 @@ public class SelectQuestUI : MonoBehaviour
     {
         selectQuestID = id;
         selectQuestState = selectQuestSlot.currentQuestState;
-        
     }
 
     private void Update()
