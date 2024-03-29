@@ -23,6 +23,7 @@ public class TownUiManager : MonoBehaviour
     public GameObject talkUI;
 
     [Header("EquipUI")]
+    public Inventory inventory;
     public GameObject equipInventoryUI;
     public NowEquippedItemSlot nEquipItemSlot;
     public DetailArea detailArea;
@@ -123,6 +124,7 @@ public class TownUiManager : MonoBehaviour
 
     public void OpenInventory()
     {
+        inventory.FreshSlot();
         detailArea.ChangeDetailActivation(false);
         equipInventoryUI.SetActive(true);
         detailArea.gameObject.SetActive(true);
@@ -132,6 +134,14 @@ public class TownUiManager : MonoBehaviour
         equipInventoryUI.SetActive(false);
         consumeInventoryUI.SetActive(false);
         detailArea.gameObject.SetActive(false);
+    }
+
+    public void OpenConsumeInventory()
+    {
+        inventory.FreshConsumeSlot();
+        detailArea.ChangeDetailActivation(false);
+        consumeInventoryUI.SetActive(true);
+        detailArea.gameObject.SetActive(true);
     }
 
     public void FreshAfterEquip()
