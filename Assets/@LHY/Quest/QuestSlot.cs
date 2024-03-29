@@ -14,12 +14,6 @@ public class QuestSlot : MonoBehaviour
     public string questId;
     public QuestState currentQuestState;
 
-    public GameObject selectQuest;
-
-    public SelectQuestUI selectQuestUI;
-
-
-
     private void Awake()
     {
         questId = questInfoForPoint.id;
@@ -36,7 +30,6 @@ public class QuestSlot : MonoBehaviour
     {
         Quest quest;
         quest = QuestManager.instance.QuestStateCheck(this);
-        Debug.Log(quest.state);
         currentQuestState = quest.state;
     }
 
@@ -49,9 +42,6 @@ public class QuestSlot : MonoBehaviour
     {
 
     }
-
-    //현재 진행중인지 확인하는 메서드
-
 
     private void QuestStateChange(Quest quest)
     {
