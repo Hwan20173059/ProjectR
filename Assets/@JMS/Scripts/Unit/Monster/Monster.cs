@@ -83,7 +83,7 @@ public class Monster : MonoBehaviour
         }
 
         spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
-        animator = Resources.Load<Animator>(baseData.animatorPath);
+        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
     }
 
     public void ChangeHP(int change)

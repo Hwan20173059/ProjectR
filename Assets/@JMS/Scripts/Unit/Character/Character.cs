@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -76,12 +77,13 @@ public class Character : MonoBehaviour
     {
         characterName = baseData.characterName;
         maxHP = baseData.hp * level;
+        curHP = maxHP;
         atk = baseData.atk * level;
         needExp = baseData.needExp * level;
         maxCoolTime = baseData.actionCoolTime;
 
         spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
-        animator = Resources.Load<Animator>(baseData.animatorPath);
+        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
     }
 
     public void ChangeHP(int change)
