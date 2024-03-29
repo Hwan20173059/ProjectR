@@ -15,7 +15,7 @@ public enum FieldState
 public class TileMapManager : MonoBehaviour
 {
     [Header("Manager")]
-    public PlayerManager playerManager;    
+    public PlayerManager playerManager;
     public Field field;
     public Tile selectedTile;
 
@@ -55,7 +55,7 @@ public class TileMapManager : MonoBehaviour
     {
         StartCoroutine(EnemyTurn());
     }
-    
+
     IEnumerator EnemyTurn()
     {
         fieldState = FieldState.fieldTurn;
@@ -102,7 +102,7 @@ public class TileMapManager : MonoBehaviour
 
     protected void MoveTileMonsterState(int monsterIndex, int X, int Y, int MoveX, int MoveY)
     {
-        field.tileRaw[Y].fieldTiles[X].SetTile(TileState.empty);        
+        field.tileRaw[Y].fieldTiles[X].SetTile(TileState.empty);
         field.tileRaw[Y].fieldTiles[X].RefreshTile();
 
         field.tileRaw[MoveY].fieldTiles[MoveX].battleID = field.tileRaw[Y].fieldTiles[X].battleID;
@@ -129,9 +129,9 @@ public class TileMapManager : MonoBehaviour
 
     public void FieldMoveAfter()
     {
-        for (int i =0; i < field.tileRaw.Length; i++)
+        for (int i = 0; i < field.tileRaw.Length; i++)
         {
-            for(int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
+            for (int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
             {
                 if (field.tileRaw[i].fieldTiles[j].tileState == TileState.player || field.tileRaw[i].fieldTiles[j].tileState == TileState.canGO)
                 {
@@ -192,7 +192,7 @@ public class TileMapManager : MonoBehaviour
         {
             playerManager.monsterPosition.Add(fieldMonster[i].battleID);
             playerManager.monsterPosition.Add(fieldMonster[i].indexX);
-            playerManager.monsterPosition.Add(fieldMonster[i].indexY);            
+            playerManager.monsterPosition.Add(fieldMonster[i].indexY);
         }
     }
 
@@ -232,6 +232,8 @@ public class TileMapManager : MonoBehaviour
     {
         int X = selectedTile.indexX;
         int Y = selectedTile.indexY;
+
+
 
         TileOn(X - 3, Y);
 
@@ -303,6 +305,17 @@ public class TileMapManager : MonoBehaviour
         TileOff(X + 2, Y + 1);
 
         TileOff(X + 3, Y);
+    }
+
+    private void TileOnIndex(int index, int X, int Y)
+    {
+        for(int i = -index; i <= index; i++)
+        {
+            for (int j = (-index) - i; j <= index; j++)
+            {
+                TileOff(X + i, Y + j);
+            }
+        }
     }
 
     protected virtual void TileOn(int X, int Y) { }
