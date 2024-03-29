@@ -50,12 +50,10 @@ public class PlayerManager : Singleton<PlayerManager>
                 equip[i] = baseEquip;
         }
 
-        Character character = new Character(DataManager.Instance.battleDatabase.GetCharacterByKey(0));
-        for (int i = 0; i < 3; i++)
-        {
-            if (characterList[i] == null)
-                characterList[i] = character;
-        }
+        characterList.Add(townUiManager.character);
+        characterList.Add(townUiManager.character);
+        characterList.Add(townUiManager.character);
+        characterList.Add(townUiManager.character);
     }
     
     public void EquipNewItem(int n)

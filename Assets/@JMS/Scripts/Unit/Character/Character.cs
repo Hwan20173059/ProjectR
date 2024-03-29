@@ -64,18 +64,6 @@ public class Character : MonoBehaviour
         stateMachine.PhysicsUpdate();
     }
 
-    public Character(CharacterData character) // »ý¼ºÀÚ
-    {
-        characterName = character.characterName;
-        maxHP = character.hp * level;
-        atk = character.atk * level;
-        needExp = character.needExp * level;
-        maxCoolTime = character.actionCoolTime;
-
-        spriteRenderer.sprite = Resources.Load<Sprite>(character.spritePath);
-        animator = Resources.Load<Animator>(character.animatorPath);
-    }
-
     public void CharacterLoad(Character character)
     {
         baseData = character.baseData;
