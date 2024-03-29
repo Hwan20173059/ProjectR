@@ -2,8 +2,8 @@
 	"characterDatas": [
 		{
 			"id": 0,
-			"characterName": "소드맨",
-			"spritePath": "Sprite/Player/Character/Idle",
+			"characterName": "모험가",
+			"spritePath": "Sprite/Player/Adventure/Adventure_0",
 			"animatorPath": "Animations/SwordMan/SwordMan",
 			"hp": 100,
 			"atk": 15,
@@ -13,8 +13,8 @@
 		},
 		{
 			"id": 1,
-			"characterName": "겁쟁이",
-			"spritePath": "Sprite/Player/Character/Hit",
+			"characterName": "소드맨",
+			"spritePath": "Sprite/Player/SwordMan/SwordMan_0",
 			"animatorPath": "Animations/SwordMan/SwordMan",
 			"hp": 80,
 			"atk": 10,
@@ -25,13 +25,35 @@
 		{
 			"id": 2,
 			"characterName": "워리어",
-			"spritePath": "Sprite/Player/Character/Attack",
+			"spritePath": "Sprite/Player/Warrior/Warrior_0",
 			"animatorPath": "Animations/SwordMan/SwordMan",
 			"hp": 130,
 			"atk": 30,
 			"needExp": 30,
 			"maxLevel": 20,
 			"actionCoolTime": 5
+		},
+		{
+			"id": 3,
+			"characterName": "해적",
+			"spritePath": "Sprite/Player/Pirate/Pirate_0",
+			"animatorPath": "Animations/SwordMan/SwordMan",
+			"hp": 200,
+			"atk": 50,
+			"needExp": 30,
+			"maxLevel": 20,
+			"actionCoolTime": 1
+		},
+		{
+			"id": 4,
+			"characterName": "바이킹",
+			"spritePath": "Sprite/Player/Viking/Viking_0",
+			"animatorPath": "Animations/SwordMan/SwordMan",
+			"hp": 200,
+			"atk": 50,
+			"needExp": 30,
+			"maxLevel": 20,
+			"actionCoolTime": 1
 		}
 	],
 	"monsterDatas": [

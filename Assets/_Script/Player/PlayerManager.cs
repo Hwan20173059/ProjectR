@@ -51,7 +51,7 @@ public class PlayerManager : Singleton<PlayerManager>
                 equip[i] = baseEquip;
         }
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < DataManager.Instance.battleDatabase.characterDic.Count; i++)
             AddCharacter(i);
     }
     
