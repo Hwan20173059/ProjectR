@@ -10,7 +10,7 @@ public class DataManager : Singleton<DataManager>
     public ItemDatabase itemDatabase;
     public BattleDataBase battleDatabase;
 
-    private void Start()
+    new private void Awake()
     {
         LoadBattleDatas();
     }

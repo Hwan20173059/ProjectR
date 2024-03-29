@@ -1,3 +1,4 @@
+using Assets.PixelFantasy.PixelTileEngine.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -50,10 +51,8 @@ public class PlayerManager : Singleton<PlayerManager>
                 equip[i] = baseEquip;
         }
 
-        characterList.Add(townUiManager.character);
-        characterList.Add(townUiManager.character);
-        characterList.Add(townUiManager.character);
-        characterList.Add(townUiManager.character);
+        for (int i = 0; i < 3; i++)
+            AddCharacter(i);
     }
     
     public void EquipNewItem(int n)
@@ -61,5 +60,27 @@ public class PlayerManager : Singleton<PlayerManager>
         equip[n].isEquipped = false;
         equip[n] = townUiManager.lastSelectedEquip;
         equip[n].isEquipped = true;
+    }
+
+    public void AddCharacter(int id)
+    {
+        Character character = Instantiate(townUiManager.characterPrefab,this.transform);
+        character.spriteRenderer.color = new Color(1, 1, 1, 0);
+
+        character.baseData.id = DataManager.Instance.battleDatabase.GetCharacterByKey(id).id;
+        character.baseData.characterName = DataManager.Instance.battleDatabase.GetCharacterByKey(id).characterName;
+        character.baseData.spritePath = DataManager.Instance.battleDatabase.GetCharacterByKey(id).spritePath;
+        character.baseData.animatorPath = DataManager.Instance.battleDatabase.GetCharacterByKey(id).animatorPath;
+        character.baseData.hp = DataManager.Instance.battleDatabase.GetCharacterByKey(id).hp;
+        character.baseData.atk = DataManager.Instance.battleDatabase.GetCharacterByKey(id).atk;
+        character.baseData.needExp = DataManager.Instance.battleDatabase.GetCharacterByKey(id).needExp;
+        character.baseData.maxLevel = DataManager.Instance.battleDatabase.GetCharacterByKey(id).maxLevel;
+        character.baseData.actionCoolTime = DataManager.Instance.battleDatabase.GetCharacterByKey(id).actionCoolTime;
+
+        character.level = 1;
+
+        character.Init();
+
+        characterList.Add(character);
     }
 }

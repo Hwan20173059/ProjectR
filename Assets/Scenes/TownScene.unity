@@ -2901,7 +2901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
-  character: {fileID: -98113491264426746, guid: 086cf282ece5a2d43bb2bc28f0c94dd6, type: 3}
+  characterPrefab: {fileID: 6813750776376228267, guid: b6e7bbf231fbf2746ba859558282fe35, type: 3}
   characterUI: {fileID: 1822648823}
   inventoryUI: {fileID: 0}
   detailArea1: {fileID: 0}
