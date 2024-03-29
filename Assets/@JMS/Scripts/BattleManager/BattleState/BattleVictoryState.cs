@@ -18,6 +18,8 @@ public class BattleVictoryState : BattleBaseState
         {
             battleCanvas.DungeonClearPanelOn();
             GameEventManager.instance.questEvent.DungeonClear();
+
+            Time.timeScale = 1f;
         }
         else
         {

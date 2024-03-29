@@ -21,6 +21,7 @@ public class BattleCanvas : MonoBehaviour
     DungeonClearPanel dungeonClearPanel;
     MonsterStatePanel monsterStatePanel;
     BattleTextPanel battleTextPanel;
+    AutoBattlePanel autoBattlePanel;
 
     public GameObject characterHpBarPrefab;
     public GameObject monsterHpBarPrefab;
@@ -37,6 +38,7 @@ public class BattleCanvas : MonoBehaviour
         dungeonClearPanel = GetComponentInChildren<DungeonClearPanel>();
         monsterStatePanel = GetComponentInChildren<MonsterStatePanel>();
         battleTextPanel = GetComponentInChildren<BattleTextPanel>();
+        autoBattlePanel = GetComponentInChildren<AutoBattlePanel>();
 
         PanelInit();
     }
@@ -51,11 +53,7 @@ public class BattleCanvas : MonoBehaviour
         dungeonClearPanel.Init();
         monsterStatePanel.Init();
         battleTextPanel.Init();
-
-        nextStagePanel.gameObject.SetActive(false);
-        battleDefeatPanel.gameObject.SetActive(false);
-        dungeonClearPanel.gameObject.SetActive(false);
-        monsterStatePanel.gameObject.SetActive(false);
+        autoBattlePanel.Init(battleManager);
     }
 
     public void CreateCharacterHpBar(Character character)

@@ -16,6 +16,8 @@ public class NextStagePanel : MonoBehaviour
         nextStageButton = GetComponentInChildren<NextStageButton>();
 
         nextStageButton.button.onClick.AddListener(NextStageStart);
+
+        gameObject.SetActive(false);
     }
 
     void NextStageStart()
