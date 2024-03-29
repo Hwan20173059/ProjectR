@@ -54,6 +54,11 @@ public class PlayerManager : Singleton<PlayerManager>
         characterList.Add(townUiManager.character);
         characterList.Add(townUiManager.character);
         characterList.Add(townUiManager.character);
+
+        for(int i = 0; i < characterList.Count; i++)
+        {
+            characterList[i].Init();
+        }
     }
     
     public void EquipNewItem(int n)

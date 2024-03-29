@@ -13,8 +13,6 @@ public class TownUiManager : MonoBehaviour
 
     [Header("UI")]
     public GameObject characterUI;
-    public GameObject inventoryUI;
-    public GameObject detailArea1;
     public GameObject dungeonUI;
     public GameObject guildUI;
     public GameObject storeUI;
@@ -82,12 +80,6 @@ public class TownUiManager : MonoBehaviour
     {
         guildUI.SetActive(false);
         talkUI.SetActive(false);
-    }
-
-    public void InventoryUIOn()
-    {
-        inventoryUI.SetActive(true);
-        detailArea1.SetActive(true);
     }
 
     public void StoreUIOn()
