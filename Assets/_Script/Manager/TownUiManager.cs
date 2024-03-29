@@ -8,6 +8,9 @@ public class TownUiManager : MonoBehaviour
 {
     public PlayerManager playerManager;
 
+    [Header("Character Test")]
+    public Character character;
+
     [Header("UI")]
     public GameObject characterUI;
     public GameObject inventoryUI;

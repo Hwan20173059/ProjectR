@@ -4,12 +4,34 @@
 			"id": 0,
 			"characterName": "소드맨",
 			"spritePath": "Sprite/Player/Character/Idle",
-			"animationPath": "Animations/SwordMan/SwordMan",
+			"animatorPath": "Animations/SwordMan/SwordMan",
 			"hp": 100,
 			"atk": 15,
 			"needExp": 30,
 			"maxLevel": 20,
 			"actionCoolTime": 5
+		},
+		{
+			"id": 1,
+			"characterName": "겁쟁이",
+			"spritePath": "Sprite/Player/Character/Hit",
+			"animatorPath": "Animations/SwordMan/SwordMan",
+			"hp": 80,
+			"atk": 10,
+			"needExp": 30,
+			"maxLevel": 20,
+			"actionCoolTime": 2
+		},
+		{
+			"id": 2,
+			"characterName": "나이트",
+			"spritePath": "Sprite/Player/Character/Attack",
+			"animatorPath": "Animations/SwordMan/SwordMan",
+			"hp": 120,
+			"atk": 20,
+			"needExp": 30,
+			"maxLevel": 20,
+			"actionCoolTime": 4
 		}
 	],
 	"monsterDatas": [
