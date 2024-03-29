@@ -164,13 +164,13 @@ MonoBehaviour:
   characterName: "\uC18C\uB4DC\uB9E8"
   level: 1
   curExp: 0
-  needExp: 0
-  maxHP: 0
-  curHP: 0
-  atk: 0
+  needExp: 20
+  maxHP: 100
+  curHP: 100
+  atk: 15
   currentStateText: "\uB300\uAE30\uC911"
   curCoolTime: 0
-  maxCoolTime: 0
+  maxCoolTime: 5
   startPosition: {x: 0, y: 0, z: 0}
   moveAnimSpeed: 10
   hpBar: {fileID: 0}
