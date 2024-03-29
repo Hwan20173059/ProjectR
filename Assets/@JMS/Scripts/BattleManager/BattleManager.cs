@@ -19,7 +19,7 @@ public class BattleManager : MonoBehaviour
     public GameObject targetCirclePrefab;
 
     DungeonData dungeon;
-    public List<StageData> stages { get; private set; }
+    public List<StageData> stages = new List<StageData>();
     public int curStage;
 
     public List<EquipItem> rouletteEquip;
@@ -99,7 +99,7 @@ public class BattleManager : MonoBehaviour
     
     void DungeonInit()
     {
-        dungeon = DataManager.Instance.battleDatabase.GetDungeonByKey(PlayerManager.Instance.selectDungeonID);
+        dungeon = DataManager.Instance.battleDatabase.GetDungeonByKey(PlayerManager.Instance.selectBattleID);
         
         for (int i = 0; i < dungeon.stages.Length; i++)
         {
@@ -112,7 +112,7 @@ public class BattleManager : MonoBehaviour
         GameObject character = Instantiate(characterPrefab);
         character.transform.position = characterSpawnPosition;
         this.character = character.GetComponent<Character>();
-        //this.character.CharacterLoad(PlayerManager.Instance.selectedCharacter);
+        this.character.CharacterLoad(PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
         this.character.Init();
         this.character.startPosition = character.transform.position;
         this.character.battleManager = this;

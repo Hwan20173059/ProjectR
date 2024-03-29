@@ -24,7 +24,7 @@ public class BattleDataBase
         {
             characterDic.Add(characterBase.id, characterBase);
         }
-        /*
+        
         foreach (MonsterData monsterBase in monsterDatas)
         {
             monsterDic.Add(monsterBase.id, monsterBase);
@@ -39,7 +39,6 @@ public class BattleDataBase
         {
             dungeonDic.Add(dungeonBase.id, dungeonBase);
         }
-        */
     }
 
     public CharacterData GetCharacterByKey(int id)
