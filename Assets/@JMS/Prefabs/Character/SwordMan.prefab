@@ -153,9 +153,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseData:
     id: 0
-    characterName: "\"\uC18C\uB4DC\uB9E8\""
-    spritePath: '"Sprite/Player/Character/Idle"'
-    animatorPath: '"Animations/SwordMan/SwordMan"'
+    characterName: "\uC18C\uB4DC\uB9E8"
+    spritePath: Sprite/Player/Character/Idle
+    animatorPath: Animations/SwordMan/SwordMan
     hp: 100
     atk: 15
     needExp: 30
