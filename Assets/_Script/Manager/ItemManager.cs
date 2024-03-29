@@ -68,6 +68,7 @@ public class ItemManager : MonoBehaviour
         }
         else
         {
+            cItem.count = 1;
             cInventory.Add(cItem);
         }
     }

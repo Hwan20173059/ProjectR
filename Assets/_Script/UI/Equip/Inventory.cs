@@ -31,10 +31,9 @@ public class Inventory : MonoBehaviour //Inventory
             EquipItem eItem = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(i));
             itemManager.eInventory.Add(eItem);
         }
-        for (int i = 0; i <= 2; i++)
+        for (int i = 0; i <= 5; i++)
         {
-            ConsumeItem cItem = new ConsumeItem(DataManager.Instance.itemDatabase.GetCItemByKey(i));
-            itemManager.cInventory.Add(cItem);
+            itemManager.AddConsumeItem(i);
         }
 
         FreshSlot();

@@ -11,6 +11,7 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private Button _equipButton;
     [SerializeField] private Button _unEquipButton;
+    [SerializeField] private Button _useButton;
     [SerializeField] private GameObject _activateFalseObj;
     public bool isEquipping;
 
@@ -29,6 +30,18 @@ public class DetailArea : MonoBehaviour
             {
                 _equipButton.gameObject.SetActive(true);
             }
+        }
+        ChangeDetailActivation(true);
+    }
+
+    public void ChangeSelectedItem(ConsumeItem c)
+    {
+        ChangeDetailActivation(false);
+        _image.sprite = c.consumeSprite;
+        _text.text = c.data.info;
+        if(c.type == Type.Potion)
+        {
+            _useButton.gameObject.SetActive(true);
         }
         ChangeDetailActivation(true);
     }
@@ -53,12 +66,5 @@ public class DetailArea : MonoBehaviour
     {
         _activateFalseObj.SetActive(false);
         isEquipping = false;
-    }
-    public void ChangeSelectedItem(ConsumeItem c)
-    {
-        ChangeDetailActivation(false);
-        _image.sprite = c.consumeSprite;
-        _text.text = c.data.info;
-        ChangeDetailActivation(true);
     }
 }
