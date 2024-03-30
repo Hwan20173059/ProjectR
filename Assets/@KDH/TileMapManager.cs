@@ -307,17 +307,6 @@ public class TileMapManager : MonoBehaviour
         TileOff(X + 3, Y);
     }
 
-    private void TileOnIndex(int index, int X, int Y)
-    {
-        for(int i = -index; i <= index; i++)
-        {
-            for (int j = (-index) - i; j <= index; j++)
-            {
-                TileOff(X + i, Y + j);
-            }
-        }
-    }
-
     protected virtual void TileOn(int X, int Y) { }
     protected virtual void TileOff(int X, int Y) { }
     protected virtual bool FieldStateEmptyCheck(int X, int Y) { return false; }
