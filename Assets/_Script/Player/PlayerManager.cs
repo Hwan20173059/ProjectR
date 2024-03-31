@@ -1,3 +1,4 @@
+using Assets.PixelFantasy.PixelTileEngine.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -62,4 +63,29 @@ public class PlayerManager : Singleton<PlayerManager>
         equip[n] = townUiManager.lastSelectedEquip;
         equip[n].isEquipped = true;
     }
+    
+    public void ChangeExp(int change)
+    {
+        currentExp += change;
+        currentExp = currentExp >= needExp ? LevelUp() : currentExp;
+    }
+
+    public void AddGold(int changeGold)
+    {
+        gold += changeGold;
+    }
+    public int LevelUp()
+    {
+        //currentExp = currentExp - needExp;
+        //playerLevel++;
+
+        //todo : Data¿¡ ÀúÀå
+        //playerLevel = playerLevel > baseData.maxLevel ? baseData.maxLevel : level;
+        //needExp = baseData.needExp * playerLevel;
+        //currentExp = currentExp >= needExp ? LevelUp() : currentExp;
+
+
+        return currentExp;
+    }
+    
 }
