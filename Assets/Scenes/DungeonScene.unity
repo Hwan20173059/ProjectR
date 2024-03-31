@@ -462,6 +462,8 @@ MonoBehaviour:
   field: {fileID: 1490224713}
   selectedTile: {fileID: 0}
   fieldState: 0
+  fieldSizeX: 8
+  fieldSizeY: 8
   playerTurnIndex: 0
   playerPosition: 0000000000000000
   isSelect: 0
@@ -477,6 +479,7 @@ MonoBehaviour:
   selectUI: {fileID: 1298999661}
   infoUI: {fileID: 1823751509}
   ChestUI: {fileID: 819377985}
+  finalList: []
   dungeonClearUI: {fileID: 1315380093}
 --- !u!1 &145535763
 GameObject:

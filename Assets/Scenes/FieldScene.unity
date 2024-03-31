@@ -3004,6 +3004,8 @@ MonoBehaviour:
   field: {fileID: 1490224713}
   selectedTile: {fileID: 0}
   fieldState: 0
+  fieldSizeX: 17
+  fieldSizeY: 11
   playerTurnIndex: 0
   playerPosition: 0000000000000000
   isSelect: 0
@@ -3019,6 +3021,7 @@ MonoBehaviour:
   selectUI: {fileID: 1298999661}
   infoUI: {fileID: 1823751509}
   ChestUI: {fileID: 0}
+  finalList: []
 --- !u!1001 &326759058
 PrefabInstance:
   m_ObjectHideFlags: 0
