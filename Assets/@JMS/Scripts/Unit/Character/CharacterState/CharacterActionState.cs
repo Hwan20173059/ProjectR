@@ -102,14 +102,14 @@ public class CharacterActionState : CharacterBaseState
         if(battleManager.AliveMonsterCount() > 1)
         {
             Monster target = battleManager.selectMonster;
-            Vector3 selectMonsterPosition = new Vector3(target.startPosition.x - 1f, target.startPosition.y);
             Monster nextTarget;
-            while (true)
+            do
             {
-                nextTarget = battleManager.monsters[Random.Range(0,battleManager.monsters.Count)];
-                if (nextTarget != target && !nextTarget.IsDead)
-                    break;
+                nextTarget = battleManager.monsters[Random.Range(0, battleManager.monsters.Count)];
             }
+            while (nextTarget == target || nextTarget.IsDead);
+
+            Vector3 selectMonsterPosition = new Vector3(target.startPosition.x - 1f, target.startPosition.y);
             Vector3 nextMonsterPosition = new Vector3(nextTarget.startPosition.x - 1f, nextTarget.startPosition.y);
             
             int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.atk);
