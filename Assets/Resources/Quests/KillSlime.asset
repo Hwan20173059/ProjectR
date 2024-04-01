@@ -18,6 +18,8 @@ MonoBehaviour:
   levelRequirement: 1
   questPrerequisites: []
   questStepPrefebs:
-  - {fileID: 8035313293239625195, guid: 5eb3b1ad36ac0264ba058f2d10cc5e65, type: 3}
+  - {fileID: 8035313293239625195, guid: 54efc32f92144974d87cd101cfd2b334, type: 3}
   goldReward: 30
   expReward: 50
+  consumeRewards: []
+  equipRewards: []

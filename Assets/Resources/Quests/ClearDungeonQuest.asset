@@ -21,16 +21,17 @@ MonoBehaviour:
   - {fileID: 8035313293239625195, guid: d10a9e81a6b10614db604d015db3f584, type: 3}
   goldReward: 1000
   expReward: 300
-  rewards:
-  - ItemType: 0
-    itemID: 0
+  consumeRewards:
+  - itemID: 0
     itemProbability: 100
-  - ItemType: 0
-    itemID: 1
+  - itemID: 0
     itemProbability: 100
-  - ItemType: 1
-    itemID: 0
+  equipRewards:
+  - itemID: 0
     itemProbability: 100
-  - ItemType: 1
-    itemID: 1
+  - itemID: 1
+    itemProbability: 100
+  - itemID: 2
+    itemProbability: 100
+  - itemID: 3
     itemProbability: 100
