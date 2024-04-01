@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -8,8 +9,8 @@ public class TownUiManager : MonoBehaviour
 {
     public PlayerManager playerManager;
 
-    [Header("Character Test")]
-    public Character character;
+    [Header("Character")]
+    public Character characterPrefab;
 
     [Header("UI")]
     public GameObject characterUI;
@@ -45,6 +46,7 @@ public class TownUiManager : MonoBehaviour
     public void CharacterUIOn()
     {
         characterUI.SetActive(true);
+        characterUI.GetComponentInChildren<CharacterSelectSlot>().Init();
     }
 
     public void CharacterUIOff()

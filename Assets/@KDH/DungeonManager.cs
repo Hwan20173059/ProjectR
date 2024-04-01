@@ -11,10 +11,11 @@ public class DungeonManager : TileMapManager
     void Start()
     {
         playerManager = PlayerManager.Instance;
-        playerTurnIndex = 1;
 
         if (playerManager.isDungeon == false)
         {
+            playerTurnIndex = playerManager.playerTurnIndex;
+
             CreateRandomMap();
             AllRefreshTile();
 
@@ -23,30 +24,40 @@ public class DungeonManager : TileMapManager
             playerManager.monsterPosition = new List<int>();
             SpawnRandomMonster(3);
             RandomSpawnChest();
+
+            PlayerTurn();
         }
         else
         {
             if (playerManager.monsterPosition.Count > 0)
             {
+                playerTurnIndex = playerManager.currentTurnIndex;
+
                 LoadRandomMap(playerManager.dungeonMap);
                 AllRefreshTile();
 
+                LoadMonster();
+
+                if (playerManager.chestPosition.Count != 0)
+                    LoadChest();
+
                 PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
 
-                LoadMonster();
-                LoadChest();
+                if (playerTurnIndex > 0)
+                    PlayerTurn();
+                else
+                    AEnemyTurn();
+                
             }
             else
             {
                 ClearDungeon();
+                PlayerTurn();
             }
         }
-
         playerManager.isField = false;
         playerManager.isTown = false;
         playerManager.isDungeon = true;
-
-        PlayerTurn();
     }
 
     public void ExitButton()
@@ -73,39 +84,6 @@ public class DungeonManager : TileMapManager
         }
 
         SceneManager.LoadScene("FieldScene");
-    }
-
-    protected override void TileOn(int X, int Y)
-    {
-        if (X > -1 && X < 8 && Y > -1 && Y < 8 && TileStateCheck(X, Y, TileState.empty))
-            TileStateSetting(X, Y, TileState.canGO);
-        else if (X > -1 && X < 8 && Y > -1 && Y < 8 && TileStateCheck(X, Y, TileState.monster))
-            TileStateSetting(X, Y, TileState.canFight);
-        else if (X > -1 && X < 8 && Y > -1 && Y < 8 && TileStateCheck(X, Y, TileState.town))
-            TileStateSetting(X, Y, TileState.canTownEnter);
-        else if (X > -1 && X < 8 && Y > -1 && Y < 8 && TileStateCheck(X, Y, TileState.dungeon))
-            TileStateSetting(X, Y, TileState.canDungeonEnter);
-        else if (X > -1 && X < 8 && Y > -1 && Y < 8 && TileStateCheck(X, Y, TileState.chest))
-            TileStateSetting(X, Y, TileState.canOpenChest);
-    }
-
-    protected override void TileOff(int X, int Y)
-    {
-        if (X > -1 && X < 8 && Y > -1 && Y < 8 && TileStateCheck(X, Y, TileState.canGO))
-            TileStateSetting(X, Y, TileState.empty);
-        else if (X > -1 && X < 8 && Y > -1 && Y < 8 && TileStateCheck(X, Y, TileState.canFight))
-            TileStateSetting(X, Y, TileState.monster);
-        else if (X > -1 && X < 8 && Y > -1 && Y < 8 && TileStateCheck(X, Y, TileState.canTownEnter))
-            TileStateSetting(X, Y, TileState.town);
-        else if (X > -1 && X < 8 && Y > -1 && Y < 8 && TileStateCheck(X, Y, TileState.canDungeonEnter))
-            TileStateSetting(X, Y, TileState.dungeon);
-        else if (X > -1 && X < 8 && Y > -1 && Y < 8 && TileStateCheck(X, Y, TileState.canOpenChest))
-            TileStateSetting(X, Y, TileState.chest);
-    }
-
-    protected override bool FieldStateEmptyCheck(int X, int Y)
-    {
-        return X > -1 && X < 7 && Y > -1 && Y < 5 && field.tileRaw[Y].fieldTiles[X].tileState == TileState.empty;
     }
 
     protected void ClearDungeon()

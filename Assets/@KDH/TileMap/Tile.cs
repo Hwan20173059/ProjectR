@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public enum TileState
 {
-    player, empty, canGO, cantGo,
+    player, empty, canGo, cantGo,
     monster, chest, town, dungeon,
     canFight, canTownEnter, canDungeonEnter, canOpenChest
 }
@@ -32,11 +32,16 @@ public class Tile : MonoBehaviour
     public int indexX;
     public int indexY;
 
-    public SpriteRenderer spriteRenderer;
+    [Header("Path Finding")]
+    public int cost;
+
+    SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        this.name = indexX + " / " + indexY;
 
         RefreshTile();
     }
@@ -57,8 +62,8 @@ public class Tile : MonoBehaviour
                 spriteRenderer.color = Color.blue;
                 break;
 
-            case TileState.canGO:
-                SetTile(TileState.canGO);
+            case TileState.canGo:
+                SetTile(TileState.canGo);
                 spriteRenderer.color = Color.cyan;
                 break;
 
@@ -148,17 +153,17 @@ public class Tile : MonoBehaviour
                     if (tileMapManager.isSelect == true)
                     {
                         tileMapManager.isSelect = false;
-                        tileMapManager.MoveTileOff();
+                        tileMapManager.MoveTileOff(tileMapManager.playerTurnIndex);
                         tileMapManager.selectUI.SetActive(false);
                         break;
                     }
                     else
                     {
-                        tileMapManager.selectedTile = this;
+                        tileMapManager.currentTile = this;
                         tileMapManager.isSelect = true;
                         tileMapManager.infoUI.text = "플레이어";
 
-                        tileMapManager.MoveTileOn();
+                        tileMapManager.MoveTileOn(tileMapManager.playerTurnIndex);
                         tileMapManager.selectUI.SetActive(true);
                         break;
                     }
@@ -167,10 +172,11 @@ public class Tile : MonoBehaviour
                     tileMapManager.selectUI.SetActive(false);
                     break;
 
-                case TileState.canGO:
-                    tileMapManager.playerTurnIndex--;
+                case TileState.canGo:
+                    tileMapManager.playerTurnIndex -= cost;
+                    PlayerManager.Instance.currentTurnIndex = tileMapManager.playerTurnIndex;
 
-                    tileMapManager.selectedTile = this;
+                    tileMapManager.currentTile = this;
 
                     tileMapManager.FieldMoveAfter();
                     tileState = TileState.player;
@@ -187,7 +193,7 @@ public class Tile : MonoBehaviour
                         tileMapManager.PlayerTurn();
                     else
                     {
-                        tileMapManager.playerTurnIndex = 1;
+                        tileMapManager.playerTurnIndex = PlayerManager.Instance.playerTurnIndex;
                         tileMapManager.AEnemyTurn();
                     }
                     break;
@@ -279,14 +285,20 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.canFight:
+                    tileMapManager.playerTurnIndex -= cost;
+                    PlayerManager.Instance.currentTurnIndex = tileMapManager.playerTurnIndex;
+
                     tileMapManager.playerManager.fieldX = indexX;
                     tileMapManager.playerManager.fieldY = indexY;
 
                     tileMapManager.fieldMonster.Remove(this);
 
                     tileMapManager.SaveMonster();
-                    if(tileMapManager.chestPosition != null)
+
+                    if (tileMapManager.chestPosition != null)
                         tileMapManager.SaveChest();
+                    else
+                        tileMapManager.chestPosition = null;
 
                     tileMapManager.playerManager.selectBattleID = 0;
                     SceneManager.LoadScene("BattleScene");
@@ -305,12 +317,15 @@ public class Tile : MonoBehaviour
                     break;
 
                 case TileState.canOpenChest:
-                    tileMapManager.playerTurnIndex--;
+                    tileMapManager.playerTurnIndex -= cost;
+                    PlayerManager.Instance.currentTurnIndex = tileMapManager.playerTurnIndex;
 
-                    tileMapManager.selectedTile = this;
+                    tileMapManager.currentTile = this;
 
                     tileMapManager.FieldMoveAfter();
                     tileState = TileState.player;
+
+                    tileMapManager.chestPosition = null;
 
                     tileMapManager.playerPosition[0] = indexX;
                     tileMapManager.playerPosition[1] = indexY;

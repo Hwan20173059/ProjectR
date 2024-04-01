@@ -329,20 +329,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f7946424b73d74589673be09c37ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonList:
-  - {fileID: 11400000, guid: 71db69544ce65d54e9172c988afe3f85, type: 2}
-  selectDungeon: 0
-  curStage: 0
   characterPrefab: {fileID: 0}
+  monsterPrefab: {fileID: 0}
+  targetCirclePrefab: {fileID: 387042340656938697, guid: 1f77bce04544eac49af459f4a8656ff5, type: 3}
+  stages: []
+  curStage: 0
   rouletteEquip: []
   rouletteResult: 0
+  rouletteResultIndex: 
   character: {fileID: 0}
   monsters: []
   selectMonster: {fileID: 0}
   performList: 
   IsSelectingAction: 0
   IsRouletteUsed: 1
-  targetCirclePrefab: {fileID: 387042340656938697, guid: 1f77bce04544eac49af459f4a8656ff5, type: 3}
+  IsAutoBattle: 0
   targetCircle: {fileID: 0}
   monsterPool: {fileID: 0}
   battleCanvas: {fileID: 0}

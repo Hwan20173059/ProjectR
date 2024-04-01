@@ -47,7 +47,7 @@ public class BattleCanvas : MonoBehaviour
     {
         characterStatePanel.Init();
         actionButtonPanel.Init(battleManager);
-        roulettePanel.Init();
+        roulettePanel.Init(battleManager);
         nextStagePanel.Init(battleManager);
         battleDefeatPanel.Init();
         dungeonClearPanel.Init();
@@ -72,20 +72,16 @@ public class BattleCanvas : MonoBehaviour
         monster.hpBar = hpBar;
     }
 
+    public void SetRoulette(int resultIndex0, int resultIndex1, int resultIndex2)
+    {
+        roulettePanel.SetRoulette(resultIndex0, resultIndex1, resultIndex2);
+    }
+
     public void UpdateActionBar()
     {
         characterStatePanel.UpdateActionBar(character);
     }
 
-    public void SetRoulette(int i)
-    {
-        roulettePanel.SetRoulette(battleManager, i);
-    }
-
-    public void ClearRoulette()
-    {
-        roulettePanel.ClearRoulette();
-    }
 
     public void UpdateCharacterState()
     {

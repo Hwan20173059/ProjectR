@@ -64,14 +64,14 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator BaseAttack()
     {
-        selectMonster = battleManager.selectMonster;
-        Vector3 selectMonsterPosition = new Vector3(selectMonster.startPosition.x -1f, selectMonster.startPosition.y);
+        Monster target = battleManager.selectMonster;
+        Vector3 selectMonsterPosition = new Vector3(target.startPosition.x -1f, target.startPosition.y);
 
         int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.atk);
 
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
-        yield return character.StartCoroutine(Attack(selectMonster, damage));
+        yield return character.StartCoroutine(Attack(target, damage));
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
 
@@ -101,26 +101,26 @@ public class CharacterActionState : CharacterBaseState
     {
         if(battleManager.AliveMonsterCount() > 1)
         {
-            selectMonster = battleManager.selectMonster;
-            Vector3 selectMonsterPosition = new Vector3(selectMonster.startPosition.x - 1f, selectMonster.startPosition.y);
-            Monster nextMonster;
-            while (true)
+            Monster target = battleManager.selectMonster;
+            Monster nextTarget;
+            do
             {
-                nextMonster = battleManager.monsters[Random.Range(0,battleManager.monsters.Count)];
-                if (nextMonster != selectMonster && !nextMonster.IsDead)
-                    break;
+                nextTarget = battleManager.monsters[Random.Range(0, battleManager.monsters.Count)];
             }
-            Vector3 nextMonsterPosition = new Vector3(nextMonster.startPosition.x - 1f, nextMonster.startPosition.y);
+            while (nextTarget == target || nextTarget.IsDead);
+
+            Vector3 selectMonsterPosition = new Vector3(target.startPosition.x - 1f, target.startPosition.y);
+            Vector3 nextMonsterPosition = new Vector3(nextTarget.startPosition.x - 1f, nextTarget.startPosition.y);
             
             int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.atk);
 
             while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
-            yield return character.StartCoroutine(Attack(selectMonster, damage));
+            yield return character.StartCoroutine(Attack(target, damage));
 
             while (MoveTowardsCharacter(nextMonsterPosition)) { yield return null; }
 
-            yield return character.StartCoroutine(Attack(nextMonster, damage));
+            yield return character.StartCoroutine(Attack(nextTarget, damage));
 
             while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
 
@@ -148,8 +148,8 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator HorizontalAttack()
     {
-        selectMonster = battleManager.selectMonster;
-        Vector3 selectMonsterPosition = new Vector3(selectMonster.startPosition.x - 1f, selectMonster.startPosition.y);
+        Monster target = battleManager.selectMonster;
+        Vector3 selectMonsterPosition = new Vector3(target.startPosition.x - 1f, target.startPosition.y);
 
         int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.atk);
 

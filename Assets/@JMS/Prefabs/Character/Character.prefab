@@ -151,9 +151,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9675c8f93c837aa47a1ee406b72f99d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  baseData: {fileID: 0}
-  sprite: {fileID: 0}
+  baseData:
+    id: 1
+    characterName: 
+    spritePath: 
+    animatorPath: 
+    hp: 0
+    atk: 0
+    needExp: 0
+    maxLevel: 0
+    actionCoolTime: 0
   characterName: 
   level: 0
   curExp: 0

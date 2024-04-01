@@ -60,6 +60,7 @@ public class CharacterBaseState : IState
     protected void StateUpdate(string state)
     {
         character.currentStateText = state;
-        battleManager.battleCanvas.UpdateCharacterState();
+        if(battleManager != null)
+            battleManager.battleCanvas.UpdateCharacterState();
     }
 }

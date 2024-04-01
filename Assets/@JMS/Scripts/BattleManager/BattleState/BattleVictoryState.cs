@@ -23,7 +23,10 @@ public class BattleVictoryState : BattleBaseState
         }
         else
         {
-            battleCanvas.NextStagePanelOn();
+            if (battleManager.IsAutoBattle)
+                battleManager.NextStageStart();
+            else
+                battleCanvas.NextStagePanelOn();
         }
     }
 }
