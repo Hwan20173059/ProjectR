@@ -8,7 +8,7 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour
+public class Settings : MonoBehaviour
 {
     //[SerializeField] private AudioMixer mixer;
     [SerializeField] private Slider masterSlider;
@@ -30,9 +30,6 @@ public class Menu : MonoBehaviour
         bgmSlider.value = PlayerPrefs.GetFloat("BGM");
         sfxSlider.value = PlayerPrefs.GetFloat("SFX");
     }
-
-
-
 
     public void ToggleMasterVolume_Callback(bool isToggledOn)
     {
@@ -73,4 +70,12 @@ public class Menu : MonoBehaviour
         AudioManager.instance.SetVolume("SFX", volume);
     }
 
+
+
+
+
+    public void Escape()
+    {
+        this.gameObject.SetActive(false);
+    }
 }
