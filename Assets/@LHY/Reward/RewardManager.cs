@@ -21,7 +21,6 @@ public class RewardManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(this.gameObject);
         instance = this;
     }
 
