@@ -12,6 +12,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public int needExp;
     public int currentExp;
     public int gold;
+    public int playerTurnIndex;
 
     [Header("Character")]
     public List<Character> characterList = new List<Character>();
@@ -24,6 +25,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public TownUiManager townUiManager;
 
     [Header("SaveInfo")]
+    public int currentTurnIndex;
     public int fieldX;
     public int fieldY;
 
@@ -43,6 +45,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void Start()
     {
+        playerTurnIndex = 5;
+
         DataManager.Instance.Init();
         EquipItem baseEquip = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(0));
         for (int i = 0; i < 3; i++)

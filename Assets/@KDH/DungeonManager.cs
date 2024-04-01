@@ -11,10 +11,11 @@ public class DungeonManager : TileMapManager
     void Start()
     {
         playerManager = PlayerManager.Instance;
-        playerTurnIndex = 1;
 
         if (playerManager.isDungeon == false)
         {
+            playerTurnIndex = playerManager.playerTurnIndex;
+
             CreateRandomMap();
             AllRefreshTile();
 
@@ -23,30 +24,40 @@ public class DungeonManager : TileMapManager
             playerManager.monsterPosition = new List<int>();
             SpawnRandomMonster(3);
             RandomSpawnChest();
+
+            PlayerTurn();
         }
         else
         {
             if (playerManager.monsterPosition.Count > 0)
             {
+                playerTurnIndex = playerManager.currentTurnIndex;
+
                 LoadRandomMap(playerManager.dungeonMap);
                 AllRefreshTile();
 
+                LoadMonster();
+
+                if (playerManager.chestPosition.Count != 0)
+                    LoadChest();
+
                 PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
 
-                LoadMonster();
-                LoadChest();
+                if (playerTurnIndex > 0)
+                    PlayerTurn();
+                else
+                    AEnemyTurn();
+                
             }
             else
             {
                 ClearDungeon();
+                PlayerTurn();
             }
         }
-
         playerManager.isField = false;
         playerManager.isTown = false;
         playerManager.isDungeon = true;
-
-        PlayerTurn();
     }
 
     public void ExitButton()

@@ -8,25 +8,31 @@ public class FieldManager : TileMapManager
     {
         playerManager = PlayerManager.Instance;
 
-        PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
-
         if (playerManager.isField == false)
         {
-            playerTurnIndex = 1;
+            playerTurnIndex = playerManager.playerTurnIndex;
             playerManager.monsterPosition = new List<int>();
             SpawnRandomMonster(4);
+            PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
+
+            PlayerTurn();
         }
         else
         {
-            playerTurnIndex = 1;
+            playerTurnIndex = playerManager.currentTurnIndex;
             LoadMonster();
+
+            PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
+
+            if (playerTurnIndex > 0)
+                PlayerTurn();
+            else
+                PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
         }
 
         playerManager.isField = true;
         playerManager.isTown = false;
         playerManager.isDungeon = false;
-
-        PlayerTurn();
     }
 }
 

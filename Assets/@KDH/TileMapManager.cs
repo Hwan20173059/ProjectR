@@ -21,7 +21,7 @@ public class TileMapManager : MonoBehaviour
     [Header("Manager")]
     public PlayerManager playerManager;
     public Field field;
-    public Tile selectedTile;
+    public Tile currentTile;
 
     [Header("State")]
     public FieldState fieldState;
@@ -50,12 +50,7 @@ public class TileMapManager : MonoBehaviour
     public GameObject ChestUI;
 
     [Header("Path Finding")]
-    public List<Tile> finalList;
-    Tile startTile;
-    Tile currentTile;
-    Tile targetTile;
-    List<Tile> openList;
-    List<Tile> closedList;    
+    public List<Tile> movableTile;  
 
 
     public void PlayerTurn()
@@ -111,6 +106,8 @@ public class TileMapManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(0.5f);
+
+        playerTurnIndex = playerManager.playerTurnIndex;
         PlayerTurn();
     }
 
@@ -153,6 +150,8 @@ public class TileMapManager : MonoBehaviour
                 ChangeTileState(j, i, TileState.canTownEnter, TileState.town);
                 ChangeTileState(j, i, TileState.canDungeonEnter, TileState.dungeon);
                 ChangeTileState(j, i, TileState.canOpenChest, TileState.chest);
+
+                field.tileRaw[i].fieldTiles[j].cost = 0;
             }
         }
     }
@@ -217,6 +216,8 @@ public class TileMapManager : MonoBehaviour
 
     public void SaveChest()
     {
+        playerManager.chestPosition = new List<int>();
+
         playerManager.chestPosition.Add(chestPosition.chestID);
         playerManager.chestPosition.Add(chestPosition.indexX);
         playerManager.chestPosition.Add(chestPosition.indexY);
@@ -224,29 +225,63 @@ public class TileMapManager : MonoBehaviour
 
     public void MoveTileOn(int index)
     {
-        int X = selectedTile.indexX;
-        int Y = selectedTile.indexY;
+        movableTile = new List<Tile>();
 
-        for (int i = -index; i <= index; i++)
-            for (int j = -index + Math.Abs(i); j <= index - Math.Abs(i); j++) TileOn(X + i, Y + j);
+        movableTile.Add(currentTile);
+        currentTile.cost = 0;
+
+        for (int i = 1; i <= index; i++)
+        {
+            int count = movableTile.Count;
+
+            for (int j = 0; j < count; j++)
+            {
+                int X = movableTile[j].indexX;
+                int Y = movableTile[j].indexY;
+
+                TileAdd(movableTile, X + 1, Y);
+                TileOn(X + 1, Y, i);
+
+                TileAdd(movableTile, X - 1, Y);
+                TileOn(X - 1, Y, i);
+
+                TileAdd(movableTile, X, Y + 1);
+                TileOn(X, Y + 1, i);
+
+                TileAdd(movableTile, X, Y - 1);
+                TileOn(X, Y - 1, i);
+            }
+        }
     }
 
     public void MoveTileOff(int index)
     {
-        int X = selectedTile.indexX;
-        int Y = selectedTile.indexY;
+        int X = currentTile.indexX;
+        int Y = currentTile.indexY;
 
         for (int i = -index; i <= index; i++)
-            for (int j = -index + Math.Abs(i); j <= index - Math.Abs(i); j++) TileOff(X + i, Y + j);
+            for (int j = -index + Math.Abs(i); j <= index - Math.Abs(i); j++) TileOff(X + j, Y + i);
     }
 
-    void TileOn(int X, int Y)
+    void TileAdd(List<Tile> tileList, int X, int Y)
+    {
+        if (X > -1 && X < fieldSizeX && Y > -1 && Y < fieldSizeY && TileStateCheck(X, Y, TileState.empty))
+            tileList.Add(field.tileRaw[Y].fieldTiles[X]);
+    }
+
+    void TileOn(int X, int Y, int index)
     {
         ChangeTileState(X, Y, TileState.empty, TileState.canGo);
         ChangeTileState(X, Y, TileState.monster, TileState.canFight);
         ChangeTileState(X, Y, TileState.town, TileState.canTownEnter);
         ChangeTileState(X, Y, TileState.dungeon, TileState.canDungeonEnter);
         ChangeTileState(X, Y, TileState.chest, TileState.canOpenChest);
+
+        if (X > -1 && X < fieldSizeX && Y > -1 && Y < fieldSizeY)
+        {
+            if (field.tileRaw[Y].fieldTiles[X].cost == 0)
+                field.tileRaw[Y].fieldTiles[X].cost = index;
+        }
     }
 
     void TileOff(int X, int Y) 
@@ -256,7 +291,11 @@ public class TileMapManager : MonoBehaviour
         ChangeTileState(X, Y, TileState.canTownEnter, TileState.town);
         ChangeTileState(X, Y, TileState.canDungeonEnter, TileState.dungeon);
         ChangeTileState(X, Y, TileState.canOpenChest, TileState.chest);
+
+        if (X > -1 && X < fieldSizeX && Y > -1 && Y < fieldSizeY)
+            field.tileRaw[Y].fieldTiles[X].cost = 0;
     }
+
     private void ChangeTileState(int X, int Y, TileState beforeState, TileState changState)
     {
         if (X > -1 && X < fieldSizeX && Y > -1 && Y < fieldSizeY && TileStateCheck(X, Y, beforeState))
@@ -287,7 +326,7 @@ public class TileMapManager : MonoBehaviour
             PlayerTurn();
         else
         {
-            playerTurnIndex = 3;
+            playerTurnIndex = playerManager.playerTurnIndex;
             AEnemyTurn();
         }
     }
@@ -299,70 +338,6 @@ public class TileMapManager : MonoBehaviour
             for (int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
             {
                 field.tileRaw[i].fieldTiles[j].RefreshTile();
-            }
-        }
-    }
-
-    // 보류
-    public void PathFinding(Tile tile)
-    {
-        startTile = field.tileRaw[playerPosition[1]].fieldTiles[playerPosition[0]];
-        targetTile = tile;
-
-        openList = new List<Tile> { startTile };
-        closedList = new List<Tile>();
-        finalList = new List<Tile>();
-
-        while (openList.Count > 0)
-        {
-            currentTile = openList[0];
-            for (int i = 1; i < openList.Count; i++)
-            {
-                if (openList[i].F <= currentTile.F && openList[i].H < currentTile.H)
-                    currentTile = openList[i];
-            }
-
-            openList.Remove(currentTile);
-            closedList.Add(currentTile);
-
-
-            if (currentTile == targetTile)
-            {
-                Tile targetCurTile = targetTile;
-
-                while (targetCurTile != startTile)
-                {
-                    finalList.Add(targetCurTile);
-                    targetCurTile = targetTile.parentTile;
-                }
-                finalList.Add(startTile);
-                finalList.Reverse();
-
-                for (int i = 0; i < finalList.Count; i++) Debug.Log(i + "번째는 " + finalList[i].indexX + " , " + finalList[i].indexY);
-                return;
-            }
-
-            OpenListAdd(currentTile.indexX, currentTile.indexY + 1);
-            OpenListAdd(currentTile.indexX + 1, currentTile.indexY);
-            OpenListAdd(currentTile.indexX, currentTile.indexY - 1);
-            OpenListAdd(currentTile.indexX - 1, currentTile.indexY);
-        }
-    }
-    void OpenListAdd(int checkX, int checkY)
-    {
-        if (checkX >= 0 && checkX < fieldSizeX + 1 && checkY >= 0 && checkY < fieldSizeY + 1 && field.tileRaw[checkY].fieldTiles[checkX].tileState != TileState.cantGo && !closedList.Contains(field.tileRaw[checkY].fieldTiles[checkX]))
-        {
-            Tile neighborTile = field.tileRaw[checkY].fieldTiles[checkX];
-            int MoveCost = currentTile.G + 10;
-
-            // 이동비용이 이웃노드G보다 작거나 또는 열린리스트에 이웃노드가 없다면 G, H, ParentNode를 설정 후 열린리스트에 추가
-            if (MoveCost < neighborTile.G || !openList.Contains(neighborTile))
-            {
-                neighborTile.G = MoveCost;
-                neighborTile.H = (Mathf.Abs(neighborTile.indexX - targetTile.indexX) + Mathf.Abs(neighborTile.indexY - targetTile.indexY)) * 10;
-                neighborTile.parentTile = currentTile;
-
-                openList.Add(neighborTile);
             }
         }
     }

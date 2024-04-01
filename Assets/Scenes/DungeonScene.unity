@@ -460,7 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
   field: {fileID: 1490224713}
-  selectedTile: {fileID: 0}
+  currentTile: {fileID: 0}
   fieldState: 0
   fieldSizeX: 8
   fieldSizeY: 8
@@ -479,7 +479,7 @@ MonoBehaviour:
   selectUI: {fileID: 1298999661}
   infoUI: {fileID: 1823751509}
   ChestUI: {fileID: 819377985}
-  finalList: []
+  movableTile: []
   dungeonClearUI: {fileID: 1315380093}
 --- !u!1 &145535763
 GameObject:

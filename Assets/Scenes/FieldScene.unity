@@ -3002,7 +3002,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
   field: {fileID: 1490224713}
-  selectedTile: {fileID: 0}
+  currentTile: {fileID: 0}
   fieldState: 0
   fieldSizeX: 17
   fieldSizeY: 11
@@ -3021,7 +3021,7 @@ MonoBehaviour:
   selectUI: {fileID: 1298999661}
   infoUI: {fileID: 1823751509}
   ChestUI: {fileID: 0}
-  finalList: []
+  movableTile: []
 --- !u!1001 &326759058
 PrefabInstance:
   m_ObjectHideFlags: 0
