@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Roulette1 : MonoBehaviour
+public class RouletteImage2 : MonoBehaviour
 {
     public Image image;
+
     private void Awake()
     {
         image = GetComponent<Image>();

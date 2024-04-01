@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class TargetCircle : MonoBehaviour
 {
-    public Transform targetTransform;
-
-    private void Update()
+    public void SetPosition(Vector3 target)
     {
-        if (targetTransform != null)
-            transform.position = targetTransform.position;
+        transform.position = target;
     }
 }

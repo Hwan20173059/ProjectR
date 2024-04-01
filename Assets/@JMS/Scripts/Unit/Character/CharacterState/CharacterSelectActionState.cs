@@ -15,7 +15,7 @@ public class CharacterSelectActionState : CharacterBaseState
 
         StateUpdate("행동 선택중");
 
-        battleManager.RouletteClear();
+        battleManager.battleCanvas.RouletteButtonOn();
         battleManager.IsRouletteUsed = false;
         battleManager.IsSelectingAction = true;
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.playerSelectingActionState);

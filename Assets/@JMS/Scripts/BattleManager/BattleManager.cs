@@ -24,6 +24,7 @@ public class BattleManager : MonoBehaviour
 
     public List<EquipItem> rouletteEquip;
     public RouletteResult rouletteResult;
+    public List<int> rouletteResultIndex;
 
     public Character character;
     public List<Monster> monsters;
@@ -33,6 +34,7 @@ public class BattleManager : MonoBehaviour
     public IState[] monstersPrevState;
     public bool IsSelectingAction = false;
     public bool IsRouletteUsed = true;
+    public bool IsUsingRoulette = false;
     public bool IsAutoBattle = false;
 
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
@@ -90,8 +92,8 @@ public class BattleManager : MonoBehaviour
         if (hit.collider != null && hit.collider.CompareTag("Monster"))
         {
             selectMonster = hit.collider.GetComponent<Monster>();
-            
-            targetCircle.targetTransform = selectMonster.transform;
+
+            targetCircle.SetPosition(selectMonster.startPosition);
             targetCircle.gameObject.SetActive(true);
             battleCanvas.UpdateMonsterState();
             battleCanvas.MonsterStatePanelOn();
@@ -284,13 +286,14 @@ public class BattleManager : MonoBehaviour
             int idx = Random.Range(0, monsters.Count);
             selectMonster = monsters[idx];
         }
-
-        OnClickAttackButton();
     }
 
     public void OnClickAttackButton()
     {
-        if (IsSelectingAction && selectMonster != null && !(selectMonster.IsDead))
+        if (IsUsingRoulette)
+            return;
+
+        if (IsSelectingAction && selectMonster != null && !selectMonster.IsDead)
         {
             character.curCoolTime = 0f;
             performList.Add(100);
@@ -302,20 +305,26 @@ public class BattleManager : MonoBehaviour
     {
         if (!IsRouletteUsed)
         {
-            StartCoroutine(Roulette());
             IsRouletteUsed = true;
+            IsUsingRoulette = true;
+            SetRoulette();
 
             battleCanvas.RouletteButtonOff();
         }
     }
 
-    public IEnumerator Roulette()
+    void SetRoulette()
     {
+        RouletteClear();
+
         for (int i = 0; i < 3; i++)
         {
-            rouletteEquip.Add(PlayerManager.Instance.equip[Random.Range(0, 3)]);
-            battleCanvas.SetRoulette(i);
+            int randomIndex = Random.Range(0, 3);
+            rouletteEquip.Add(PlayerManager.Instance.equip[randomIndex]);
+            rouletteResultIndex.Add(randomIndex);
         }
+
+        battleCanvas.SetRoulette(rouletteResultIndex[0], rouletteResultIndex[1], rouletteResultIndex[2]);
 
         if (rouletteEquip[0] == rouletteEquip[1])
         {
@@ -340,15 +349,12 @@ public class BattleManager : MonoBehaviour
         {
             rouletteResult = RouletteResult.Different;
         }
-
-        yield return null;
     }
 
-    public void RouletteClear()
+    void RouletteClear()
     {
         rouletteEquip.Clear();
-        battleCanvas.ClearRoulette();
-        battleCanvas.RouletteButtonOn();
+        rouletteResultIndex.Clear();
     }
 
     public int GetChangeValue(RouletteResult rouletteResult, int baseValue)
