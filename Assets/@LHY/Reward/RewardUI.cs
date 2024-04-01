@@ -9,13 +9,7 @@ public class RewardUI : MonoBehaviour
     public void Off()
     {
         rewardUI.SetActive(!rewardUI.activeSelf);
+        //RemoveSlot();
         //rewardUI.SetActive(false);
-    }
-
-
-    //todo : 모든 슬롯 없애는 함수
-    public void DestorySlot(GameObject obj)
-    {
-        rewardUI.SetActive(false);
     }
 }

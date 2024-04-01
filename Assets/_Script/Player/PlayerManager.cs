@@ -87,4 +87,28 @@ public class PlayerManager : Singleton<PlayerManager>
 
         characterList.Add(character);
     }
+
+    public void ChangeExp(int change)
+    {
+        currentExp += change;
+        currentExp = currentExp >= needExp ? LevelUp() : currentExp;
+    }
+
+    public void AddGold(int changeGold)
+    {
+        gold += changeGold;
+    }
+    public int LevelUp()
+    {
+        //currentExp = currentExp - needExp;
+        //playerLevel++;
+
+        //todo : Data¿¡ ÀúÀå
+        //playerLevel = playerLevel > baseData.maxLevel ? baseData.maxLevel : level;
+        //needExp = baseData.needExp * playerLevel;
+        //currentExp = currentExp >= needExp ? LevelUp() : currentExp;
+
+
+        return currentExp;
+    }
 }
