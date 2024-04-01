@@ -22,46 +22,20 @@ public class Menu : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Debug.Log("menu를 삭제합니다.");
-            Resume();
-        }
-        //AudioValueUpdate();
+
     }
     private void Start()
     {
-        Debug.Log(PlayerPrefs.GetFloat("Master"));
         masterSlider.value = PlayerPrefs.GetFloat("Master");
         bgmSlider.value = PlayerPrefs.GetFloat("BGM");
         sfxSlider.value = PlayerPrefs.GetFloat("SFX");
-        //audiomanager.SettingsSoundData();
-        Pause();
-    }
-    private void Pause()
-    {
-        Time.timeScale = 0.0f;
-    }
-    public void Resume()
-    {
-        Time.timeScale = 1.0f;
-        Destroy(transform.root.gameObject);
-    }
-
-    //todo : 분리
-    public void SceneChange(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
     }
 
 
 
 
-    //-----------audiomixer controls---------------
-    //todo : AudioControls.cs로 분리
     public void ToggleMasterVolume_Callback(bool isToggledOn)
     {
-        Debug.Log("Asdf");
         string exposedParam = "Master";
 
         AudioManager.instance.ToggleVolume(exposedParam, isToggledOn);
@@ -87,7 +61,7 @@ public class Menu : MonoBehaviour
         AudioManager.instance.SetVolume("Master", volume);
     }
 
-    public void SetBGM_Callback()
+    public void SetBGMVolmue_Callback()
     {
         float volume = bgmSlider.value;
         AudioManager.instance.SetVolume("BGM", volume);
@@ -99,14 +73,4 @@ public class Menu : MonoBehaviour
         AudioManager.instance.SetVolume("SFX", volume);
     }
 
-
-
-
-
-    //ResolutionSettings
-    //todo : ResolutionControls.cs 분리 필요
-    public void Resolution()
-    {
-
-    }
 }

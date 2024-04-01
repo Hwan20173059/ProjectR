@@ -25,21 +25,9 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioSource bgmSource;
     [SerializeField] AudioSource sfxCource;
-
-    [Header("BGM")]
-    public AudioClip mainBgmClip;
-    public AudioClip introBgmClip;
-
-    [Header("SFX")]
-    public AudioClip walkClip;
-    public AudioClip jumpClip;
-    public AudioClip getItemClip;
-    public AudioClip uiSelectClip;
-    public AudioClip playerAttackClip;
-    public AudioClip startClip;
-    public AudioClip clearClip;
-
     [SerializeField] private AudioMixer audioMixer;
+    [SerializeField] private Audios audios;
+
 
     private readonly Dictionary<string, float> mixerVolume = new();
     private readonly Dictionary<string, bool> mixerMuteToggle = new();
@@ -47,18 +35,17 @@ public class AudioManager : MonoBehaviour
     //public float bgmVolumeScale, sfxVolumeScale, masterVolumeScale;
 
 
-
     // Use this when using (main shot)
     public void PlaySFX(AudioClip clip)
     {
-        if (clip == walkClip && sfxCource.isPlaying)
+        if (clip == audios.walkClip && sfxCource.isPlaying)
             return;
         sfxCource.PlayOneShot(clip);
     }
 
     private void Start()
     {
-        bgmSource.clip = mainBgmClip;
+        bgmSource.clip = audios.mainBgmClip;
 
         bgmSource.Play();
         SettingsSoundData();
@@ -74,6 +61,7 @@ public class AudioManager : MonoBehaviour
         SetVolume("BGM", PlayerPrefs.GetFloat("BGM"));
         SetVolume("SFX", PlayerPrefs.GetFloat("SFX"));
     }
+
     public void ToggleVolume(string exposedParam, bool isToggledOn)
     {
 

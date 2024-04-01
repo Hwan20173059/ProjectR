@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class Audio
+[System.Serializable]
+public class Audios
 {
     public AudioClip mainBgmClip;
     public AudioClip introBgmClip;
