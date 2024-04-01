@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public enum TileState
 {
-    player, empty, canGO, cantGo,
+    player, empty, canGo, cantGo,
     monster, chest, town, dungeon,
     canFight, canTownEnter, canDungeonEnter, canOpenChest
 }
@@ -31,6 +31,12 @@ public class Tile : MonoBehaviour
     [Header("index")]
     public int indexX;
     public int indexY;
+
+    [Header("Path Finding")]
+    public int G;
+    public int H;
+    public int F { get { return G + H; } }
+    public Tile parentTile;
 
     public SpriteRenderer spriteRenderer;
 
@@ -57,8 +63,8 @@ public class Tile : MonoBehaviour
                 spriteRenderer.color = Color.blue;
                 break;
 
-            case TileState.canGO:
-                SetTile(TileState.canGO);
+            case TileState.canGo:
+                SetTile(TileState.canGo);
                 spriteRenderer.color = Color.cyan;
                 break;
 
@@ -148,7 +154,7 @@ public class Tile : MonoBehaviour
                     if (tileMapManager.isSelect == true)
                     {
                         tileMapManager.isSelect = false;
-                        tileMapManager.MoveTileOff();
+                        tileMapManager.MoveTileOff(3);
                         tileMapManager.selectUI.SetActive(false);
                         break;
                     }
@@ -158,7 +164,7 @@ public class Tile : MonoBehaviour
                         tileMapManager.isSelect = true;
                         tileMapManager.infoUI.text = "플레이어";
 
-                        tileMapManager.MoveTileOn();
+                        tileMapManager.MoveTileOn(3);
                         tileMapManager.selectUI.SetActive(true);
                         break;
                     }
@@ -167,7 +173,7 @@ public class Tile : MonoBehaviour
                     tileMapManager.selectUI.SetActive(false);
                     break;
 
-                case TileState.canGO:
+                case TileState.canGo:
                     tileMapManager.playerTurnIndex--;
 
                     tileMapManager.selectedTile = this;

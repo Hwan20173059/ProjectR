@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using TMPro;
 using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
+using UnityEngine.XR;
 
 public enum FieldState
 {
@@ -15,12 +19,14 @@ public enum FieldState
 public class TileMapManager : MonoBehaviour
 {
     [Header("Manager")]
-    public PlayerManager playerManager;    
+    public PlayerManager playerManager;
     public Field field;
     public Tile selectedTile;
 
     [Header("State")]
     public FieldState fieldState;
+    public int fieldSizeX;
+    public int fieldSizeY;
     public int playerTurnIndex;
     public int[] playerPosition = new int[2];
     public bool isSelect = false;
@@ -43,19 +49,27 @@ public class TileMapManager : MonoBehaviour
     public TextMeshProUGUI infoUI;
     public GameObject ChestUI;
 
+    [Header("Path Finding")]
+    public List<Tile> finalList;
+    Tile startTile;
+    Tile currentTile;
+    Tile targetTile;
+    List<Tile> openList;
+    List<Tile> closedList;    
+
 
     public void PlayerTurn()
     {
         fieldState = FieldState.playerTurn;
         turnState.text = "플레이어 차례\n" + "남은 횟수 " + playerTurnIndex;
-        isPlayerturn = true;
+        isPlayerturn = true;     
     }
 
     public void AEnemyTurn()
     {
         StartCoroutine(EnemyTurn());
     }
-    
+
     IEnumerator EnemyTurn()
     {
         fieldState = FieldState.fieldTurn;
@@ -102,8 +116,7 @@ public class TileMapManager : MonoBehaviour
 
     protected void MoveTileMonsterState(int monsterIndex, int X, int Y, int MoveX, int MoveY)
     {
-        field.tileRaw[Y].fieldTiles[X].SetTile(TileState.empty);        
-        field.tileRaw[Y].fieldTiles[X].RefreshTile();
+        TileStateSetting(X, Y, TileState.empty);
 
         field.tileRaw[MoveY].fieldTiles[MoveX].battleID = field.tileRaw[Y].fieldTiles[X].battleID;
 
@@ -117,47 +130,29 @@ public class TileMapManager : MonoBehaviour
     protected void PlayerFieldSetting(int x, int y)
     {
         field.tileRaw[y].fieldTiles[x].tileState = TileState.player;
+        playerPosition[0] = x;
+        playerPosition[1] = y;
         field.tileRaw[y].fieldTiles[x].RefreshTile();
     }
 
     protected void MonsterFieldSetting(int battleID, int x, int y)
     {
         field.tileRaw[y].fieldTiles[x].battleID = battleID;
-        field.tileRaw[y].fieldTiles[x].tileState = TileState.monster;
-        field.tileRaw[y].fieldTiles[x].RefreshTile();
+        TileStateSetting(x, y, TileState.monster);
     }
 
     public void FieldMoveAfter()
     {
-        for (int i =0; i < field.tileRaw.Length; i++)
+        for (int i = 0; i < field.tileRaw.Length; i++)
         {
-            for(int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
+            for (int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
             {
-                if (field.tileRaw[i].fieldTiles[j].tileState == TileState.player || field.tileRaw[i].fieldTiles[j].tileState == TileState.canGO)
-                {
-                    field.tileRaw[i].fieldTiles[j].SetTile(TileState.empty);
-                    field.tileRaw[i].fieldTiles[j].RefreshTile();
-                }
-                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canFight)
-                {
-                    field.tileRaw[i].fieldTiles[j].tileState = TileState.monster;
-                    field.tileRaw[i].fieldTiles[j].RefreshTile();
-                }
-                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canTownEnter)
-                {
-                    field.tileRaw[i].fieldTiles[j].tileState = TileState.town;
-                    field.tileRaw[i].fieldTiles[j].RefreshTile();
-                }
-                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canDungeonEnter)
-                {
-                    field.tileRaw[i].fieldTiles[j].tileState = TileState.dungeon;
-                    field.tileRaw[i].fieldTiles[j].RefreshTile();
-                }
-                else if (field.tileRaw[i].fieldTiles[j].tileState == TileState.canOpenChest)
-                {
-                    field.tileRaw[i].fieldTiles[j].tileState = TileState.chest;
-                    field.tileRaw[i].fieldTiles[j].RefreshTile();
-                }
+                ChangeTileState(j, i, TileState.player, TileState.empty);
+                ChangeTileState(j, i, TileState.canGo, TileState.empty);
+                ChangeTileState(j, i, TileState.canFight, TileState.monster);
+                ChangeTileState(j, i, TileState.canTownEnter, TileState.town);
+                ChangeTileState(j, i, TileState.canDungeonEnter, TileState.dungeon);
+                ChangeTileState(j, i, TileState.canOpenChest, TileState.chest);
             }
         }
     }
@@ -192,7 +187,7 @@ public class TileMapManager : MonoBehaviour
         {
             playerManager.monsterPosition.Add(fieldMonster[i].battleID);
             playerManager.monsterPosition.Add(fieldMonster[i].indexX);
-            playerManager.monsterPosition.Add(fieldMonster[i].indexY);            
+            playerManager.monsterPosition.Add(fieldMonster[i].indexY);
         }
     }
 
@@ -211,8 +206,7 @@ public class TileMapManager : MonoBehaviour
     protected void ChestSetting(int chestID, int x, int y)
     {
         field.tileRaw[y].fieldTiles[x].chestID = chestID;
-        field.tileRaw[y].fieldTiles[x].tileState = TileState.chest;
-        field.tileRaw[y].fieldTiles[x].RefreshTile();
+        TileStateSetting(x, y, TileState.chest);
     }
 
     protected void LoadChest()
@@ -228,86 +222,51 @@ public class TileMapManager : MonoBehaviour
         playerManager.chestPosition.Add(chestPosition.indexY);
     }
 
-    public void MoveTileOn()
+    public void MoveTileOn(int index)
     {
         int X = selectedTile.indexX;
         int Y = selectedTile.indexY;
 
-        TileOn(X - 3, Y);
-
-        TileOn(X - 2, Y - 1);
-        TileOn(X - 2, Y);
-        TileOn(X - 2, Y + 1);
-
-        TileOn(X - 1, Y - 2);
-        TileOn(X - 1, Y - 1);
-        TileOn(X - 1, Y);
-        TileOn(X - 1, Y + 1);
-        TileOn(X - 1, Y + 2);
-
-        TileOn(X, Y - 3);
-        TileOn(X, Y - 2);
-        TileOn(X, Y - 1);
-        TileOn(X, Y);
-        TileOn(X, Y + 1);
-        TileOn(X, Y + 2);
-        TileOn(X, Y + 3);
-
-        TileOn(X + 1, Y - 2);
-        TileOn(X + 1, Y - 1);
-        TileOn(X + 1, Y);
-        TileOn(X + 1, Y + 1);
-        TileOn(X + 1, Y + 2);
-
-        TileOn(X + 2, Y - 1);
-        TileOn(X + 2, Y);
-        TileOn(X + 2, Y + 1);
-
-        TileOn(X + 3, Y);
-
+        for (int i = -index; i <= index; i++)
+            for (int j = -index + Math.Abs(i); j <= index - Math.Abs(i); j++) TileOn(X + i, Y + j);
     }
 
-    public void MoveTileOff()
+    public void MoveTileOff(int index)
     {
         int X = selectedTile.indexX;
         int Y = selectedTile.indexY;
 
-        TileOff(X - 3, Y);
-
-        TileOff(X - 2, Y - 1);
-        TileOff(X - 2, Y);
-        TileOff(X - 2, Y + 1);
-
-        TileOff(X - 1, Y - 2);
-        TileOff(X - 1, Y - 1);
-        TileOff(X - 1, Y);
-        TileOff(X - 1, Y + 1);
-        TileOff(X - 1, Y + 2);
-
-        TileOff(X, Y - 3);
-        TileOff(X, Y - 2);
-        TileOff(X, Y - 1);
-        TileOff(X, Y);
-        TileOff(X, Y + 1);
-        TileOff(X, Y + 2);
-        TileOff(X, Y + 3);
-
-        TileOff(X + 1, Y - 2);
-        TileOff(X + 1, Y - 1);
-        TileOff(X + 1, Y);
-        TileOff(X + 1, Y + 1);
-        TileOff(X + 1, Y + 2);
-
-        TileOff(X + 2, Y - 1);
-        TileOff(X + 2, Y);
-        TileOff(X + 2, Y + 1);
-
-        TileOff(X + 3, Y);
+        for (int i = -index; i <= index; i++)
+            for (int j = -index + Math.Abs(i); j <= index - Math.Abs(i); j++) TileOff(X + i, Y + j);
     }
 
-    protected virtual void TileOn(int X, int Y) { }
-    protected virtual void TileOff(int X, int Y) { }
-    protected virtual bool FieldStateEmptyCheck(int X, int Y) { return false; }
+    void TileOn(int X, int Y)
+    {
+        ChangeTileState(X, Y, TileState.empty, TileState.canGo);
+        ChangeTileState(X, Y, TileState.monster, TileState.canFight);
+        ChangeTileState(X, Y, TileState.town, TileState.canTownEnter);
+        ChangeTileState(X, Y, TileState.dungeon, TileState.canDungeonEnter);
+        ChangeTileState(X, Y, TileState.chest, TileState.canOpenChest);
+    }
+
+    void TileOff(int X, int Y) 
+    {
+        ChangeTileState(X, Y, TileState.canGo, TileState.empty);
+        ChangeTileState(X, Y, TileState.canFight, TileState.monster);
+        ChangeTileState(X, Y, TileState.canTownEnter, TileState.town);
+        ChangeTileState(X, Y, TileState.canDungeonEnter, TileState.dungeon);
+        ChangeTileState(X, Y, TileState.canOpenChest, TileState.chest);
+    }
+    private void ChangeTileState(int X, int Y, TileState beforeState, TileState changState)
+    {
+        if (X > -1 && X < fieldSizeX && Y > -1 && Y < fieldSizeY && TileStateCheck(X, Y, beforeState))
+            TileStateSetting(X, Y, changState);
+    }
+
+    protected virtual bool FieldStateEmptyCheck(int X, int Y) 
+    {
+        return X > -1 && X < fieldSizeX && Y > -1 && Y < fieldSizeY && field.tileRaw[Y].fieldTiles[X].tileState == TileState.empty;
+    }
 
     protected bool TileStateCheck(int X, int Y, TileState tileState)
     {
@@ -335,11 +294,75 @@ public class TileMapManager : MonoBehaviour
 
     protected void AllRefreshTile()
     {
-        for(int i = 0; i < field.tileRaw.Length; i++)
+        for (int i = 0; i < field.tileRaw.Length; i++)
         {
-            for(int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
+            for (int j = 0; j < field.tileRaw[i].fieldTiles.Length; j++)
             {
                 field.tileRaw[i].fieldTiles[j].RefreshTile();
+            }
+        }
+    }
+
+    // 보류
+    public void PathFinding(Tile tile)
+    {
+        startTile = field.tileRaw[playerPosition[1]].fieldTiles[playerPosition[0]];
+        targetTile = tile;
+
+        openList = new List<Tile> { startTile };
+        closedList = new List<Tile>();
+        finalList = new List<Tile>();
+
+        while (openList.Count > 0)
+        {
+            currentTile = openList[0];
+            for (int i = 1; i < openList.Count; i++)
+            {
+                if (openList[i].F <= currentTile.F && openList[i].H < currentTile.H)
+                    currentTile = openList[i];
+            }
+
+            openList.Remove(currentTile);
+            closedList.Add(currentTile);
+
+
+            if (currentTile == targetTile)
+            {
+                Tile targetCurTile = targetTile;
+
+                while (targetCurTile != startTile)
+                {
+                    finalList.Add(targetCurTile);
+                    targetCurTile = targetTile.parentTile;
+                }
+                finalList.Add(startTile);
+                finalList.Reverse();
+
+                for (int i = 0; i < finalList.Count; i++) Debug.Log(i + "번째는 " + finalList[i].indexX + " , " + finalList[i].indexY);
+                return;
+            }
+
+            OpenListAdd(currentTile.indexX, currentTile.indexY + 1);
+            OpenListAdd(currentTile.indexX + 1, currentTile.indexY);
+            OpenListAdd(currentTile.indexX, currentTile.indexY - 1);
+            OpenListAdd(currentTile.indexX - 1, currentTile.indexY);
+        }
+    }
+    void OpenListAdd(int checkX, int checkY)
+    {
+        if (checkX >= 0 && checkX < fieldSizeX + 1 && checkY >= 0 && checkY < fieldSizeY + 1 && field.tileRaw[checkY].fieldTiles[checkX].tileState != TileState.cantGo && !closedList.Contains(field.tileRaw[checkY].fieldTiles[checkX]))
+        {
+            Tile neighborTile = field.tileRaw[checkY].fieldTiles[checkX];
+            int MoveCost = currentTile.G + 10;
+
+            // 이동비용이 이웃노드G보다 작거나 또는 열린리스트에 이웃노드가 없다면 G, H, ParentNode를 설정 후 열린리스트에 추가
+            if (MoveCost < neighborTile.G || !openList.Contains(neighborTile))
+            {
+                neighborTile.G = MoveCost;
+                neighborTile.H = (Mathf.Abs(neighborTile.indexX - targetTile.indexX) + Mathf.Abs(neighborTile.indexY - targetTile.indexY)) * 10;
+                neighborTile.parentTile = currentTile;
+
+                openList.Add(neighborTile);
             }
         }
     }
