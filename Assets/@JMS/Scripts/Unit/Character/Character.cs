@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
@@ -72,35 +73,29 @@ public class Character : MonoBehaviour
         level = character.level;
         curExp = character.curExp;
         curHP = character.curHP;
-}
+    }
 
-    public void Init(CharacterData characterData)
+    public void LoadInit(CharacterData characterData)
     {
-        if (characterData != null)
-        {
-            level = 1;
+        level = 1;
+        baseData = characterData;
+        
+        sprite = Resources.Load<Sprite>(characterData.spritePath);
+        spriteRenderer.sprite = sprite;
 
-            baseData.id = characterData.id;
-            baseData.characterName = characterData.characterName;
-            baseData.spritePath = characterData.spritePath;
-            baseData.animatorPath = characterData.animatorPath;
-            baseData.hp = characterData.hp;
-            baseData.atk = characterData.atk;
-            baseData.needExp = characterData.needExp;
-            baseData.maxLevel = characterData.maxLevel;
-            baseData.actionCoolTime = characterData.actionCoolTime;
+        Init();
+    }
 
-            sprite = Resources.Load<Sprite>(characterData.spritePath);
-            spriteRenderer.sprite = sprite;
-        }
-
+    public void Init()
+    {
         characterName = baseData.characterName;
         maxHP = baseData.hp * level;
         curHP = maxHP;
         atk = baseData.atk * level;
         needExp = baseData.needExp * level;
         maxCoolTime = baseData.actionCoolTime;
-        
+
+        spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
     }
 

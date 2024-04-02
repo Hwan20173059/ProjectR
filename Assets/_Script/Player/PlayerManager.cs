@@ -69,7 +69,7 @@ public class PlayerManager : Singleton<PlayerManager>
         Character character = Instantiate(townUiManager.characterPrefab,this.transform);
         character.spriteRenderer.color = new Color(1, 1, 1, 0);
 
-        character.Init(DataManager.Instance.battleDatabase.GetCharacterByKey(id));
+        character.LoadInit(DataManager.Instance.battleDatabase.GetCharacterByKey(id));
 
         characterList.Add(character);
     }

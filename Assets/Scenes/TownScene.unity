@@ -2904,6 +2904,11 @@ MonoBehaviour:
   playerManager: {fileID: 0}
   characterPrefab: {fileID: 6813750776376228267, guid: b6e7bbf231fbf2746ba859558282fe35, type: 3}
   townPlayer: {fileID: 6518005525221262379}
+  playerName: {fileID: 1855194881}
+  playerLevel: {fileID: 943082702}
+  playerExp: {fileID: 1666720179}
+  playerGold: {fileID: 1257103792}
+  townName: {fileID: 986220086}
   characterUI: {fileID: 1822648823}
   inventoryUI: {fileID: 0}
   detailArea1: {fileID: 0}
