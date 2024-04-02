@@ -8,11 +8,11 @@ using UnityEngine.Assertions.Must;
 public class PlayerManager : Singleton<PlayerManager>
 {
     [Header("Info")]
-    public int playerLevel;
-    public int needExp;
-    public int currentExp;
-    public int gold;
-    public int playerTurnIndex;
+    public int playerLevel = 1;
+    public int needExp = 30;
+    public int currentExp = 10;
+    public int gold = 1000;
+    public int playerTurnIndex = 5;
 
     [Header("Character")]
     public List<Character> characterList = new List<Character>();
@@ -45,8 +45,6 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void Start()
     {
-        playerTurnIndex = 5;
-
         DataManager.Instance.Init();
         EquipItem baseEquip = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(0));
         for (int i = 0; i < 3; i++)
@@ -71,20 +69,32 @@ public class PlayerManager : Singleton<PlayerManager>
         Character character = Instantiate(townUiManager.characterPrefab,this.transform);
         character.spriteRenderer.color = new Color(1, 1, 1, 0);
 
-        character.baseData.id = DataManager.Instance.battleDatabase.GetCharacterByKey(id).id;
-        character.baseData.characterName = DataManager.Instance.battleDatabase.GetCharacterByKey(id).characterName;
-        character.baseData.spritePath = DataManager.Instance.battleDatabase.GetCharacterByKey(id).spritePath;
-        character.baseData.animatorPath = DataManager.Instance.battleDatabase.GetCharacterByKey(id).animatorPath;
-        character.baseData.hp = DataManager.Instance.battleDatabase.GetCharacterByKey(id).hp;
-        character.baseData.atk = DataManager.Instance.battleDatabase.GetCharacterByKey(id).atk;
-        character.baseData.needExp = DataManager.Instance.battleDatabase.GetCharacterByKey(id).needExp;
-        character.baseData.maxLevel = DataManager.Instance.battleDatabase.GetCharacterByKey(id).maxLevel;
-        character.baseData.actionCoolTime = DataManager.Instance.battleDatabase.GetCharacterByKey(id).actionCoolTime;
-
-        character.level = 1;
-
-        character.Init();
+        character.LoadInit(DataManager.Instance.battleDatabase.GetCharacterByKey(id));
 
         characterList.Add(character);
+    }
+
+    public void ChangeExp(int change)
+    {
+        currentExp += change;
+        currentExp = currentExp >= needExp ? LevelUp() : currentExp;
+    }
+
+    public void AddGold(int changeGold)
+    {
+        gold += changeGold;
+    }
+    public int LevelUp()
+    {
+        //currentExp = currentExp - needExp;
+        //playerLevel++;
+
+        //todo : Data¿¡ ÀúÀå
+        //playerLevel = playerLevel > baseData.maxLevel ? baseData.maxLevel : level;
+        //needExp = baseData.needExp * playerLevel;
+        //currentExp = currentExp >= needExp ? LevelUp() : currentExp;
+
+
+        return currentExp;
     }
 }

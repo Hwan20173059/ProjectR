@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Animations;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
 
     [Header("Info")]
     public string characterName;
+    public Sprite sprite;
+    public SpriteRenderer spriteRenderer;
 
     [Header("Level")]
     public int level;
@@ -31,7 +33,6 @@ public class Character : MonoBehaviour
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
-    public SpriteRenderer spriteRenderer { get; private set; }
     public Animator animator {  get; private set; }
 
     public CharacterHpBar hpBar;
@@ -72,7 +73,18 @@ public class Character : MonoBehaviour
         level = character.level;
         curExp = character.curExp;
         curHP = character.curHP;
-}
+    }
+
+    public void LoadInit(CharacterData characterData)
+    {
+        level = 1;
+        baseData = characterData;
+        
+        sprite = Resources.Load<Sprite>(characterData.spritePath);
+        spriteRenderer.sprite = sprite;
+
+        Init();
+    }
 
     public void Init()
     {
