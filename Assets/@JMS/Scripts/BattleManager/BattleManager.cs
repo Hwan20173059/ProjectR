@@ -116,7 +116,7 @@ public class BattleManager : MonoBehaviour
         character.transform.position = characterSpawnPosition;
         this.character = character.GetComponent<Character>();
         this.character.CharacterLoad(PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
-        this.character.Init();
+        this.character.Init(null);
         this.character.startPosition = character.transform.position;
         this.character.battleManager = this;
 

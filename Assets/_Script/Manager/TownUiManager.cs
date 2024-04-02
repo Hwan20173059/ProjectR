@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TownUiManager : MonoBehaviour
 {
@@ -12,6 +14,13 @@ public class TownUiManager : MonoBehaviour
     [Header("Character")]
     public Character characterPrefab;
     public TownPlayer townPlayer;
+
+    [Header("PlayerInfo")]
+    public TextMeshProUGUI playerName;
+    public TextMeshProUGUI playerLevel;
+    public Slider playerExp;
+    public TextMeshProUGUI playerGold;
+    public TextMeshProUGUI townName;
 
     [Header("UI")]
     public GameObject characterUI;
@@ -42,6 +51,9 @@ public class TownUiManager : MonoBehaviour
 
         playerManager.isField = false;
         playerManager.isTown = true;
+
+        PlayerInfoRefresh();
+        TownInfoRefresh();
     }
 
     public void CharacterUIOn()
@@ -62,7 +74,7 @@ public class TownUiManager : MonoBehaviour
             playerManager.fieldX = 2;
             playerManager.fieldY = 1;
         }
-        else if (playerManager.selectTownID == 1) 
+        else if (playerManager.selectTownID == 1)
         {
             playerManager.fieldX = 8;
             playerManager.fieldY = 6;
@@ -153,5 +165,27 @@ public class TownUiManager : MonoBehaviour
         lastSelectedEquip = null;
         detailArea.ChangeDetailActivation(false);
         nEquipItemSlot.FreshEquippedSlot();
+    }
+
+    public void PlayerInfoRefresh()
+    {
+        //playerName.text = playerManager.name;
+        playerName.text = "모험가";
+        playerLevel.text = "Lv. " + playerManager.playerLevel;
+        playerGold.text = "골드 : " + playerManager.gold.ToString();
+        playerExp.value = (float)playerManager.currentExp / (float)playerManager.needExp;
+    }
+
+    public void TownInfoRefresh()
+    {
+        switch (playerManager.selectTownID)
+        {
+            case 0:
+                townName.text = "초심자의 마을";
+                break;
+            case 1:
+                townName.text = "수도 엘더";
+                break;
+        }
     }
 }

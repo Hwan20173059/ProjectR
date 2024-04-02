@@ -74,17 +74,33 @@ public class Character : MonoBehaviour
         curHP = character.curHP;
 }
 
-    public void Init()
+    public void Init(CharacterData characterData)
     {
+        if (characterData != null)
+        {
+            level = 1;
+
+            baseData.id = characterData.id;
+            baseData.characterName = characterData.characterName;
+            baseData.spritePath = characterData.spritePath;
+            baseData.animatorPath = characterData.animatorPath;
+            baseData.hp = characterData.hp;
+            baseData.atk = characterData.atk;
+            baseData.needExp = characterData.needExp;
+            baseData.maxLevel = characterData.maxLevel;
+            baseData.actionCoolTime = characterData.actionCoolTime;
+
+            sprite = Resources.Load<Sprite>(characterData.spritePath);
+            spriteRenderer.sprite = sprite;
+        }
+
         characterName = baseData.characterName;
         maxHP = baseData.hp * level;
         curHP = maxHP;
         atk = baseData.atk * level;
         needExp = baseData.needExp * level;
         maxCoolTime = baseData.actionCoolTime;
-
-
-        spriteRenderer.sprite = sprite;
+        
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
     }
 
