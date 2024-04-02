@@ -336,12 +336,15 @@ MonoBehaviour:
   curStage: 0
   rouletteEquip: []
   rouletteResult: 0
+  rouletteResultIndex: 
   character: {fileID: 0}
   monsters: []
   selectMonster: {fileID: 0}
   performList: 
   IsSelectingAction: 0
   IsRouletteUsed: 1
+  IsUsingRoulette: 0
+  IsAutoBattle: 0
   targetCircle: {fileID: 0}
   monsterPool: {fileID: 0}
   battleCanvas: {fileID: 0}
@@ -458,10 +461,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: BattleCanvas
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8808056846978721095, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
-    - {fileID: 6459676857808392717, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
-    - {fileID: 3599595421643848001, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

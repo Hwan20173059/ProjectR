@@ -1735,8 +1735,8 @@ MonoBehaviour:
   rouletteImage2: {fileID: 0}
   rouletteImage3: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
-  roulette1Position: {x: 0, y: 0, z: 0}
-  roulette2Position: {x: 0, y: 0, z: 0}
+  resultPosition1: {x: 0, y: 0, z: 0}
+  resultPosition2: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1503610907452980883
 GameObject:
@@ -1750,8 +1750,9 @@ GameObject:
   - component: {fileID: 3906780079331399603}
   - component: {fileID: 6050899704071381572}
   - component: {fileID: 5775154562634598183}
+  - component: {fileID: 5762219144214579015}
   m_Layer: 5
-  m_Name: RunButton
+  m_Name: RunAwayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1860,6 +1861,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5762219144214579015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503610907452980883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e606e603381c54f9973e69baaf27bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 0}
 --- !u!1 &1601065613378619742
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,8 +2184,8 @@ MonoBehaviour:
   rouletteImage2: {fileID: 0}
   rouletteImage3: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
-  roulette1Position: {x: 0, y: 0, z: 0}
-  roulette2Position: {x: 0, y: 0, z: 0}
+  resultPosition1: {x: 0, y: 0, z: 0}
+  resultPosition2: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1761930776640883627
 GameObject:
@@ -2654,8 +2668,8 @@ MonoBehaviour:
   rouletteImage2: {fileID: 0}
   rouletteImage3: {fileID: 0}
   startPosition: {x: 0, y: 0, z: 0}
-  roulette1Position: {x: 0, y: 0, z: 0}
-  roulette2Position: {x: 0, y: 0, z: 0}
+  resultPosition1: {x: 0, y: 0, z: 0}
+  resultPosition2: {x: 0, y: 0, z: 0}
   endPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &2490471104317180660
 GameObject:

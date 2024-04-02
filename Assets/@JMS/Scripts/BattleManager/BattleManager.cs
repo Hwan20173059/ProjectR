@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static Unity.Collections.Unicode;
 
 
 public enum RouletteResult
@@ -310,6 +312,32 @@ public class BattleManager : MonoBehaviour
             SetRoulette();
 
             battleCanvas.RouletteButtonOff();
+        }
+    }
+
+    public void OnClickRunAwayButton()
+    {
+        if (!IsSelectingAction)
+            return;
+
+        int successRateOfRunAway = 70; // 도망 성공 확률
+
+        int random = Random.Range(1, 101);
+
+        if(successRateOfRunAway >= random) // 성공
+        {
+            Time.timeScale = 1f;
+
+            if (PlayerManager.Instance.isField == true)
+                SceneManager.LoadScene("FieldScene");
+            else if (PlayerManager.Instance.isDungeon == true)
+                SceneManager.LoadScene("DungeonScene");
+        }
+        else // 실패
+        {
+            battleCanvas.UpdateBattleText($"도망치기 실패!");
+            character.curCoolTime = 0f;
+            character.stateMachine.ChangeState(character.stateMachine.readyState);
         }
     }
 

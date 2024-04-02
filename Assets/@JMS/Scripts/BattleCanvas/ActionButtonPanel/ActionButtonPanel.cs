@@ -9,6 +9,7 @@ public class ActionButtonPanel : MonoBehaviour
 
     AttackButton attackButton;
     public RouletteButton rouletteButton;
+    RunAwayButton runAwayButton;
 
     public void Init(BattleManager battlemanager)
     {
@@ -16,9 +17,11 @@ public class ActionButtonPanel : MonoBehaviour
 
         attackButton = GetComponentInChildren<AttackButton>();
         rouletteButton = GetComponentInChildren<RouletteButton>();
+        runAwayButton = GetComponentInChildren<RunAwayButton>();
 
         attackButton.button.onClick.AddListener(OnClickAttackButton);
         rouletteButton.button.onClick.AddListener(OnClickRouletteButton);
+        runAwayButton.button.onClick.AddListener(OnClickRunAwayButton);
     }
 
     void OnClickAttackButton()
@@ -29,5 +32,10 @@ public class ActionButtonPanel : MonoBehaviour
     void OnClickRouletteButton()
     {
         battleManager.OnClickRouletteButton();
+    }
+
+    void OnClickRunAwayButton()
+    {
+        battleManager.OnClickRunAwayButton();
     }
 }
