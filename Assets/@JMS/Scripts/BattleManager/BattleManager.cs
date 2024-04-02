@@ -55,8 +55,6 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        DungeonInit();
-
         performList = new List<int>();
 
         Input = GetComponent<PlayerInput>();
@@ -64,11 +62,19 @@ public class BattleManager : MonoBehaviour
         battleCanvas = GetComponentInChildren<BattleCanvas>();
 
         stateMachine = new BattleStateMachine(this);
+
+        DungeonInit();
     }
 
     private void Start()
     {
         Input.ClickActions.MouseClick.started += OnClickStart;
+
+        if (targetCircle == null)
+        {
+            targetCircle = Instantiate(targetCirclePrefab).GetComponent<TargetCircle>();
+            targetCircle.gameObject.SetActive(false);
+        }
 
         stateMachine.ChangeState(stateMachine.startState);
     }
@@ -82,12 +88,6 @@ public class BattleManager : MonoBehaviour
 
     private void OnClickStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (targetCircle == null)
-        {
-            targetCircle = Instantiate(targetCirclePrefab).GetComponent<TargetCircle>();
-            targetCircle.gameObject.SetActive(false);
-        }
-
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.ClickActions.MousePos.ReadValue<Vector2>());
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
 
@@ -95,11 +95,16 @@ public class BattleManager : MonoBehaviour
         {
             selectMonster = hit.collider.GetComponent<Monster>();
 
-            targetCircle.SetPosition(selectMonster.startPosition);
-            targetCircle.gameObject.SetActive(true);
-            battleCanvas.UpdateMonsterState();
-            battleCanvas.MonsterStatePanelOn();
+            SetTargetInfo();
         }
+    }
+
+    void SetTargetInfo()
+    {
+        targetCircle.SetPosition(selectMonster.startPosition);
+        targetCircle.gameObject.SetActive(true);
+        battleCanvas.UpdateMonsterState();
+        battleCanvas.MonsterStatePanelOn();
     }
     
     void DungeonInit()
@@ -127,7 +132,7 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnMonster()
     {
-        if(monsterPool == null)
+        if (monsterPool == null)
         {
             GameObject monsterPool = new GameObject("MonsterPool");
             this.monsterPool = monsterPool;
@@ -287,6 +292,8 @@ public class BattleManager : MonoBehaviour
         {
             int idx = Random.Range(0, monsters.Count);
             selectMonster = monsters[idx];
+
+            SetTargetInfo();
         }
     }
 
