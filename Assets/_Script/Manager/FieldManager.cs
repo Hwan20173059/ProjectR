@@ -8,6 +8,8 @@ public class FieldManager : TileMapManager
     {
         playerManager = PlayerManager.Instance;
 
+        playerPrefab.GetComponent<SpriteRenderer>().sprite = playerManager.characterList[playerManager.selectedCharacterIndex].sprite;
+
         if (playerManager.isField == false)
         {
             playerTurnIndex = playerManager.playerTurnIndex;

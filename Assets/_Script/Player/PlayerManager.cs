@@ -83,6 +83,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
         character.level = 1;
 
+        character.sprite = Resources.Load<Sprite>(DataManager.Instance.battleDatabase.GetCharacterByKey(id).spritePath);
+
         character.Init();
 
         characterList.Add(character);

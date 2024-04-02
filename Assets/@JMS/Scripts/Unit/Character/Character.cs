@@ -11,6 +11,8 @@ public class Character : MonoBehaviour
 
     [Header("Info")]
     public string characterName;
+    public Sprite sprite;
+    public SpriteRenderer spriteRenderer;
 
     [Header("Level")]
     public int level;
@@ -30,7 +32,6 @@ public class Character : MonoBehaviour
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
-    public SpriteRenderer spriteRenderer { get; private set; }
     public Animator animator {  get; private set; }
 
     public CharacterHpBar hpBar;
@@ -82,7 +83,8 @@ public class Character : MonoBehaviour
         needExp = baseData.needExp * level;
         maxCoolTime = baseData.actionCoolTime;
 
-        spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
+
+        spriteRenderer.sprite = sprite;
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
     }
 

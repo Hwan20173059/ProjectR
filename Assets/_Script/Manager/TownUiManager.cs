@@ -11,6 +11,7 @@ public class TownUiManager : MonoBehaviour
 
     [Header("Character")]
     public Character characterPrefab;
+    public TownPlayer townPlayer;
 
     [Header("UI")]
     public GameObject characterUI;

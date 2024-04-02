@@ -2903,6 +2903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
   characterPrefab: {fileID: 6813750776376228267, guid: b6e7bbf231fbf2746ba859558282fe35, type: 3}
+  townPlayer: {fileID: 6518005525221262379}
   characterUI: {fileID: 1822648823}
   inventoryUI: {fileID: 0}
   detailArea1: {fileID: 0}
@@ -18375,6 +18376,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9096707497719188621, guid: 16330f972d89ece4fbb766e851e69fdf, type: 3}
   m_PrefabInstance: {fileID: 6791133781231056070}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6518005525221262379 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7998339683275430841, guid: 16330f972d89ece4fbb766e851e69fdf, type: 3}
+  m_PrefabInstance: {fileID: 6791133781231056070}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74acda785a35f1442b7d465550aaa59b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6791133781231056070
 PrefabInstance:
   m_ObjectHideFlags: 0

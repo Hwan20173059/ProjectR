@@ -11,11 +11,12 @@ public class TownPlayer : MonoBehaviour
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        //Refresh()
+        Refresh();
     }
 
     public void Refresh()
     {
-        spriteRenderer = character.spriteRenderer;
+        if (character != null)
+            spriteRenderer.sprite = character.sprite;
     }
 }

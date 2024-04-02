@@ -12,6 +12,8 @@ public class DungeonManager : TileMapManager
     {
         playerManager = PlayerManager.Instance;
 
+        playerPrefab.GetComponent<SpriteRenderer>().sprite = playerManager.characterList[playerManager.selectedCharacterIndex].sprite;
+
         if (playerManager.isDungeon == false)
         {
             playerTurnIndex = playerManager.playerTurnIndex;
