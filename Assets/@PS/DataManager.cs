@@ -9,7 +9,7 @@ public class DataManager : Singleton<DataManager>
 {
     public ItemDatabase itemDatabase;
     public BattleDataBase battleDatabase;
-    public SaveDataBase saveDatabase;
+    public SaveData saveData;
 
     new private void Awake()
     {
@@ -48,13 +48,12 @@ public class DataManager : Singleton<DataManager>
 
     public void LoadSaveData()
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>("SaveDatas");
+        string filePath = Application.persistentDataPath + "/SaveDatas.json";
 
-        if (jsonFile != null)
+        if (File.Exists(filePath))
         {
-            string json = jsonFile.text;
-            saveDatabase = JsonUtility.FromJson<SaveDataBase>(json);
-            saveDatabase.Initialize();
+            string FromJsonData = File.ReadAllText(filePath);
+            saveData = JsonUtility.FromJson<SaveData>(FromJsonData);
         }
     }
 

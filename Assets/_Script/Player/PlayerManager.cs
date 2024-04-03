@@ -2,6 +2,8 @@ using Assets.PixelFantasy.PixelTileEngine.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection;
 using Unity.VisualScripting;
 using Unity.VisualScripting.AssemblyQualifiedNameParser;
 using UnityEngine;
@@ -105,19 +107,65 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void LoadPlayerData(int index)
     {
-        playerLevel = DataManager.Instance.saveDatabase.saveDic[index].playerLevel;
+        playerLevel = DataManager.Instance.saveData.playerLevel;
         needExp = playerLevel * 10;
-        currentExp = DataManager.Instance.saveDatabase.saveDic[index].currentExp;
-        gold = DataManager.Instance.saveDatabase.saveDic[index].gold;
+        currentExp = DataManager.Instance.saveData.currentExp;
+        gold = DataManager.Instance.saveData.gold;
 
-        selectTownID = DataManager.Instance.saveDatabase.saveDic[index].selectTownID;
+        selectTownID = DataManager.Instance.saveData.selectTownID;
 
-        string[] characterList = DataManager.Instance.saveDatabase.saveDic[index].characterListID.Split(" ");
-        string[] characterLevelList = DataManager.Instance.saveDatabase.saveDic[index].characterListLevel.Split(" ");
-        string[] characterExpList = DataManager.Instance.saveDatabase.saveDic[index].characterListExp.Split(" ");
+        string[] characterList = DataManager.Instance.saveData.characterListID.Split(" ");
+        string[] characterLevelList = DataManager.Instance.saveData.characterListLevel.Split(" ");
+        string[] characterExpList = DataManager.Instance.saveData.characterListExp.Split(" ");
 
-        for (int i = 0; i < characterList.Length; i++)
+        for (int i = 0; i < characterList.Length - 1; i++)
             AddCharacter(int.Parse(characterList[i]), int.Parse(characterLevelList[i]), int.Parse(characterExpList[i]));
 
+    }
+
+    public void SavePlayerData(int index)
+    {
+        SaveData saveData = new SaveData();
+
+        saveData.id = index;
+        saveData.playerLevel = playerLevel;
+        saveData.currentExp = currentExp;
+        saveData.gold = gold;
+        
+        saveData.selectTownID = selectTownID;
+
+        string characterList = "";
+        string characterLevelList = "";
+        string characterExpList = "";
+
+        for(int i = 0; i < this.characterList.Count; i++) 
+        {
+            characterList += this.characterList[i].baseData.id.ToString();
+            characterList += " ";
+
+            characterLevelList += this.characterList[i].level.ToString();
+            characterLevelList += " ";
+
+            characterExpList += this.characterList[i].curExp.ToString();
+            characterExpList += " ";
+        }
+
+        saveData.characterListID = characterList;
+        saveData.characterListLevel = characterLevelList;
+        saveData.characterListExp = characterExpList;        
+
+        saveData.equipitemListID = "0 1 2 3 ";
+        saveData.itemListID = "0 1 2 3 4 5 ";
+        saveData.itemListCount = "3 3 5 5 1 1 ";
+
+        string ToJsonData = JsonUtility.ToJson(saveData, true);
+        string filePath = Application.persistentDataPath + "/SaveDatas.json";
+        File.WriteAllText(filePath, ToJsonData);
+
+    }
+
+    private void OnApplicationQuit()
+    {
+        SavePlayerData(0);
     }
 }
