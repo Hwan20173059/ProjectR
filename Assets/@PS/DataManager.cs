@@ -9,10 +9,12 @@ public class DataManager : Singleton<DataManager>
 {
     public ItemDatabase itemDatabase;
     public BattleDataBase battleDatabase;
+    public SaveDataBase saveDatabase;
 
     new private void Awake()
     {
         LoadBattleDatas();
+        LoadSaveData();
     }
 
     public void Init()
@@ -44,14 +46,26 @@ public class DataManager : Singleton<DataManager>
         }
     }
 
-    /*
-    public Equip GetEquipData(int id)
+    public void LoadSaveData()
     {
-        return this.dicEquips[id];
+        TextAsset jsonFile = Resources.Load<TextAsset>("SaveDatas");
+
+        if (jsonFile != null)
+        {
+            string json = jsonFile.text;
+            saveDatabase = JsonUtility.FromJson<SaveDataBase>(json);
+            saveDatabase.Initialize();
+        }
     }
 
-    public Dictionary<int, Equip> GetEquipDatas()
-    {
-        return this.dicEquips;
-    }*/
-}
+        /*
+        public Equip GetEquipData(int id)
+        {
+            return this.dicEquips[id];
+        }
+
+        public Dictionary<int, Equip> GetEquipDatas()
+        {
+            return this.dicEquips;
+        }*/
+    }

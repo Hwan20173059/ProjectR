@@ -39,6 +39,8 @@ public class TileMapManager : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI turnState;
+    public Animator turnAnimator;
+
     public GameObject selectUI;
     public TextMeshProUGUI infoUI;
     public GameObject ChestUI;
@@ -50,7 +52,8 @@ public class TileMapManager : MonoBehaviour
     public void PlayerTurn()
     {
         fieldState = FieldState.playerTurn;
-        turnState.text = "플레이어 차례\n" + "남은 횟수 " + playerTurnIndex;
+        turnState.text = "플레이어 턴";
+        turnAnimator.SetTrigger("Turn");
         isPlayerturn = true;     
     }
 
@@ -62,10 +65,11 @@ public class TileMapManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         fieldState = FieldState.fieldTurn;
-        turnState.text = "필드 차례";
+        turnState.text = "필드 턴";
+        turnAnimator.SetTrigger("Turn");
         isPlayerturn = false;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
 
         for (int i = 0; i < fieldMonster.Count; i++)
         {

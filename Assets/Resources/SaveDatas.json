@@ -1,9 +1,9 @@
 {
-	"SaveData": [
+	"saveDatas": [
 		{
 			"id": 0,
-			"playerLevel": 1,
-			"currentExp": 5,
+			"playerLevel": 3,
+			"currentExp": 20,
 			"gold": 2000,
 			"selectTownID": 0,
 			"characterListID": "0 1 2",

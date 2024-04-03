@@ -1,7 +1,9 @@
 using Assets.PixelFantasy.PixelTileEngine.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.AssemblyQualifiedNameParser;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
@@ -46,15 +48,18 @@ public class PlayerManager : Singleton<PlayerManager>
     private void Start()
     {
         DataManager.Instance.Init();
+
         EquipItem baseEquip = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(0));
+
         for (int i = 0; i < 3; i++)
         {
             if (equip[i] == null)
                 equip[i] = baseEquip;
         }
 
-        for (int i = 0; i < DataManager.Instance.battleDatabase.characterDic.Count; i++)
-            AddCharacter(i);
+        LoadPlayerData(0);
+
+        townUiManager.PlayerInfoRefresh();
     }
     
     public void EquipNewItem(int n)
@@ -64,12 +69,12 @@ public class PlayerManager : Singleton<PlayerManager>
         equip[n].isEquipped = true;
     }
 
-    public void AddCharacter(int id)
+    public void AddCharacter(int id, int level, int exp)
     {
         Character character = Instantiate(townUiManager.characterPrefab,this.transform);
         character.spriteRenderer.color = new Color(1, 1, 1, 0);
 
-        character.LoadInit(DataManager.Instance.battleDatabase.GetCharacterByKey(id));
+        character.LoadInit(DataManager.Instance.battleDatabase.GetCharacterByKey(id), level, exp);
 
         characterList.Add(character);
     }
@@ -96,5 +101,23 @@ public class PlayerManager : Singleton<PlayerManager>
 
 
         return currentExp;
+    }
+
+    public void LoadPlayerData(int index)
+    {
+        playerLevel = DataManager.Instance.saveDatabase.saveDic[index].playerLevel;
+        needExp = playerLevel * 10;
+        currentExp = DataManager.Instance.saveDatabase.saveDic[index].currentExp;
+        gold = DataManager.Instance.saveDatabase.saveDic[index].gold;
+
+        selectTownID = DataManager.Instance.saveDatabase.saveDic[index].selectTownID;
+
+        string[] characterList = DataManager.Instance.saveDatabase.saveDic[index].characterListID.Split(" ");
+        string[] characterLevelList = DataManager.Instance.saveDatabase.saveDic[index].characterListLevel.Split(" ");
+        string[] characterExpList = DataManager.Instance.saveDatabase.saveDic[index].characterListExp.Split(" ");
+
+        for (int i = 0; i < characterList.Length; i++)
+            AddCharacter(int.Parse(characterList[i]), int.Parse(characterLevelList[i]), int.Parse(characterExpList[i]));
+
     }
 }
