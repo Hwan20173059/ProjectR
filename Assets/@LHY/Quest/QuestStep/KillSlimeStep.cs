@@ -37,16 +37,13 @@ public class KillSlimeStep : QuestStep
         }
         else
         {
-            GameEventManager.instance.questEvent.AdvanceQuest("KillSlime");
+            //GameEventManager.instance.questEvent.AdvanceQuest("KillSlime");
         }
     }
 
-    public void FinishQuest(string id)
+    public void FinishQuest(int id)
     {
-        if (id != gameObject.name)
-        {
-            //
-        }
+       
         FinishQuestStep();
     }
 

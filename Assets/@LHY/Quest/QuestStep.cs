@@ -5,14 +5,12 @@ using UnityEngine;
 public abstract class QuestStep : MonoBehaviour
 {
     private bool isFinished = false;
-    private string questID;
-    private int stepIndex;
+    private int questID;
 
 
-    public void InitializeQuestStep(string questId, int stepIndex, string questStepState)
+    public void InitializeQuestStep(int questId, string questStepState)
     {
         this.questID = questId;
-        this.stepIndex = stepIndex;
         if (questStepState != null && questStepState != "")
         {
             SetQuestStepState(questStepState);
@@ -30,11 +28,7 @@ public abstract class QuestStep : MonoBehaviour
     protected void ChangeState(string newState, string newStatus)
     {
         Debug.Log("changeState");
-        GameEventManager.instance.questEvent.QuestStepStateChange(
-            questID,
-            stepIndex,
-            new QuestStepState(newState, newStatus)
-            );
+        GameEventManager.instance.questEvent.QuestStepStateChange(questID, new QuestStepState(newState, newStatus));
     }
     
     protected abstract void SetQuestStepState(string state);

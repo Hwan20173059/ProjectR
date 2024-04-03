@@ -5,8 +5,8 @@ using Unity.VisualScripting.FullSerializer;
 
 public class QuestEvent
 {
-    public event Action<string> onStartQuest;
-    public void StartQuest(string id)
+    public event Action<int> onStartQuest;
+    public void StartQuest(int id)
     {
         if (onStartQuest != null)
         {
@@ -14,18 +14,18 @@ public class QuestEvent
             onStartQuest(id);
         }
     }
-    public event Action<string> onAdvanceQuest;
+    public event Action<int> onAdvanceQuest;
 
-    public void AdvanceQuest(string id)
+    public void AdvanceQuest(int id)
     {
         if (onAdvanceQuest != null)
         {
             onAdvanceQuest(id);
         }
     }
-    public event Action<string> onFinishQuest;
+    public event Action<int> onFinishQuest;
 
-    public void FinishQuest(string id)
+    public void FinishQuest(int id)
     {
         if (onFinishQuest != null)
         {
@@ -42,12 +42,12 @@ public class QuestEvent
     }
 
     //진행상태
-    public event Action<string, int, QuestStepState> onQuestStepStateChange;
-    public void QuestStepStateChange(string id, int stepIndex, QuestStepState questStepState)
+    public event Action<int, QuestStepState> onQuestStepStateChange;
+    public void QuestStepStateChange(int id, QuestStepState questStepState)
     {
         if (onQuestStepStateChange != null)
         {
-            onQuestStepStateChange(id, stepIndex, questStepState);
+            onQuestStepStateChange(id, questStepState);
         }
     }
 
@@ -63,8 +63,8 @@ public class QuestEvent
         }
     }
     //
-    public event Action<string> onSubmitPressed;
-    public void SubmitPressed(string id)
+    public event Action<int> onSubmitPressed;
+    public void SubmitPressed(int id)
     {
         
         if (onSubmitPressed != null)
@@ -73,13 +73,13 @@ public class QuestEvent
         }
     }
 
-    public event Action<QuestSlot> onQuestSelect;
-    public void QuestSelect(QuestSlot questslot)
+    public event Action<int> onQuestSelect;
+    public void QuestSelect(int id)
     {
 
         if (onQuestSelect != null)
         {
-            onQuestSelect(questslot);
+            onQuestSelect(id);
         }
     }
 }

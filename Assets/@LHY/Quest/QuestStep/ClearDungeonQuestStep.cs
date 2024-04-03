@@ -38,17 +38,14 @@ public class ClearDungeonQuestStep : QuestStep
         }
         else
         {
-            GameEventManager.instance.questEvent.AdvanceQuest("ClearDungeonQuest");
+            //GameEventManager.instance.questEvent.AdvanceQuest("ClearDungeonQuest");
         }
     }
 
 
-    public void FinishQuest(string id)
+    public void FinishQuest(int id)
     {
-        if (id != gameObject.name)
-        {
-            //
-        }
+
         FinishQuestStep();
     }
 
