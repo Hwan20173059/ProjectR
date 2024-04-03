@@ -1,0 +1,28 @@
+{
+  "quest": [
+    {
+      "id": "0",
+      "displayName": "던전 1회 클리어하기",
+      "description": "던전을 1회 클리어하세요",
+      "needLevel": "1",
+      "needGold": "50",
+      "questStep": "0",
+      "goldReward": "150",
+      "expReward": "100",
+      "consumeRewardID": "0",
+      "equipRewardID": "0"
+    },
+    {
+      "id": "1",
+      "displayName": "테스트이름",
+      "description": "테스트설명",
+      "needLevel": "3",
+      "needGold": "100",
+      "questStep": "0",
+      "goldReward": "199",
+      "expReward": "199",
+      "consumeRewardID": "1",
+      "equipRewardID": "1"
+    }
+  ]
+}
