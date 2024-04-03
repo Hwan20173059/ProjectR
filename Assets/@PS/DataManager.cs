@@ -55,6 +55,11 @@ public class DataManager : Singleton<DataManager>
             string FromJsonData = File.ReadAllText(filePath);
             saveData = JsonUtility.FromJson<SaveData>(FromJsonData);
         }
+        else
+        {
+            Debug.Log("첫 플레이");
+            return;
+        }
     }
 
         /*
