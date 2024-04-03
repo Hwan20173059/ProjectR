@@ -63,18 +63,14 @@ public class BattleManager : MonoBehaviour
 
         stateMachine = new BattleStateMachine(this);
 
-        DungeonInit();
+        BattleInit();
     }
 
     private void Start()
     {
         Input.ClickActions.MouseClick.started += OnClickStart;
 
-        if (targetCircle == null)
-        {
-            targetCircle = Instantiate(targetCirclePrefab).GetComponent<TargetCircle>();
-            targetCircle.gameObject.SetActive(false);
-        }
+        
 
         stateMachine.ChangeState(stateMachine.startState);
     }
@@ -107,13 +103,19 @@ public class BattleManager : MonoBehaviour
         battleCanvas.MonsterStatePanelOn();
     }
     
-    void DungeonInit()
+    void BattleInit()
     {
         dungeon = DataManager.Instance.battleDatabase.GetDungeonByKey(PlayerManager.Instance.selectBattleID);
         
         for (int i = 0; i < dungeon.stages.Length; i++)
         {
             stages.Add(DataManager.Instance.battleDatabase.GetStageByKey(dungeon.stages[i]));
+        }
+
+        if (targetCircle == null)
+        {
+            targetCircle = Instantiate(targetCirclePrefab).GetComponent<TargetCircle>();
+            targetCircle.gameObject.SetActive(false);
         }
     }
 

@@ -43,6 +43,10 @@ public class PlayerManager : Singleton<PlayerManager>
     public int selectDungeonID;
     public int selectBattleID;
 
+    [Header("BattleSetting")]
+    public bool autoBattle;
+    public int battleSpeed;
+
     private void Start()
     {
         DataManager.Instance.Init();
