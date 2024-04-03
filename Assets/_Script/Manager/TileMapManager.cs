@@ -17,6 +17,7 @@ public class TileMapManager : MonoBehaviour
     public PlayerManager playerManager;
     public Field field;
     public Tile currentTile;
+    public FieldCamera fieldCamera;
 
     [Header("State")]
     public FieldState fieldState;

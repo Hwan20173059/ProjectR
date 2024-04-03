@@ -46,7 +46,6 @@ public class Tile : MonoBehaviour
         RefreshTile();
     }
 
-
     public void RefreshTile()
     {
         switch (tileState)
@@ -160,6 +159,8 @@ public class Tile : MonoBehaviour
                     {
                         tileMapManager.currentTile = this;
                         tileMapManager.isSelect = true;
+
+                        tileMapManager.fieldCamera.playerTile = this;
 
                         tileMapManager.MoveTileOn(tileMapManager.playerTurnIndex);
                         break;
