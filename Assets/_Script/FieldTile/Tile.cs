@@ -154,22 +154,18 @@ public class Tile : MonoBehaviour
                     {
                         tileMapManager.isSelect = false;
                         tileMapManager.MoveTileOff(tileMapManager.playerTurnIndex);
-                        tileMapManager.selectUI.SetActive(false);
                         break;
                     }
                     else
                     {
                         tileMapManager.currentTile = this;
                         tileMapManager.isSelect = true;
-                        tileMapManager.infoUI.text = "플레이어";
 
                         tileMapManager.MoveTileOn(tileMapManager.playerTurnIndex);
-                        tileMapManager.selectUI.SetActive(true);
                         break;
                     }
 
                 case TileState.empty:
-                    tileMapManager.selectUI.SetActive(false);
                     break;
 
                 case TileState.canGo:
@@ -187,10 +183,9 @@ public class Tile : MonoBehaviour
                     RefreshTile();
 
                     tileMapManager.isSelect = false;
-                    tileMapManager.selectUI.SetActive(false);
 
                     if (tileMapManager.playerTurnIndex > 0)
-                        tileMapManager.PlayerTurn();
+                        tileMapManager.StillPlayerTurn();
                     else
                     {
                         tileMapManager.playerTurnIndex = PlayerManager.Instance.playerTurnIndex;
@@ -200,21 +195,18 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.cantGo:
-                    tileMapManager.selectUI.SetActive(false);
                     break;
 
 
                 case TileState.monster:
                     if (battleID == 0)
                     {
-                        tileMapManager.infoUI.text = "슬라임 무리";
-                        tileMapManager.selectUI.SetActive(true);
+                        tileMapManager.selectName.text = "슬라임 무리";
                         break;
                     }
                     else if (battleID == 1)
                     {
-                        tileMapManager.infoUI.text = "몬스터 무리";
-                        tileMapManager.selectUI.SetActive(true);
+                        tileMapManager.selectName.text = "몬스터 무리";
                         break;
                     }
                     else
@@ -224,14 +216,12 @@ public class Tile : MonoBehaviour
                 case TileState.chest:
                     if (chestID == 0)
                     {
-                        tileMapManager.infoUI.text = "초라한 상자";
-                        tileMapManager.selectUI.SetActive(true);
+                        tileMapManager.selectName.text = "초라한 상자";
                         break;
                     }
                     else if (chestID == 1)
                     {
-                        tileMapManager.infoUI.text = "화려한 상자";
-                        tileMapManager.selectUI.SetActive(true);
+                        tileMapManager.selectName.text = "화려한 상자";
                         break;
                     }
                     else
@@ -241,14 +231,12 @@ public class Tile : MonoBehaviour
                 case TileState.town:
                     if (townID == 0)
                     {
-                        tileMapManager.infoUI.text = "초심자의 마을";
-                        tileMapManager.selectUI.SetActive(true);
+                        tileMapManager.selectName.text = "초심자의 마을";
                         break;
                     }
                     else if(townID == 1)
                     {
-                        tileMapManager.infoUI.text = "수도 엘더";
-                        tileMapManager.selectUI.SetActive(true);
+                        tileMapManager.selectName.text = "수도 엘더";
                         break;
                     }
                     else
@@ -258,26 +246,22 @@ public class Tile : MonoBehaviour
                 case TileState.dungeon:
                     if (dungeonID == 0)
                     {
-                        tileMapManager.infoUI.text = "고블린의 거처";
-                        tileMapManager.selectUI.SetActive(true);
+                        tileMapManager.selectName.text = "고블린의 거처";
                         break;
                     }
                     else if (dungeonID == 1)
                     {
-                        tileMapManager.infoUI.text = "슬라임의 둥지";
-                        tileMapManager.selectUI.SetActive(true);
+                        tileMapManager.selectName.text = "슬라임의 둥지";
                         break;
                     }
                     else if (dungeonID == 2)
                     {
-                        tileMapManager.infoUI.text = "미궁의 바다";
-                        tileMapManager.selectUI.SetActive(true);
+                        tileMapManager.selectName.text = "미궁의 바다";
                         break;
                     }
                     else if (dungeonID == 3)
                     {
-                        tileMapManager.infoUI.text = "지옥의 숲";
-                        tileMapManager.selectUI.SetActive(true);
+                        tileMapManager.selectName.text = "지옥의 숲";
                         break;
                     }
                     else
@@ -333,7 +317,6 @@ public class Tile : MonoBehaviour
                     RefreshTile();
 
                     tileMapManager.isSelect = false;
-                    tileMapManager.selectUI.SetActive(false);
 
                     tileMapManager.ChestUI.SetActive(true);
                     break;

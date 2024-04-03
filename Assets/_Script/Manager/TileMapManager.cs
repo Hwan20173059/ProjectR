@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum FieldState
 {
@@ -39,26 +40,57 @@ public class TileMapManager : MonoBehaviour
 
     [Header("UI")]
     public TextMeshProUGUI turnState;
+    public TextMeshProUGUI turnIndex;
+    public TextMeshProUGUI panelTurnState;
     public Animator turnAnimator;
 
-    public GameObject selectUI;
-    public TextMeshProUGUI infoUI;
+    public Image playerImage;
+    public TextMeshProUGUI playerName;
+    public TextMeshProUGUI playerLevel;
+    public TextMeshProUGUI playerHp;
+
+    public Image selectImage;
+    public TextMeshProUGUI selectName;
+    public TextMeshProUGUI selectText;
+
     public GameObject ChestUI;
 
     [Header("Path Finding")]
-    public List<Tile> movableTile;  
+    public List<Tile> movableTile;
 
+
+    public void CharacterUIRefresh()
+    {
+        playerImage.sprite = playerManager.characterList[playerManager.selectedCharacterIndex].sprite;
+        playerName.text = playerManager.characterList[playerManager.selectedCharacterIndex].characterName;
+        playerLevel.text = "Lv. " + playerManager.characterList[playerManager.selectedCharacterIndex].level;
+        playerHp.text = "HP " + playerManager.characterList[playerManager.selectedCharacterIndex].curHP + " / " + playerManager.characterList[playerManager.selectedCharacterIndex].maxHP ;
+    }
 
     public void PlayerTurn()
     {
         fieldState = FieldState.playerTurn;
+
+        turnIndex.text = "남은 이동 횟수 : " + playerTurnIndex;
         turnState.text = "플레이어 턴";
+
+        CharacterUIRefresh();
+        
         turnAnimator.SetTrigger("Turn");
         isPlayerturn = true;     
     }
 
+    public void StillPlayerTurn()
+    {
+        fieldState = FieldState.playerTurn;
+        turnIndex.text = "남은 이동 횟수 : " + playerTurnIndex;
+        isPlayerturn = true;
+    }
+
+
     public void AEnemyTurn()
     {
+        turnIndex.text = "남은 이동 횟수 : " + playerTurnIndex;
         StartCoroutine(EnemyTurn());
     }
 
@@ -69,7 +101,7 @@ public class TileMapManager : MonoBehaviour
         turnAnimator.SetTrigger("Turn");
         isPlayerturn = false;
 
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.5f);
 
         for (int i = 0; i < fieldMonster.Count; i++)
         {
@@ -100,10 +132,10 @@ public class TileMapManager : MonoBehaviour
                     break;
             }
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.3f);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
 
         playerTurnIndex = playerManager.playerTurnIndex;
         PlayerTurn();
