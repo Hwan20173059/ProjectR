@@ -34,6 +34,7 @@ public class CharacterSlot : MonoBehaviour
         characterSelectSlot.RefreshAll();
         PlayerManager.Instance.townUiManager.townPlayer.character = characterData;
         PlayerManager.Instance.townUiManager.townPlayer.Refresh();
+        PlayerManager.Instance.townUiManager.characterUI.CharacterInfoUIRefresh();
     }
 
     public void Refresh() // 상태에 따라 UI를 켜고 끈다.

@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class TownUiManager : MonoBehaviour
@@ -23,7 +24,7 @@ public class TownUiManager : MonoBehaviour
     public TextMeshProUGUI townName;
 
     [Header("UI")]
-    public GameObject characterUI;
+    public CharacterUI characterUI;
     public GameObject inventoryUI;
     public GameObject detailArea1;
     public GameObject dungeonUI;
@@ -52,18 +53,19 @@ public class TownUiManager : MonoBehaviour
         playerManager.isField = false;
         playerManager.isTown = true;
 
+        PlayerInfoRefresh();
         TownInfoRefresh();
     }
 
     public void CharacterUIOn()
     {
-        characterUI.SetActive(true);
+        characterUI.CharacterUIon();
         characterUI.GetComponentInChildren<CharacterSelectSlot>().Init();
     }
 
     public void CharacterUIOff()
     {
-        characterUI.SetActive(false);
+        characterUI.CharacterUIoff();
     }
 
     public void DungeonUIOn()
@@ -171,7 +173,7 @@ public class TownUiManager : MonoBehaviour
         //playerName.text = playerManager.name;
         playerName.text = "¸ðÇè°¡";
         playerLevel.text = "Lv. " + playerManager.playerLevel;
-        playerGold.text = "°ñµå : " + playerManager.gold.ToString();
+        playerGold.text = "<sprite=0> " + playerManager.gold;
         playerExp.value = (float)playerManager.currentExp / (float)playerManager.needExp;
     }
 
