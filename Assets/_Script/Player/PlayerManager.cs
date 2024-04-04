@@ -27,6 +27,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     [Header("Town")]
     public TownUiManager townUiManager;
+    public TitleManager titleManager;
 
     [Header("SaveInfo")]
     public int currentTurnIndex;
@@ -64,9 +65,6 @@ public class PlayerManager : Singleton<PlayerManager>
         }
 
         LoadPlayerData(0);
-
-        townUiManager.PlayerInfoRefresh();
-        townUiManager.TownInfoRefresh();
     }
     
     public void EquipNewItem(int n)
@@ -78,7 +76,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void AddCharacter(int id, int level, int exp)
     {
-        Character character = Instantiate(townUiManager.characterPrefab,this.transform);
+        Character character = Instantiate(titleManager.character,this.transform);
         character.spriteRenderer.color = new Color(1, 1, 1, 0);
 
         character.LoadInit(DataManager.Instance.battleDatabase.GetCharacterByKey(id), level, exp);
