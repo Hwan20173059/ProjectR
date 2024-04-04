@@ -71,6 +71,11 @@ public class TileMapManager : MonoBehaviour
         playerHp.text = "HP " + playerCharacter.curHP + " / " + playerCharacter.maxHP ;
     }
 
+    public void SelectUIRefresh()
+    {
+        
+    }
+
     public void PlayerTurn()
     {
         playerTurnIndex = playerManager.playerTurnIndex;
