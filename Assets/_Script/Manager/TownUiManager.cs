@@ -38,11 +38,6 @@ public class TownUiManager : MonoBehaviour
     public GameObject equipInventoryUI;
     public NowEquippedItemSlot nEquipItemSlot;
     public DetailArea detailArea;
-    public EquipItem nowSelectedEquip;
-    public EquipItem lastSelectedEquip;
-
-    public GameObject consumeInventoryUI;
-    public ConsumeItem nowSelectedConsume;
 
     private void Start()
     {
@@ -134,36 +129,6 @@ public class TownUiManager : MonoBehaviour
     public void OptionUIOff()
     {
         optionUI.SetActive(false);
-    }
-
-    public void OpenInventory()
-    {
-        inventory.FreshSlot();
-        detailArea.ChangeDetailActivation(false);
-        equipInventoryUI.SetActive(true);
-        detailArea.gameObject.SetActive(true);
-    }
-    public void CloseInventory()
-    {
-        equipInventoryUI.SetActive(false);
-        consumeInventoryUI.SetActive(false);
-        detailArea.gameObject.SetActive(false);
-    }
-
-    public void OpenConsumeInventory()
-    {
-        inventory.FreshConsumeSlot();
-        detailArea.ChangeDetailActivation(false);
-        consumeInventoryUI.SetActive(true);
-        detailArea.gameObject.SetActive(true);
-    }
-
-    public void FreshAfterEquip()
-    {
-        nowSelectedEquip = null;
-        lastSelectedEquip = null;
-        detailArea.ChangeDetailActivation(false);
-        nEquipItemSlot.FreshEquippedSlot();
     }
 
     public void PlayerInfoRefresh()

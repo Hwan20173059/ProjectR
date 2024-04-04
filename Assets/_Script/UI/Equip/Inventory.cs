@@ -1,3 +1,4 @@
+using Assets.PixelFantasy.PixelTileEngine.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,11 +12,15 @@ public class Inventory : MonoBehaviour //Inventory
     [SerializeField] protected Transform slotParent;
     [SerializeField] protected List<EquipSlot> slots;
 
-    [SerializeField] private GameObject cbag;
     [SerializeField] protected Transform cslotParent;
     [SerializeField] protected List<ConsumeSlot> cslots;
 
-    public ItemManager itemManager;
+    public GameObject equipInventoryUI;
+    public NowEquippedItemSlot nEquipItemSlot;
+    public DetailArea detailArea;
+    public GameObject consumeInventoryUI;
+
+    private ItemManager itemManager;
 
     private void OnValidate() // change slots if changed by editor
     {
@@ -25,11 +30,11 @@ public class Inventory : MonoBehaviour //Inventory
 
     protected virtual void Start()
     {
+        itemManager = ItemManager.Instance;
         itemManager.Init();
         for (int i = 1; i <= 4; i++)
         {
-            EquipItem eItem = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(i));
-            itemManager.eInventory.Add(eItem);
+            itemManager.AddEquipItem(i);
         }
         for (int i = 0; i <= 5; i++)
         {
@@ -66,4 +71,34 @@ public class Inventory : MonoBehaviour //Inventory
         }
     }
     // have to add methods that adds item & add max slots
+
+    public void OpenInventory()
+    {
+        FreshSlot();
+        detailArea.ChangeDetailActivation(false);
+        equipInventoryUI.SetActive(true);
+        detailArea.gameObject.SetActive(true);
+    }
+    public void CloseInventory()
+    {
+        equipInventoryUI.SetActive(false);
+        consumeInventoryUI.SetActive(false);
+        detailArea.gameObject.SetActive(false);
+    }
+
+    public void OpenConsumeInventory()
+    {
+        FreshConsumeSlot();
+        detailArea.ChangeDetailActivation(false);
+        consumeInventoryUI.SetActive(true);
+        detailArea.gameObject.SetActive(true);
+    }
+
+    public void FreshAfterEquip()
+    {
+        detailArea.nowSelectedEquip = null;
+        detailArea.lastSelectedEquip = null;
+        detailArea.ChangeDetailActivation(false);
+        nEquipItemSlot.FreshEquippedSlot();
+    }
 }
