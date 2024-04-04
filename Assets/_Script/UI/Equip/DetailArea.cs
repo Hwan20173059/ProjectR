@@ -45,11 +45,11 @@ public class DetailArea : MonoBehaviour
 
     public void ChangeSelectedItem(ConsumeItem c)
     {
-        nowConsumeItem = c;
         ChangeDetailActivation(false);
+        nowConsumeItem = c;
         _image.sprite = c.consumeSprite;
         _text.text = c.data.info;
-        if(c.type == Type.Potion)
+        if(c.type != Type.Drop && c.type != Type.DungeonItem)
         {
             _useButton.gameObject.SetActive(true);
         }
