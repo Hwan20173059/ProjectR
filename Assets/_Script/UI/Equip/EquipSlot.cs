@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 
 public class EquipSlot : MonoBehaviour
 {
-    public TownUiManager townUiManager;
+    public DetailArea detailArea;
     [SerializeField] private Image image;
 
     private EquipItem _item;
@@ -28,8 +28,6 @@ public class EquipSlot : MonoBehaviour
 
     public void OnClickItem()
     {
-        townUiManager.lastSelectedEquip = townUiManager.nowSelectedEquip;
-        townUiManager.nowSelectedEquip = item;
-        townUiManager.detailArea.ChangeSelectedItem(item);
+        detailArea.ChangeSelectedItem(item);
     }
 }
