@@ -14,12 +14,12 @@ public class QuestStep : MonoBehaviour
 
     private void OnEnable()
     {
+        GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
+        GameEventManager.instance.battleEvent.onKillSlime += KillSlime;
         if (questType == "DungeonClear")
         {
             GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
         }
-        GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
-        GameEventManager.instance.battleEvent.onKillSlime += KillSlime;
         if (questType == "KillSlime")
         {
             GameEventManager.instance.battleEvent.onKillSlime += KillSlime;
@@ -36,7 +36,8 @@ public class QuestStep : MonoBehaviour
 
     public void KillSlime()
     {
-        questCurrentValue++;
+        if (questType == "KillSlime")
+            questCurrentValue++;
         if (questCurrentValue < questClearValue)
         {
             //
@@ -49,7 +50,8 @@ public class QuestStep : MonoBehaviour
 
     public void DungeonClear()
     {
-        questCurrentValue++;
+        if (questType == "DungeonClear")
+            questCurrentValue++;
         if (questCurrentValue < questClearValue)
         {
             //
@@ -60,6 +62,32 @@ public class QuestStep : MonoBehaviour
         }
     }
 
+    public void ItemEquip()
+    {
+        if (questType == "ItemEquip")
+            questCurrentValue++;
+        if (questCurrentValue < questClearValue)
+        {
+            //
+        }
+        else
+        {
+            GameEventManager.instance.questEvent.AdvanceQuest(questID);
+        }
+    }
+    public void FieldClear()
+    {
+        if (questType == "FieldClear")
+            questCurrentValue++;
+        if (questCurrentValue < questClearValue)
+        {
+            //
+        }
+        else
+        {
+            GameEventManager.instance.questEvent.AdvanceQuest(questID);
+        }
+    }
 
     public void InitializeQuestStep(int questId, string questStepState)
     {
