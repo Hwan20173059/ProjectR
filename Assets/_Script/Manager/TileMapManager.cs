@@ -62,10 +62,13 @@ public class TileMapManager : MonoBehaviour
 
     public void CharacterUIRefresh()
     {
-        playerImage.sprite = playerManager.characterList[playerManager.selectedCharacterIndex].sprite;
-        playerName.text = playerManager.characterList[playerManager.selectedCharacterIndex].characterName;
-        playerLevel.text = "Lv. " + playerManager.characterList[playerManager.selectedCharacterIndex].level;
-        playerHp.text = "HP " + playerManager.characterList[playerManager.selectedCharacterIndex].curHP + " / " + playerManager.characterList[playerManager.selectedCharacterIndex].maxHP ;
+        Character playerCharacter = playerManager.characterList[playerManager.selectedCharacterIndex];
+
+        playerImage.sprite = playerCharacter.sprite;
+        playerImage.SetNativeSize();
+        playerName.text = playerCharacter.characterName;
+        playerLevel.text = "Lv. " + playerCharacter.level;
+        playerHp.text = "HP " + playerCharacter.curHP + " / " + playerCharacter.maxHP ;
     }
 
     public void PlayerTurn()

@@ -20,6 +20,7 @@ public class CharacterSlot : MonoBehaviour
     {
         characterSlotImage = GetComponentsInChildren<Image>();
         characterSlotImage[1].sprite = characterData.sprite;
+        characterSlotImage[1].SetNativeSize();
 
         // Slot의 UI에 CharacterData의 Name을 적용
         characterSlotText = GetComponentsInChildren<TextMeshProUGUI>();

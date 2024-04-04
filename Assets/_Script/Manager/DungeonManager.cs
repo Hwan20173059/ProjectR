@@ -46,7 +46,7 @@ public class DungeonManager : TileMapManager
                 PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
 
                 if (playerTurnIndex > 0)
-                    PlayerTurn();
+                    StillPlayerTurn();
                 else
                     AEnemyTurn();
                 

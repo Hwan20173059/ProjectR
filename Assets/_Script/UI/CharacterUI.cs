@@ -38,13 +38,18 @@ public class CharacterUI : MonoBehaviour
         Character character = playerManager.characterList[playerManager.selectedCharacterIndex];
 
         characterImage.sprite = character.sprite;
+        characterImage.SetNativeSize();
 
         characterName.text = character.characterName;
         characterLevel.text = "Lv. " + character.level;
 
         characterHP.text = character.curHP + " / " + character.maxHP;
         characterATK.text = character.atk.ToString();
-        characterSPD.text = character.maxCoolTime.ToString();
+
+        string speed = "";
+        for (int i = 0; i < 6 - character.maxCoolTime ; i++)
+            speed += "¡Ù";
+        characterSPD.text = speed;
 
         expSlider.value = (float)character.curExp / (float)character.needExp;
         expText.text = character.curExp + " / " + character.needExp;

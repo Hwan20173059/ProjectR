@@ -2691,9 +2691,6 @@ MonoBehaviour:
   playerGold: {fileID: 1257103792}
   townName: {fileID: 986220086}
   characterUI: {fileID: 1822648825}
-  inventoryUI: {fileID: 0}
-  detailArea1: {fileID: 0}
-  dungeonUI: {fileID: 0}
   guildUI: {fileID: 1101682878}
   storeUI: {fileID: 6039637989613893920}
   homeUI: {fileID: 1372420373}
@@ -9265,7 +9262,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCD08\uC2EC\uC790\uC758 \uB9C8\uC744"
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3bce599ad1a7d43bd5ec65b4ab8b0f, type: 2}
   m_sharedMaterial: {fileID: 50626751937510570, guid: 0a3bce599ad1a7d43bd5ec65b4ab8b0f, type: 2}
@@ -16323,8 +16320,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 294579729}
-        m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: DungeonUIOn
+        m_TargetAssemblyTypeName: TownUiManager, Assembly-CSharp
+        m_MethodName: GoField
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

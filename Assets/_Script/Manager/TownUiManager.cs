@@ -25,9 +25,6 @@ public class TownUiManager : MonoBehaviour
 
     [Header("UI")]
     public CharacterUI characterUI;
-    public GameObject inventoryUI;
-    public GameObject detailArea1;
-    public GameObject dungeonUI;
     public GameObject guildUI;
     public GameObject storeUI;
     public GameObject homeUI;
@@ -68,7 +65,7 @@ public class TownUiManager : MonoBehaviour
         characterUI.CharacterUIoff();
     }
 
-    public void DungeonUIOn()
+    public void GoField()
     {
         if (playerManager.selectTownID == 0)
         {
@@ -84,11 +81,6 @@ public class TownUiManager : MonoBehaviour
         SceneManager.LoadScene("FieldScene");
     }
 
-    public void DungeonUIOff()
-    {
-        dungeonUI.SetActive(false);
-    }
-
     public void GuildUIOn()
     {
         guildUI.SetActive(true);
@@ -98,12 +90,6 @@ public class TownUiManager : MonoBehaviour
     {
         guildUI.SetActive(false);
         talkUI.SetActive(false);
-    }
-
-    public void InventoryUIOn()
-    {
-        inventoryUI.SetActive(true);
-        detailArea1.SetActive(true);
     }
 
     public void StoreUIOn()
@@ -179,14 +165,9 @@ public class TownUiManager : MonoBehaviour
 
     public void TownInfoRefresh()
     {
-        switch (playerManager.selectTownID)
-        {
-            case 0:
-                townName.text = "초심자의 마을";
-                break;
-            case 1:
-                townName.text = "수도 엘더";
-                break;
-        }
+        if (playerManager.selectTownID == 0)
+            townName.text = "초심자의 마을";
+        else if (playerManager.selectTownID == 1)
+            townName.text = "수도 엘더";
     }
 }

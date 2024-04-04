@@ -66,6 +66,7 @@ public class PlayerManager : Singleton<PlayerManager>
         LoadPlayerData(0);
 
         townUiManager.PlayerInfoRefresh();
+        townUiManager.TownInfoRefresh();
     }
     
     public void EquipNewItem(int n)
