@@ -38,6 +38,8 @@ public class BattleManager : MonoBehaviour
     public bool IsRouletteUsed = true;
     public bool IsUsingRoulette = false;
     public bool IsAutoBattle = false;
+    public bool IsCanUseItem => useItemCount < 3;
+    public int useItemCount = 0;
 
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
     Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
@@ -59,6 +61,8 @@ public class BattleManager : MonoBehaviour
 
         Input = GetComponent<PlayerInput>();
 
+        Input.ClickActions.MouseClick.started += OnClickStart;
+
         battleCanvas = GetComponentInChildren<BattleCanvas>();
 
         stateMachine = new BattleStateMachine(this);
@@ -68,10 +72,6 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
-        Input.ClickActions.MouseClick.started += OnClickStart;
-
-        
-
         stateMachine.ChangeState(stateMachine.startState);
     }
 
@@ -347,6 +347,29 @@ public class BattleManager : MonoBehaviour
             battleCanvas.UpdateBattleText($"도망치기 실패!");
             character.curCoolTime = 0f;
             character.stateMachine.ChangeState(character.stateMachine.readyState);
+        }
+    }
+
+    ConsumeItem selectItem; // temp
+    public void OnClickUseItemButton()
+    {
+        if (!IsSelectingAction || !IsCanUseItem)
+            return;
+
+        useItemCount++;
+        switch (selectItem.type)
+        {
+            case Type.Potion:
+                character.ChangeHP(selectItem.data.value);
+                break;
+            //case Type.Potion:
+            //    character.characterBuffHandler.atkBuff = selectItem.data.value;
+            //    character.characterBuffHandler.atkDuration = selectItem.data.value; // TODO. 지속시간 값으로 변경
+            //    break;
+            //case Type.Potion:
+            //    character.characterBuffHandler.speedBuff = selectItem.data.value;
+            //    character.characterBuffHandler.speedDuration = selectItem.data.value; // TODO. 지속시간 값으로 변경
+            //    break;
         }
     }
 

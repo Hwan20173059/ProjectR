@@ -187,4 +187,10 @@ public class CharacterActionState : CharacterBaseState
     {
         return animNormalizedTime >= 1f;
     }
+
+    public override void Exit()
+    {
+        base.Exit();
+        character.BuffDurationReduce();
+    }
 }

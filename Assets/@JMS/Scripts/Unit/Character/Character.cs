@@ -23,16 +23,18 @@ public class Character : MonoBehaviour
     [Header("Stat")]
     public int maxHP;
     public int curHP;
-    public int atk;
+    public int atk { get { return atk + characterBuffHandler.atkBuff; } set { atk = value; } }
     public bool IsDead => curHP <= 0;
     public string currentStateText = "´ë±âÁß";
 
     public float curCoolTime;
-    public float maxCoolTime;
+    public float maxCoolTime { get { return maxCoolTime - characterBuffHandler.speedBuff; } set { maxCoolTime = value; } }
 
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
+
+    public CharacterBuffHandler characterBuffHandler;
     public Animator animator {  get; private set; }
 
     public CharacterHpBar hpBar;
@@ -44,6 +46,8 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
+        characterBuffHandler = new CharacterBuffHandler();
+
         stateMachine = new CharacterStateMachine(this);
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -99,6 +103,22 @@ public class Character : MonoBehaviour
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
     }
 
+    public void CoolTimeUpdate()
+    {
+        if (curCoolTime < maxCoolTime)
+        {
+            curCoolTime += Time.deltaTime;
+            battleManager.battleCanvas.UpdateActionBar();
+        }
+        else
+        {
+            if (battleManager.IsAutoBattle)
+                stateMachine.ChangeState(stateMachine.autoSelectState);
+            else
+                stateMachine.ChangeState(stateMachine.selectActionState);
+        }
+    }
+
     public void ChangeHP(int change)
     {
         curHP += change;
@@ -131,5 +151,11 @@ public class Character : MonoBehaviour
         needExp = baseData.needExp * level;
         curExp = curExp >= needExp ? LevelUp() : curExp;
         return curExp;
+    }
+
+    public void BuffDurationReduce()
+    {
+        if (characterBuffHandler.atkDuration > 0) { characterBuffHandler.atkDuration--; }
+        if (characterBuffHandler.speedDuration > 0) { characterBuffHandler.speedDuration--; }
     }
 }
