@@ -33,7 +33,7 @@ public class QuestSlot : MonoBehaviour
 
     public void QuestUpdate()
     {
-        Quest quest;
+        currentQuestState = QuestManager.instance.QuestStateCheck(questId).state;
         //quest = QuestManager.instance.QuestStateCheck(this);
         //currentQuestState = quest.state;
     }

@@ -57,10 +57,11 @@ public class ClearDungeonQuestStep : QuestStep
         string status = dungeonCleared + " / " + dungeonComplete;
         ChangeState(state, status);
     }
-
+    /*
     protected override void SetQuestStepState(string state)
     {
         this.dungeonCleared = System.Int32.Parse(state);
         UpdateState();
     }
+    */
 }

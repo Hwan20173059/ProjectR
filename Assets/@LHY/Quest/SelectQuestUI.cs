@@ -48,13 +48,13 @@ public class SelectQuestUI : MonoBehaviour
     public void QuestSelect(int id)
     {
         selectQuestID = id;
+        SetQuest(selectQuestID);
         infoUpdate();
     }
 
 
     public void SetQuest(int id)
     {
-        selectQuestID = id;
         selectQuestState = QuestManager.instance.GetQuestByID(id).state;
     }
 

@@ -7,9 +7,8 @@ public class Quest
 {
     //public QuestInfoSO info;
     public QuestState state;
-
     public QuestData info;
-    public QuestInfo questinfo;
+    //public QuestInfo questinfo;
     /*
     public Quest(QuestInfoSO questInfo)
     {
@@ -44,26 +43,26 @@ public class Quest
     }
     */
 
-    public void InstantiateCurrentQuestStep(Transform parentTransform)
+    public void InstantiateCurrentQuestStep(Transform parentTransform, int id)
     {
-        Debug.Log("Asdf");
         GameObject questStepPrefab = GetCurrentQuestStepPrefeb();
-        QuestStep questStep = Object.Instantiate<GameObject>(questStepPrefab, parentTransform).GetComponent<QuestStep>();
+        QuestStep queststep = Object.Instantiate(questStepPrefab, parentTransform).AddComponent<QuestStep>();
+        queststep.questID = id;
+        queststep.questClearValue = QuestManager.instance.GetQuestByID(id).info.questClearValue;
+        queststep.questType = QuestManager.instance.GetQuestByID(id).info.questType;
         if (questStepPrefab != null)
         {
             //QuestStep questStep = Object.Instantiate<GameObject>(questStepPrefab, parentTransform).GetComponent<QuestStep>();
             //questStep.InitializeQuestStep(info.id, questStepStates[currentQuestStepIndex].state);
         }
     }
+
     private GameObject GetCurrentQuestStepPrefeb()
     {
-        //초기화 이후 다음 퀘스트 진행(현재 연결 퀘스트 구현 X)
         GameObject questStepPrefeb = new GameObject();
 
         return questStepPrefeb;
     }
-
-    
 }
 
 
@@ -80,6 +79,8 @@ public class QuestData
     public int id;
     public string displayName;
     public string description;
+    public string questType;
+    public int questClearValue;
     public int needLevel;
     public int needGold;
     public string questStep;

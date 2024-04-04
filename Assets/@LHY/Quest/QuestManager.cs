@@ -80,7 +80,7 @@ public class QuestManager : MonoBehaviour
     {
         Quest quest = GetQuestByID(id);
         Debug.Log("퀘스트스타트" + quest.info.displayName);
-        quest.InstantiateCurrentQuestStep(this.transform);
+        quest.InstantiateCurrentQuestStep(this.transform, id);
         ChangeQuestState(quest.info.id, QuestState.In_Progress);
     }
 

@@ -9,7 +9,7 @@ public class QuestContents : MonoBehaviour
     public GameObject questSlotPrefeb;
     private void Start()
     {
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 5; i++)
         {
             questList.Add(QuestManager.instance.GetQuestByID(i));
         }

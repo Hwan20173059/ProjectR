@@ -56,9 +56,5 @@ public class KillSlimeStep : QuestStep
         ChangeState(state, status);
     }
 
-    protected override void SetQuestStepState(string state)
-    {
-        this.killSlimeCount = int.Parse(state);
-        UpdateState();
-    }
+
 }
