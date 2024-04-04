@@ -18,6 +18,7 @@ public class CharacterSelectActionState : CharacterBaseState
         battleManager.battleCanvas.RouletteButtonOn();
         battleManager.IsSelectingAction = true;
         battleManager.IsRouletteUsed = false;
+        battleManager.useItemCount = 0;
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.playerSelectingActionState);
     }
     public override void Exit()
@@ -26,6 +27,7 @@ public class CharacterSelectActionState : CharacterBaseState
 
         battleManager.IsSelectingAction = false;
         battleManager.IsRouletteUsed = true;
+        battleManager.useItemCount = 3;
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 }
