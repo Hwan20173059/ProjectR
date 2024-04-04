@@ -9,4 +9,10 @@ public class CharacterBuffHandler
 
     public int speedBuff;
     public int speedDuration { get { return speedDuration; } set { speedDuration = value; if (speedDuration <= 0) speedBuff = 0; } }
+
+    public void BuffDurationReduce()
+    {
+        if (atkDuration > 0) { atkDuration--; }
+        if (speedDuration > 0) { speedDuration--; }
+    }
 }

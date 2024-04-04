@@ -67,7 +67,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = new Vector3(target.startPosition.x -1f, target.startPosition.y);
 
-        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.atk);
+        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.characterStatReceiver.atk);
 
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
@@ -81,7 +81,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator AllAttack()
     {
-        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.atk);
+        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.characterStatReceiver.atk);
 
         character.animator.SetBool("Idle", false);
         character.animator.SetTrigger("Attack");
@@ -112,7 +112,7 @@ public class CharacterActionState : CharacterBaseState
             Vector3 selectMonsterPosition = new Vector3(target.startPosition.x - 1f, target.startPosition.y);
             Vector3 nextMonsterPosition = new Vector3(nextTarget.startPosition.x - 1f, nextTarget.startPosition.y);
             
-            int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.atk);
+            int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.characterStatReceiver.atk);
 
             while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
@@ -151,7 +151,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = new Vector3(target.startPosition.x - 1f, target.startPosition.y);
 
-        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.atk);
+        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.characterStatReceiver.atk);
 
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 

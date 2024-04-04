@@ -23,18 +23,19 @@ public class Character : MonoBehaviour
     [Header("Stat")]
     public int maxHP;
     public int curHP;
-    public int atk { get { return atk + characterBuffHandler.atkBuff; } set { atk = value; } }
+    public int atk;
     public bool IsDead => curHP <= 0;
     public string currentStateText = "´ë±âÁß";
 
     public float curCoolTime;
-    public float maxCoolTime { get { return maxCoolTime - characterBuffHandler.speedBuff; } set { maxCoolTime = value; } }
+    public float maxCoolTime;
 
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
 
     public CharacterBuffHandler characterBuffHandler;
+    public CharacterStatReceiver characterStatReceiver;
     public Animator animator {  get; private set; }
 
     public CharacterHpBar hpBar;
@@ -47,6 +48,7 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         characterBuffHandler = new CharacterBuffHandler();
+        characterStatReceiver = new CharacterStatReceiver(this);
 
         stateMachine = new CharacterStateMachine(this);
 
@@ -106,7 +108,7 @@ public class Character : MonoBehaviour
 
     public void CoolTimeUpdate()
     {
-        if (curCoolTime < maxCoolTime)
+        if (curCoolTime < characterStatReceiver.maxCoolTime)
         {
             curCoolTime += Time.deltaTime;
             battleManager.battleCanvas.UpdateActionBar();
@@ -156,7 +158,6 @@ public class Character : MonoBehaviour
 
     public void BuffDurationReduce()
     {
-        if (characterBuffHandler.atkDuration > 0) { characterBuffHandler.atkDuration--; }
-        if (characterBuffHandler.speedDuration > 0) { characterBuffHandler.speedDuration--; }
+        characterBuffHandler.BuffDurationReduce();
     }
 }
