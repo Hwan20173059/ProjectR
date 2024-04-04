@@ -57,6 +57,9 @@ public class DungeonManager : TileMapManager
                 PlayerTurn();
             }
         }
+
+        currentTile = field.tileRaw[0].fieldTiles[0];
+
         playerManager.isField = false;
         playerManager.isTown = false;
         playerManager.isDungeon = true;

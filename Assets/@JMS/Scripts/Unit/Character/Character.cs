@@ -79,9 +79,10 @@ public class Character : MonoBehaviour
         curHP = character.curHP;
     }
 
-    public void LoadInit(CharacterData characterData)
+    public void LoadInit(CharacterData characterData, int level, int currentExp)
     {
-        level = 1;
+        this.level = level;
+        this.curExp = currentExp;
         baseData = characterData;
         
         sprite = Resources.Load<Sprite>(characterData.spritePath);
