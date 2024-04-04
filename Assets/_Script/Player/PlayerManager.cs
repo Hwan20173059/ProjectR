@@ -179,6 +179,6 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void OnApplicationQuit()
     {
-        SavePlayerData(0);
+        //SavePlayerData(0);
     }
 }

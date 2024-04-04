@@ -363,7 +363,7 @@ public class TileMapManager : MonoBehaviour
         ChestUI.SetActive(false);
 
         if (playerTurnIndex > 0)
-            PlayerTurn();
+            StillPlayerTurn();
         else
         {
             AEnemyTurn();

@@ -58,6 +58,7 @@ public class DungeonManager : TileMapManager
             }
         }
 
+        CharacterUIRefresh();
         currentTile = field.tileRaw[0].fieldTiles[0];
 
         playerManager.isField = false;
