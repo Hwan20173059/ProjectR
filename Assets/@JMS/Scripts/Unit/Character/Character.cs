@@ -24,6 +24,9 @@ public class Character : MonoBehaviour
     public int maxHP;
     public int curHP;
     public int atk;
+
+
+
     public bool IsDead => curHP <= 0;
     public string currentStateText = "´ë±âÁß";
 
@@ -33,9 +36,7 @@ public class Character : MonoBehaviour
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
-
     public CharacterBuffHandler characterBuffHandler;
-    public CharacterStatReceiver characterStatReceiver;
     public Animator animator {  get; private set; }
 
     public CharacterHpBar hpBar;
@@ -48,7 +49,6 @@ public class Character : MonoBehaviour
     private void Awake()
     {
         characterBuffHandler = new CharacterBuffHandler();
-        characterStatReceiver = new CharacterStatReceiver(this);
 
         stateMachine = new CharacterStateMachine(this);
 
@@ -108,7 +108,7 @@ public class Character : MonoBehaviour
 
     public void CoolTimeUpdate()
     {
-        if (curCoolTime < characterStatReceiver.maxCoolTime)
+        if (curCoolTime < maxCoolTime)
         {
             curCoolTime += Time.deltaTime;
             battleManager.battleCanvas.UpdateActionBar();
