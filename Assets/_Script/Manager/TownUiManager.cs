@@ -52,7 +52,6 @@ public class TownUiManager : MonoBehaviour
         playerManager.isField = false;
         playerManager.isTown = true;
 
-        PlayerInfoRefresh();
         TownInfoRefresh();
     }
 

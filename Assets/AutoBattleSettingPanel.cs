@@ -2,20 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutoBattlePanel : MonoBehaviour
+public class AutoBattleSettingPanel : MonoBehaviour
 {
-    BattleManager battleManager;
-
     AutoBattleOnButton autoBattleOnButton;
     AutoBattleOffButton autoBattleOffButton;
     x1OffButton x1OffButton;
     x2OffButton x2OffButton;
     x4OffButton x4OffButton;
 
-    public void Init(BattleManager battleManager)
+    public void Init()
     {
-        this.battleManager = battleManager;
-
         autoBattleOnButton = GetComponentInChildren<AutoBattleOnButton>();
         autoBattleOffButton = GetComponentInChildren<AutoBattleOffButton>();
 
@@ -47,48 +43,42 @@ public class AutoBattlePanel : MonoBehaviour
     {
         autoBattleOffButton.gameObject.SetActive(true);
 
-        battleManager.IsAutoBattle = false;
+        PlayerManager.Instance.autoBattle = false;
     }
-
     void OnClickAutoBattleOffButton()
     {
         autoBattleOffButton.gameObject.SetActive(false);
 
-        battleManager.IsAutoBattle = true;
-
-        if (battleManager.IsSelectingAction)
-        {
-            battleManager.CharacterAutoSelect();
-        }
+        PlayerManager.Instance.autoBattle = true;
     }
 
     void OnClickx1OffButton()
     {
-        Time.timeScale = 1f;
-
         x1OffButton.gameObject.SetActive(false);
 
         x2OffButton.gameObject.SetActive(true);
         x4OffButton.gameObject.SetActive(true);
+
+        PlayerManager.Instance.battleSpeed = 1;
     }
 
     void OnClickx2OffButton()
     {
-        Time.timeScale = 2f;
-
         x2OffButton.gameObject.SetActive(false);
 
         x1OffButton.gameObject.SetActive(true);
         x4OffButton.gameObject.SetActive(true);
+
+        PlayerManager.Instance.battleSpeed = 2;
     }
 
     void OnClickx4OffButton()
     {
-        Time.timeScale = 4f;
-
         x4OffButton.gameObject.SetActive(false);
 
         x1OffButton.gameObject.SetActive(true);
         x2OffButton.gameObject.SetActive(true);
+
+        PlayerManager.Instance.battleSpeed = 4;
     }
 }

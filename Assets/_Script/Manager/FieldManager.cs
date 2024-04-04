@@ -32,6 +32,8 @@ public class FieldManager : TileMapManager
                 PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
         }
 
+        currentTile = field.tileRaw[playerManager.fieldY].fieldTiles[playerManager.fieldX];
+
         playerManager.isField = true;
         playerManager.isTown = false;
         playerManager.isDungeon = false;
