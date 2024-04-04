@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class TownUiManager : MonoBehaviour
@@ -24,7 +23,10 @@ public class TownUiManager : MonoBehaviour
     public TextMeshProUGUI townName;
 
     [Header("UI")]
-    public CharacterUI characterUI;
+    public GameObject characterUI;
+    public GameObject inventoryUI;
+    public GameObject detailArea1;
+    public GameObject dungeonUI;
     public GameObject guildUI;
     public GameObject storeUI;
     public GameObject homeUI;
@@ -36,11 +38,6 @@ public class TownUiManager : MonoBehaviour
     public GameObject equipInventoryUI;
     public NowEquippedItemSlot nEquipItemSlot;
     public DetailArea detailArea;
-    public EquipItem nowSelectedEquip;
-    public EquipItem lastSelectedEquip;
-
-    public GameObject consumeInventoryUI;
-    public ConsumeItem nowSelectedConsume;
 
     private void Start()
     {
@@ -50,23 +47,21 @@ public class TownUiManager : MonoBehaviour
         playerManager.isField = false;
         playerManager.isTown = true;
 
-        PlayerInfoRefresh();
         TownInfoRefresh();
-        townPlayer.init();
     }
 
     public void CharacterUIOn()
     {
-        characterUI.CharacterUIon();
+        characterUI.SetActive(true);
         characterUI.GetComponentInChildren<CharacterSelectSlot>().Init();
     }
 
     public void CharacterUIOff()
     {
-        characterUI.CharacterUIoff();
+        characterUI.SetActive(false);
     }
 
-    public void GoField()
+    public void DungeonUIOn()
     {
         if (playerManager.selectTownID == 0)
         {
@@ -82,6 +77,11 @@ public class TownUiManager : MonoBehaviour
         SceneManager.LoadScene("FieldScene");
     }
 
+    public void DungeonUIOff()
+    {
+        dungeonUI.SetActive(false);
+    }
+
     public void GuildUIOn()
     {
         guildUI.SetActive(true);
@@ -91,6 +91,12 @@ public class TownUiManager : MonoBehaviour
     {
         guildUI.SetActive(false);
         talkUI.SetActive(false);
+    }
+
+    public void InventoryUIOn()
+    {
+        inventoryUI.SetActive(true);
+        detailArea1.SetActive(true);
     }
 
     public void StoreUIOn()
@@ -125,50 +131,25 @@ public class TownUiManager : MonoBehaviour
         optionUI.SetActive(false);
     }
 
-    public void OpenInventory()
-    {
-        inventory.FreshSlot();
-        detailArea.ChangeDetailActivation(false);
-        equipInventoryUI.SetActive(true);
-        detailArea.gameObject.SetActive(true);
-    }
-    public void CloseInventory()
-    {
-        equipInventoryUI.SetActive(false);
-        consumeInventoryUI.SetActive(false);
-        detailArea.gameObject.SetActive(false);
-    }
-
-    public void OpenConsumeInventory()
-    {
-        inventory.FreshConsumeSlot();
-        detailArea.ChangeDetailActivation(false);
-        consumeInventoryUI.SetActive(true);
-        detailArea.gameObject.SetActive(true);
-    }
-
-    public void FreshAfterEquip()
-    {
-        nowSelectedEquip = null;
-        lastSelectedEquip = null;
-        detailArea.ChangeDetailActivation(false);
-        nEquipItemSlot.FreshEquippedSlot();
-    }
-
     public void PlayerInfoRefresh()
     {
         //playerName.text = playerManager.name;
         playerName.text = "모험가";
         playerLevel.text = "Lv. " + playerManager.playerLevel;
-        playerGold.text = "<sprite=0> " + playerManager.gold;
+        playerGold.text = "골드 : " + playerManager.gold.ToString();
         playerExp.value = (float)playerManager.currentExp / (float)playerManager.needExp;
     }
 
     public void TownInfoRefresh()
     {
-        if (playerManager.selectTownID == 0)
-            townName.text = "초심자의 마을";
-        else if (playerManager.selectTownID == 1)
-            townName.text = "수도 엘더";
+        switch (playerManager.selectTownID)
+        {
+            case 0:
+                townName.text = "초심자의 마을";
+                break;
+            case 1:
+                townName.text = "수도 엘더";
+                break;
+        }
     }
 }

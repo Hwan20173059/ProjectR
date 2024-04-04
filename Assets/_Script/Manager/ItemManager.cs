@@ -41,27 +41,30 @@ public class ConsumeItem
     }
 }
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : Singleton<ItemManager>
 {
+    private ItemDatabase itemDatabase;
+
     public EquipItem baseItem;
-    public List<EquipItem> eInventory;
-    public List<ConsumeItem> cInventory;
+    public List<EquipItem> eInventory = new List<EquipItem>();
+    public List<ConsumeItem> cInventory = new List<ConsumeItem>();
 
     public void Init()
     {
         DataManager.Instance.Init();
-        baseItem = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(0));
+        itemDatabase = DataManager.Instance.itemDatabase;
+        baseItem = new EquipItem(itemDatabase.GetItemByKey(0));
         //baseItem.data = baseEquip;
     }
 
     public void AddEquipItem(int id)
     {
-        EquipItem eItem = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(id));
+        EquipItem eItem = new EquipItem(itemDatabase.GetItemByKey(id));
         eInventory.Add(eItem);
     }
     public void AddConsumeItem(int id)
     {
-        ConsumeItem cItem = new ConsumeItem(DataManager.Instance.itemDatabase.GetCItemByKey(id));
+        ConsumeItem cItem = new ConsumeItem(itemDatabase.GetCItemByKey(id));
         if (cInventory.Contains(cItem))
         {
             cItem.count++;

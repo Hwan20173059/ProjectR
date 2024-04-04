@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BuyPopup : MonoBehaviour
 {
-    [SerializeField] private ItemManager itemManager;
+    private ItemManager itemManager;
     [SerializeField] private Image itemImage;
     [SerializeField] private GameObject buyPopupBg;
     [SerializeField] private TextMeshProUGUI itemName;
@@ -15,6 +15,11 @@ public class BuyPopup : MonoBehaviour
 
     private int itemID;
     private int price;
+
+    private void Awake()
+    {
+        itemManager = ItemManager.Instance;
+    }
 
     public void ChangePopupInfo(ConsumeItem item)
     {
