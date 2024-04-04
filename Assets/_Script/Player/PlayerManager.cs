@@ -110,18 +110,21 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void LoadPlayerData(int index)
     {
-        if (DataManager.Instance.saveData != null)
+        SaveData saveData = DataManager.Instance.saveData;
+
+        if (saveData != null)
         {
-            playerLevel = DataManager.Instance.saveData.playerLevel;
+            playerLevel = saveData.playerLevel;
             needExp = playerLevel * 10;
-            currentExp = DataManager.Instance.saveData.currentExp;
+            currentExp = saveData.currentExp;
             gold = DataManager.Instance.saveData.gold;
 
-            selectTownID = DataManager.Instance.saveData.selectTownID;
+            selectedCharacterIndex = saveData.selectCharacterID;
+            selectTownID = saveData.selectTownID;
 
-            string[] characterList = DataManager.Instance.saveData.characterListID.Split(" ");
-            string[] characterLevelList = DataManager.Instance.saveData.characterListLevel.Split(" ");
-            string[] characterExpList = DataManager.Instance.saveData.characterListExp.Split(" ");
+            string[] characterList = saveData.characterListID.Split(" ");
+            string[] characterLevelList = saveData.characterListLevel.Split(" ");
+            string[] characterExpList = saveData.characterListExp.Split(" ");
 
             for (int i = 0; i < characterList.Length - 1; i++)
                 AddCharacter(int.Parse(characterList[i]), int.Parse(characterLevelList[i]), int.Parse(characterExpList[i]));
@@ -140,7 +143,8 @@ public class PlayerManager : Singleton<PlayerManager>
         saveData.playerLevel = playerLevel;
         saveData.currentExp = currentExp;
         saveData.gold = gold;
-        
+
+        saveData.selectCharacterID = selectedCharacterIndex;
         saveData.selectTownID = selectTownID;
 
         string characterList = "";

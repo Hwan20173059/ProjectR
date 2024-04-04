@@ -52,6 +52,7 @@ public class TownUiManager : MonoBehaviour
 
         PlayerInfoRefresh();
         TownInfoRefresh();
+        townPlayer.init();
     }
 
     public void CharacterUIOn()

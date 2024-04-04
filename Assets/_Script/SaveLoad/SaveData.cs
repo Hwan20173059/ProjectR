@@ -10,7 +10,8 @@ public class SaveData
     public int playerLevel;
     public int currentExp;
     public int gold;
-    public int selectTownID;
+    public int selectCharacterID;
+    public int selectTownID;    
     public string characterListID;
     public string characterListLevel;
     public string characterListExp;
