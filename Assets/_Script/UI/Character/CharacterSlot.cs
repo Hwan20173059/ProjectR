@@ -16,10 +16,11 @@ public class CharacterSlot : MonoBehaviour
     public Image[] characterSlotImage;
     public TextMeshProUGUI[] characterSlotText;
 
-    private void Start()
+    public void Init()
     {
         characterSlotImage = GetComponentsInChildren<Image>();
         characterSlotImage[1].sprite = characterData.sprite;
+        characterSlotImage[1].SetNativeSize();
 
         // Slot의 UI에 CharacterData의 Name을 적용
         characterSlotText = GetComponentsInChildren<TextMeshProUGUI>();
@@ -34,6 +35,7 @@ public class CharacterSlot : MonoBehaviour
         characterSelectSlot.RefreshAll();
         PlayerManager.Instance.townUiManager.townPlayer.character = characterData;
         PlayerManager.Instance.townUiManager.townPlayer.Refresh();
+        PlayerManager.Instance.townUiManager.characterUI.CharacterInfoUIRefresh();
     }
 
     public void Refresh() // 상태에 따라 UI를 켜고 끈다.

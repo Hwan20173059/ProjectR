@@ -27,6 +27,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     [Header("Town")]
     public TownUiManager townUiManager;
+    public DetailArea detailArea;
+    public TitleManager titleManager;
 
     [Header("SaveInfo")]
     public int currentTurnIndex;
@@ -64,20 +66,18 @@ public class PlayerManager : Singleton<PlayerManager>
         }
 
         LoadPlayerData(0);
-
-        townUiManager.PlayerInfoRefresh();
     }
     
     public void EquipNewItem(int n)
     {
         equip[n].isEquipped = false;
-        equip[n] = townUiManager.lastSelectedEquip;
+        equip[n] = detailArea.lastSelectedEquip;
         equip[n].isEquipped = true;
     }
 
     public void AddCharacter(int id, int level, int exp)
     {
-        Character character = Instantiate(townUiManager.characterPrefab,this.transform);
+        Character character = Instantiate(titleManager.character,this.transform);
         character.spriteRenderer.color = new Color(1, 1, 1, 0);
 
         character.LoadInit(DataManager.Instance.battleDatabase.GetCharacterByKey(id), level, exp);
@@ -111,18 +111,21 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void LoadPlayerData(int index)
     {
-        if (DataManager.Instance.saveData != null)
+        SaveData saveData = DataManager.Instance.saveData;
+
+        if (saveData != null)
         {
-            playerLevel = DataManager.Instance.saveData.playerLevel;
+            playerLevel = saveData.playerLevel;
             needExp = playerLevel * 10;
-            currentExp = DataManager.Instance.saveData.currentExp;
+            currentExp = saveData.currentExp;
             gold = DataManager.Instance.saveData.gold;
 
-            selectTownID = DataManager.Instance.saveData.selectTownID;
+            selectedCharacterIndex = saveData.selectCharacterID;
+            selectTownID = saveData.selectTownID;
 
-            string[] characterList = DataManager.Instance.saveData.characterListID.Split(" ");
-            string[] characterLevelList = DataManager.Instance.saveData.characterListLevel.Split(" ");
-            string[] characterExpList = DataManager.Instance.saveData.characterListExp.Split(" ");
+            string[] characterList = saveData.characterListID.Split(" ");
+            string[] characterLevelList = saveData.characterListLevel.Split(" ");
+            string[] characterExpList = saveData.characterListExp.Split(" ");
 
             for (int i = 0; i < characterList.Length - 1; i++)
                 AddCharacter(int.Parse(characterList[i]), int.Parse(characterLevelList[i]), int.Parse(characterExpList[i]));
@@ -141,7 +144,8 @@ public class PlayerManager : Singleton<PlayerManager>
         saveData.playerLevel = playerLevel;
         saveData.currentExp = currentExp;
         saveData.gold = gold;
-        
+
+        saveData.selectCharacterID = selectedCharacterIndex;
         saveData.selectTownID = selectTownID;
 
         string characterList = "";
@@ -176,6 +180,6 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void OnApplicationQuit()
     {
-        SavePlayerData(0);
+        //SavePlayerData(0);
     }
 }

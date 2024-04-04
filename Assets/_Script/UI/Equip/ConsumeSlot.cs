@@ -7,7 +7,7 @@ using TMPro;
 
 public class ConsumeSlot : MonoBehaviour
 {
-    public TownUiManager townUiManager;
+    private DetailArea detailArea;
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI countTxt;
 
@@ -35,7 +35,6 @@ public class ConsumeSlot : MonoBehaviour
 
     public void OnClickItem()
     {
-        townUiManager.nowSelectedConsume = item;
-        townUiManager.detailArea.ChangeSelectedItem(item);
+        detailArea.ChangeSelectedItem(item);
     }
 }
