@@ -73,6 +73,8 @@ public class TileMapManager : MonoBehaviour
 
     public void PlayerTurn()
     {
+        playerTurnIndex = playerManager.playerTurnIndex;
+
         fieldState = FieldState.playerTurn;
 
         turnIndex.text = "남은 이동 횟수 : " + playerTurnIndex;
@@ -81,13 +83,18 @@ public class TileMapManager : MonoBehaviour
         CharacterUIRefresh();
         
         turnAnimator.SetTrigger("Turn");
-        isPlayerturn = true;     
+        Invoke("IsPlayerTurnOn", 1.5f);
     }
 
     public void StillPlayerTurn()
     {
         fieldState = FieldState.playerTurn;
         turnIndex.text = "남은 이동 횟수 : " + playerTurnIndex;
+        isPlayerturn = true;
+    }
+
+    private void IsPlayerTurnOn()
+    {
         isPlayerturn = true;
     }
 
@@ -141,7 +148,6 @@ public class TileMapManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        playerTurnIndex = playerManager.playerTurnIndex;
         PlayerTurn();
     }
 
@@ -360,7 +366,6 @@ public class TileMapManager : MonoBehaviour
             PlayerTurn();
         else
         {
-            playerTurnIndex = playerManager.playerTurnIndex;
             AEnemyTurn();
         }
     }
