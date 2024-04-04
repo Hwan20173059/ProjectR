@@ -27,6 +27,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     [Header("Town")]
     public TownUiManager townUiManager;
+    public DetailArea detailArea;
     public TitleManager titleManager;
 
     [Header("SaveInfo")]
@@ -70,7 +71,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public void EquipNewItem(int n)
     {
         equip[n].isEquipped = false;
-        equip[n] = townUiManager.lastSelectedEquip;
+        equip[n] = detailArea.lastSelectedEquip;
         equip[n].isEquipped = true;
     }
 
