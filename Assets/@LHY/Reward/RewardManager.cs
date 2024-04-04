@@ -9,14 +9,13 @@ public class RewardManager : MonoBehaviour
 {
     public static RewardManager instance;
 
-    private ItemManager itemManager;
+    public ItemManager itemManager;
     public GameObject rewardUI;
     public GameObject rewardSlotPrefeb;
     public Transform rewardTrans;
 
     private void Awake()
     {
-        itemManager = ItemManager.Instance;
         if (instance != null)
         {
             Destroy(gameObject);

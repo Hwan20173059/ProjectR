@@ -53,8 +53,6 @@ public class BattleManager : MonoBehaviour
 
     private WaitForSeconds waitFor1Sec = new WaitForSeconds(1f);
 
-    public GameObject consumeInventory;
-
     private void Awake()
     {
         performList = new List<int>();
@@ -467,10 +465,5 @@ public class BattleManager : MonoBehaviour
                 }
             default: return baseValue;
         }
-    }
-
-    public void OnClickItemButton()
-    {
-        consumeInventory.SetActive(true);
     }
 }

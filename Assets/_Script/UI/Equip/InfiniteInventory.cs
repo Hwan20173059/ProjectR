@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InfiniteInventory : Inventory
 {
+    [SerializeField] TownUiManager townUiManager;
     [SerializeField] GameObject itemSlotPrefab;
     [SerializeField] GameObject consumeSlotPrefab;
     [SerializeField] int maxSlots;
@@ -101,6 +102,7 @@ public class InfiniteInventory : Inventory
         {
             GameObject itemSlotGameObj = Instantiate(consumeSlotPrefab);
             itemSlotGameObj.transform.SetParent(cslotParent, worldPositionStays: false);
+            itemSlotGameObj.GetComponent<ConsumeSlot>().townUiManager = townUiManager;
             cslots.Add(itemSlotGameObj.GetComponent<ConsumeSlot>());
         }
     }
