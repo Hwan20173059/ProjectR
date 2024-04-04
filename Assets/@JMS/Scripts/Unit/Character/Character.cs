@@ -25,13 +25,14 @@ public class Character : MonoBehaviour
     public int curHP;
     public int atk;
 
+    public float curCoolTime;
+    public float maxCoolTime;
 
+    public int changedAtk { get { return atk + characterBuffHandler.atkBuff; } }
+    public float changedMaxCoolTime { get { return maxCoolTime - characterBuffHandler.speedBuff; } }
 
     public bool IsDead => curHP <= 0;
     public string currentStateText = "´ë±âÁß";
-
-    public float curCoolTime;
-    public float maxCoolTime;
 
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
@@ -108,7 +109,7 @@ public class Character : MonoBehaviour
 
     public void CoolTimeUpdate()
     {
-        if (curCoolTime < maxCoolTime)
+        if (curCoolTime < changedMaxCoolTime)
         {
             curCoolTime += Time.deltaTime;
             battleManager.battleCanvas.UpdateActionBar();
