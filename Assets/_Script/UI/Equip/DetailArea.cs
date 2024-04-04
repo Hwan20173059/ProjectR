@@ -13,10 +13,19 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private Button _unEquipButton;
     [SerializeField] private Button _useButton;
     [SerializeField] private GameObject _activateFalseObj;
+    public ConsumeItem nowConsumeItem;
+    public EquipItem nowSelectedEquip;
+    public EquipItem lastSelectedEquip;
     public bool isEquipping;
 
+    private void Start()
+    {
+        PlayerManager.Instance.detailArea = this;
+    }
     public void ChangeSelectedItem(EquipItem e)
     {
+        lastSelectedEquip = nowSelectedEquip;
+        nowSelectedEquip = e;
         ChangeDetailActivation(false);
         _image.sprite = e.equipSprite;
         _text.text = e.data.info;
@@ -36,6 +45,7 @@ public class DetailArea : MonoBehaviour
 
     public void ChangeSelectedItem(ConsumeItem c)
     {
+        nowConsumeItem = c;
         ChangeDetailActivation(false);
         _image.sprite = c.consumeSprite;
         _text.text = c.data.info;
@@ -51,6 +61,9 @@ public class DetailArea : MonoBehaviour
         detailObject.SetActive(detailActive);
         if (!detailActive)
         {
+            nowSelectedEquip = null;
+            lastSelectedEquip = null;
+            nowConsumeItem = null;
             _equipButton.gameObject.SetActive(false);
             _unEquipButton.gameObject.SetActive(false);
         }
