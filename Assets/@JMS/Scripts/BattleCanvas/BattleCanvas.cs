@@ -22,7 +22,11 @@ public class BattleCanvas : MonoBehaviour
     MonsterStatePanel monsterStatePanel;
     BattleTextPanel battleTextPanel;
     AutoBattlePanel autoBattlePanel;
+    MenuButton menuButton;
+    MenuPanel menuPanel;
+
     InfiniteInventory infiniteInventory;
+    Settings settings;
 
     public GameObject characterHpBarPrefab;
     public GameObject monsterHpBarPrefab;
@@ -40,12 +44,16 @@ public class BattleCanvas : MonoBehaviour
         monsterStatePanel = GetComponentInChildren<MonsterStatePanel>();
         battleTextPanel = GetComponentInChildren<BattleTextPanel>();
         autoBattlePanel = GetComponentInChildren<AutoBattlePanel>();
+        menuButton = GetComponentInChildren<MenuButton>();
+        menuPanel = GetComponentInChildren<MenuPanel>();
+
         infiniteInventory = GetComponentInChildren<InfiniteInventory>();
+        settings = GetComponentInChildren<Settings>();
 
         PanelInit();
     }
 
-    private void PanelInit()
+    void PanelInit()
     {
         characterStatePanel.Init();
         actionButtonPanel.Init(battleManager);
@@ -56,6 +64,10 @@ public class BattleCanvas : MonoBehaviour
         monsterStatePanel.Init();
         battleTextPanel.Init();
         autoBattlePanel.Init(battleManager);
+        menuButton.button.onClick.AddListener(MenuPanelOn);
+        menuPanel.Init(this);
+
+        settings.gameObject.SetActive(false);
     }
 
     public void CreateCharacterHpBar(Character character)
@@ -120,7 +132,16 @@ public class BattleCanvas : MonoBehaviour
     {
         monsterStatePanel.gameObject.SetActive(true);
     }
-    
+    private void MenuPanelOn()
+    {
+        menuPanel.gameObject.SetActive(true);
+    }
+
+    public void SettingsOn()
+    {
+        settings.gameObject.SetActive(true);
+    }
+
     public void RouletteButtonOff()
     {
         actionButtonPanel.rouletteButton.gameObject.SetActive(false);
