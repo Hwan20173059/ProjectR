@@ -123,7 +123,7 @@ public class ItemManager : Singleton<ItemManager>
             string[] itemListID = saveData.itemListID.Split(" ");
             string[] itemListCount = saveData.itemListCount.Split(" ");
 
-            for (int i = 0; i < equipitemListID.Length - 1; i++)
+            for (int i = 0; i < itemListID.Length - 1; i++)
                 AddConsumeItem(int.Parse(itemListID[i]), int.Parse(itemListCount[i]));
         }
         else
