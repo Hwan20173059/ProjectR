@@ -206,13 +206,16 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.monster:
+
+                    tileMapManager.selectName.text = "몬스터";
+
                     if (battleID == 0)
                     {
                         Sprite sprite = tileMapManager.slimePrefab.GetComponent<SpriteRenderer>().sprite;
                         tileMapManager.selectImage.sprite = sprite;
                         tileMapManager.selectImage.SetNativeSize();
-                        tileMapManager.selectName.text = "슬라임 무리";
-                        tileMapManager.selectText.text = "평균 Lv. 3";
+                        
+                        tileMapManager.selectText.text = "슬라임 무리";
                         break;
                     }
                     else if (battleID == 1)
@@ -220,8 +223,8 @@ public class Tile : MonoBehaviour
                         Sprite sprite = tileMapManager.monsterPrefab.GetComponent<SpriteRenderer>().sprite;
                         tileMapManager.selectImage.sprite = sprite;
                         tileMapManager.selectImage.SetNativeSize();
-                        tileMapManager.selectName.text = "몬스터 무리";
-                        tileMapManager.selectText.text = "평균 Lv. 5";
+
+                        tileMapManager.selectText.text = "멧돼지 무리";
                         break;
                     }
                     else
@@ -229,13 +232,16 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.chest:
+
+                    tileMapManager.selectName.text = "상자";
+
                     if (chestID == 0)
                     {
                         Sprite sprite = tileMapManager.chest0Prefab.GetComponent<SpriteRenderer>().sprite;
                         tileMapManager.selectImage.sprite = sprite;
                         tileMapManager.selectImage.SetNativeSize();
-                        tileMapManager.selectName.text = "초라한 상자";
-                        tileMapManager.selectText.text = "별거 아닌 보상이 들어있다.";
+
+                        tileMapManager.selectText.text = "초라한 상자";
                         break;
                     }
                     else if (chestID == 1)
@@ -243,8 +249,8 @@ public class Tile : MonoBehaviour
                         Sprite sprite = tileMapManager.chest1Prefab.GetComponent<SpriteRenderer>().sprite;
                         tileMapManager.selectImage.sprite = sprite;
                         tileMapManager.selectImage.SetNativeSize();
-                        tileMapManager.selectName.text = "화려한 상자";
-                        tileMapManager.selectText.text = "굉장한 보상이 들어있다.";
+
+                        tileMapManager.selectText.text = "화려한 상자";
                         break;
                     }
                     else
@@ -252,18 +258,21 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.town:
+
+                    tileMapManager.selectName.text = "마을";
+
                     if (townID == 0)
                     {
                         tileMapManager.selectImage.sprite = null;
-                        tileMapManager.selectName.text = "초심자의 마을";
-                        tileMapManager.selectText.text = "초라한 마을";
+
+                        tileMapManager.selectText.text = "초심자의 마을";
                         break;
                     }
                     else if(townID == 1)
                     {
                         tileMapManager.selectImage.sprite = null;
-                        tileMapManager.selectName.text = "수도 엘더";
-                        tileMapManager.selectText.text = "엘더 성";
+
+                        tileMapManager.selectText.text = "수도 엘더";
                         break;
                     }
                     else
@@ -271,32 +280,35 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.dungeon:
+
+                    tileMapManager.selectName.text = "던전";
+
                     if (dungeonID == 0)
                     {
                         tileMapManager.selectImage.sprite = null;
-                        tileMapManager.selectName.text = "고블린 거처";
-                        tileMapManager.selectText.text = "적정 Lv 1";
+
+                        tileMapManager.selectText.text = "야생의 산";
                         break;
                     }
                     else if (dungeonID == 1)
                     {
                         tileMapManager.selectImage.sprite = null;
-                        tileMapManager.selectName.text = "슬라임 둥지";
-                        tileMapManager.selectText.text = "적정 Lv 5";
+
+                        tileMapManager.selectText.text = "슬라임 둥지";
                         break;
                     }
                     else if (dungeonID == 2)
                     {
                         tileMapManager.selectImage.sprite = null;
-                        tileMapManager.selectName.text = "미궁의 바다";
-                        tileMapManager.selectText.text = "적정 Lv 10";
+
+                        tileMapManager.selectText.text = "미궁의 바다";
                         break;
                     }
                     else if (dungeonID == 3)
                     {
                         tileMapManager.selectImage.sprite = null;
-                        tileMapManager.selectName.text = "지옥의 숲";
-                        tileMapManager.selectText.text = "적정 Lv 15";
+
+                        tileMapManager.selectText.text = "지옥의 숲";
                         break;
                     }
                     else
