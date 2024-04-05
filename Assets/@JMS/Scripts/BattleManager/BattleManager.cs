@@ -371,7 +371,8 @@ public class BattleManager : MonoBehaviour
                 break;
         }
 
-        ItemManager.Instance.ReduceConsumeItem(selectItem.data.id);
+        ItemManager.Instance.ReduceConsumeItem(selectItem);
+        battleCanvas.FreshConsumeSlot();
     }
 
     void SetRoulette()

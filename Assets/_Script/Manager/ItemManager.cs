@@ -76,18 +76,17 @@ public class ItemManager : Singleton<ItemManager>
         }
     }
 
-    public void ReduceConsumeItem(int id)
+    public void ReduceConsumeItem(ConsumeItem consumeItem)
     {
-        ConsumeItem cItem = new ConsumeItem(itemDatabase.GetCItemByKey(id));
-        if (cInventory.Contains(cItem))
+        if (cInventory.Contains(consumeItem))
         {
-            if(cItem.count > 1)
+            if(consumeItem.count > 1)
             {
-                cItem.count--;
+                consumeItem.count--;
             }
             else
             {
-                cInventory.Remove(cItem);
+                cInventory.Remove(consumeItem);
             }
         }
     }

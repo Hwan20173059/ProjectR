@@ -63,6 +63,7 @@ public class DetailArea : MonoBehaviour
         {
             _equipButton.gameObject.SetActive(false);
             _unEquipButton.gameObject.SetActive(false);
+            _useButton.gameObject.SetActive(false);
         }
     }
 

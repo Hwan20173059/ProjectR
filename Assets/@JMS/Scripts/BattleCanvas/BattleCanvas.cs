@@ -161,4 +161,9 @@ public class BattleCanvas : MonoBehaviour
     {
         battleManager.UseItem(infiniteInventory.detailArea.nowConsumeItem);
     }
+    public void FreshConsumeSlot()
+    {
+        infiniteInventory.detailArea.ChangeDetailActivation(false);
+        infiniteInventory.FreshConsumeSlot();
+    }
 }
