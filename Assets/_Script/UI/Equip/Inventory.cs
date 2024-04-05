@@ -31,19 +31,6 @@ public class Inventory : MonoBehaviour //Inventory
     protected virtual void Start()
     {
         itemManager = ItemManager.Instance;
-        itemManager.Init();
-        for (int i = 1; i <= 4; i++)
-        {
-            itemManager.AddEquipItem(i);
-        }
-        for (int i = 0; i <= 5; i++)
-        {
-            itemManager.AddConsumeItem(i);
-        }
-        for (int i = 23; i <= 31; i++)
-        {
-            itemManager.AddConsumeItem(i);
-        }
 
         FreshSlot();
         FreshConsumeSlot();

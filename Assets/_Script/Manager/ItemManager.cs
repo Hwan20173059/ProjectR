@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 [System.Serializable]
 public class EquipItem
@@ -49,11 +51,11 @@ public class ItemManager : Singleton<ItemManager>
     public List<EquipItem> eInventory = new List<EquipItem>();
     public List<ConsumeItem> cInventory = new List<ConsumeItem>();
 
-    public void Init()
+    private void Start()
     {
-        DataManager.Instance.Init();
         itemDatabase = DataManager.Instance.itemDatabase;
         baseItem = new EquipItem(itemDatabase.GetItemByKey(0));
+        LoadEquipData();
         //baseItem.data = baseEquip;
     }
 
@@ -62,6 +64,7 @@ public class ItemManager : Singleton<ItemManager>
         EquipItem eItem = new EquipItem(itemDatabase.GetItemByKey(id));
         eInventory.Add(eItem);
     }
+
     public void AddConsumeItem(int id)
     {
         ConsumeItem cItem = new ConsumeItem(itemDatabase.GetCItemByKey(id));
@@ -72,6 +75,20 @@ public class ItemManager : Singleton<ItemManager>
         else
         {
             cItem.count = 1;
+            cInventory.Add(cItem);
+        }
+    }
+
+    public void AddConsumeItem(int id, int count)
+    {
+        ConsumeItem cItem = new ConsumeItem(itemDatabase.GetCItemByKey(id));
+        if (cInventory.Contains(cItem))
+        {
+            cItem.count += count;
+        }
+        else
+        {
+            cItem.count = count;
             cInventory.Add(cItem);
         }
     }
@@ -88,6 +105,30 @@ public class ItemManager : Singleton<ItemManager>
             {
                 cInventory.Remove(consumeItem);
             }
+        }
+    }
+
+    public void LoadEquipData()
+    {
+        SaveData saveData = DataManager.Instance.saveData;
+
+        if (saveData != null)
+        {
+            string[] equipitemListID = saveData.equipitemListID.Split(" ");
+
+            for (int i = 0; i < equipitemListID.Length - 1; i++)
+                AddEquipItem(int.Parse(equipitemListID[i]));
+
+
+            string[] itemListID = saveData.itemListID.Split(" ");
+            string[] itemListCount = saveData.itemListCount.Split(" ");
+
+            for (int i = 0; i < equipitemListID.Length - 1; i++)
+                AddConsumeItem(int.Parse(itemListID[i]), int.Parse(itemListCount[i]));
+        }
+        else
+        {
+
         }
     }
 }

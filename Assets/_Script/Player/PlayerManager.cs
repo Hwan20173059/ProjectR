@@ -55,8 +55,6 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void Start()
     {
-        DataManager.Instance.Init();
-
         EquipItem baseEquip = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(0));
 
         for (int i = 0; i < 3; i++)
@@ -65,7 +63,7 @@ public class PlayerManager : Singleton<PlayerManager>
                 equip[i] = baseEquip;
         }
 
-        LoadPlayerData(0);
+        LoadCharacterData();
     }
     
     public void EquipNewItem(int n)
@@ -109,7 +107,7 @@ public class PlayerManager : Singleton<PlayerManager>
         return currentExp;
     }
 
-    public void LoadPlayerData(int index)
+    public void LoadCharacterData()
     {
         SaveData saveData = DataManager.Instance.saveData;
 
@@ -136,11 +134,11 @@ public class PlayerManager : Singleton<PlayerManager>
         }
     }
 
-    public void SavePlayerData(int index)
+    public void SavePlayerData()
     {
         SaveData saveData = new SaveData();
+        ItemManager itemManager = ItemManager.Instance;
 
-        saveData.id = index;
         saveData.playerLevel = playerLevel;
         saveData.currentExp = currentExp;
         saveData.gold = gold;
@@ -152,7 +150,12 @@ public class PlayerManager : Singleton<PlayerManager>
         string characterLevelList = "";
         string characterExpList = "";
 
-        for(int i = 0; i < this.characterList.Count; i++) 
+        string equipitemListID = "";
+
+        string itemListID = "";
+        string itemListCount = "";
+
+        for (int i = 0; i < this.characterList.Count; i++) 
         {
             characterList += this.characterList[i].baseData.id.ToString();
             characterList += " ";
@@ -164,13 +167,30 @@ public class PlayerManager : Singleton<PlayerManager>
             characterExpList += " ";
         }
 
+        for (int i = 0; i < itemManager.eInventory.Count; i++)
+        {
+            equipitemListID += itemManager.eInventory[i].data.id.ToString();
+            equipitemListID += " ";
+        }
+
+
+        for (int i = 0; i < itemManager.cInventory.Count; i++)
+        {
+            itemListID += itemManager.cInventory[i].data.id.ToString();
+            itemListID += " ";
+
+            itemListCount += itemManager.cInventory[i].count.ToString();
+            itemListCount += " ";
+        }
+
         saveData.characterListID = characterList;
         saveData.characterListLevel = characterLevelList;
-        saveData.characterListExp = characterExpList;        
+        saveData.characterListExp = characterExpList;
 
-        saveData.equipitemListID = "";
-        saveData.itemListID = "";
-        saveData.itemListCount = "";
+        saveData.equipitemListID = equipitemListID;
+
+        saveData.itemListID = itemListID;
+        saveData.itemListCount = itemListCount;
 
         string ToJsonData = JsonUtility.ToJson(saveData, true);
         string filePath = Application.persistentDataPath + "/SaveDatas.json";
@@ -180,6 +200,6 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void OnApplicationQuit()
     {
-        //SavePlayerData(0);
+       // SavePlayerData();
     }
 }

@@ -11,6 +11,8 @@ public class TitleManager : MonoBehaviour
     {
         DataManager dataManager = DataManager.Instance;
         PlayerManager playerManager = PlayerManager.Instance;
+        ItemManager itemManager = ItemManager.Instance;
+
         playerManager.titleManager = this;
     }
 
