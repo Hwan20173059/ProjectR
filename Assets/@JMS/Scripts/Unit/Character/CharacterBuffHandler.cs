@@ -9,7 +9,7 @@ public class CharacterBuffHandler
     public int speedBuff;
     public int speedDuration;
 
-    public void BuffDurationReduce()
+    public void ReduceBuffDuration()
     {
         if (atkDuration > 0)
         {

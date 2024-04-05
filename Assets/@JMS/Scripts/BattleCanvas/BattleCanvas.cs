@@ -151,8 +151,14 @@ public class BattleCanvas : MonoBehaviour
         nextStagePanel.gameObject.SetActive(false);
     }
 
-    public void OnClickItemButton()
+    public void OnClickItemUseButton()
     {
         infiniteInventory.consumeInventoryUI.SetActive(true);
+        infiniteInventory.detailArea.gameObject.SetActive(true);
+    }
+
+    public void OnClickUseButton()
+    {
+        battleManager.UseItem(infiniteInventory.detailArea.nowConsumeItem);
     }
 }

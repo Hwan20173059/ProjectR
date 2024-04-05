@@ -158,6 +158,6 @@ public class Character : MonoBehaviour
 
     public void BuffDurationReduce()
     {
-        characterBuffHandler.BuffDurationReduce();
+        characterBuffHandler.ReduceBuffDuration();
     }
 }

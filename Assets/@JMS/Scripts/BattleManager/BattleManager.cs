@@ -350,8 +350,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    ConsumeItem selectItem; // temp
-    public void OnClickUseItemButton()
+    public void UseItem(ConsumeItem selectItem)
     {
         if (!IsSelectingAction || !IsCanUseItem)
             return;
@@ -371,6 +370,8 @@ public class BattleManager : MonoBehaviour
                 character.characterBuffHandler.speedDuration = selectItem.data.turnCount;
                 break;
         }
+
+        ItemManager.Instance.ReduceConsumeItem(selectItem.data.id);
     }
 
     void SetRoulette()

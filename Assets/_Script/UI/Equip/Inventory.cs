@@ -40,6 +40,10 @@ public class Inventory : MonoBehaviour //Inventory
         {
             itemManager.AddConsumeItem(i);
         }
+        for (int i = 23; i <= 31; i++)
+        {
+            itemManager.AddConsumeItem(i);
+        }
 
         FreshSlot();
         FreshConsumeSlot();
