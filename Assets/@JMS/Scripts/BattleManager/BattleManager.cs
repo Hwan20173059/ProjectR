@@ -55,15 +55,11 @@ public class BattleManager : MonoBehaviour
 
     private WaitForSeconds waitFor1Sec = new WaitForSeconds(1f);
 
-    public GameObject consumeInventory;
-
     private void Awake()
     {
         performList = new List<int>();
 
         Input = GetComponent<PlayerInput>();
-
-        Input.ClickActions.MouseClick.started += OnClickStart;
 
         battleCanvas = GetComponentInChildren<BattleCanvas>();
 
@@ -74,6 +70,8 @@ public class BattleManager : MonoBehaviour
 
     private void Start()
     {
+        Input.ClickActions.MouseClick.started += OnClickStart;
+
         stateMachine.ChangeState(stateMachine.startState);
     }
 
@@ -361,17 +359,17 @@ public class BattleManager : MonoBehaviour
         useItemCount++;
         switch (selectItem.type)
         {
-            case Type.Potion:
+            case Type.HpPotion:
                 character.ChangeHP(selectItem.data.value);
                 break;
-            //case Type.Potion:
-            //    character.characterBuffHandler.atkBuff = selectItem.data.value;
-            //    character.characterBuffHandler.atkDuration = selectItem.data.value; // TODO. 지속시간 값으로 변경
-            //    break;
-            //case Type.Potion:
-            //    character.characterBuffHandler.speedBuff = selectItem.data.value;
-            //    character.characterBuffHandler.speedDuration = selectItem.data.value; // TODO. 지속시간 값으로 변경
-            //    break;
+            case Type.AttackBuffPotion:
+                character.characterBuffHandler.atkBuff = selectItem.data.value;
+                character.characterBuffHandler.atkDuration = selectItem.data.turnCount;
+                break;
+            case Type.SpeedBuffPotion:
+                character.characterBuffHandler.speedBuff = selectItem.data.value;
+                character.characterBuffHandler.speedDuration = selectItem.data.turnCount;
+                break;
         }
     }
 
@@ -490,10 +488,5 @@ public class BattleManager : MonoBehaviour
                 }
             default: return baseValue;
         }
-    }
-
-    public void OnClickItemButton()
-    {
-        consumeInventory.SetActive(true);
     }
 }

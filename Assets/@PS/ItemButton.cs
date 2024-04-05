@@ -10,8 +10,4 @@ public class ItemButton : MonoBehaviour
     {
         button = GetComponent<Button>();
     }
-
-    private void Start()
-    {
-    }
 }

@@ -22,6 +22,7 @@ public class BattleCanvas : MonoBehaviour
     MonsterStatePanel monsterStatePanel;
     BattleTextPanel battleTextPanel;
     AutoBattlePanel autoBattlePanel;
+    InfiniteInventory infiniteInventory;
 
     public GameObject characterHpBarPrefab;
     public GameObject monsterHpBarPrefab;
@@ -39,6 +40,7 @@ public class BattleCanvas : MonoBehaviour
         monsterStatePanel = GetComponentInChildren<MonsterStatePanel>();
         battleTextPanel = GetComponentInChildren<BattleTextPanel>();
         autoBattlePanel = GetComponentInChildren<AutoBattlePanel>();
+        infiniteInventory = GetComponentInChildren<InfiniteInventory>();
 
         PanelInit();
     }
@@ -126,5 +128,10 @@ public class BattleCanvas : MonoBehaviour
     public void NextStagePanelOff()
     {
         nextStagePanel.gameObject.SetActive(false);
+    }
+
+    public void OnClickItemButton()
+    {
+        infiniteInventory.consumeInventoryUI.SetActive(true);
     }
 }
