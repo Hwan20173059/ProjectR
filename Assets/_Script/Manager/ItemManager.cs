@@ -67,13 +67,14 @@ public class ItemManager : Singleton<ItemManager>
 
     public void AddConsumeItem(int id)
     {
-        ConsumeItem cItem = new ConsumeItem(itemDatabase.GetCItemByKey(id));
-        if (cInventory.Contains(cItem))
+        int index = cInventory.FindIndex(c => c.data.id == id);
+        if (index != -1)
         {
-            cItem.count++;
+            cInventory[index].count++;
         }
         else
         {
+            ConsumeItem cItem = new ConsumeItem(itemDatabase.GetCItemByKey(id));
             cItem.count = 1;
             cInventory.Add(cItem);
         }
