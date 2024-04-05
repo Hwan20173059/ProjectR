@@ -64,50 +64,45 @@
 	"consumeDatas": [
 		{
 			"id": 0,
-			"spritePath": "Sprite/Food/Potato.png",
+			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "루비 가루",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 5,
 			"info": "잘게 부서진 루비이다.",
 			"price": 5
 		},
 		{
 			"id": 1,
-			"spritePath": "Sprite/Food/Potato",
+			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "루비 조각",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 15,
 			"info": "루비에서 떨어져 나온 조각이다.",
 			"price": 15
 		},
 		{
 			"id": 2,
-			"spritePath": "Sprite/Food/Potato",
+			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "루비",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 50,
 			"info": "온전한 루비이다.",
 			"price": 50
 		},
 		{
 			"id": 3,
-			"spritePath": "Sprite/Food/Potato",
+			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "사파이어 가루",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 5,
 			"info": "잘게 부서진 사파이어이다.",
 			"price": 5
 		},
 		{
 			"id": 4,
-			"spritePath": "Resources/Sprite/Food/Potato",
+			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "사파이어 조각",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 15,
 			"info": "사파이어에서 떨어져 나온 조각이다.",
 			"price": 15
@@ -117,7 +112,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "사파이어",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 50,
 			"info": "온전한 사파이어이다.",
 			"price": 50
@@ -127,7 +121,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "에메랄드 가루",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 5,
 			"info": "잘게 부서진 에메랄드이다.",
 			"price": 5
@@ -137,7 +130,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "에메랄드 조각",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 15,
 			"info": "에메랄드에서 떨어져 나온 조각이다.",
 			"price": 15
@@ -147,7 +139,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "에메랄드",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 50,
 			"info": "온전한 에메랄드이다.",
 			"price": 50
@@ -157,7 +148,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "토파즈 가루",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 5,
 			"info": "잘게 부서진 토파즈이다.",
 			"price": 5
@@ -167,7 +157,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "토파즈 조각",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 15,
 			"info": "토파즈에서 떨어져 나온 조각이다.",
 			"price": 15
@@ -177,7 +166,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "토파즈",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 50,
 			"info": "온전한 토파즈이다.",
 			"price": 50
@@ -187,7 +175,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "다이아몬드 가루",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 5,
 			"info": "잘게 부서진 다이아몬드이다.",
 			"price": 5
@@ -197,7 +184,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "다이아몬드 조각",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 15,
 			"info": "다이아몬드에서 떨어져 나온 조각이다.",
 			"price": 15
@@ -207,7 +193,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "다이아몬드",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 50,
 			"info": "온전한 다이아몬드이다.",
 			"price": 50
@@ -217,7 +202,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "아쿠아마린 가루",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 5,
 			"info": "잘게 부서진 아쿠아마린이다.",
 			"price": 5
@@ -227,7 +211,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "아쿠아마린 조각",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 15,
 			"info": "아쿠아마린에서 떨어져 나온 조각이다.",
 			"price": 15
@@ -237,7 +220,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "아쿠아마린",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 50,
 			"info": "온전한 아쿠아마린이다.",
 			"price": 50
@@ -247,7 +229,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "스켈레톤의 뼈",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 3,
 			"info": "스켈레톤이 죽고 남긴 뼈이다.",
 			"price": 3
@@ -257,7 +238,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "슬라임 진액",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 3,
 			"info": "슬라임의 진액이다. 끈적끈적하다.",
 			"price": 3
@@ -267,7 +247,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "박쥐 날개",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 3,
 			"info": "박쥐의 날개이다.",
 			"price": 3
@@ -277,7 +256,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "고블린의 이빨",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 3,
 			"info": "고블린의 이빨이다.",
 			"price": 3
@@ -287,7 +265,6 @@
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "오우거의 가죽",
 			"type": "Drop",
-			"trunCount": 0,
 			"value": 10,
 			"info": "오우거의 가죽. 매우 질기다.",
 			"price": 10
@@ -296,8 +273,7 @@
 			"id": 23,
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "소형 체력 포션",
-			"type": "HpPotion",
-			"trunCount": 0,
+			"type": "Potion",
 			"value": 20,
 			"info": "약간의 체력이 회복된다.",
 			"price": 20
@@ -306,8 +282,7 @@
 			"id": 24,
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "중형 체력 포션",
-			"type": "HpPotion",
-			"trunCount": 0,
+			"type": "Potion",
 			"value": 50,
 			"info": "체력이 회복된다.",
 			"price": 50
@@ -316,8 +291,7 @@
 			"id": 25,
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "대형 체력 포션",
-			"type": "HpPotion",
-			"trunCount": 0,
+			"type": "Potion",
 			"value": 100,
 			"info": "체력이 대폭 회복된다.",
 			"price": 100
@@ -325,9 +299,8 @@
 		{
 			"id": 26,
 			"spritePath": "Resources/Sprite/Food/Potato.png",
-			"consumeName": "소형 공격력 포션",
-			"type": "AttackBuffPotion",
-			"trunCount": 1,
+			"consumeName": "소형 행운 포션",
+			"type": "Potion",
 			"value": 20,
 			"info": "행운이 약간 상승한다.",
 			"price": 20
@@ -335,9 +308,8 @@
 		{
 			"id": 27,
 			"spritePath": "Resources/Sprite/Food/Potato.png",
-			"consumeName": "중형 공격력 포션",
-			"type": "AttackBuffPotion",
-			"trunCount": 2,
+			"consumeName": "중형 행운 포션",
+			"type": "Potion",
 			"value": 50,
 			"info": "행운이 중폭 상승한다.",
 			"price": 50
@@ -345,9 +317,8 @@
 		{
 			"id": 28,
 			"spritePath": "Resources/Sprite/Food/Potato.png",
-			"consumeName": "대형 공격력 포션",
-			"trunCount": 2,
-			"type": "AttackBuffPotion",
+			"consumeName": "대형 행운 포션",
+			"type": "Potion",
 			"value": 100,
 			"info": "행운이 대폭 상승한다.",
 			"price": 100
@@ -356,8 +327,7 @@
 			"id": 29,
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "소형 민첩 포션",
-			"trunCount": 1,
-			"type": "SpeedBuffPotion",
+			"type": "Potion",
 			"value": 20,
 			"info": "행동이 약간 빨라진다.",
 			"price": 20
@@ -366,8 +336,7 @@
 			"id": 30,
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "중형 민첩 포션",
-			"trunCount": 2,
-			"type": "SpeedBuffPotion",
+			"type": "Potion",
 			"value": 50,
 			"info": "행동이 중폭 빨라진다.",
 			"price": 50
@@ -376,8 +345,7 @@
 			"id": 31,
 			"spritePath": "Resources/Sprite/Food/Potato.png",
 			"consumeName": "대형 민첩 포션",
-			"trunCount": 2,
-			"type": "SpeedBuffPotion",
+			"type": "Potion",
 			"value": 100,
 			"info": "행동이 대폭 빨라진다.",
 			"price": 100

@@ -5,8 +5,11 @@ using UnityEngine;
 
 public enum Type
 {
-    Potion,
-    Drop
+    AttackBuffPotion,
+    SpeedBuffPotion,
+    HpPotion,
+    Drop,
+    DungeonItem
 }
 
 [System.Serializable]
@@ -17,6 +20,7 @@ public class Consume
     public string consumeName;
     public string type;
     public int value;
+    public int turnCount;
     public string info;
     public int price;
 }

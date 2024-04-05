@@ -24,9 +24,9 @@ public class DetailArea : MonoBehaviour
     }
     public void ChangeSelectedItem(EquipItem e)
     {
+        ChangeDetailActivation(false);
         lastSelectedEquip = nowSelectedEquip;
         nowSelectedEquip = e;
-        ChangeDetailActivation(false);
         _image.sprite = e.equipSprite;
         _text.text = e.data.info;
         if (e.data.id != 0)
@@ -45,11 +45,11 @@ public class DetailArea : MonoBehaviour
 
     public void ChangeSelectedItem(ConsumeItem c)
     {
-        nowConsumeItem = c;
         ChangeDetailActivation(false);
+        nowConsumeItem = c;
         _image.sprite = c.consumeSprite;
         _text.text = c.data.info;
-        if(c.type == Type.Potion)
+        if(c.type != Type.Drop && c.type != Type.DungeonItem)
         {
             _useButton.gameObject.SetActive(true);
         }
@@ -61,9 +61,6 @@ public class DetailArea : MonoBehaviour
         detailObject.SetActive(detailActive);
         if (!detailActive)
         {
-            nowSelectedEquip = null;
-            lastSelectedEquip = null;
-            nowConsumeItem = null;
             _equipButton.gameObject.SetActive(false);
             _unEquipButton.gameObject.SetActive(false);
         }

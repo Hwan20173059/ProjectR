@@ -41,10 +41,7 @@ public class NowEquippedItemSlot : MonoBehaviour
     {
         if (detailArea.isEquipping)
         {
-            playerManager.equip[n].isEquipped = false;
-            playerManager.equip[n] = detailArea.lastSelectedEquip;
-            playerManager.equip[n].isEquipped = true;
-            //playerManager.EquipNewItem(n);
+            playerManager.EquipNewItem(n);
 
             detailArea.isEquipping = false;
             detailArea.UnActiveEquippingState();

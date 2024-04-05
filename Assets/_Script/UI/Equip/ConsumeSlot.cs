@@ -7,7 +7,7 @@ using TMPro;
 
 public class ConsumeSlot : MonoBehaviour
 {
-    private DetailArea detailArea;
+    public DetailArea detailArea;
     [SerializeField] private Image image;
     [SerializeField] private TextMeshProUGUI countTxt;
 
