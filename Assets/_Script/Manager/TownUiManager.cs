@@ -23,7 +23,7 @@ public class TownUiManager : MonoBehaviour
     public TextMeshProUGUI townName;
 
     [Header("UI")]
-    public GameObject characterUI;
+    public CharacterUI characterUI;
     public GameObject inventoryUI;
     public GameObject detailArea1;
     public GameObject dungeonUI;
@@ -38,11 +38,6 @@ public class TownUiManager : MonoBehaviour
     public GameObject equipInventoryUI;
     public NowEquippedItemSlot nEquipItemSlot;
     public DetailArea detailArea;
-    public EquipItem nowSelectedEquip;
-    public EquipItem lastSelectedEquip;
-
-    public GameObject consumeInventoryUI;
-    public ConsumeItem nowSelectedConsume;
 
     private void Start()
     {
@@ -52,21 +47,23 @@ public class TownUiManager : MonoBehaviour
         playerManager.isField = false;
         playerManager.isTown = true;
 
+        PlayerInfoRefresh();
         TownInfoRefresh();
+        townPlayer.init();
     }
 
     public void CharacterUIOn()
     {
-        characterUI.SetActive(true);
+        characterUI.CharacterUIon();
         characterUI.GetComponentInChildren<CharacterSelectSlot>().Init();
     }
 
     public void CharacterUIOff()
     {
-        characterUI.SetActive(false);
+        characterUI.CharacterUIoff();
     }
 
-    public void DungeonUIOn()
+    public void GoField()
     {
         if (playerManager.selectTownID == 0)
         {
@@ -80,11 +77,6 @@ public class TownUiManager : MonoBehaviour
         }
 
         SceneManager.LoadScene("FieldScene");
-    }
-
-    public void DungeonUIOff()
-    {
-        dungeonUI.SetActive(false);
     }
 
     public void GuildUIOn()
@@ -136,55 +128,20 @@ public class TownUiManager : MonoBehaviour
         optionUI.SetActive(false);
     }
 
-    public void OpenInventory()
-    {
-        inventory.FreshSlot();
-        detailArea.ChangeDetailActivation(false);
-        equipInventoryUI.SetActive(true);
-        detailArea.gameObject.SetActive(true);
-    }
-    public void CloseInventory()
-    {
-        equipInventoryUI.SetActive(false);
-        consumeInventoryUI.SetActive(false);
-        detailArea.gameObject.SetActive(false);
-    }
-
-    public void OpenConsumeInventory()
-    {
-        inventory.FreshConsumeSlot();
-        detailArea.ChangeDetailActivation(false);
-        consumeInventoryUI.SetActive(true);
-        detailArea.gameObject.SetActive(true);
-    }
-
-    public void FreshAfterEquip()
-    {
-        nowSelectedEquip = null;
-        lastSelectedEquip = null;
-        detailArea.ChangeDetailActivation(false);
-        nEquipItemSlot.FreshEquippedSlot();
-    }
-
     public void PlayerInfoRefresh()
     {
         //playerName.text = playerManager.name;
         playerName.text = "모험가";
         playerLevel.text = "Lv. " + playerManager.playerLevel;
-        playerGold.text = "골드 : " + playerManager.gold.ToString();
+        playerGold.text = "<sprite=0> " + playerManager.gold;
         playerExp.value = (float)playerManager.currentExp / (float)playerManager.needExp;
     }
 
     public void TownInfoRefresh()
     {
-        switch (playerManager.selectTownID)
-        {
-            case 0:
-                townName.text = "초심자의 마을";
-                break;
-            case 1:
-                townName.text = "수도 엘더";
-                break;
-        }
+        if (playerManager.selectTownID == 0)
+            townName.text = "초심자의 마을";
+        else if (playerManager.selectTownID == 1)
+            townName.text = "수도 엘더";
     }
 }

@@ -62,14 +62,24 @@ public class TileMapManager : MonoBehaviour
 
     public void CharacterUIRefresh()
     {
-        playerImage.sprite = playerManager.characterList[playerManager.selectedCharacterIndex].sprite;
-        playerName.text = playerManager.characterList[playerManager.selectedCharacterIndex].characterName;
-        playerLevel.text = "Lv. " + playerManager.characterList[playerManager.selectedCharacterIndex].level;
-        playerHp.text = "HP " + playerManager.characterList[playerManager.selectedCharacterIndex].curHP + " / " + playerManager.characterList[playerManager.selectedCharacterIndex].maxHP ;
+        Character playerCharacter = playerManager.characterList[playerManager.selectedCharacterIndex];
+
+        playerImage.sprite = playerCharacter.sprite;
+        playerImage.SetNativeSize();
+        playerName.text = playerCharacter.characterName;
+        playerLevel.text = "Lv. " + playerCharacter.level;
+        playerHp.text = "HP " + playerCharacter.curHP + " / " + playerCharacter.maxHP ;
+    }
+
+    public void SelectUIRefresh()
+    {
+        
     }
 
     public void PlayerTurn()
     {
+        playerTurnIndex = playerManager.playerTurnIndex;
+
         fieldState = FieldState.playerTurn;
 
         turnIndex.text = "남은 이동 횟수 : " + playerTurnIndex;
@@ -78,13 +88,18 @@ public class TileMapManager : MonoBehaviour
         CharacterUIRefresh();
         
         turnAnimator.SetTrigger("Turn");
-        isPlayerturn = true;     
+        Invoke("IsPlayerTurnOn", 1.5f);
     }
 
     public void StillPlayerTurn()
     {
         fieldState = FieldState.playerTurn;
         turnIndex.text = "남은 이동 횟수 : " + playerTurnIndex;
+        isPlayerturn = true;
+    }
+
+    private void IsPlayerTurnOn()
+    {
         isPlayerturn = true;
     }
 
@@ -138,7 +153,6 @@ public class TileMapManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
 
-        playerTurnIndex = playerManager.playerTurnIndex;
         PlayerTurn();
     }
 
@@ -354,10 +368,9 @@ public class TileMapManager : MonoBehaviour
         ChestUI.SetActive(false);
 
         if (playerTurnIndex > 0)
-            PlayerTurn();
+            StillPlayerTurn();
         else
         {
-            playerTurnIndex = playerManager.playerTurnIndex;
             AEnemyTurn();
         }
     }

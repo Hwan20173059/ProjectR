@@ -46,7 +46,7 @@ public class DungeonManager : TileMapManager
                 PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
 
                 if (playerTurnIndex > 0)
-                    PlayerTurn();
+                    StillPlayerTurn();
                 else
                     AEnemyTurn();
                 
@@ -58,6 +58,7 @@ public class DungeonManager : TileMapManager
             }
         }
 
+        CharacterUIRefresh();
         currentTile = field.tileRaw[0].fieldTiles[0];
 
         playerManager.isField = false;

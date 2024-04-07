@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
@@ -24,15 +23,20 @@ public class Character : MonoBehaviour
     public int maxHP;
     public int curHP;
     public int atk;
-    public bool IsDead => curHP <= 0;
-    public string currentStateText = "대기중";
 
     public float curCoolTime;
     public float maxCoolTime;
 
+    public int changedAtk { get { return atk + characterBuffHandler.atkBuff; } }
+    public float changedMaxCoolTime { get { return maxCoolTime - characterBuffHandler.speedBuff; } }
+
+    public bool IsDead => curHP <= 0;
+    public string currentStateText = "대기중";
+
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
+    public CharacterBuffHandler characterBuffHandler;
     public Animator animator {  get; private set; }
 
     public CharacterHpBar hpBar;
@@ -44,6 +48,8 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
+        characterBuffHandler = new CharacterBuffHandler();
+
         stateMachine = new CharacterStateMachine(this);
 
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -100,6 +106,22 @@ public class Character : MonoBehaviour
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
     }
 
+    public void CoolTimeUpdate()
+    {
+        if (curCoolTime < changedMaxCoolTime)
+        {
+            curCoolTime += Time.deltaTime;
+            battleManager.battleCanvas.UpdateActionBar();
+        }
+        else
+        {
+            if (battleManager.IsAutoBattle)
+                stateMachine.ChangeState(stateMachine.autoSelectState);
+            else
+                stateMachine.ChangeState(stateMachine.selectActionState);
+        }
+    }
+
     public void ChangeHP(int change)
     {
         curHP += change;
@@ -132,5 +154,10 @@ public class Character : MonoBehaviour
         needExp = baseData.needExp * level;
         curExp = curExp >= needExp ? LevelUp() : curExp;
         return curExp;
+    }
+
+    public void BuffDurationReduce()
+    {
+        characterBuffHandler.ReduceBuffDuration();
     }
 }

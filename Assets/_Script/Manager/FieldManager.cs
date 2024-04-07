@@ -33,6 +33,7 @@ public class FieldManager : TileMapManager
         }
 
         currentTile = field.tileRaw[playerManager.fieldY].fieldTiles[playerManager.fieldX];
+        CharacterUIRefresh();
 
         playerManager.isField = true;
         playerManager.isTown = false;

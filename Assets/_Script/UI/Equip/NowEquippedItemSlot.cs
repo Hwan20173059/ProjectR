@@ -7,8 +7,9 @@ using UnityEngine;
 public class NowEquippedItemSlot : MonoBehaviour
 {
     private PlayerManager playerManager;
-    [SerializeField] private TownUiManager townUiManager;
-    [SerializeField] private ItemManager itemManager;
+    [SerializeField] private DetailArea detailArea;
+    [SerializeField] private Inventory inventory;
+    private ItemManager itemManager;
 
     [SerializeField] protected Transform nowEquipParent; 
     [SerializeField] protected List<EquipSlot> nowEquipSlots;
@@ -16,6 +17,11 @@ public class NowEquippedItemSlot : MonoBehaviour
     private void OnValidate()
     {
         nowEquipParent.GetComponentsInChildren<EquipSlot>(includeInactive: true, result: nowEquipSlots);
+    }
+
+    private void Awake()
+    {
+        itemManager = ItemManager.Instance;
     }
     private void Start()
     {
@@ -33,16 +39,13 @@ public class NowEquippedItemSlot : MonoBehaviour
 
     public void ChangeSelectedEquip(int n)
     {
-        if (townUiManager.detailArea.isEquipping)
+        if (detailArea.isEquipping)
         {
-            playerManager.equip[n].isEquipped = false;
-            playerManager.equip[n] = townUiManager.lastSelectedEquip;
-            playerManager.equip[n].isEquipped = true;
-            //playerManager.EquipNewItem(n);
+            playerManager.EquipNewItem(n);
 
-            townUiManager.detailArea.isEquipping = false;
-            townUiManager.detailArea.UnActiveEquippingState();
-            townUiManager.FreshAfterEquip();
+            detailArea.isEquipping = false;
+            detailArea.UnActiveEquippingState();
+            inventory.FreshAfterEquip();
         }
     }
 
@@ -50,13 +53,13 @@ public class NowEquippedItemSlot : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            if (playerManager.equip[i] == townUiManager.nowSelectedEquip)
+            if (playerManager.equip[i] == detailArea.nowSelectedEquip)
             {
                 playerManager.equip[i].isEquipped = false;
                 playerManager.equip[i] = itemManager.baseItem;
                 break;
             }
         }
-        townUiManager.FreshAfterEquip();
+        inventory.FreshAfterEquip();
     }
 }

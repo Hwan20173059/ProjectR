@@ -2,8 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 [System.Serializable]
 public class EquipItem
@@ -41,35 +43,93 @@ public class ConsumeItem
     }
 }
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : Singleton<ItemManager>
 {
-    public EquipItem baseItem;
-    public List<EquipItem> eInventory;
-    public List<ConsumeItem> cInventory;
+    private ItemDatabase itemDatabase;
 
-    public void Init()
+    public EquipItem baseItem;
+    public List<EquipItem> eInventory = new List<EquipItem>();
+    public List<ConsumeItem> cInventory = new List<ConsumeItem>();
+
+    private void Start()
     {
-        DataManager.Instance.Init();
-        baseItem = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(0));
+        itemDatabase = DataManager.Instance.itemDatabase;
+        baseItem = new EquipItem(itemDatabase.GetItemByKey(0));
+        LoadEquipData();
         //baseItem.data = baseEquip;
     }
 
     public void AddEquipItem(int id)
     {
-        EquipItem eItem = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(id));
+        EquipItem eItem = new EquipItem(itemDatabase.GetItemByKey(id));
         eInventory.Add(eItem);
     }
+
     public void AddConsumeItem(int id)
     {
-        ConsumeItem cItem = new ConsumeItem(DataManager.Instance.itemDatabase.GetCItemByKey(id));
-        if (cInventory.Contains(cItem))
+        int index = cInventory.FindIndex(c => c.data.id == id);
+        if (index != -1)
         {
-            cItem.count++;
+            cInventory[index].count++;
         }
         else
         {
+            ConsumeItem cItem = new ConsumeItem(itemDatabase.GetCItemByKey(id));
             cItem.count = 1;
             cInventory.Add(cItem);
+        }
+    }
+
+    public void AddConsumeItem(int id, int count)
+    {
+        ConsumeItem cItem = new ConsumeItem(itemDatabase.GetCItemByKey(id));
+        if (cInventory.Contains(cItem))
+        {
+            cItem.count += count;
+        }
+        else
+        {
+            cItem.count = count;
+            cInventory.Add(cItem);
+        }
+    }
+
+    public void ReduceConsumeItem(ConsumeItem consumeItem)
+    {
+        if (cInventory.Contains(consumeItem))
+        {
+            if(consumeItem.count > 1)
+            {
+                consumeItem.count--;
+            }
+            else
+            {
+                cInventory.Remove(consumeItem);
+            }
+        }
+    }
+
+    public void LoadEquipData()
+    {
+        SaveData saveData = DataManager.Instance.saveData;
+
+        if (saveData != null)
+        {
+            string[] equipitemListID = saveData.equipitemListID.Split(" ");
+
+            for (int i = 0; i < equipitemListID.Length - 1; i++)
+                AddEquipItem(int.Parse(equipitemListID[i]));
+
+
+            string[] itemListID = saveData.itemListID.Split(" ");
+            string[] itemListCount = saveData.itemListCount.Split(" ");
+
+            for (int i = 0; i < itemListID.Length - 1; i++)
+                AddConsumeItem(int.Parse(itemListID[i]), int.Parse(itemListCount[i]));
+        }
+        else
+        {
+
         }
     }
 }

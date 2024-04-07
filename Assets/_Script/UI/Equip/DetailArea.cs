@@ -13,11 +13,20 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private Button _unEquipButton;
     [SerializeField] private Button _useButton;
     [SerializeField] private GameObject _activateFalseObj;
+    public ConsumeItem nowConsumeItem;
+    public EquipItem nowSelectedEquip;
+    public EquipItem lastSelectedEquip;
     public bool isEquipping;
 
+    private void Start()
+    {
+        PlayerManager.Instance.detailArea = this;
+    }
     public void ChangeSelectedItem(EquipItem e)
     {
         ChangeDetailActivation(false);
+        lastSelectedEquip = nowSelectedEquip;
+        nowSelectedEquip = e;
         _image.sprite = e.equipSprite;
         _text.text = e.data.info;
         if (e.data.id != 0)
@@ -37,9 +46,10 @@ public class DetailArea : MonoBehaviour
     public void ChangeSelectedItem(ConsumeItem c)
     {
         ChangeDetailActivation(false);
+        nowConsumeItem = c;
         _image.sprite = c.consumeSprite;
         _text.text = c.data.info;
-        if(c.type == Type.Potion)
+        if(c.type != Type.Drop && c.type != Type.DungeonItem)
         {
             _useButton.gameObject.SetActive(true);
         }
@@ -53,6 +63,7 @@ public class DetailArea : MonoBehaviour
         {
             _equipButton.gameObject.SetActive(false);
             _unEquipButton.gameObject.SetActive(false);
+            _useButton.gameObject.SetActive(false);
         }
     }
 

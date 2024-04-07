@@ -15,10 +15,6 @@ public class DataManager : Singleton<DataManager>
     {
         LoadBattleDatas();
         LoadSaveData();
-    }
-
-    public void Init()
-    {
         LoadEquipDatas();
     }
 

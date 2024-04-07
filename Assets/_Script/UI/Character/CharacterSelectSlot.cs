@@ -22,6 +22,7 @@ public class CharacterSelectSlot : MonoBehaviour
             slotPrefab.characterData = PlayerManager.Instance.characterList[i];
             slotPrefab.characterSelectSlot = this;
             characterSlots.Add(Instantiate(slotPrefab, this.transform));
+            characterSlots[i].Init();
         }
     }
 

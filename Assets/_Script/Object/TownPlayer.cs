@@ -7,9 +7,10 @@ public class TownPlayer : MonoBehaviour
     public Character character;
     public SpriteRenderer spriteRenderer;
 
-    private void Start()
+    public void init()
     {
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        character = PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex];
 
         Refresh();
     }

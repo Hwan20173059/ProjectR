@@ -18,11 +18,11 @@ public class ShopItems : MonoBehaviour
 
     private void Start()
     {
-        DataManager.Instance.Init();
         for(int i = 23;  i <= 31; i++)
         {
             shopItemList.Add(new ConsumeItem(DataManager.Instance.itemDatabase.GetCItemByKey(i)));
         }
+
         FreshShop();
     }
 

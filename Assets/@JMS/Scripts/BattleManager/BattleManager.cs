@@ -38,6 +38,8 @@ public class BattleManager : MonoBehaviour
     public bool IsRouletteUsed = true;
     public bool IsUsingRoulette = false;
     public bool IsAutoBattle = false;
+    public bool IsCanUseItem => useItemCount < 3;
+    public int useItemCount = 0;
 
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
     Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
@@ -69,8 +71,6 @@ public class BattleManager : MonoBehaviour
     private void Start()
     {
         Input.ClickActions.MouseClick.started += OnClickStart;
-
-        
 
         stateMachine.ChangeState(stateMachine.startState);
     }
@@ -348,6 +348,31 @@ public class BattleManager : MonoBehaviour
             character.curCoolTime = 0f;
             character.stateMachine.ChangeState(character.stateMachine.readyState);
         }
+    }
+
+    public void UseItem(ConsumeItem selectItem)
+    {
+        if (!IsSelectingAction || !IsCanUseItem)
+            return;
+
+        useItemCount++;
+        switch (selectItem.type)
+        {
+            case Type.HpPotion:
+                character.ChangeHP(selectItem.data.value);
+                break;
+            case Type.AttackBuffPotion:
+                character.characterBuffHandler.atkBuff = selectItem.data.value;
+                character.characterBuffHandler.atkDuration = selectItem.data.turnCount;
+                break;
+            case Type.SpeedBuffPotion:
+                character.characterBuffHandler.speedBuff = selectItem.data.value;
+                character.characterBuffHandler.speedDuration = selectItem.data.turnCount;
+                break;
+        }
+
+        ItemManager.Instance.ReduceConsumeItem(selectItem);
+        battleCanvas.FreshConsumeSlot();
     }
 
     void SetRoulette()

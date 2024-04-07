@@ -17,22 +17,6 @@ public class CharacterReadyState : CharacterBaseState
     public override void Update()
     {
         base.Update();
-        CoolTimeUpdate();
-    }
-
-    void CoolTimeUpdate()
-    {
-        if(character.curCoolTime < character.maxCoolTime)
-        {
-            character.curCoolTime += Time.deltaTime;
-            battleManager.battleCanvas.UpdateActionBar();
-        }
-        else
-        {
-            if (battleManager.IsAutoBattle)
-                stateMachine.ChangeState(stateMachine.autoSelectState);
-            else
-                stateMachine.ChangeState(stateMachine.selectActionState);
-        }
+        character.CoolTimeUpdate();
     }
 }
