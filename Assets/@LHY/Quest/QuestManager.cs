@@ -254,4 +254,21 @@ public class QuestManager : MonoBehaviour
         NewquestMap[id].state = state;
         GameEventManager.instance.questEvent.QuestStateChange(quest);
     }
+
+
+
+
+
+
+
+
+    //test¸¦ À§ÇÑ cheat button
+    public void QuestClear()
+    {
+        foreach (Quest quest in NewquestMap.Values)
+        {
+            GameEventManager.instance.questEvent.QuestStateChange(quest);
+            ChangeQuestState(quest.info.id, QuestState.Requirments_Not);
+        }
+    }
 }

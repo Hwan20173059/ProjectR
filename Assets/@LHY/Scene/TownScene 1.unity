@@ -2766,6 +2766,53 @@ MonoBehaviour:
   _unEquipButton: {fileID: 663397913}
   _useButton: {fileID: 1556357227}
   _activateFalseObj: {fileID: 591563261}
+  nowConsumeItem:
+    count: 0
+    consumeSprite: {fileID: 0}
+    type: 0
+    data:
+      id: 0
+      spritePath: 
+      consumeName: 
+      type: 
+      value: 0
+      turnCount: 0
+      info: 
+      price: 0
+  nowSelectedEquip:
+    isEquipped: 0
+    equipSprite: {fileID: 0}
+    data:
+      id: 0
+      spritePath: 
+      equipName: 
+      singleValue: 0
+      singleChangeType: 
+      doubleValue: 0
+      doubleChangeType: 
+      tripleValue: 0
+      tripleChangeType: 
+      info: 
+    singleChangeType: 0
+    doubleChangeType: 0
+    tripleChangeType: 0
+  lastSelectedEquip:
+    isEquipped: 0
+    equipSprite: {fileID: 0}
+    data:
+      id: 0
+      spritePath: 
+      equipName: 
+      singleValue: 0
+      singleChangeType: 
+      doubleValue: 0
+      doubleChangeType: 
+      tripleValue: 0
+      tripleChangeType: 
+      info: 
+    singleChangeType: 0
+    doubleChangeType: 0
+    tripleChangeType: 0
   isEquipping: 0
 --- !u!114 &256640399
 MonoBehaviour:
@@ -3002,53 +3049,6 @@ MonoBehaviour:
   equipInventoryUI: {fileID: 501002939}
   nEquipItemSlot: {fileID: 907160600}
   detailArea: {fileID: 256640398}
-  nowSelectedEquip:
-    isEquipped: 0
-    equipSprite: {fileID: 0}
-    data:
-      id: 0
-      spritePath: 
-      equipName: 
-      singleValue: 0
-      singleChangeType: 
-      doubleValue: 0
-      doubleChangeType: 
-      tripleValue: 0
-      tripleChangeType: 
-      info: 
-    singleChangeType: 0
-    doubleChangeType: 0
-    tripleChangeType: 0
-  lastSelectedEquip:
-    isEquipped: 0
-    equipSprite: {fileID: 0}
-    data:
-      id: 0
-      spritePath: 
-      equipName: 
-      singleValue: 0
-      singleChangeType: 
-      doubleValue: 0
-      doubleChangeType: 
-      tripleValue: 0
-      tripleChangeType: 
-      info: 
-    singleChangeType: 0
-    doubleChangeType: 0
-    tripleChangeType: 0
-  consumeInventoryUI: {fileID: 1095651770}
-  nowSelectedConsume:
-    count: 0
-    consumeSprite: {fileID: 0}
-    type: 0
-    data:
-      id: 0
-      spritePath: 
-      consumeName: 
-      type: 
-      value: 0
-      info: 
-      price: 0
 --- !u!1 &297563667
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,7 +5602,7 @@ MonoBehaviour:
     sentences:
     - "\uC774\uACF3\uC740 \uAE38\uB4DC \uC785\uB2C8\uB2E4."
     - "\uD018\uC2A4\uD2B8\uB97C \uC9C4\uD589\uD569\uB2C8\uB2E4."
-  activeUI: {fileID: 1101682878}
+  activeUI: {fileID: 1005739874089096909}
 --- !u!1 &555611425
 GameObject:
   m_ObjectHideFlags: 0
@@ -6257,7 +6257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7246aeb3824b34eb7c395d9e1ed8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  townUiManager: {fileID: 294579729}
+  detailArea: {fileID: 0}
   image: {fileID: 1896502404}
 --- !u!114 &651173305
 MonoBehaviour:
@@ -7941,8 +7941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f560b59ae8e6c34429e53324be87c17a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  townUiManager: {fileID: 294579729}
-  itemManager: {fileID: 1569666160}
+  detailArea: {fileID: 0}
+  inventory: {fileID: 0}
   nowEquipParent: {fileID: 907160599}
   nowEquipSlots:
   - {fileID: 651173304}
@@ -9547,6 +9547,7 @@ RectTransform:
   - {fileID: 221353472}
   - {fileID: 1472894682}
   - {fileID: 388925219}
+  - {fileID: 4922741950922308799}
   - {fileID: 1101682879}
   - {fileID: 7684771547194865551}
   - {fileID: 1372420374}
@@ -9831,12 +9832,13 @@ MonoBehaviour:
   slotParent: {fileID: 1149580014}
   slots:
   - {fileID: 1370035124}
-  cbag: {fileID: 1095651770}
   cslotParent: {fileID: 63326698}
   cslots:
   - {fileID: 7899208792081630334}
-  itemManager: {fileID: 1569666160}
-  townUiManager: {fileID: 294579729}
+  equipInventoryUI: {fileID: 0}
+  nEquipItemSlot: {fileID: 0}
+  detailArea: {fileID: 0}
+  consumeInventoryUI: {fileID: 0}
   itemSlotPrefab: {fileID: 1370035123}
   consumeSlotPrefab: {fileID: 7480576857216764398, guid: 989a8a4ce964448498c6c9ffffb848ee, type: 3}
   maxSlots: 18
@@ -11596,7 +11598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7246aeb3824b34eb7c395d9e1ed8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  townUiManager: {fileID: 294579729}
+  detailArea: {fileID: 0}
   image: {fileID: 1818249064}
 --- !u!114 &1252610502
 MonoBehaviour:
@@ -15560,18 +15562,21 @@ MonoBehaviour:
     displayName: 
     description: 
     questType: 
+    questCurrentValue: 0
     questClearValue: 0
     needLevel: 0
     needGold: 0
-    questStep: 
+    questState: 0
     goldReward: 0
     expReward: 0
-    consumeRewardID: 0
+    consumeRewardID1: 0
     equipRewardID: 0
   datas:
     quest: []
   questSlotPrefeb: {fileID: 6333978439938656397, guid: 68a3373787d0884419561526adeb5276, type: 3}
   tr: {fileID: 0}
+  Datas:
+    questSaveData: []
 --- !u!4 &1669283410
 Transform:
   m_ObjectHideFlags: 0
@@ -15641,7 +15646,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7246aeb3824b34eb7c395d9e1ed8ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  townUiManager: {fileID: 294579729}
+  detailArea: {fileID: 0}
   image: {fileID: 177971921}
 --- !u!114 &1680777104
 MonoBehaviour:
@@ -18893,6 +18898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questSlotPrefeb: {fileID: 5236965646042805492, guid: 68a3373787d0884419561526adeb5276, type: 3}
+  count: 0
 --- !u!1 &2020711759
 GameObject:
   m_ObjectHideFlags: 0
@@ -20535,6 +20541,11 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1005739874089096909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5118961842533897373, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+  m_PrefabInstance: {fileID: 7452172409276561645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!222 &1117583361509640358
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21616,6 +21627,11 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!224 &4922741950922308799 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+  m_PrefabInstance: {fileID: 7452172409276561645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!222 &4985663692752891456
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22050,7 +22066,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9022301faa46c54a8232a4e23dccd8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemManager: {fileID: 1569666160}
   itemImage: {fileID: 5535138829145787784}
   buyPopupBg: {fileID: 5627882532951194483}
   itemName: {fileID: 4698376629973663537}
@@ -22541,6 +22556,111 @@ RectTransform:
   m_AnchoredPosition: {x: -185, y: 35}
   m_SizeDelta: {x: 220, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &7452172409276561645
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1012193544}
+    m_Modifications:
+    - target: {fileID: 1087211160580502604, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1669283409}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_RootOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2065312198660204930, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5118961842533897373, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
+      propertyPath: m_Name
+      value: GuildUI
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f405986acaaa43a4d91c3e3ea9aa54f7, type: 3}
 --- !u!114 &7519345908296521754
 MonoBehaviour:
   m_ObjectHideFlags: 0

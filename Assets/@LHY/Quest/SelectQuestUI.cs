@@ -67,7 +67,8 @@ public class SelectQuestUI : MonoBehaviour
     {
         Quest quest = QuestManager.instance.GetQuestByID(selectQuestID);
         questName.text = quest.info.displayName;
-        questDescription.text = quest.info.description;
+        questDescription.text = quest.info.description + '\n' +
+            "\n진행도 : " + quest.info.questCurrentValue + "/" + quest.info.questClearValue;
         if (quest.state == QuestState.Requirments_Not)
         {
             selectQuestButton.text = "요구사항 미충족";

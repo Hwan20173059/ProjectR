@@ -7,6 +7,7 @@ public class QuestContents : MonoBehaviour
     public List<Quest> questList = new List<Quest>();
 
     public GameObject questSlotPrefeb;
+    public int count;
     private void Start()
     {
         for (int i = 0; i < 5; i++)
@@ -14,8 +15,9 @@ public class QuestContents : MonoBehaviour
             questList.Add(QuestManager.instance.GetQuestByID(i));
         }
         QuestListing();
+        count = gameObject.transform.childCount;
+        CanStartStateSelect();
     }
-
 
 
     private void QuestListing()
@@ -24,6 +26,60 @@ public class QuestContents : MonoBehaviour
         {
             QuestSlot questslot = Instantiate<GameObject>(questSlotPrefeb, this.transform).GetComponent<QuestSlot>();
             questslot.questId = i;
+        }
+    }
+
+    public void CanStartStateSelect()
+    {
+        QuestSelectClear();
+        QuestSlot[] allChildren = GetComponentsInChildren<QuestSlot>();
+        foreach (QuestSlot child in allChildren)
+        {
+            QuestState state = QuestManager.instance.GetQuestByID(child.questId).state;
+            child.gameObject.SetActive(true);
+            if (state != QuestState.Can_Start)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void ProgressStateSelect()
+    {
+        QuestSelectClear();
+        QuestSlot[] allChildren = GetComponentsInChildren<QuestSlot>();
+        foreach (QuestSlot child in allChildren)
+        {
+            QuestState state = QuestManager.instance.GetQuestByID(child.questId).state;
+            child.gameObject.SetActive(true);
+            if (state != QuestState.In_Progress && state != QuestState.In_Progress)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void FinishedStateSelect()
+    {
+        QuestSelectClear();
+        QuestSlot[] allChildren = GetComponentsInChildren<QuestSlot>();
+        foreach (QuestSlot child in allChildren)
+        {
+            QuestState state = QuestManager.instance.GetQuestByID(child.questId).state;
+            child.gameObject.SetActive(true);
+            if (state != QuestState.Finished)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void QuestSelectClear()
+    {
+        int count = gameObject.transform.childCount;
+        for (int i = 0; i < count; i++)
+        {
+            gameObject.transform.GetChild(i).gameObject.SetActive(true);
         }
     }
 }
