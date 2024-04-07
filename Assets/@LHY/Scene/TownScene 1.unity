@@ -15559,6 +15559,8 @@ MonoBehaviour:
     id: 0
     displayName: 
     description: 
+    questType: 
+    questClearValue: 0
     needLevel: 0
     needGold: 0
     questStep: 

@@ -12,6 +12,17 @@ public class QuestStep : MonoBehaviour
     public string questType;
 
 
+
+    public int GetQuestCurrentValue(int id)
+    {
+        if (id == questID)
+        {
+            return questCurrentValue;
+        }
+        return -1;
+    }
+
+
     private void OnEnable()
     {
         GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
@@ -34,6 +45,16 @@ public class QuestStep : MonoBehaviour
         //GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
     }
 
+    private void Awake()
+    {
+        init();
+    }
+
+    private void init()
+    {
+        //todo : 진행중인 QuestData 불러오기
+    }
+
     public void KillSlime()
     {
         if (questType == "KillSlime")
@@ -51,7 +72,10 @@ public class QuestStep : MonoBehaviour
     public void DungeonClear()
     {
         if (questType == "DungeonClear")
+        {
             questCurrentValue++;
+            QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
+        }
         if (questCurrentValue < questClearValue)
         {
             //

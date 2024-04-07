@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.UIElements;
+using System.IO;
+
 /*
  * QuestManager는 모든 퀘스트를 상태를 전체적으로 관리함.
  * 이벤트 중심
@@ -36,6 +38,7 @@ public class QuestManager : MonoBehaviour
 
         //questMap = CreatQuestMap();
         NewquestMap = CreatQuestMaps();
+        LoadQuest();
     }
 
     private void OnEnable()
@@ -90,25 +93,8 @@ public class QuestManager : MonoBehaviour
         Quest quest = GetQuestByID(id);
         ChangeQuestState(quest.info.id, QuestState.Can_Finish);
 
-
-
-        //현재 NextStep 구조 변경 진행중
-        /*
-        quest.MoveToNextStep();
-
-        if (quest.CurrentStepExists())
-        {
-            Debug.Log("다음 진행");
-            quest.InstantiateCurrentQuestStep(this.transform);
-        }
-        else
-        {
-            Debug.Log("완료가능");
-            ChangeQuestState(quest.info.id, QuestState.Can_Finish);
-        }
-        */
-
     }
+
     private void FinishQuest(int id)
     {
         Quest quest = GetQuestByID(id);
@@ -161,7 +147,28 @@ public class QuestManager : MonoBehaviour
         return idToQuestMap;
     }
 
+    private void LoadQuest()
+    {
+        string FromJsonData = File.ReadAllText("Assets\\Resources\\Quests\\QuestSaveData.json");
+        AllQuestSaveData allQuestSaveData = JsonUtility.FromJson<AllQuestSaveData>(FromJsonData);
 
+        foreach (SaveQuestData saveQuestData in allQuestSaveData.questSaveData)
+        {
+            if (saveQuestData.questState == QuestState.In_Progress)
+            {
+                StartQuest(saveQuestData.questID);
+            }
+            if (saveQuestData.questState == QuestState.Can_Finish)
+            {
+                AdvanceQuest(saveQuestData.questID);
+            }
+            if (saveQuestData.questState == QuestState.Finished)
+            {
+                FinishQuest(saveQuestData.questID);
+            }
+            GetQuestByID(saveQuestData.questID).info.questCurrentValue = saveQuestData.questCurrentValue;
+        }
+    }
 
 
 
@@ -182,15 +189,64 @@ public class QuestManager : MonoBehaviour
         if (PlayerManager.Instance.playerLevel < quest.info.needLevel)
             return false;
 
-        //todo : 전제조건 확인
-        //QuestInfo.questPrerequisites
-
         return true;
     }
 
+    private void OnApplicationQuit()
+    {
+        foreach (Quest quest in NewquestMap.Values)
+        {
+            /*
+            if (quest.info.questState == QuestState.Requirments_Not || 
+                quest.info.questState == QuestState.Can_Start)
+            {
+                Debug.Log("yet start");
+            }
+            */
+            SaveQuest(quest);
+        }
+        File.WriteAllText("Assets\\Resources\\Quests\\QuestSaveData.json", JsonUtility.ToJson(Datas));
+    }
 
+    [SerializeField] private AllQuestSaveData Datas;
+    // QuestSaveData questSaveData;
+    public void SaveQuest(Quest quest)
+    {
+        SaveQuestData saveQuestData = new SaveQuestData
+        {
+            questState = quest.state,
+            questID = quest.info.id,
+            questCurrentValue = quest.info.questCurrentValue
+        };
+        Datas.questSaveData.Add(saveQuestData);
+    }
 
-    //todo : ChangeQuestState() : 상태 변경 메서드
+    
+    //public Quest LoadQuest(QuestData questData)
+    //{
+    //    string FromJsonData = File.ReadAllText("Assets\\Resources\\Quests\\QuestSaveData.json");
+    //    QuestSaveData questSaveData = JsonUtility.FromJson<QuestSaveData>(FromJsonData);
+    //    return;
+        //Quest quest = new Quest(QuestData questdata);
+        //return quest;
+        /*
+        Quest quest = null;
+
+        string serializedData = "asdf";
+
+        QuestData info = JsonUtility.FromJson<QuestData>(serializedData);
+        //quest = new Quest(info, ,);
+        TextAsset jsonFile = Resources.Load<TextAsset>("Quests/QuestSaveData");
+        if (jsonFile != null)
+        {
+            string json = jsonFile.text;
+            tmp = JsonUtility.FromJson<QuestData>(json);
+        }
+        return quest;
+        */
+
+    //}
+
     private void ChangeQuestState(int id, QuestState state)
     {
         Quest quest = GetQuestByID(id);

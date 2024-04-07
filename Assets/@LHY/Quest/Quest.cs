@@ -8,6 +8,8 @@ public class Quest
     //public QuestInfoSO info;
     public QuestState state;
     public QuestData info;
+    public QuestStepState questStepState;
+
     //public QuestInfo questinfo;
     /*
     public Quest(QuestInfoSO questInfo)
@@ -23,11 +25,20 @@ public class Quest
     }
     */
 
-
+    
     public Quest(QuestData questData)
     {
         this.info = questData;
         this.state = QuestState.Requirments_Not;
+    }
+
+    //Load
+    public Quest(QuestData questData, QuestState questState, QuestStepState questStepState)
+    {
+        this.info = questData;
+        this.state = questState;
+
+        this.questStepState = questStepState;
     }
     /*
     public void MoveToNextStep()
@@ -50,11 +61,6 @@ public class Quest
         queststep.questID = id;
         queststep.questClearValue = QuestManager.instance.GetQuestByID(id).info.questClearValue;
         queststep.questType = QuestManager.instance.GetQuestByID(id).info.questType;
-        if (questStepPrefab != null)
-        {
-            //QuestStep questStep = Object.Instantiate<GameObject>(questStepPrefab, parentTransform).GetComponent<QuestStep>();
-            //questStep.InitializeQuestStep(info.id, questStepStates[currentQuestStepIndex].state);
-        }
     }
 
     private GameObject GetCurrentQuestStepPrefeb()
@@ -80,12 +86,13 @@ public class QuestData
     public string displayName;
     public string description;
     public string questType;
+    public int questCurrentValue;
     public int questClearValue;
     public int needLevel;
     public int needGold;
-    public string questStep;
+    public QuestState questState;
     public int goldReward;
     public int expReward;
-    public int consumeRewardID;
+    public int consumeRewardID1;
     public int equipRewardID;
 }

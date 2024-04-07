@@ -55,6 +55,4 @@ public class KillSlimeStep : QuestStep
         string status = killSlimeCount + " / " + killSlimeComplete;
         ChangeState(state, status);
     }
-
-
 }
