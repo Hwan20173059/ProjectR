@@ -267,6 +267,7 @@ public class QuestManager : MonoBehaviour
     {
         foreach (Quest quest in NewquestMap.Values)
         {
+            quest.info.questCurrentValue = 0;
             GameEventManager.instance.questEvent.QuestStateChange(quest);
             ChangeQuestState(quest.info.id, QuestState.Requirments_Not);
         }

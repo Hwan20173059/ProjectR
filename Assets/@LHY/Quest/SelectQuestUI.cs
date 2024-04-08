@@ -6,8 +6,6 @@ using UnityEngine.Rendering;
 
 public class SelectQuestUI : MonoBehaviour
 {
-    public SelectQuestUI selectQuestUI;
-    public GameObject selectQuest;
     public TextMeshProUGUI questName;
     public TextMeshProUGUI questDescription;
     public TextMeshProUGUI questSubmitButtonText;
@@ -94,10 +92,6 @@ public class SelectQuestUI : MonoBehaviour
             selectQuestButton.text = "Äù½ºÆ® ¿Ï·á";
             selectQuestButton.color = Color.blue;
         }
-    }
-    public void SetSelectQuestPanel()
-    {
-        selectQuest.SetActive(!selectQuest.activeSelf);
     }
     public void SubmitPressed(int id)
     {
