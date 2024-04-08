@@ -99,8 +99,7 @@ public class QuestManager : MonoBehaviour
     {
         Quest quest = GetQuestByID(id);
 
-        //todo : 보상 지급
-        //RewardManager.instance.Rewading(quest.info.EquipRewardID, quest.info.ConsumeRewardID, quest.info.GoldReward, quest.info.ExpReward);
+        RewardManager.instance.RewadPopup(quest.info.goldReward, quest.info.expReward, quest.info.equipRewardID, quest.info.consumeRewardID);
 
         Debug.Log(quest + "퀘스트를 클리어했습니다");
         ChangeQuestState(quest.info.id, QuestState.Finished);

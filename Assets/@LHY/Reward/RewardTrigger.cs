@@ -7,11 +7,11 @@ public class RewardTrigger : MonoBehaviour
     [Header("Reward")]
     public int exp;
     public int gold;
-    public EquipReward[] equipReward;
-    public ConsumeReward[] consumeReward;
+    public EquipReward equipReward;
+    public ConsumeReward consumeReward;
 
     public void TriggerReward()
     {
-        RewardManager.instance.Rewading(equipReward, consumeReward, gold, exp);
+        //RewardManager.instance.Rewading(equipReward, consumeReward, gold, exp);
     }
 }

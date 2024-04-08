@@ -10,7 +10,6 @@ public class EquipReward
     public float itemProbability;
 }
 
-
 [System.Serializable]
 public class ConsumeReward
 {

@@ -93,6 +93,6 @@ public class QuestData
     public QuestState questState;
     public int goldReward;
     public int expReward;
-    public int consumeRewardID1;
+    public int consumeRewardID;
     public int equipRewardID;
 }
