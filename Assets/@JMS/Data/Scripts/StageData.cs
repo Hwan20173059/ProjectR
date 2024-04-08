@@ -11,4 +11,7 @@ public class StageData
     public int[] randomSpawnMonsters;
     public int randomSpawnMinAmount;
     public int randomSpawnMaxAmount;
+    public int rewardGold;
+    public int rewardExp;
+    public int rewardItemId;
 }

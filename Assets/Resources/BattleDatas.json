@@ -84,7 +84,10 @@
 				0
 			],
 			"randomSpawnMinAmount": 0,
-			"randomSpawnMaxAmount": 1
+			"randomSpawnMaxAmount": 1,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId":  0
 		},
 		{
 			"id": 1,
@@ -97,7 +100,10 @@
 				0
 			],
 			"randomSpawnMinAmount": 1,
-			"randomSpawnMaxAmount": 2
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
 		}
 	],
 	"dungeonDatas": [
