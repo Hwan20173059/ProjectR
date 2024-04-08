@@ -49,9 +49,5 @@ public class EnterDungeonQuestStep : QuestStep
         ChangeState(state, status);
     }
 
-    protected override void SetQuestStepState(string state)
-    {
-        this.dungeonCleared = System.Int32.Parse(state);
-        UpdateState();
-    }
+
 }

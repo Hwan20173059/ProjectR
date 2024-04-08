@@ -4,6 +4,8 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.UIElements;
+using System.IO;
+
 /*
  * QuestManager는 모든 퀘스트를 상태를 전체적으로 관리함.
  * 이벤트 중심
@@ -15,13 +17,14 @@ public class QuestManager : MonoBehaviour
 {
     private static Dictionary<string, Quest> questMap;
 
+    public static Dictionary<int, Quest> NewquestMap;
 
     //진행가능 요구사항 현재 레벨만 구현
     private int currentPlayerLevel = 1;//수정필요
 
     public static QuestManager instance;
 
-
+    public int i = 1;
 
     private void Awake()
     {
@@ -33,7 +36,9 @@ public class QuestManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
 
-        questMap = CreatQuestMap();
+        //questMap = CreatQuestMap();
+        NewquestMap = CreatQuestMaps();
+        LoadQuest();
     }
 
     private void OnEnable()
@@ -52,12 +57,12 @@ public class QuestManager : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
     {
-        foreach (Quest quest in questMap.Values)
+        foreach (Quest quest in NewquestMap.Values)
         {
             if (quest.state == QuestState.Requirments_Not && CheckRequirements(quest))
             {
@@ -67,57 +72,44 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public Quest QuestStateCheck(QuestSlot questslot)
+    public Quest QuestStateCheck(int id)
     {
-        return questMap[questslot.questId];
+        return NewquestMap[id];
     }
 
 
     // todo : 
-    private void StartQuest(string id)
+    private void StartQuest(int id)
     {
         Quest quest = GetQuestByID(id);
-        Debug.Log("퀘스트스타트" + id);
-        quest.InstantiateCurrentQuestStep(this.transform);
+        Debug.Log("퀘스트스타트" + quest.info.displayName);
+        quest.InstantiateCurrentQuestStep(this.transform, id);
         ChangeQuestState(quest.info.id, QuestState.In_Progress);
     }
 
-    public void AdvanceQuest(string id)
+    public void AdvanceQuest(int id)
     {
         Debug.Log(id);
         Quest quest = GetQuestByID(id);
         ChangeQuestState(quest.info.id, QuestState.Can_Finish);
-        
-        
-        
-        //현재 NextStep 구조 변경 진행중
-        /*
-        quest.MoveToNextStep();
-
-        if (quest.CurrentStepExists())
-        {
-            Debug.Log("다음 진행");
-            quest.InstantiateCurrentQuestStep(this.transform);
-        }
-        else
-        {
-            Debug.Log("완료가능");
-            ChangeQuestState(quest.info.id, QuestState.Can_Finish);
-        }
-        */
 
     }
-    private void FinishQuest(string id)
+
+    private void FinishQuest(int id)
     {
         Quest quest = GetQuestByID(id);
 
         //todo : 보상 지급
-        RewardManager.instance.Rewading(quest.info.equipRewards, quest.info.consumeRewards, quest.info.goldReward, quest.info.expReward);
+        //RewardManager.instance.Rewading(quest.info.EquipRewardID, quest.info.ConsumeRewardID, quest.info.GoldReward, quest.info.ExpReward);
 
         Debug.Log(quest + "퀘스트를 클리어했습니다");
         ChangeQuestState(quest.info.id, QuestState.Finished);
     }
 
+
+
+
+    /*
     private Dictionary<string, Quest> CreatQuestMap()
     {
         QuestInfoSO[] allQuest = Resources.LoadAll<QuestInfoSO>("Quests");
@@ -135,11 +127,55 @@ public class QuestManager : MonoBehaviour
         }
         return idToQuestMap;
     }
+    */
+    
+
+    public QuestData questData;
+    public AllData datas;
+    public QuestSlot questSlotPrefeb;
+    public Transform tr;
+    private Dictionary<int, Quest> CreatQuestMaps()
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>("Quests/QuestData");
+        datas = JsonUtility.FromJson<AllData>(jsonFile.text);
+        Dictionary<int, Quest> idToQuestMap = new Dictionary<int, Quest>();
+        foreach (QuestData questData in datas.quest)
+        {
+            idToQuestMap.Add(questData.id, new Quest(questData));
+            print(questData.displayName + "를 추가했습니다.");
+        }
+        return idToQuestMap;
+    }
+
+    private void LoadQuest()
+    {
+        string FromJsonData = File.ReadAllText("Assets\\Resources\\Quests\\QuestSaveData.json");
+        AllQuestSaveData allQuestSaveData = JsonUtility.FromJson<AllQuestSaveData>(FromJsonData);
+
+        foreach (SaveQuestData saveQuestData in allQuestSaveData.questSaveData)
+        {
+            if (saveQuestData.questState == QuestState.In_Progress)
+            {
+                StartQuest(saveQuestData.questID);
+            }
+            if (saveQuestData.questState == QuestState.Can_Finish)
+            {
+                AdvanceQuest(saveQuestData.questID);
+            }
+            if (saveQuestData.questState == QuestState.Finished)
+            {
+                FinishQuest(saveQuestData.questID);
+            }
+            GetQuestByID(saveQuestData.questID).info.questCurrentValue = saveQuestData.questCurrentValue;
+        }
+    }
+
+
 
     //직접 액세스하지 않고 이 메서드를 사용
-    private Quest GetQuestByID(string id)
+    public Quest GetQuestByID(int id)
     {
-        Quest quest = questMap[id];
+        Quest quest = NewquestMap[id];
         if (quest == null) 
         {
             Debug.Log("questMap을 찾지 못함 " + id);
@@ -150,23 +186,90 @@ public class QuestManager : MonoBehaviour
     //todo : 요구사항 충족 판별 메서드(현재 only 레벨)
     private bool CheckRequirements(Quest quest)
     {
-        //레벨을 확인한다.
-        if (currentPlayerLevel < quest.info.levelRequirement)
+        if (PlayerManager.Instance.playerLevel < quest.info.needLevel)
             return false;
-
-        //todo : 전제조건 확인
-        //QuestInfo.questPrerequisites
 
         return true;
     }
 
+    private void OnApplicationQuit()
+    {
+        foreach (Quest quest in NewquestMap.Values)
+        {
+            /*
+            if (quest.info.questState == QuestState.Requirments_Not || 
+                quest.info.questState == QuestState.Can_Start)
+            {
+                Debug.Log("yet start");
+            }
+            */
+            SaveQuest(quest);
+        }
+        File.WriteAllText("Assets\\Resources\\Quests\\QuestSaveData.json", JsonUtility.ToJson(Datas));
+    }
 
+    [SerializeField] private AllQuestSaveData Datas;
+    // QuestSaveData questSaveData;
+    public void SaveQuest(Quest quest)
+    {
+        SaveQuestData saveQuestData = new SaveQuestData
+        {
+            questState = quest.state,
+            questID = quest.info.id,
+            questCurrentValue = quest.info.questCurrentValue
+        };
+        Datas.questSaveData.Add(saveQuestData);
+    }
 
-    //todo : ChangeQuestState() : 상태 변경 메서드
-    private void ChangeQuestState(string id, QuestState state)
+    
+    //public Quest LoadQuest(QuestData questData)
+    //{
+    //    string FromJsonData = File.ReadAllText("Assets\\Resources\\Quests\\QuestSaveData.json");
+    //    QuestSaveData questSaveData = JsonUtility.FromJson<QuestSaveData>(FromJsonData);
+    //    return;
+        //Quest quest = new Quest(QuestData questdata);
+        //return quest;
+        /*
+        Quest quest = null;
+
+        string serializedData = "asdf";
+
+        QuestData info = JsonUtility.FromJson<QuestData>(serializedData);
+        //quest = new Quest(info, ,);
+        TextAsset jsonFile = Resources.Load<TextAsset>("Quests/QuestSaveData");
+        if (jsonFile != null)
+        {
+            string json = jsonFile.text;
+            tmp = JsonUtility.FromJson<QuestData>(json);
+        }
+        return quest;
+        */
+
+    //}
+
+    private void ChangeQuestState(int id, QuestState state)
     {
         Quest quest = GetQuestByID(id);
         quest.state = state;
+        NewquestMap[id].state = state;
         GameEventManager.instance.questEvent.QuestStateChange(quest);
+    }
+
+
+
+
+
+
+
+
+    //test를 위한 cheat button
+    public void QuestClear()
+    {
+        foreach (Quest quest in NewquestMap.Values)
+        {
+            quest.info.questCurrentValue = 0;
+            GameEventManager.instance.questEvent.QuestStateChange(quest);
+            ChangeQuestState(quest.info.id, QuestState.Requirments_Not);
+        }
     }
 }

@@ -282,11 +282,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d847e079d3286b642bff1fb90f8886c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questInfoForPoint: {fileID: 11400000, guid: 2f75be40c7c18fd47ae1882a2491b3ec, type: 2}
+  questId: 0
   currentQuestState: 0
-  selectQuest: {fileID: 0}
-  selectQuestUI: {fileID: 0}
-  QuestSlottext: {fileID: 7517828293154853612}
-  questName: {fileID: 0}
-  questDescription: {fileID: 0}
-  questSubmitButtonText: {fileID: 0}
