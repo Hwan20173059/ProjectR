@@ -2,20 +2,123 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class QuestStep : MonoBehaviour
+public class QuestStep : MonoBehaviour
 {
     private bool isFinished = false;
-    private string questID;
-    private int stepIndex;
+    public int questID;
+
+    public int questCurrentValue;
+    public int questClearValue;
+    public string questType;
 
 
-    public void InitializeQuestStep(string questId, int stepIndex, string questStepState)
+
+    public int GetQuestCurrentValue(int id)
+    {
+        if (id == questID)
+        {
+            return questCurrentValue;
+        }
+        return -1;
+    }
+
+
+    private void OnEnable()
+    {
+        GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
+        GameEventManager.instance.battleEvent.onKillSlime += KillSlime;
+        if (questType == "DungeonClear")
+        {
+            GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
+        }
+        if (questType == "KillSlime")
+        {
+            GameEventManager.instance.battleEvent.onKillSlime += KillSlime;
+        }
+        //GameEventManager.instance.questEvent.onFinishQuest += FinishQuest;
+    }
+
+    private void OnDisable()
+    {
+        GameEventManager.instance.questEvent.onDungeonClear -= DungeonClear;
+        GameEventManager.instance.battleEvent.onKillSlime -= KillSlime;
+        //GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
+    }
+
+    private void Awake()
+    {
+        init();
+    }
+
+    private void init()
+    {
+        //todo : 진행중인 QuestData 불러오기
+    }
+
+    public void KillSlime()
+    {
+        if (questType == "KillSlime")
+            questCurrentValue++;
+        if (questCurrentValue < questClearValue)
+        {
+            //
+        }
+        else
+        {
+            GameEventManager.instance.questEvent.AdvanceQuest(questID);
+        }
+    }
+
+    public void DungeonClear()
+    {
+        if (questType == "DungeonClear")
+        {
+            questCurrentValue++;
+            QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
+        }
+        if (questCurrentValue < questClearValue)
+        {
+            //
+        }
+        else
+        {
+            GameEventManager.instance.questEvent.AdvanceQuest(questID);
+        }
+    }
+
+    public void ItemEquip()
+    {
+        if (questType == "ItemEquip")
+            questCurrentValue++;
+        if (questCurrentValue < questClearValue)
+        {
+            //
+        }
+        else
+        {
+            GameEventManager.instance.questEvent.AdvanceQuest(questID);
+        }
+    }
+    public void FieldClear()
+    {
+        if (questType == "FieldClear")
+            questCurrentValue++;
+        if (questCurrentValue < questClearValue)
+        {
+            //
+        }
+        else
+        {
+            GameEventManager.instance.questEvent.AdvanceQuest(questID);
+        }
+    }
+
+    public void InitializeQuestStep(int questId, string questStepState)
     {
         this.questID = questId;
-        this.stepIndex = stepIndex;
         if (questStepState != null && questStepState != "")
         {
-            SetQuestStepState(questStepState);
+            //SetQuestStepState(questStepState);
         }
     }
     protected void FinishQuestStep()
@@ -30,13 +133,9 @@ public abstract class QuestStep : MonoBehaviour
     protected void ChangeState(string newState, string newStatus)
     {
         Debug.Log("changeState");
-        GameEventManager.instance.questEvent.QuestStepStateChange(
-            questID,
-            stepIndex,
-            new QuestStepState(newState, newStatus)
-            );
+        GameEventManager.instance.questEvent.QuestStepStateChange(questID, new QuestStepState(newState, newStatus));
     }
     
-    protected abstract void SetQuestStepState(string state);
+    //protected abstract void SetQuestStepState(string state);
 
 }

@@ -38,17 +38,14 @@ public class ClearDungeonQuestStep : QuestStep
         }
         else
         {
-            GameEventManager.instance.questEvent.AdvanceQuest("ClearDungeonQuest");
+            //GameEventManager.instance.questEvent.AdvanceQuest("ClearDungeonQuest");
         }
     }
 
 
-    public void FinishQuest(string id)
+    public void FinishQuest(int id)
     {
-        if (id != gameObject.name)
-        {
-            //
-        }
+
         FinishQuestStep();
     }
 
@@ -60,10 +57,11 @@ public class ClearDungeonQuestStep : QuestStep
         string status = dungeonCleared + " / " + dungeonComplete;
         ChangeState(state, status);
     }
-
+    /*
     protected override void SetQuestStepState(string state)
     {
         this.dungeonCleared = System.Int32.Parse(state);
         UpdateState();
     }
+    */
 }

@@ -37,16 +37,13 @@ public class KillSlimeStep : QuestStep
         }
         else
         {
-            GameEventManager.instance.questEvent.AdvanceQuest("KillSlime");
+            //GameEventManager.instance.questEvent.AdvanceQuest("KillSlime");
         }
     }
 
-    public void FinishQuest(string id)
+    public void FinishQuest(int id)
     {
-        if (id != gameObject.name)
-        {
-            //
-        }
+       
         FinishQuestStep();
     }
 
@@ -57,11 +54,5 @@ public class KillSlimeStep : QuestStep
         string state = killSlimeCount.ToString();
         string status = killSlimeCount + " / " + killSlimeComplete;
         ChangeState(state, status);
-    }
-
-    protected override void SetQuestStepState(string state)
-    {
-        this.killSlimeCount = int.Parse(state);
-        UpdateState();
     }
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class Quest
 {
-    public QuestInfoSO info;
+    //public QuestInfoSO info;
     public QuestState state;
-    private int currentQuestStepIndex;
-    private QuestStepState[] questStepStates;
+    public QuestData info;
+    public QuestStepState questStepState;
 
-
-
+    //public QuestInfo questinfo;
+    /*
     public Quest(QuestInfoSO questInfo)
     {
         this.info = questInfo;
@@ -23,42 +23,76 @@ public class Quest
             questStepStates[i] = new QuestStepState();
         }
     }
+    */
 
+    
+    public Quest(QuestData questData)
+    {
+        this.info = questData;
+        this.state = QuestState.Requirments_Not;
+    }
+
+    //Load
+    public Quest(QuestData questData, QuestState questState, QuestStepState questStepState)
+    {
+        this.info = questData;
+        this.state = questState;
+
+        this.questStepState = questStepState;
+    }
+    /*
     public void MoveToNextStep()
     {
         currentQuestStepIndex++;
     }
-
-    // 다음 step이 없는 경우에 대비
+    */
+    /*
     public bool CurrentStepExists()
     {
-        return (currentQuestStepIndex < info.questStepPrefebs.Length);
+        //return (currentQuestStepIndex < info.questStepPrefebs.Length);
+        return true;
     }
+    */
 
-    public void InstantiateCurrentQuestStep(Transform parentTransform)
+    public void InstantiateCurrentQuestStep(Transform parentTransform, int id)
     {
         GameObject questStepPrefab = GetCurrentQuestStepPrefeb();
-        if (questStepPrefab != null)
-        {
-            QuestStep questStep = Object.Instantiate<GameObject>(questStepPrefab, parentTransform)
-                .GetComponent<QuestStep>();
-            questStep.InitializeQuestStep(info.id, currentQuestStepIndex, questStepStates[currentQuestStepIndex].state);
-        }
-    }
-    private GameObject GetCurrentQuestStepPrefeb()
-    {
-        //초기화 이후 다음 퀘스트 진행(현재 연결 퀘스트 구현 X)
-        GameObject questStepPrefeb = null;
-        if (CurrentStepExists())
-        {
-            questStepPrefeb = info.questStepPrefebs[currentQuestStepIndex];
-        }
-        else
-        {
-            Debug.Log("퀘스트 아이디가 " + info.id + "의 "+ currentQuestStepIndex + " 번째 프리팹 확인해");
-        }
-        return questStepPrefeb;
+        QuestStep queststep = Object.Instantiate(questStepPrefab, parentTransform).AddComponent<QuestStep>();
+        queststep.questID = id;
+        queststep.questClearValue = QuestManager.instance.GetQuestByID(id).info.questClearValue;
+        queststep.questType = QuestManager.instance.GetQuestByID(id).info.questType;
     }
 
-    
+    private GameObject GetCurrentQuestStepPrefeb()
+    {
+        GameObject questStepPrefeb = new GameObject();
+
+        return questStepPrefeb;
+    }
+}
+
+
+//todo : 분리
+[System.Serializable]
+public class AllData
+{
+    public QuestData[] quest;
+}
+
+[System.Serializable]
+public class QuestData
+{
+    public int id;
+    public string displayName;
+    public string description;
+    public string questType;
+    public int questCurrentValue;
+    public int questClearValue;
+    public int needLevel;
+    public int needGold;
+    public QuestState questState;
+    public int goldReward;
+    public int expReward;
+    public int consumeRewardID1;
+    public int equipRewardID;
 }

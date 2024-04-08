@@ -6,9 +6,6 @@ using UnityEngine.Rendering;
 
 public class SelectQuestUI : MonoBehaviour
 {
-
-    public SelectQuestUI selectQuestUI;
-    public GameObject selectQuest;
     public TextMeshProUGUI questName;
     public TextMeshProUGUI questDescription;
     public TextMeshProUGUI questSubmitButtonText;
@@ -16,7 +13,7 @@ public class SelectQuestUI : MonoBehaviour
 
     
     public QuestSlot selectQuestSlot;
-    public string selectQuestID;
+    public int selectQuestID;
     public QuestState selectQuestState;
 
     QuestManager questManager;
@@ -46,60 +43,57 @@ public class SelectQuestUI : MonoBehaviour
         SetQuest(selectQuestID);
     }
 
-    public void QuestSelect(QuestSlot questSlot)
+    public void QuestSelect(int id)
     {
-        Debug.Log("선택");
-        selectQuestSlot = questSlot;
-        SetQuest(questSlot.questId);
+        selectQuestID = id;
+        SetQuest(selectQuestID);
         infoUpdate();
     }
 
 
-    public void SetQuest(string id)
+    public void SetQuest(int id)
     {
-        selectQuestID = id;
-        selectQuestState = selectQuestSlot.currentQuestState;
+        selectQuestState = QuestManager.instance.GetQuestByID(id).state;
     }
 
     private void Update()
     {
         
     }
+
     public void infoUpdate()
     {
-        questName.text = selectQuestSlot.questInfoForPoint.displayName;
-        questDescription.text = selectQuestSlot.questInfoForPoint.questDescription;
-        if (selectQuestSlot.currentQuestState == QuestState.Requirments_Not)
+        Quest quest = QuestManager.instance.GetQuestByID(selectQuestID);
+        questName.text = quest.info.displayName;
+        questDescription.text = quest.info.description + '\n' +
+            "\n진행도 : " + quest.info.questCurrentValue + "/" + quest.info.questClearValue;
+        if (quest.state == QuestState.Requirments_Not)
         {
             selectQuestButton.text = "요구사항 미충족";
             selectQuestButton.color = Color.red;
         }
-        if (selectQuestSlot.currentQuestState == QuestState.Can_Start)
+        if (quest.state == QuestState.Can_Start)
         {
             selectQuestButton.text = "수락";
             selectQuestButton.color = Color.black;
         }
-        if (selectQuestSlot.currentQuestState == QuestState.In_Progress)
+        if (quest.state == QuestState.In_Progress)
         {
             selectQuestButton.text = "진행중";
             selectQuestButton.color = Color.gray;
         }
-        if (selectQuestSlot.currentQuestState == QuestState.Can_Finish)
+        if (quest.state == QuestState.Can_Finish)
         {
             selectQuestButton.text = "완료 가능";
             selectQuestButton.color = Color.green;
         }
-        if (selectQuestSlot.currentQuestState == QuestState.Finished)
+        if (quest.state == QuestState.Finished)
         {
             selectQuestButton.text = "퀘스트 완료";
             selectQuestButton.color = Color.blue;
         }
     }
-    public void SetSelectQuestPanel()
-    {
-        selectQuest.SetActive(!selectQuest.activeSelf);
-    }
-    public void SubmitPressed(string id)
+    public void SubmitPressed(int id)
     {
         Debug.Log(selectQuestState);
         if (id !=  selectQuestID)
@@ -107,11 +101,6 @@ public class SelectQuestUI : MonoBehaviour
             Debug.Log("퀘스트 선택에 오류가 있습니다.");
         }
 
-        if (selectQuestSlot.questInfoForPoint.id != selectQuestID)
-        {
-            Debug.Log("ㅇㅇ");
-            return;
-        }
         if (selectQuestState.Equals(QuestState.Can_Start))
         {
             Debug.Log(GameEventManager.instance.questEvent);

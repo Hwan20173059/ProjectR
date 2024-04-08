@@ -9,16 +9,16 @@ public class QuestSlot : MonoBehaviour
 {
     [Header("Quest")]
     //[SerializeField] private QuestInfoSO questInfoForPoint;
-    public QuestInfoSO questInfoForPoint;
 
-    public string questId;
+    public int questId;
     public QuestState currentQuestState;
 
-    private void Awake()
+    private void Start()
     {
-        questId = questInfoForPoint.id;
-        Debug.Log(questId);
+        Quest quest = QuestManager.instance.QuestStateCheck(questId);
+        print(quest.info.displayName);
         QuestUpdate();
+        GetComponentsInChildren<TextMeshProUGUI>()[0].text = quest.info.displayName;
     }
 
     private void OnEnable()
@@ -26,11 +26,16 @@ public class QuestSlot : MonoBehaviour
         GameEventManager.instance.questEvent.onQuestStateChange += QuestStateChange;
     }
 
+    public void QuestSelect()
+    {
+        GameEventManager.instance.questEvent.QuestSelect(questId);
+    }
+
     public void QuestUpdate()
     {
-        Quest quest;
-        quest = QuestManager.instance.QuestStateCheck(this);
-        currentQuestState = quest.state;
+        currentQuestState = QuestManager.instance.QuestStateCheck(questId).state;
+        //quest = QuestManager.instance.QuestStateCheck(this);
+        //currentQuestState = quest.state;
     }
 
     private void OnDisable()
@@ -38,15 +43,11 @@ public class QuestSlot : MonoBehaviour
         GameEventManager.instance.questEvent.onQuestStateChange -= QuestStateChange;
     }
 
-    private void Start()
-    {
-
-    }
 
     private void QuestStateChange(Quest quest)
     {
         Debug.Log("상태 변경 감지");
-        if (quest.info.id.Equals(questInfoForPoint.id))
+        if (quest.info.id.Equals(questId))
         {
             currentQuestState = quest.state;
         }
