@@ -571,6 +571,13 @@ MonoBehaviour:
   ChestUI: {fileID: 819377985}
   movableTile: []
   dungeonClearUI: {fileID: 1315380093}
+  background: {fileID: 1000097813}
+  dungeon1: {fileID: 21300000, guid: d7576960873e4d24797ab1a85ef51848, type: 3}
+  dungeon2: {fileID: 21300000, guid: 9ca3b57f5fe06034eb525a625ca333ba, type: 3}
+  dungeon3: {fileID: 21300000, guid: c9dba08e19bea4043972729465c9a33c, type: 3}
+  dungeon4: {fileID: 21300000, guid: d7576960873e4d24797ab1a85ef51848, type: 3}
+  dungeon5: {fileID: 21300000, guid: 9ca3b57f5fe06034eb525a625ca333ba, type: 3}
+  dungeon6: {fileID: 21300000, guid: c9dba08e19bea4043972729465c9a33c, type: 3}
 --- !u!1 &157319389
 GameObject:
   m_ObjectHideFlags: 0
