@@ -60,11 +60,277 @@
 		{
 			"id": 0,
 			"monsterName": "슬라임",
-			"spritePath": "Sprite/Monster/Jelly 0",
+			"spritePath": "Sprite/Monster/Field/Slime",
 			"animatorPath": "Animations/Slime/Slime",
 			"hp": 30,
 			"atk": 5,
 			"exp": 5,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 1,
+			"monsterName": "초록 덩쿨",
+			"spritePath": "Sprite/Monster/Field/GreenBush",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 50,
+			"atk": 8,
+			"exp": 10,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 2,
+			"monsterName": "붉은 덩쿨",
+			"spritePath": "Sprite/Monster/Field/PurpleBush",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 40,
+			"atk": 10,
+			"exp": 10,
+			"actionCoolTime": 5,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 3,
+			"monsterName": "평원의 수호령",
+			"spritePath": "Sprite/Monster/Field/Deer",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 4,
+			"monsterName": "멧돼지",
+			"spritePath": "Sprite/Monster/MountainDungeon/BrownBoar",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 5,
+			"monsterName": "흉포한 멧돼지",
+			"spritePath": "Sprite/Monster/MountainDungeon/BlackBoar",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 6,
+			"monsterName": "나무 정령",
+			"spritePath": "Sprite/Monster/MountainDungeon/BrownStump",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 7,
+			"monsterName": "고목 정령",
+			"spritePath": "Sprite/Monster/MountainDungeon/DarkStump",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 8,
+			"monsterName": "위습",
+			"spritePath": "Sprite/Monster/ruinsDungeon/Fairy",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 9,
+			"monsterName": "수호 골렘",
+			"spritePath": "Sprite/Monster/ruinsDungeon/EarthGolem",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 10,
+			"monsterName": "화염 골렘",
+			"spritePath": "Sprite/Monster/ruinsDungeon/FlameGolem",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 11,
+			"monsterName": "얼음 골렘",
+			"spritePath": "Sprite/Monster/ruinsDungeon/IceGolem",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 12,
+			"monsterName": "청개구리",
+			"spritePath": "Sprite/Monster/OceanDungeon/GreenFrog",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 13,
+			"monsterName": "맹독 개구리",
+			"spritePath": "Sprite/Monster/OceanDungeon/RedFrog",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 14,
+			"monsterName": "바다 게",
+			"spritePath": "Sprite/Monster/OceanDungeon/BlueCrab",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 15,
+			"monsterName": "심해 게",
+			"spritePath": "Sprite/Monster/OceanDungeon/RedCrab",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 16,
+			"monsterName": "비홀더",
+			"spritePath": "Sprite/Monster/HellDungeon/Beholder",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 17,
+			"monsterName": "플라이 아이",
+			"spritePath": "Sprite/Monster/HellDungeon/FlyingEye",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 18,
+			"monsterName": "지옥 개",
+			"spritePath": "Sprite/Monster/HellDungeon/HellDog",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
+			"actionCoolTime": 6,
+			"actions": [
+				0,
+				1
+			]
+		},
+		{
+			"id": 19,
+			"monsterName": "심연의 지옥 개",
+			"spritePath": "Sprite/Monster/HellDungeon/AbyssDog",
+			"animatorPath": "Animations/Slime/Slime",
+			"hp": 80,
+			"atk": 5,
+			"exp": 15,
 			"actionCoolTime": 6,
 			"actions": [
 				0,
@@ -75,7 +341,7 @@
 	"stageDatas": [
 		{
 			"id": 0,
-			"stageName": "슬라임 던전1",
+			"stageName": "필드 슬라임",
 			"spawnMonsters": [
 				0,
 				0
@@ -87,20 +353,53 @@
 			"randomSpawnMaxAmount": 1,
 			"rewardGold": 0,
 			"rewardExp": 0,
-			"rewardItemId":  0
+			"rewardItemId": 0
 		},
 		{
 			"id": 1,
-			"stageName": "슬라임 던전2",
+			"stageName": "필드 덩쿨1",
 			"spawnMonsters": [
-				0,
-				0
+				2,
+				2
 			],
 			"randomSpawnMonsters": [
-				0
+				1,
+				1
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 2,
+			"stageName": "필드 덩쿨2",
+			"spawnMonsters": [
+				1,
+				1
+			],
+			"randomSpawnMonsters": [
+				2,
+				2
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 3,
+			"stageName": "필드 수호령",
+			"spawnMonsters": [
+				3				
+			],
+			"randomSpawnMonsters": [
+				3
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 1,
 			"rewardGold": 0,
 			"rewardExp": 0,
 			"rewardItemId": 0
@@ -109,10 +408,31 @@
 	"dungeonDatas": [
 		{
 			"id": 0,
-			"dungeonName": "슬라임 던전",
+			"dungeonName": "슬라임",
+			"stages": [
+				0
+			]
+		},
+		{
+			"id": 1,
+			"dungeonName": "덩쿨1",
+			"stages": [
+				1
+			]
+		},
+		{
+			"id": 2,
+			"dungeonName": "덩쿨2",
+			"stages": [
+				2
+			]
+		},
+		{
+			"id": 3,
+			"dungeonName": "수호령",
 			"stages": [
 				0,
-				1
+				3
 			]
 		}
 	]

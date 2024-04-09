@@ -74,10 +74,22 @@ public class Tile : MonoBehaviour
 
             case TileState.monster:
                 SetTile(TileState.monster);
-                if (battleID == 0)
-                    onObject = Instantiate(tileMapManager.slimePrefab, this.transform);
-                else if (battleID == 1)
-                    onObject = Instantiate(tileMapManager.monsterPrefab, this.transform); 
+                switch (battleID)
+                {
+                    case 0:
+                        onObject = Instantiate(tileMapManager.slimePrefab, this.transform);
+                        break;
+                    case 1:
+                        onObject = Instantiate(tileMapManager.bushPrefab, this.transform);
+                        break;
+                    case 2:
+                        onObject = Instantiate(tileMapManager.bushPrefab, this.transform);
+                        break;
+                    case 3:
+                        onObject = Instantiate(tileMapManager.guardianPrefab, this.transform);
+                        break;
+                }
+
                 spriteRenderer.color = Color.yellow;
                 break;
 
@@ -102,10 +114,21 @@ public class Tile : MonoBehaviour
 
             case TileState.canFight:
                 SetTile(TileState.canFight);
-                if (battleID == 0)
-                    onObject = Instantiate(tileMapManager.slimePrefab, this.transform);
-                else if (battleID == 1)
-                    onObject = Instantiate(tileMapManager.monsterPrefab, this.transform);
+                switch (battleID)
+                {
+                    case 0:
+                        onObject = Instantiate(tileMapManager.slimePrefab, this.transform);
+                        break;
+                    case 1:
+                        onObject = Instantiate(tileMapManager.bushPrefab, this.transform);
+                        break;
+                    case 2:
+                        onObject = Instantiate(tileMapManager.bushPrefab, this.transform);
+                        break;
+                    case 3:
+                        onObject = Instantiate(tileMapManager.guardianPrefab, this.transform);
+                        break;
+                }
                 spriteRenderer.color = Color.magenta;
                 break;
 
@@ -145,6 +168,8 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Sprite sprite;
+
         if (tileMapManager.isPlayerturn == true)
         {
             switch (tileState)
@@ -209,26 +234,38 @@ public class Tile : MonoBehaviour
 
                     tileMapManager.selectName.text = "¸ó½ºÅÍ";
 
-                    if (battleID == 0)
+                    switch (battleID)
                     {
-                        Sprite sprite = tileMapManager.slimePrefab.GetComponent<SpriteRenderer>().sprite;
-                        tileMapManager.selectImage.sprite = sprite;
-                        tileMapManager.selectImage.SetNativeSize();
-                        
-                        tileMapManager.selectText.text = "½½¶óÀÓ ¹«¸®";
-                        break;
-                    }
-                    else if (battleID == 1)
-                    {
-                        Sprite sprite = tileMapManager.monsterPrefab.GetComponent<SpriteRenderer>().sprite;
-                        tileMapManager.selectImage.sprite = sprite;
-                        tileMapManager.selectImage.SetNativeSize();
+                        case 0:
+                            sprite = tileMapManager.slimePrefab.GetComponent<SpriteRenderer>().sprite;
+                            tileMapManager.selectImage.sprite = sprite;
+                            tileMapManager.selectImage.SetNativeSize();
 
-                        tileMapManager.selectText.text = "¸äµÅÁö ¹«¸®";
-                        break;
+                            tileMapManager.selectText.text = "½½¶óÀÓ";
+                            break;
+                        case 1:
+                            sprite = tileMapManager.bushPrefab.GetComponent<SpriteRenderer>().sprite;
+                            tileMapManager.selectImage.sprite = sprite;
+                            tileMapManager.selectImage.SetNativeSize();
+
+                            tileMapManager.selectText.text = "Çª¸¥ µ¢Äð";
+                            break;
+                        case 2:
+                            sprite = tileMapManager.bushPrefab.GetComponent<SpriteRenderer>().sprite;
+                            tileMapManager.selectImage.sprite = sprite;
+                            tileMapManager.selectImage.SetNativeSize();
+
+                            tileMapManager.selectText.text = "ºÓÀº µ¢Äð";
+                            break;
+                        case 3:
+                            sprite = tileMapManager.guardianPrefab.GetComponent<SpriteRenderer>().sprite;
+                            tileMapManager.selectImage.sprite = sprite;
+                            tileMapManager.selectImage.SetNativeSize();
+
+                            tileMapManager.selectText.text = "Æò¿øÀÇ ¼öÈ£·É";
+                            break;
                     }
-                    else
-                        break;
+                    break;
 
 
                 case TileState.chest:
@@ -237,7 +274,7 @@ public class Tile : MonoBehaviour
 
                     if (chestID == 0)
                     {
-                        Sprite sprite = tileMapManager.chest0Prefab.GetComponent<SpriteRenderer>().sprite;
+                        sprite = tileMapManager.chest0Prefab.GetComponent<SpriteRenderer>().sprite;
                         tileMapManager.selectImage.sprite = sprite;
                         tileMapManager.selectImage.SetNativeSize();
 
@@ -246,7 +283,7 @@ public class Tile : MonoBehaviour
                     }
                     else if (chestID == 1)
                     {
-                        Sprite sprite = tileMapManager.chest1Prefab.GetComponent<SpriteRenderer>().sprite;
+                        sprite = tileMapManager.chest1Prefab.GetComponent<SpriteRenderer>().sprite;
                         tileMapManager.selectImage.sprite = sprite;
                         tileMapManager.selectImage.SetNativeSize();
 
@@ -331,7 +368,7 @@ public class Tile : MonoBehaviour
                     else
                         tileMapManager.chestPosition = null;
 
-                    tileMapManager.playerManager.selectBattleID = 0;
+                    tileMapManager.playerManager.selectBattleID = battleID;
                     SceneManager.LoadScene("BattleScene");
                     break;
 

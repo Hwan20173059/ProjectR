@@ -30,10 +30,14 @@ public class TileMapManager : MonoBehaviour
 
     [Header("FieldObject")]
     public GameObject playerPrefab;
-    public GameObject slimePrefab;
-    public GameObject monsterPrefab;
     public GameObject chest0Prefab;
     public GameObject chest1Prefab;
+
+    [Header("FieldMonster")]
+    public GameObject slimePrefab;
+    public GameObject bushPrefab;
+    public GameObject guardianPrefab;
+
 
     [Header("Monster")]
     public List<Tile> fieldMonster = new List<Tile>();
@@ -210,7 +214,7 @@ public class TileMapManager : MonoBehaviour
 
             if (field.tileRaw[randomY].fieldTiles[randomX].tileState == TileState.empty)
             {
-                int randomID = UnityEngine.Random.Range(0, 2);
+                int randomID = UnityEngine.Random.Range(0, 4);
 
                 fieldMonster.Add(field.tileRaw[randomY].fieldTiles[randomX]);
                 field.tileRaw[randomY].fieldTiles[randomX].battleID = randomID;
