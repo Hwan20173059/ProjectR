@@ -122,13 +122,16 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void ChangeHP(int change)
+    public void ChangeHP(int value)
     {
-        curHP += change;
+        curHP += value;
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;
 
         hpBar.SetHpBar();
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        battleCanvas.ChangeHpTMP(value, screenPos);
 
         if (curHP <= 0)
         {
@@ -138,9 +141,9 @@ public class Character : MonoBehaviour
         battleCanvas.UpdateCharacterState();
     }
 
-    public void ChangeExp(int change)
+    public void ChangeExp(int value)
     {
-        curExp += change;
+        curExp += value;
         curExp = curExp >= needExp ? LevelUp() : curExp;
     }
 
@@ -156,7 +159,7 @@ public class Character : MonoBehaviour
         return curExp;
     }
 
-    public void BuffDurationReduce()
+    public void ReduceBuffDuration()
     {
         characterBuffHandler.ReduceBuffDuration();
     }

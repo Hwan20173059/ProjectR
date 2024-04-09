@@ -86,13 +86,16 @@ public class Monster : MonoBehaviour
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
     }
 
-    public void ChangeHP(int change)
+    public void ChangeHP(int value)
     {
-        curHP += change;
+        curHP += value;
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;
 
         hpBar.SetHpBar();
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
+        battleCanvas.ChangeHpTMP(value, screenPos);
 
         if (curHP <= 0)
         {

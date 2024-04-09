@@ -4192,6 +4192,7 @@ GameObject:
   - component: {fileID: 9123647189485153723}
   - component: {fileID: 3735039486391278245}
   - component: {fileID: 6469726948990513712}
+  - component: {fileID: 7308843217798574181}
   m_Layer: 5
   m_Name: BattleCanvas
   m_TagString: Untagged
@@ -4306,6 +4307,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterHpBarPrefab: {fileID: 7033096096734322383, guid: 2ccaf1ce30f717947a9763be3b4e55b8, type: 3}
   monsterHpBarPrefab: {fileID: 4292104405577508173, guid: b6ef029ff97abca4a9cde64d276729d6, type: 3}
+--- !u!114 &7308843217798574181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4167268074760536097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea021e3ab8f4d2419b330db46bf78b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - prefab: {fileID: 6894784569627330585, guid: 36b86868273b50c4f9d48e36d16f5892, type: 3}
+    tag: ChangeHpTMP
+    size: 5
 --- !u!1 &4196145966337639236
 GameObject:
   m_ObjectHideFlags: 0
@@ -9189,27 +9206,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_LocalPosition.x
