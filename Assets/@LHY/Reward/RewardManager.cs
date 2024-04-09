@@ -36,6 +36,14 @@ public class RewardManager : MonoBehaviour
         PopupReward();
     }
 
+    public void RewadPopup(StageData stageData)
+    {
+        AddgoldReward(stageData.rewardGold);
+        AddexpReward(stageData.rewardExp);
+        AddEquipReward(stageData.rewardItemId);
+        PopupReward();
+    }
+
     private void AddgoldReward(int gold)
     {
         GameObject RewardSlot = Instantiate(rewardSlotPrefeb);

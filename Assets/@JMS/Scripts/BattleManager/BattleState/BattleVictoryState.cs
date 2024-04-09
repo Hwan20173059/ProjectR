@@ -26,7 +26,10 @@ public class BattleVictoryState : BattleBaseState
             if (battleManager.IsAutoBattle)
                 battleManager.NextStageStart();
             else
+            {
                 battleCanvas.NextStagePanelOn();
+                RewardManager.instance.RewadPopup(battleManager.stages[battleManager.curStage - 1]);
+            }
         }
     }
 }
