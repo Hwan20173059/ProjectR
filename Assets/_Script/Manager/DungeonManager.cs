@@ -8,10 +8,19 @@ public class DungeonManager : TileMapManager
 {
     public GameObject dungeonClearUI;
 
+    public SpriteRenderer background;
+    public Sprite dungeon1;
+    public Sprite dungeon2;
+    public Sprite dungeon3;
+    public Sprite dungeon4;
+    public Sprite dungeon5;
+    public Sprite dungeon6;
+
     void Start()
     {
         playerManager = PlayerManager.Instance;
 
+        RefreshBackground();
         playerPrefab.GetComponent<SpriteRenderer>().sprite = playerManager.characterList[playerManager.selectedCharacterIndex].sprite;
 
         if (playerManager.isDungeon == false)
@@ -285,5 +294,30 @@ public class DungeonManager : TileMapManager
                     break;
                 }
         }
-    } 
+    }
+
+    public void RefreshBackground()
+    {
+        switch (playerManager.selectDungeonID)
+        {
+            case 0:
+                background.sprite = dungeon1;
+                break;
+            case 1:
+                background.sprite = dungeon2;
+                break;
+            case 2:
+                background.sprite = dungeon3;
+                break;
+            case 3:
+                background.sprite = dungeon4;
+                break;
+            case 4:
+                background.sprite = dungeon5;
+                break;
+            case 5:
+                background.sprite = dungeon6;
+                break;
+        }
+    }
 }

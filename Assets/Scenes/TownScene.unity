@@ -1534,7 +1534,7 @@ GameObject:
   - component: {fileID: 185650953}
   - component: {fileID: 185650952}
   m_Layer: 0
-  m_Name: Square
+  m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1792,10 +1792,11 @@ MonoBehaviour:
   playerExp: {fileID: 1666720179}
   playerGold: {fileID: 1257103792}
   townName: {fileID: 986220086}
+  background: {fileID: 185650952}
+  firstTown: {fileID: 21300000, guid: c9dba08e19bea4043972729465c9a33c, type: 3}
+  secondTown: {fileID: 21300000, guid: 9ca3b57f5fe06034eb525a625ca333ba, type: 3}
+  thridTown: {fileID: 21300000, guid: d7576960873e4d24797ab1a85ef51848, type: 3}
   characterUI: {fileID: 1822648825}
-  inventoryUI: {fileID: 0}
-  detailArea1: {fileID: 0}
-  dungeonUI: {fileID: 0}
   guildUI: {fileID: 1300318877}
   storeUI: {fileID: 6039637989613893920}
   homeUI: {fileID: 1372420373}

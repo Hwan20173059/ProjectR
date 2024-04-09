@@ -22,11 +22,14 @@ public class TownUiManager : MonoBehaviour
     public TextMeshProUGUI playerGold;
     public TextMeshProUGUI townName;
 
+    [Header("BackGround")]
+    public SpriteRenderer background;
+    public Sprite firstTown;
+    public Sprite secondTown;
+    public Sprite thridTown;
+
     [Header("UI")]
     public CharacterUI characterUI;
-    public GameObject inventoryUI;
-    public GameObject detailArea1;
-    public GameObject dungeonUI;
     public GameObject guildUI;
     public GameObject storeUI;
     public GameObject homeUI;
@@ -47,6 +50,7 @@ public class TownUiManager : MonoBehaviour
         playerManager.isField = false;
         playerManager.isTown = true;
 
+        RefreshBackground();
         PlayerInfoRefresh();
         TownInfoRefresh();
         townPlayer.init();
@@ -90,12 +94,6 @@ public class TownUiManager : MonoBehaviour
         talkUI.SetActive(false);
     }
 
-    public void InventoryUIOn()
-    {
-        inventoryUI.SetActive(true);
-        detailArea1.SetActive(true);
-    }
-
     public void StoreUIOn()
     {
         storeUI.SetActive(true);
@@ -136,6 +134,23 @@ public class TownUiManager : MonoBehaviour
         playerGold.text = "<sprite=0> " + playerManager.gold;
         playerExp.value = (float)playerManager.currentExp / (float)playerManager.needExp;
     }
+
+    public void RefreshBackground()
+    {
+        switch (playerManager.selectTownID)
+        {
+            case 0:
+                background.sprite = firstTown;
+                break;
+            case 1:
+                background.sprite = secondTown;
+                break;
+            case 2:
+                background.sprite = thridTown;
+                break;
+        }
+    }
+
 
     public void TownInfoRefresh()
     {
