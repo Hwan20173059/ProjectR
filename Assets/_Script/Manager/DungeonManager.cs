@@ -98,6 +98,8 @@ public class DungeonManager : TileMapManager
             playerManager.fieldY = 10;
         }
 
+        playerManager.currentState = CurrentState.field;
+
         SceneManager.LoadScene("FieldScene");
     }
 

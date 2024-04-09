@@ -393,7 +393,7 @@
 			"id": 3,
 			"stageName": "필드 수호령",
 			"spawnMonsters": [
-				3				
+				3
 			],
 			"randomSpawnMonsters": [
 				3
@@ -403,37 +403,423 @@
 			"rewardGold": 0,
 			"rewardExp": 0,
 			"rewardItemId": 0
+		},
+		{
+			"id": 4,
+			"stageName": "산 멧돼지1",
+			"spawnMonsters": [
+				4,
+				4
+			],
+			"randomSpawnMonsters": [
+				5
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 5,
+			"stageName": "산 멧돼지2",
+			"spawnMonsters": [
+				5,
+				5
+			],
+			"randomSpawnMonsters": [
+				4
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 1,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 6,
+			"stageName": "산 나무정령",
+			"spawnMonsters": [
+				6,
+				6
+			],
+			"randomSpawnMonsters": [
+				6
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 7,
+			"stageName": "산 고목정령",
+			"spawnMonsters": [
+				7
+			],
+			"randomSpawnMonsters": [
+				7
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 3,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 8,
+			"stageName": "유적 위습",
+			"spawnMonsters": [
+				8,
+				8
+			],
+			"randomSpawnMonsters": [
+				8,
+				8
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 1,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 9,
+			"stageName": "유적 돌골렘",
+			"spawnMonsters": [
+				9,
+				9
+			],
+			"randomSpawnMonsters": [
+				8
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 3,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 10,
+			"stageName": "유적 불골렘",
+			"spawnMonsters": [
+				10,
+				10
+			],
+			"randomSpawnMonsters": [
+				8
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 3,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 11,
+			"stageName": "유적 얼음골렘",
+			"spawnMonsters": [
+				11,
+				11
+			],
+			"randomSpawnMonsters": [
+				8
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 3,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 12,
+			"stageName": "바다 개구리1",
+			"spawnMonsters": [
+				12,
+				13
+			],
+			"randomSpawnMonsters": [
+				12,
+				13
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 13,
+			"stageName": "바다 개구리2",
+			"spawnMonsters": [
+				12,
+				12
+			],
+			"randomSpawnMonsters": [
+				13,
+				13
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 14,
+			"stageName": "바다 게",
+			"spawnMonsters": [
+				14,
+				14
+			],
+			"randomSpawnMonsters": [
+				14,
+				14
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 3,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 15,
+			"stageName": "심해 게",
+			"spawnMonsters": [
+				15,
+				15
+			],
+			"randomSpawnMonsters": [
+				15,
+				15
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 3,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 16,
+			"stageName": "비홀더",
+			"spawnMonsters": [
+				16,
+				16
+			],
+			"randomSpawnMonsters": [
+				16
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 17,
+			"stageName": "플라이아이",
+			"spawnMonsters": [
+				17,
+				17
+			],
+			"randomSpawnMonsters": [
+				17
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 18,
+			"stageName": "지옥개",
+			"spawnMonsters": [
+				18,
+				18
+			],
+			"randomSpawnMonsters": [
+				16
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
+		},
+		{
+			"id": 19,
+			"stageName": "심연개",	
+			"spawnMonsters": [
+				19,
+				19
+			],
+			"randomSpawnMonsters": [
+				17
+			],
+			"randomSpawnMinAmount": 1,
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 0,
+			"rewardExp": 0,
+			"rewardItemId": 0
 		}
 	],
 	"dungeonDatas": [
 		{
 			"id": 0,
-			"dungeonName": "슬라임",
+			"dungeonName": "필드1",
 			"stages": [
 				0
 			]
 		},
 		{
 			"id": 1,
-			"dungeonName": "덩쿨1",
+			"dungeonName": "필드2",
 			"stages": [
 				1
 			]
 		},
 		{
 			"id": 2,
-			"dungeonName": "덩쿨2",
+			"dungeonName": "필드3",
 			"stages": [
 				2
 			]
 		},
 		{
 			"id": 3,
-			"dungeonName": "수호령",
+			"dungeonName": "필드4",
 			"stages": [
 				0,
 				3
 			]
+		},
+		{
+			"id": 4,
+			"dungeonName": "산1",
+			"stages": [
+				4,
+				4
+			]
+		},
+		{
+			"id": 5,
+			"dungeonName": "산2",
+			"stages": [
+				5,
+				5
+			]
+		},
+		{
+			"id": 6,
+			"dungeonName": "산3",
+			"stages": [
+				6,
+				7
+			]
+		},
+		{
+			"id": 7,
+			"dungeonName": "산4",
+			"stages": [
+				7,
+				6
+			]
+		},
+		{
+			"id": 8,
+			"dungeonName": "유적1",
+			"stages": [
+				8
+			]
+		},
+		{
+			"id": 9,
+			"dungeonName": "유적2",
+			"stages": [
+				8,
+				9
+			]
+		},
+		{
+			"id": 10,
+			"dungeonName": "유적3",
+			"stages": [
+				8,
+				10
+			]
+		},
+		{
+			"id": 11,
+			"dungeonName": "유적4",
+			"stages": [
+				8,
+				11
+			]
+		},
+		{
+			"id": 12,
+			"dungeonName": "바다1",
+			"stages": [
+				12,
+				12
+			]
+		},
+		{
+			"id": 13,
+			"dungeonName": "바다2",
+			"stages": [
+				12,
+				13
+			]
+		},
+		{
+			"id": 14,
+			"dungeonName": "바다3",
+			"stages": [
+				14,
+				14
+			]
+		},
+		{
+			"id": 15,
+			"dungeonName": "바다4",
+			"stages": [
+				15,
+				15
+			]
+		},
+		{
+			"id": 16,
+			"dungeonName": "지옥1",
+			"stages": [
+				16
+			]
+		},
+		{
+			"id": 17,
+			"dungeonName": "지옥2",
+			"stages": [
+				17
+			]
+		},
+		{
+			"id": 18,
+			"dungeonName": "지옥3",
+			"stages": [
+				18,
+				18
+			]
+		},
+		{
+			"id": 19,
+			"dungeonName": "지옥4",
+			"stages": [
+				19,
+				19
+			]
 		}
+
 	]
 }

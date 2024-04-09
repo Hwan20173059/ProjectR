@@ -80,6 +80,7 @@ public class TownUiManager : MonoBehaviour
             playerManager.fieldY = 6;
         }
 
+        PlayerManager.Instance.currentState = CurrentState.field;
         SceneManager.LoadScene("FieldScene");
     }
 
