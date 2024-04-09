@@ -191,6 +191,6 @@ public class CharacterActionState : CharacterBaseState
     public override void Exit()
     {
         base.Exit();
-        character.BuffDurationReduce();
+        character.ReduceBuffDuration();
     }
 }

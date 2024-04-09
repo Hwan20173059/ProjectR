@@ -1,9 +1,10 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -24,6 +25,8 @@ public class BattleCanvas : MonoBehaviour
     AutoBattlePanel autoBattlePanel;
     MenuButton menuButton;
     MenuPanel menuPanel;
+
+    ObjectPool objectPool;
 
     InfiniteInventory infiniteInventory;
     Settings settings;
@@ -46,6 +49,9 @@ public class BattleCanvas : MonoBehaviour
         autoBattlePanel = GetComponentInChildren<AutoBattlePanel>();
         menuButton = GetComponentInChildren<MenuButton>();
         menuPanel = GetComponentInChildren<MenuPanel>();
+
+        objectPool = GetComponentInParent<ObjectPool>();
+        objectPool.Init();
 
         infiniteInventory = GetComponentInChildren<InfiniteInventory>();
         settings = GetComponentInChildren<Settings>();
@@ -84,6 +90,15 @@ public class BattleCanvas : MonoBehaviour
         MonsterHpBar hpBar = go.GetComponent<MonsterHpBar>();
         hpBar.Init(monster);
         monster.hpBar = hpBar;
+    }
+
+    public void ChangeHpTMP(int value, Vector3 screenPos)
+    {
+        GameObject go = objectPool.GetFromPool("ChangeHpTMP");
+        int addPos = Random.Range(-100, 101);
+        Vector3 randomPos = new Vector3(screenPos.x + addPos, screenPos.y + 100);
+        go.transform.position = randomPos;
+        go.GetComponent<ChangeHpTMP>().SetChangeTMP(value);
     }
 
     public void SetRoulette(int resultIndex0, int resultIndex1, int resultIndex2)
