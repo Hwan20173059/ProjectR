@@ -22,9 +22,11 @@ public class RewardManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        DontDestroyOnLoad(this.gameObject);
         instance = this;
     }
 
+    // Reward가 없는 경우 -1 로 전달
     public void RewadPopup(int gold, int exp, int equipRewardID, int consumeRewardID)
     {
         AddgoldReward(gold);
@@ -37,7 +39,6 @@ public class RewardManager : MonoBehaviour
     private void AddgoldReward(int gold)
     {
         GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
-        //RewardSlot.transform.parent = RewardTrans.transform;
         RewardSlot.transform.SetParent(rewardTrans.transform);
         RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = gold.ToString();
         PlayerManager.Instance.AddGold(gold);
@@ -61,6 +62,8 @@ public class RewardManager : MonoBehaviour
 
     private void AddEquipReward(int rewardItemID)
     {
+        if (rewardItemID < 0)
+            return;
         itemManager.AddEquipItem(rewardItemID);
         GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
         RewardSlot.transform.SetParent(rewardTrans.transform);
@@ -74,6 +77,8 @@ public class RewardManager : MonoBehaviour
 
     private void AddConsumeReward(int rewardItemID)
     {
+        if (rewardItemID < 0)
+            return;
         itemManager.AddConsumeItem(rewardItemID);
         GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
         RewardSlot.transform.SetParent(rewardTrans.transform);

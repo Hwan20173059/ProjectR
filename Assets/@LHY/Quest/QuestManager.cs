@@ -24,7 +24,7 @@ public class QuestManager : MonoBehaviour
 
     public static QuestManager instance;
 
-    public int i = 1;
+    public bool test;
 
     private void Awake()
     {
@@ -38,7 +38,8 @@ public class QuestManager : MonoBehaviour
 
         //questMap = CreatQuestMap();
         NewquestMap = CreatQuestMaps();
-        LoadQuest();
+        if (test == true)
+            LoadQuest();
     }
 
     private void OnEnable()

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2438348182472414746
+--- !u!1 &9098595595517497184
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3820171114142596092}
-  - component: {fileID: 1562119369731772701}
+  - component: {fileID: 500561037948917465}
+  - component: {fileID: 2516300140879617745}
   m_Layer: 0
   m_Name: RewardManager
   m_TagString: Untagged
@@ -17,45 +17,69 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3820171114142596092
+--- !u!4 &500561037948917465
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2438348182472414746}
+  m_GameObject: {fileID: 9098595595517497184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 80, y: 15, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 228230546172781528}
+  - {fileID: 3066489926717599964}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1562119369731772701
+--- !u!114 &2516300140879617745
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2438348182472414746}
+  m_GameObject: {fileID: 9098595595517497184}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a060e3dbdc8b5bb4bac629df64bbee92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rewardUI: {fileID: 9206659210203075796, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
+  rewardUI: {fileID: 3897512979888073454}
   rewardSlotPrefeb: {fileID: 7883709508845765153, guid: f6cc7a6e51b18d44da2087c3bb155341, type: 3}
-  rewardTrans: {fileID: 0}
---- !u!1001 &8181671631935610109
+  rewardTrans: {fileID: 6913340691174080508}
+--- !u!1001 &6354483621402562553
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 3820171114142596092}
+    m_TransformParent: {fileID: 500561037948917465}
     m_Modifications:
+    - target: {fileID: 786517890302940411, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2516300140879617745}
+    - target: {fileID: 786517890302940411, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Off
+      objectReference: {fileID: 0}
+    - target: {fileID: 786517890302940411, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RewardManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072992113042125441, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072992113042125441, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942403918100636951, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8260153090773892901, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -144,13 +168,28 @@ PrefabInstance:
       propertyPath: m_Name
       value: RewardUI
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9206659210203075796, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1574863625352544847, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
---- !u!224 &228230546172781528 stripped
+--- !u!224 &3066489926717599964 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8260153090773892901, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
-  m_PrefabInstance: {fileID: 8181671631935610109}
+  m_PrefabInstance: {fileID: 6354483621402562553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3897512979888073454 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7942403918100636951, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
+  m_PrefabInstance: {fileID: 6354483621402562553}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &6913340691174080508 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 567092454815428613, guid: a5975764aa1a42b4a8759c535aaa5fc6, type: 3}
+  m_PrefabInstance: {fileID: 6354483621402562553}
   m_PrefabAsset: {fileID: 0}
