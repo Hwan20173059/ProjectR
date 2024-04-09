@@ -14,10 +14,18 @@ public class TitleManager : MonoBehaviour
         ItemManager itemManager = ItemManager.Instance;
 
         playerManager.titleManager = this;
+        playerManager.currentState = CurrentState.title;
     }
 
     public void GameStart()
     {
+        PlayerManager playerManager = PlayerManager.Instance;
+
+        if(playerManager.selectTownID == 0)
+            playerManager.currentState = CurrentState.town1;
+        else if(playerManager.selectTownID == 1)
+            playerManager.currentState = CurrentState.town2;
+
         SceneManager.LoadScene("TownScene");
     }
 }

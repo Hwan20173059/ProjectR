@@ -9,6 +9,19 @@ using Unity.VisualScripting.AssemblyQualifiedNameParser;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
+public enum CurrentState
+{
+    title,
+    town1,
+    town2,
+    field,
+    dungeon1,
+    dungeon2,
+    dungeon3,
+    dungeon4,
+    battle
+}
+
 public class PlayerManager : Singleton<PlayerManager>
 {
     [Header("Info")]
@@ -17,6 +30,8 @@ public class PlayerManager : Singleton<PlayerManager>
     public int currentExp = 0;
     public int gold = 500;
     public int playerTurnIndex = 5;
+
+    public CurrentState currentState;
 
     [Header("Character")]
     public List<Character> characterList = new List<Character>();

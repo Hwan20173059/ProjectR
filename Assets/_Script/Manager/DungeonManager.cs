@@ -33,7 +33,23 @@ public class DungeonManager : TileMapManager
             PlayerFieldSetting(0, 0);
 
             playerManager.monsterPosition = new List<int>();
-            SpawnRandomMonster(3);
+
+            switch (playerManager.currentState) 
+            {
+                case CurrentState.dungeon1:
+                    SpawnRandomMonster(3);
+                    break;
+                case CurrentState.dungeon2:
+                    SpawnRandomMonster(4);
+                    break;
+                case CurrentState.dungeon3:
+                    SpawnRandomMonster(4);
+                    break;
+                case CurrentState.dungeon4:
+                    SpawnRandomMonster(5);
+                    break;
+            }
+
             RandomSpawnChest();
 
             PlayerTurn();
@@ -97,6 +113,8 @@ public class DungeonManager : TileMapManager
             playerManager.fieldX = 15;
             playerManager.fieldY = 10;
         }
+
+        playerManager.currentState = CurrentState.field;
 
         SceneManager.LoadScene("FieldScene");
     }

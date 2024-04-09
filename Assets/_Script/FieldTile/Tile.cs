@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
+using UnityEngine.TextCore.Text;
 
 public enum TileState
 {
@@ -74,10 +76,11 @@ public class Tile : MonoBehaviour
 
             case TileState.monster:
                 SetTile(TileState.monster);
-                if (battleID == 0)
-                    onObject = Instantiate(tileMapManager.slimePrefab, this.transform);
-                else if (battleID == 1)
-                    onObject = Instantiate(tileMapManager.monsterPrefab, this.transform); 
+
+                onObject = Instantiate(tileMapManager.monsterPrefab, this.transform);
+                SpriteRenderer objectSprite = onObject.GetComponent<SpriteRenderer>();
+                objectSprite.sprite = Resources.Load<Sprite>(DataManager.Instance.battleDatabase.monsterDatas[battleID].spritePath);
+
                 spriteRenderer.color = Color.yellow;
                 break;
 
@@ -102,10 +105,11 @@ public class Tile : MonoBehaviour
 
             case TileState.canFight:
                 SetTile(TileState.canFight);
-                if (battleID == 0)
-                    onObject = Instantiate(tileMapManager.slimePrefab, this.transform);
-                else if (battleID == 1)
-                    onObject = Instantiate(tileMapManager.monsterPrefab, this.transform);
+
+                onObject = Instantiate(tileMapManager.monsterPrefab, this.transform);
+                objectSprite = onObject.GetComponent<SpriteRenderer>();
+                objectSprite.sprite = Resources.Load<Sprite>(DataManager.Instance.battleDatabase.monsterDatas[battleID].spritePath);
+
                 spriteRenderer.color = Color.magenta;
                 break;
 
@@ -145,6 +149,8 @@ public class Tile : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Sprite sprite;
+
         if (tileMapManager.isPlayerturn == true)
         {
             switch (tileState)
@@ -168,7 +174,7 @@ public class Tile : MonoBehaviour
                     }
 
                 case TileState.empty:
-                    tileMapManager.selectImage.sprite = null;
+                    //tileMapManager.selectImage.sprite = null;
                     tileMapManager.selectName.text = null;
                     tileMapManager.selectText.text = null;
                     break;
@@ -199,7 +205,7 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.cantGo:
-                    tileMapManager.selectImage.sprite = null;
+                    //tileMapManager.selectImage.sprite = null;
                     tileMapManager.selectName.text = null;
                     tileMapManager.selectText.text = null;
                     break;
@@ -208,27 +214,72 @@ public class Tile : MonoBehaviour
                 case TileState.monster:
 
                     tileMapManager.selectName.text = "¸ó½ºÅÍ";
+                    sprite = tileMapManager.monsterPrefab.GetComponent<SpriteRenderer>().sprite;
 
-                    if (battleID == 0)
+                    switch (battleID)
                     {
-                        Sprite sprite = tileMapManager.slimePrefab.GetComponent<SpriteRenderer>().sprite;
-                        tileMapManager.selectImage.sprite = sprite;
-                        tileMapManager.selectImage.SetNativeSize();
-                        
-                        tileMapManager.selectText.text = "½½¶óÀÓ ¹«¸®";
-                        break;
+                        case 0:
+                            tileMapManager.selectText.text = "½½¶óÀÓ";
+                            break;
+                        case 1:
+                            tileMapManager.selectText.text = "Çª¸¥ µ¢Äð";
+                            break;
+                        case 2:
+                            tileMapManager.selectText.text = "ºÓÀº µ¢Äð";
+                            break;
+                        case 3:
+                            tileMapManager.selectText.text = "Æò¿øÀÇ ¼öÈ£·É";
+                            break;
+                        case 4:
+                            tileMapManager.selectText.text = "¸äµÅÁö";
+                            break;
+                        case 5:
+                            tileMapManager.selectText.text = "¾ß»ýÀÇ ¸äµÅÁö";
+                            break;
+                        case 6:
+                            tileMapManager.selectText.text = "³ª¹« Á¤·É";
+                            break;
+                        case 7:
+                            tileMapManager.selectText.text = "°í¸ñ Á¤·É";
+                            break;
+                        case 8:
+                            tileMapManager.selectText.text = "À§½À";
+                            break;
+                        case 9:
+                            tileMapManager.selectText.text = "¼öÈ£ °ñ·½";
+                            break;
+                        case 10:
+                            tileMapManager.selectText.text = "ºÒ °ñ·½";
+                            break;
+                        case 11:
+                            tileMapManager.selectText.text = "¾óÀ½ °ñ·½";
+                            break;
+                        case 12:
+                            tileMapManager.selectText.text = "Ã»°³±¸¸®";
+                            break;
+                        case 13:
+                            tileMapManager.selectText.text = "¸Íµ¶ °³±¸¸®";
+                            break;
+                        case 14:
+                            tileMapManager.selectText.text = "¹Ù´Ù °Ô";
+                            break;
+                        case 15:
+                            tileMapManager.selectText.text = "½ÉÇØ °Ô";
+                            break;
+                        case 16:
+                            tileMapManager.selectText.text = "ºñÈ¦´õ";
+                            break;
+                        case 17:
+                            tileMapManager.selectText.text = "ÇÃ¶óÀÌ¾ÆÀÌ";
+                            break;
+                        case 18:
+                            tileMapManager.selectText.text = "Áö¿Á°³";
+                            break;
+                        case 19:
+                            tileMapManager.selectText.text = "½É¿¬ÀÇ Áö¿Á°³";
+                            break;
                     }
-                    else if (battleID == 1)
-                    {
-                        Sprite sprite = tileMapManager.monsterPrefab.GetComponent<SpriteRenderer>().sprite;
-                        tileMapManager.selectImage.sprite = sprite;
-                        tileMapManager.selectImage.SetNativeSize();
-
-                        tileMapManager.selectText.text = "¸äµÅÁö ¹«¸®";
-                        break;
-                    }
-                    else
-                        break;
+                    break;
 
 
                 case TileState.chest:
@@ -237,18 +288,18 @@ public class Tile : MonoBehaviour
 
                     if (chestID == 0)
                     {
-                        Sprite sprite = tileMapManager.chest0Prefab.GetComponent<SpriteRenderer>().sprite;
-                        tileMapManager.selectImage.sprite = sprite;
-                        tileMapManager.selectImage.SetNativeSize();
+                        sprite = tileMapManager.chest0Prefab.GetComponent<SpriteRenderer>().sprite;
+                        //tileMapManager.selectImage.sprite = sprite;
+                        //tileMapManager.selectImage.SetNativeSize();
 
                         tileMapManager.selectText.text = "ÃÊ¶óÇÑ »óÀÚ";
                         break;
                     }
                     else if (chestID == 1)
                     {
-                        Sprite sprite = tileMapManager.chest1Prefab.GetComponent<SpriteRenderer>().sprite;
-                        tileMapManager.selectImage.sprite = sprite;
-                        tileMapManager.selectImage.SetNativeSize();
+                        sprite = tileMapManager.chest1Prefab.GetComponent<SpriteRenderer>().sprite;
+                        //tileMapManager.selectImage.sprite = sprite;
+                        //tileMapManager.selectImage.SetNativeSize();
 
                         tileMapManager.selectText.text = "È­·ÁÇÑ »óÀÚ";
                         break;
@@ -263,14 +314,14 @@ public class Tile : MonoBehaviour
 
                     if (townID == 0)
                     {
-                        tileMapManager.selectImage.sprite = null;
+                        //tileMapManager.selectImage.sprite = null;
 
                         tileMapManager.selectText.text = "ÃÊ½ÉÀÚÀÇ ¸¶À»";
                         break;
                     }
                     else if(townID == 1)
                     {
-                        tileMapManager.selectImage.sprite = null;
+                        //tileMapManager.selectImage.sprite = null;
 
                         tileMapManager.selectText.text = "¼öµµ ¿¤´õ";
                         break;
@@ -285,30 +336,30 @@ public class Tile : MonoBehaviour
 
                     if (dungeonID == 0)
                     {
-                        tileMapManager.selectImage.sprite = null;
+                        //tileMapManager.selectImage.sprite = null;
 
                         tileMapManager.selectText.text = "¾ß»ýÀÇ »ê";
                         break;
                     }
                     else if (dungeonID == 1)
                     {
-                        tileMapManager.selectImage.sprite = null;
+                        //tileMapManager.selectImage.sprite = null;
 
-                        tileMapManager.selectText.text = "½½¶óÀÓ µÕÁö";
+                        tileMapManager.selectText.text = "È£¼öÀÇ À¯Àû";
                         break;
                     }
                     else if (dungeonID == 2)
                     {
-                        tileMapManager.selectImage.sprite = null;
+                        //tileMapManager.selectImage.sprite = null;
 
                         tileMapManager.selectText.text = "¹Ì±ÃÀÇ ¹Ù´Ù";
                         break;
                     }
                     else if (dungeonID == 3)
                     {
-                        tileMapManager.selectImage.sprite = null;
+                        //tileMapManager.selectImage.sprite = null;
 
-                        tileMapManager.selectText.text = "Áö¿ÁÀÇ ½£";
+                        tileMapManager.selectText.text = "Áö¿ÁÀÇ ÀÔ±¸";
                         break;
                     }
                     else
@@ -331,19 +382,36 @@ public class Tile : MonoBehaviour
                     else
                         tileMapManager.chestPosition = null;
 
-                    tileMapManager.playerManager.selectBattleID = 0;
+                    tileMapManager.playerManager.selectBattleID = battleID;
+                    PlayerManager.Instance.currentState = CurrentState.battle;
                     SceneManager.LoadScene("BattleScene");
                     break;
 
 
                 case TileState.canTownEnter:
                     tileMapManager.playerManager.selectTownID = townID;
+
+                    if (PlayerManager.Instance.selectTownID == 0)
+                        PlayerManager.Instance.currentState = CurrentState.town1;
+                    else if (PlayerManager.Instance.selectTownID == 1)
+                        PlayerManager.Instance.currentState = CurrentState.town2;
+
                     SceneManager.LoadScene("TownScene");
                     break;
 
 
                 case TileState.canDungeonEnter:
                     tileMapManager.playerManager.selectDungeonID = dungeonID;
+
+                    if (PlayerManager.Instance.selectDungeonID == 0)
+                        PlayerManager.Instance.currentState = CurrentState.dungeon1;
+                    else if (PlayerManager.Instance.selectDungeonID == 1)
+                        PlayerManager.Instance.currentState = CurrentState.dungeon2;
+                    else if (PlayerManager.Instance.selectDungeonID == 2)
+                        PlayerManager.Instance.currentState = CurrentState.dungeon3;
+                    else if (PlayerManager.Instance.selectDungeonID == 3)
+                        PlayerManager.Instance.currentState = CurrentState.dungeon4;
+
                     SceneManager.LoadScene("DungeonScene");
                     break;
 

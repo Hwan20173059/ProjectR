@@ -30,10 +30,11 @@ public class TileMapManager : MonoBehaviour
 
     [Header("FieldObject")]
     public GameObject playerPrefab;
-    public GameObject slimePrefab;
-    public GameObject monsterPrefab;
     public GameObject chest0Prefab;
     public GameObject chest1Prefab;
+
+    [Header("FieldMonster")]
+    public GameObject monsterPrefab;
 
     [Header("Monster")]
     public List<Tile> fieldMonster = new List<Tile>();
@@ -50,7 +51,7 @@ public class TileMapManager : MonoBehaviour
     public TextMeshProUGUI playerLevel;
     public TextMeshProUGUI playerHp;
 
-    public Image selectImage;
+    //public Image selectImage;
     public TextMeshProUGUI selectName;
     public TextMeshProUGUI selectText;
 
@@ -210,7 +211,25 @@ public class TileMapManager : MonoBehaviour
 
             if (field.tileRaw[randomY].fieldTiles[randomX].tileState == TileState.empty)
             {
-                int randomID = UnityEngine.Random.Range(0, 2);
+                int randomID = 0;
+                switch (playerManager.currentState)
+                {
+                    case CurrentState.field:
+                        randomID = UnityEngine.Random.Range(0, 4);
+                        break;
+                    case CurrentState.dungeon1:
+                        randomID = UnityEngine.Random.Range(4, 8);
+                        break;
+                    case CurrentState.dungeon2:
+                        randomID = UnityEngine.Random.Range(8, 12);
+                        break;
+                    case CurrentState.dungeon3:
+                        randomID = UnityEngine.Random.Range(12, 16);
+                        break;
+                    case CurrentState.dungeon4:
+                        randomID = UnityEngine.Random.Range(16, 20);
+                        break;
+                }
 
                 fieldMonster.Add(field.tileRaw[randomY].fieldTiles[randomX]);
                 field.tileRaw[randomY].fieldTiles[randomX].battleID = randomID;
