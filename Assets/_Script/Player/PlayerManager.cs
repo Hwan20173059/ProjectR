@@ -18,8 +18,7 @@ public enum CurrentState
     dungeon1,
     dungeon2,
     dungeon3,
-    dungeon4,
-    battle
+    dungeon4
 }
 
 public class PlayerManager : Singleton<PlayerManager>

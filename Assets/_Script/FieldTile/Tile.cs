@@ -383,7 +383,6 @@ public class Tile : MonoBehaviour
                         tileMapManager.chestPosition = null;
 
                     tileMapManager.playerManager.selectBattleID = battleID;
-                    PlayerManager.Instance.currentState = CurrentState.battle;
                     SceneManager.LoadScene("BattleScene");
                     break;
 
