@@ -22,22 +22,23 @@ public class RewardManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        DontDestroyOnLoad(this.gameObject);
         instance = this;
     }
 
-    public void Rewading(EquipReward[] equipReward, ConsumeReward[] consumeReward, int gold, int exp)
+    // Reward가 없는 경우 -1 로 전달
+    public void RewadPopup(int gold, int exp, int equipRewardID, int consumeRewardID)
     {
         AddgoldReward(gold);
         AddexpReward(exp);
-        AddEquipReward(equipReward);
-        AddConsumeReward(consumeReward);
+        AddEquipReward(equipRewardID);
+        AddConsumeReward(consumeRewardID);
         PopupReward();
     }
 
     private void AddgoldReward(int gold)
     {
         GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
-        //RewardSlot.transform.parent = RewardTrans.transform;
         RewardSlot.transform.SetParent(rewardTrans.transform);
         RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = gold.ToString();
         PlayerManager.Instance.AddGold(gold);
@@ -59,39 +60,32 @@ public class RewardManager : MonoBehaviour
         //RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(i).spritePath, typeof(Sprite)) as Sprite;
     }
 
-    private void AddEquipReward(EquipReward[] reward)
+    private void AddEquipReward(int rewardItemID)
     {
-        for (int i = 0; i < reward.Length; i++)
-        {
-            if (reward[i].itemProbability >= Random.Range(0, 100))
-            {
-                itemManager.AddEquipItem(reward[i].itemID);
-                GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
-                RewardSlot.transform.SetParent(rewardTrans.transform);
+        if (rewardItemID < 0)
+            return;
+        itemManager.AddEquipItem(rewardItemID);
+        GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
+        RewardSlot.transform.SetParent(rewardTrans.transform);
 
-                //id 하나로 다 가져와야함.
-                RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = DataManager.Instance.itemDatabase.GetItemByKey(i).equipName;
-                RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(i).spritePath, typeof(Sprite)) as Sprite;
-            }
-        }
+        //id 하나로 다 가져와야함.
+        RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = DataManager.Instance.itemDatabase.GetItemByKey(rewardItemID).equipName;
+        RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(rewardItemID).spritePath, typeof(Sprite)) as Sprite;
+
 
     }
 
-    private void AddConsumeReward(ConsumeReward[] reward)
+    private void AddConsumeReward(int rewardItemID)
     {
-        for (int i = 0; i < reward.Length; i++)
-        {
-            if (reward[i].itemProbability >= Random.Range(0, 100))
-            {
-                itemManager.AddConsumeItem(reward[i].itemID);
-                GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
-                RewardSlot.transform.SetParent(rewardTrans.transform);
+        if (rewardItemID < 0)
+            return;
+        itemManager.AddConsumeItem(rewardItemID);
+        GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
+        RewardSlot.transform.SetParent(rewardTrans.transform);
 
-                //id 하나로 다 가져와야함.
-                RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = DataManager.Instance.itemDatabase.GetCItemByKey(i).consumeName;
-                RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetCItemByKey(i).spritePath, typeof(Sprite)) as Sprite;
-            }
-        }
+        //id 하나로 다 가져와야함.
+        RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = DataManager.Instance.itemDatabase.GetCItemByKey(rewardItemID).consumeName;
+        RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetCItemByKey(rewardItemID).spritePath, typeof(Sprite)) as Sprite;
 
     }
     private void PopupReward()

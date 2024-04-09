@@ -24,7 +24,7 @@ public class QuestManager : MonoBehaviour
 
     public static QuestManager instance;
 
-    public int i = 1;
+    public bool test;
 
     private void Awake()
     {
@@ -38,7 +38,8 @@ public class QuestManager : MonoBehaviour
 
         //questMap = CreatQuestMap();
         NewquestMap = CreatQuestMaps();
-        LoadQuest();
+        if (test == true)
+            LoadQuest();
     }
 
     private void OnEnable()
@@ -99,8 +100,7 @@ public class QuestManager : MonoBehaviour
     {
         Quest quest = GetQuestByID(id);
 
-        //todo : 보상 지급
-        //RewardManager.instance.Rewading(quest.info.EquipRewardID, quest.info.ConsumeRewardID, quest.info.GoldReward, quest.info.ExpReward);
+        RewardManager.instance.RewadPopup(quest.info.goldReward, quest.info.expReward, quest.info.equipRewardID, quest.info.consumeRewardID);
 
         Debug.Log(quest + "퀘스트를 클리어했습니다");
         ChangeQuestState(quest.info.id, QuestState.Finished);
