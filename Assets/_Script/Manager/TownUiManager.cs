@@ -26,7 +26,6 @@ public class TownUiManager : MonoBehaviour
     public SpriteRenderer background;
     public Sprite firstTown;
     public Sprite secondTown;
-    public Sprite thridTown;
 
     [Header("UI")]
     public CharacterUI characterUI;
@@ -145,9 +144,6 @@ public class TownUiManager : MonoBehaviour
                 break;
             case 1:
                 background.sprite = secondTown;
-                break;
-            case 2:
-                background.sprite = thridTown;
                 break;
         }
     }

@@ -1589,7 +1589,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &185650953
@@ -1793,9 +1793,8 @@ MonoBehaviour:
   playerGold: {fileID: 1257103792}
   townName: {fileID: 986220086}
   background: {fileID: 185650952}
-  firstTown: {fileID: 21300000, guid: c9dba08e19bea4043972729465c9a33c, type: 3}
-  secondTown: {fileID: 21300000, guid: 9ca3b57f5fe06034eb525a625ca333ba, type: 3}
-  thridTown: {fileID: 21300000, guid: d7576960873e4d24797ab1a85ef51848, type: 3}
+  firstTown: {fileID: 21300000, guid: 73ea892daa219d045ae6232b3ef260c6, type: 3}
+  secondTown: {fileID: 21300000, guid: 44fbbed7ac8295a44b13b40eccf619bd, type: 3}
   characterUI: {fileID: 1822648825}
   guildUI: {fileID: 1300318877}
   storeUI: {fileID: 6039637989613893920}

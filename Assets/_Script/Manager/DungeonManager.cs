@@ -13,8 +13,6 @@ public class DungeonManager : TileMapManager
     public Sprite dungeon2;
     public Sprite dungeon3;
     public Sprite dungeon4;
-    public Sprite dungeon5;
-    public Sprite dungeon6;
 
     void Start()
     {
@@ -329,12 +327,6 @@ public class DungeonManager : TileMapManager
                 break;
             case 3:
                 background.sprite = dungeon4;
-                break;
-            case 4:
-                background.sprite = dungeon5;
-                break;
-            case 5:
-                background.sprite = dungeon6;
                 break;
         }
     }
