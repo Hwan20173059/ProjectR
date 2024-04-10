@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -147,7 +147,847 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Musket_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 840
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c82429bee6d8fa4986ce18d46d7490b
+      internalID: 262761106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_1
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 840
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8365f6fef3b5f1e41bba4b4c4ebd80ae
+      internalID: -2071737370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_2
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 776
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce5ae875011f2af48b29d92ee9b05a3f
+      internalID: 1139669226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_3
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 776
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a30e9c3db3013044bb9c49aef0aec106
+      internalID: 330087609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_4
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 712
+        width: 18
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d03e3b9290ffe4488a8de0a7d2c96aa
+      internalID: 55982480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_5
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 712
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89c466bcb0a529f43b90f252edd2c8fc
+      internalID: 1824964362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_6
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 712
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0517af0b60c80646a036932d65b56c2
+      internalID: -1423949721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_7
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 712
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 852c60a3be84a4a4cac6d5253a8fc79a
+      internalID: 971086524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_8
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 648
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 371c2fd34604af34f94a37c010712b17
+      internalID: 1849808873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_9
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 647
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5281d3c3ac9d9674096206167e66045e
+      internalID: -223570476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_10
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 648
+        width: 21
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7724bc5b1589f5945907a5dee706e676
+      internalID: 903398693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_11
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 647
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eab222728d6265747ba001563dd4acc9
+      internalID: 2085799774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_12
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 584
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb1180c223153b54d8a368255fdfbc8e
+      internalID: 1660883169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_13
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 584
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 150c31781b066274bb610bade98548e8
+      internalID: -666789691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_14
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 520
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80b3d833ce8bb0448f2192f617321b9
+      internalID: -1527426969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_15
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 520
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ec81d8d9637b084580dfc2b0da41af3
+      internalID: 54262951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_16
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 520
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67df0ed4badae2d4d885c2ea29ff8b20
+      internalID: -1167241154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_17
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 456
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa307308602abb84fa82ef5f1ff4f126
+      internalID: 480096839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_18
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 456
+        width: 19
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10097a3deaf5b8b42bb2e3a65d27ba03
+      internalID: 1526293540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_19
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 456
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b94cd4fe31b6cc4c96cd783bff3214f
+      internalID: -1875951374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_20
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 392
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 497d847cd2296ed4aa7d06041b1bb697
+      internalID: 1470415490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_21
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 392
+        width: 28
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 857c1fcca8f6eb9418dcd7898bd76bf7
+      internalID: -822461065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_22
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 392
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaadae16f2d73bf4caa77bd18486228b
+      internalID: 134865801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_23
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 328
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db8bfc5f111eb8b49b66532550da94ea
+      internalID: 1647175448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_24
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 328
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aef79aba16151848a1ac08c0f607fee
+      internalID: -1330875151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_25
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 328
+        width: 30
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: faf330a0a39d41d4487d3a6ce7372dbc
+      internalID: 393551219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_26
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 328
+        width: 28
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87eafa3679922b8479e0880885d70d51
+      internalID: -1524456676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_27
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 264
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed982cd0da8a4ee45869f175304ed186
+      internalID: -551146015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_28
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 264
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67d4bb1661b60f94ab3f79322f6a4eea
+      internalID: -1751273928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_29
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 264
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d0e0c4ca9e74df47b85b4c534a9e4a9
+      internalID: -1548045733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_30
+      rect:
+        serializedVersion: 2
+        x: 211
+        y: 264
+        width: 23
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32c6081c0a5307148b80f24755621499
+      internalID: -2031901070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_31
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 200
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8e03bfff9eeeb646817abbeb683360a
+      internalID: 506095433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_32
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 200
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a89c24dc24c67d343920e863ca132f07
+      internalID: -877002085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_33
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 136
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9497c03981b261c44949046229b725b7
+      internalID: 925182379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_34
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 136
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecddab41eacb05e48aaa099fb389160a
+      internalID: 1664441387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_35
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 72
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 044f607ab6dbec0438697a1aa7ccdef6
+      internalID: -1040747962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_36
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 72
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b0b61b9c91cb6047af54e799158e61a
+      internalID: -573238383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_37
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 8
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10f41da6c30fa0c4b859042662ea59e9
+      internalID: 1395763800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_38
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 8
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53aae8f85bbc0a74b94ff786a033016d
+      internalID: 1530651881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Musket_39
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 7
+        width: 20
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b35c9ef276e3eb4a82f5608d7aa683e
+      internalID: 832934329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +998,47 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Musket_0: 262761106
+      Musket_1: -2071737370
+      Musket_10: 903398693
+      Musket_11: 2085799774
+      Musket_12: 1660883169
+      Musket_13: -666789691
+      Musket_14: -1527426969
+      Musket_15: 54262951
+      Musket_16: -1167241154
+      Musket_17: 480096839
+      Musket_18: 1526293540
+      Musket_19: -1875951374
+      Musket_2: 1139669226
+      Musket_20: 1470415490
+      Musket_21: -822461065
+      Musket_22: 134865801
+      Musket_23: 1647175448
+      Musket_24: -1330875151
+      Musket_25: 393551219
+      Musket_26: -1524456676
+      Musket_27: -551146015
+      Musket_28: -1751273928
+      Musket_29: -1548045733
+      Musket_3: 330087609
+      Musket_30: -2031901070
+      Musket_31: 506095433
+      Musket_32: -877002085
+      Musket_33: 925182379
+      Musket_34: 1664441387
+      Musket_35: -1040747962
+      Musket_36: -573238383
+      Musket_37: 1395763800
+      Musket_38: 1530651881
+      Musket_39: 832934329
+      Musket_4: 55982480
+      Musket_5: 1824964362
+      Musket_6: -1423949721
+      Musket_7: 971086524
+      Musket_8: 1849808873
+      Musket_9: -223570476
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

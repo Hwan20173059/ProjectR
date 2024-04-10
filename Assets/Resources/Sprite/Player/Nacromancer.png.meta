@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -147,7 +147,847 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Nacromancer_0
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 840
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe9f1933c85c6414f809d48f13131b34
+      internalID: 1649283149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_1
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 840
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d45a6dd89176304285c3d51cbf0db0d
+      internalID: 1723181315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_2
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 776
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02bc3691a6118124bb1e9cd356149913
+      internalID: 1373064256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_3
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 776
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d44947328d332bb448cf9bb02dc5a3f5
+      internalID: -1869755145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_4
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 712
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 192cb18993969e34eb5a952871e3ebdf
+      internalID: 1701897269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_5
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 712
+        width: 15
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a01469a055070a448940e0abf7c7e8fa
+      internalID: -1087119960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_6
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 712
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee6ad7b5baa25b942bb39b07a4072fa2
+      internalID: 1360700005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_7
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 712
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff81218da7b61da4a964625ba22a522e
+      internalID: 922173705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_8
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 648
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bffe7ea9c10a46b4b9d356604690971d
+      internalID: 179017032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_9
+      rect:
+        serializedVersion: 2
+        x: 92
+        y: 646
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07129871e8fb3124482f466bd0f2baa3
+      internalID: -1850016457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_10
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 647
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 730ca1e5ae546fc4f8c221a7a6f6aeba
+      internalID: 1336474320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_11
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 646
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8412df191f9faf47a5993e1ff9211a4
+      internalID: 1812252750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_12
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 584
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fe46908fdcb44c4d83da0e920c0e323
+      internalID: 895732535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_13
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 584
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab3b6ecf10e19f742acdfa3a8bc0f5a8
+      internalID: -1161537975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_14
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 520
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02ca9bbe48218804b9cae60e80198611
+      internalID: 1484347787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_15
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 520
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4e401bed9f40e346895509faa6a482c
+      internalID: 1857701861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_16
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 520
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e10cbfd27aa303d44b5ce615c4f0069d
+      internalID: -2126219255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_17
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 456
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e202c26f13d33a42b3dde34852daa0b
+      internalID: -1306426475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_18
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 456
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8787309c94fc4a45bb587eb037810eb
+      internalID: -1374660185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_19
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 456
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 086c79df22ac81044aa9913beafcc11f
+      internalID: -2073945176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_20
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 392
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 327592b6c0c236a498b9a0057c368825
+      internalID: -2135170359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_21
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 392
+        width: 20
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d96c934324cf9843999c06ea450fffc
+      internalID: -1487639217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_22
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 392
+        width: 21
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca1370a0a9399c44384dc1ccec19da9a
+      internalID: 800496327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_23
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 328
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a963645fde47fa489d5ef9908d79f2a
+      internalID: 2079876256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_24
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 328
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 699d99cb52cfd064ea0608a48712ae73
+      internalID: -1033919771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_25
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 328
+        width: 22
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656a477f03c9b8e42b41010fae052e1f
+      internalID: -912724930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_26
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 327
+        width: 21
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2193d7e5be72cc4439fc1fdbf531041a
+      internalID: -558803239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_27
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 264
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f567d1f55bcc5b4bb86eee9911e4e9a
+      internalID: -875108160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_28
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 264
+        width: 16
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c153e12e4980334893298a8a416cf7b
+      internalID: 1652817074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_29
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 264
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8dc699eb62656545875c6930a1ba172
+      internalID: 221882800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_30
+      rect:
+        serializedVersion: 2
+        x: 217
+        y: 264
+        width: 17
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdf41fa260fe4d14bbc4af07476bbc20
+      internalID: 865213233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_31
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 200
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d443c0e6863bd04cb48d17f08bd3578
+      internalID: 413053023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_32
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 200
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c5f9bcf87d8aa242bfac136ffcfce25
+      internalID: -441141288
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_33
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 136
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8da604e58fb67f488781aa3dba65e0e
+      internalID: -829716327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_34
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 136
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 832038032232f9c4fb3c7063083fdde3
+      internalID: -2097427799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_35
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 72
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6e3eca1382f5814ba25bdc815ad9e43
+      internalID: -2086582972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_36
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 72
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8e68f44e3fd22544bea99c4f444a899
+      internalID: -1468089892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_37
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 8
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6869d30e3c042014a90be00f53f40fef
+      internalID: 428429730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_38
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 8
+        width: 13
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd4faad6e8519594493539e272aeb166
+      internalID: 1931879156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Nacromancer_39
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 6
+        width: 15
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c241f86fb6e09cc4f938a5d61382d419
+      internalID: 87422677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +998,47 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Nacromancer_0: 1649283149
+      Nacromancer_1: 1723181315
+      Nacromancer_10: 1336474320
+      Nacromancer_11: 1812252750
+      Nacromancer_12: 895732535
+      Nacromancer_13: -1161537975
+      Nacromancer_14: 1484347787
+      Nacromancer_15: 1857701861
+      Nacromancer_16: -2126219255
+      Nacromancer_17: -1306426475
+      Nacromancer_18: -1374660185
+      Nacromancer_19: -2073945176
+      Nacromancer_2: 1373064256
+      Nacromancer_20: -2135170359
+      Nacromancer_21: -1487639217
+      Nacromancer_22: 800496327
+      Nacromancer_23: 2079876256
+      Nacromancer_24: -1033919771
+      Nacromancer_25: -912724930
+      Nacromancer_26: -558803239
+      Nacromancer_27: -875108160
+      Nacromancer_28: 1652817074
+      Nacromancer_29: 221882800
+      Nacromancer_3: -1869755145
+      Nacromancer_30: 865213233
+      Nacromancer_31: 413053023
+      Nacromancer_32: -441141288
+      Nacromancer_33: -829716327
+      Nacromancer_34: -2097427799
+      Nacromancer_35: -2086582972
+      Nacromancer_36: -1468089892
+      Nacromancer_37: 428429730
+      Nacromancer_38: 1931879156
+      Nacromancer_39: 87422677
+      Nacromancer_4: 1701897269
+      Nacromancer_5: -1087119960
+      Nacromancer_6: 1360700005
+      Nacromancer_7: 922173705
+      Nacromancer_8: 179017032
+      Nacromancer_9: -1850016457
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
