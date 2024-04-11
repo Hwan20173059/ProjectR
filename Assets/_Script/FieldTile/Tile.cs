@@ -79,7 +79,7 @@ public class Tile : MonoBehaviour
 
                 onObject = Instantiate(tileMapManager.monsterPrefab, this.transform);
                 SpriteRenderer objectSprite = onObject.GetComponent<SpriteRenderer>();
-                objectSprite.sprite = Resources.Load<Sprite>(DataManager.Instance.battleDatabase.monsterDatas[battleID].spritePath);
+                objectSprite.sprite = Resources.Load<Sprite>(DataManager.Instance.monsterDatabase.monsterDatas[battleID].spritePath);
 
                 spriteRenderer.color = Color.yellow;
                 break;
@@ -108,7 +108,7 @@ public class Tile : MonoBehaviour
 
                 onObject = Instantiate(tileMapManager.monsterPrefab, this.transform);
                 objectSprite = onObject.GetComponent<SpriteRenderer>();
-                objectSprite.sprite = Resources.Load<Sprite>(DataManager.Instance.battleDatabase.monsterDatas[battleID].spritePath);
+                objectSprite.sprite = Resources.Load<Sprite>(DataManager.Instance.monsterDatabase.monsterDatas[battleID].spritePath);
 
                 spriteRenderer.color = Color.magenta;
                 break;

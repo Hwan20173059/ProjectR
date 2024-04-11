@@ -8,7 +8,6 @@ using UnityEngine;
 public class DataManager : Singleton<DataManager>
 {
     public ItemDatabase itemDatabase;
-    public BattleDataBase battleDatabase;
     public SaveData saveData;
     public CharacterDatabase characterDatabase;
     public MonsterDatabase monsterDatabase;
