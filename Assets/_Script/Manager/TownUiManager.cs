@@ -75,8 +75,8 @@ public class TownUiManager : MonoBehaviour
         }
         else if (playerManager.selectTownID == 1)
         {
-            playerManager.fieldX = 8;
-            playerManager.fieldY = 6;
+            playerManager.fieldX = 22;
+            playerManager.fieldY = 3;
         }
 
         PlayerManager.Instance.currentState = CurrentState.field;
