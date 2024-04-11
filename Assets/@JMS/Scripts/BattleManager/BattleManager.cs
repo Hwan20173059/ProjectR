@@ -491,4 +491,11 @@ public class BattleManager : MonoBehaviour
             default: return baseValue;
         }
     }
+
+    public void SaveCharacterData()
+    {
+        Character saveCharacter = PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex];
+        character.SaveCharacterData(saveCharacter);
+    }
+
 }

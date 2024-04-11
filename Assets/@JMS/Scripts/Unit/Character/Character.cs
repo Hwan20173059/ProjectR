@@ -83,21 +83,20 @@ public class Character : MonoBehaviour
 
     public void LoadInit(CharacterData characterData, int level, int currentExp)
     {
-        this.level = level;
-        this.curExp = currentExp;
         baseData = characterData;
+        this.level = level;
+        Init();
+        this.curExp = currentExp;
+        this.curHP = maxHP;
         
         sprite = Resources.Load<Sprite>(characterData.spritePath);
         spriteRenderer.sprite = sprite;
-
-        Init();
     }
 
     public void Init()
     {
         characterName = baseData.characterName;
         maxHP = baseData.hp * level;
-        curHP = maxHP;
         atk = baseData.atk * level;
         needExp = baseData.needExp * level;
         maxCoolTime = baseData.actionCoolTime;
@@ -153,10 +152,21 @@ public class Character : MonoBehaviour
         level++;
         level = level > baseData.maxLevel ? baseData.maxLevel : level;
         maxHP = baseData.hp * level;
+        curHP += baseData.hp;
         atk = baseData.atk * level;
         needExp = baseData.needExp * level;
         curExp = curExp >= needExp ? LevelUp() : curExp;
         return curExp;
+    }
+
+    public void SaveCharacterData(Character saveCharacter)
+    {
+        saveCharacter.level = level;
+        saveCharacter.curExp = curExp;
+        saveCharacter.needExp = needExp;
+        saveCharacter.maxHP = maxHP;
+        saveCharacter.curHP = curHP;
+        saveCharacter.atk = atk;
     }
 
     public void ReduceBuffDuration()

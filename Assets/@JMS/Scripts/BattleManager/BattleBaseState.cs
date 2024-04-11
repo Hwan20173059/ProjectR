@@ -20,12 +20,12 @@ public class BattleBaseState : IState
     }
     public virtual void Enter()
     {
-
+        
     }
 
     public virtual void Exit()
     {
-
+        battleManager.SaveCharacterData();
     }
 
     public virtual void HandleInput()

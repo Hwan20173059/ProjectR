@@ -26,10 +26,10 @@ public class BattleCanvas : MonoBehaviour
     MenuButton menuButton;
     MenuPanel menuPanel;
 
-    ObjectPool objectPool;
-
     InfiniteInventory infiniteInventory;
     Settings settings;
+
+    ObjectPool objectPool;
 
     public GameObject characterHpBarPrefab;
     public GameObject monsterHpBarPrefab;
@@ -50,11 +50,11 @@ public class BattleCanvas : MonoBehaviour
         menuButton = GetComponentInChildren<MenuButton>();
         menuPanel = GetComponentInChildren<MenuPanel>();
 
-        objectPool = GetComponent<ObjectPool>();
-        objectPool.Init();
-
         infiniteInventory = GetComponentInChildren<InfiniteInventory>();
         settings = GetComponentInChildren<Settings>();
+
+        objectPool = GetComponent<ObjectPool>();
+        objectPool.Init();
     }
 
     private void Start()
