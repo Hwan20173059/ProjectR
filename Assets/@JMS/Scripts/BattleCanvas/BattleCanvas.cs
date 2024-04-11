@@ -50,12 +50,15 @@ public class BattleCanvas : MonoBehaviour
         menuButton = GetComponentInChildren<MenuButton>();
         menuPanel = GetComponentInChildren<MenuPanel>();
 
-        objectPool = GetComponentInParent<ObjectPool>();
+        objectPool = GetComponent<ObjectPool>();
         objectPool.Init();
 
         infiniteInventory = GetComponentInChildren<InfiniteInventory>();
         settings = GetComponentInChildren<Settings>();
+    }
 
+    private void Start()
+    {
         PanelInit();
     }
 

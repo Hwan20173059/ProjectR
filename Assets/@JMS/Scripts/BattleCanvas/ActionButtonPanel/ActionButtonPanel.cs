@@ -25,6 +25,8 @@ public class ActionButtonPanel : MonoBehaviour
         rouletteButton.button.onClick.AddListener(OnClickRouletteButton);
         runAwayButton.button.onClick.AddListener(OnClickRunAwayButton);
         ItemButton.button.onClick.AddListener(OnClickItemButton);
+
+        rouletteButton.button.gameObject.SetActive(false);
     }
 
     void OnClickAttackButton()

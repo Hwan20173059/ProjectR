@@ -10,9 +10,4 @@ public class RouletteButton : MonoBehaviour
     {
         button = GetComponent<Button>();
     }
-
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
 }
