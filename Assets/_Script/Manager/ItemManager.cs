@@ -59,6 +59,12 @@ public class ItemManager : Singleton<ItemManager>
         //baseItem.data = baseEquip;
     }
 
+    public EquipItem GetEquipItem(int id)
+    {
+        EquipItem eItem = new EquipItem(itemDatabase.GetItemByKey(id));
+        return eItem;
+    }
+
     public void AddEquipItem(int id)
     {
         EquipItem eItem = new EquipItem(itemDatabase.GetItemByKey(id));

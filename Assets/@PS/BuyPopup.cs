@@ -8,7 +8,6 @@ public class BuyPopup : MonoBehaviour
 {
     private ItemManager itemManager;
     [SerializeField] private Image itemImage;
-    [SerializeField] private GameObject buyPopupBg;
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemInfo;
     [SerializeField] private TextMeshProUGUI itemPrice;
@@ -35,7 +34,6 @@ public class BuyPopup : MonoBehaviour
     {
         ChangePopupInfo(item);
         gameObject.SetActive(true);
-        buyPopupBg.SetActive(true);
     }
 
     public void BuyItem()
@@ -50,6 +48,5 @@ public class BuyPopup : MonoBehaviour
     public void ClosePopup()
     {
         gameObject.SetActive(false);
-        buyPopupBg.SetActive(false);
     }
 }

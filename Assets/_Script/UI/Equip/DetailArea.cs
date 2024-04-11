@@ -9,6 +9,7 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private GameObject detailObject;
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private Button _equipButton;
     [SerializeField] private Button _unEquipButton;
     [SerializeField] private Button _useButton;
@@ -29,6 +30,7 @@ public class DetailArea : MonoBehaviour
         nowSelectedEquip = e;
         _image.sprite = e.equipSprite;
         _text.text = e.data.info;
+        itemName.text = e.data.equipName;
         if (e.data.id != 0)
         {
             if (e.isEquipped)
@@ -49,6 +51,7 @@ public class DetailArea : MonoBehaviour
         nowConsumeItem = c;
         _image.sprite = c.consumeSprite;
         _text.text = c.data.info;
+        itemName.text = c.data.consumeName;
         if(c.type != Type.Drop && c.type != Type.DungeonItem)
         {
             _useButton.gameObject.SetActive(true);
