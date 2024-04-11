@@ -94,22 +94,22 @@ public class DungeonManager : TileMapManager
         if (playerManager.selectDungeonID == 0)
         {
             playerManager.fieldX = 4;
-            playerManager.fieldY = 1;
+            playerManager.fieldY = 4;
         }
         else if (playerManager.selectDungeonID == 1)
         {
-            playerManager.fieldX = 12;
-            playerManager.fieldY = 1;
+            playerManager.fieldX = 14;
+            playerManager.fieldY = 2;
         }
         else if (playerManager.selectDungeonID == 2)
         {
-            playerManager.fieldX = 1;
-            playerManager.fieldY = 9;
+            playerManager.fieldX = 33;
+            playerManager.fieldY = 5;
         }
         else if (playerManager.selectDungeonID == 3)
         {
-            playerManager.fieldX = 15;
-            playerManager.fieldY = 10;
+            playerManager.fieldX = 33;
+            playerManager.fieldY = 0;
         }
 
         playerManager.currentState = CurrentState.field;
