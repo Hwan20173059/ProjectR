@@ -7,6 +7,7 @@ public class GachaResult : MonoBehaviour
 {
     public GameObject equip1UI;
     public GameObject equip10UI;
+    public RectTransform scrollInitialize;
     public GameObject character1UI;
     public GameObject character10UI;
 
@@ -23,6 +24,7 @@ public class GachaResult : MonoBehaviour
         {
             equip10UI.GetComponentsInChildren<GachaSlot>()[i].SetImage(e[i].equipSprite);
         }
+        scrollInitialize.anchoredPosition = new Vector2(0, 0);
         gameObject.SetActive(true);
         equip10UI.SetActive(true);
     }

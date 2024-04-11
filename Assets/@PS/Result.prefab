@@ -113,10 +113,10 @@ RectTransform:
   - {fileID: 1376927347339968640}
   - {fileID: 8336922479833277950}
   - {fileID: 2814886464638598140}
-  - {fileID: 966782885878896819}
+  - {fileID: 1704590661057132744}
   - {fileID: 4541732382922686495}
   - {fileID: 804600226195961069}
-  - {fileID: 9222244666477604895}
+  - {fileID: 7293194135850995812}
   - {fileID: 936967121390803161}
   - {fileID: 1342631801935958479}
   - {fileID: 1797214911000509540}
@@ -405,6 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   equip1UI: {fileID: 8501316214560511400}
   equip10UI: {fileID: 1684817588386888738}
+  scrollInitialize: {fileID: 645379872502315775}
   character1UI: {fileID: 0}
   character10UI: {fileID: 0}
 --- !u!1 &2442635092151737230
@@ -1429,7 +1430,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d24f966cd6b7684fb2270344e82809b, type: 3}
---- !u!224 &966782885878896819 stripped
+--- !u!224 &1704590661057132744 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1931305116275515514, guid: 4d24f966cd6b7684fb2270344e82809b, type: 3}
   m_PrefabInstance: {fileID: 966782885878896818}
@@ -2171,7 +2172,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d24f966cd6b7684fb2270344e82809b, type: 3}
---- !u!224 &9222244666477604895 stripped
+--- !u!224 &7293194135850995812 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1931305116275515514, guid: 4d24f966cd6b7684fb2270344e82809b, type: 3}
   m_PrefabInstance: {fileID: 9222244666477604894}
