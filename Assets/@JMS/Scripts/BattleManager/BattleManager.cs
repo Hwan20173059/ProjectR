@@ -105,11 +105,11 @@ public class BattleManager : MonoBehaviour
     
     void BattleInit()
     {
-        dungeon = DataManager.Instance.battleDatabase.GetDungeonByKey(PlayerManager.Instance.selectBattleID);
+        dungeon = DataManager.Instance.dungeonDatabase.GetDataByKey(PlayerManager.Instance.selectBattleID);
         
         for (int i = 0; i < dungeon.stages.Length; i++)
         {
-            stages.Add(DataManager.Instance.battleDatabase.GetStageByKey(dungeon.stages[i]));
+            stages.Add(DataManager.Instance.stageDatabase.GetDataByKey(dungeon.stages[i]));
         }
 
         if (targetCircle == null)
@@ -148,7 +148,7 @@ public class BattleManager : MonoBehaviour
                 int monsterIndex = Random.Range(0, stages[curStage].randomSpawnMonsters.Length);
                 GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
                 monsters.Add(monster.GetComponent<Monster>());
-                monsters[i].SetMonsterData(DataManager.Instance.battleDatabase.GetMonsterByKey(stages[curStage].randomSpawnMonsters[monsterIndex]));
+                monsters[i].SetMonsterData(DataManager.Instance.monsterDatabase.GetDataByKey(stages[curStage].randomSpawnMonsters[monsterIndex]));
                 monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
@@ -160,7 +160,7 @@ public class BattleManager : MonoBehaviour
             {
                 GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
                 monsters.Add(monster.GetComponent<Monster>());
-                monsters[randomSpawnAmount+i].SetMonsterData(DataManager.Instance.battleDatabase.GetMonsterByKey(stages[curStage].spawnMonsters[i]));
+                monsters[randomSpawnAmount + i].SetMonsterData(DataManager.Instance.monsterDatabase.GetDataByKey(stages[curStage].spawnMonsters[i]));
                 monster.transform.position = monsterSpawnPosition;
                 ChangeSpawnPosition();
             }
