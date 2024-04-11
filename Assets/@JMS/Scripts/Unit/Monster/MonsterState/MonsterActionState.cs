@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
+public enum MonsterAction
+{
+    BASEATTACK,
+    JUMP
+}
+
 public class MonsterActionState : MonsterBaseState
 {
     public MonsterActionState(MonsterStateMachine monsterStateMachine) : base(monsterStateMachine)
