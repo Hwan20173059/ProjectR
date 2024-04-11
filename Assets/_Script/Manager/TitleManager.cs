@@ -26,6 +26,7 @@ public class TitleManager : MonoBehaviour
         else if(playerManager.selectTownID == 1)
             playerManager.currentState = CurrentState.town2;
 
+        AudioManager.Instance.SetState();
         SceneManager.LoadScene("TownScene");
     }
 }

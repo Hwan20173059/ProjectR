@@ -27,15 +27,6 @@ public class QuestStep : MonoBehaviour
     {
         GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
         GameEventManager.instance.battleEvent.onKillSlime += KillSlime;
-        if (questType == "DungeonClear")
-        {
-            GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
-        }
-        if (questType == "KillSlime")
-        {
-            GameEventManager.instance.battleEvent.onKillSlime += KillSlime;
-        }
-        //GameEventManager.instance.questEvent.onFinishQuest += FinishQuest;
     }
 
     private void OnDisable()
