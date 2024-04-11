@@ -8,14 +8,21 @@ using UnityEngine;
 public class DataManager : Singleton<DataManager>
 {
     public ItemDatabase itemDatabase;
-    public BattleDataBase battleDatabase;
     public SaveData saveData;
+    public CharacterDatabase characterDatabase;
+    public MonsterDatabase monsterDatabase;
+    public StageDatabase stageDatabase;
+    public DungeonDatabase dungeonDatabase;
 
     new private void Awake()
     {
-        LoadBattleDatas();
         LoadSaveData();
         LoadEquipDatas();
+
+        LoadDatabase(ref characterDatabase);
+        LoadDatabase(ref monsterDatabase);
+        LoadDatabase(ref stageDatabase);
+        LoadDatabase(ref dungeonDatabase);
     }
 
     // 데이터를 불러와서 딕셔너리에 값을 저장하는 메소드
@@ -30,15 +37,16 @@ public class DataManager : Singleton<DataManager>
             itemDatabase.Initialize();
         }
     }
-    public void LoadBattleDatas()
+
+    public void LoadDatabase<T>(ref T database) where T : IDatabase
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>("BattleDatas");
+        TextAsset jsonFile = Resources.Load<TextAsset>($"{typeof(T).Name}");
 
         if (jsonFile != null)
         {
             string json = jsonFile.text;
-            battleDatabase = JsonUtility.FromJson<BattleDataBase>(json);
-            battleDatabase.Initialize();
+            database = JsonUtility.FromJson<T>(json);
+            database.Initialize();
         }
     }
 
