@@ -37,39 +37,39 @@ public class Settings : MonoBehaviour
     {
         string exposedParam = "Master";
 
-        AudioManager.instance.ToggleVolume(exposedParam, isToggledOn);
+        AudioManager.Instance.ToggleVolume(exposedParam, isToggledOn);
     }
 
     public void ToggleBGMVolume_Callback(bool isToggledOn)
     {
         string exposedParam = "BGM";
 
-        AudioManager.instance.ToggleVolume(exposedParam, isToggledOn);
+        AudioManager.Instance.ToggleVolume(exposedParam, isToggledOn);
     }
 
     public void ToggleSFXVolume_Callback(bool isToggledOn)
     {
         string exposedParam = "SFX";
 
-        AudioManager.instance.ToggleVolume(exposedParam, isToggledOn);
+        AudioManager.Instance.ToggleVolume(exposedParam, isToggledOn);
     }
 
     public void SetMasterVolume_Callback()
     {
         float volume = masterSlider.value;
-        AudioManager.instance.SetVolume("Master", volume);
+        AudioManager.Instance.SetVolume("Master", volume);
     }
 
     public void SetBGMVolmue_Callback()
     {
         float volume = bgmSlider.value;
-        AudioManager.instance.SetVolume("BGM", volume);
+        AudioManager.Instance.SetVolume("BGM", volume);
     }
 
     public void SetSFXVolume_Callback()
     {
         float volume = sfxSlider.value;
-        AudioManager.instance.SetVolume("SFX", volume);
+        AudioManager.Instance.SetVolume("SFX", volume);
     }
 
 
