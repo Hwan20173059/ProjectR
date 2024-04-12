@@ -3,7 +3,9 @@ using UnityEngine;
 
 public enum MonsterAnim
 {
+    Idle,
     Attack,
+    Jump,
     Hit,
     Heal
 }
@@ -30,7 +32,9 @@ public class MonsterAnimController : MonoBehaviour
     {
         switch (anim)
         {
+            case MonsterAnim.Idle: animator.SetTrigger("Idle"); break;
             case MonsterAnim.Attack: animator.SetTrigger("Attack"); break;
+            case MonsterAnim.Jump: animator.SetTrigger("Jump"); break;
             case MonsterAnim.Hit: animator.SetTrigger("Hit"); break;
             case MonsterAnim.Heal: animator.SetTrigger("Heal"); break;
         }

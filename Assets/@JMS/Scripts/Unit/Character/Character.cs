@@ -37,10 +37,10 @@ public class Character : MonoBehaviour
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
-    public CharacterAnimController animatorController;
-    public SpriteLibrary spriteLibrary;
+    public CharacterAnimController animatorController { get; private set; }
     public SpriteRenderer spriteRenderer;
     public Sprite sprite;
+    public SpriteLibrary spriteLibrary;
 
     public CharacterBuffHandler characterBuffHandler;
 

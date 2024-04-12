@@ -161,7 +161,7 @@
 			"grade": 2,
 			"characterName": "테스트",
 			"spritePath": "Sprite/Player/TestCharacter",
-			"assetPath": "UnitAsset/CharacterAsset/TestCharacter",
+			"assetPath": "UnitAsset/CharacterAssets/TestCharacter",
 			"hp": 250,
 			"levelUpHp": 30,
 			"atk": 20,

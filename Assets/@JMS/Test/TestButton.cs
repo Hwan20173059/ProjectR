@@ -45,7 +45,7 @@ public class TestButton : MonoBehaviour
     public void ChangeMonsterAnim()
     {
         ++monsterAnim;
-        if ((int)monsterAnim > 2) monsterAnim = 0;
+        if ((int)monsterAnim > 4) monsterAnim = 0;
         playMonsterAnimText.text = monsterAnim.ToString();
     }
 

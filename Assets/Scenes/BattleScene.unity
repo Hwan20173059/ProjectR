@@ -330,7 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterPrefab: {fileID: 375063816128229675, guid: 39572899e5129a540b97be4f8e59ee06, type: 3}
-  monsterPrefab: {fileID: 7997874622876576009, guid: 674a04fe9fa810941b2b83ba227589bb, type: 3}
+  monsterPrefab: {fileID: 8744651542211966483, guid: 8522277ecb46b9d42bd7c7fe752777c7, type: 3}
   targetCirclePrefab: {fileID: 387042340656938697, guid: 1f77bce04544eac49af459f4a8656ff5, type: 3}
   stages: []
   curStage: 0
