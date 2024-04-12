@@ -9,7 +9,9 @@ public enum Type
     SpeedBuffPotion,
     HpPotion,
     Drop,
-    DungeonItem
+    DungeonItem,
+    CharacterPiece,
+    ExpItem
 }
 
 [System.Serializable]
