@@ -110,7 +110,7 @@ public class Character : MonoBehaviour
         maxHP = baseData.hp + (baseData.levelUpHp * level);
         curHP = maxHP;
         atk = baseData.atk + (baseData.levelUpAtk * level);
-        needExp = 100 + (level * (10 * ((level + 5) / 5)));
+        needExp = 50 + (10 * (level * level));
         curExp = currentExp;
 
         sprite = Resources.Load<Sprite>(baseData.spritePath);
