@@ -7,13 +7,15 @@ public class GachaManager : MonoBehaviour
     private ItemManager itemManager;
     private PlayerManager playerManager;
 
-    private Character nowChar;
+    private ConsumeItem nowChar;
     private EquipItem nowEquip;
 
-    private Character[] charArray = new Character[10];
+    private ConsumeItem[] charArray = new ConsumeItem[10];
     private EquipItem[] equipArray = new EquipItem[10];
+    private bool[] isHaving = new bool[10];
 
     private bool gacha10;
+    private bool isNowItemHaving;
 
     public GachaResult gachaResult;
 
@@ -27,32 +29,46 @@ public class GachaManager : MonoBehaviour
         // 골드 감소
         playerManager.gold -= 500;
         // 캐릭터 추가
+        int randomIndex = Random.Range(32, 45);
+        itemManager.AddConsumeItem(randomIndex);
+        nowChar = itemManager.GetConsumeItem(randomIndex);
+
+        if (!gacha10)
+        {
+            gachaResult.Character1UI(nowChar);
+        }
         // 가챠 이펙트(함수)
         // 가챠 결과창(함수)
     }
     public void EquipGacha()
     {
+        isNowItemHaving = true;
         playerManager.gold -= 300;
         int randomIndex = Random.Range(1, 57);
-        itemManager.AddEquipItem(randomIndex);
+        if (!itemManager.HaveEquipItem(randomIndex))
+        {
+            isNowItemHaving = false;
+            itemManager.AddEquipItem(randomIndex);
+        }
         nowEquip = itemManager.GetEquipItem(randomIndex);
 
         if (!gacha10)
         {
-            gachaResult.Equip1UI(nowEquip);
+            gachaResult.Equip1UI(nowEquip, isNowItemHaving);
         }
     }
 
     public void CharacterGacha10()
     {
+        gacha10 = true;
         for (int i = 0; i < 10; i++)
         {
             CharacterGacha();
-
-            nowChar = null;
             charArray[i] = nowChar;
         }
-        
+        gachaResult.Character10UI(charArray);
+        System.Array.Clear(equipArray, 0, equipArray.Length);
+        gacha10 = false;
     }
 
     public void EquipGacha10()
@@ -62,8 +78,9 @@ public class GachaManager : MonoBehaviour
         {
             EquipGacha();
             equipArray[i] = nowEquip;
+            isHaving[i] = isNowItemHaving;
         }
-        gachaResult.Equip10UI(equipArray);
+        gachaResult.Equip10UI(equipArray, isHaving);
         System.Array.Clear(equipArray, 0, equipArray.Length);
         gacha10 = false;
     }

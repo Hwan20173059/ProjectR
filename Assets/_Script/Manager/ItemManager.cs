@@ -58,12 +58,24 @@ public class ItemManager : Singleton<ItemManager>
         //baseItem.data = baseEquip;
     }
 
+    public bool HaveEquipItem(int id)
+    {
+        int index = eInventory.FindIndex(e => e.data.id == id);
+        if(index != -1) return true;
+        else return false;
+    }
+
     public EquipItem GetEquipItem(int id)
     {
         EquipItem eItem = new EquipItem(itemDatabase.GetItemByKey(id));
         return eItem;
     }
 
+    public ConsumeItem GetConsumeItem(int id)
+    {
+        ConsumeItem cItem = new ConsumeItem(itemDatabase.GetCItemByKey(id));
+        return cItem;
+    }
     public void AddEquipItem(int id)
     {
         EquipItem eItem = new EquipItem(itemDatabase.GetItemByKey(id));

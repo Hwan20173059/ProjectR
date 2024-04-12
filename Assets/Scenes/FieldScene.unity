@@ -21077,6 +21077,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5009458826753183600, guid: 1b1c71c03071fad4ea23d105da54beec, type: 3}
       propertyPath: battleID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009458826753183600, guid: 1b1c71c03071fad4ea23d105da54beec, type: 3}
+      propertyPath: dungeonID
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5009458826753183600, guid: 1b1c71c03071fad4ea23d105da54beec, type: 3}

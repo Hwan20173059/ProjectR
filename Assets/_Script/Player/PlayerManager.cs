@@ -87,6 +87,13 @@ public class PlayerManager : Singleton<PlayerManager>
         equip[n].isEquipped = true;
     }
 
+    public bool HaveCharacter(int id)
+    {
+        int index = characterList.FindIndex(c => c.baseData.id == id);
+        if (index != -1) return true;
+        else return false;
+    }
+
     public void AddCharacter(int id, int level, int exp)
     {
         Character character = Instantiate(titleManager.character,this.transform);

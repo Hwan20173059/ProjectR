@@ -12,7 +12,7 @@
 			"dungeonName": "필드2",
 			"stages": [
 				1,
-				2
+				1
 			]
 		},
 		{
@@ -20,14 +20,13 @@
 			"dungeonName": "필드3",
 			"stages": [
 				2,
-				1
+				2
 			]
 		},
 		{
 			"id": 3,
 			"dungeonName": "필드4",
 			"stages": [
-				0,
 				3
 			]
 		},
@@ -35,7 +34,6 @@
 			"id": 4,
 			"dungeonName": "산1",
 			"stages": [
-				4,
 				4
 			]
 		},
@@ -43,7 +41,6 @@
 			"id": 5,
 			"dungeonName": "산2",
 			"stages": [
-				5,
 				5
 			]
 		},
@@ -51,16 +48,14 @@
 			"id": 6,
 			"dungeonName": "산3",
 			"stages": [
-				6,
-				7
+				6
 			]
 		},
 		{
 			"id": 7,
 			"dungeonName": "산4",
 			"stages": [
-				7,
-				6
+				7
 			]
 		},
 		{
@@ -106,7 +101,7 @@
 			"id": 13,
 			"dungeonName": "바다2",
 			"stages": [
-				12,
+				13,
 				13
 			]
 		},
@@ -130,6 +125,7 @@
 			"id": 16,
 			"dungeonName": "지옥1",
 			"stages": [
+				16,
 				16
 			]
 		},
@@ -137,6 +133,7 @@
 			"id": 17,
 			"dungeonName": "지옥2",
 			"stages": [
+				17,
 				17
 			]
 		},
@@ -144,6 +141,7 @@
 			"id": 18,
 			"dungeonName": "지옥3",
 			"stages": [
+				17,
 				18,
 				18
 			]
@@ -152,6 +150,7 @@
 			"id": 19,
 			"dungeonName": "지옥4",
 			"stages": [
+				16,
 				19,
 				19
 			]
