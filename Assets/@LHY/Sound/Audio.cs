@@ -6,13 +6,13 @@ using UnityEngine.Audio;
 [System.Serializable]
 public class Audios
 {
-    public AudioClip mainBgmClip;
-    public AudioClip introBgmClip;
-    public AudioClip walkClip;
-    public AudioClip jumpClip;
-    public AudioClip getItemClip;
-    public AudioClip uiSelectClip;
+    public AudioClip titleBGMClip;
+    public AudioClip townBGMClip;
+    public AudioClip fieldBGMClip;
+    public AudioClip fieldBattleBGMClip;
+    public AudioClip dungeonBattleBGMClip;
+    public AudioClip loseBGMClip;
     public AudioClip playerAttackClip;
     public AudioClip startClip;
-    public AudioClip clearClip;
+    public AudioClip uiSelectClip;
 }
