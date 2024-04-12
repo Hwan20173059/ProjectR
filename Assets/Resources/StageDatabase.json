@@ -4,56 +4,54 @@
 			"id": 0,
 			"stageName": "필드 슬라임",
 			"spawnMonsters": [
-				0,
 				0
 			],
 			"randomSpawnMonsters": [
 				0
 			],
-			"randomSpawnMinAmount": 0,
+			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 1,
-			"rewardGold": 50,
-			"rewardExp": 5,
+			"rewardGold": 30,
+			"rewardExp": 60,
 			"rewardItemId": 0
 		},
 		{
 			"id": 1,
 			"stageName": "필드 덩쿨1",
 			"spawnMonsters": [
-				2,
-				2
-			],
-			"randomSpawnMonsters": [
 				1,
 				1
 			],
-			"randomSpawnMinAmount": 1,
+			"randomSpawnMonsters": [
+				1
+			],
+			"randomSpawnMinAmount": 2,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 70,
-			"rewardExp": 7,
-			"rewardItemId": 0
+			"rewardGold": 150,
+			"rewardExp": 400,
+			"rewardItemId": 1
 		},
 		{
 			"id": 2,
 			"stageName": "필드 덩쿨2",
 			"spawnMonsters": [
-				1,
-				1
-			],
-			"randomSpawnMonsters": [
 				2,
 				2
 			],
-			"randomSpawnMinAmount": 1,
+			"randomSpawnMonsters": [
+				2
+			],
+			"randomSpawnMinAmount": 2,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 70,
-			"rewardExp": 7,
-			"rewardItemId": 0
+			"rewardGold": 200,
+			"rewardExp": 600,
+			"rewardItemId": 2
 		},
 		{
 			"id": 3,
 			"stageName": "필드 수호령",
 			"spawnMonsters": [
+				3,
 				3
 			],
 			"randomSpawnMonsters": [
@@ -62,8 +60,8 @@
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 1,
 			"rewardGold": 100,
-			"rewardExp": 10,
-			"rewardItemId": 0
+			"rewardExp": 150,
+			"rewardItemId": 3
 		},
 		{
 			"id": 4,
@@ -73,13 +71,13 @@
 				4
 			],
 			"randomSpawnMonsters": [
-				5
+				4
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 0,
-			"rewardExp": 0,
-			"rewardItemId": 0
+			"rewardGold": 180,
+			"rewardExp": 90,
+			"rewardItemId": 4
 		},
 		{
 			"id": 5,
@@ -89,13 +87,13 @@
 				5
 			],
 			"randomSpawnMonsters": [
-				4
+				5
 			],
 			"randomSpawnMinAmount": 1,
-			"randomSpawnMaxAmount": 1,
-			"rewardGold": 0,
-			"rewardExp": 0,
-			"rewardItemId": 0
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 200,
+			"rewardExp": 90,
+			"rewardItemId": 5
 		},
 		{
 			"id": 6,
@@ -109,14 +107,15 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 0,
-			"rewardExp": 0,
-			"rewardItemId": 0
+			"rewardGold": 230,
+			"rewardExp": 130,
+			"rewardItemId": 6
 		},
 		{
 			"id": 7,
 			"stageName": "산 고목정령",
 			"spawnMonsters": [
+				7,
 				7
 			],
 			"randomSpawnMonsters": [
@@ -124,9 +123,9 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 3,
-			"rewardGold": 0,
-			"rewardExp": 0,
-			"rewardItemId": 0
+			"rewardGold": 250,
+			"rewardExp": 130,
+			"rewardItemId": 7
 		},
 		{
 			"id": 8,
@@ -136,13 +135,12 @@
 				8
 			],
 			"randomSpawnMonsters": [
-				8,
 				8
 			],
 			"randomSpawnMinAmount": 1,
-			"randomSpawnMaxAmount": 1,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"randomSpawnMaxAmount": 2,
+			"rewardGold": 400,
+			"rewardExp": 130,
 			"rewardItemId": 0
 		},
 		{
@@ -157,13 +155,13 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 3,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 550,
+			"rewardExp": 180,
 			"rewardItemId": 0
 		},
 		{
 			"id": 10,
-			"stageName": "유적 불골렘",
+			"stageName": "유적 화염골렘",
 			"spawnMonsters": [
 				10,
 				10
@@ -173,8 +171,8 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 3,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 550,
+			"rewardExp": 190,
 			"rewardItemId": 0
 		},
 		{
@@ -189,8 +187,8 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 3,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 550,
+			"rewardExp": 200,
 			"rewardItemId": 0
 		},
 		{
@@ -198,33 +196,31 @@
 			"stageName": "바다 개구리1",
 			"spawnMonsters": [
 				12,
-				13
+				12
 			],
 			"randomSpawnMonsters": [
-				12,
-				13
+				12
 			],
-			"randomSpawnMinAmount": 1,
+			"randomSpawnMinAmount": 2,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 770,
+			"rewardExp": 220,
 			"rewardItemId": 0
 		},
 		{
 			"id": 13,
 			"stageName": "바다 개구리2",
 			"spawnMonsters": [
-				12,
-				12
-			],
-			"randomSpawnMonsters": [
 				13,
 				13
 			],
-			"randomSpawnMinAmount": 1,
+			"randomSpawnMonsters": [
+				13
+			],
+			"randomSpawnMinAmount": 2,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 790,
+			"rewardExp": 230,
 			"rewardItemId": 0
 		},
 		{
@@ -235,13 +231,12 @@
 				14
 			],
 			"randomSpawnMonsters": [
-				14,
 				14
 			],
-			"randomSpawnMinAmount": 1,
-			"randomSpawnMaxAmount": 3,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"randomSpawnMinAmount": 2,
+			"randomSpawnMaxAmount": 4,
+			"rewardGold": 840,
+			"rewardExp": 250,
 			"rewardItemId": 0
 		},
 		{
@@ -252,13 +247,12 @@
 				15
 			],
 			"randomSpawnMonsters": [
-				15,
 				15
 			],
-			"randomSpawnMinAmount": 1,
-			"randomSpawnMaxAmount": 3,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"randomSpawnMinAmount": 2,
+			"randomSpawnMaxAmount": 4,
+			"rewardGold": 860,
+			"rewardExp": 280,
 			"rewardItemId": 0
 		},
 		{
@@ -273,8 +267,8 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 1050,
+			"rewardExp": 330,
 			"rewardItemId": 0
 		},
 		{
@@ -289,8 +283,8 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 1100,
+			"rewardExp": 350,
 			"rewardItemId": 0
 		},
 		{
@@ -305,8 +299,8 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 1350,
+			"rewardExp": 420,
 			"rewardItemId": 0
 		},
 		{
@@ -321,8 +315,8 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 1500,
+			"rewardExp": 450,
 			"rewardItemId": 0
 		}
 	]

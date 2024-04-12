@@ -87,12 +87,19 @@ public class PlayerManager : Singleton<PlayerManager>
         equip[n].isEquipped = true;
     }
 
+    public bool HaveCharacter(int id)
+    {
+        int index = characterList.FindIndex(c => c.baseData.id == id);
+        if (index != -1) return true;
+        else return false;
+    }
+
     public void AddCharacter(int id, int level, int exp)
     {
         Character character = Instantiate(titleManager.character,this.transform);
         character.spriteRenderer.color = new Color(1, 1, 1, 0);
 
-        character.LoadInit(DataManager.Instance.characterDatabase.GetDataByKey(id), level, exp);
+        character.Init(DataManager.Instance.characterDatabase.GetDataByKey(id), level, exp);
 
         characterList.Add(character);
     }
@@ -109,14 +116,12 @@ public class PlayerManager : Singleton<PlayerManager>
     }
     public int LevelUp()
     {
-        //currentExp = currentExp - needExp;
-        //playerLevel++;
+        currentExp = currentExp - needExp;
+        playerLevel++;
 
         //todo : Data¿¡ ÀúÀå
-        //playerLevel = playerLevel > baseData.maxLevel ? baseData.maxLevel : level;
-        //needExp = baseData.needExp * playerLevel;
-        //currentExp = currentExp >= needExp ? LevelUp() : currentExp;
-
+        needExp = needExp * playerLevel;
+        currentExp = currentExp >= needExp ? LevelUp() : currentExp;
 
         return currentExp;
     }

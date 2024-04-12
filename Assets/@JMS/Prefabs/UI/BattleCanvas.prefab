@@ -4323,6 +4323,9 @@ MonoBehaviour:
   - prefab: {fileID: 6894784569627330585, guid: 36b86868273b50c4f9d48e36d16f5892, type: 3}
     tag: ChangeHpTMP
     size: 5
+  - prefab: {fileID: 3849583036422752501, guid: df15a352e62016d49ac15881278684e4, type: 3}
+    tag: BattleEffect
+    size: 5
 --- !u!1 &4196145966337639236
 GameObject:
   m_ObjectHideFlags: 0

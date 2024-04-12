@@ -13,6 +13,7 @@ public class DataManager : Singleton<DataManager>
     public MonsterDatabase monsterDatabase;
     public StageDatabase stageDatabase;
     public DungeonDatabase dungeonDatabase;
+    public EffectDatabase effectDatabase;
 
     new private void Awake()
     {
@@ -23,6 +24,7 @@ public class DataManager : Singleton<DataManager>
         LoadDatabase(ref monsterDatabase);
         LoadDatabase(ref stageDatabase);
         LoadDatabase(ref dungeonDatabase);
+        LoadDatabase(ref effectDatabase);
     }
 
     // 데이터를 불러와서 딕셔너리에 값을 저장하는 메소드

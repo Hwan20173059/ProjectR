@@ -1,3 +1,4 @@
+using Assets.PixelFantasy.PixelTileEngine.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class Character : MonoBehaviour
     public int level;
     public int curExp;
     public int needExp;
+    public int maxLevel => 30 + (baseData.grade * 5);
 
     [Header("Stat")]
     public int maxHP;
@@ -73,37 +75,46 @@ public class Character : MonoBehaviour
         stateMachine.PhysicsUpdate();
     }
 
-    public void CharacterLoad(Character character)
+    public void LoadCharacter(Character character)
     {
         baseData = character.baseData;
-        level = character.level;
-        curExp = character.curExp;
-        curHP = character.curHP;
-    }
-
-    public void LoadInit(CharacterData characterData, int level, int currentExp)
-    {
-        this.level = level;
-        this.curExp = currentExp;
-        baseData = characterData;
-        
-        sprite = Resources.Load<Sprite>(characterData.spritePath);
-        spriteRenderer.sprite = sprite;
-
-        Init();
-    }
-
-    public void Init()
-    {
         characterName = baseData.characterName;
-        maxHP = baseData.hp * level;
-        curHP = maxHP;
-        atk = baseData.atk * level;
-        needExp = baseData.needExp * level;
         maxCoolTime = baseData.actionCoolTime;
+        level = character.level;
+        maxHP = character.maxHP;
+        curHP = character.curHP;
+        atk = character.atk;
+        needExp = character.needExp;
+        curExp = character.curExp;
 
         spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
+    }
+
+    public void SaveCharacter(Character saveCharacter)
+    {
+        saveCharacter.level = level;
+        saveCharacter.curExp = curExp;
+        saveCharacter.needExp = needExp;
+        saveCharacter.maxHP = maxHP;
+        saveCharacter.curHP = curHP;
+        saveCharacter.atk = atk;
+    }
+
+    public void Init(CharacterData characterData, int level, int currentExp)
+    {
+        baseData = characterData;
+        this.characterName = baseData.characterName;
+        this.maxCoolTime = baseData.actionCoolTime;
+        this.level = level;
+        maxHP = baseData.hp + (baseData.levelUpHp * level);
+        curHP = maxHP;
+        atk = baseData.atk + (baseData.levelUpAtk * level);
+        needExp = 50 + (10 * (level * level));
+        curExp = currentExp;
+
+        sprite = Resources.Load<Sprite>(baseData.spritePath);
+        spriteRenderer.sprite = sprite;
     }
 
     public void CoolTimeUpdate()
@@ -131,7 +142,7 @@ public class Character : MonoBehaviour
         hpBar.SetHpBar();
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-        battleCanvas.ChangeHpTMP(value, screenPos);
+        battleCanvas.SetChangeHpTMP(value, screenPos);
 
         if (curHP <= 0)
         {
@@ -151,10 +162,11 @@ public class Character : MonoBehaviour
     {
         curExp = curExp - needExp;
         level++;
-        level = level > baseData.maxLevel ? baseData.maxLevel : level;
-        maxHP = baseData.hp * level;
-        atk = baseData.atk * level;
-        needExp = baseData.needExp * level;
+        level = level > maxLevel ? maxLevel : level;
+        maxHP = baseData.hp + ( baseData.levelUpHp * level );
+        curHP += baseData.levelUpHp;
+        atk = baseData.atk + ( baseData.levelUpAtk * level );
+        needExp = 100 + (level * (10 * ((level + 5) / 5)));
         curExp = curExp >= needExp ? LevelUp() : curExp;
         return curExp;
     }

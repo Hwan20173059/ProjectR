@@ -17506,7 +17506,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1212438996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21077,6 +21077,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5009458826753183600, guid: 1b1c71c03071fad4ea23d105da54beec, type: 3}
       propertyPath: battleID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5009458826753183600, guid: 1b1c71c03071fad4ea23d105da54beec, type: 3}
+      propertyPath: dungeonID
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5009458826753183600, guid: 1b1c71c03071fad4ea23d105da54beec, type: 3}

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -202,9 +203,9 @@ public class TileMapManager : MonoBehaviour
         }
     }
 
-    protected void SpawnRandomMonster(int index)
+    protected void SpawnRandomMonster(int count)
     {
-        for (int i = 0; i < index; i++)
+        for (int i = 0; i < count; i++)
         {
             int randomY = UnityEngine.Random.Range(0, field.tileRaw.Length);
             int randomX = UnityEngine.Random.Range(0, field.tileRaw[randomY].fieldTiles.Length);
@@ -238,6 +239,46 @@ public class TileMapManager : MonoBehaviour
             else
             {
                 SpawnRandomMonster(1);
+            }
+        }
+    }
+
+    protected void SpawnRandomMonster(int count, int firstX, int finalX, int firstY, int finalY, int monsterID)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            int randomY = UnityEngine.Random.Range(firstY, finalY);
+            int randomX = UnityEngine.Random.Range(firstX, finalX);
+
+            if (field.tileRaw[randomY].fieldTiles[randomX].tileState == TileState.empty)
+            {
+                int randomID = 0;
+                switch (playerManager.currentState)
+                {
+                    case CurrentState.field:
+                        randomID = monsterID;
+                        break;
+                    case CurrentState.dungeon1:
+                        randomID = UnityEngine.Random.Range(4, 8);
+                        break;
+                    case CurrentState.dungeon2:
+                        randomID = UnityEngine.Random.Range(8, 12);
+                        break;
+                    case CurrentState.dungeon3:
+                        randomID = UnityEngine.Random.Range(12, 16);
+                        break;
+                    case CurrentState.dungeon4:
+                        randomID = UnityEngine.Random.Range(16, 20);
+                        break;
+                }
+
+                fieldMonster.Add(field.tileRaw[randomY].fieldTiles[randomX]);
+                field.tileRaw[randomY].fieldTiles[randomX].battleID = randomID;
+                MonsterFieldSetting(randomID, randomX, randomY);
+            }
+            else
+            {
+                SpawnRandomMonster(1, firstX, finalX, firstY, finalY, monsterID);
             }
         }
     }

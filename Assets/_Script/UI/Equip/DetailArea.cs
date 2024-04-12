@@ -13,6 +13,7 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private Button _equipButton;
     [SerializeField] private Button _unEquipButton;
     [SerializeField] private Button _useButton;
+    [SerializeField] private Button mergeButton;
     [SerializeField] private GameObject _activateFalseObj;
     public ConsumeItem nowConsumeItem;
     public EquipItem nowSelectedEquip;
@@ -52,9 +53,13 @@ public class DetailArea : MonoBehaviour
         _image.sprite = c.consumeSprite;
         _text.text = c.data.info;
         itemName.text = c.data.consumeName;
-        if(c.type != Type.Drop && c.type != Type.DungeonItem)
+        if(c.type == Type.AttackBuffPotion || c.type == Type.HpPotion || c.type == Type.SpeedBuffPotion)
         {
             _useButton.gameObject.SetActive(true);
+        }
+        else if(c.type == Type.CharacterPiece)
+        {
+            mergeButton.gameObject.SetActive(true);
         }
         ChangeDetailActivation(true);
     }
