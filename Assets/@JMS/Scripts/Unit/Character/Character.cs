@@ -1,3 +1,4 @@
+using Assets.PixelFantasy.PixelTileEngine.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,6 +19,7 @@ public class Character : MonoBehaviour
     public int level;
     public int curExp;
     public int needExp;
+    public int maxLevel => 30 + (baseData.grade * 5);
 
     [Header("Stat")]
     public int maxHP;
@@ -98,7 +100,6 @@ public class Character : MonoBehaviour
         characterName = baseData.characterName;
         maxHP = baseData.hp * level;
         atk = baseData.atk * level;
-        needExp = baseData.needExp * level;
         maxCoolTime = baseData.actionCoolTime;
 
         spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
@@ -150,11 +151,11 @@ public class Character : MonoBehaviour
     {
         curExp = curExp - needExp;
         level++;
-        level = level > baseData.maxLevel ? baseData.maxLevel : level;
-        maxHP = baseData.hp * level;
-        curHP += baseData.hp;
-        atk = baseData.atk * level;
-        needExp = baseData.needExp * level;
+        level = level > maxLevel ? maxLevel : level;
+        maxHP = baseData.hp + ( baseData.levelUpHp * level );
+        curHP += baseData.levelUpHp;
+        atk = baseData.atk + ( baseData.levelUpAtk * level );
+        needExp = 100 + (level * (10 * ((level + 5) / 5)));
         curExp = curExp >= needExp ? LevelUp() : curExp;
         return curExp;
     }

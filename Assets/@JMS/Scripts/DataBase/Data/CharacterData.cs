@@ -6,12 +6,13 @@ using UnityEngine;
 public class CharacterData
 {
     public int id;
+    public int grade;
     public string characterName;
     public string spritePath;
     public string animatorPath;
     public int hp;
+    public int levelUpHp;
     public int atk;
-    public int needExp;
-    public int maxLevel;
+    public int levelUpAtk;
     public float actionCoolTime;
 }
