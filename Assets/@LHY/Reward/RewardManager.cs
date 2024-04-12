@@ -33,18 +33,18 @@ public class RewardManager : MonoBehaviour
     // Reward가 없는 경우 -1 로 전달
     public void RewardPopup(int gold, int exp, int equipRewardID, int consumeRewardID)
     {
-        AddgoldReward(gold);
-        AddexpReward(exp);
-        AddEquipReward(equipRewardID);
+        //AddgoldReward(gold);
+        //AddexpReward(exp);
+        //AddEquipReward(equipRewardID);
         AddConsumeReward(consumeRewardID);
         PopupReward();
     }
 
     public void RewardPopup(StageData stageData)
     {
-        AddgoldReward(stageData.rewardGold);
-        AddexpReward(stageData.rewardExp);
-        AddEquipReward(stageData.rewardItemId);
+        AddgoldReward();
+        AddexpReward();
+        AddEquipReward();
         PopupReward();
     }
 
@@ -52,46 +52,46 @@ public class RewardManager : MonoBehaviour
     {
         reward.gold += stageData.rewardGold;
         reward.exp += stageData.rewardExp;
-        reward.EquipId += stageData.rewardItemId;
+        reward.EquipId.Add(stageData.rewardItemId);
     }
 
-    private void AddgoldReward(int gold)
+    private void AddgoldReward()
     {
         GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
         RewardSlot.transform.SetParent(rewardTrans.transform);
-        RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = gold.ToString();
-        PlayerManager.Instance.AddGold(gold);
+        RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = reward.gold.ToString();
+        PlayerManager.Instance.AddGold(reward.gold);
 
 
         //todo : GOLD Sprite 적용
         RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load("UiImage/Icon 5 Over", typeof(Sprite)) as Sprite;
-
     }
 
-    private void AddexpReward(int exp)
+    private void AddexpReward()
     {
         GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
         RewardSlot.transform.SetParent(rewardTrans.transform);
-        RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = exp.ToString();
-        PlayerManager.Instance.ChangeExp(exp);
+        RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = reward.exp.ToString();
+        PlayerManager.Instance.ChangeExp(reward.exp);
 
         //todo : EXP Sprite 적용(소스가 있음?)
         //RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(i).spritePath, typeof(Sprite)) as Sprite;
     }
 
-    private void AddEquipReward(int rewardItemID)
+    private void AddEquipReward()
     {
-        if (rewardItemID < 0)
-            return;
-        itemManager.AddEquipItem(rewardItemID);
+        //if (reward.EquipId < 0)
+        //    return;
+        //itemManager.AddEquipItem(reward.EquipId);
         GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
         RewardSlot.transform.SetParent(rewardTrans.transform);
 
-        //id 하나로 다 가져와야함.
-        RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = DataManager.Instance.itemDatabase.GetItemByKey(rewardItemID).equipName;
-        RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(rewardItemID).spritePath, typeof(Sprite)) as Sprite;
+        foreach (var var in reward.EquipId)
+        {
+            RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = DataManager.Instance.itemDatabase.GetItemByKey(var).equipName;
+            RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(var).spritePath, typeof(Sprite)) as Sprite;
 
-
+        }
     }
 
     private void AddConsumeReward(int rewardItemID)
