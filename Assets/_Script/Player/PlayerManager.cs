@@ -109,14 +109,12 @@ public class PlayerManager : Singleton<PlayerManager>
     }
     public int LevelUp()
     {
-        //currentExp = currentExp - needExp;
-        //playerLevel++;
+        currentExp = currentExp - needExp;
+        playerLevel++;
 
         //todo : Data¿¡ ÀúÀå
-        //playerLevel = playerLevel > baseData.maxLevel ? baseData.maxLevel : level;
-        //needExp = baseData.needExp * playerLevel;
-        //currentExp = currentExp >= needExp ? LevelUp() : currentExp;
-
+        needExp = needExp * playerLevel;
+        currentExp = currentExp >= needExp ? LevelUp() : currentExp;
 
         return currentExp;
     }
