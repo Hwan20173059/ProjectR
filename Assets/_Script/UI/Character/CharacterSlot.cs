@@ -16,7 +16,7 @@ public class CharacterSlot : MonoBehaviour
     public Image[] characterSlotImage;
     public TextMeshProUGUI[] characterSlotText;
 
-    public void Init()
+    public void Start()
     {
         characterSlotImage = GetComponentsInChildren<Image>();
         characterSlotImage[1].sprite = characterData.sprite;

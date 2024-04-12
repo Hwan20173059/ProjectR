@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 [System.Serializable]
 public class EquipItem

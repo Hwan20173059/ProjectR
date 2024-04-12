@@ -3,56 +3,88 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : Singleton<AudioManager>
 {
-    #region Singleton
-    public static AudioManager instance;
-    private void Awake()
-    {
-        //todo : main아닌 다른 씬에도 필요할지?
-        DontDestroyOnLoad(gameObject);
-
-        if (instance != null)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        instance = this;
-    }
-    #endregion
-
-    [SerializeField] AudioSource bgmSource;
-    [SerializeField] AudioSource sfxCource;
-    [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private Audios audios;
-
+    public AudioSource bgmSource;
+    public AudioSource sfxCource;
+    public AudioMixer audioMixer;
+    public Audios audios;
 
     private readonly Dictionary<string, float> mixerVolume = new();
     private readonly Dictionary<string, bool> mixerMuteToggle = new();
 
+    public CurrentState playerState;
+
     //public float bgmVolumeScale, sfxVolumeScale, masterVolumeScale;
 
 
-    // Use this when using (main shot)
+
+    public void SetState()
+    {
+        playerState = PlayerManager.Instance.currentState;
+        ChangeBGM();
+    }
+
+
+    // Use this when using (sfx shot)
     public void PlaySFX(AudioClip clip)
     {
-        if (clip == audios.walkClip && sfxCource.isPlaying)
-            return;
+        //if (clip == audios.walkClip && sfxCource.isPlaying)
+        //    return;
         sfxCource.PlayOneShot(clip);
+    }
+
+    public void ChangeBGM()
+    {
+        switch (playerState)
+        {
+            case CurrentState.town1:
+                bgmSource.clip = audios.townBGMClip;
+                break;
+
+            case CurrentState.town2:
+                bgmSource.clip = audios.townBGMClip;
+                break;
+
+            case CurrentState.title:
+                bgmSource.clip = audios.titleBGMClip;
+                break;
+
+            case CurrentState.dungeon1:
+                bgmSource.clip = audios.dungeonBattleBGMClip;
+                break;
+
+            case CurrentState.dungeon2:
+                bgmSource.clip = audios.dungeonBattleBGMClip;
+                break;
+
+            case CurrentState.dungeon3:
+                bgmSource.clip = audios.dungeonBattleBGMClip;
+                break;
+
+            case CurrentState.dungeon4:
+                bgmSource.clip = audios.dungeonBattleBGMClip;
+                break;
+
+            case CurrentState.field:
+                bgmSource.clip = audios.fieldBGMClip;
+                break;
+        }
+        bgmSource.Play();
     }
 
     private void Start()
     {
-        bgmSource.clip = audios.mainBgmClip;
-
-        bgmSource.Play();
         SettingsSoundData();
+        SetState();
     }
+
     private void Update()
     {
-        //
+        playerState = PlayerManager.Instance.currentState;
     }
 
     public void SettingsSoundData()
@@ -81,11 +113,6 @@ public class AudioManager : MonoBehaviour
             audioMixer.GetFloat(exposedParam, out float temp);
             mixerVolume[exposedParam] = temp;
             audioMixer.SetFloat(exposedParam, -80f);
-
-
-            //todo : playerprefs의 KEY:Master의 slider value 덮어쓰게되서 
-            //toggle의 key를 만들던가 playerprefs의 bool을 저장할 방법같은걸 찾아야함
-            //PlayerPrefs.SetFloat(exposedParam, 0f);
         }
     }
     public void SetVolume(string mixerParam, float volume)

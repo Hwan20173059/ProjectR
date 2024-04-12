@@ -26,6 +26,8 @@ public class QuestManager : MonoBehaviour
 
     public bool test;
 
+    AudioManager audioManager;
+
     private void Awake()
     {
         if (instance != null)
@@ -38,7 +40,7 @@ public class QuestManager : MonoBehaviour
 
         //questMap = CreatQuestMap();
         NewquestMap = CreatQuestMaps();
-        if (test == true)
+        if (test == false)
             LoadQuest();
     }
 
@@ -58,7 +60,7 @@ public class QuestManager : MonoBehaviour
 
     private void Start()
     {
-
+        
     }
 
     private void Update()
@@ -83,8 +85,8 @@ public class QuestManager : MonoBehaviour
     private void StartQuest(int id)
     {
         Quest quest = GetQuestByID(id);
-        Debug.Log("퀘스트스타트" + quest.info.displayName);
         quest.InstantiateCurrentQuestStep(this.transform, id);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.audios.dungeonBattleBGMClip);
         ChangeQuestState(quest.info.id, QuestState.In_Progress);
     }
 
@@ -100,9 +102,8 @@ public class QuestManager : MonoBehaviour
     {
         Quest quest = GetQuestByID(id);
 
-        RewardManager.instance.RewadPopup(quest.info.goldReward, quest.info.expReward, quest.info.equipRewardID, quest.info.consumeRewardID);
+        RewardManager.instance.RewardPopup(quest.info.goldReward, quest.info.expReward, quest.info.equipRewardID, quest.info.consumeRewardID);
 
-        Debug.Log(quest + "퀘스트를 클리어했습니다");
         ChangeQuestState(quest.info.id, QuestState.Finished);
     }
 
@@ -142,7 +143,6 @@ public class QuestManager : MonoBehaviour
         foreach (QuestData questData in datas.quest)
         {
             idToQuestMap.Add(questData.id, new Quest(questData));
-            print(questData.displayName + "를 추가했습니다.");
         }
         return idToQuestMap;
     }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.SceneManagement;
@@ -391,9 +390,9 @@ public class Tile : MonoBehaviour
                     tileMapManager.playerManager.selectTownID = townID;
 
                     if (PlayerManager.Instance.selectTownID == 0)
-                        PlayerManager.Instance.currentState = CurrentState.town1;
+                        SetCurrentState(CurrentState.town1);
                     else if (PlayerManager.Instance.selectTownID == 1)
-                        PlayerManager.Instance.currentState = CurrentState.town2;
+                        SetCurrentState(CurrentState.town2);
 
                     SceneManager.LoadScene("TownScene");
                     break;
@@ -403,13 +402,13 @@ public class Tile : MonoBehaviour
                     tileMapManager.playerManager.selectDungeonID = dungeonID;
 
                     if (PlayerManager.Instance.selectDungeonID == 0)
-                        PlayerManager.Instance.currentState = CurrentState.dungeon1;
+                        SetCurrentState(CurrentState.dungeon1);
                     else if (PlayerManager.Instance.selectDungeonID == 1)
-                        PlayerManager.Instance.currentState = CurrentState.dungeon2;
+                        SetCurrentState(CurrentState.dungeon2);
                     else if (PlayerManager.Instance.selectDungeonID == 2)
-                        PlayerManager.Instance.currentState = CurrentState.dungeon3;
+                        SetCurrentState(CurrentState.dungeon3);
                     else if (PlayerManager.Instance.selectDungeonID == 3)
-                        PlayerManager.Instance.currentState = CurrentState.dungeon4;
+                        SetCurrentState(CurrentState.dungeon4);
 
                     SceneManager.LoadScene("DungeonScene");
                     break;
@@ -447,5 +446,11 @@ public class Tile : MonoBehaviour
             Destroy(onObject);
             onObject = null;
         }
+    }
+
+    private void SetCurrentState(CurrentState currentState)
+    {
+        PlayerManager.Instance.currentState = currentState;
+        AudioManager.Instance.SetState();
     }
 }

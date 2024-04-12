@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.InputSystem.LowLevel.InputStateHistory;
 
 public class RewardManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class RewardManager : MonoBehaviour
     public GameObject rewardUI;
     public GameObject rewardSlotPrefeb;
     public Transform rewardTrans;
+
+    private Reward reward;
 
     private void Awake()
     {
@@ -27,7 +31,7 @@ public class RewardManager : MonoBehaviour
     }
 
     // Reward가 없는 경우 -1 로 전달
-    public void RewadPopup(int gold, int exp, int equipRewardID, int consumeRewardID)
+    public void RewardPopup(int gold, int exp, int equipRewardID, int consumeRewardID)
     {
         AddgoldReward(gold);
         AddexpReward(exp);
@@ -36,12 +40,19 @@ public class RewardManager : MonoBehaviour
         PopupReward();
     }
 
-    public void RewadPopup(StageData stageData)
+    public void RewardPopup(StageData stageData)
     {
         AddgoldReward(stageData.rewardGold);
         AddexpReward(stageData.rewardExp);
         AddEquipReward(stageData.rewardItemId);
         PopupReward();
+    }
+
+    public void AddReward(StageData stageData)
+    {
+        reward.gold += stageData.rewardGold;
+        reward.exp += stageData.rewardExp;
+        reward.EquipId += stageData.rewardItemId;
     }
 
     private void AddgoldReward(int gold)

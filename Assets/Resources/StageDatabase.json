@@ -12,8 +12,8 @@
 			],
 			"randomSpawnMinAmount": 0,
 			"randomSpawnMaxAmount": 1,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 50,
+			"rewardExp": 5,
 			"rewardItemId": 0
 		},
 		{
@@ -29,8 +29,8 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 70,
+			"rewardExp": 7,
 			"rewardItemId": 0
 		},
 		{
@@ -46,8 +46,8 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 2,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 70,
+			"rewardExp": 7,
 			"rewardItemId": 0
 		},
 		{
@@ -61,8 +61,8 @@
 			],
 			"randomSpawnMinAmount": 1,
 			"randomSpawnMaxAmount": 1,
-			"rewardGold": 0,
-			"rewardExp": 0,
+			"rewardGold": 100,
+			"rewardExp": 10,
 			"rewardItemId": 0
 		},
 		{

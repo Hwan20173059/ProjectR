@@ -17,3 +17,12 @@ public class ConsumeReward
     [Range(0, 100)]
     public float itemProbability;
 }
+
+[System.Serializable]
+public class Reward
+{
+    public int gold;
+    public int exp;
+    public int EquipId;
+    public int ConsumeId;
+}
