@@ -104,6 +104,8 @@ public class Character : MonoBehaviour
     public void Init(CharacterData characterData, int level, int currentExp)
     {
         baseData = characterData;
+        this.characterName = baseData.characterName;
+        this.maxCoolTime = baseData.actionCoolTime;
         this.level = level;
         maxHP = baseData.hp + (baseData.levelUpHp * level);
         curHP = maxHP;
