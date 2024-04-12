@@ -14,7 +14,12 @@ public class FieldManager : TileMapManager
         {
             playerTurnIndex = playerManager.playerTurnIndex;
             playerManager.monsterPosition = new List<int>();
-            SpawnRandomMonster(4);
+
+            SpawnRandomMonster(3, 0, 10, 0, 5, 0);
+            SpawnRandomMonster(2, 10, 17, 0, 5, 3);
+            SpawnRandomMonster(2, 23, 35, 0, 2, 2);
+            SpawnRandomMonster(2, 23, 35, 3, 5, 1);
+
             PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
 
             PlayerTurn();
