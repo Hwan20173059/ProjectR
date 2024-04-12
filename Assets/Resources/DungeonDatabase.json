@@ -11,14 +11,16 @@
 			"id": 1,
 			"dungeonName": "필드2",
 			"stages": [
-				1
+				1,
+				2
 			]
 		},
 		{
 			"id": 2,
 			"dungeonName": "필드3",
 			"stages": [
-				2
+				2,
+				1
 			]
 		},
 		{

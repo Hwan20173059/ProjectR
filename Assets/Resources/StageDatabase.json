@@ -13,7 +13,7 @@
 			"randomSpawnMinAmount": 0,
 			"randomSpawnMaxAmount": 1,
 			"rewardGold": 50,
-			"rewardExp": 5,
+			"rewardExp": 10,
 			"rewardItemId": 0
 		},
 		{
