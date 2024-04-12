@@ -55,7 +55,7 @@ public class ObjectPool : MonoBehaviour
         return go;
     }
 
-    public void DestroyAll(string key)
+    public void SetActiveFalseAll(string key)
     {
         if (!poolsDic.ContainsKey(key))
         {

@@ -201,6 +201,7 @@ public class BattleManager : MonoBehaviour
     public void NextStageStart()
     {
         battleCanvas.NextStagePanelOff();
+        battleCanvas.BattleEffectOff();
         character.curCoolTime = 0;
         Destroy(monsterPool);
         monsterPool = null;
@@ -491,4 +492,11 @@ public class BattleManager : MonoBehaviour
             default: return baseValue;
         }
     }
+
+    public void SaveCharacterData()
+    {
+        Character saveCharacter = PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex];
+        character.SaveCharacterData(saveCharacter);
+    }
+
 }

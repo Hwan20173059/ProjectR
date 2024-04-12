@@ -13,7 +13,7 @@ public class ChangeHpTMP : MonoBehaviour
         textMeshProUGUI = GetComponent<TextMeshProUGUI>();
     }
 
-    public void SetChangeTMP(int value)
+    public void SetChangeHpTMP(int value)
     {
         if (value < 0)
         {

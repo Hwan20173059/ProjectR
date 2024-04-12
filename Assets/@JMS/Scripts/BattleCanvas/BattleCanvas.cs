@@ -26,10 +26,10 @@ public class BattleCanvas : MonoBehaviour
     MenuButton menuButton;
     MenuPanel menuPanel;
 
-    ObjectPool objectPool;
-
     InfiniteInventory infiniteInventory;
     Settings settings;
+
+    ObjectPool objectPool;
 
     public GameObject characterHpBarPrefab;
     public GameObject monsterHpBarPrefab;
@@ -50,11 +50,11 @@ public class BattleCanvas : MonoBehaviour
         menuButton = GetComponentInChildren<MenuButton>();
         menuPanel = GetComponentInChildren<MenuPanel>();
 
-        objectPool = GetComponent<ObjectPool>();
-        objectPool.Init();
-
         infiniteInventory = GetComponentInChildren<InfiniteInventory>();
         settings = GetComponentInChildren<Settings>();
+
+        objectPool = GetComponent<ObjectPool>();
+        objectPool.Init();
     }
 
     private void Start()
@@ -95,13 +95,32 @@ public class BattleCanvas : MonoBehaviour
         monster.hpBar = hpBar;
     }
 
-    public void ChangeHpTMP(int value, Vector3 screenPos)
+    public void SetChangeHpTMP(int value, Vector3 screenPos)
     {
         GameObject go = objectPool.GetFromPool("ChangeHpTMP");
         int addPos = Random.Range(-100, 101);
         Vector3 randomPos = new Vector3(screenPos.x + addPos, screenPos.y + 100);
         go.transform.position = randomPos;
-        go.GetComponent<ChangeHpTMP>().SetChangeTMP(value);
+        go.GetComponent<ChangeHpTMP>().SetChangeHpTMP(value);
+    }
+
+    public void SetDurationEffect(int id, Vector3 effectPos)
+    {
+        GameObject go = objectPool.GetFromPool("BattleEffect");
+        go.transform.position = effectPos;
+        go.GetComponent<BattleEffect>().SetDurationEffect(id);
+    }
+
+    public void SetRepeatEffect(int id, Vector3 effectPos)
+    {
+        GameObject go = objectPool.GetFromPool("BattleEffect");
+        go.transform.position = effectPos;
+        go.GetComponent<BattleEffect>().SetRepeatEffect(id);
+    }
+
+    public void BattleEffectOff()
+    {
+        objectPool.SetActiveFalseAll("BattleEffect");
     }
 
     public void SetRoulette(int resultIndex0, int resultIndex1, int resultIndex2)
