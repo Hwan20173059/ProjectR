@@ -101,7 +101,7 @@ public class Character : MonoBehaviour
         saveCharacter.atk = atk;
     }
 
-    public void LoadInit(CharacterData characterData, int level, int currentExp)
+    public void Init(CharacterData characterData, int level, int currentExp)
     {
         baseData = characterData;
         this.level = level;

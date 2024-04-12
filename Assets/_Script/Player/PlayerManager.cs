@@ -92,7 +92,7 @@ public class PlayerManager : Singleton<PlayerManager>
         Character character = Instantiate(titleManager.character,this.transform);
         character.spriteRenderer.color = new Color(1, 1, 1, 0);
 
-        character.LoadInit(DataManager.Instance.characterDatabase.GetDataByKey(id), level, exp);
+        character.Init(DataManager.Instance.characterDatabase.GetDataByKey(id), level, exp);
 
         characterList.Add(character);
     }
