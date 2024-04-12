@@ -75,35 +75,44 @@ public class Character : MonoBehaviour
         stateMachine.PhysicsUpdate();
     }
 
-    public void CharacterLoad(Character character)
+    public void LoadCharacter(Character character)
     {
         baseData = character.baseData;
+        characterName = baseData.characterName;
+        maxCoolTime = baseData.actionCoolTime;
         level = character.level;
-        curExp = character.curExp;
+        maxHP = character.maxHP;
         curHP = character.curHP;
+        atk = character.atk;
+        needExp = character.needExp;
+        curExp = character.curExp;
+
+        spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
+        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
+    }
+
+    public void SaveCharacter(Character saveCharacter)
+    {
+        saveCharacter.level = level;
+        saveCharacter.curExp = curExp;
+        saveCharacter.needExp = needExp;
+        saveCharacter.maxHP = maxHP;
+        saveCharacter.curHP = curHP;
+        saveCharacter.atk = atk;
     }
 
     public void LoadInit(CharacterData characterData, int level, int currentExp)
     {
         baseData = characterData;
         this.level = level;
-        Init();
-        this.curExp = currentExp;
-        this.curHP = maxHP;
-        
-        sprite = Resources.Load<Sprite>(characterData.spritePath);
+        maxHP = baseData.hp + (baseData.levelUpHp * level);
+        curHP = maxHP;
+        atk = baseData.atk + (baseData.levelUpAtk * level);
+        needExp = 100 + (level * (10 * ((level + 5) / 5)));
+        curExp = currentExp;
+
+        sprite = Resources.Load<Sprite>(baseData.spritePath);
         spriteRenderer.sprite = sprite;
-    }
-
-    public void Init()
-    {
-        characterName = baseData.characterName;
-        maxHP = baseData.hp * level;
-        atk = baseData.atk * level;
-        maxCoolTime = baseData.actionCoolTime;
-
-        spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
-        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
     }
 
     public void CoolTimeUpdate()
@@ -158,16 +167,6 @@ public class Character : MonoBehaviour
         needExp = 100 + (level * (10 * ((level + 5) / 5)));
         curExp = curExp >= needExp ? LevelUp() : curExp;
         return curExp;
-    }
-
-    public void SaveCharacterData(Character saveCharacter)
-    {
-        saveCharacter.level = level;
-        saveCharacter.curExp = curExp;
-        saveCharacter.needExp = needExp;
-        saveCharacter.maxHP = maxHP;
-        saveCharacter.curHP = curHP;
-        saveCharacter.atk = atk;
     }
 
     public void ReduceBuffDuration()

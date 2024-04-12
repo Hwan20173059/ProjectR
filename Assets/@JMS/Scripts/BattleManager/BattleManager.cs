@@ -124,8 +124,7 @@ public class BattleManager : MonoBehaviour
         GameObject character = Instantiate(characterPrefab);
         character.transform.position = characterSpawnPosition;
         this.character = character.GetComponent<Character>();
-        this.character.CharacterLoad(PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
-        this.character.Init();
+        this.character.LoadCharacter(PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
         this.character.startPosition = character.transform.position;
         this.character.battleManager = this;
 
@@ -496,7 +495,7 @@ public class BattleManager : MonoBehaviour
     public void SaveCharacterData()
     {
         Character saveCharacter = PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex];
-        character.SaveCharacterData(saveCharacter);
+        character.SaveCharacter(saveCharacter);
     }
 
 }
