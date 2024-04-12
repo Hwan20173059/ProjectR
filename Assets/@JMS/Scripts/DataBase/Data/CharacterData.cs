@@ -9,7 +9,7 @@ public class CharacterData
     public int grade;
     public string characterName;
     public string spritePath;
-    public string animatorPath;
+    public string assetPath;
     public int hp;
     public int levelUpHp;
     public int atk;

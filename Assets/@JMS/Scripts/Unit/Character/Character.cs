@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using UnityEngine.U2D.Animation;
 using UnityEngine.UI;
 
 public class Character : MonoBehaviour
@@ -12,8 +13,6 @@ public class Character : MonoBehaviour
 
     [Header("Info")]
     public string characterName;
-    public Sprite sprite;
-    public SpriteRenderer spriteRenderer;
 
     [Header("Level")]
     public int level;
@@ -38,25 +37,29 @@ public class Character : MonoBehaviour
     public Vector3 startPosition;
     public float moveAnimSpeed = 10f;
 
+    public CharacterAnimController animatorController;
+    public SpriteLibrary spriteLibrary;
+    public SpriteRenderer spriteRenderer;
+    public Sprite sprite;
+
     public CharacterBuffHandler characterBuffHandler;
-    public Animator animator {  get; private set; }
+
+    public CharacterStateMachine stateMachine;
 
     public CharacterHpBar hpBar;
 
     public BattleManager battleManager;
     public BattleCanvas battleCanvas { get {  return battleManager.battleCanvas; } }
 
-    public CharacterStateMachine stateMachine;
-
     private void Awake()
     {
+        animatorController = GetComponent<CharacterAnimController>();
+        spriteLibrary = GetComponentInChildren<SpriteLibrary>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         characterBuffHandler = new CharacterBuffHandler();
 
         stateMachine = new CharacterStateMachine(this);
-
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
-        animator = GetComponentInChildren<Animator>();
     }
     private void Start()
     {
@@ -87,8 +90,7 @@ public class Character : MonoBehaviour
         needExp = character.needExp;
         curExp = character.curExp;
 
-        spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
-        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
+        spriteLibrary.spriteLibraryAsset = character.spriteLibrary.spriteLibraryAsset;
     }
 
     public void SaveCharacter(Character saveCharacter)
@@ -104,8 +106,8 @@ public class Character : MonoBehaviour
     public void Init(CharacterData characterData, int level, int currentExp)
     {
         baseData = characterData;
-        this.characterName = baseData.characterName;
-        this.maxCoolTime = baseData.actionCoolTime;
+        characterName = baseData.characterName;
+        maxCoolTime = baseData.actionCoolTime;
         this.level = level;
         maxHP = baseData.hp + (baseData.levelUpHp * level);
         curHP = maxHP;
@@ -114,7 +116,7 @@ public class Character : MonoBehaviour
         curExp = currentExp;
 
         sprite = Resources.Load<Sprite>(baseData.spritePath);
-        spriteRenderer.sprite = sprite;
+        spriteLibrary.spriteLibraryAsset = Resources.Load<SpriteLibraryAsset>(baseData.assetPath);
     }
 
     public void CoolTimeUpdate()
@@ -174,5 +176,15 @@ public class Character : MonoBehaviour
     public void ReduceBuffDuration()
     {
         characterBuffHandler.ReduceBuffDuration();
+    }
+
+    public void PlayAnim(CharacterAnim anim)
+    {
+        animatorController.PlayAnim(anim);
+    }
+
+    public void ChangeAnimState(CharacterAnimState animState)
+    {
+        animatorController.ChangeAnimState(animState);
     }
 }

@@ -8,24 +8,24 @@ using TMPro;
 
 public class TestButton : MonoBehaviour
 {
-    public TestCharacterAnimController animController;
+    public CharacterAnimController animController;
     public TextMeshProUGUI playAnimText;
     public TextMeshProUGUI animStateText;
 
-    public TestCharacterAnims anim = TestCharacterAnims.Attack;
-    public TestCharacterAnimState animState = TestCharacterAnimState.Ready;
+    public CharacterAnim anim = CharacterAnim.Attack;
+    public CharacterAnimState animState = CharacterAnimState.Ready;
 
-    public TestMonsterAnimController monsterAnimController;
+    public MonsterAnimController monsterAnimController;
     public TextMeshProUGUI playMonsterAnimText;
     public TextMeshProUGUI monsterAnimStateText;
 
-    public TestMonsterAnims monsterAnim = TestMonsterAnims.Attack;
-    public TestMonsterAnimState monsterAnimState = TestMonsterAnimState.Ready;
+    public MonsterAnim monsterAnim = MonsterAnim.Attack;
+    public MonsterAnimState monsterAnimState = MonsterAnimState.Ready;
 
     public void ChangeAnim()
     {
         ++anim;
-        if ((int)anim > 8) anim = 0;
+        if ((int)anim > 10) anim = 0;
         playAnimText.text = anim.ToString();
     }
 
