@@ -55,6 +55,7 @@ public class CharacterActionState : CharacterBaseState
     {
         character.animator.SetBool("Idle", false);
         character.animator.SetTrigger("Attack");
+        battleManager.battleCanvas.SetDurationEffect(0, target.transform.position); // 임시 이펙트
         int prevHp = target.curHP;
         target.ChangeHP(-damage);
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 공격!\n{target.monsterName}에게 {prevHp - target.curHP}의 피해!");

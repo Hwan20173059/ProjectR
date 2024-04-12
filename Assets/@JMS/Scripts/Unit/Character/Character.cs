@@ -130,7 +130,7 @@ public class Character : MonoBehaviour
         hpBar.SetHpBar();
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
-        battleCanvas.ChangeHpTMP(value, screenPos);
+        battleCanvas.SetChangeHpTMP(value, screenPos);
 
         if (curHP <= 0)
         {

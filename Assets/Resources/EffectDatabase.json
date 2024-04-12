@@ -1,0 +1,11 @@
+{
+	"effectDatas": [
+		{
+			"id": 0,
+			"effectName": "다크웨폰",
+			"animatorPath": "Effect2/pixel arts/darkWeapon/ani_darkWeapon",
+			"duration": 5,
+			"repeatingCount": 5
+		}
+	]
+}

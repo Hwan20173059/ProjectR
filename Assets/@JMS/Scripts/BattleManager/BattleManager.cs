@@ -201,6 +201,7 @@ public class BattleManager : MonoBehaviour
     public void NextStageStart()
     {
         battleCanvas.NextStagePanelOff();
+        battleCanvas.BattleEffectOff();
         character.curCoolTime = 0;
         Destroy(monsterPool);
         monsterPool = null;
