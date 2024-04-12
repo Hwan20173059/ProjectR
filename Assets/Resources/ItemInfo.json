@@ -975,6 +975,166 @@
 			"value": 100,
 			"info": "행동이 대폭 빨라진다.",
 			"price": 100
+		},
+		{
+			"id": 32,
+			"spritePath": "Sprite/Player/Adventure",
+			"consumeName": "모험가의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 33,
+			"spritePath": "Sprite/Player/Mage",
+			"consumeName": "마법사의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 34,
+			"spritePath": "Sprite/Player/Monk",
+			"consumeName": "광신도의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 35,
+			"spritePath": "Sprite/Player/Musket",
+			"consumeName": "총사의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 36,
+			"spritePath": "Sprite/Player/Nacromancer",
+			"consumeName": "네크로맨서의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 37,
+			"spritePath": "Sprite/Player/Pirate",
+			"consumeName": "해적의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 38,
+			"spritePath": "Sprite/Player/Reaper",
+			"consumeName": "사신의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 39,
+			"spritePath": "Sprite/Player/Samurai",
+			"consumeName": "사무라이의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 40,
+			"spritePath": "Sprite/Player/Sparta",
+			"consumeName": "스파르타의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 41,
+			"spritePath": "Sprite/Player/SwordMan",
+			"consumeName": "소드맨의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 42,
+			"spritePath": "Sprite/Player/Theif",
+			"consumeName": "도적의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 43,
+			"spritePath": "Sprite/Player/Viking",
+			"consumeName": "바이킹의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 44,
+			"spritePath": "Sprite/Player/Warrior",
+			"consumeName": "워리어의 영혼 조각",
+			"type": "CharacterPiece",
+			"trunCount": 0,
+			"value": 10,
+			"info": "10개를 모으면 전사의 영혼을 소환할 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 100,
+			"spritePath": "Sprite/items/scroll1",
+			"consumeName": "초급 경험치 스크롤",
+			"type": "ExpItem",
+			"trunCount": 0,
+			"value": 10,
+			"info": "캐릭터 경험치를 소폭 상승시킬 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 101,
+			"spritePath": "Sprite/items/scroll2",
+			"consumeName": "중급 경험치 스크롤",
+			"type": "ExpItem",
+			"trunCount": 0,
+			"value": 50,
+			"info": "캐릭터 경험치를 상승시킬 수 있다.",
+			"price": 15
+		},
+		{
+			"id": 102,
+			"spritePath": "Sprite/items/scroll3",
+			"consumeName": "고급 경험치 스크롤",
+			"type": "ExpItem",
+			"trunCount": 0,
+			"value": 150,
+			"info": "캐릭터 경험치를 크게 상승시킬 수 있다.",
+			"price": 15
 		}
 	]
 }
