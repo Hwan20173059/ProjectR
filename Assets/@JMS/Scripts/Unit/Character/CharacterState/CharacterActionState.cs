@@ -33,16 +33,16 @@ public class CharacterActionState : CharacterBaseState
             case 0: // 정의의 주먹
                 character.StartCoroutine(BaseAttack());
                 break;
-            case 1: // 불꽃의 사과
+            case 1: // 체스말(폰)
                 character.StartCoroutine(DoubleAttack());
                 break;
-            case 2: // 대지의 빵
+            case 2: // 나뭇가지
                 character.StartCoroutine(EatBread());
                 break;
-            case 3: // 바다의 생선
+            case 3: // 낡은 고서
                 character.StartCoroutine(HorizontalAttack());
                 break;
-            case 4: // 승리의 잔
+            case 4: // 푸른 장미
                 character.StartCoroutine(AllAttack());
                 break;
             default:
@@ -53,7 +53,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator Attack(Monster target, int damage)
     {
-        battleManager.battleCanvas.SetDurationEffect(0, target.transform.position); // 임시 이펙트
+        battleManager.battleCanvas.SetRepeatEffect(0, target.transform.position); // 임시 이펙트
         int prevHp = target.curHP;
         target.ChangeHP(-damage);
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 공격!\n{target.monsterName}에게 {prevHp - target.curHP}의 피해!");

@@ -86,7 +86,6 @@ MonoBehaviour:
     grade: 0
     characterName: 
     spritePath: 
-    animatorPath: 
     assetPath: 
     hp: 0
     levelUpHp: 0
@@ -94,8 +93,6 @@ MonoBehaviour:
     levelUpAtk: 0
     actionCoolTime: 0
   characterName: 
-  spriteRenderer: {fileID: 0}
-  sprite: {fileID: 0}
   level: 0
   curExp: 0
   needExp: 0
@@ -107,9 +104,9 @@ MonoBehaviour:
   currentStateText: "\uB300\uAE30\uC911"
   startPosition: {x: 0, y: 0, z: 0}
   moveAnimSpeed: 10
-  animator: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  sprite: {fileID: 0}
   spriteLibrary: {fileID: 0}
-  asset: {fileID: 0}
   hpBar: {fileID: 0}
   battleManager: {fileID: 0}
 --- !u!1 &375063817183276843
@@ -186,7 +183,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 10
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

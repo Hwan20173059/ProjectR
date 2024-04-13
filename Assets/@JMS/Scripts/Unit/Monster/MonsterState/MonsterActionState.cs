@@ -30,6 +30,7 @@ public class MonsterActionState : MonsterBaseState
 
     IEnumerator Attack(Character target, int damage)
     {
+        battleManager.battleCanvas.SetRepeatEffect(0, target.transform.position); // 임시 이펙트
         int prevHp = target.curHP;
         target.ChangeHP(-damage);
         battleManager.battleCanvas.UpdateBattleText($"{monster.monsterName}의 공격!\n{target.characterName}에게 {prevHp - target.curHP}의 피해!");

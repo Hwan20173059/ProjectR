@@ -24,6 +24,7 @@ public class BattleEffect : MonoBehaviour
     {
         ChangeAnimSet(id);
 
+        transform.localScale = new Vector3(5, 5) * DataManager.Instance.effectDatabase.GetDataByKey(id).effectScale;
         float effectDuration = DataManager.Instance.effectDatabase.GetDataByKey(id).duration;
         float pastTime = 0;
 
