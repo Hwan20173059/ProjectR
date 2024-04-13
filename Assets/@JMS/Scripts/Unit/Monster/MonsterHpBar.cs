@@ -22,7 +22,11 @@ public class MonsterHpBar : MonoBehaviour
         monsterMaxHpBar = transform.GetChild(0).GetComponent<RectTransform>();
         monsterCurHpBar = transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
 
-        monsterMaxHpBar.localScale = new Vector3(monster.maxHP / 30f, monsterMaxHpBar.localScale.y);
+        if (monster.maxHP > 100)
+        {
+            float addScale = (monster.maxHP - 100) / 1000;
+            monsterMaxHpBar.localScale = new Vector3(monsterMaxHpBar.localScale.x + addScale, monsterMaxHpBar.localScale.y);
+        }
     }
 
     public void SetHpBar()

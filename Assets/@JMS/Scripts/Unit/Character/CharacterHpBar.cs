@@ -21,7 +21,11 @@ public class CharacterHpBar : MonoBehaviour
         characterMaxHpBar = transform.GetChild(0).GetComponent<RectTransform>();
         characterCurHpBar = transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
 
-        characterMaxHpBar.localScale = new Vector3(character.maxHP / 100f, characterMaxHpBar.localScale.y);
+        if (character.maxHP > 100)
+        {
+            float addScale = (character.maxHP - 100) / 1000;
+            characterMaxHpBar.localScale = new Vector3(characterMaxHpBar.localScale.x + addScale, characterMaxHpBar.localScale.y);
+        }
     }
 
     public void SetHpBar()
