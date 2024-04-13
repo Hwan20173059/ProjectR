@@ -6,7 +6,10 @@
 			"animatorPath": "Effect1/Pixel Arts/attack01/ani_attack01",
 			"effectScale": 1,
 			"duration": 1,
-			"repeatingCount": 1
+			"repeatingCount": 1,
+			"moveSpeed": 10,
+			"movePosX": 10,
+			"movePosY": 0
 		}
 	]
 }

@@ -104,17 +104,17 @@ public class BattleCanvas : MonoBehaviour
         go.GetComponent<ChangeHpTMP>().SetChangeHpTMP(value);
     }
 
-    public void SetDurationEffect(int id, Vector3 effectPos)
+    public void SetDurationEffect(int id, Vector3 startPos)
     {
         GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = effectPos;
+        go.transform.position = startPos;
         go.GetComponent<BattleEffect>().SetDurationEffect(id);
     }
 
-    public void SetRepeatEffect(int id, Vector3 effectPos)
+    public void SetRepeatEffect(int id, Vector3 startPos)
     {
         GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = effectPos;
+        go.transform.position = startPos;
         go.GetComponent<BattleEffect>().SetRepeatEffect(id);
     }
 

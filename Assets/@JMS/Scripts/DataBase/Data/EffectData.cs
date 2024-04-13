@@ -8,7 +8,10 @@ public class EffectData
     public int id;
     public string effectName;
     public string animatorPath;
-    public int effectScale;
+    public float effectScale;
     public float duration;
     public float repeatingCount;
+    public float moveSpeed;
+    public float movePosX;
+    public float movePosY;
 }

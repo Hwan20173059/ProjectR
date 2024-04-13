@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class BattleEffect : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class BattleEffect : MonoBehaviour
     public void SetRepeatEffect(int id)
     {
         StartCoroutine(RepeatEffect(id));
+    }
+
+    public void SetMoveEffect(int id)
+    {
+        StartCoroutine(MoveEffect(id));
     }
 
     IEnumerator DurationEffect(int id)
@@ -49,6 +55,24 @@ public class BattleEffect : MonoBehaviour
         }
 
         gameObject.SetActive(false);
+    }
+
+    IEnumerator MoveEffect(int id)
+    {
+        ChangeAnimSet(id);
+
+        float speed = DataManager.Instance.effectDatabase.GetDataByKey(id).moveSpeed;
+        Vector3 movePos = new Vector3(DataManager.Instance.effectDatabase.GetDataByKey(id).movePosX, DataManager.Instance.effectDatabase.GetDataByKey(id).movePosY);
+
+        while (MoveTowardsEffect(movePos, speed)) { yield return null; }
+
+        gameObject.SetActive(false) ;
+    }
+
+    private bool MoveTowardsEffect(Vector3 target, float speed)
+    {
+        return target != (transform.position =
+            Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime));
     }
 
     void ChangeAnimSet(int id)
