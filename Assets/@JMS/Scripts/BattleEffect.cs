@@ -20,7 +20,6 @@ public class BattleEffect : MonoBehaviour
     {
         StartCoroutine(RepeatEffect(id));
     }
-
     public void SetMoveEffect(int id)
     {
         StartCoroutine(MoveEffect(id));
@@ -61,18 +60,25 @@ public class BattleEffect : MonoBehaviour
     {
         ChangeAnimSet(id);
 
-        float speed = DataManager.Instance.effectDatabase.GetDataByKey(id).moveSpeed;
+        Vector3 startPos = transform.position;
         Vector3 movePos = new Vector3(DataManager.Instance.effectDatabase.GetDataByKey(id).movePosX, DataManager.Instance.effectDatabase.GetDataByKey(id).movePosY);
+        Vector3 targetPos = startPos + movePos;
+        float moveTIme = 0;
+        float moveSeconds = DataManager.Instance.effectDatabase.GetDataByKey(id).moveSeconds;
 
-        while (MoveTowardsEffect(movePos, speed)) { yield return null; }
+        while (LerpEffect(startPos, targetPos, ref moveTIme))
+        {
+            moveTIme += Time.deltaTime / moveSeconds;
+            yield return null;
+        }
 
         gameObject.SetActive(false) ;
     }
 
-    private bool MoveTowardsEffect(Vector3 target, float speed)
+    private bool LerpEffect(Vector3 startPos, Vector3 targetPos, ref float moveTime)
     {
-        return target != (transform.position =
-            Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime));
+        return targetPos != (transform.position =
+            Vector3.Lerp(startPos, targetPos, moveTime));
     }
 
     void ChangeAnimSet(int id)

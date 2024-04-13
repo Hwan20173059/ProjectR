@@ -7,8 +7,8 @@
 			"effectScale": 1,
 			"duration": 1,
 			"repeatingCount": 1,
-			"moveSpeed": 10,
-			"movePosX": 10,
+			"moveSeconds": 0.5,
+			"movePosX": 5,
 			"movePosY": 0
 		}
 	]

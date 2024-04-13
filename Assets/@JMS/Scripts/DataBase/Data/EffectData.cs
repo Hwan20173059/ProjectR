@@ -11,7 +11,7 @@ public class EffectData
     public float effectScale;
     public float duration;
     public float repeatingCount;
-    public float moveSpeed;
+    public float moveSeconds;
     public float movePosX;
     public float movePosY;
 }

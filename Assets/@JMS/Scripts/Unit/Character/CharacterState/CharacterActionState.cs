@@ -177,6 +177,7 @@ public class CharacterActionState : CharacterBaseState
         }
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 가로 공격!\n몬스터들에게 {damage}의 데미지 공격!");
 
+        battleManager.battleCanvas.SetMoveEffect(0, target.transform.position); // 임시 이펙트
         character.PlayAnim(CharacterAnim.Slash);
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);

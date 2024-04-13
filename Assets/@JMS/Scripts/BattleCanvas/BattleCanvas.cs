@@ -118,6 +118,13 @@ public class BattleCanvas : MonoBehaviour
         go.GetComponent<BattleEffect>().SetRepeatEffect(id);
     }
 
+    public void SetMoveEffect(int id, Vector3 startPos)
+    {
+        GameObject go = objectPool.GetFromPool("BattleEffect");
+        go.transform.position = startPos;
+        go.GetComponent<BattleEffect>().SetMoveEffect(id);
+    }
+
     public void BattleEffectOff()
     {
         objectPool.SetActiveFalseAll("BattleEffect");
