@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum CharacterAnim
 {
+    Idle,
     Attack,
     Push,
     Jab,
@@ -43,6 +44,7 @@ public class CharacterAnimController : MonoBehaviour
     {
         switch (anim)
         {
+            case CharacterAnim.Idle: animator.SetTrigger("Idle"); break;
             case CharacterAnim.Attack: animator.SetTrigger("Attack"); break;
             case CharacterAnim.Push: animator.SetTrigger("Push"); break;
             case CharacterAnim.Jab: animator.SetTrigger("Jab"); break;

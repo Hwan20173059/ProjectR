@@ -59,6 +59,7 @@ public class CharacterActionState : CharacterBaseState
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 공격!\n{target.monsterName}에게 {prevHp - target.curHP}의 피해!");
         character.PlayAnim(CharacterAnim.Slash);
         while (!IsAnimationEnd(GetNormalizedTime(character.animatorController.animator, "Slash"))) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
     }
 
     IEnumerator BaseAttack()
@@ -94,6 +95,7 @@ public class CharacterActionState : CharacterBaseState
 
         character.PlayAnim(CharacterAnim.Slash);
         while (!IsAnimationEnd(GetNormalizedTime(character.animatorController.animator, "Slash"))) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
 
         stateMachine.ChangeState(stateMachine.readyState);
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
@@ -147,6 +149,7 @@ public class CharacterActionState : CharacterBaseState
 
         character.PlayAnim(CharacterAnim.Jump);
         while (!IsAnimationEnd(GetNormalizedTime(character.animatorController.animator, "Jump"))) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
 
         character.StartCoroutine(BaseAttack());
     }
@@ -176,6 +179,7 @@ public class CharacterActionState : CharacterBaseState
 
         character.PlayAnim(CharacterAnim.Slash);
         while (!IsAnimationEnd(GetNormalizedTime(character.animatorController.animator, "Slash"))) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
         character.ChangeAnimState(CharacterAnimState.Ready);
