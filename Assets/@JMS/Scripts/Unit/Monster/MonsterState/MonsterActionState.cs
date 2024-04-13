@@ -28,31 +28,36 @@ public class MonsterActionState : MonsterBaseState
         }
     }
 
+    IEnumerator Attack(Character target, int damage)
+    {
+        int prevHp = target.curHP;
+        target.ChangeHP(-damage);
+        battleManager.battleCanvas.UpdateBattleText($"{monster.monsterName}의 공격!\n{target.characterName}에게 {prevHp - target.curHP}의 피해!");
+        monster.PlayAnim(MonsterAnim.Attack);
+        while (!IsAnimationEnd(GetNormalizedTime(monster.monsterAnimController.animator, "Attack"))) { yield return null; }
+        monster.PlayAnim(MonsterAnim.Idle);
+    }
     IEnumerator BaseAttack()
     {
+        Character target = battleManager.character;
+        int damage = monster.atk;
+
+        monster.ChangeAnimState(MonsterAnimState.Running);
         while (MoveTowardsMonster(monster.attackPosition)) { yield return null; }
 
-        monster.animator.SetBool("Idle", false);
-        monster.animator.SetTrigger("BaseAttack");
-
-        int prevHp = character.curHP;
-        battleManager.character.ChangeHP(-monster.atk);
-        battleManager.battleCanvas.UpdateBattleText($"{monster.monsterName}의 공격!\n{character.characterName}에게 {prevHp - character.curHP}의 피해!");
-
-        while (!IsAnimationEnd(GetNormalizedTime(monster.animator, "Attack"))) { yield return null; }
-        monster.animator.SetBool("Idle", true);
+        yield return character.StartCoroutine(Attack(target, damage));
 
         while (MoveTowardsMonster(monster.startPosition)) { yield return null; }
+        monster.ChangeAnimState(MonsterAnimState.Ready);
 
         stateMachine.ChangeState(stateMachine.readyState);
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
     IEnumerator Jump()
     {
-        monster.animator.SetBool("Idle", false);
-        monster.animator.SetTrigger("Jump");
-        while (!IsAnimationEnd(GetNormalizedTime(monster.animator, "Jump"))) { yield return null; }
-        monster.animator.SetBool("Idle", true);
+        monster.PlayAnim(MonsterAnim.Jump);
+        while (!IsAnimationEnd(GetNormalizedTime(monster.monsterAnimController.animator, "Jump"))) { yield return null; }
+        monster.PlayAnim(MonsterAnim.Idle);
 
         stateMachine.ChangeState(stateMachine.readyState);
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);

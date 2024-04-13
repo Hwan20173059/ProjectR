@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 public class Monster : MonoBehaviour
 {
@@ -23,8 +24,9 @@ public class Monster : MonoBehaviour
 
     public int monsterNumber;
 
-    public SpriteRenderer spriteRenderer { get; private set; }
-    public Animator animator { get; private set; }
+    public MonsterAnimController monsterAnimController { get; private set; }
+    public SpriteRenderer spriteRenderer;
+    public SpriteLibrary spriteLibrary;
 
     public Vector3 startPosition;
     public Vector3 attackPosition = new Vector3(-5.5f, 1.5f, 0);
@@ -41,9 +43,9 @@ public class Monster : MonoBehaviour
     {
         stateMachine = new MonsterStateMachine(this);
 
+        monsterAnimController = GetComponent<MonsterAnimController>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
-        animator = GetComponentInChildren<Animator>();
+        spriteLibrary = GetComponentInChildren<SpriteLibrary>();
     }
 
     private void Start()
@@ -83,7 +85,7 @@ public class Monster : MonoBehaviour
         }
 
         spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
-        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(baseData.animatorPath);
+        spriteLibrary.spriteLibraryAsset = Resources.Load<SpriteLibraryAsset>(baseData.assetPath);
     }
 
     public void ChangeHP(int value)
@@ -103,5 +105,15 @@ public class Monster : MonoBehaviour
         }
 
         battleCanvas.UpdateMonsterState();
+    }
+
+    public void PlayAnim(MonsterAnim anim)
+    {
+        monsterAnimController.PlayAnim(anim);
+    }
+
+    public void ChangeAnimState(MonsterAnimState animState)
+    {
+        monsterAnimController.ChangeAnimState(animState);
     }
 }

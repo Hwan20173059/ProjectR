@@ -17,7 +17,7 @@ public class CharacterDeadState : CharacterBaseState
 
         character.hpBar.gameObject.SetActive(false);
 
-        character.animator.SetBool("Dead", true);
+        character.animatorController.ChangeAnimState(CharacterAnimState.Dead);
     }
 
     public override void Exit()
@@ -26,6 +26,6 @@ public class CharacterDeadState : CharacterBaseState
 
         character.hpBar.gameObject.SetActive(true);
 
-        character.animator.SetBool("Dead", false);
+        character.animatorController.ChangeAnimState(CharacterAnimState.Idle);
     }
 }
