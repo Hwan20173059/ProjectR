@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class DungeonManager : TileMapManager
 {
+    public DungeonTutorialManager dungeonTutorialManager;
     public GameObject dungeonClearUI;
 
     public SpriteRenderer background;
@@ -20,6 +21,13 @@ public class DungeonManager : TileMapManager
 
         RefreshBackground();
         playerPrefab.GetComponent<SpriteRenderer>().sprite = playerManager.characterList[playerManager.selectedCharacterIndex].sprite;
+
+        if (playerManager.firstDungeon == true)
+        {
+            dungeonTutorialManager.gameObject.SetActive(true);
+            dungeonTutorialManager.ActiveTutorial();
+            playerManager.firstDungeon = false;
+        }
 
         if (playerManager.isDungeon == false)
         {

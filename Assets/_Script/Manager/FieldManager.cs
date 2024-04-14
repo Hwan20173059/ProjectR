@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class FieldManager : TileMapManager
 {
+    public FieldTutorialManager fieldTutorialManager;
+
     void Start()
     {
         playerManager = PlayerManager.Instance;
 
         playerPrefab.GetComponent<SpriteRenderer>().sprite = playerManager.characterList[playerManager.selectedCharacterIndex].sprite;
+
+        if (playerManager.firstField == true)
+        {
+            fieldTutorialManager.gameObject.SetActive(true);
+            fieldTutorialManager.ActiveTutorial();
+            playerManager.firstField = false;
+        }
 
         if (playerManager.isField == false)
         {

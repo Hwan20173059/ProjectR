@@ -19,4 +19,14 @@ public class SaveData
     public string equipitemListID;
     public string itemListID;
     public string itemListCount;
+    public bool firstGame;
+    public bool firstCharacter;
+    public bool firstEquip;
+    public bool firstInventory;
+    public bool firstGuild;
+    public bool firstShop;
+    public bool firstGacha;
+    public bool firstField;
+    public bool firstDungeon;
+    public bool firstBattle;
 }

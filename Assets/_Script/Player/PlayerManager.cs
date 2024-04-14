@@ -164,6 +164,17 @@ public class PlayerManager : Singleton<PlayerManager>
 
             for (int i = 0; i < characterList.Length - 1; i++)
                 AddCharacter(int.Parse(characterList[i]), int.Parse(characterLevelList[i]), int.Parse(characterExpList[i]));
+
+            firstGame = saveData.firstGame;
+            firstCharacter = saveData.firstCharacter;
+            firstEquip = saveData.firstEquip;
+            firstInventory = saveData.firstInventory;
+            firstGuild = saveData.firstGuild;
+            firstShop = saveData.firstShop;
+            firstGacha = saveData.firstGacha;
+            firstField = saveData.firstField;
+            firstDungeon = saveData.firstDungeon;
+            firstBattle = saveData.firstBattle;
         }
         else
         {
@@ -234,6 +245,17 @@ public class PlayerManager : Singleton<PlayerManager>
 
         saveData.itemListID = itemListID;
         saveData.itemListCount = itemListCount;
+
+        saveData.firstGame = firstGame;
+        saveData.firstCharacter = firstCharacter;
+        saveData.firstEquip = firstEquip;
+        saveData.firstInventory = firstInventory;
+        saveData.firstGuild = firstGuild;
+        saveData.firstShop = firstShop;
+        saveData.firstGacha = firstGacha;
+        saveData.firstField = firstField;
+        saveData.firstDungeon = firstDungeon;
+        saveData.firstBattle = firstBattle;
 
         string ToJsonData = JsonUtility.ToJson(saveData, true);
         string filePath = Application.persistentDataPath + "/SaveDatas.json";
