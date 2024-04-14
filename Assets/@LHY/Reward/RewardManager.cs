@@ -16,7 +16,7 @@ public class RewardManager : MonoBehaviour
     public GameObject rewardSlotPrefeb;
     public Transform rewardTrans;
 
-    private Reward reward;
+    private Reward reward = new Reward();
 
     private void Awake()
     {
@@ -31,11 +31,14 @@ public class RewardManager : MonoBehaviour
     }
 
     // Reward가 없는 경우 -1 로 전달
-    public void RewardPopup(int gold, int exp, int equipRewardID, int consumeRewardID)
+    public void RewardPopup(int gold, int exp, int consumeRewardID)
     {
-        //AddgoldReward(gold);
-        //AddexpReward(exp);
-        //AddEquipReward(equipRewardID);
+        reward.gold += gold;
+        reward.exp += exp;
+        reward.consumeItemRewardID.Add(consumeRewardID);
+
+        AddgoldReward();
+        AddexpReward();
         AddConsumeReward();
         PopupReward();
     }
@@ -50,6 +53,7 @@ public class RewardManager : MonoBehaviour
 
     public void AddReward(StageData stageData)
     {
+        print("리워드 추가");
         reward.gold += stageData.rewardGold;
         reward.exp += stageData.rewardExp;
         reward.consumeItemRewardID.Add(stageData.rewardItemId);
@@ -114,6 +118,7 @@ public class RewardManager : MonoBehaviour
     private void PopupReward()
     {
         rewardUI.SetActive(!rewardUI.activeSelf);
+        RewardClear();
     }
 
     public void RemoveSlot()
@@ -129,5 +134,12 @@ public class RewardManager : MonoBehaviour
         rewardUI.SetActive(!rewardUI.activeSelf);
         RemoveSlot();
         //rewardUI.SetActive(false);
+    }
+
+    private void RewardClear()
+    {
+        reward.exp = 0;
+        reward.gold = 0;
+        reward.consumeItemRewardID.Clear();
     }
 }

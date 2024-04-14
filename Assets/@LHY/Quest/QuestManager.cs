@@ -101,7 +101,7 @@ public class QuestManager : MonoBehaviour
     {
         Quest quest = GetQuestByID(id);
 
-        RewardManager.instance.RewardPopup(quest.info.goldReward, quest.info.expReward, quest.info.equipRewardID, quest.info.consumeRewardID);
+        RewardManager.instance.RewardPopup(quest.info.goldReward, quest.info.expReward, quest.info.consumeRewardID);
 
         ChangeQuestState(quest.info.id, QuestState.Finished);
     }
@@ -153,18 +153,7 @@ public class QuestManager : MonoBehaviour
 
         foreach (SaveQuestData saveQuestData in allQuestSaveData.questSaveData)
         {
-            if (saveQuestData.questState == QuestState.In_Progress)
-            {
-                StartQuest(saveQuestData.questID);
-            }
-            if (saveQuestData.questState == QuestState.Can_Finish)
-            {
-                AdvanceQuest(saveQuestData.questID);
-            }
-            if (saveQuestData.questState == QuestState.Finished)
-            {
-                FinishQuest(saveQuestData.questID);
-            }
+            ChangeQuestState(saveQuestData.questID, saveQuestData.questState);
             GetQuestByID(saveQuestData.questID).info.questCurrentValue = saveQuestData.questCurrentValue;
         }
     }
