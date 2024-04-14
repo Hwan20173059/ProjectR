@@ -24,4 +24,13 @@ public class UIEvent
             onQuestSelect(questslot);
         }
     }
+
+    public event Action onUIClick;
+    public void UIClick()
+    {
+        if (onUIClick != null)
+        {
+            onUIClick();
+        }
+    }
 }

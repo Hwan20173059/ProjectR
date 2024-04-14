@@ -28,7 +28,7 @@ public class BattleVictoryState : BattleBaseState
             else
             {
                 battleCanvas.NextStagePanelOn();
-                RewardManager.instance.RewardPopup(battleManager.stages[battleManager.curStage - 1]);
+                RewardManager.instance.AddReward(battleManager.stages[battleManager.curStage - 1]);
             }
         }
     }

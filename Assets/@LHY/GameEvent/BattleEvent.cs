@@ -24,4 +24,12 @@ public class BattleEvent
         }
     }
 
+    public event Action<int> onKillMonster;
+    public void KillMonster(int id)
+    {
+        if (onKillMonster != null)
+        {
+            onKillMonster(id);
+        }
+    }
 }

@@ -11,6 +11,7 @@ public class QuestStep : MonoBehaviour
     public int questClearValue;
     public string questType;
 
+    public int questValue;
 
 
     public int GetQuestCurrentValue(int id)
@@ -27,25 +28,40 @@ public class QuestStep : MonoBehaviour
     {
         GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
         GameEventManager.instance.battleEvent.onKillSlime += KillSlime;
+        GameEventManager.instance.battleEvent.onKillMonster += KillMonster;
     }
 
     private void OnDisable()
     {
         GameEventManager.instance.questEvent.onDungeonClear -= DungeonClear;
         GameEventManager.instance.battleEvent.onKillSlime -= KillSlime;
+        GameEventManager.instance.battleEvent.onKillMonster += KillMonster;
         //GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
     }
 
     private void Awake()
     {
-        init();
+        Init();
     }
 
-    private void init()
+    private void Init()
     {
-        //todo : 진행중인 QuestData 불러오기
+        
     }
 
+    public void KillMonster(int id)
+    {
+        if (questType == "KillMonster" && id == questValue)
+            questCurrentValue++;
+        if (questCurrentValue < questClearValue)
+        {
+            //
+        }
+        else
+        {
+            GameEventManager.instance.questEvent.AdvanceQuest(questID);
+        }
+    }
     public void KillSlime()
     {
         if (questType == "KillSlime")

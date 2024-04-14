@@ -95,7 +95,6 @@ public class QuestManager : MonoBehaviour
         Debug.Log(id);
         Quest quest = GetQuestByID(id);
         ChangeQuestState(quest.info.id, QuestState.Can_Finish);
-
     }
 
     private void FinishQuest(int id)
