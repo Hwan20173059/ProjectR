@@ -129,8 +129,18 @@ public class TownUiManager : MonoBehaviour
     public void PlayerInfoRefresh()
     {
         //playerName.text = playerManager.name;
-        playerName.text = "모험가";
-        playerLevel.text = "Lv. " + playerManager.playerLevel;
+        if (playerManager.playerLevel < 10)
+            playerName.text = "풋내기 모험가";
+        else if (playerManager.playerLevel < 20)
+            playerName.text = "숙련된 모험가";
+        else if (playerManager.playerLevel < 25)
+            playerName.text = "베테랑 모험가";
+        else if (playerManager.playerLevel < 30)
+            playerName.text = "전설의 모험가";
+        else if (playerManager.playerLevel == 30)
+            playerName.text = "살아있는 신화";
+
+        playerLevel.text = "Lv." + playerManager.playerLevel;
         playerGold.text = "<sprite=0> " + playerManager.gold;
         playerExp.value = (float)playerManager.currentExp / (float)playerManager.needExp;
     }

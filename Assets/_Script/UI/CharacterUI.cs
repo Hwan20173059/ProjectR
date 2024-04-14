@@ -9,6 +9,7 @@ public class CharacterUI : MonoBehaviour
     PlayerManager playerManager;
 
     public Image characterImage;
+    public TextMeshProUGUI characterGrade;
     public TextMeshProUGUI characterName;
     public TextMeshProUGUI characterLevel;
     public TextMeshProUGUI characterHP;
@@ -39,6 +40,13 @@ public class CharacterUI : MonoBehaviour
 
         characterImage.sprite = character.sprite;
         characterImage.SetNativeSize();
+
+        if (character.baseData.grade == 0)
+            characterGrade.text = "<color=black>ÀÏ¹Ý</color>";
+        else if (character.baseData.grade == 1)
+            characterGrade.text = "<color=blue>Èñ±Í</color>";
+        else if (character.baseData.grade == 2)
+            characterGrade.text = "<color=purple>¿µ¿õ</color>";
 
         characterName.text = character.characterName;
         characterLevel.text = "Lv. " + character.level;

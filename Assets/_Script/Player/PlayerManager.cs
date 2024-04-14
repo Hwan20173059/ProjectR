@@ -25,7 +25,7 @@ public class PlayerManager : Singleton<PlayerManager>
 {
     [Header("Info")]
     public int playerLevel = 1;
-    public int needExp = 10;
+    public int needExp = 100;
     public int currentExp = 0;
     public int gold = 500;
     public int playerTurnIndex = 5;
@@ -87,6 +87,13 @@ public class PlayerManager : Singleton<PlayerManager>
         equip[n].isEquipped = true;
     }
 
+    public void EquipLoadItem(int n, EquipItem equipItem)
+    {
+        equip[n].isEquipped = false;
+        equip[n] = equipItem;
+        equip[n].isEquipped = true;
+    }
+
     public bool HaveCharacter(int id)
     {
         int index = characterList.FindIndex(c => c.baseData.id == id);
@@ -108,19 +115,21 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         currentExp += change;
         currentExp = currentExp >= needExp ? LevelUp() : currentExp;
+        townUiManager.PlayerInfoRefresh();
+        townUiManager.TownInfoRefresh();
     }
 
     public void AddGold(int changeGold)
     {
         gold += changeGold;
+        townUiManager.PlayerInfoRefresh();
+        townUiManager.TownInfoRefresh();
     }
     public int LevelUp()
     {
         currentExp = currentExp - needExp;
         playerLevel++;
 
-        //todo : Data¿¡ ÀúÀå
-        needExp = needExp * playerLevel;
         currentExp = currentExp >= needExp ? LevelUp() : currentExp;
 
         return currentExp;
@@ -170,6 +179,7 @@ public class PlayerManager : Singleton<PlayerManager>
         string characterExpList = "";
 
         string equipitemListID = "";
+        string equippingitemListID = "";
 
         string itemListID = "";
         string itemListCount = "";
@@ -186,12 +196,17 @@ public class PlayerManager : Singleton<PlayerManager>
             characterExpList += " ";
         }
 
+        for (int i = 0; i < equip.Length; i++)
+        {
+            equippingitemListID += equip[i].data.id.ToString();
+            equippingitemListID += " ";
+        }
+
         for (int i = 0; i < itemManager.eInventory.Count; i++)
         {
             equipitemListID += itemManager.eInventory[i].data.id.ToString();
             equipitemListID += " ";
         }
-
 
         for (int i = 0; i < itemManager.cInventory.Count; i++)
         {

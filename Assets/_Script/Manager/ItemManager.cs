@@ -137,12 +137,16 @@ public class ItemManager : Singleton<ItemManager>
             for (int i = 0; i < equipitemListID.Length - 1; i++)
                 AddEquipItem(int.Parse(equipitemListID[i]));
 
-
             string[] itemListID = saveData.itemListID.Split(" ");
             string[] itemListCount = saveData.itemListCount.Split(" ");
 
+            string[] equippingList = saveData.equippingitemListID.Split(" ");
+
             for (int i = 0; i < itemListID.Length - 1; i++)
                 AddConsumeItem(int.Parse(itemListID[i]), int.Parse(itemListCount[i]));
+
+            for (int i = 0; i < equippingList.Length - 1; i++)
+                PlayerManager.Instance.EquipLoadItem(i, GetEquipItem(int.Parse(equippingList[i])));
         }
         else
         {

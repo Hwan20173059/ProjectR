@@ -15,6 +15,7 @@ public class SaveData
     public string characterListID;
     public string characterListLevel;
     public string characterListExp;
+    public string equippingitemListID;
     public string equipitemListID;
     public string itemListID;
     public string itemListCount;
