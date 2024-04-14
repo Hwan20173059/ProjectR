@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 5791072969781225203}
+  anim: {fileID: 0}
 --- !u!1 &9085840379146483359
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,6 +148,7 @@ GameObject:
   - component: {fileID: 7503486730084411586}
   - component: {fileID: 7574226205339509541}
   - component: {fileID: 5791072969781225203}
+  - component: {fileID: 7346378116050510256}
   m_Layer: 5
   m_Name: SlotImage
   m_TagString: Untagged
@@ -212,3 +214,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!95 &7346378116050510256
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9085840379146483359}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e6dc6281f1ca91419e1ff266bdc30ab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
