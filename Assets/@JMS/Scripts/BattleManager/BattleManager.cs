@@ -43,8 +43,8 @@ public class BattleManager : MonoBehaviour
     public bool IsCanUseItem => useItemCount < 3;
     public int useItemCount = 0;
 
-    Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1.5f, 0);
-    Vector3 monsterSpawnPosition = new Vector3 (-1, 3, 0);
+    Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1f, 0);
+    Vector3 monsterSpawnPosition = new Vector3 (-1, 2.5f, 0);
 
     public TargetCircle targetCircle;
 
@@ -177,13 +177,13 @@ public class BattleManager : MonoBehaviour
             battleCanvas.CreateMonsterHpBar(monsters[i]);
         }
 
-        monsterSpawnPosition = new Vector3(-1, 3, 0);
+        monsterSpawnPosition = new Vector3(-1, 2.5f, 0);
         monstersPrevState = new IState[monsters.Count];
     }
 
     public void ChangeSpawnPosition()
     {
-        if (monsterSpawnPosition.y == 3)
+        if (monsterSpawnPosition.y >= 2.49f)
             monsterSpawnPosition = new Vector3(monsterSpawnPosition.x, monsterSpawnPosition.y - 2.5f, monsterSpawnPosition.z);
         else
             monsterSpawnPosition = new Vector3(monsterSpawnPosition.x + 2.5f, monsterSpawnPosition.y + 2.5f, monsterSpawnPosition.z);
