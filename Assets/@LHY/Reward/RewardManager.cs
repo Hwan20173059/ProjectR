@@ -36,15 +36,15 @@ public class RewardManager : MonoBehaviour
         //AddgoldReward(gold);
         //AddexpReward(exp);
         //AddEquipReward(equipRewardID);
-        AddConsumeReward(consumeRewardID);
+        AddConsumeReward();
         PopupReward();
     }
 
-    public void RewardPopup(StageData stageData)
+    public void RewardPopup()
     {
         AddgoldReward();
         AddexpReward();
-        AddEquipReward();
+        AddConsumeReward();
         PopupReward();
     }
 
@@ -52,7 +52,7 @@ public class RewardManager : MonoBehaviour
     {
         reward.gold += stageData.rewardGold;
         reward.exp += stageData.rewardExp;
-        reward.EquipId.Add(stageData.rewardItemId);
+        reward.consumeItemRewardID.Add(stageData.rewardItemId);
     }
 
     private void AddgoldReward()
@@ -78,6 +78,7 @@ public class RewardManager : MonoBehaviour
         //RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(i).spritePath, typeof(Sprite)) as Sprite;
     }
 
+    /*
     private void AddEquipReward()
     {
         //if (reward.EquipId < 0)
@@ -90,23 +91,26 @@ public class RewardManager : MonoBehaviour
         {
             RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = DataManager.Instance.itemDatabase.GetItemByKey(var).equipName;
             RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(var).spritePath, typeof(Sprite)) as Sprite;
-
+        
         }
     }
-
-    private void AddConsumeReward(int rewardItemID)
+    */
+    Consume rewardItem;
+    private void AddConsumeReward()
     {
-        if (rewardItemID < 0)
-            return;
-        itemManager.AddConsumeItem(rewardItemID);
         GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
         RewardSlot.transform.SetParent(rewardTrans.transform);
 
-        //id 하나로 다 가져와야함.
-        RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = DataManager.Instance.itemDatabase.GetCItemByKey(rewardItemID).consumeName;
-        RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetCItemByKey(rewardItemID).spritePath, typeof(Sprite)) as Sprite;
-
+        foreach (int item in reward.consumeItemRewardID)
+        {
+            if (item < 0)
+                return;
+            rewardItem = DataManager.Instance.itemDatabase.GetCItemByKey(item);
+            RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = rewardItem.consumeName;
+            RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(rewardItem.spritePath, typeof(Sprite)) as Sprite;
+        }
     }
+
     private void PopupReward()
     {
         rewardUI.SetActive(!rewardUI.activeSelf);
@@ -126,5 +130,4 @@ public class RewardManager : MonoBehaviour
         RemoveSlot();
         //rewardUI.SetActive(false);
     }
-
 }
