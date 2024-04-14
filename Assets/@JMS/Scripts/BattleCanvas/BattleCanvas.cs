@@ -25,6 +25,7 @@ public class BattleCanvas : MonoBehaviour
     AutoBattlePanel autoBattlePanel;
     MenuButton menuButton;
     MenuPanel menuPanel;
+    CheatPanel cheatPanel;
 
     InfiniteInventory infiniteInventory;
     Settings settings;
@@ -49,6 +50,7 @@ public class BattleCanvas : MonoBehaviour
         autoBattlePanel = GetComponentInChildren<AutoBattlePanel>();
         menuButton = GetComponentInChildren<MenuButton>();
         menuPanel = GetComponentInChildren<MenuPanel>();
+        cheatPanel = GetComponentInChildren<CheatPanel>();
 
         infiniteInventory = GetComponentInChildren<InfiniteInventory>();
         settings = GetComponentInChildren<Settings>();
@@ -75,6 +77,7 @@ public class BattleCanvas : MonoBehaviour
         autoBattlePanel.Init(battleManager);
         menuButton.button.onClick.AddListener(MenuPanelOn);
         menuPanel.Init(this);
+        cheatPanel.Init(battleManager);
 
         settings.gameObject.SetActive(false);
     }
@@ -104,18 +107,25 @@ public class BattleCanvas : MonoBehaviour
         go.GetComponent<ChangeHpTMP>().SetChangeHpTMP(value);
     }
 
-    public void SetDurationEffect(int id, Vector3 effectPos)
+    public void SetDurationEffect(int id, Vector3 startPos)
     {
         GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = effectPos;
+        go.transform.position = startPos;
         go.GetComponent<BattleEffect>().SetDurationEffect(id);
     }
 
-    public void SetRepeatEffect(int id, Vector3 effectPos)
+    public void SetRepeatEffect(int id, Vector3 startPos)
     {
         GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = effectPos;
+        go.transform.position = startPos;
         go.GetComponent<BattleEffect>().SetRepeatEffect(id);
+    }
+
+    public void SetMoveEffect(int id, Vector3 startPos)
+    {
+        GameObject go = objectPool.GetFromPool("BattleEffect");
+        go.transform.position = startPos;
+        go.GetComponent<BattleEffect>().SetMoveEffect(id);
     }
 
     public void BattleEffectOff()

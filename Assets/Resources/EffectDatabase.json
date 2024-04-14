@@ -2,10 +2,14 @@
 	"effectDatas": [
 		{
 			"id": 0,
-			"effectName": "다크웨폰",
-			"animatorPath": "Effect2/pixel arts/darkWeapon/ani_darkWeapon",
-			"duration": 5,
-			"repeatingCount": 5
+			"effectName": "기본 공격",
+			"animatorPath": "Effect1/Pixel Arts/attack01/ani_attack01",
+			"effectScale": 1,
+			"duration": 1,
+			"repeatingCount": 1,
+			"moveSeconds": 0.5,
+			"movePosX": 5,
+			"movePosY": 0
 		}
 	]
 }

@@ -137,6 +137,15 @@ public class Character : MonoBehaviour
 
     public void ChangeHP(int value)
     {
+        if(value < 0)
+        {
+            animatorController.PlayAnim(CharacterAnim.Hit);
+        }
+        else if(value > 0)
+        {
+            animatorController.PlayAnim(CharacterAnim.Heal);
+        }
+
         curHP += value;
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;

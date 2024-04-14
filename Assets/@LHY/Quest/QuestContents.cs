@@ -52,7 +52,7 @@ public class QuestContents : MonoBehaviour
         {
             QuestState state = QuestManager.instance.GetQuestByID(child.questId).state;
             child.gameObject.SetActive(true);
-            if (state != QuestState.In_Progress && state != QuestState.In_Progress)
+            if (state != QuestState.In_Progress && state != QuestState.Can_Finish)
             {
                 child.gameObject.SetActive(false);
             }

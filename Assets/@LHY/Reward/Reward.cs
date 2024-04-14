@@ -23,6 +23,5 @@ public class Reward
 {
     public int gold;
     public int exp;
-    public int EquipId;
-    public int ConsumeId;
+    public List<int> consumeItemRewardID = new();
 }

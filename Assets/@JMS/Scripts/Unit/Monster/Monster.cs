@@ -90,6 +90,15 @@ public class Monster : MonoBehaviour
 
     public void ChangeHP(int value)
     {
+        if (value < 0)
+        {
+            monsterAnimController.PlayAnim(MonsterAnim.Hit);
+        }
+        else if (value > 0)
+        {
+            monsterAnimController.PlayAnim(MonsterAnim.Heal);
+        }
+
         curHP += value;
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;

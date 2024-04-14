@@ -13,6 +13,7 @@ public enum RouletteResult
     SidePair,
     BackPair,
     Different,
+    Cheat
 }
 public class BattleManager : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class BattleManager : MonoBehaviour
     public List<EquipItem> rouletteEquip;
     public RouletteResult rouletteResult;
     public List<int> rouletteResultIndex;
+    public int cheatItemId;
 
     public Character character;
     public List<Monster> monsters;
@@ -487,6 +489,10 @@ public class BattleManager : MonoBehaviour
                     else
                         baseValue *= rouletteEquip[2].data.singleValue;
                     return baseValue;
+                }
+            case RouletteResult.Cheat:
+                {
+                    return baseValue * 1000;
                 }
             default: return baseValue;
         }

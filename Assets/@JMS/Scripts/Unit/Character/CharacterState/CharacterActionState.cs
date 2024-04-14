@@ -20,6 +20,10 @@ public class CharacterActionState : CharacterBaseState
         {
             ItemSkill(battleManager.rouletteEquip[0].data.id);
         }
+        else if (battleManager.rouletteResult == RouletteResult.Cheat)
+        {
+            ItemSkill(battleManager.cheatItemId);
+        }
         else
         {
             character.StartCoroutine(BaseAttack());
@@ -33,16 +37,16 @@ public class CharacterActionState : CharacterBaseState
             case 0: // 정의의 주먹
                 character.StartCoroutine(BaseAttack());
                 break;
-            case 1: // 불꽃의 사과
+            case 1: // 체스말(폰)
                 character.StartCoroutine(DoubleAttack());
                 break;
-            case 2: // 대지의 빵
-                character.StartCoroutine(EatBread());
+            case 2: // 나뭇가지
+                character.StartCoroutine(JumpHeal());
                 break;
-            case 3: // 바다의 생선
+            case 3: // 낡은 고서
                 character.StartCoroutine(HorizontalAttack());
                 break;
-            case 4: // 승리의 잔
+            case 4: // 푸른 장미
                 character.StartCoroutine(AllAttack());
                 break;
             default:
@@ -53,19 +57,19 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator Attack(Monster target, int damage)
     {
-        battleManager.battleCanvas.SetDurationEffect(0, target.transform.position); // 임시 이펙트
+        battleManager.battleCanvas.SetRepeatEffect(0, target.transform.position); // 임시 이펙트
         int prevHp = target.curHP;
         target.ChangeHP(-damage);
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 공격!\n{target.monsterName}에게 {prevHp - target.curHP}의 피해!");
         character.PlayAnim(CharacterAnim.Slash);
-        while (!IsAnimationEnd(GetNormalizedTime(character.animatorController.animator, "Slash"))) { yield return null; }
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
     }
 
     IEnumerator BaseAttack()
     {
         Monster target = battleManager.selectMonster;
-        Vector3 selectMonsterPosition = new Vector3(target.startPosition.x -1f, target.startPosition.y);
+        Vector3 selectMonsterPosition = new Vector3(target.startPosition.x - 1f, target.startPosition.y);
 
         int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
 
@@ -89,12 +93,16 @@ public class CharacterActionState : CharacterBaseState
 
         for (int i = 0; i < battleManager.monsters.Count; i++)
         {
-            battleManager.monsters[i].ChangeHP(-damage);
+            if (!battleManager.monsters[i].IsDead)
+            {
+                battleManager.monsters[i].ChangeHP(-damage);
+                battleManager.battleCanvas.SetRepeatEffect(0, battleManager.monsters[i].transform.position); // 임시 이펙트
+            }
         }
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
 
         character.PlayAnim(CharacterAnim.Slash);
-        while (!IsAnimationEnd(GetNormalizedTime(character.animatorController.animator, "Slash"))) { yield return null; }
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
 
         stateMachine.ChangeState(stateMachine.readyState);
@@ -103,7 +111,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator DoubleAttack()
     {
-        if(battleManager.AliveMonsterCount() > 1)
+        if (battleManager.AliveMonsterCount() > 1)
         {
             Monster target = battleManager.selectMonster;
             Monster nextTarget;
@@ -115,7 +123,7 @@ public class CharacterActionState : CharacterBaseState
 
             Vector3 selectMonsterPosition = new Vector3(target.startPosition.x - 1f, target.startPosition.y);
             Vector3 nextMonsterPosition = new Vector3(nextTarget.startPosition.x - 1f, nextTarget.startPosition.y);
-            
+
             int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
 
             character.ChangeAnimState(CharacterAnimState.Running);
@@ -141,14 +149,14 @@ public class CharacterActionState : CharacterBaseState
         }
     }
 
-    IEnumerator EatBread()
+    IEnumerator JumpHeal()
     {
         int prevHp = character.curHP;
-        character.ChangeHP(battleManager.rouletteEquip[0].data.singleValue);
+        character.ChangeHP(battleManager.rouletteEquip[0].data.tripleValue);
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}이 {character.curHP - prevHp}의 체력을 회복!");
 
         character.PlayAnim(CharacterAnim.Jump);
-        while (!IsAnimationEnd(GetNormalizedTime(character.animatorController.animator, "Jump"))) { yield return null; }
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Jump")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
 
         character.StartCoroutine(BaseAttack());
@@ -166,7 +174,7 @@ public class CharacterActionState : CharacterBaseState
 
         RaycastHit2D[] hit;
         hit = Physics2D.RaycastAll(character.transform.position, Vector2.right, 4f);
-        for(int i = 0; i < hit.Length; i++)
+        for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.CompareTag("Monster"))
             {
@@ -177,8 +185,9 @@ public class CharacterActionState : CharacterBaseState
         }
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 가로 공격!\n몬스터들에게 {damage}의 데미지 공격!");
 
+        battleManager.battleCanvas.SetMoveEffect(0, target.transform.position); // 임시 이펙트
         character.PlayAnim(CharacterAnim.Slash);
-        while (!IsAnimationEnd(GetNormalizedTime(character.animatorController.animator, "Slash"))) { yield return null; }
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
@@ -192,10 +201,6 @@ public class CharacterActionState : CharacterBaseState
     {
         return target != (character.transform.position =
             Vector3.MoveTowards(character.transform.position, target, character.moveAnimSpeed * Time.deltaTime));
-    }
-    private bool IsAnimationEnd(float animNormalizedTime)
-    {
-        return animNormalizedTime >= 0.99f;
     }
 
     public override void Exit()

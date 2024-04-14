@@ -30,11 +30,12 @@ public class MonsterActionState : MonsterBaseState
 
     IEnumerator Attack(Character target, int damage)
     {
+        battleManager.battleCanvas.SetRepeatEffect(0, target.transform.position); // 임시 이펙트
         int prevHp = target.curHP;
         target.ChangeHP(-damage);
         battleManager.battleCanvas.UpdateBattleText($"{monster.monsterName}의 공격!\n{target.characterName}에게 {prevHp - target.curHP}의 피해!");
         monster.PlayAnim(MonsterAnim.Attack);
-        while (!IsAnimationEnd(GetNormalizedTime(monster.monsterAnimController.animator, "Attack"))) { yield return null; }
+        while (1 > GetNormalizedTime(monster.monsterAnimController.animator, "Attack")) { yield return null; }
         monster.PlayAnim(MonsterAnim.Idle);
     }
     IEnumerator BaseAttack()
@@ -56,16 +57,11 @@ public class MonsterActionState : MonsterBaseState
     IEnumerator Jump()
     {
         monster.PlayAnim(MonsterAnim.Jump);
-        while (!IsAnimationEnd(GetNormalizedTime(monster.monsterAnimController.animator, "Jump"))) { yield return null; }
+        while (1 > GetNormalizedTime(monster.monsterAnimController.animator, "Jump")) { yield return null; }
         monster.PlayAnim(MonsterAnim.Idle);
 
         stateMachine.ChangeState(stateMachine.readyState);
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
-    }
-
-    private bool IsAnimationEnd(float animNormalizedTime)
-    {
-        return animNormalizedTime >= 1f;
     }
 
     private bool MoveTowardsMonster(Vector3 target)
