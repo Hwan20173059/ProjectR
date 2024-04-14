@@ -24,26 +24,60 @@ public class GachaManager : MonoBehaviour
         itemManager = ItemManager.Instance;
         playerManager = PlayerManager.Instance;
     }
+
+    public void StartGacha(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                if (playerManager.gold >= 500)
+                {
+                    playerManager.gold -= 500;
+                    CharacterGacha();
+                }
+                break;
+            case 1:
+                if (playerManager.gold >= 5000)
+                {
+                    playerManager.gold -= 5000;
+                    CharacterGacha10();
+                }
+                break;
+            case 2:
+                if (playerManager.gold >= 300)
+                {
+                    playerManager.gold -= 300;
+                    EquipGacha();
+                }
+                break;
+            case 3:
+                if (playerManager.gold >= 3000)
+                {
+                    playerManager.gold -= 3000;
+                    EquipGacha10();
+                }
+                break;
+        }
+    }
     public void CharacterGacha()
     {
-        // °ñµå °¨¼Ò
-        playerManager.gold -= 500;
-        // Ä³¸¯ÅÍ Ãß°¡
+        isNowItemHaving = true;
         int randomIndex = Random.Range(32, 45);
-        itemManager.AddConsumeItem(randomIndex);
+        if (!playerManager.HaveCharacter(randomIndex - 32))
+        {
+            isNowItemHaving = false;
+            itemManager.AddConsumeItem(randomIndex);
+        }
         nowChar = itemManager.GetConsumeItem(randomIndex);
 
         if (!gacha10)
         {
-            gachaResult.Character1UI(nowChar);
+            gachaResult.Character1UI(nowChar, isNowItemHaving);
         }
-        // °¡Ã­ ÀÌÆåÆ®(ÇÔ¼ö)
-        // °¡Ã­ °á°úÃ¢(ÇÔ¼ö)
     }
     public void EquipGacha()
     {
         isNowItemHaving = true;
-        playerManager.gold -= 300;
         int randomIndex = Random.Range(1, 57);
         if (!itemManager.HaveEquipItem(randomIndex))
         {
@@ -65,8 +99,9 @@ public class GachaManager : MonoBehaviour
         {
             CharacterGacha();
             charArray[i] = nowChar;
+            isHaving[i] = isNowItemHaving;
         }
-        gachaResult.Character10UI(charArray);
+        gachaResult.Character10UI(charArray, isHaving);
         System.Array.Clear(equipArray, 0, equipArray.Length);
         gacha10 = false;
     }
@@ -84,6 +119,4 @@ public class GachaManager : MonoBehaviour
         System.Array.Clear(equipArray, 0, equipArray.Length);
         gacha10 = false;
     }
-
-    // °¡Ã­ ÀÌÆåÆ® ÇÔ¼ö
 }

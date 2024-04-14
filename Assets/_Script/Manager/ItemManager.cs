@@ -126,6 +126,21 @@ public class ItemManager : Singleton<ItemManager>
         }
     }
 
+    public void ReduceConsumeItem(ConsumeItem consumeItem, int count)
+    {
+        if (cInventory.Contains(consumeItem))
+        {
+            if (consumeItem.count > count)
+            {
+                consumeItem.count -= count;
+            }
+            else
+            {
+                cInventory.Remove(consumeItem);
+            }
+        }
+    }
+
     public void LoadEquipData()
     {
         SaveData saveData = DataManager.Instance.saveData;

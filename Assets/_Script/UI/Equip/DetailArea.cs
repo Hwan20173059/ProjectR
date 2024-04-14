@@ -6,6 +6,7 @@ using TMPro;
 
 public class DetailArea : MonoBehaviour
 {
+    private PlayerManager playerManager;
     [SerializeField] private GameObject detailObject;
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _text;
@@ -15,6 +16,7 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private Button _useButton;
     [SerializeField] private Button mergeButton;
     [SerializeField] private GameObject _activateFalseObj;
+    [SerializeField] private GameObject mergeFailObj;
     public ConsumeItem nowConsumeItem;
     public EquipItem nowSelectedEquip;
     public EquipItem lastSelectedEquip;
@@ -22,7 +24,8 @@ public class DetailArea : MonoBehaviour
 
     private void Start()
     {
-        PlayerManager.Instance.detailArea = this;
+        playerManager = PlayerManager.Instance;
+        playerManager.detailArea = this;
     }
     public void ChangeSelectedItem(EquipItem e)
     {
@@ -85,5 +88,24 @@ public class DetailArea : MonoBehaviour
     {
         _activateFalseObj.SetActive(false);
         isEquipping = false;
+    }
+
+    public void MergeCharacterPiece()
+    {
+        if (nowConsumeItem.count >= nowConsumeItem.data.value)
+        {
+            ItemManager.Instance.ReduceConsumeItem(nowConsumeItem, nowConsumeItem.count);
+            int charID = nowConsumeItem.data.id - 32;
+            playerManager.AddCharacter(charID, 1, 0);
+        }
+        else
+        {
+            mergeFailObj.SetActive(true);
+        }
+    }
+    
+    public void MergeFailPopupClose()
+    {
+        mergeFailObj.SetActive(false);
     }
 }
