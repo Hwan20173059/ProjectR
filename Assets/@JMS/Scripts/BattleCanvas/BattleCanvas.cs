@@ -25,6 +25,7 @@ public class BattleCanvas : MonoBehaviour
     AutoBattlePanel autoBattlePanel;
     MenuButton menuButton;
     MenuPanel menuPanel;
+    CheatPanel cheatPanel;
 
     InfiniteInventory infiniteInventory;
     Settings settings;
@@ -49,6 +50,7 @@ public class BattleCanvas : MonoBehaviour
         autoBattlePanel = GetComponentInChildren<AutoBattlePanel>();
         menuButton = GetComponentInChildren<MenuButton>();
         menuPanel = GetComponentInChildren<MenuPanel>();
+        cheatPanel = GetComponentInChildren<CheatPanel>();
 
         infiniteInventory = GetComponentInChildren<InfiniteInventory>();
         settings = GetComponentInChildren<Settings>();
@@ -75,6 +77,7 @@ public class BattleCanvas : MonoBehaviour
         autoBattlePanel.Init(battleManager);
         menuButton.button.onClick.AddListener(MenuPanelOn);
         menuPanel.Init(this);
+        cheatPanel.Init(battleManager);
 
         settings.gameObject.SetActive(false);
     }

@@ -20,6 +20,10 @@ public class CharacterActionState : CharacterBaseState
         {
             ItemSkill(battleManager.rouletteEquip[0].data.id);
         }
+        else if (battleManager.rouletteResult == RouletteResult.Cheat)
+        {
+            ItemSkill(battleManager.cheatItemId);
+        }
         else
         {
             character.StartCoroutine(BaseAttack());
@@ -65,7 +69,7 @@ public class CharacterActionState : CharacterBaseState
     IEnumerator BaseAttack()
     {
         Monster target = battleManager.selectMonster;
-        Vector3 selectMonsterPosition = new Vector3(target.startPosition.x -1f, target.startPosition.y);
+        Vector3 selectMonsterPosition = new Vector3(target.startPosition.x - 1f, target.startPosition.y);
 
         int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
 
@@ -89,7 +93,11 @@ public class CharacterActionState : CharacterBaseState
 
         for (int i = 0; i < battleManager.monsters.Count; i++)
         {
-            battleManager.monsters[i].ChangeHP(-damage);
+            if (!battleManager.monsters[i].IsDead)
+            {
+                battleManager.monsters[i].ChangeHP(-damage);
+                battleManager.battleCanvas.SetRepeatEffect(0, battleManager.monsters[i].transform.position); // 임시 이펙트
+            }
         }
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
 
@@ -103,7 +111,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator DoubleAttack()
     {
-        if(battleManager.AliveMonsterCount() > 1)
+        if (battleManager.AliveMonsterCount() > 1)
         {
             Monster target = battleManager.selectMonster;
             Monster nextTarget;
@@ -115,7 +123,7 @@ public class CharacterActionState : CharacterBaseState
 
             Vector3 selectMonsterPosition = new Vector3(target.startPosition.x - 1f, target.startPosition.y);
             Vector3 nextMonsterPosition = new Vector3(nextTarget.startPosition.x - 1f, nextTarget.startPosition.y);
-            
+
             int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
 
             character.ChangeAnimState(CharacterAnimState.Running);
@@ -166,7 +174,7 @@ public class CharacterActionState : CharacterBaseState
 
         RaycastHit2D[] hit;
         hit = Physics2D.RaycastAll(character.transform.position, Vector2.right, 4f);
-        for(int i = 0; i < hit.Length; i++)
+        for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.CompareTag("Monster"))
             {
