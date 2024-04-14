@@ -13,12 +13,12 @@ public class BattleVictoryState : BattleBaseState
         base.Enter();
 
         battleManager.curStage++;
-
+        RewardManager.instance.AddReward(battleManager.stages[battleManager.curStage - 1]);
         if (battleManager.curStage == battleManager.stages.Count)
         {
+            RewardManager.instance.RewardPopup();
             battleCanvas.DungeonClearPanelOn();
             GameEventManager.instance.questEvent.DungeonClear();
-
             Time.timeScale = 1f;
         }
         else
@@ -28,7 +28,6 @@ public class BattleVictoryState : BattleBaseState
             else
             {
                 battleCanvas.NextStagePanelOn();
-                RewardManager.instance.AddReward(battleManager.stages[battleManager.curStage - 1]);
             }
         }
     }
