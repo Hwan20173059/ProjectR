@@ -115,15 +115,11 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         currentExp += change;
         currentExp = currentExp >= needExp ? LevelUp() : currentExp;
-        townUiManager.PlayerInfoRefresh();
-        townUiManager.TownInfoRefresh();
     }
 
     public void AddGold(int changeGold)
     {
         gold += changeGold;
-        townUiManager.PlayerInfoRefresh();
-        townUiManager.TownInfoRefresh();
     }
     public int LevelUp()
     {
