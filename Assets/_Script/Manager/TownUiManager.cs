@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -34,6 +35,7 @@ public class TownUiManager : MonoBehaviour
     public GameObject homeUI;
     public GameObject optionUI;
     public GameObject talkUI;
+    public TownTutorialManager tutorialUI;
 
     [Header("EquipUI")]
     public Inventory inventory;
@@ -49,6 +51,14 @@ public class TownUiManager : MonoBehaviour
         playerManager.isField = false;
         playerManager.isTown = true;
 
+        if(playerManager.firstGame == true)
+        {
+            tutorialUI.gameObject.SetActive(true);
+            tutorialUI.ActiveTutorial(0);
+
+            playerManager.firstGame = false;
+        }
+
         RefreshBackground();
         PlayerInfoRefresh();
         TownInfoRefresh();
@@ -57,8 +67,20 @@ public class TownUiManager : MonoBehaviour
 
     public void CharacterUIOn()
     {
-        characterUI.CharacterUIon();
-        characterUI.GetComponentInChildren<CharacterSelectSlot>().Init();
+        if (playerManager.firstCharacter == true)
+        {
+            tutorialUI.gameObject.SetActive(true);
+            tutorialUI.ActiveTutorial(1);
+            characterUI.CharacterUIon();
+            characterUI.GetComponentInChildren<CharacterSelectSlot>().Init();
+
+            playerManager.firstCharacter = false;
+        }
+        else
+        {
+            characterUI.CharacterUIon();
+            characterUI.GetComponentInChildren<CharacterSelectSlot>().Init();
+        }
     }
 
     public void CharacterUIOff()

@@ -67,6 +67,19 @@ public class PlayerManager : Singleton<PlayerManager>
     public bool autoBattle;
     public int battleSpeed;
 
+    [Header("tutorial")]
+    public bool firstGame;
+    public bool firstCharacter;
+    public bool firstEquip;
+    public bool firstInventory;
+    public bool firstGuild;
+    public bool firstShop;
+    public bool firstGacha;
+    public bool firstField;
+    public bool firstDungeon;
+    public bool firstBattle;
+
+
     private void Start()
     {
         EquipItem baseEquip = new EquipItem(DataManager.Instance.itemDatabase.GetItemByKey(0));
@@ -138,7 +151,7 @@ public class PlayerManager : Singleton<PlayerManager>
         if (saveData != null)
         {
             playerLevel = saveData.playerLevel;
-            needExp = playerLevel * 10;
+            needExp = 100;
             currentExp = saveData.currentExp;
             gold = DataManager.Instance.saveData.gold;
 

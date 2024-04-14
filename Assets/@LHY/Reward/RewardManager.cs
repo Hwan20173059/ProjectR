@@ -76,7 +76,7 @@ public class RewardManager : MonoBehaviour
         GameObject RewardSlot = Instantiate(rewardSlotPrefeb);
         RewardSlot.transform.SetParent(rewardTrans.transform);
         RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = reward.exp.ToString();
-        PlayerManager.Instance.ChangeExp(reward.exp);
+        PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex].ChangeExp(reward.exp);
 
         //todo : EXP Sprite 적용(소스가 있음?)
         //RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(i).spritePath, typeof(Sprite)) as Sprite;
