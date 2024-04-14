@@ -42,6 +42,9 @@ public class TileMapManager : MonoBehaviour
     public Tile chestPosition;
 
     [Header("UI")]
+    public GameObject menuUI;
+    public GameObject settingUI;
+
     public TextMeshProUGUI turnState;
     public TextMeshProUGUI turnIndex;
     public TextMeshProUGUI panelTurnState;
@@ -444,5 +447,25 @@ public class TileMapManager : MonoBehaviour
                 field.tileRaw[i].fieldTiles[j].RefreshTile();
             }
         }
+    }
+
+    public void OnMenuButtonClick()
+    {
+        menuUI.SetActive(true);
+    }
+
+    public void OnMenuCloseButtonClick()
+    {
+        menuUI.SetActive(false);
+    }
+
+    public void OnSettingButtonClick()
+    {
+        settingUI.SetActive(true);
+    }
+
+    public void OnSettingCloseButtonClick()
+    {
+        settingUI.SetActive(false);
     }
 }

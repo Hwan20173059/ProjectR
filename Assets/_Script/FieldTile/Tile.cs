@@ -394,6 +394,8 @@ public class Tile : MonoBehaviour
                     else if (PlayerManager.Instance.selectTownID == 1)
                         SetCurrentState(CurrentState.town2);
 
+                    PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex].curHP = PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex].maxHP;
+
                     SceneManager.LoadScene("TownScene");
                     break;
 
