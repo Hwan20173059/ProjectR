@@ -78,7 +78,7 @@ public class BattleManager : MonoBehaviour
     {
         Input.ClickActions.MouseClick.started += OnClickStart;
 
-        Input.ClickActions.Touch.started += OnTouchStart;
+        Input.ClickActions.TouchPress.started += OnTouchStart;
 
         stateMachine.ChangeState(stateMachine.startState);
     }
@@ -105,7 +105,7 @@ public class BattleManager : MonoBehaviour
 
     private void OnTouchStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.ClickActions.Touch.ReadValue<Vector2>());
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.ClickActions.TouchPos.ReadValue<Vector2>());
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
 
         if (hit.collider != null && hit.collider.CompareTag("Monster"))
