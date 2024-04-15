@@ -2771,8 +2771,10 @@ MonoBehaviour:
   imageIndex: 0
   tutorialIndex: 0
   dungeonTutorialImage:
-  - {fileID: 21300000, guid: 885c22ac5d04bbd4caeee8ef1563d95d, type: 3}
+  - {fileID: 21300000, guid: c0aacb2b9cc678740967225904adfd5f, type: 3}
   - {fileID: 21300000, guid: a01e6753af404fe4090c81ff009a8c0a, type: 3}
+  - {fileID: 21300000, guid: e998fd442ce57a3478efc224df13dba6, type: 3}
+  - {fileID: 21300000, guid: 51d08e34e85878f44a1c9163987908bb, type: 3}
 --- !u!1 &582075779
 GameObject:
   m_ObjectHideFlags: 0

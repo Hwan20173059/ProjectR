@@ -1814,7 +1814,7 @@ MonoBehaviour:
   optionUI: {fileID: 695438818}
   talkUI: {fileID: 1472894681}
   tutorialUI: {fileID: 816178701}
-  inventory: {fileID: 0}
+  inventory: {fileID: 1429896658}
   equipInventoryUI: {fileID: 0}
   nEquipItemSlot: {fileID: 0}
   detailArea: {fileID: 0}
@@ -2163,17 +2163,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 325083836}
   m_CullTransparentMesh: 1
---- !u!114 &330848707 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2660759684403886594, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
-  m_PrefabInstance: {fileID: 1429896657}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 015ace58a8a52aa4eb743779eca56670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &330848708 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
@@ -5542,9 +5531,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 330848707}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: OpenConsumeInventory
+      - m_Target: {fileID: 294579729}
+        m_TargetAssemblyTypeName: TownUiManager, Assembly-CSharp
+        m_MethodName: CInventoryUIOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6168,16 +6157,39 @@ MonoBehaviour:
   imageIndex: 0
   tutorialIndex: 0
   gameTutorial:
-  - {fileID: 21300000, guid: 885c22ac5d04bbd4caeee8ef1563d95d, type: 3}
+  - {fileID: 21300000, guid: c0aacb2b9cc678740967225904adfd5f, type: 3}
   - {fileID: 21300000, guid: a01e6753af404fe4090c81ff009a8c0a, type: 3}
+  - {fileID: 21300000, guid: e998fd442ce57a3478efc224df13dba6, type: 3}
+  - {fileID: 21300000, guid: 51d08e34e85878f44a1c9163987908bb, type: 3}
   characterTutorial:
-  - {fileID: 21300000, guid: 885c22ac5d04bbd4caeee8ef1563d95d, type: 3}
+  - {fileID: 21300000, guid: 9a953b040d266e84a9b944731c4c18d9, type: 3}
+  - {fileID: 21300000, guid: 84d31c37aa5d37944943d78ce707f5df, type: 3}
+  - {fileID: 21300000, guid: 2f112498e268fa84ba885b45b48c11f6, type: 3}
+  equipTutorial:
+  - {fileID: 21300000, guid: c0aacb2b9cc678740967225904adfd5f, type: 3}
   - {fileID: 21300000, guid: a01e6753af404fe4090c81ff009a8c0a, type: 3}
-  equipTutorial: []
-  inventoryTutorial: []
-  guildTutorial: []
-  shopTutorial: []
-  gochaTutorial: []
+  - {fileID: 21300000, guid: e998fd442ce57a3478efc224df13dba6, type: 3}
+  - {fileID: 21300000, guid: 51d08e34e85878f44a1c9163987908bb, type: 3}
+  inventoryTutorial:
+  - {fileID: 21300000, guid: c0aacb2b9cc678740967225904adfd5f, type: 3}
+  - {fileID: 21300000, guid: a01e6753af404fe4090c81ff009a8c0a, type: 3}
+  - {fileID: 21300000, guid: e998fd442ce57a3478efc224df13dba6, type: 3}
+  - {fileID: 21300000, guid: 51d08e34e85878f44a1c9163987908bb, type: 3}
+  guildTutorial:
+  - {fileID: 21300000, guid: c0aacb2b9cc678740967225904adfd5f, type: 3}
+  - {fileID: 21300000, guid: a01e6753af404fe4090c81ff009a8c0a, type: 3}
+  - {fileID: 21300000, guid: e998fd442ce57a3478efc224df13dba6, type: 3}
+  - {fileID: 21300000, guid: 51d08e34e85878f44a1c9163987908bb, type: 3}
+  shopTutorial:
+  - {fileID: 21300000, guid: c0aacb2b9cc678740967225904adfd5f, type: 3}
+  - {fileID: 21300000, guid: a01e6753af404fe4090c81ff009a8c0a, type: 3}
+  - {fileID: 21300000, guid: e998fd442ce57a3478efc224df13dba6, type: 3}
+  - {fileID: 21300000, guid: 51d08e34e85878f44a1c9163987908bb, type: 3}
+  gochaTutorial:
+  - {fileID: 21300000, guid: c0aacb2b9cc678740967225904adfd5f, type: 3}
+  - {fileID: 21300000, guid: a01e6753af404fe4090c81ff009a8c0a, type: 3}
+  - {fileID: 21300000, guid: e998fd442ce57a3478efc224df13dba6, type: 3}
+  - {fileID: 21300000, guid: 51d08e34e85878f44a1c9163987908bb, type: 3}
 --- !u!1 &842200201
 GameObject:
   m_ObjectHideFlags: 0
@@ -11366,6 +11378,17 @@ PrefabInstance:
       addedObject: {fileID: 2054162799}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+--- !u!114 &1429896658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2660759684403886594, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+  m_PrefabInstance: {fileID: 1429896657}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 015ace58a8a52aa4eb743779eca56670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1441959848
 GameObject:
   m_ObjectHideFlags: 0
@@ -14787,9 +14810,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 330848707}
-        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: OpenInventory
+      - m_Target: {fileID: 294579729}
+        m_TargetAssemblyTypeName: TownUiManager, Assembly-CSharp
+        m_MethodName: InventoryUIOn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

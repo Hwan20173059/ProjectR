@@ -107,7 +107,18 @@ public class TownUiManager : MonoBehaviour
 
     public void GuildUIOn()
     {
-        guildUI.SetActive(true);
+        if (playerManager.firstGuild == true)
+        {
+            tutorialUI.gameObject.SetActive(true);
+            tutorialUI.ActiveTutorial(4);
+            guildUI.SetActive(true);
+
+            playerManager.firstGuild = false;
+        }
+        else
+        {
+            guildUI.SetActive(true);
+        }
     }
 
     public void GuildUIOff()
@@ -118,7 +129,18 @@ public class TownUiManager : MonoBehaviour
 
     public void StoreUIOn()
     {
-        storeUI.SetActive(true);
+        if (playerManager.firstShop == true)
+        {
+            tutorialUI.gameObject.SetActive(true);
+            tutorialUI.ActiveTutorial(5);
+            storeUI.SetActive(true);
+
+            playerManager.firstShop = false;
+        }
+        else
+        {
+            storeUI.SetActive(true);
+        }
     }
 
     public void StoreUIOff()
@@ -129,13 +151,56 @@ public class TownUiManager : MonoBehaviour
 
     public void HomeUIOn()
     {
-        homeUI.SetActive(true);
+        if (playerManager.firstGacha == true)
+        {
+            tutorialUI.gameObject.SetActive(true);
+            tutorialUI.ActiveTutorial(6);
+            homeUI.SetActive(true);
+
+            playerManager.firstGacha = false;
+        }
+        else
+        {
+            homeUI.SetActive(true);
+        }
     }
 
     public void HomeUIOff()
     {
         homeUI.SetActive(false);
         //talkUI.SetActive(false);
+    }
+
+    public void InventoryUIOn()
+    {
+        if (playerManager.firstEquip == true)
+        {
+            tutorialUI.gameObject.SetActive(true);
+            tutorialUI.ActiveTutorial(2);
+            inventory.OpenInventory();
+
+            playerManager.firstEquip = false;
+        }
+        else
+        {
+            inventory.OpenInventory();
+        }
+    }
+
+    public void CInventoryUIOn()
+    {
+        if (playerManager.firstInventory == true)
+        {
+            tutorialUI.gameObject.SetActive(true);
+            tutorialUI.ActiveTutorial(3);
+            inventory.OpenConsumeInventory();
+
+            playerManager.firstInventory = false;
+        }
+        else
+        {
+            inventory.OpenConsumeInventory();
+        }
     }
 
     public void OptionUIOn()
