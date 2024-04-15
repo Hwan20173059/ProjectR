@@ -808,16 +808,6 @@
 		},
 		{
 			"id": 12,
-			"spritePath": "Resources/Sprite/Food/Potato.png",
-			"consumeName": "다이아몬드 가루",
-			"type": "Drop",
-			"trunCount": 0,
-			"value": 5,
-			"info": "잘게 부서진 다이아몬드이다.",
-			"price": 5
-		},
-		{
-			"id": 13,
 			"spritePath": "Sprite/items/frog",
 			"consumeName": "개구리 가죽",
 			"type": "Drop",
@@ -827,7 +817,7 @@
 			"price": 15
 		},
 		{
-			"id": 14,
+			"id": 13,
 			"spritePath": "Sprite/items/redfrog",
 			"consumeName": "맹독 개구리 가죽",
 			"type": "Drop",
@@ -837,13 +827,23 @@
 			"price": 50
 		},
 		{
-			"id": 15,
+			"id": 14,
 			"spritePath": "Sprite/items/redcrab",
 			"consumeName": "바다게의 집게",
 			"type": "Drop",
 			"trunCount": 0,
 			"value": 5,
 			"info": "바다개의 집게이다.",
+			"price": 5
+		},
+		{
+			"id": 15,
+			"spritePath": "Resources/Sprite/Food/bluecrab",
+			"consumeName": "심해게의 조각",
+			"type": "Drop",
+			"trunCount": 0,
+			"value": 5,
+			"info": "심해게의 껍질에 붙어있던 별조각이다.",
 			"price": 5
 		},
 		{
