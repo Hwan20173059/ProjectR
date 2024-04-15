@@ -688,12 +688,12 @@
 	"consumeDatas": [
 		{
 			"id": 0,
-			"spritePath": "Sprite/items/slime",
-			"consumeName": "슬라임 조각",
+			"spritePath": "Sprite/items/Rat",
+			"consumeName": "치즈 조각",
 			"type": "Drop",
 			"trunCount": 0,
 			"value": 5,
-			"info": "슬라임으로 부터 떨어져나온 조각이다.",
+			"info": "야생 들쥐가 좋아하는 치즈 조각이다.",
 			"price": 5
 		},
 		{

@@ -2,8 +2,8 @@
 	"monsterDatas": [
 		{
 			"id": 0,
-			"monsterName": "슬라임",
-			"spritePath": "Sprite/Monster/TestMonster",
+			"monsterName": "들쥐",
+			"spritePath": "Sprite/Monster/Field/Rat",
 			"assetPath": "UnitAsset/MonsterAssets/TestMonster",
 			"hp": 100,
 			"atk": 6,

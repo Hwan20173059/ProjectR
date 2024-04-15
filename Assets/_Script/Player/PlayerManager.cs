@@ -68,16 +68,16 @@ public class PlayerManager : Singleton<PlayerManager>
     public int battleSpeed;
 
     [Header("tutorial")]
-    public bool firstGame;
-    public bool firstCharacter;
-    public bool firstEquip;
-    public bool firstInventory;
-    public bool firstGuild;
-    public bool firstShop;
-    public bool firstGacha;
-    public bool firstField;
-    public bool firstDungeon;
-    public bool firstBattle;
+    public bool firstGame = true;
+    public bool firstCharacter = true;
+    public bool firstEquip = true;
+    public bool firstInventory = true;
+    public bool firstGuild = true;
+    public bool firstShop = true;
+    public bool firstGacha = true;
+    public bool firstField = true;
+    public bool firstDungeon = true;
+    public bool firstBattle = true;
 
 
     private void Start()
