@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class MonsterDeadState : MonsterBaseState
@@ -18,6 +19,7 @@ public class MonsterDeadState : MonsterBaseState
 
         monster.ChangeAnimState(MonsterAnimState.Dead);
 
+        Debug.Log(monster.baseData.id + "kill");
         GameEventManager.instance.battleEvent.KillMonster(monster.baseData.id);
     }
 
