@@ -51,6 +51,10 @@ public class BattleManager : MonoBehaviour
     public GameObject monsterPool;
     public PlayerInput Input {  get; private set; }
 
+    Touch tempTouch;
+    Vector3 touchedPos;
+    bool IsTouch;
+
     public BattleCanvas battleCanvas;
 
     public BattleStateMachine stateMachine;
@@ -74,6 +78,8 @@ public class BattleManager : MonoBehaviour
     {
         Input.ClickActions.MouseClick.started += OnClickStart;
 
+        Input.ClickActions.Touch.started += OnTouchStart;
+
         stateMachine.ChangeState(stateMachine.startState);
     }
 
@@ -87,6 +93,19 @@ public class BattleManager : MonoBehaviour
     private void OnClickStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.ClickActions.MousePos.ReadValue<Vector2>());
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
+        if (hit.collider != null && hit.collider.CompareTag("Monster"))
+        {
+            selectMonster = hit.collider.GetComponent<Monster>();
+
+            SetTargetInfo();
+        }
+    }
+
+    private void OnTouchStart(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.ClickActions.Touch.ReadValue<Vector2>());
         RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
 
         if (hit.collider != null && hit.collider.CompareTag("Monster"))
