@@ -157,8 +157,8 @@ public class CharacterActionState : CharacterBaseState
         character.ChangeHP(battleManager.rouletteEquip[0].data.tripleValue);
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}이 {battleManager.rouletteEquip[0].data.tripleValue}의 체력을 회복!");
 
-        while (1 > GetNormalizedTime(character.animatorController.animator, "Jump")) { yield return null; }
         character.PlayAnim(CharacterAnim.Jump);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Jump")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
 
         character.StartCoroutine(BaseAttack());
