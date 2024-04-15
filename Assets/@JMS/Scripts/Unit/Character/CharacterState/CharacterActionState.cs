@@ -226,7 +226,8 @@ public class CharacterActionState : CharacterBaseState
 
         for(int i = 0; i < count; i++)
         {
-            yield return character.StartCoroutine(Attack(target, damage));
+            battleManager.battleCanvas.SetRepeatEffect(2, target.transform.position); // ÀÓ½Ã ÀÌÆåÆ®
+            character.StartCoroutine(Attack(target, damage));
             yield return waitForAttack;
             if (target.IsDead) break;
         }

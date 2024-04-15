@@ -21,6 +21,17 @@
 			"moveSeconds": 0,
 			"movePosX": 0,
 			"movePosY": 0
+		},
+		{
+			"id": 2,
+			"effectName": "연속 공격",
+			"animatorPath": "Effect2/pixel arts/up1/ani_up1",
+			"effectScale": 1,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0,
+			"movePosX": 0,
+			"movePosY": 0
 		}
 	]
 }
