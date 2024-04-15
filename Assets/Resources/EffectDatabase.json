@@ -10,6 +10,17 @@
 			"moveSeconds": 0.3,
 			"movePosX": 3,
 			"movePosY": 0
+		},
+		{
+			"id": 1,
+			"effectName": "빙결 공격",
+			"animatorPath": "Effect2/pixel arts/iceWeapon/ani_iceWeapon",
+			"effectScale": 1,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0,
+			"movePosX": 0,
+			"movePosY": 0
 		}
 	]
 }

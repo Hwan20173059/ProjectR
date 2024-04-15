@@ -225,16 +225,23 @@ public class BattleManager : MonoBehaviour
     {
         if (!(character.IsDead))
         {
-            // 캐릭터 상태를 이전 상태로 변경
-            character.stateMachine.ChangeState(characterPrevState);
+            character.stateMachine.ChangeState(characterPrevState); // 캐릭터 상태를 이전 상태로 변경
         }
 
         for (int i = 0; i < monsters.Count; i++)
         {
             if (!(monsters[i].IsDead))
             {
-                // 몬스터들의 상태를 이전 상태로 변경
-                monsters[i].stateMachine.ChangeState(monstersPrevState[i]);
+                if (monsters[i].IsFrozen)
+                    monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.frozenState);
+                else
+                    monsters[i].stateMachine.ChangeState(monstersPrevState[i]); // 몬스터들의 상태를 이전 상태로 변경
+            }
+
+            if (monsters[i].stateMachine.currentState == monsters[i].stateMachine.frozenState && !monsters[i].IsFrozen)
+            {
+                monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.readyState);
+                monsters[i].UnFrozenAnim();
             }
         }
     }
@@ -492,7 +499,11 @@ public class BattleManager : MonoBehaviour
                 }
             case RouletteResult.Cheat:
                 {
-                    return baseValue * 1000;
+                    if (rouletteEquip[2].tripleChangeType == ValueChangeType.ADD)
+                        baseValue += rouletteEquip[2].data.tripleValue;
+                    else
+                        baseValue *= rouletteEquip[2].data.tripleValue;
+                    return baseValue;
                 }
             default: return baseValue;
         }

@@ -9,6 +9,7 @@ public class MonsterStateMachine : StateMachine
     public MonsterReadyState readyState { get; }
     public MonsterSelectActionState selectActionState { get; }
     public MonsterActionState actionState { get; }
+    public MonsterFrozenState frozenState { get; }
     public MonsterDeadState deadState { get; }
     public MonsterStateMachine(Monster monster)
     {
@@ -18,6 +19,7 @@ public class MonsterStateMachine : StateMachine
         readyState = new MonsterReadyState(this);
         selectActionState = new MonsterSelectActionState(this);
         actionState = new MonsterActionState(this);
+        frozenState = new MonsterFrozenState(this);
         deadState = new MonsterDeadState(this);
     }
 }

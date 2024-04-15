@@ -18,7 +18,7 @@ public class CharacterStatePanel : MonoBehaviour
     {
         if (character != null)
             characterActionBar.actionBar.transform.localScale =
-                new Vector3(Mathf.Clamp(character.curCoolTime / character.changedMaxCoolTime, 0, character.changedMaxCoolTime), 1, 1);
+                new Vector3(Mathf.Clamp(character.curCoolTime / character.maxCoolTime, 0, character.maxCoolTime), 1, 1);
     }
 
     public void UpdateCharacterState(Character character)

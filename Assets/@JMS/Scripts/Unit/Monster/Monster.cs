@@ -1,3 +1,4 @@
+using Assets.PixelFantasy.PixelMonsters.Common.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
@@ -23,6 +24,8 @@ public class Monster : MonoBehaviour
     public float maxCoolTime;
 
     public int monsterNumber;
+
+    public bool IsFrozen;
 
     public MonsterAnimController monsterAnimController { get; private set; }
     public SpriteRenderer spriteRenderer;
@@ -93,6 +96,7 @@ public class Monster : MonoBehaviour
         if (value < 0)
         {
             monsterAnimController.PlayAnim(MonsterAnim.Hit);
+            IsFrozen = false;
         }
         else if (value > 0)
         {
@@ -124,5 +128,16 @@ public class Monster : MonoBehaviour
     public void ChangeAnimState(MonsterAnimState animState)
     {
         monsterAnimController.ChangeAnimState(animState);
+    }
+
+    public void FrozenAnim()
+    {
+        spriteRenderer.material.color = new Color(0.2f, 0.2f, 1, 1);
+        monsterAnimController.animator.speed = 0;
+    }
+    public void UnFrozenAnim()
+    {
+        spriteRenderer.material.color = new Color(1, 1, 1, 1);
+        monsterAnimController.animator.speed = 1;
     }
 }
