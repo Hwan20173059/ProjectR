@@ -371,12 +371,10 @@ public class BattleManager : MonoBehaviour
                 character.ChangeHP(selectItem.data.value);
                 break;
             case Type.AttackBuffPotion:
-                character.characterBuffHandler.atkBuff = selectItem.data.value;
-                character.characterBuffHandler.atkDuration = selectItem.data.turnCount;
+                character.characterBuffHandler.AddAtkBuff(selectItem.data.value, selectItem.data.turnCount);
                 break;
             case Type.SpeedBuffPotion:
-                character.characterBuffHandler.speedBuff = selectItem.data.value;
-                character.characterBuffHandler.speedDuration = selectItem.data.turnCount;
+                character.characterBuffHandler.AddSpeedBuff(selectItem.data.value, selectItem.data.turnCount);
                 break;
         }
 

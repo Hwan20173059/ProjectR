@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
     public float curCoolTime;
     public float maxCoolTime;
 
-    public int changedAtk { get { return atk + characterBuffHandler.atkBuff; } }
+    public int changedAtk { get { return atk + characterBuffHandler.GetBuffValue(BuffType.Atk); } }
 
     public bool IsDead => curHP <= 0;
     public string currentStateText = "´ë±âÁß";
@@ -62,6 +62,8 @@ public class Character : MonoBehaviour
     }
     private void Start()
     {
+        characterBuffHandler.Init();
+
         stateMachine.ChangeState(stateMachine.waitState);
     }
 
@@ -122,7 +124,7 @@ public class Character : MonoBehaviour
     {
         if (curCoolTime < maxCoolTime)
         {
-            curCoolTime += Time.deltaTime * ((100 + characterBuffHandler.speedBuff) / 100);
+            curCoolTime += Time.deltaTime * ((100 + characterBuffHandler.GetBuffValue(BuffType.Speed)) / 100);
             battleManager.battleCanvas.UpdateActionBar();
         }
         else
