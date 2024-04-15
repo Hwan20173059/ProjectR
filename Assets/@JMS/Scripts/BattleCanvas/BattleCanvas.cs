@@ -61,10 +61,10 @@ public class BattleCanvas : MonoBehaviour
 
     private void Start()
     {
-        PanelInit();
+        Init();
     }
 
-    void PanelInit()
+    void Init()
     {
         characterStatePanel.Init();
         actionButtonPanel.Init(battleManager);

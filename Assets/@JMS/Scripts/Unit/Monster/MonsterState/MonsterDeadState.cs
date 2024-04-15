@@ -17,6 +17,8 @@ public class MonsterDeadState : MonsterBaseState
         character.ChangeExp(monster.exp);
 
         monster.ChangeAnimState(MonsterAnimState.Dead);
+
+        GameEventManager.instance.battleEvent.KillMonster(monster.baseData.id);
     }
 
     public override void Exit()
