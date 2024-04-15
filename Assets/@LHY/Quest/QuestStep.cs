@@ -35,7 +35,7 @@ public class QuestStep : MonoBehaviour
     {
         GameEventManager.instance.questEvent.onDungeonClear -= DungeonClear;
         GameEventManager.instance.battleEvent.onKillSlime -= KillSlime;
-        GameEventManager.instance.battleEvent.onKillMonster += KillMonster;
+        GameEventManager.instance.battleEvent.onKillMonster -= KillMonster;
         //GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
     }
 
@@ -51,8 +51,12 @@ public class QuestStep : MonoBehaviour
 
     public void KillMonster(int id)
     {
+        print("ų" + id + '\n' + questValue + questType);
         if (questType == "KillMonster" && id == questValue)
+        {
             questCurrentValue++;
+            QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
+        }
         if (questCurrentValue < questClearValue)
         {
             //

@@ -19,6 +19,7 @@ public class GameEventManager : MonoBehaviour
         }
         instance = this;
         DontDestroyOnLoad(this.gameObject);
+
         questEvent = new QuestEvent();
         battleEvent = new BattleEvent();
         uiEvent = new UIEvent();

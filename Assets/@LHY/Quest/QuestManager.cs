@@ -153,7 +153,19 @@ public class QuestManager : MonoBehaviour
 
         foreach (SaveQuestData saveQuestData in allQuestSaveData.questSaveData)
         {
-            ChangeQuestState(saveQuestData.questID, saveQuestData.questState);
+            if (saveQuestData.questState == QuestState.In_Progress)
+            {
+                StartQuest(saveQuestData.questID);
+            }
+            if (saveQuestData.questState == QuestState.Can_Finish)
+            {
+                AdvanceQuest(saveQuestData.questID);
+            }
+            if (saveQuestData.questState == QuestState.Finished)
+            {
+                ChangeQuestState(saveQuestData.questID, saveQuestData.questState);
+            }
+            //ChangeQuestState(saveQuestData.questID, saveQuestData.questState);
             GetQuestByID(saveQuestData.questID).info.questCurrentValue = saveQuestData.questCurrentValue;
         }
     }
