@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
-  characterPrefab: {fileID: 6813750776376228267, guid: b6e7bbf231fbf2746ba859558282fe35, type: 3}
+  characterPrefab: {fileID: 2548679208877285900, guid: 39572899e5129a540b97be4f8e59ee06, type: 3}
   townPlayer: {fileID: 6518005525221262379}
   playerName: {fileID: 1855194881}
   playerLevel: {fileID: 943082702}

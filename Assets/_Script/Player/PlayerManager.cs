@@ -116,12 +116,24 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void AddCharacter(int id, int level, int exp)
     {
-        Character character = Instantiate(titleManager.character,this.transform);
-        character.spriteRenderer.color = new Color(1, 1, 1, 0);
+        if (titleManager.character != null)
+        {
+            Character character = Instantiate(titleManager.character, this.transform);
+            character.spriteRenderer.color = new Color(1, 1, 1, 0);
 
-        character.Init(DataManager.Instance.characterDatabase.GetDataByKey(id), level, exp);
+            character.Init(DataManager.Instance.characterDatabase.GetDataByKey(id), level, exp);
 
-        characterList.Add(character);
+            characterList.Add(character);
+        }
+        else if(townUiManager.characterPrefab != null)
+        {
+            Character character = Instantiate(townUiManager.characterPrefab, this.transform);
+            character.spriteRenderer.color = new Color(1, 1, 1, 0);
+
+            character.Init(DataManager.Instance.characterDatabase.GetDataByKey(id), level, exp);
+
+            characterList.Add(character);
+        }
     }
 
     public void ChangeExp(int change)
