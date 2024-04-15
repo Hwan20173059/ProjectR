@@ -2771,10 +2771,11 @@ MonoBehaviour:
   imageIndex: 0
   tutorialIndex: 0
   dungeonTutorialImage:
-  - {fileID: 21300000, guid: c0aacb2b9cc678740967225904adfd5f, type: 3}
-  - {fileID: 21300000, guid: a01e6753af404fe4090c81ff009a8c0a, type: 3}
-  - {fileID: 21300000, guid: e998fd442ce57a3478efc224df13dba6, type: 3}
-  - {fileID: 21300000, guid: 51d08e34e85878f44a1c9163987908bb, type: 3}
+  - {fileID: 21300000, guid: 8965ee1b650f2c34ab58363be7ae2b1a, type: 3}
+  - {fileID: 21300000, guid: 320f7140bc88f84458b4f8fae354a4b2, type: 3}
+  - {fileID: 21300000, guid: fb86f717f63896e4f854a300c2546ac9, type: 3}
+  - {fileID: 21300000, guid: ce1f6e4704c31584bb3cff922fb92d1c, type: 3}
+  - {fileID: 21300000, guid: bba530da58a0ad94289349ffa4e68aa3, type: 3}
 --- !u!1 &582075779
 GameObject:
   m_ObjectHideFlags: 0
@@ -6383,7 +6384,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1920, y: 1080}
+  m_ReferenceResolution: {x: 2340, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
