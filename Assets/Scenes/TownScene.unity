@@ -1979,7 +1979,6 @@ GameObject:
   - component: {fileID: 241369334}
   - component: {fileID: 241369333}
   - component: {fileID: 241369332}
-  - component: {fileID: 241369331}
   m_Layer: 5
   m_Name: AutoBattleOnButton
   m_TagString: Untagged
@@ -2008,19 +2007,6 @@ RectTransform:
   m_AnchoredPosition: {x: -0.000015258789, y: -70}
   m_SizeDelta: {x: 170, y: 75}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &241369331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241369329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba470a3f88b37b4686d3ed787bd6494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  button: {fileID: 241369332}
 --- !u!114 &241369332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2064,7 +2050,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 241369333}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 294579729}
+        m_TargetAssemblyTypeName: TownUiManager, Assembly-CSharp
+        m_MethodName: ResetTutorial
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &241369333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6591,42 +6589,42 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fb86f717f63896e4f854a300c2546ac9, type: 3}
   - {fileID: 21300000, guid: ce1f6e4704c31584bb3cff922fb92d1c, type: 3}
   - {fileID: 21300000, guid: bba530da58a0ad94289349ffa4e68aa3, type: 3}
+  - {fileID: 21300000, guid: 9aca2b1db9dac9a4aa74c6e15d343974, type: 3}
+  - {fileID: 21300000, guid: 7a6310d67df64684793e4f9629d1fb43, type: 3}
   characterTutorial:
-  - {fileID: 21300000, guid: 8965ee1b650f2c34ab58363be7ae2b1a, type: 3}
-  - {fileID: 21300000, guid: 320f7140bc88f84458b4f8fae354a4b2, type: 3}
-  - {fileID: 21300000, guid: fb86f717f63896e4f854a300c2546ac9, type: 3}
-  - {fileID: 21300000, guid: ce1f6e4704c31584bb3cff922fb92d1c, type: 3}
-  - {fileID: 21300000, guid: bba530da58a0ad94289349ffa4e68aa3, type: 3}
+  - {fileID: 21300000, guid: 25c86e179f834d045a54ab17f47885cb, type: 3}
+  - {fileID: 21300000, guid: d35a1af40e9b3624787d6d51bb24a68d, type: 3}
+  - {fileID: 21300000, guid: 25b9c6cf08c77384aab6da3e0dbe373b, type: 3}
+  - {fileID: 21300000, guid: 7bfdfb9a39c53844fa0f73fe8b1bac57, type: 3}
   equipTutorial:
-  - {fileID: 21300000, guid: 8965ee1b650f2c34ab58363be7ae2b1a, type: 3}
-  - {fileID: 21300000, guid: 320f7140bc88f84458b4f8fae354a4b2, type: 3}
-  - {fileID: 21300000, guid: fb86f717f63896e4f854a300c2546ac9, type: 3}
-  - {fileID: 21300000, guid: ce1f6e4704c31584bb3cff922fb92d1c, type: 3}
-  - {fileID: 21300000, guid: bba530da58a0ad94289349ffa4e68aa3, type: 3}
+  - {fileID: 21300000, guid: 9b8258c0ebe87db4c8e0abe38a6fe94c, type: 3}
+  - {fileID: 21300000, guid: e58714714b1d7ef4a9d9d70bcc7ba9df, type: 3}
+  - {fileID: 21300000, guid: 1127f4a10bf85434db9719cd230242f0, type: 3}
+  - {fileID: 21300000, guid: cbb5f256726d1834681560500c595686, type: 3}
+  - {fileID: 21300000, guid: a222518b645b3134fb63b31af0407bc1, type: 3}
   inventoryTutorial:
-  - {fileID: 21300000, guid: 8965ee1b650f2c34ab58363be7ae2b1a, type: 3}
-  - {fileID: 21300000, guid: 320f7140bc88f84458b4f8fae354a4b2, type: 3}
-  - {fileID: 21300000, guid: fb86f717f63896e4f854a300c2546ac9, type: 3}
-  - {fileID: 21300000, guid: ce1f6e4704c31584bb3cff922fb92d1c, type: 3}
-  - {fileID: 21300000, guid: bba530da58a0ad94289349ffa4e68aa3, type: 3}
+  - {fileID: 21300000, guid: b6972943653d2be4f81470015945ec02, type: 3}
+  - {fileID: 21300000, guid: 3421f7dd99cb8a54589953497f0f83e0, type: 3}
+  - {fileID: 21300000, guid: ede9969ee1cc716449a55cdd979c54e8, type: 3}
   guildTutorial:
-  - {fileID: 21300000, guid: 8965ee1b650f2c34ab58363be7ae2b1a, type: 3}
-  - {fileID: 21300000, guid: 320f7140bc88f84458b4f8fae354a4b2, type: 3}
-  - {fileID: 21300000, guid: fb86f717f63896e4f854a300c2546ac9, type: 3}
-  - {fileID: 21300000, guid: ce1f6e4704c31584bb3cff922fb92d1c, type: 3}
-  - {fileID: 21300000, guid: bba530da58a0ad94289349ffa4e68aa3, type: 3}
+  - {fileID: 21300000, guid: e3e404d0b8389594aba5589de69765ce, type: 3}
+  - {fileID: 21300000, guid: 09790121b2b9f4c49baf6df3b1e2d49d, type: 3}
+  - {fileID: 21300000, guid: d41bc82bbc1ce8040b9b09a765414946, type: 3}
+  - {fileID: 21300000, guid: b0815440f2061494db76ddae0db8865e, type: 3}
+  - {fileID: 21300000, guid: 836f3264a477a1f4ea073ddd7cf222b3, type: 3}
+  - {fileID: 21300000, guid: 262300818877d2c4d9e16cb4ea90c0a8, type: 3}
+  - {fileID: 21300000, guid: 4ad9676c9786be64cbe35ae8041d4d58, type: 3}
   shopTutorial:
-  - {fileID: 21300000, guid: 8965ee1b650f2c34ab58363be7ae2b1a, type: 3}
-  - {fileID: 21300000, guid: 320f7140bc88f84458b4f8fae354a4b2, type: 3}
-  - {fileID: 21300000, guid: fb86f717f63896e4f854a300c2546ac9, type: 3}
-  - {fileID: 21300000, guid: ce1f6e4704c31584bb3cff922fb92d1c, type: 3}
-  - {fileID: 21300000, guid: bba530da58a0ad94289349ffa4e68aa3, type: 3}
+  - {fileID: 21300000, guid: 8ea8d74000ea5ca41b524f1e6a9fcec9, type: 3}
+  - {fileID: 21300000, guid: d07fa788a8d846742861011dc55ba402, type: 3}
+  - {fileID: 21300000, guid: 85c99a78d0125e645a6d69e219312584, type: 3}
   gochaTutorial:
-  - {fileID: 21300000, guid: 8965ee1b650f2c34ab58363be7ae2b1a, type: 3}
-  - {fileID: 21300000, guid: 320f7140bc88f84458b4f8fae354a4b2, type: 3}
-  - {fileID: 21300000, guid: fb86f717f63896e4f854a300c2546ac9, type: 3}
-  - {fileID: 21300000, guid: ce1f6e4704c31584bb3cff922fb92d1c, type: 3}
-  - {fileID: 21300000, guid: bba530da58a0ad94289349ffa4e68aa3, type: 3}
+  - {fileID: 21300000, guid: 28aa1464b702e9d43be70ea2a759f058, type: 3}
+  - {fileID: 21300000, guid: 054f323d41acab34e983cca808bcc0ce, type: 3}
+  - {fileID: 21300000, guid: 74fa61096991bd740bafbb360aacaec9, type: 3}
+  - {fileID: 21300000, guid: 71d928e9ac45ca840aa66c483447690a, type: 3}
+  - {fileID: 21300000, guid: c51d69255f324ab48ad41e5f0b8309a5, type: 3}
+  - {fileID: 21300000, guid: e1fa8157cc9e2e54983bc160941f575e, type: 3}
 --- !u!1 &842200201
 GameObject:
   m_ObjectHideFlags: 0
@@ -6740,11 +6738,11 @@ RectTransform:
   m_Father: {fileID: 388293154}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1950, y: 410}
-  m_Pivot: {x: 0, y: 1}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &896452136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11548,6 +11546,10 @@ PrefabInstance:
     - target: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6049840474656712660, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 7428174715504285812, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_Name

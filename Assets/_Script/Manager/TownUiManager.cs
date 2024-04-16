@@ -245,7 +245,6 @@ public class TownUiManager : MonoBehaviour
         }
     }
 
-
     public void TownInfoRefresh()
     {
         if (playerManager.selectTownID == 0)
@@ -253,4 +252,19 @@ public class TownUiManager : MonoBehaviour
         else if (playerManager.selectTownID == 1)
             townName.text = "¼öµµ ¿¤´õ";
     }
+
+    public void ResetTutorial()
+    {
+        playerManager.firstBattle = true;
+        playerManager.firstCharacter = true;
+        playerManager.firstDungeon = true;
+        playerManager.firstEquip = true;
+        playerManager.firstField = true;
+        playerManager.firstGacha = true;
+        playerManager.firstGame = true;
+        playerManager.firstGuild = true;
+        playerManager.firstInventory = true;
+        playerManager.firstShop = true;
+    }
+
 }
