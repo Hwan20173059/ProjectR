@@ -201,7 +201,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator SpeedUpBuff()
     {
-        character.characterBuffHandler.AddSpeedBuff(300, 3);
+        character.characterBuffHandler.AddBuff(BuffType.Speed, 300, 3);
 
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 속도가 빨라졌다!");
 
