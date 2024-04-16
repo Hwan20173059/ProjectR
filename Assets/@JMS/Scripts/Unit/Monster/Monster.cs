@@ -32,7 +32,6 @@ public class Monster : MonoBehaviour
     public SpriteLibrary spriteLibrary;
 
     public Vector3 startPosition;
-    public Vector3 attackPosition = new Vector3(-5.5f, 1.5f, 0);
     public float moveAnimSpeed = 10f;
 
     public MonsterHpBar hpBar;

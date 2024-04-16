@@ -39,10 +39,11 @@ public class MonsterActionState : MonsterBaseState
     IEnumerator BaseAttack()
     {
         Character target = battleManager.character;
+        Vector3 selectCharacterPosition = target.transform.position + Vector3.right;
         int damage = monster.atk;
 
         monster.ChangeAnimState(MonsterAnimState.Running);
-        while (MoveTowardsMonster(monster.attackPosition)) { yield return null; }
+        while (MoveTowardsMonster(selectCharacterPosition)) { yield return null; }
 
         battleManager.battleCanvas.SetRepeatEffect(0, target.transform.position); // ¿”Ω√ ¿Ã∆Â∆Æ
         yield return character.StartCoroutine(Attack(target, damage));
