@@ -33,4 +33,22 @@ public class UIEvent
             onUIClick();
         }
     }
+
+    public event Action<int> onChangeEquip;
+    public void UIClick(int id)
+    {
+        if (onChangeEquip != null)
+        {
+            onChangeEquip(id);
+        }
+    }
+
+    public event Action onGacha;
+    public void Gacha(int id)
+    {
+        if (onGacha != null)
+        {
+            onGacha();
+        }
+    }
 }

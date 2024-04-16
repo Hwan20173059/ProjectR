@@ -61,6 +61,7 @@ public class Quest
         queststep.questID = id;
         queststep.questClearValue = QuestManager.instance.GetQuestByID(id).info.questClearValue;
         queststep.questType = QuestManager.instance.GetQuestByID(id).info.questType;
+        queststep.questValueID = QuestManager.instance.GetQuestByID(id).info.questValueID;
     }
 
     private GameObject GetCurrentQuestStepPrefeb()
@@ -83,13 +84,15 @@ public class AllData
 public class QuestData
 {
     public int id;
+    public string repeatable;
     public string displayName;
     public string description;
     public string questType;
+    public int questValueID;
     public int questCurrentValue;
     public int questClearValue;
-    public int needLevel;
-    public int needGold;
+    public int minLevel;
+    public int maxLevel;
     public QuestState questState;
     public int goldReward;
     public int expReward;

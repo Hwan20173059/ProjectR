@@ -10,7 +10,7 @@ public class QuestContents : MonoBehaviour
     public int count;
     private void Start()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 28; i++)
         {
             questList.Add(QuestManager.instance.GetQuestByID(i));
         }

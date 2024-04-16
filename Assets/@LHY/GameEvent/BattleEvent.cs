@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class BattleEvent
 {
-    public event Action onDungeonClear;
-    public void DungeonClear()
+    public event Action<int> onDungeonClear;
+    public void DungeonClear(int id)
     {
 
         if (onDungeonClear != null)
         {
-            onDungeonClear();
+            onDungeonClear(id);
         }
     }
 
