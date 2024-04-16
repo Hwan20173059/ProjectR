@@ -4,11 +4,13 @@ using UnityEngine;
 
 struct Buff
 {
+    public BuffType type;
     public int value;
     public int duration;
 
-    public Buff(int value, int duration)
+    public Buff(BuffType type, int value, int duration)
     {
+        this.type = type;
         this.value = value;
         this.duration = duration;
     }
@@ -38,24 +40,22 @@ public class CharacterBuffHandler
         buffs.Add(speedBuffs);
     }
 
-    public void AddAtkBuff(int value, int duration)
+    public void AddBuff(BuffType type, int value, int duration)
     {
-        atkBuffs.Add(new Buff(value, duration + 1));
+        switch (type)
+        {
+            case BuffType.Atk: atkBuffs.Add(new Buff(type, value, duration + 1)); break;
+            case BuffType.Speed: speedBuffs.Add(new Buff(type, value, duration + 1)); break;
+        }
+        
     }
 
-    public void AddSpeedBuff(int value, int duration)
-    {
-        speedBuffs.Add(new Buff(value, duration + 1));
-    }
-    
     public int GetBuffValue(BuffType type)
     {
         switch (type)
         {
-            case BuffType.Atk:
-                return GetAtkBuffValue();
-            case BuffType.Speed:
-                return GetSpeedBuffValue();
+            case BuffType.Atk: return GetAtkBuffValue();
+            case BuffType.Speed: return GetSpeedBuffValue();
         }
         return 0;
     }
@@ -67,7 +67,7 @@ public class CharacterBuffHandler
         int totalValue = 0;
         foreach (Buff buff in atkBuffs)
         {
-            totalValue += buff.value; 
+            totalValue += buff.value;
         }
         return totalValue;
     }
@@ -86,21 +86,18 @@ public class CharacterBuffHandler
 
     public void ReduceBuffDuration()
     {
-        foreach(List<Buff> buffs in buffs)
+        foreach (List<Buff> buffs in buffs)
         {
-            if ( buffs.Count > 0)
+            for (int i = 0; i < buffs.Count; i++)
             {
-                for (int i = 0; i < buffs.Count; i++)
+                if (buffs[i].duration == 1)
                 {
-                    if (buffs[i].duration == 1)
-                    {
-                        RemoveBuff(buffs, i);
-                        break;
-                    }
-                    Buff temp = buffs[i];
-                    --temp.duration;
-                    buffs[i] = temp;
+                    RemoveBuff(buffs, i);
+                    break;
                 }
+                Buff temp = buffs[i];
+                --temp.duration;
+                buffs[i] = temp;
             }
         }
     }
