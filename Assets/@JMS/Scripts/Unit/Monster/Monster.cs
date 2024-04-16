@@ -199,7 +199,7 @@ public class Monster : MonoBehaviour
 
     public void SetBurn(int burnDamage,float damageInterval, int burnCount)
     {
-        if(this.burnDamage <  burnDamage)
+        if(this.burnDamage <=  burnDamage)
         {
             IsFrozen = false;
             IsBurn = true;
@@ -234,6 +234,7 @@ public class Monster : MonoBehaviour
                 if (burnCount <= 0)
                 {
                     IsBurn = false;
+                    burnDamage = 0;
                     RefreshAnim();
                 }
             }
