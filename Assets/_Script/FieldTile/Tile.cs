@@ -218,7 +218,7 @@ public class Tile : MonoBehaviour
                     switch (battleID)
                     {
                         case 0:
-                            tileMapManager.selectText.text = "½½¶óÀÓ";
+                            tileMapManager.selectText.text = "µéÁã";
                             break;
                         case 1:
                             tileMapManager.selectText.text = "Çª¸¥ µ¢Äð";
