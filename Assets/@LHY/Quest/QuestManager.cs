@@ -20,7 +20,6 @@ public class QuestManager : MonoBehaviour
     public static Dictionary<int, Quest> NewquestMap;
 
     //진행가능 요구사항 현재 레벨만 구현
-    private int currentPlayerLevel = 1;//수정필요
 
     public static QuestManager instance;
 
@@ -104,6 +103,19 @@ public class QuestManager : MonoBehaviour
         RewardManager.instance.RewardPopup(quest.info.goldReward, quest.info.expReward, quest.info.consumeRewardID);
 
         ChangeQuestState(quest.info.id, QuestState.Finished);
+
+        if (quest.info.repeatable == "반복")
+        {
+            ChangeQuestState(quest.info.id, QuestState.Requirments_Not);
+            if (quest.info.questType == "GetConsumeItem")
+            {
+                foreach (ConsumeItem item in ItemManager.Instance.cInventory)
+                {
+                    if (GetQuestByID(id).info.questValueID == item.data.id)
+                        item.count -= quest.info.questCurrentValue;
+                }
+            }
+        }
     }
 
 
@@ -133,7 +145,7 @@ public class QuestManager : MonoBehaviour
     public QuestData questData;
     public AllData datas;
     public QuestSlot questSlotPrefeb;
-    public Transform tr;
+    public int questCount;
     private Dictionary<int, Quest> CreatQuestMaps()
     {
         TextAsset jsonFile = Resources.Load<TextAsset>("Quests/QuestData");
@@ -141,14 +153,19 @@ public class QuestManager : MonoBehaviour
         Dictionary<int, Quest> idToQuestMap = new Dictionary<int, Quest>();
         foreach (QuestData questData in datas.quest)
         {
+            if (idToQuestMap.ContainsKey(questData.id))
+            {
+                Debug.Log($"{questData.id} 의 키 값을 찾을 수 없음.");
+            }
             idToQuestMap.Add(questData.id, new Quest(questData));
+            questCount++;
         }
         return idToQuestMap;
     }
 
     private void LoadQuest()
     {
-        string FromJsonData = File.ReadAllText("Assets\\Resources\\Quests\\QuestSaveData.json");
+        string FromJsonData = File.ReadAllText("Assets\\Resources\\Quests\\QuestSaveData.json");//todo : 절대경로 수정
         AllQuestSaveData allQuestSaveData = JsonUtility.FromJson<AllQuestSaveData>(FromJsonData);
 
         foreach (SaveQuestData saveQuestData in allQuestSaveData.questSaveData)
@@ -186,7 +203,7 @@ public class QuestManager : MonoBehaviour
     //todo : 요구사항 충족 판별 메서드(현재 only 레벨)
     private bool CheckRequirements(Quest quest)
     {
-        if (PlayerManager.Instance.playerLevel < quest.info.needLevel)
+        if (PlayerManager.Instance.playerLevel >= quest.info.minLevel && PlayerManager.Instance.playerLevel <= quest.info.maxLevel)
             return false;
 
         return true;
@@ -254,12 +271,6 @@ public class QuestManager : MonoBehaviour
         NewquestMap[id].state = state;
         GameEventManager.instance.questEvent.QuestStateChange(quest);
     }
-
-
-
-
-
-
 
 
     //test를 위한 cheat button

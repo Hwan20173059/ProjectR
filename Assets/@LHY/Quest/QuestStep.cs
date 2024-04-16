@@ -1,17 +1,18 @@
+using Assets.PixelFantasy.PixelTileEngine.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class QuestStep : MonoBehaviour
 {
-    private bool isFinished = false;
     public int questID;
 
     public int questCurrentValue;
     public int questClearValue;
     public string questType;
 
-    public int questValue;
+    public int questValueID;
 
 
     public int GetQuestCurrentValue(int id)
@@ -26,33 +27,37 @@ public class QuestStep : MonoBehaviour
 
     private void OnEnable()
     {
-        GameEventManager.instance.questEvent.onDungeonClear += DungeonClear;
-        GameEventManager.instance.battleEvent.onKillSlime += KillSlime;
         GameEventManager.instance.battleEvent.onKillMonster += KillMonster;
+        GameEventManager.instance.battleEvent.onDungeonClear += DungeonClear;
+        GameEventManager.instance.uiEvent.onChangeEquip += ItemEquip;
+        GameEventManager.instance.uiEvent.onGacha += Gacha;
     }
 
     private void OnDisable()
     {
-        GameEventManager.instance.questEvent.onDungeonClear -= DungeonClear;
-        GameEventManager.instance.battleEvent.onKillSlime -= KillSlime;
         GameEventManager.instance.battleEvent.onKillMonster -= KillMonster;
-        //GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
+        GameEventManager.instance.battleEvent.onDungeonClear -= DungeonClear;
+        GameEventManager.instance.uiEvent.onChangeEquip -= ItemEquip;
+        GameEventManager.instance.uiEvent.onGacha -= Gacha;
     }
 
-    private void Awake()
+    public void Gacha()
     {
-        Init();
-    }
-
-    private void Init()
-    {
-        
+        if (questType == "Gacha")
+            questCurrentValue++;
+        if (questCurrentValue < questClearValue)
+        {
+            //
+        }
+        else
+        {
+            GameEventManager.instance.questEvent.AdvanceQuest(questID);
+        }
     }
 
     public void KillMonster(int id)
     {
-        print("킬" + id + '\n' + questValue + questType);
-        if (questType == "KillMonster" && id == questValue)
+        if (questType == "KillMonster" && id == questValueID)
         {
             questCurrentValue++;
             QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
@@ -66,21 +71,7 @@ public class QuestStep : MonoBehaviour
             GameEventManager.instance.questEvent.AdvanceQuest(questID);
         }
     }
-    public void KillSlime()
-    {
-        if (questType == "KillSlime")
-            questCurrentValue++;
-        if (questCurrentValue < questClearValue)
-        {
-            //
-        }
-        else
-        {
-            GameEventManager.instance.questEvent.AdvanceQuest(questID);
-        }
-    }
-
-    public void DungeonClear()
+    public void DungeonClear(int id)
     {
         if (questType == "DungeonClear")
         {
@@ -97,7 +88,32 @@ public class QuestStep : MonoBehaviour
         }
     }
 
-    public void ItemEquip()
+    private void Update()
+    {
+        if (questType == "CollectConsumeItem")
+        {
+            foreach (ConsumeItem item in ItemManager.Instance.cInventory)
+            {
+                if (QuestManager.instance.GetQuestByID(questID).info.questValueID == item.data.id)
+                    questCurrentValue = item.count;
+            }
+            QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
+        }
+    }
+    public void CollectConsumeItem(int id)
+    {
+        if (questCurrentValue < questClearValue)
+        {
+            // 재료를 모으고 Can_Finish 상태에서 만약 재료가 다시 부족해졌다면 다시 In_Progress상태로 만들어야함.
+            // 재료를 퀘스트 이외에서 줄어드는 곳이 따로 없다면 할 필요 없음.
+        }
+        else
+        {
+            GameEventManager.instance.questEvent.AdvanceQuest(questID);
+        }
+    }
+
+    public void ItemEquip(int id)
     {
         if (questType == "ItemEquip")
             questCurrentValue++;
@@ -123,30 +139,4 @@ public class QuestStep : MonoBehaviour
             GameEventManager.instance.questEvent.AdvanceQuest(questID);
         }
     }
-
-    public void InitializeQuestStep(int questId, string questStepState)
-    {
-        this.questID = questId;
-        if (questStepState != null && questStepState != "")
-        {
-            //SetQuestStepState(questStepState);
-        }
-    }
-    protected void FinishQuestStep()
-    {
-        if (!isFinished)
-        {
-            isFinished = true;
-            GameEventManager.instance.questEvent.AdvanceQuest(questID);
-            Destroy(gameObject);
-        }
-    }
-    protected void ChangeState(string newState, string newStatus)
-    {
-        Debug.Log("changeState");
-        GameEventManager.instance.questEvent.QuestStepStateChange(questID, new QuestStepState(newState, newStatus));
-    }
-    
-    //protected abstract void SetQuestStepState(string state);
-
 }

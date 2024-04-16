@@ -18,7 +18,8 @@ public class BattleVictoryState : BattleBaseState
         {
             RewardManager.instance.RewardPopup();
             battleCanvas.DungeonClearPanelOn();
-            GameEventManager.instance.questEvent.DungeonClear();
+            //GameEventManager.instance.questEvent.DungeonClear();
+            GameEventManager.instance.battleEvent.DungeonClear(PlayerManager.Instance.selectDungeonID);
             Time.timeScale = 1f;
         }
         else
