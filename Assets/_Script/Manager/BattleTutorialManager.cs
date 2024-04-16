@@ -16,8 +16,9 @@ public class BattleTutorialManager : MonoBehaviour
     {
         if (PlayerManager.Instance.firstBattle == true)
         {
-            ActiveTutorial();
             PlayerManager.Instance.firstBattle = false;
+            ActiveTutorial();
+            Time.timeScale = 0;
         }
         else 
         {
@@ -57,6 +58,7 @@ public class BattleTutorialManager : MonoBehaviour
 
     public void CloseButton()
     {
+        Time.timeScale = 1f;
         battleTutorial.SetActive(false);
     }
 }
