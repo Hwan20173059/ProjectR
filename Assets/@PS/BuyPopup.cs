@@ -8,9 +8,13 @@ public class BuyPopup : MonoBehaviour
 {
     private ItemManager itemManager;
     [SerializeField] private Image itemImage;
+    [SerializeField] private GameObject ItemDetail;
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemInfo;
     [SerializeField] private TextMeshProUGUI itemPrice;
+
+    [SerializeField] private TextMeshProUGUI goldUI;
+    [SerializeField] private TownUiManager townUiManager;
 
     private int itemID;
     private int price;
@@ -33,7 +37,7 @@ public class BuyPopup : MonoBehaviour
     public void OpenPopup(ConsumeItem item)
     {
         ChangePopupInfo(item);
-        gameObject.SetActive(true);
+        ItemDetail.SetActive(true);
     }
 
     public void BuyItem()
@@ -42,11 +46,17 @@ public class BuyPopup : MonoBehaviour
         {
             PlayerManager.Instance.gold -= price;
             itemManager.AddConsumeItem(itemID);
-            ClosePopup();
+            RefreshGoldUI();
         }
     }
     public void ClosePopup()
     {
-        gameObject.SetActive(false);
+        ItemDetail.SetActive(false);
+    }
+
+    public void RefreshGoldUI()
+    {
+        goldUI.text = "<sprite=0> " + PlayerManager.Instance.gold;
+        townUiManager.PlayerInfoRefresh();
     }
 }

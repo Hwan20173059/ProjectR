@@ -6,7 +6,7 @@ using TMPro;
 
 public class DetailArea : MonoBehaviour
 {
-    private PlayerManager playerManager;
+    public PlayerManager playerManager;
     [SerializeField] private GameObject detailObject;
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _text;
@@ -20,6 +20,7 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private GameObject _activateFalseObj;
     [SerializeField] private GameObject mergeFailObj;
     [SerializeField] private GameObject equipDetail;
+    [SerializeField] private TextMeshProUGUI gold;
     public ConsumeItem nowConsumeItem;
     public EquipItem nowSelectedEquip;
     public EquipItem lastSelectedEquip;
@@ -139,5 +140,11 @@ public class DetailArea : MonoBehaviour
             itemGrade.text = "레전더리";
             itemGrade.color = new Color(230f / 255f, 160f/255f, 0);
         }
+    }
+
+    public void RefreshGoldUI()
+    {
+        if (playerManager == null) playerManager = PlayerManager.Instance;
+        gold.text = "<sprite=0> " + playerManager.gold;
     }
 }
