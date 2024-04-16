@@ -36,6 +36,7 @@ public class TownUiManager : MonoBehaviour
     public GameObject optionUI;
     public GameObject talkUI;
     public TownTutorialManager tutorialUI;
+    public BuyPopup buyPopup;
 
     [Header("EquipUI")]
     public Inventory inventory;
@@ -129,6 +130,7 @@ public class TownUiManager : MonoBehaviour
 
     public void StoreUIOn()
     {
+        buyPopup.RefreshGoldUI();
         if (playerManager.firstShop == true)
         {
             tutorialUI.gameObject.SetActive(true);
@@ -163,6 +165,7 @@ public class TownUiManager : MonoBehaviour
         {
             homeUI.SetActive(true);
         }
+        homeUI.GetComponent<GachaManager>().RefreshGold();
     }
 
     public void HomeUIOff()
@@ -185,6 +188,7 @@ public class TownUiManager : MonoBehaviour
         {
             inventory.OpenInventory();
         }
+        detailArea.RefreshGoldUI();
     }
 
     public void CInventoryUIOn()
@@ -201,6 +205,7 @@ public class TownUiManager : MonoBehaviour
         {
             inventory.OpenConsumeInventory();
         }
+        detailArea.RefreshGoldUI();
     }
 
     public void OptionUIOn()
