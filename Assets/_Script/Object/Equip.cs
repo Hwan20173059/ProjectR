@@ -15,6 +15,7 @@ public class Equip
     public int id;
     public string spritePath;
     public string equipName;
+    public int grade;
     public int singleValue;
     public string singleChangeType;
     public int doubleValue;
@@ -22,4 +23,5 @@ public class Equip
     public int tripleValue;
     public string tripleChangeType;
     public string info;
+    public string abilityInfo;
 }

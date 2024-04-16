@@ -11,12 +11,15 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private Image _image;
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private TextMeshProUGUI itemName;
+    [SerializeField] private TextMeshProUGUI itemGrade;
+    [SerializeField] private TextMeshProUGUI abilityInfo;
     [SerializeField] private Button _equipButton;
     [SerializeField] private Button _unEquipButton;
     [SerializeField] private Button _useButton;
     [SerializeField] private Button mergeButton;
     [SerializeField] private GameObject _activateFalseObj;
     [SerializeField] private GameObject mergeFailObj;
+    [SerializeField] private GameObject equipDetail;
     public ConsumeItem nowConsumeItem;
     public EquipItem nowSelectedEquip;
     public EquipItem lastSelectedEquip;
@@ -35,6 +38,9 @@ public class DetailArea : MonoBehaviour
         _image.sprite = e.equipSprite;
         _text.text = e.data.info;
         itemName.text = e.data.equipName;
+        ItemGradeColor(e);
+        abilityInfo.text = e.data.abilityInfo;
+
         if (e.data.id != 0)
         {
             if (e.isEquipped)
@@ -46,11 +52,13 @@ public class DetailArea : MonoBehaviour
                 _equipButton.gameObject.SetActive(true);
             }
         }
+        equipDetail.SetActive(true);
         ChangeDetailActivation(true);
     }
 
     public void ChangeSelectedItem(ConsumeItem c)
     {
+        equipDetail.SetActive(false);
         ChangeDetailActivation(false);
         nowConsumeItem = c;
         _image.sprite = c.consumeSprite;
@@ -107,5 +115,29 @@ public class DetailArea : MonoBehaviour
     public void MergeFailPopupClose()
     {
         mergeFailObj.SetActive(false);
+    }
+
+    public void ItemGradeColor(EquipItem e)
+    {
+        if (e.data.grade == 0)
+        {
+            itemGrade.text = "노멀";
+            itemGrade.color = Color.gray;
+        }
+        else if (e.data.grade == 1)
+        {
+            itemGrade.text = "레어";
+            itemGrade.color = Color.blue;
+        }
+        else if (e.data.grade == 2)
+        {
+            itemGrade.text = "유니크";
+            itemGrade.color = new Color(132f/255f, 0, 231f/255f);
+        }
+        else if (e.data.grade == 3)
+        {
+            itemGrade.text = "레전더리";
+            itemGrade.color = new Color(230f / 255f, 160f/255f, 0);
+        }
     }
 }

@@ -1,3 +1,4 @@
+using Assets.PixelFantasy.PixelTileEngine.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -78,6 +79,17 @@ public class Settings : MonoBehaviour
 
     public void Escape()
     {
-        this.gameObject.SetActive(false);
+       
+        if (PlayerManager.Instance.firstGame == true)
+        {
+            PlayerManager.Instance.townUiManager.tutorialUI.gameObject.SetActive(true);
+            PlayerManager.Instance.townUiManager.tutorialUI.ActiveTutorial(0);
+
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 }
