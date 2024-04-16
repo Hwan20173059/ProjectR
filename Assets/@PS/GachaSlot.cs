@@ -52,10 +52,15 @@ public class GachaSlot : MonoBehaviour
         for (float f = 0f; f <= 1; f += 0.02f)
         {
             Color c = panelImage.color;
-            c.a = f;
-            panelImage.color = c;
             Color c1 = image.color;
+            c.a = f;
             c1.a = f;
+            if (f > 0.95f)
+            {
+                c.a = 1f;
+                c1.a = 1f;
+            }
+            panelImage.color = c;
             image.color = c1;
             yield return null;
         }
