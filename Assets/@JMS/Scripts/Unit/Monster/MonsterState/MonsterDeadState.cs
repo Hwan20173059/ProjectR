@@ -23,6 +23,11 @@ public class MonsterDeadState : MonsterBaseState
         GameEventManager.instance.battleEvent.KillMonster(monster.baseData.id);
     }
 
+    public override void Update()
+    {
+        
+    }
+
     public override void Exit()
     {
         base.Exit();

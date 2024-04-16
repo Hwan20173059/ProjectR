@@ -57,6 +57,12 @@ public class CharacterBaseState : IState
         }
     }
 
+    protected bool MoveTowardsCharacter(Vector3 target)
+    {
+        return target != (character.transform.position =
+            Vector3.MoveTowards(character.transform.position, target, character.moveAnimSpeed * Time.deltaTime));
+    }
+
     protected void StateUpdate(string state)
     {
         character.currentStateText = state;

@@ -64,9 +64,4 @@ public class MonsterActionState : MonsterBaseState
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
-    private bool MoveTowardsMonster(Vector3 target)
-    {
-        return target != (monster.transform.position =
-            Vector3.MoveTowards(monster.transform.position, target, monster.moveAnimSpeed * Time.deltaTime));
-    }
 }

@@ -32,6 +32,50 @@
 			"moveSeconds": 0,
 			"movePosX": 0,
 			"movePosY": 0
+		},
+		{
+			"id": 3,
+			"effectName": "스턴",
+			"animatorPath": "Effect2/pixel arts/chaos/ani_chaos",
+			"effectScale": 1,
+			"duration": 0,
+			"repeatingCount": 0,
+			"moveSeconds": 0,
+			"movePosX": 0,
+			"movePosY": 0
+		},
+		{
+			"id": 4,
+			"effectName": "스피드업",
+			"animatorPath": "Effect2/pixel arts/cure1/ani_cure1",
+			"effectScale": 1,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0,
+			"movePosX": 0,
+			"movePosY": 0
+		},
+		{
+			"id": 5,
+			"effectName": "회복",
+			"animatorPath": "Effect2/pixel arts/revival1/ani_revival1",
+			"effectScale": 1,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0,
+			"movePosX": 0,
+			"movePosY": 0
+		},
+		{
+			"id": 6,
+			"effectName": "화염 공격",
+			"animatorPath": "Effect2/pixel arts/fireWeapon/ani_fireWeapon",
+			"effectScale": 1,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0,
+			"movePosX": 0,
+			"movePosY": 0
 		}
 	]
 }

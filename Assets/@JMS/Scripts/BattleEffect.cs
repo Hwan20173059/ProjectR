@@ -24,12 +24,19 @@ public class BattleEffect : MonoBehaviour
     {
         StartCoroutine(MoveEffect(id));
     }
+    public void SetEffect(int id)
+    {
+        Effect(id);
+    }
+    public void SetActive(bool b)
+    {
+        gameObject.SetActive(b);
+    }
 
     IEnumerator DurationEffect(int id)
     {
         ChangeAnimSet(id);
 
-        transform.localScale = new Vector3(5, 5) * DataManager.Instance.effectDatabase.GetDataByKey(id).effectScale;
         float effectDuration = DataManager.Instance.effectDatabase.GetDataByKey(id).duration;
         float pastTime = 0;
 
@@ -72,7 +79,7 @@ public class BattleEffect : MonoBehaviour
             yield return null;
         }
 
-        gameObject.SetActive(false) ;
+        gameObject.SetActive(false);
     }
 
     private bool LerpEffect(Vector3 startPos, Vector3 targetPos, ref float moveTime)
@@ -81,8 +88,14 @@ public class BattleEffect : MonoBehaviour
             Vector3.Lerp(startPos, targetPos, moveTime));
     }
 
+    void Effect(int id)
+    {
+        ChangeAnimSet(id);
+    }
+
     void ChangeAnimSet(int id)
     {
         animator.runtimeAnimatorController = DataManager.Instance.effectDatabase.GetAnimDataByKey(id);
+        transform.localScale = new Vector3(5, 5) * DataManager.Instance.effectDatabase.GetDataByKey(id).effectScale;
     }
 }

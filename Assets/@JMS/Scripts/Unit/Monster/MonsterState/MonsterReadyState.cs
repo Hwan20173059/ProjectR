@@ -10,18 +10,8 @@ public class MonsterReadyState : MonsterBaseState
     public override void Update()
     {
         base.Update();
-        CoolTimeUpdate();
+        monster.CoolTimeUpdate();
+        monster.BurnUpdate();
     }
 
-    void CoolTimeUpdate()
-    {
-        if (monster.curCoolTime < monster.maxCoolTime)
-        {
-            monster.curCoolTime += Time.deltaTime;
-        }
-        else
-        {
-            stateMachine.ChangeState(stateMachine.selectActionState);
-        }
-    }
 }

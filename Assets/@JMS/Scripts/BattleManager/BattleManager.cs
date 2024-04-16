@@ -253,6 +253,8 @@ public class BattleManager : MonoBehaviour
             {
                 if (monsters[i].IsFrozen)
                     monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.frozenState);
+                else if (monsters[i].IsStun)
+                    monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.stunState);
                 else
                     monsters[i].stateMachine.ChangeState(monstersPrevState[i]); // 몬스터들의 상태를 이전 상태로 변경
             }
@@ -260,7 +262,7 @@ public class BattleManager : MonoBehaviour
             if (monsters[i].stateMachine.currentState == monsters[i].stateMachine.frozenState && !monsters[i].IsFrozen)
             {
                 monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.readyState);
-                monsters[i].UnFrozenAnim();
+                monsters[i].RefreshAnim();
             }
         }
     }
@@ -291,6 +293,17 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void BattleOverCheck()
+    {
+        if (character.IsDead)
+        {
+            stateMachine.ChangeState(stateMachine.defeatState);
+        }
+
+        if (StageClearCheck())
+            StageClear();
+    }
+
     public bool StageClearCheck()
     {
         for(int i = 0; i < monsters.Count; i++)
@@ -300,7 +313,14 @@ public class BattleManager : MonoBehaviour
                 return false;
             }
         }
+
         return true;
+    }
+
+    void StageClear()
+    {
+        character.stateMachine.ChangeState(character.stateMachine.waitState);
+        stateMachine.ChangeState(stateMachine.victoryState);
     }
 
     public int AliveMonsterCount()

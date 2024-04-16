@@ -7,5 +7,4 @@ public class MonsterWaitState : MonsterBaseState
     public MonsterWaitState(MonsterStateMachine monsterStateMachine) : base(monsterStateMachine)
     {
     }
-
 }

@@ -32,6 +32,12 @@ public class CharacterActionState : CharacterBaseState
         }
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+        character.ReduceBuffDuration();
+    }
+
     void ItemSkill(int itemID)
     {
         switch (itemID)
@@ -52,6 +58,10 @@ public class CharacterActionState : CharacterBaseState
                 character.StartCoroutine(RepeatAttack(10)); break;
             case 7:
                 character.StartCoroutine(FrozenAttack()); break;
+            case 8:
+                character.StartCoroutine(StunAttack()); break;
+            case 9:
+                character.StartCoroutine(FlameAttack()); break;
             default:
                 character.StartCoroutine(BaseAttack()); break;
         }
@@ -154,6 +164,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator Heal()
     {
+        battleManager.battleCanvas.SetRepeatEffect(5, character.transform.position); // 임시 이펙트
         character.ChangeHP(battleManager.rouletteEquip[0].data.tripleValue);
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}이 {battleManager.rouletteEquip[0].data.tripleValue}의 체력을 회복!");
 
@@ -201,6 +212,8 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator SpeedUpBuff()
     {
+        battleManager.battleCanvas.SetRepeatEffect(4, character.transform.position); // 임시 이펙트
+
         character.characterBuffHandler.AddBuff(BuffType.Speed, 300, 3);
 
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 속도가 빨라졌다!");
@@ -252,7 +265,7 @@ public class CharacterActionState : CharacterBaseState
 
         battleManager.battleCanvas.SetRepeatEffect(1, target.transform.position); // 임시 이펙트
         yield return character.StartCoroutine(Attack(target, damage));
-        target.IsFrozen = true;
+        target.SetFrozen();
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
 
@@ -262,15 +275,49 @@ public class CharacterActionState : CharacterBaseState
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
-    private bool MoveTowardsCharacter(Vector3 target)
+    IEnumerator StunAttack()
     {
-        return target != (character.transform.position =
-            Vector3.MoveTowards(character.transform.position, target, character.moveAnimSpeed * Time.deltaTime));
+        Monster target = battleManager.selectMonster;
+        Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
+
+        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
+
+        character.ChangeAnimState(CharacterAnimState.Running);
+
+        while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
+
+        yield return character.StartCoroutine(Attack(target, damage));
+        target.SetStun(10);
+
+        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+
+        character.ChangeAnimState(CharacterAnimState.Ready);
+
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
-    public override void Exit()
+    IEnumerator FlameAttack()
     {
-        base.Exit();
-        character.ReduceBuffDuration();
+        Monster target = battleManager.selectMonster;
+        Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
+
+        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
+
+        character.ChangeAnimState(CharacterAnimState.Running);
+
+        while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
+
+        battleManager.battleCanvas.SetRepeatEffect(6, target.transform.position); // 임시 이펙트
+        yield return character.StartCoroutine(Attack(target, damage));
+        target.SetBurn(5, 0.2f, 20);
+
+        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+
+        character.ChangeAnimState(CharacterAnimState.Ready);
+
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
+
 }

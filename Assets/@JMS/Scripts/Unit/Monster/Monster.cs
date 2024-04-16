@@ -1,9 +1,11 @@
 using Assets.PixelFantasy.PixelMonsters.Common.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Xml;
 using UnityEngine;
 using UnityEngine.U2D.Animation;
+using static UnityEngine.GraphicsBuffer;
 
 public class Monster : MonoBehaviour
 {
@@ -27,6 +29,17 @@ public class Monster : MonoBehaviour
 
     public bool IsFrozen;
 
+    public bool IsStun;
+    public float curStunTime;
+    public float maxStunTime;
+
+    public bool IsBurn;
+    public float curBurnTime;
+    public int burnDamage;
+    public float burnInterval;
+    public int burnCount;
+
+    public BattleEffect battleEffect;
     public MonsterAnimController monsterAnimController { get; private set; }
     public SpriteRenderer spriteRenderer;
     public SpriteLibrary spriteLibrary;
@@ -90,6 +103,18 @@ public class Monster : MonoBehaviour
         spriteLibrary.spriteLibraryAsset = Resources.Load<SpriteLibraryAsset>(baseData.assetPath);
     }
 
+    public void CoolTimeUpdate()
+    {
+        if (curCoolTime < maxCoolTime)
+        {
+            curCoolTime += Time.deltaTime;
+        }
+        else
+        {
+            stateMachine.ChangeState(stateMachine.selectActionState);
+        }
+    }
+
     public void ChangeHP(int value)
     {
         if (value < 0)
@@ -129,14 +154,90 @@ public class Monster : MonoBehaviour
         monsterAnimController.ChangeAnimState(animState);
     }
 
-    public void FrozenAnim()
-    {
-        spriteRenderer.material.color = new Color(0.2f, 0.2f, 1, 1);
-        monsterAnimController.animator.speed = 0;
-    }
-    public void UnFrozenAnim()
+    public void RefreshAnim()
     {
         spriteRenderer.material.color = new Color(1, 1, 1, 1);
         monsterAnimController.animator.speed = 1;
     }
+
+    public void SetFrozen()
+    {
+        IsFrozen = true;
+        IsBurn = false;
+        burnDamage = 0;
+    }
+
+    public void FrozenAnim()
+    {
+        RefreshAnim();
+        spriteRenderer.material.color = new Color(0.2f, 0.2f, 1, 1);
+        monsterAnimController.animator.speed = 0;
+    }
+
+    public void SetStun(float duration)
+    {
+        IsStun = true;
+        curStunTime = 0;
+        maxStunTime = duration;
+        battleEffect = battleManager.battleCanvas.SetEffect(3, transform.position); // ÀÓ½Ã ÀÌÆåÆ®
+    }
+
+    public void StunTimeUpdate()
+    {
+        if (curStunTime < maxStunTime)
+        {
+            curStunTime += Time.deltaTime;
+        }
+        else
+        {
+            IsStun = false;
+            battleEffect.SetActive(false);
+            curStunTime = 0;
+            stateMachine.ChangeState(stateMachine.readyState);
+        }
+    }
+
+    public void SetBurn(int burnDamage,float damageInterval, int burnCount)
+    {
+        if(this.burnDamage <  burnDamage)
+        {
+            IsFrozen = false;
+            IsBurn = true;
+            curBurnTime = 0;
+            this.burnDamage = burnDamage;
+            this.burnInterval = damageInterval;
+            this.burnCount = burnCount;
+
+            BurnAnim();
+        }
+    }
+    public void BurnAnim()
+    {
+        RefreshAnim();
+        spriteRenderer.material.color = new Color(1, 0.4f, 0.4f, 1);
+        monsterAnimController.animator.speed = 1.3f;
+    }
+
+    public void BurnUpdate()
+    {
+        if (IsBurn)
+        {
+            if (curBurnTime < burnInterval)
+                curBurnTime += Time.deltaTime;
+            else
+            {
+                curBurnTime = 0;
+                --burnCount;
+                ChangeHP(-burnDamage);
+                if (IsDead)
+                    battleManager.BattleOverCheck();
+                if (burnCount <= 0)
+                {
+                    IsBurn = false;
+                    RefreshAnim();
+                }
+            }
+        }
+    }
+
 }

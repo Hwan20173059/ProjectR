@@ -14,4 +14,10 @@ public class MonsterFrozenState : MonsterBaseState
 
         monster.FrozenAnim();
     }
+
+    public override void Update()
+    {
+        base.Update();
+        monster.BurnUpdate();
+    }
 }

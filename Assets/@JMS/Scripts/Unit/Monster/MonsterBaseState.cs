@@ -38,6 +38,7 @@ public class MonsterBaseState : IState
         
     }
 
+
     protected float GetNormalizedTime(Animator animator, string tag)
     {
         AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0);
@@ -56,4 +57,10 @@ public class MonsterBaseState : IState
             return 0f;
         }
     }
+    protected bool MoveTowardsMonster(Vector3 target)
+    {
+        return target != (monster.transform.position =
+            Vector3.MoveTowards(monster.transform.position, target, monster.moveAnimSpeed * Time.deltaTime));
+    }
+
 }
