@@ -3,32 +3,28 @@
     {
       "id": "0",
       "repeatable": "일반",
-      "displayName": "필드로 나가서 슬라임 처치하기 (1마리)",
-      "description": "필드로 나가서 슬라임 처치하기 (1마리)",
+      "displayName": "필드로 나가서 들쥐 처치하기 (1마리)",
+      "description": "필드로 나가서 들쥐 처치하기 (1마리)",
       "questValueID": "0",
       "questType": "KillMonster",
       "questClearValue": "1",
       "minLevel": "1",
       "maxLevel": "9999",
       "goldReward": "1500",
-      "expReward": "100",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "100"
     },
     {
       "id": "1",
-      "repeatable": "일반",
-      "displayName": "슬라임 처치하고 조각 모으기 (3개)",
-      "description": "슬라임 처치하고 조각 모으기 (3개)",
+      "repeatable": "반복",
+      "displayName": "들쥐 처치하고 조각 모으기 (3개)",
+      "description": "들쥐 처치하고 조각 모으기 (3개)",
       "questValueID": "0",
-      "questType": "GetConsumeItem",
+      "questType": "CollectConsumeItem",
       "questClearValue": "3",
       "minLevel": "2",
       "maxLevel": "9999",
       "goldReward": "1500",
-      "expReward": "100",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "100"
     },
     {
       "id": "2",
@@ -41,9 +37,7 @@
       "minLevel": "3",
       "maxLevel": "9999",
       "goldReward": "1000",
-      "expReward": "100",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "100"
     },
     {
       "id": "3",
@@ -56,9 +50,7 @@
       "minLevel": "4",
       "maxLevel": "9999",
       "goldReward": "1000",
-      "expReward": "100",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "100"
     },
     {
       "id": "4",
@@ -76,27 +68,10 @@
       "minLevel": "5",
       "maxLevel": "9999",
       "goldReward": "5000",
-      "expReward": "100",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "100"
     },
     {
       "id": "5",
-      "repeatable": "반복",
-      "displayName": "슬라임 조각 3개 모아오기",
-      "description": "슬라임 조각 3개 모아오기",
-      "questValueID": "0",
-      "questType": "CollectConsumeItem",
-      "questClearValue": "3",
-      "minLevel": "6",
-      "maxLevel": "9",
-      "goldReward": "1000",
-      "expReward": "80",
-      "consumeRewardID": null,
-      "equipRewardID": null
-    },
-    {
-      "id": "6",
       "repeatable": "반복",
       "displayName": "레드베리 3개 모아오기",
       "description": "레드베리 3개 모아오기",
@@ -106,12 +81,10 @@
       "minLevel": "6",
       "maxLevel": "9",
       "goldReward": "1000",
-      "expReward": "40",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "40"
     },
     {
-      "id": "7",
+      "id": "6",
       "repeatable": "반복",
       "displayName": "블랙베리 3개 모아오기",
       "description": "블랙베리 3개 모아오기",
@@ -121,12 +94,10 @@
       "minLevel": "6",
       "maxLevel": "9",
       "goldReward": "1000",
-      "expReward": "40",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "40"
     },
     {
-      "id": "8",
+      "id": "7",
       "repeatable": "반복",
       "displayName": "나무껍질 3개 모아오기",
       "description": "나무껍질 3개 모아오기",
@@ -136,12 +107,10 @@
       "minLevel": "6",
       "maxLevel": "9",
       "goldReward": "1000",
-      "expReward": "40",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "40"
     },
     {
-      "id": "9",
+      "id": "8",
       "repeatable": "반복",
       "displayName": "고목뿌리 3개 모아오기",
       "description": "고목뿌리 3개 모아오기",
@@ -151,12 +120,10 @@
       "minLevel": "6",
       "maxLevel": "9",
       "goldReward": "1000",
-      "expReward": "40",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "40"
     },
     {
-      "id": "10",
+      "id": "9",
       "repeatable": "일반",
       "displayName": "유적 던전 클리어 하기 (3회)",
       "description": "유적 던전 클리어 하기 (3회)",
@@ -171,12 +138,10 @@
       "minLevel": "10",
       "maxLevel": "9999",
       "goldReward": "15000",
-      "expReward": "100",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "100"
     },
     {
-      "id": "11",
+      "id": "10",
       "repeatable": "반복",
       "displayName": "수호령의 뿔조각 5개 모아오기",
       "description": "수호령의 뿔조각 5개 모아오기",
@@ -186,12 +151,10 @@
       "minLevel": "10",
       "maxLevel": "19",
       "goldReward": "3000",
-      "expReward": "80",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "80"
     },
     {
-      "id": "12",
+      "id": "11",
       "repeatable": "반복",
       "displayName": "위습의 조각 5개 모아오기",
       "description": "위습의 조각 5개 모아오기",
@@ -201,12 +164,10 @@
       "minLevel": "10",
       "maxLevel": "19",
       "goldReward": "3000",
-      "expReward": "40",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "40"
     },
     {
-      "id": "13",
+      "id": "12",
       "repeatable": "반복",
       "displayName": "수호의 핵 5개 모아오기",
       "description": "수호의 핵 5개 모아오기",
@@ -216,12 +177,10 @@
       "minLevel": "10",
       "maxLevel": "19",
       "goldReward": "3000",
-      "expReward": "40",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "40"
     },
     {
-      "id": "14",
+      "id": "13",
       "repeatable": "반복",
       "displayName": "화염의 핵 5개 모아오기",
       "description": "화염의 핵 5개 모아오기",
@@ -231,12 +190,10 @@
       "minLevel": "10",
       "maxLevel": "19",
       "goldReward": "3000",
-      "expReward": "40",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "40"
     },
     {
-      "id": "15",
+      "id": "14",
       "repeatable": "반복",
       "displayName": "얼음의 핵 5개 모아오기",
       "description": "얼음의 핵 5개 모아오기",
@@ -246,12 +203,10 @@
       "minLevel": "10",
       "maxLevel": "19",
       "goldReward": "3000",
-      "expReward": "40",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "40"
     },
     {
-      "id": "16",
+      "id": "15",
       "repeatable": "일반",
       "displayName": "바다 던전 클리어 하기 (5회)",
       "description": "바다 던전 클리어 하기 (5회)",
@@ -266,12 +221,10 @@
       "minLevel": "20",
       "maxLevel": "9999",
       "goldReward": "50000",
-      "expReward": "100",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "100"
     },
     {
-      "id": "17",
+      "id": "16",
       "repeatable": "반복",
       "displayName": "초록 열매 7개 모아오기",
       "description": "초록 열매 7개 모아오기",
@@ -281,12 +234,10 @@
       "minLevel": "20",
       "maxLevel": "24",
       "goldReward": "6000",
-      "expReward": "60",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "60"
     },
     {
-      "id": "18",
+      "id": "17",
       "repeatable": "반복",
       "displayName": "개구리 가죽 7개 모아오기",
       "description": "개구리 가죽 7개 모아오기",
@@ -296,12 +247,10 @@
       "minLevel": "20",
       "maxLevel": "24",
       "goldReward": "6000",
-      "expReward": "30",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "30"
     },
     {
-      "id": "19",
+      "id": "18",
       "repeatable": "반복",
       "displayName": "맹독 개구리 가죽 7개 모아오기",
       "description": "맹독 개구리 가죽 7개 모아오기",
@@ -311,12 +260,10 @@
       "minLevel": "20",
       "maxLevel": "24",
       "goldReward": "6000",
-      "expReward": "30",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "30"
     },
     {
-      "id": "20",
+      "id": "19",
       "repeatable": "반복",
       "displayName": "바다게의 집게 7개 모아오기",
       "description": "바다게의 집게 7개 모아오기",
@@ -326,12 +273,10 @@
       "minLevel": "20",
       "maxLevel": "24",
       "goldReward": "6000",
-      "expReward": "30",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "30"
     },
     {
-      "id": "21",
+      "id": "20",
       "repeatable": "반복",
       "displayName": "심해게의 조각 7개 모아오기",
       "description": "심해게의 조각 7개 모아오기",
@@ -341,12 +286,10 @@
       "minLevel": "20",
       "maxLevel": "24",
       "goldReward": "6000",
-      "expReward": "30",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "30"
     },
     {
-      "id": "22",
+      "id": "21",
       "repeatable": "일반",
       "displayName": "지옥 던전 클리어 하기 (5회)",
       "description": "지옥 던전 클리어 하기 (5회)",
@@ -361,12 +304,10 @@
       "minLevel": "25",
       "maxLevel": "9999",
       "goldReward": "100000",
-      "expReward": "100",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "100"
     },
     {
-      "id": "23",
+      "id": "22",
       "repeatable": "반복",
       "displayName": "붉은 열매 10개 모아오기",
       "description": "붉은 열매 10개 모아오기",
@@ -376,12 +317,10 @@
       "minLevel": "25",
       "maxLevel": "29",
       "goldReward": "8000",
-      "expReward": "70",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "70"
     },
     {
-      "id": "24",
+      "id": "23",
       "repeatable": "반복",
       "displayName": "비홀더의 눈 10개 모아오기",
       "description": "비홀더의 눈 10개 모아오기",
@@ -391,12 +330,10 @@
       "minLevel": "25",
       "maxLevel": "29",
       "goldReward": "8000",
-      "expReward": "30",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "30"
     },
     {
-      "id": "25",
+      "id": "24",
       "repeatable": "반복",
       "displayName": "플라이 아이의 날개 10개 모아오기",
       "description": "플라이 아이의 날개 10개 모아오기",
@@ -406,12 +343,10 @@
       "minLevel": "25",
       "maxLevel": "29",
       "goldReward": "8000",
-      "expReward": "30",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "30"
     },
     {
-      "id": "26",
+      "id": "25",
       "repeatable": "반복",
       "displayName": "지옥개의 이빨 10개 모아오기",
       "description": "지옥개의 이빨 10개 모아오기",
@@ -421,12 +356,10 @@
       "minLevel": "25",
       "maxLevel": "29",
       "goldReward": "8000",
-      "expReward": "30",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "30"
     },
     {
-      "id": "27",
+      "id": "26",
       "repeatable": "반복",
       "displayName": "심연 지옥개의 발톱 10개 모아오기",
       "description": "심연 지옥개의 발톱 10개 모아오기",
@@ -436,9 +369,7 @@
       "minLevel": "25",
       "maxLevel": "29",
       "goldReward": "8000",
-      "expReward": "30",
-      "consumeRewardID": null,
-      "equipRewardID": null
+      "expReward": "30"
     }
   ]
 }

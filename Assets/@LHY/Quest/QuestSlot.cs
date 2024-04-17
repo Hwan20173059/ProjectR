@@ -46,7 +46,6 @@ public class QuestSlot : MonoBehaviour
 
     private void QuestStateChange(Quest quest)
     {
-        Debug.Log("상태 변경 감지");
         if (quest.info.id.Equals(questId))
         {
             currentQuestState = quest.state;

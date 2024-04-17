@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.UIElements;
 using System.IO;
+using static UnityEditor.Progress;
 
 /*
  * QuestManager는 모든 퀘스트를 상태를 전체적으로 관리함.
@@ -91,7 +92,6 @@ public class QuestManager : MonoBehaviour
 
     public void AdvanceQuest(int id)
     {
-        Debug.Log(id);
         Quest quest = GetQuestByID(id);
         ChangeQuestState(quest.info.id, QuestState.Can_Finish);
     }
@@ -100,22 +100,17 @@ public class QuestManager : MonoBehaviour
     {
         Quest quest = GetQuestByID(id);
 
-        RewardManager.instance.QuestRewardPopup(quest.info.goldReward, quest.info.expReward, quest.info.consumeRewardID);
+        RewardManager.instance.QuestRewardPopup(quest.info.goldReward, quest.info.expReward, -1);
 
         ChangeQuestState(quest.info.id, QuestState.Finished);
 
         if (quest.info.repeatable == "반복")
         {
-            ChangeQuestState(quest.info.id, QuestState.Requirments_Not);
-            if (quest.info.questType == "GetConsumeItem")
+            ChangeQuestState(quest.info.id, QuestState.Can_Start);
+            if (quest.info.questType == "CollectConsumeItem")
             {
-                foreach (ConsumeItem item in ItemManager.Instance.cInventory)
-                {
-                    if (GetQuestByID(id).info.questValueID == item.data.id)
-                    {
-                        ItemManager.Instance.ReduceConsumeItem(item, quest.info.questCurrentValue);
-                    }
-                }
+                print(ItemManager.Instance.GetConsumeItem(quest.info.questValueID).data.consumeName);//치즈 조각
+                ItemManager.Instance.ReduceConsumeItem(ItemManager.Instance.GetConsumeItem(quest.info.questValueID), quest.info.questClearValue);
             }
         }
     }
