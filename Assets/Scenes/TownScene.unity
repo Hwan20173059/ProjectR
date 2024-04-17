@@ -3403,8 +3403,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -30, y: -30}
+  m_AnchoredPosition: {x: 0, y: 2.5}
+  m_SizeDelta: {x: -30, y: -25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &388293155
 MonoBehaviour:
@@ -7334,11 +7334,11 @@ RectTransform:
   m_Father: {fileID: 388293154}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1950, y: 410}
-  m_Pivot: {x: 0, y: 0.5}
+  m_SizeDelta: {x: 1950, y: 250}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &896452136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7359,8 +7359,8 @@ MonoBehaviour:
   m_ChildAlignment: 3
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 220, y: 250}
-  m_Spacing: {x: 25, y: 40}
+  m_CellSize: {x: 220, y: 230}
+  m_Spacing: {x: 20, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!114 &896452137
@@ -10272,11 +10272,11 @@ RectTransform:
   m_Father: {fileID: 396490395}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 270}
-  m_SizeDelta: {x: -60, y: -600}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: -60, y: 270}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1117654669
 MonoBehaviour:
   m_ObjectHideFlags: 0
