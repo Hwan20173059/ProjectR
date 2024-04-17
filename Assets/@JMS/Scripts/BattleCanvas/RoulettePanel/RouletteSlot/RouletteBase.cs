@@ -43,10 +43,10 @@ public class RouletteBase : MonoBehaviour
         switch (rouletteNumber)
         {
             case 1:
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 150f, transform.localPosition.z);
+                transform.localPosition = resultPosition1;
                 break;
             case 2:
-                transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y - 300f, transform.localPosition.z);
+                transform.localPosition = resultPosition2;
                 break;
             default:
                 break;
