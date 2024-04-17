@@ -95,6 +95,7 @@ public class PlayerManager : Singleton<PlayerManager>
     
     public void EquipNewItem(int n)
     {
+        GameEventManager.instance.uiEvent.ChangeEquip(detailArea.lastSelectedEquip.data.id);
         equip[n].isEquipped = false;
         equip[n] = detailArea.lastSelectedEquip;
         equip[n].isEquipped = true;
