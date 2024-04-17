@@ -55,7 +55,7 @@ public class GachaSlot : MonoBehaviour
             Color c1 = image.color;
             c.a = f;
             c1.a = f;
-            if (f > 0.95f)
+            if (f > 0.9f)
             {
                 c.a = 1f;
                 c1.a = 1f;

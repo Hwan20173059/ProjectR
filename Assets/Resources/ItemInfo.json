@@ -479,7 +479,7 @@
 			"consumeName": "초급 경험치 스크롤",
 			"type": "ExpItem",
 			"trunCount": 0,
-			"value": 10,
+			"value": 100,
 			"info": "캐릭터 경험치를 소폭 상승시킬 수 있다.",
 			"price": 15,
 			"turnCount": 0
@@ -490,7 +490,7 @@
 			"consumeName": "중급 경험치 스크롤",
 			"type": "ExpItem",
 			"trunCount": 0,
-			"value": 50,
+			"value": 200,
 			"info": "캐릭터 경험치를 상승시킬 수 있다.",
 			"price": 15,
 			"turnCount": 0
@@ -501,7 +501,7 @@
 			"consumeName": "고급 경험치 스크롤",
 			"type": "ExpItem",
 			"trunCount": 0,
-			"value": 150,
+			"value": 500,
 			"info": "캐릭터 경험치를 크게 상승시킬 수 있다.",
 			"price": 15,
 			"turnCount": 0
