@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class CharacterActionState : CharacterBaseState
 {
-    WaitForSeconds waitForAttack = new WaitForSeconds(0.2f);
+    WaitForSeconds waitForAttack = new WaitForSeconds(0.3f);
 
     public CharacterActionState(CharacterStateMachine characterStateMachine) : base(characterStateMachine)
     {
@@ -28,7 +28,7 @@ public class CharacterActionState : CharacterBaseState
         }
         else
         {
-            character.StartCoroutine(BaseAttack());
+            character.StartCoroutine(Attack(1, 1, 0));
         }
     }
 
@@ -43,19 +43,19 @@ public class CharacterActionState : CharacterBaseState
         switch (itemID)
         {
             case 0: // 정의의 주먹
-                character.StartCoroutine(BaseAttack()); break;
+                character.StartCoroutine(Attack(1, 1, 0)); break;
             case 1: // 체스말(폰)
-                character.StartCoroutine(DoubleAttack(1)); break;
+                character.StartCoroutine(DoubleAttack(1, 0)); break;
             case 2: // 나뭇가지
-                character.StartCoroutine(Heal(30)); break;
+                character.StartCoroutine(Heal(30, 1, 1, 0)); break;
             case 3: // 낡은 고서
                 character.StartCoroutine(StraightRangeAttack(1, 1, 0)); break;
             case 4: // 푸른 장미
-                character.StartCoroutine(AllAttack(1)); break;
+                character.StartCoroutine(AllAttack(1, 4, 0)); break;
             case 5:
                 character.StartCoroutine(SpeedUpBuff(300, 4)); break;
             case 6:
-                character.StartCoroutine(RepeatAttack(1, 10)); break;
+                character.StartCoroutine(Attack(1, 10, 2)); break;
             case 7:
                 character.StartCoroutine(FrozenAttack(1)); break;
             case 8:
@@ -67,7 +67,7 @@ public class CharacterActionState : CharacterBaseState
             case 11:
                 character.StartCoroutine(AllDirectionRangeAttack(1, 1, 0)); break;
             case 12:
-                character.StartCoroutine(DoubleRepeatAttack(1, 10)); break;
+                character.StartCoroutine(DoubleRepeatAttack(1, 10, 2)); break;
             case 13:
                 character.StartCoroutine(DoubleStraightRangeAttack(1, 1, 0)); break;
             case 14:
@@ -83,11 +83,11 @@ public class CharacterActionState : CharacterBaseState
             case 19:
                 character.StartCoroutine(FlameStraightRangeAttack(1, 5, 0.2f, 20, 1, 0)); break;
             default:
-                character.StartCoroutine(BaseAttack()); break;
+                character.StartCoroutine(Attack(1, 1, 0)); break;
         }
     }
 
-    IEnumerator Attack(Monster target, int damage)
+    IEnumerator AttackBase(Monster target, int damage)
     {
         target.ChangeHP(-damage);
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 공격!\n{target.monsterName}에게 {damage}의 피해!");
@@ -96,19 +96,24 @@ public class CharacterActionState : CharacterBaseState
         character.PlayAnim(CharacterAnim.Idle);
     }
 
-    IEnumerator BaseAttack()
+    IEnumerator Attack(int damageMultiple, int count, int effectId)
     {
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk);
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
 
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
-        battleManager.battleCanvas.SetRepeatEffect(0, target.transform.position); // 임시 이펙트
-        yield return character.StartCoroutine(Attack(target, damage));
+        for (int i = 0; i < count; i++)
+        {
+            battleManager.battleCanvas.SetRepeatEffect(effectId, target.transform.position); // 임시 이펙트
+            character.StartCoroutine(AttackBase(target, damage));
+            yield return waitForAttack;
+            if (target.IsDead) break;
+        }
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
 
@@ -118,16 +123,14 @@ public class CharacterActionState : CharacterBaseState
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
-    IEnumerator AllAttack(int damageMultiple)
+    IEnumerator AllAttackBase(int damage, int effectId)
     {
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
-
-        for (int i = 0; i < battleManager.monsters.Count; i++)
+        for (int j = 0; j < battleManager.monsters.Count; j++)
         {
-            if (!battleManager.monsters[i].IsDead)
+            if (!battleManager.monsters[j].IsDead)
             {
-                battleManager.monsters[i].ChangeHP(-damage);
-                battleManager.battleCanvas.SetRepeatEffect(0, battleManager.monsters[i].transform.position); // 임시 이펙트
+                battleManager.monsters[j].ChangeHP(-damage);
+                battleManager.battleCanvas.SetRepeatEffect(effectId, battleManager.monsters[j].transform.position); // 임시 이펙트
             }
         }
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
@@ -135,12 +138,25 @@ public class CharacterActionState : CharacterBaseState
         character.PlayAnim(CharacterAnim.Slash);
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
+    }
 
+    IEnumerator AllAttack(int damageMultiple, int count, int effectId)
+    {
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+        for (int i = 0; i < count; i++)
+        {
+            character.StartCoroutine(AllAttackBase(damage, effectId));
+            yield return waitForAttack;
+
+            if (battleManager.StageClearCheck())
+                break;
+        }
         stateMachine.ChangeState(stateMachine.readyState);
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
-    IEnumerator DoubleAttack(int damageMultiple)
+    IEnumerator DoubleAttack(int damageMultiple, int effectId)
     {
         if (battleManager.AliveMonsterCount() > 1)
         {
@@ -161,13 +177,13 @@ public class CharacterActionState : CharacterBaseState
 
             while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
-            battleManager.battleCanvas.SetRepeatEffect(0, target.transform.position);
-            yield return character.StartCoroutine(Attack(target, damage));
+            battleManager.battleCanvas.SetRepeatEffect(effectId, target.transform.position);
+            yield return character.StartCoroutine(AttackBase(target, damage));
 
             while (MoveTowardsCharacter(nextMonsterPosition)) { yield return null; }
 
-            battleManager.battleCanvas.SetRepeatEffect(0, nextTarget.transform.position);
-            yield return character.StartCoroutine(Attack(nextTarget, damage));
+            battleManager.battleCanvas.SetRepeatEffect(effectId, nextTarget.transform.position);
+            yield return character.StartCoroutine(AttackBase(nextTarget, damage));
 
             while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
 
@@ -178,11 +194,11 @@ public class CharacterActionState : CharacterBaseState
         }
         else
         {
-            character.StartCoroutine(BaseAttack());
+            character.StartCoroutine(Attack(damageMultiple, 1, effectId));
         }
     }
 
-    IEnumerator Heal(int value)
+    IEnumerator Heal(int value, int damageMultiple, int count, int effectId)
     {
         battleManager.battleCanvas.SetRepeatEffect(5, character.transform.position); // 임시 이펙트
         character.ChangeHP(value);
@@ -192,7 +208,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Jump")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
 
-        character.StartCoroutine(BaseAttack());
+        character.StartCoroutine(Attack(damageMultiple, count, effectId));
     }
 
     IEnumerator StraightRangeAttack(int damageMultiple, int range, int effectId)
@@ -334,34 +350,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Jump")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
 
-        character.StartCoroutine(BaseAttack());
-    }
-
-    IEnumerator RepeatAttack(int damageMultiple, int count)
-    {
-        Monster target = battleManager.selectMonster;
-        Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
-
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
-
-        character.ChangeAnimState(CharacterAnimState.Running);
-
-        while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
-
-        for(int i = 0; i < count; i++)
-        {
-            battleManager.battleCanvas.SetRepeatEffect(2, target.transform.position); // 임시 이펙트
-            character.StartCoroutine(Attack(target, damage));
-            yield return waitForAttack;
-            if (target.IsDead) break;
-        }
-
-        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
-
-        character.ChangeAnimState(CharacterAnimState.Ready);
-
-        stateMachine.ChangeState(stateMachine.readyState);
-        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+        character.StartCoroutine(Attack(1, 1, 2));
     }
 
     IEnumerator FrozenAttack(int damageMultiple)
@@ -376,7 +365,7 @@ public class CharacterActionState : CharacterBaseState
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
         battleManager.battleCanvas.SetRepeatEffect(1, target.transform.position); // 임시 이펙트
-        yield return character.StartCoroutine(Attack(target, damage));
+        yield return character.StartCoroutine(AttackBase(target, damage));
         target.SetFrozen();
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
@@ -398,7 +387,7 @@ public class CharacterActionState : CharacterBaseState
 
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
-        yield return character.StartCoroutine(Attack(target, damage));
+        yield return character.StartCoroutine(AttackBase(target, damage));
         target.SetStun(duration);
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
@@ -421,7 +410,7 @@ public class CharacterActionState : CharacterBaseState
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
         battleManager.battleCanvas.SetRepeatEffect(6, target.transform.position); // 임시 이펙트
-        yield return character.StartCoroutine(Attack(target, damage));
+        yield return character.StartCoroutine(AttackBase(target, damage));
         target.SetBurn(burnDamage, damageInterval, burnCount);
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
@@ -432,7 +421,7 @@ public class CharacterActionState : CharacterBaseState
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
-    IEnumerator DoubleRepeatAttack(int damageMultiple, int count)
+    IEnumerator DoubleRepeatAttack(int damageMultiple, int count, int effectId)
     {
         if (battleManager.AliveMonsterCount() > 1)
         {
@@ -455,8 +444,8 @@ public class CharacterActionState : CharacterBaseState
 
             for (int i = 0; i < count; i++)
             {
-                battleManager.battleCanvas.SetRepeatEffect(2, target.transform.position); // 임시 이펙트
-                character.StartCoroutine(Attack(target, damage));
+                battleManager.battleCanvas.SetRepeatEffect(effectId, target.transform.position); // 임시 이펙트
+                character.StartCoroutine(AttackBase(target, damage));
                 yield return waitForAttack;
                 if (target.IsDead) break;
             }
@@ -465,8 +454,8 @@ public class CharacterActionState : CharacterBaseState
 
             for (int i = 0; i < count; i++)
             {
-                battleManager.battleCanvas.SetRepeatEffect(2, nextTarget.transform.position); // 임시 이펙트
-                character.StartCoroutine(Attack(nextTarget, damage));
+                battleManager.battleCanvas.SetRepeatEffect(effectId, nextTarget.transform.position); // 임시 이펙트
+                character.StartCoroutine(AttackBase(nextTarget, damage));
                 yield return waitForAttack;
                 if (nextTarget.IsDead) break;
             }
@@ -480,7 +469,7 @@ public class CharacterActionState : CharacterBaseState
         }
         else
         {
-            character.StartCoroutine(RepeatAttack(damageMultiple, count));
+            character.StartCoroutine(Attack(damageMultiple, count, effectId));
         }
     }
 
@@ -575,13 +564,13 @@ public class CharacterActionState : CharacterBaseState
             while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
             battleManager.battleCanvas.SetRepeatEffect(0, target.transform.position);
-            yield return character.StartCoroutine(Attack(target, damage));
+            yield return character.StartCoroutine(AttackBase(target, damage));
             target.SetFrozen();
 
             while (MoveTowardsCharacter(nextMonsterPosition)) { yield return null; }
 
             battleManager.battleCanvas.SetRepeatEffect(0, nextTarget.transform.position);
-            yield return character.StartCoroutine(Attack(nextTarget, damage));
+            yield return character.StartCoroutine(AttackBase(nextTarget, damage));
             nextTarget.SetFrozen();
 
             while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
@@ -619,13 +608,13 @@ public class CharacterActionState : CharacterBaseState
             while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
             battleManager.battleCanvas.SetRepeatEffect(0, target.transform.position);
-            yield return character.StartCoroutine(Attack(target, damage));
+            yield return character.StartCoroutine(AttackBase(target, damage));
             target.SetStun(duration);
 
             while (MoveTowardsCharacter(nextMonsterPosition)) { yield return null; }
 
             battleManager.battleCanvas.SetRepeatEffect(0, nextTarget.transform.position);
-            yield return character.StartCoroutine(Attack(nextTarget, damage));
+            yield return character.StartCoroutine(AttackBase(nextTarget, damage));
             nextTarget.SetStun(duration);
 
             while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
@@ -663,13 +652,13 @@ public class CharacterActionState : CharacterBaseState
             while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
             battleManager.battleCanvas.SetRepeatEffect(0, target.transform.position);
-            yield return character.StartCoroutine(Attack(target, damage));
+            yield return character.StartCoroutine(AttackBase(target, damage));
             target.SetBurn(burnDamage, damageInterval, burnCount);
 
             while (MoveTowardsCharacter(nextMonsterPosition)) { yield return null; }
 
             battleManager.battleCanvas.SetRepeatEffect(0, nextTarget.transform.position);
-            yield return character.StartCoroutine(Attack(nextTarget, damage));
+            yield return character.StartCoroutine(AttackBase(nextTarget, damage));
             nextTarget.SetBurn(burnDamage, damageInterval, burnCount);
 
             while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
