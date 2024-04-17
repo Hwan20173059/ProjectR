@@ -35,7 +35,7 @@ public class UIEvent
     }
 
     public event Action<int> onChangeEquip;
-    public void UIClick(int id)
+    public void ChangeEquip(int id)
     {
         if (onChangeEquip != null)
         {
