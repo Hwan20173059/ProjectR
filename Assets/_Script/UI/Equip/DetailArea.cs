@@ -6,6 +6,7 @@ using TMPro;
 
 public class DetailArea : MonoBehaviour
 {
+    private ItemManager itemManager;
     public PlayerManager playerManager;
     [SerializeField] private GameObject detailObject;
     [SerializeField] private Image _image;
@@ -17,6 +18,7 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private Button _unEquipButton;
     [SerializeField] private Button _useButton;
     [SerializeField] private Button mergeButton;
+    [SerializeField] private Button expUseButton;
     [SerializeField] private GameObject _activateFalseObj;
     [SerializeField] private GameObject mergeFailObj;
     [SerializeField] private GameObject equipDetail;
@@ -28,6 +30,7 @@ public class DetailArea : MonoBehaviour
 
     private void Start()
     {
+        itemManager = ItemManager.Instance;
         playerManager = PlayerManager.Instance;
         playerManager.detailArea = this;
     }
@@ -67,11 +70,15 @@ public class DetailArea : MonoBehaviour
         itemName.text = c.data.consumeName;
         if(c.type == Type.AttackBuffPotion || c.type == Type.HpPotion || c.type == Type.SpeedBuffPotion)
         {
-            _useButton.gameObject.SetActive(true);
+            if (_useButton != null) _useButton.gameObject.SetActive(true);
+        }
+        else if(c.type == Type.ExpItem)
+        {
+            if (expUseButton != null) expUseButton.gameObject.SetActive(true);
         }
         else if(c.type == Type.CharacterPiece)
         {
-            mergeButton.gameObject.SetActive(true);
+            if (mergeButton != null) mergeButton.gameObject.SetActive(true);
         }
         ChangeDetailActivation(true);
     }
@@ -84,6 +91,7 @@ public class DetailArea : MonoBehaviour
             _equipButton.gameObject.SetActive(false);
             _unEquipButton.gameObject.SetActive(false);
             _useButton.gameObject.SetActive(false);
+            mergeButton.gameObject.SetActive(false);
         }
     }
 
@@ -111,6 +119,14 @@ public class DetailArea : MonoBehaviour
         {
             mergeFailObj.SetActive(true);
         }
+    }
+
+    public void ExpScrollUse()
+    {
+        itemManager.ReduceConsumeItem(nowConsumeItem);
+        int exp = ((nowConsumeItem.data.id - 100) * (nowConsumeItem.data.id - 100)) * 100 + 100;
+        playerManager.characterList[playerManager.selectedCharacterIndex].ChangeExp(exp);
+        itemManager.inventory.FreshConsumeSlot();
     }
     
     public void MergeFailPopupClose()
