@@ -127,6 +127,22 @@ public class DungeonManager : TileMapManager
 
     protected void ClearDungeon()
     {
+        switch (PlayerManager.Instance.selectDungeonID)
+        {
+            case 0:
+                RewardManager.instance.RewardPopup(1500, 500, 26);
+                break;
+            case 1:
+                RewardManager.instance.RewardPopup(3000, 1000, 27);
+                break;
+            case 2:
+                RewardManager.instance.RewardPopup(5000, 2000, 27);
+                break;
+            case 3:
+                RewardManager.instance.RewardPopup(10000, 4000, 28);
+                break;
+        }
+
         dungeonClearUI.SetActive(true);
     }
 
