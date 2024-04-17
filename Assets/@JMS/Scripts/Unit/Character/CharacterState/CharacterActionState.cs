@@ -16,7 +16,7 @@ public class CharacterActionState : CharacterBaseState
     {
         base.Enter();
 
-        StateUpdate("공격중");
+        AtkUpdate("공격중");
 
         if (battleManager.rouletteResult == RouletteResult.Triple)
         {
@@ -81,7 +81,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
+        int damage = battleManager.GetChangeValue(character.addBuffAtk);
 
         character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -100,7 +100,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator AllAttack()
     {
-        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
+        int damage = battleManager.GetChangeValue(character.addBuffAtk);
 
         for (int i = 0; i < battleManager.monsters.Count; i++)
         {
@@ -135,7 +135,7 @@ public class CharacterActionState : CharacterBaseState
             Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
             Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
 
-            int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
+            int damage = battleManager.GetChangeValue(character.addBuffAtk);
 
             character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -180,7 +180,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
+        int damage = battleManager.GetChangeValue(character.addBuffAtk);
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -230,7 +230,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
+        int damage = battleManager.GetChangeValue(character.addBuffAtk);
 
         character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -257,7 +257,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
+        int damage = battleManager.GetChangeValue(character.addBuffAtk);
 
         character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -280,7 +280,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
+        int damage = battleManager.GetChangeValue(character.addBuffAtk);
 
         character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -302,7 +302,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(battleManager.rouletteResult, character.changedAtk);
+        int damage = battleManager.GetChangeValue(character.addBuffAtk);
 
         character.ChangeAnimState(CharacterAnimState.Running);
 

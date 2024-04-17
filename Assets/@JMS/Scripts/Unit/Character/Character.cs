@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
     public float curCoolTime;
     public float maxCoolTime;
 
-    public int changedAtk { get { return atk + characterBuffHandler.GetBuffValue(BuffType.Atk); } }
+    public int addBuffAtk { get { return atk + characterBuffHandler.GetBuffValue(BuffType.Atk); } }
 
     public bool IsDead => curHP <= 0;
     public string currentStateText = "´ë±âÁß";

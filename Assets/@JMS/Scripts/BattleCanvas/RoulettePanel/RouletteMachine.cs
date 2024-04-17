@@ -33,11 +33,13 @@ public class RouletteMachine : MonoBehaviour
 
     IEnumerator Roulette(int resultIndex0, int resultIndex1, int resultIndex2)
     {
+        battleManager.IsUsingRoulette = false;
+        
         StartCoroutine(SpinRoulette(roulette0, 6, resultIndex0));
         StartCoroutine(SpinRoulette(roulette1, 10, resultIndex1));
         yield return StartCoroutine(SpinRoulette(roulette2, 14, resultIndex2));
 
-        battleManager.IsUsingRoulette = false;
+        battleManager.battleCanvas.UpdateCharacterAtk();
 
         if (battleManager.IsAutoBattle)
             battleManager.OnClickAttackButton();

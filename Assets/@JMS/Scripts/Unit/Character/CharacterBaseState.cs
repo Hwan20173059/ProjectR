@@ -66,7 +66,13 @@ public class CharacterBaseState : IState
     protected void StateUpdate(string state)
     {
         character.currentStateText = state;
-        if(battleManager != null)
+        if (battleManager != null)
             battleManager.battleCanvas.UpdateCharacterState();
+    }
+    protected void AtkUpdate(string state)
+    {
+        character.currentStateText = state;
+        if(battleManager != null)
+            battleManager.battleCanvas.UpdateCharacterAtk();
     }
 }

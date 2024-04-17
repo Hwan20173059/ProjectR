@@ -51,10 +51,6 @@ public class BattleManager : MonoBehaviour
     public GameObject monsterPool;
     public PlayerInput Input {  get; private set; }
 
-    Touch tempTouch;
-    Vector3 touchedPos;
-    bool IsTouch;
-
     public BattleCanvas battleCanvas;
 
     public BattleStateMachine stateMachine;
@@ -446,8 +442,6 @@ public class BattleManager : MonoBehaviour
             rouletteResultIndex.Add(randomIndex);
         }
 
-        battleCanvas.SetRoulette(rouletteResultIndex[0], rouletteResultIndex[1], rouletteResultIndex[2]);
-
         if (rouletteEquip[0] == rouletteEquip[1])
         {
             if (rouletteEquip[1] == rouletteEquip[2])
@@ -471,6 +465,8 @@ public class BattleManager : MonoBehaviour
         {
             rouletteResult = RouletteResult.Different;
         }
+
+        battleCanvas.SetRoulette(rouletteResultIndex[0], rouletteResultIndex[1], rouletteResultIndex[2]);
     }
 
     void RouletteClear()
@@ -479,7 +475,7 @@ public class BattleManager : MonoBehaviour
         rouletteResultIndex.Clear();
     }
 
-    public int GetChangeValue(RouletteResult rouletteResult, int baseValue)
+    public int GetChangeValue(int baseValue)
     {
         switch(rouletteResult)
         {

@@ -157,6 +157,10 @@ public class BattleCanvas : MonoBehaviour
     {
         characterStatePanel.UpdateCharacterState(character);
     }
+    public void UpdateCharacterAtk()
+    {
+        characterStatePanel.UpdateCharacterState(character, battleManager);
+    }
 
     public void UpdateMonsterState()
     {
