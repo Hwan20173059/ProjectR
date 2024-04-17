@@ -101,6 +101,15 @@ public class QuestStep : MonoBehaviour
                 }
             }
         }
+        if (questCurrentValue < questClearValue)
+        {
+            // 재료를 모으고 Can_Finish 상태에서 만약 재료가 다시 부족해졌다면 다시 In_Progress상태로 만들어야함.
+            // 재료를 퀘스트 이외에서 줄어드는 곳이 따로 없다면 할 필요 없음.
+        }
+        else
+        {
+            GameEventManager.instance.questEvent.AdvanceQuest(questID);
+        }
     }
     public void CollectConsumeItem(int id)
     {
