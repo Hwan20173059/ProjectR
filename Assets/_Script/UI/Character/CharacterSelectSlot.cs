@@ -8,7 +8,7 @@ public class CharacterSelectSlot : MonoBehaviour
     public CharacterSlot slotPrefab;
     public List<CharacterSlot> characterSlots = new List<CharacterSlot>();
 
-    public void Init()
+    void Start()
     {
         // List의 크기에 맞게 Slot 넓이 조절
         RectTransform rectTransform = GetComponent<RectTransform>();
