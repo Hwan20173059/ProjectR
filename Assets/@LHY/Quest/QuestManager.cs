@@ -204,9 +204,9 @@ public class QuestManager : MonoBehaviour
     private bool CheckRequirements(Quest quest)
     {
         if (PlayerManager.Instance.playerLevel >= quest.info.minLevel && PlayerManager.Instance.playerLevel <= quest.info.maxLevel)
-            return false;
+            return true;
 
-        return true;
+        return false;
     }
 
     private void OnApplicationQuit()
