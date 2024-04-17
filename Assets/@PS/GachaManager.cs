@@ -85,6 +85,7 @@ public class GachaManager : MonoBehaviour
     }
     public void EquipGacha()
     {
+        GameEventManager.instance.uiEvent.Gacha();
         isNowItemHaving = true;
         int randomIndex = Random.Range(1, 57);
         if (!itemManager.HaveEquipItem(randomIndex))
