@@ -11,8 +11,8 @@ public class DataManager : Singleton<DataManager>
     public SaveData saveData;
     public CharacterDatabase characterDatabase;
     public MonsterDatabase monsterDatabase;
-    public StageDatabase stageDatabase;
-    public DungeonDatabase dungeonDatabase;
+    public MonsterGroupDatabase monsterGroupDatabase;
+    public BattleDatabase battleDatabase;
     public EffectDatabase effectDatabase;
 
     new private void Awake()
@@ -22,8 +22,8 @@ public class DataManager : Singleton<DataManager>
 
         LoadDatabase(ref characterDatabase);
         LoadDatabase(ref monsterDatabase);
-        LoadDatabase(ref stageDatabase);
-        LoadDatabase(ref dungeonDatabase);
+        LoadDatabase(ref monsterGroupDatabase);
+        LoadDatabase(ref battleDatabase);
         LoadDatabase(ref effectDatabase);
     }
 
