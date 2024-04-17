@@ -468,4 +468,9 @@ public class TileMapManager : MonoBehaviour
     {
         settingUI.SetActive(false);
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

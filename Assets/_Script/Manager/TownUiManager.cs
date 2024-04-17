@@ -272,4 +272,8 @@ public class TownUiManager : MonoBehaviour
         playerManager.firstShop = true;
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

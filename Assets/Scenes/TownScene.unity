@@ -15444,13 +15444,15 @@ MonoBehaviour:
   test: 0
   questData:
     id: 0
+    repeatable: 
     displayName: 
     description: 
     questType: 
+    questValueID: 0
     questCurrentValue: 0
     questClearValue: 0
-    needLevel: 0
-    needGold: 0
+    minLevel: 0
+    maxLevel: 0
     questState: 0
     goldReward: 0
     expReward: 0
@@ -15459,7 +15461,7 @@ MonoBehaviour:
   datas:
     quest: []
   questSlotPrefeb: {fileID: 0}
-  tr: {fileID: 0}
+  questCount: 0
   Datas:
     questSaveData: []
 --- !u!4 &1669283410
@@ -18114,7 +18116,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2025815942}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 294579729}
+        m_TargetAssemblyTypeName: TownUiManager, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2025815942
 MonoBehaviour:
   m_ObjectHideFlags: 0
