@@ -26,6 +26,8 @@ public class CharacterHpBar : MonoBehaviour
             float addScale = (character.maxHP - 100) / 1000;
             characterMaxHpBar.localScale = new Vector3(characterMaxHpBar.localScale.x + addScale, characterMaxHpBar.localScale.y);
         }
+
+        SetHpBar();
     }
 
     public void SetHpBar()
