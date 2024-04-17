@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Android;
 using UnityEngine.UIElements;
 using System.IO;
-using static UnityEditor.Progress;
 
 /*
  * QuestManager는 모든 퀘스트를 상태를 전체적으로 관리함.
