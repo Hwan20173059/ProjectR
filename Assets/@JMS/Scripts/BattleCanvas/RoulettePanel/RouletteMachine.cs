@@ -36,8 +36,10 @@ public class RouletteMachine : MonoBehaviour
         StartCoroutine(SpinRoulette(roulette0, 6, resultIndex0));
         StartCoroutine(SpinRoulette(roulette1, 10, resultIndex1));
         yield return StartCoroutine(SpinRoulette(roulette2, 14, resultIndex2));
-
+        
         battleManager.IsUsingRoulette = false;
+
+        battleManager.battleCanvas.UpdateCharacterAtk();
 
         if (battleManager.IsAutoBattle)
             battleManager.OnClickAttackButton();

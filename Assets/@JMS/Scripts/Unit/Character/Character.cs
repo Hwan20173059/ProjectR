@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
     public float curCoolTime;
     public float maxCoolTime;
 
-    public int changedAtk { get { return atk + characterBuffHandler.GetBuffValue(BuffType.Atk); } }
+    public int addBuffAtk { get { return atk + characterBuffHandler.GetBuffValue(BuffType.Atk); } }
 
     public bool IsDead => curHP <= 0;
     public string currentStateText = "´ë±âÁß";
@@ -138,20 +138,22 @@ public class Character : MonoBehaviour
 
     public void ChangeHP(int value)
     {
-        if(value < 0)
-        {
-            animatorController.PlayAnim(CharacterAnim.Hit);
-        }
-        else if(value > 0)
-        {
-            animatorController.PlayAnim(CharacterAnim.Heal);
-        }
-
         curHP += value;
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;
 
         hpBar.SetHpBar();
+
+        if(value < 0)
+        {
+            animatorController.PlayAnim(CharacterAnim.Hit);
+            battleCanvas.UpdateCharacterState();
+        }
+        else if(value > 0)
+        {
+            animatorController.PlayAnim(CharacterAnim.Heal);
+            battleCanvas.UpdateCharacterAtk();
+        }
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
         battleCanvas.SetChangeHpTMP(value, screenPos);
@@ -160,8 +162,6 @@ public class Character : MonoBehaviour
         {
             stateMachine.ChangeState(stateMachine.deadState);
         }
-
-        battleCanvas.UpdateCharacterState();
     }
 
     public void ChangeExp(int value)

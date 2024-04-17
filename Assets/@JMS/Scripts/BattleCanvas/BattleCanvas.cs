@@ -120,12 +120,24 @@ public class BattleCanvas : MonoBehaviour
         go.transform.position = startPos + (Vector3.up / 2);
         go.GetComponent<BattleEffect>().SetRepeatEffect(id);
     }
+    public void SetRepeatEffect(int id, float effectScale, Vector3 startPos)
+    {
+        GameObject go = objectPool.GetFromPool("BattleEffect");
+        go.transform.position = startPos + (Vector3.up / 2);
+        go.GetComponent<BattleEffect>().SetRepeatEffect(id, effectScale);
+    }
 
     public void SetMoveEffect(int id, Vector3 startPos)
     {
         GameObject go = objectPool.GetFromPool("BattleEffect");
         go.transform.position = startPos + (Vector3.up / 2);
         go.GetComponent<BattleEffect>().SetMoveEffect(id);
+    }
+    public void SetMoveEffect(int id, Vector3 startPos, Vector3 targetPos)
+    {
+        GameObject go = objectPool.GetFromPool("BattleEffect");
+        go.transform.position = startPos + (Vector3.up / 2);
+        go.GetComponent<BattleEffect>().SetMoveEffect(id, targetPos);
     }
 
     public BattleEffect SetEffect(int id, Vector3 startPos)
@@ -156,6 +168,10 @@ public class BattleCanvas : MonoBehaviour
     public void UpdateCharacterState()
     {
         characterStatePanel.UpdateCharacterState(character);
+    }
+    public void UpdateCharacterAtk()
+    {
+        characterStatePanel.UpdateCharacterState(character, battleManager);
     }
 
     public void UpdateMonsterState()

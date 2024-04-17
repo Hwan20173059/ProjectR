@@ -51,10 +51,6 @@ public class BattleManager : MonoBehaviour
     public GameObject monsterPool;
     public PlayerInput Input {  get; private set; }
 
-    Touch tempTouch;
-    Vector3 touchedPos;
-    bool IsTouch;
-
     public BattleCanvas battleCanvas;
 
     public BattleStateMachine stateMachine;
@@ -297,6 +293,7 @@ public class BattleManager : MonoBehaviour
     {
         if (character.IsDead)
         {
+            character.curHP = character.maxHP;
             stateMachine.ChangeState(stateMachine.defeatState);
         }
 
@@ -357,6 +354,20 @@ public class BattleManager : MonoBehaviour
             character.curCoolTime = 0f;
             performList.Add(100);
             character.stateMachine.ChangeState(character.stateMachine.readyState);
+        }
+        else if (selectMonster == null || selectMonster.IsDead)
+        {
+            for (int i = 0; i < monsters.Count;i++)
+            {
+                if (monsters[i].IsDead)
+                    continue;
+                else
+                {
+                    selectMonster = monsters[i];
+                    SetTargetInfo();
+                    break;
+                }
+            }
         }
     }
 
@@ -432,8 +443,6 @@ public class BattleManager : MonoBehaviour
             rouletteResultIndex.Add(randomIndex);
         }
 
-        battleCanvas.SetRoulette(rouletteResultIndex[0], rouletteResultIndex[1], rouletteResultIndex[2]);
-
         if (rouletteEquip[0] == rouletteEquip[1])
         {
             if (rouletteEquip[1] == rouletteEquip[2])
@@ -457,6 +466,8 @@ public class BattleManager : MonoBehaviour
         {
             rouletteResult = RouletteResult.Different;
         }
+
+        battleCanvas.SetRoulette(rouletteResultIndex[0], rouletteResultIndex[1], rouletteResultIndex[2]);
     }
 
     void RouletteClear()
@@ -465,7 +476,7 @@ public class BattleManager : MonoBehaviour
         rouletteResultIndex.Clear();
     }
 
-    public int GetChangeValue(RouletteResult rouletteResult, int baseValue)
+    public int GetChangeValue(int baseValue)
     {
         switch(rouletteResult)
         {

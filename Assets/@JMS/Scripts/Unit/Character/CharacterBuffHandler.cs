@@ -6,13 +6,13 @@ struct Buff
 {
     public BuffType type;
     public int value;
-    public int duration;
+    public int turnCount;
 
-    public Buff(BuffType type, int value, int duration)
+    public Buff(BuffType type, int value, int turnCount)
     {
         this.type = type;
         this.value = value;
-        this.duration = duration;
+        this.turnCount = turnCount;
     }
 }
 
@@ -40,12 +40,12 @@ public class CharacterBuffHandler
         buffs.Add(speedBuffs);
     }
 
-    public void AddBuff(BuffType type, int value, int duration)
+    public void AddBuff(BuffType type, int value, int turnCount)
     {
         switch (type)
         {
-            case BuffType.Atk: atkBuffs.Add(new Buff(type, value, duration + 1)); break;
-            case BuffType.Speed: speedBuffs.Add(new Buff(type, value, duration + 1)); break;
+            case BuffType.Atk: atkBuffs.Add(new Buff(type, value, turnCount + 1)); break;
+            case BuffType.Speed: speedBuffs.Add(new Buff(type, value, turnCount + 1)); break;
         }
         
     }
@@ -90,13 +90,13 @@ public class CharacterBuffHandler
         {
             for (int i = 0; i < buffs.Count; i++)
             {
-                if (buffs[i].duration == 1)
+                if (buffs[i].turnCount == 1)
                 {
                     RemoveBuff(buffs, i);
                     break;
                 }
                 Buff temp = buffs[i];
-                --temp.duration;
+                --temp.turnCount;
                 buffs[i] = temp;
             }
         }
@@ -108,13 +108,13 @@ public class CharacterBuffHandler
 
         for (int i = curIdx; i < buffs.Count; i++)
         {
-            if (buffs[i].duration == 1)
+            if (buffs[i].turnCount == 1)
             {
                 RemoveBuff(buffs, i);
                 break;
             }
             Buff temp = buffs[i];
-            --temp.duration;
+            --temp.turnCount;
             buffs[i] = temp;
         }
     }
