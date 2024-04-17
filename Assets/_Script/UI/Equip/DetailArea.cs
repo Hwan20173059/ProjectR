@@ -88,10 +88,11 @@ public class DetailArea : MonoBehaviour
         detailObject.SetActive(detailActive);
         if (!detailActive)
         {
-            _equipButton.gameObject.SetActive(false);
-            _unEquipButton.gameObject.SetActive(false);
-            _useButton.gameObject.SetActive(false);
-            mergeButton.gameObject.SetActive(false);
+            if (_equipButton != null) _equipButton.gameObject.SetActive(false);
+            if (_unEquipButton != null) _unEquipButton.gameObject.SetActive(false);
+            if (_useButton != null) _useButton.gameObject.SetActive(false);
+            if (mergeButton != null) mergeButton.gameObject.SetActive(false);
+            if (expUseButton != null) expUseButton.gameObject.SetActive(false);
         }
     }
 
