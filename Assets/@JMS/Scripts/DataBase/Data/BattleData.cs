@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class DungeonData
+public class BattleData
 {
     public int id;
     public string dungeonName;

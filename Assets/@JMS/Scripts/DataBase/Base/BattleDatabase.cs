@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DungeonDatabase : IDatabase
+public class BattleDatabase : IDatabase
 {
-    public List<DungeonData> dungeonDatas;
-    public Dictionary<int, DungeonData> dungeonDic = new();
+    public List<BattleData> battleDatas;
+    public Dictionary<int, BattleData> dungeonDic = new();
 
     public void Initialize()
     {
-        foreach (DungeonData data in dungeonDatas)
+        foreach (BattleData data in battleDatas)
         {
             dungeonDic.Add(data.id, data);
         }
     }
 
-    public DungeonData GetDataByKey(int id)
+    public BattleData GetDataByKey(int id)
     {
         if (dungeonDic.ContainsKey(id))
             return dungeonDic[id];

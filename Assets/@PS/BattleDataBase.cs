@@ -12,11 +12,11 @@ public class BattleDataBase
     public List<MonsterData> monsterDatas;
     public Dictionary<int, MonsterData> monsterDic = new();
 
-    public List<StageData> stageDatas;
-    public Dictionary<int, StageData> stageDic = new();
+    public List<MonsterGroupData> stageDatas;
+    public Dictionary<int, MonsterGroupData> stageDic = new();
 
-    public List<DungeonData> dungeonDatas;
-    public Dictionary<int, DungeonData> dungeonDic = new();
+    public List<BattleData> dungeonDatas;
+    public Dictionary<int, BattleData> dungeonDic = new();
 
 
     public void Initialize()
@@ -31,12 +31,12 @@ public class BattleDataBase
             monsterDic.Add(monsterBase.id, monsterBase);
         }
 
-        foreach (StageData stageBase in stageDatas)
+        foreach (MonsterGroupData stageBase in stageDatas)
         {
             stageDic.Add(stageBase.id, stageBase);
         }
 
-        foreach (DungeonData dungeonBase in dungeonDatas)
+        foreach (BattleData dungeonBase in dungeonDatas)
         {
             dungeonDic.Add(dungeonBase.id, dungeonBase);
         }
@@ -58,7 +58,7 @@ public class BattleDataBase
         return null;
     }
 
-    public StageData GetStageByKey(int id)
+    public MonsterGroupData GetStageByKey(int id)
     {
         if (stageDic.ContainsKey(id))
             return stageDic[id];
@@ -66,7 +66,7 @@ public class BattleDataBase
         return null;
     }
 
-    public DungeonData GetDungeonByKey(int id)
+    public BattleData GetDungeonByKey(int id)
     {
         if (dungeonDic.ContainsKey(id))
             return dungeonDic[id];

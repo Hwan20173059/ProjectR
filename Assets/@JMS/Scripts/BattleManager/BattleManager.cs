@@ -21,8 +21,8 @@ public class BattleManager : MonoBehaviour
     public GameObject monsterPrefab;
     public GameObject targetCirclePrefab;
 
-    DungeonData dungeon;
-    public List<StageData> stages = new List<StageData>();
+    BattleData dungeon;
+    public List<MonsterGroupData> stages = new List<MonsterGroupData>();
     public int curStage;
 
     public List<EquipItem> rouletteEquip;
@@ -126,11 +126,11 @@ public class BattleManager : MonoBehaviour
     
     void BattleInit()
     {
-        dungeon = DataManager.Instance.dungeonDatabase.GetDataByKey(PlayerManager.Instance.selectBattleID);
+        dungeon = DataManager.Instance.battleDatabase.GetDataByKey(PlayerManager.Instance.selectBattleID);
         
         for (int i = 0; i < dungeon.stages.Length; i++)
         {
-            stages.Add(DataManager.Instance.stageDatabase.GetDataByKey(dungeon.stages[i]));
+            stages.Add(DataManager.Instance.monsterGroupDatabase.GetDataByKey(dungeon.stages[i]));
         }
 
         if (targetCircle == null)

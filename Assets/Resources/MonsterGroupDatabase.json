@@ -1,5 +1,5 @@
 {
-	"stageDatas": [
+	"monsterGroupDatas": [
 		{
 			"id": 0,
 			"stageName": "필드 슬라임",
@@ -305,7 +305,7 @@
 		},
 		{
 			"id": 19,
-			"stageName": "심연개",	
+			"stageName": "심연개",
 			"spawnMonsters": [
 				19,
 				19
