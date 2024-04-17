@@ -358,7 +358,7 @@ public class BattleManager : MonoBehaviour
             performList.Add(100);
             character.stateMachine.ChangeState(character.stateMachine.readyState);
         }
-        else if (IsSelectingAction && selectMonster == null || selectMonster.IsDead)
+        else if (selectMonster == null || selectMonster.IsDead)
         {
             for (int i = 0; i < monsters.Count;i++)
             {
