@@ -112,6 +112,7 @@ public class RewardManager : MonoBehaviour
             rewardItem = DataManager.Instance.itemDatabase.GetCItemByKey(item);
             RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = rewardItem.consumeName;
             RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(rewardItem.spritePath, typeof(Sprite)) as Sprite;
+            ItemManager.Instance.AddConsumeItem(item); 
         }
     }
 

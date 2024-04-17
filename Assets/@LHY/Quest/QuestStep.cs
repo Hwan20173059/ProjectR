@@ -95,9 +95,11 @@ public class QuestStep : MonoBehaviour
             foreach (ConsumeItem item in ItemManager.Instance.cInventory)
             {
                 if (QuestManager.instance.GetQuestByID(questID).info.questValueID == item.data.id)
+                {
                     questCurrentValue = item.count;
+                    QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
+                }
             }
-            QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
         }
     }
     public void CollectConsumeItem(int id)
