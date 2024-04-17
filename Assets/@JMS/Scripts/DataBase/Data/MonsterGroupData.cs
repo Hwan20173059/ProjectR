@@ -6,7 +6,7 @@ using UnityEngine;
 public class MonsterGroupData
 {
     public int id;
-    public string stageName;
+    public string groupName;
     public int[] spawnMonsters;
     public int[] randomSpawnMonsters;
     public int randomSpawnMinAmount;
