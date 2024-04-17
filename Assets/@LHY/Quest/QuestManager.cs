@@ -40,7 +40,7 @@ public class QuestManager : MonoBehaviour
 
         //questMap = CreatQuestMap();
         NewquestMap = CreatQuestMaps();
-        if (test == false)
+        if (File.Exists(Application.persistentDataPath + "/QuestSaveData.json"))
             LoadQuest();
     }
 
@@ -147,7 +147,6 @@ public class QuestManager : MonoBehaviour
     private Dictionary<int, Quest> CreatQuestMaps()
     {
         TextAsset jsonFile = Resources.Load<TextAsset>("QuestData");
-        print(Application.persistentDataPath);
         datas = JsonUtility.FromJson<AllData>(jsonFile.text);
         Dictionary<int, Quest> idToQuestMap = new Dictionary<int, Quest>();
         foreach (QuestData questData in datas.quest)
