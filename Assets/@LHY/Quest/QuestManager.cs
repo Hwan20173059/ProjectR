@@ -100,7 +100,7 @@ public class QuestManager : MonoBehaviour
     {
         Quest quest = GetQuestByID(id);
 
-        RewardManager.instance.RewardPopup(quest.info.goldReward, quest.info.expReward, quest.info.consumeRewardID);
+        RewardManager.instance.QuestRewardPopup(quest.info.goldReward, quest.info.expReward, quest.info.consumeRewardID);
 
         ChangeQuestState(quest.info.id, QuestState.Finished);
 
@@ -112,7 +112,9 @@ public class QuestManager : MonoBehaviour
                 foreach (ConsumeItem item in ItemManager.Instance.cInventory)
                 {
                     if (GetQuestByID(id).info.questValueID == item.data.id)
-                        item.count -= quest.info.questCurrentValue;
+                    {
+                        ItemManager.Instance.ReduceConsumeItem(item, quest.info.questCurrentValue);
+                    }
                 }
             }
         }
@@ -204,9 +206,9 @@ public class QuestManager : MonoBehaviour
     private bool CheckRequirements(Quest quest)
     {
         if (PlayerManager.Instance.playerLevel >= quest.info.minLevel && PlayerManager.Instance.playerLevel <= quest.info.maxLevel)
-            return false;
+            return true;
 
-        return true;
+        return false;
     }
 
     private void OnApplicationQuit()
