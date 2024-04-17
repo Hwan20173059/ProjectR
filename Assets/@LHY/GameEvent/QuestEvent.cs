@@ -82,4 +82,14 @@ public class QuestEvent
             onQuestSelect(id);
         }
     }
+
+    public event Action onQuestNofication;
+    public void QuestNofication()
+    {
+
+        if (onQuestNofication != null)
+        {
+            onQuestNofication();
+        }
+    }
 }

@@ -70,6 +70,7 @@ public class QuestManager : MonoBehaviour
             if (quest.state == QuestState.Requirments_Not && CheckRequirements(quest))
             {
                 GameEventManager.instance.questEvent.QuestStateChange(quest);
+                GameEventManager.instance.questEvent.QuestNofication();
                 ChangeQuestState(quest.info.id, QuestState.Can_Start);
             }
         }
@@ -103,6 +104,7 @@ public class QuestManager : MonoBehaviour
         RewardManager.instance.QuestRewardPopup(quest.info.goldReward, quest.info.expReward, -1);
 
         ChangeQuestState(quest.info.id, QuestState.Finished);
+        GameEventManager.instance.questEvent.QuestNofication();
 
         if (quest.info.repeatable == "นÝบน")
         {
