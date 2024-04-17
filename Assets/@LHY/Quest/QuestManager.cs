@@ -39,7 +39,7 @@ public class QuestManager : MonoBehaviour
 
         //questMap = CreatQuestMap();
         NewquestMap = CreatQuestMaps();
-        if (test == false)
+        if (File.Exists(Application.persistentDataPath + "/QuestSaveData.json"))
             LoadQuest();
     }
 
@@ -91,7 +91,6 @@ public class QuestManager : MonoBehaviour
 
     public void AdvanceQuest(int id)
     {
-        Debug.Log(id);
         Quest quest = GetQuestByID(id);
         ChangeQuestState(quest.info.id, QuestState.Can_Finish);
     }
@@ -100,22 +99,18 @@ public class QuestManager : MonoBehaviour
     {
         Quest quest = GetQuestByID(id);
 
-        RewardManager.instance.QuestRewardPopup(quest.info.goldReward, quest.info.expReward, quest.info.consumeRewardID);
+        RewardManager.instance.QuestRewardPopup(quest.info.goldReward, quest.info.expReward, -1);
 
         ChangeQuestState(quest.info.id, QuestState.Finished);
 
         if (quest.info.repeatable == "반복")
         {
-            ChangeQuestState(quest.info.id, QuestState.Requirments_Not);
-            if (quest.info.questType == "GetConsumeItem")
+            ChangeQuestState(quest.info.id, QuestState.Can_Start);
+            if (quest.info.questType == "CollectConsumeItem")
             {
-                foreach (ConsumeItem item in ItemManager.Instance.cInventory)
-                {
-                    if (GetQuestByID(id).info.questValueID == item.data.id)
-                    {
-                        ItemManager.Instance.ReduceConsumeItem(item, quest.info.questCurrentValue);
-                    }
-                }
+                print(ItemManager.Instance.GetConsumeItem(quest.info.questValueID).data.consumeName);//치즈 조각
+                print(quest.info.questClearValue);
+                ItemManager.Instance.ReduceConsumeItem(ItemManager.Instance.GetConsumeItem(quest.info.questValueID), quest.info.questClearValue);
             }
         }
     }
@@ -150,7 +145,7 @@ public class QuestManager : MonoBehaviour
     public int questCount;
     private Dictionary<int, Quest> CreatQuestMaps()
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>("Quests/QuestData");
+        TextAsset jsonFile = Resources.Load<TextAsset>("QuestData");
         datas = JsonUtility.FromJson<AllData>(jsonFile.text);
         Dictionary<int, Quest> idToQuestMap = new Dictionary<int, Quest>();
         foreach (QuestData questData in datas.quest)
@@ -167,7 +162,7 @@ public class QuestManager : MonoBehaviour
 
     private void LoadQuest()
     {
-        string FromJsonData = File.ReadAllText("Assets\\Resources\\Quests\\QuestSaveData.json");//todo : 절대경로 수정
+        string FromJsonData = File.ReadAllText(Application.persistentDataPath + "/QuestSaveData.json");
         AllQuestSaveData allQuestSaveData = JsonUtility.FromJson<AllQuestSaveData>(FromJsonData);
 
         foreach (SaveQuestData saveQuestData in allQuestSaveData.questSaveData)
@@ -224,7 +219,7 @@ public class QuestManager : MonoBehaviour
             */
             SaveQuest(quest);
         }
-        File.WriteAllText("Assets\\Resources\\Quests\\QuestSaveData.json", JsonUtility.ToJson(Datas));
+        File.WriteAllText(Application.persistentDataPath + "/QuestSaveData.json", JsonUtility.ToJson(Datas));
     }
 
     [SerializeField] private AllQuestSaveData Datas;

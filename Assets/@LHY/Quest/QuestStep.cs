@@ -31,6 +31,7 @@ public class QuestStep : MonoBehaviour
         GameEventManager.instance.battleEvent.onDungeonClear += DungeonClear;
         GameEventManager.instance.uiEvent.onChangeEquip += ItemEquip;
         GameEventManager.instance.uiEvent.onGacha += Gacha;
+        GameEventManager.instance.questEvent.onFinishQuest += FinishQuest;
     }
 
     private void OnDisable()
@@ -39,6 +40,17 @@ public class QuestStep : MonoBehaviour
         GameEventManager.instance.battleEvent.onDungeonClear -= DungeonClear;
         GameEventManager.instance.uiEvent.onChangeEquip -= ItemEquip;
         GameEventManager.instance.uiEvent.onGacha -= Gacha;
+        GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
+    }
+
+    public void FinishQuest(int id)
+    {
+        if (id == questID)
+        {
+            Destroy(this.gameObject);
+        }
+
+        return;
     }
 
     public void Gacha()

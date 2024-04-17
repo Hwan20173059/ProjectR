@@ -38,7 +38,6 @@ public class GachaManager : MonoBehaviour
                 {
                     playerManager.gold -= 500;
                     CharacterGacha();
-                    RefreshGold();
                 }
                 break;
             case 1:
@@ -46,7 +45,6 @@ public class GachaManager : MonoBehaviour
                 {
                     playerManager.gold -= 5000;
                     CharacterGacha10();
-                    RefreshGold();
                 }
                 break;
             case 2:
@@ -54,7 +52,6 @@ public class GachaManager : MonoBehaviour
                 {
                     playerManager.gold -= 300;
                     EquipGacha();
-                    RefreshGold();
                 }
                 break;
             case 3:
@@ -62,7 +59,6 @@ public class GachaManager : MonoBehaviour
                 {
                     playerManager.gold -= 3000;
                     EquipGacha10();
-                    RefreshGold();
                 }
                 break;
         }
@@ -76,11 +72,16 @@ public class GachaManager : MonoBehaviour
             isNowItemHaving = false;
             itemManager.AddConsumeItem(randomIndex);
         }
+        else
+        {
+            CharacterToScroll(randomIndex - 32);
+        }
         nowChar = itemManager.GetConsumeItem(randomIndex);
 
         if (!gacha10)
         {
             gachaResult.Character1UI(nowChar, isNowItemHaving);
+            RefreshGold();
         }
     }
     public void EquipGacha()
@@ -93,13 +94,19 @@ public class GachaManager : MonoBehaviour
             isNowItemHaving = false;
             itemManager.AddEquipItem(randomIndex);
         }
+        else
+        {
+            ItemToGold(randomIndex);
+        }
         nowEquip = itemManager.GetEquipItem(randomIndex);
 
         if (!gacha10)
         {
             gachaResult.Equip1UI(nowEquip, isNowItemHaving);
+            RefreshGold();
         }
     }
+
 
     public void CharacterGacha10()
     {
@@ -113,6 +120,7 @@ public class GachaManager : MonoBehaviour
         gachaResult.Character10UI(charArray, isHaving);
         System.Array.Clear(equipArray, 0, equipArray.Length);
         gacha10 = false;
+        RefreshGold();
     }
 
     public void EquipGacha10()
@@ -127,8 +135,23 @@ public class GachaManager : MonoBehaviour
         gachaResult.Equip10UI(equipArray, isHaving);
         System.Array.Clear(equipArray, 0, equipArray.Length);
         gacha10 = false;
+        RefreshGold();
     }
 
+    private void ItemToGold(int index)
+    {
+        if (index < 22) playerManager.gold += 100;
+        else if (index < 38) playerManager.gold += 150;
+        else if (index < 51) playerManager.gold += 200;
+        else playerManager.gold += 250;
+    }
+
+    private void CharacterToScroll(int index)
+    {
+        if (index < 5) itemManager.AddConsumeItem(100);
+        else if (index < 9) itemManager.AddConsumeItem(101);
+        else itemManager.AddConsumeItem(102);
+    }
 
     public void RefreshGold()
     {

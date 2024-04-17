@@ -73,14 +73,12 @@ public class TownUiManager : MonoBehaviour
             tutorialUI.gameObject.SetActive(true);
             tutorialUI.ActiveTutorial(1);
             characterUI.CharacterUIon();
-            characterUI.GetComponentInChildren<CharacterSelectSlot>().Init();
 
             playerManager.firstCharacter = false;
         }
         else
         {
             characterUI.CharacterUIon();
-            characterUI.GetComponentInChildren<CharacterSelectSlot>().Init();
         }
     }
 
