@@ -111,6 +111,7 @@ public class QuestStep : MonoBehaviour
             GameEventManager.instance.questEvent.AdvanceQuest(questID);
         }
     }
+
     public void CollectConsumeItem(int id)
     {
         if (questCurrentValue < questClearValue)

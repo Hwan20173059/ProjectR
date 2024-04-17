@@ -44,7 +44,7 @@ public class UIEvent
     }
 
     public event Action onGacha;
-    public void Gacha(int id)
+    public void Gacha()
     {
         if (onGacha != null)
         {
