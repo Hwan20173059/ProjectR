@@ -80,6 +80,7 @@ public class RewardManager : MonoBehaviour
 
         //todo : GOLD Sprite 적용
         RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load("UiImage/Icon 5 Over", typeof(Sprite)) as Sprite;
+
     }
 
     private void AddexpReward()
@@ -89,8 +90,7 @@ public class RewardManager : MonoBehaviour
         RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = reward.exp.ToString();
         PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex].ChangeExp(reward.exp);
 
-        //todo : EXP Sprite 적용(소스가 있음?)
-        //RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(i).spritePath, typeof(Sprite)) as Sprite;
+        RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load("UiImage/EXP", typeof(Sprite)) as Sprite;
     }
 
     private void QuestexpReward()
@@ -101,7 +101,7 @@ public class RewardManager : MonoBehaviour
         PlayerManager.Instance.ChangeExp(reward.exp);
 
         //todo : EXP Sprite 적용(소스가 있음?)
-        //RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load(DataManager.Instance.itemDatabase.GetItemByKey(i).spritePath, typeof(Sprite)) as Sprite;
+        RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load("UiImage/EXP", typeof(Sprite)) as Sprite;
     }
 
     /*
