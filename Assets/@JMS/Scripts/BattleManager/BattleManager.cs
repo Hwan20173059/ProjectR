@@ -293,6 +293,7 @@ public class BattleManager : MonoBehaviour
     {
         if (character.IsDead)
         {
+            character.curHP = character.maxHP;
             stateMachine.ChangeState(stateMachine.defeatState);
         }
 
