@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class MenuPanel : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MenuPanel : MonoBehaviour
 
     ContinueButton continueButton;
     SettingButton settingButton;
+    GameEndButton gameEndButton;
 
     public void Init(BattleCanvas battleCanvas)
     {
@@ -16,9 +18,11 @@ public class MenuPanel : MonoBehaviour
 
         continueButton = GetComponentInChildren<ContinueButton>();
         settingButton = GetComponentInChildren<SettingButton>();
+        gameEndButton = GetComponentInChildren<GameEndButton>();
 
         continueButton.button.onClick.AddListener(OnClickContinueButton);
         settingButton.button.onClick.AddListener(OnClickSettingButton);
+        gameEndButton.button.onClick.AddListener(OnClickGameEndButton);
 
         gameObject.SetActive(false);
     }
@@ -30,5 +34,9 @@ public class MenuPanel : MonoBehaviour
     void OnClickSettingButton()
     {
         battleCanvas.SettingsOn();
+    }
+    void OnClickGameEndButton()
+    {
+        Application.Quit();
     }
 }
