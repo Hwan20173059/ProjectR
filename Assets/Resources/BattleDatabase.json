@@ -1,0 +1,160 @@
+{
+	"battleDatas": [
+		{
+			"id": 0,
+			"battleName": "필드1",
+			"monsterGroups": [
+				0
+			]
+		},
+		{
+			"id": 1,
+			"battleName": "필드2",
+			"monsterGroups": [
+				1,
+				1
+			]
+		},
+		{
+			"id": 2,
+			"battleName": "필드3",
+			"monsterGroups": [
+				2,
+				2
+			]
+		},
+		{
+			"id": 3,
+			"battleName": "필드4",
+			"monsterGroups": [
+				3
+			]
+		},
+		{
+			"id": 4,
+			"battleName": "산1",
+			"monsterGroups": [
+				4
+			]
+		},
+		{
+			"id": 5,
+			"battleName": "산2",
+			"monsterGroups": [
+				5
+			]
+		},
+		{
+			"id": 6,
+			"battleName": "산3",
+			"monsterGroups": [
+				6
+			]
+		},
+		{
+			"id": 7,
+			"battleName": "산4",
+			"monsterGroups": [
+				7
+			]
+		},
+		{
+			"id": 8,
+			"battleName": "유적1",
+			"monsterGroups": [
+				8
+			]
+		},
+		{
+			"id": 9,
+			"battleName": "유적2",
+			"monsterGroups": [
+				8,
+				9
+			]
+		},
+		{
+			"id": 10,
+			"battleName": "유적3",
+			"monsterGroups": [
+				8,
+				10
+			]
+		},
+		{
+			"id": 11,
+			"battleName": "유적4",
+			"monsterGroups": [
+				8,
+				11
+			]
+		},
+		{
+			"id": 12,
+			"battleName": "바다1",
+			"monsterGroups": [
+				12,
+				12
+			]
+		},
+		{
+			"id": 13,
+			"battleName": "바다2",
+			"monsterGroups": [
+				13,
+				13
+			]
+		},
+		{
+			"id": 14,
+			"battleName": "바다3",
+			"monsterGroups": [
+				14,
+				14
+			]
+		},
+		{
+			"id": 15,
+			"battleName": "바다4",
+			"monsterGroups": [
+				15,
+				15
+			]
+		},
+		{
+			"id": 16,
+			"battleName": "지옥1",
+			"monsterGroups": [
+				16,
+				16
+			]
+		},
+		{
+			"id": 17,
+			"battleName": "지옥2",
+			"monsterGroups": [
+				17,
+				17
+			]
+		},
+		{
+			"id": 18,
+			"battleName": "지옥3",
+			"monsterGroups": [
+				17,
+				18,
+				18
+			]
+		},
+		{
+			"id": 19,
+			"battleName": "지옥4",
+			"monsterGroups": [
+				16,
+				19,
+				19
+			]
+		}
+
+	]
+}

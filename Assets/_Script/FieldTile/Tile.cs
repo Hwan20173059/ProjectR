@@ -431,9 +431,24 @@ public class Tile : MonoBehaviour
 
                     RefreshTile();
 
+                    switch(PlayerManager.Instance.selectDungeonID)
+                    {
+                        case 0:
+                            RewardManager.instance.RewardPopup(300, 0, 26);
+                            break;
+                        case 1:
+                            RewardManager.instance.RewardPopup(600, 0, 27);
+                            break;
+                        case 2:
+                            RewardManager.instance.RewardPopup(1000, 0, 27);
+                            break;
+                        case 3:
+                            RewardManager.instance.RewardPopup(2000, 0, 28);
+                            break;
+                    }
+
                     tileMapManager.isSelect = false;
 
-                    tileMapManager.ChestUI.SetActive(true);
                     break;
             }
         }

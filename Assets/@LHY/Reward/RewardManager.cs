@@ -51,7 +51,7 @@ public class RewardManager : MonoBehaviour
         PopupReward();
     }
 
-    public void AddReward(StageData stageData)
+    public void AddReward(MonsterGroupData stageData)
     {
         print("리워드 추가");
         reward.gold += stageData.rewardGold;

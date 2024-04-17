@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GachaManager : MonoBehaviour
@@ -19,6 +20,9 @@ public class GachaManager : MonoBehaviour
 
     public GachaResult gachaResult;
 
+    [SerializeField] private TextMeshProUGUI gold;
+    [SerializeField] private TownUiManager townUiManager;
+
     private void Start()
     {
         itemManager = ItemManager.Instance;
@@ -34,6 +38,7 @@ public class GachaManager : MonoBehaviour
                 {
                     playerManager.gold -= 500;
                     CharacterGacha();
+                    RefreshGold();
                 }
                 break;
             case 1:
@@ -41,6 +46,7 @@ public class GachaManager : MonoBehaviour
                 {
                     playerManager.gold -= 5000;
                     CharacterGacha10();
+                    RefreshGold();
                 }
                 break;
             case 2:
@@ -48,6 +54,7 @@ public class GachaManager : MonoBehaviour
                 {
                     playerManager.gold -= 300;
                     EquipGacha();
+                    RefreshGold();
                 }
                 break;
             case 3:
@@ -55,6 +62,7 @@ public class GachaManager : MonoBehaviour
                 {
                     playerManager.gold -= 3000;
                     EquipGacha10();
+                    RefreshGold();
                 }
                 break;
         }
@@ -118,5 +126,13 @@ public class GachaManager : MonoBehaviour
         gachaResult.Equip10UI(equipArray, isHaving);
         System.Array.Clear(equipArray, 0, equipArray.Length);
         gacha10 = false;
+    }
+
+
+    public void RefreshGold()
+    {
+        townUiManager.PlayerInfoRefresh();
+        if (playerManager == null) playerManager = PlayerManager.Instance;
+        gold.text = "<sprite=0> " + playerManager.gold;
     }
 }

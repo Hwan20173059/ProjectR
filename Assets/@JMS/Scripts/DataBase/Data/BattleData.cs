@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class DungeonData
+public class BattleData
 {
     public int id;
-    public string dungeonName;
-    public int[] stages;
+    public string battleName;
+    public int[] monsterGroups;
 }
