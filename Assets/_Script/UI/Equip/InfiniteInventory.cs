@@ -22,6 +22,7 @@ public class InfiniteInventory : Inventory
 
     protected override void Start()
     {
+        ItemManager.Instance.inventory = this;
         SetMaxSlots(maxSlots);
         SetConsumeMaxSlots(cmaxSlots);
         base.Start();
