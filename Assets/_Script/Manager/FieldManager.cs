@@ -41,13 +41,14 @@ public class FieldManager : TileMapManager
             PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
 
             if (playerTurnIndex > 0)
-                PlayerTurn();
+            {
+                StillPlayerTurn();
+            }
             else
             {
                 PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
                 AEnemyTurn();
             }
-            
         }
 
         currentTile = field.tileRaw[playerManager.fieldY].fieldTiles[playerManager.fieldX];
