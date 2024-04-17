@@ -110,6 +110,7 @@ public class QuestManager : MonoBehaviour
             if (quest.info.questType == "CollectConsumeItem")
             {
                 print(ItemManager.Instance.GetConsumeItem(quest.info.questValueID).data.consumeName);//치즈 조각
+                print(quest.info.questClearValue);
                 ItemManager.Instance.ReduceConsumeItem(ItemManager.Instance.GetConsumeItem(quest.info.questValueID), quest.info.questClearValue);
             }
         }
@@ -145,7 +146,8 @@ public class QuestManager : MonoBehaviour
     public int questCount;
     private Dictionary<int, Quest> CreatQuestMaps()
     {
-        TextAsset jsonFile = Resources.Load<TextAsset>("Quests/QuestData");
+        TextAsset jsonFile = Resources.Load<TextAsset>("QuestData");
+        print(Application.persistentDataPath);
         datas = JsonUtility.FromJson<AllData>(jsonFile.text);
         Dictionary<int, Quest> idToQuestMap = new Dictionary<int, Quest>();
         foreach (QuestData questData in datas.quest)
@@ -162,7 +164,7 @@ public class QuestManager : MonoBehaviour
 
     private void LoadQuest()
     {
-        string FromJsonData = File.ReadAllText("Assets\\Resources\\Quests\\QuestSaveData.json");//todo : 절대경로 수정
+        string FromJsonData = File.ReadAllText(Application.persistentDataPath + "/QuestSaveData.json");
         AllQuestSaveData allQuestSaveData = JsonUtility.FromJson<AllQuestSaveData>(FromJsonData);
 
         foreach (SaveQuestData saveQuestData in allQuestSaveData.questSaveData)
@@ -219,7 +221,7 @@ public class QuestManager : MonoBehaviour
             */
             SaveQuest(quest);
         }
-        File.WriteAllText("Assets\\Resources\\Quests\\QuestSaveData.json", JsonUtility.ToJson(Datas));
+        File.WriteAllText(Application.persistentDataPath + "/QuestSaveData.json", JsonUtility.ToJson(Datas));
     }
 
     [SerializeField] private AllQuestSaveData Datas;
