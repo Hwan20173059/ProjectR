@@ -206,6 +206,7 @@ public class CharacterActionState : CharacterBaseState
         character.PlayAnim(CharacterAnim.Jump);
         while (1 > GetNormalizedTime(character.animatorController.animator, "Jump")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
 
         character.StartCoroutine(Attack(damageMultiple, count, effectId));
     }
@@ -497,46 +498,18 @@ public class CharacterActionState : CharacterBaseState
             int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
 
             character.ChangeAnimState(CharacterAnimState.Running);
-
             while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
             RaycastHit2D[] hit;
             hit = Physics2D.RaycastAll(character.transform.position, Vector3.right, 1f + (2.5f * range));
-            for (int i = 0; i < hit.Length; i++)
-            {
-                if (hit[i].collider.CompareTag("Monster"))
-                {
-                    Monster hitMonster = hit[i].collider.GetComponent<Monster>();
-                    if (!hitMonster.IsDead)
-                        hitMonster.ChangeHP(-damage);
-                }
-            }
-            battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 직선 공격!\n몬스터들에게 {damage}의 데미지 공격!");
-            battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position); // 임시 이펙트
-            character.PlayAnim(CharacterAnim.Slash);
-            while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
-            character.PlayAnim(CharacterAnim.Idle);
+            yield return StraightRangeAttackBase(target, hit, damage, effectId);
 
             while (MoveTowardsCharacter(nextMonsterPosition)) { yield return null; }
 
             hit = Physics2D.RaycastAll(character.transform.position, Vector3.right, 1f + (2.5f * range));
-            for (int i = 0; i < hit.Length; i++)
-            {
-                if (hit[i].collider.CompareTag("Monster"))
-                {
-                    Monster hitMonster = hit[i].collider.GetComponent<Monster>();
-                    if (!hitMonster.IsDead)
-                        hitMonster.ChangeHP(-damage);
-                }
-            }
-            battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 직선 공격!\n몬스터들에게 {damage}의 데미지 공격!");
-            battleManager.battleCanvas.SetMoveEffect(effectId, nextTarget.transform.position); // 임시 이펙트
-            character.PlayAnim(CharacterAnim.Slash);
-            while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
-            character.PlayAnim(CharacterAnim.Idle);
+            yield return StraightRangeAttackBase(nextTarget, hit, damage, effectId);
 
             while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
-
             character.ChangeAnimState(CharacterAnimState.Ready);
 
             stateMachine.ChangeState(stateMachine.readyState);
