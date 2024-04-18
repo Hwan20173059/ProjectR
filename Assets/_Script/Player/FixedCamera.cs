@@ -11,8 +11,8 @@ public class FixedCamera : MonoBehaviour
 
     public void SetResolution()
     {
-        int setWidth = 2340;
-        int setHeight = 1080;
+        int setWidth = 2000;
+        int setHeight = 900;
 
         int deviceWidth = Screen.width;
         int deviceHeight = Screen.height;
