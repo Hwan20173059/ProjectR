@@ -152,7 +152,7 @@ public class PlayerManager : Singleton<PlayerManager>
         currentExp = currentExp - needExp;
         playerLevel++;
 
-        currentExp = currentExp >= needExp ? LevelUp() : currentExp;
+        //currentExp = currentExp >= needExp ? LevelUp() : currentExp;
 
         AudioManager.Instance.PlayLevelUpSFX();
 

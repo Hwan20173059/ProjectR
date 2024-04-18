@@ -100,8 +100,8 @@ public class RewardManager : MonoBehaviour
         RewardSlot.GetComponentsInChildren<TextMeshProUGUI>()[0].text = reward.exp.ToString();
         PlayerManager.Instance.ChangeExp(reward.exp);
 
-        //todo : EXP Sprite 적용(소스가 있음?)
         RewardSlot.GetComponentsInChildren<Image>()[1].sprite = Resources.Load("UiImage/EXP", typeof(Sprite)) as Sprite;
+        PlayerManager.Instance.townUiManager.PlayerInfoRefresh();
     }
 
     /*
@@ -154,7 +154,6 @@ public class RewardManager : MonoBehaviour
 
     public void Off()
     {
-        AudioManager.Instance.PlayUISelectSFX();
         rewardUI.SetActive(!rewardUI.activeSelf);
         RemoveSlot();
         //rewardUI.SetActive(false);
