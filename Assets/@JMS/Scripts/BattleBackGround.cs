@@ -26,12 +26,11 @@ public class BattleBackGround : MonoBehaviour
 
         gameObject.transform.localScale = new Vector3(1, 1, 1);
 
-        float _width = spriteRenderer.bounds.size.x;
         float _height = spriteRenderer.bounds.size.y;
+        float _width = spriteRenderer.bounds.size.x;
 
-        float worldScreenHeight = (float)(Camera.main.orthographicSize * 2.0);
-        float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
-
+        float worldScreenHeight = (float)(Camera.main.orthographicSize * 2);
+        float worldScreenWidth = worldScreenHeight / Screen.height * (Screen.height * 20f / 9f);
 
         gameObject.transform.localScale = new Vector3(worldScreenWidth / _width, worldScreenHeight / _height, 1);
     }
