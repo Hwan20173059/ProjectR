@@ -64,6 +64,12 @@ public class TileMapManager : MonoBehaviour
     [Header("Path Finding")]
     public List<Tile> movableTile;
 
+    [Header("Tile Sprite")]
+    public Sprite FieldTile;
+    public Sprite Dungeon1Tile;
+    public Sprite Dungeon2Tile;
+    public Sprite Dungeon3Tile;
+    public Sprite Dungeon4Tile;
 
     public void CharacterUIRefresh()
     {
