@@ -15,4 +15,5 @@ public class Audios
     public AudioClip playerAttackClip;
     public AudioClip startClip;
     public AudioClip uiSelectClip;
+    public AudioClip levelupClip;
 }

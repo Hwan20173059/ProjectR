@@ -180,9 +180,17 @@ PrefabInstance:
       value: AudioManager
       objectReference: {fileID: 0}
     - target: {fileID: 6870572060026808796, guid: 0f5cf220e0a9dfa4c91ac469f1b6454a, type: 3}
+      propertyPath: audios.levelupClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f79e56895aace4d439772a346c4b9fa5, type: 3}
+    - target: {fileID: 6870572060026808796, guid: 0f5cf220e0a9dfa4c91ac469f1b6454a, type: 3}
       propertyPath: audios.titleBGMClip
       value: 
       objectReference: {fileID: 8300000, guid: 5496e38b49f874462b53adf61dd98f7b, type: 3}
+    - target: {fileID: 6870572060026808796, guid: 0f5cf220e0a9dfa4c91ac469f1b6454a, type: 3}
+      propertyPath: audios.uiSelectClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 38d1fda9de190be4180d97c83d1dea9b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
