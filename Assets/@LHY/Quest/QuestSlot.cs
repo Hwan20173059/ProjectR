@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,12 +14,15 @@ public class QuestSlot : MonoBehaviour
     public int questId;
     public QuestState currentQuestState;
 
+    private string desc;
     private void Start()
     {
         Quest quest = QuestManager.instance.QuestStateCheck(questId);
-        print(quest.info.displayName);
         QuestUpdate();
-        GetComponentsInChildren<TextMeshProUGUI>()[0].text = quest.info.displayName;
+        if (quest.info.repeatable == "반복")
+            desc = "[반복]";
+        desc += quest.info.displayName;
+        GetComponentsInChildren<TextMeshProUGUI>()[0].text = desc;
     }
 
     private void OnEnable()
