@@ -124,6 +124,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAtkRangeHitSFX(); // 임시 사운드
         battleManager.battleCanvas.SetRepeatEffect(effectId, target.transform.position); // 임시 이펙트
         target.ChangeHP(-damage);
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 공격!\n{target.monsterName}에게 {damage}의 피해!");
@@ -160,6 +161,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayHit1SFX(); // 임시 사운드
 
         for (int j = 0; j < battleManager.monsters.Count; j++)
         {
@@ -178,6 +180,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAttack1SFX(); // 임시 사운드
 
         for (int i = 0; i < battleManager.monsters.Count; i++)
         {
@@ -197,6 +200,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAttack1SFX(); // 임시 사운드
 
         for (int i = 0; i < battleManager.monsters.Count; i++)
         {
@@ -216,6 +220,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAttack1SFX(); // 임시 사운드
 
         for (int i = 0; i < battleManager.monsters.Count; i++)
         {
@@ -290,6 +295,7 @@ public class CharacterActionState : CharacterBaseState
         character.ChangeHP(value);
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}이 {battleManager.rouletteEquip[0].data.tripleValue}의 체력을 회복!");
 
+        AudioManager.Instance.PlayMonsterJumpSFX(); // 임시 사운드
         character.PlayAnim(CharacterAnim.Jump);
         while (1 > GetNormalizedTime(character.animatorController.animator, "Jump")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
@@ -329,6 +335,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAtkMagicSFX(); // 임시 사운드
 
         for (int j = 0; j < hit.Length; j++)
         {
@@ -350,6 +357,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAtkMagicSFX(); // 임시 사운드
 
         for (int j = 0; j < hit.Length; j++)
         {
@@ -374,6 +382,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAtkMagicSFX(); // 임시 사운드
 
         for (int j = 0; j < hit.Length; j++)
         {
@@ -398,6 +407,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAtkMagicSFX(); // 임시 사운드
 
         for (int j = 0; j < hit.Length; j++)
         {
@@ -454,6 +464,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAtkMagicSFX(); // 임시 사운드
 
         battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, leftPos); // 임시 이펙트
         battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, upPos);
@@ -497,6 +508,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAtkMagicSFX(); // 임시 사운드
 
         battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, leftPos); // 임시 이펙트
         battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, upPos);
@@ -545,6 +557,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAtkMagicSFX(); // 임시 사운드
 
         battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, leftPos); // 임시 이펙트
         battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, upPos);
@@ -593,6 +606,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayAtkMagicSFX(); // 임시 사운드
 
         battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, leftPos); // 임시 이펙트
         battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, upPos);
@@ -658,6 +672,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayHit1SFX(); // 임시 사운드
 
         battleManager.battleCanvas.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
 
@@ -683,6 +698,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayHit1SFX(); // 임시 사운드
 
         battleManager.battleCanvas.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
 
@@ -711,6 +727,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayHit1SFX(); // 임시 사운드
 
         battleManager.battleCanvas.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
 
@@ -739,6 +756,7 @@ public class CharacterActionState : CharacterBaseState
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayHit1SFX(); // 임시 사운드
 
         battleManager.battleCanvas.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
 
@@ -768,6 +786,8 @@ public class CharacterActionState : CharacterBaseState
         character.PlayAnim(CharacterAnim.Jump);
         while (1 > GetNormalizedTime(character.animatorController.animator, "Jump")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+        AudioManager.Instance.PlayHit2SFX(); // 임시 사운드
 
         character.StartCoroutine(Attack(1, 1, 2));
     }
