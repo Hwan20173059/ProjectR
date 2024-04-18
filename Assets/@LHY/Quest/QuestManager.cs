@@ -112,7 +112,8 @@ public class QuestManager : MonoBehaviour
             {
                 print(ItemManager.Instance.GetConsumeItem(quest.info.questValueID).data.consumeName);//치즈 조각
                 print(quest.info.questClearValue);
-                ItemManager.Instance.ReduceConsumeItem(ItemManager.Instance.GetConsumeItem(quest.info.questValueID), quest.info.questClearValue);
+                ConsumeItem c = ItemManager.Instance.cInventory.Find(i => i.data.id == quest.info.questValueID);
+                ItemManager.Instance.ReduceConsumeItem(c, quest.info.questClearValue);
             }
         }
     }
