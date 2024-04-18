@@ -108,6 +108,7 @@ public class QuestManager : MonoBehaviour
         if (quest.info.repeatable == "반복")
         {
             ChangeQuestState(quest.info.id, QuestState.Can_Start);
+            quest.info.questCurrentValue = 0;
             if (quest.info.questType == "CollectConsumeItem")
             {
                 print(ItemManager.Instance.GetConsumeItem(quest.info.questValueID).data.consumeName);//치즈 조각
