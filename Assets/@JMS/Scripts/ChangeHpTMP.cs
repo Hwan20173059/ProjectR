@@ -19,19 +19,19 @@ public class ChangeHpTMP : MonoBehaviour
         {
             if (value < -400)
             {
-                text = $"</size><size=65><#FF0000>{value}!";
+                text = $"</size><size=65></color><#FF0000>{value}!";
             }
             else if (value < -200)
             {
-                text = $"</size><size=50><#FF0000>{value}";
+                text = $"</size><size=50></color><#FF0000>{value}";
             }
             else if (value < -100)
             {
-                text = $"</size><size=45><#FF0000>{value}";
+                text = $"</size><size=45></color><#FF0000>{value}";
             }
             else
             {
-                text = $"</size><size=40><#FF0000>{value}";
+                text = $"</size><size=40></color><#FF0000>{value}";
             }
         }
         else if (value == 0)
@@ -42,19 +42,19 @@ public class ChangeHpTMP : MonoBehaviour
         {
             if (value > 400)
             {
-                text = $"</size><size=65><#FF0000>+{value}!";
+                text = $"</size><size=65></color><#00FF00>+{value}!";
             }
             else if (value > 200)
             {
-                text = $"</size><size=50><#FF0000>+{value}";
+                text = $"</size><size=50></color><#00FF00>+{value}";
             }
             else if (value > 100)
             {
-                text = $"</size><size=45><#FF0000>+{value}";
+                text = $"</size><size=45></color><#00FF00>+{value}";
             }
             else
             {
-                text = $"</size><size=40><#FF0000>+{value}";
+                text = $"</size><size=40></color><#00FF00>+{value}";
             }
         }
         StartCoroutine(MoveTowardsText());
