@@ -31,6 +31,8 @@ public class GachaManager : MonoBehaviour
 
     public void StartGacha(int i)
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         switch (i)
         {
             case 0:
