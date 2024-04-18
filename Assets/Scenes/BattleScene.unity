@@ -643,7 +643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5971382703432353169, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: m_SortingOrder
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7000302407852839742, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: m_AnchorMax.y
@@ -697,6 +697,42 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: battleTutorialImage.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: battleTutorialImage.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 75e2cb67987f4954e881f2f3acef6028, type: 3}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: battleTutorialImage.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3016536d9cf63c641a426fbd6821d8b3, type: 3}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: battleTutorialImage.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 0e8113acfc0915d448c07c1d6c4e0da0, type: 3}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: battleTutorialImage.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5a7e59527b9646043b9bec961e58bbe8, type: 3}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: battleTutorialImage.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 84681171b215bcd4497ffcca90c542f2, type: 3}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: battleTutorialImage.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: f88af5e289e2e3d438df5c9b61cd8de7, type: 3}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: battleTutorialImage.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1a5e8f8aa171a9a4f8a5c088667ef980, type: 3}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: battleTutorialImage.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 320b81678b1ab524da9c5463d6082b1e, type: 3}
     - target: {fileID: 9021248386786967644, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

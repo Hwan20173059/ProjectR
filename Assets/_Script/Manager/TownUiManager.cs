@@ -104,6 +104,7 @@ public class TownUiManager : MonoBehaviour
         }
 
         PlayerManager.Instance.currentState = CurrentState.field;
+        AudioManager.Instance.SetState();
         SceneManager.LoadScene("FieldScene");
     }
 

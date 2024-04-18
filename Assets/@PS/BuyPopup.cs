@@ -47,6 +47,7 @@ public class BuyPopup : MonoBehaviour
             PlayerManager.Instance.gold -= price;
             itemManager.AddConsumeItem(itemID);
             RefreshGoldUI();
+            AudioManager.Instance.PlayBuySFX();
         }
     }
     public void ClosePopup()

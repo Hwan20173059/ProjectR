@@ -91,7 +91,8 @@ public class TileMapManager : MonoBehaviour
         turnState.text = "플레이어 턴";
 
         CharacterUIRefresh();
-        
+
+        AudioManager.Instance.PlayAttack1SFX();
         turnAnimator.SetTrigger("Turn");
         Invoke("IsPlayerTurnOn", 1.5f);
     }
@@ -118,8 +119,11 @@ public class TileMapManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         fieldState = FieldState.fieldTurn;
-        turnState.text = "필드 턴";
+        turnState.text = "몬스터 턴";
+
+        AudioManager.Instance.PlayAttack1SFX();
         turnAnimator.SetTrigger("Turn");
+
         isPlayerturn = false;
 
         yield return new WaitForSeconds(1.5f);
