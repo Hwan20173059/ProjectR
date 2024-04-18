@@ -257,6 +257,7 @@ public class PlayerManager : Singleton<PlayerManager>
         saveData.characterListExp = characterExpList;
 
         saveData.equipitemListID = equipitemListID;
+        saveData.equippingitemListID = equippingitemListID;
 
         saveData.itemListID = itemListID;
         saveData.itemListCount = itemListCount;
