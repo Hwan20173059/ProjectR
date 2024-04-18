@@ -31,19 +31,21 @@ public class GachaManager : MonoBehaviour
 
     public void StartGacha(int i)
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         switch (i)
         {
             case 0:
-                if (playerManager.gold >= 500)
+                if (playerManager.gold >= 300)
                 {
-                    playerManager.gold -= 500;
+                    playerManager.gold -= 300;
                     CharacterGacha();
                 }
                 break;
             case 1:
-                if (playerManager.gold >= 5000)
+                if (playerManager.gold >= 3000)
                 {
-                    playerManager.gold -= 5000;
+                    playerManager.gold -= 3000;
                     CharacterGacha10();
                 }
                 break;
