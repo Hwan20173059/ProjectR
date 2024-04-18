@@ -29,12 +29,20 @@ public class AudioManager : Singleton<AudioManager>
     }
 
 
-    // Use this when using (sfx shot)
+    
     public void PlaySFX(AudioClip clip)
     {
-        //if (clip == audios.walkClip && sfxCource.isPlaying)
-        //    return;
         sfxCource.PlayOneShot(clip);
+    }
+
+    public void PlayLevelUpSFX()
+    {
+        sfxCource.PlayOneShot(audios.levelupClip);
+    }
+
+    public void PlayUISelectSFX()
+    {
+        sfxCource.PlayOneShot(audios.uiSelectClip);
     }
 
     public void ChangeBGM()

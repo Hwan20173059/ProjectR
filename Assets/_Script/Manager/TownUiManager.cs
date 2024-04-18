@@ -68,6 +68,7 @@ public class TownUiManager : MonoBehaviour
 
     public void CharacterUIOn()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         if (playerManager.firstCharacter == true)
         {
             tutorialUI.gameObject.SetActive(true);
@@ -84,11 +85,13 @@ public class TownUiManager : MonoBehaviour
 
     public void CharacterUIOff()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         characterUI.CharacterUIoff();
     }
 
     public void GoField()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         if (playerManager.selectTownID == 0)
         {
             playerManager.fieldX = 2;
@@ -106,6 +109,7 @@ public class TownUiManager : MonoBehaviour
 
     public void GuildUIOn()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         if (playerManager.firstGuild == true)
         {
             tutorialUI.gameObject.SetActive(true);
@@ -122,12 +126,14 @@ public class TownUiManager : MonoBehaviour
 
     public void GuildUIOff()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         guildUI.SetActive(false);
         //talkUI.SetActive(false);
     }
 
     public void StoreUIOn()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         buyPopup.RefreshGoldUI();
         if (playerManager.firstShop == true)
         {
@@ -145,12 +151,14 @@ public class TownUiManager : MonoBehaviour
 
     public void StoreUIOff()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         storeUI.SetActive(false);
         //talkUI.SetActive(false);
     }
 
     public void HomeUIOn()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         if (playerManager.firstGacha == true)
         {
             tutorialUI.gameObject.SetActive(true);
@@ -168,6 +176,7 @@ public class TownUiManager : MonoBehaviour
 
     public void HomeUIOff()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         homeUI.SetActive(false);
         //talkUI.SetActive(false);
     }
@@ -208,11 +217,13 @@ public class TownUiManager : MonoBehaviour
 
     public void OptionUIOn()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         optionUI.SetActive(true);
     }
 
     public void OptionUIOff()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         optionUI.SetActive(false);
     }
 
@@ -258,6 +269,7 @@ public class TownUiManager : MonoBehaviour
 
     public void ResetTutorial()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         playerManager.firstBattle = true;
         playerManager.firstCharacter = true;
         playerManager.firstDungeon = true;

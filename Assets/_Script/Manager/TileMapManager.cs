@@ -451,21 +451,25 @@ public class TileMapManager : MonoBehaviour
 
     public void OnMenuButtonClick()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         menuUI.SetActive(true);
     }
 
     public void OnMenuCloseButtonClick()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         menuUI.SetActive(false);
     }
 
     public void OnSettingButtonClick()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         settingUI.SetActive(true);
     }
 
     public void OnSettingCloseButtonClick()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         settingUI.SetActive(false);
     }
 

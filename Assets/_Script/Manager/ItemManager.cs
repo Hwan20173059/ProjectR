@@ -81,7 +81,6 @@ public class ItemManager : Singleton<ItemManager>
     {
         EquipItem eItem = new EquipItem(itemDatabase.GetItemByKey(id));
         eInventory.Add(eItem);
-        inventory.MaxSlots = eInventory.Count;
     }
 
     public void AddConsumeItem(int id)
@@ -96,7 +95,6 @@ public class ItemManager : Singleton<ItemManager>
             ConsumeItem cItem = new ConsumeItem(itemDatabase.GetCItemByKey(id));
             cItem.count = 1;
             cInventory.Add(cItem);
-            inventory.cMaxSlots = cInventory.Count;
         }
     }
 
@@ -111,7 +109,6 @@ public class ItemManager : Singleton<ItemManager>
         {
             cItem.count = count;
             cInventory.Add(cItem);
-            inventory.cMaxSlots = cInventory.Count;
         }
     }
 
@@ -126,7 +123,6 @@ public class ItemManager : Singleton<ItemManager>
             else
             {
                 cInventory.Remove(consumeItem);
-                inventory.cMaxSlots = cInventory.Count;
             }
         }
     }
@@ -142,9 +138,18 @@ public class ItemManager : Singleton<ItemManager>
             else
             {
                 cInventory.Remove(consumeItem);
-                inventory.cMaxSlots = cInventory.Count;
             }
         }
+    }
+
+    public void SetEquipMaxSlots()
+    {
+        inventory.MaxSlots = eInventory.Count;
+    }
+
+    public void SetConsumeMaxSlots()
+    {
+        inventory.cMaxSlots = cInventory.Count;
     }
 
     public void LoadEquipData()

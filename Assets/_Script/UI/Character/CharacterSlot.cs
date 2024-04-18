@@ -31,6 +31,8 @@ public class CharacterSlot : MonoBehaviour
 
     public void SelectButtonClick() // 버튼 할당용 함수
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         PlayerManager.Instance.selectedCharacterIndex = index;
         characterSelectSlot.RefreshAll();
         PlayerManager.Instance.townUiManager.townPlayer.character = characterData;

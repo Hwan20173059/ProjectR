@@ -98,12 +98,16 @@ public class DetailArea : MonoBehaviour
 
     public void ActiveEquippingState()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         _activateFalseObj.SetActive(true);
         isEquipping = true;
     }
 
     public void UnActiveEquippingState()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         _activateFalseObj.SetActive(false);
         isEquipping = false;
     }
@@ -124,6 +128,8 @@ public class DetailArea : MonoBehaviour
 
     public void ExpScrollUse()
     {
+        playerManager.townUiManager.characterUI.CharacterInfoUIRefresh();
+
         itemManager.ReduceConsumeItem(nowConsumeItem);
         int exp = ((nowConsumeItem.data.id - 100) * (nowConsumeItem.data.id - 100)) * 100 + 100;
         playerManager.characterList[playerManager.selectedCharacterIndex].ChangeExp(exp);

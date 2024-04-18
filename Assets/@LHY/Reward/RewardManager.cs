@@ -154,6 +154,7 @@ public class RewardManager : MonoBehaviour
 
     public void Off()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         rewardUI.SetActive(!rewardUI.activeSelf);
         RemoveSlot();
         //rewardUI.SetActive(false);

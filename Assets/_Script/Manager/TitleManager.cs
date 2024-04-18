@@ -21,7 +21,9 @@ public class TitleManager : MonoBehaviour
     {
         PlayerManager playerManager = PlayerManager.Instance;
 
-        if(playerManager.selectTownID == 0)
+        AudioManager.Instance.PlayUISelectSFX();
+
+        if (playerManager.selectTownID == 0)
             playerManager.currentState = CurrentState.town1;
         else if(playerManager.selectTownID == 1)
             playerManager.currentState = CurrentState.town2;

@@ -154,6 +154,7 @@ public class Tile : MonoBehaviour
             switch (tileState)
             {
                 case TileState.player:
+                    AudioManager.Instance.PlayUISelectSFX();
                     if (tileMapManager.isSelect == true)
                     {
                         tileMapManager.isSelect = false;
@@ -172,12 +173,15 @@ public class Tile : MonoBehaviour
                     }
 
                 case TileState.empty:
-                    //tileMapManager.selectImage.sprite = null;
+                    AudioManager.Instance.PlayUISelectSFX();
+
                     tileMapManager.selectName.text = null;
                     tileMapManager.selectText.text = null;
                     break;
 
                 case TileState.canGo:
+                    AudioManager.Instance.PlayUISelectSFX();
+
                     tileMapManager.playerTurnIndex -= cost;
                     PlayerManager.Instance.currentTurnIndex = tileMapManager.playerTurnIndex;
 
@@ -210,6 +214,7 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.monster:
+                    AudioManager.Instance.PlayUISelectSFX();
 
                     tileMapManager.selectName.text = "몬스터";
                     sprite = tileMapManager.monsterPrefab.GetComponent<SpriteRenderer>().sprite;
@@ -281,6 +286,7 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.chest:
+                    AudioManager.Instance.PlayUISelectSFX();
 
                     tileMapManager.selectName.text = "상자";
 
@@ -307,6 +313,7 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.town:
+                    AudioManager.Instance.PlayUISelectSFX();
 
                     tileMapManager.selectName.text = "마을";
 
@@ -329,6 +336,7 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.dungeon:
+                    AudioManager.Instance.PlayUISelectSFX();
 
                     tileMapManager.selectName.text = "던전";
 
@@ -365,6 +373,8 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.canFight:
+                    AudioManager.Instance.PlayUISelectSFX();
+
                     tileMapManager.playerTurnIndex -= cost;
                     PlayerManager.Instance.currentTurnIndex = tileMapManager.playerTurnIndex;
 
@@ -386,6 +396,8 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.canTownEnter:
+                    AudioManager.Instance.PlayUISelectSFX();
+
                     tileMapManager.playerManager.selectTownID = townID;
 
                     if (PlayerManager.Instance.selectTownID == 0)
@@ -400,6 +412,8 @@ public class Tile : MonoBehaviour
 
 
                 case TileState.canDungeonEnter:
+                    AudioManager.Instance.PlayUISelectSFX();
+
                     tileMapManager.playerManager.selectDungeonID = dungeonID;
 
                     if (PlayerManager.Instance.selectDungeonID == 0)
@@ -415,6 +429,8 @@ public class Tile : MonoBehaviour
                     break;
 
                 case TileState.canOpenChest:
+                    AudioManager.Instance.PlayUISelectSFX();
+
                     tileMapManager.playerTurnIndex -= cost;
                     PlayerManager.Instance.currentTurnIndex = tileMapManager.playerTurnIndex;
 
