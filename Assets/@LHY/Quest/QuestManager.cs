@@ -86,7 +86,6 @@ public class QuestManager : MonoBehaviour
     {
         Quest quest = GetQuestByID(id);
         quest.InstantiateCurrentQuestStep(this.transform, id);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.audios.dungeonBattleBGMClip);
         ChangeQuestState(quest.info.id, QuestState.In_Progress);
     }
 
