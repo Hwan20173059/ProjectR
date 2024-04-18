@@ -40,7 +40,7 @@ public class CharacterHpBar : MonoBehaviour
         if (character != null)
         {
             Vector2 screenPos = Camera.main.WorldToScreenPoint(character.transform.position);
-            transform.position = new Vector2(screenPos.x, screenPos.y + 130f);
+            transform.position = new Vector2(screenPos.x, screenPos.y + 90f);
         }
     }
 }
