@@ -13769,7 +13769,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "1\uD68C \uBF51\uAE30\n<sprite=0>500"
+  m_text: "1\uD68C \uBF51\uAE30\n<sprite=0>300"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3bce599ad1a7d43bd5ec65b4ab8b0f, type: 2}
   m_sharedMaterial: {fileID: 50626751937510570, guid: 0a3bce599ad1a7d43bd5ec65b4ab8b0f, type: 2}
@@ -18765,7 +18765,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "10\uD68C \uBF51\uAE30\n<sprite=0>5000"
+  m_text: "10\uD68C \uBF51\uAE30\n<sprite=0>3000"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0a3bce599ad1a7d43bd5ec65b4ab8b0f, type: 2}
   m_sharedMaterial: {fileID: 50626751937510570, guid: 0a3bce599ad1a7d43bd5ec65b4ab8b0f, type: 2}
