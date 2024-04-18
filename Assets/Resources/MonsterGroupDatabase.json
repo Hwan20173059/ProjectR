@@ -141,7 +141,7 @@
 			"randomSpawnMaxAmount": 2,
 			"rewardGold": 400,
 			"rewardExp": 130,
-			"rewardItemId": 0
+			"rewardItemId": 8
 		},
 		{
 			"id": 9,
@@ -157,7 +157,7 @@
 			"randomSpawnMaxAmount": 3,
 			"rewardGold": 550,
 			"rewardExp": 180,
-			"rewardItemId": 0
+			"rewardItemId": 9
 		},
 		{
 			"id": 10,
@@ -173,7 +173,7 @@
 			"randomSpawnMaxAmount": 3,
 			"rewardGold": 550,
 			"rewardExp": 190,
-			"rewardItemId": 0
+			"rewardItemId": 10
 		},
 		{
 			"id": 11,
@@ -189,7 +189,7 @@
 			"randomSpawnMaxAmount": 3,
 			"rewardGold": 550,
 			"rewardExp": 200,
-			"rewardItemId": 0
+			"rewardItemId": 11
 		},
 		{
 			"id": 12,
@@ -205,7 +205,7 @@
 			"randomSpawnMaxAmount": 2,
 			"rewardGold": 770,
 			"rewardExp": 220,
-			"rewardItemId": 0
+			"rewardItemId": 12
 		},
 		{
 			"id": 13,
@@ -221,7 +221,7 @@
 			"randomSpawnMaxAmount": 2,
 			"rewardGold": 790,
 			"rewardExp": 230,
-			"rewardItemId": 0
+			"rewardItemId": 13
 		},
 		{
 			"id": 14,
@@ -237,7 +237,7 @@
 			"randomSpawnMaxAmount": 4,
 			"rewardGold": 840,
 			"rewardExp": 250,
-			"rewardItemId": 0
+			"rewardItemId": 14
 		},
 		{
 			"id": 15,
@@ -253,7 +253,7 @@
 			"randomSpawnMaxAmount": 4,
 			"rewardGold": 860,
 			"rewardExp": 280,
-			"rewardItemId": 0
+			"rewardItemId": 15
 		},
 		{
 			"id": 16,
@@ -269,7 +269,7 @@
 			"randomSpawnMaxAmount": 2,
 			"rewardGold": 1050,
 			"rewardExp": 330,
-			"rewardItemId": 0
+			"rewardItemId": 16
 		},
 		{
 			"id": 17,
@@ -285,7 +285,7 @@
 			"randomSpawnMaxAmount": 2,
 			"rewardGold": 1100,
 			"rewardExp": 350,
-			"rewardItemId": 0
+			"rewardItemId": 17
 		},
 		{
 			"id": 18,
@@ -301,7 +301,7 @@
 			"randomSpawnMaxAmount": 2,
 			"rewardGold": 1350,
 			"rewardExp": 420,
-			"rewardItemId": 0
+			"rewardItemId": 18
 		},
 		{
 			"id": 19,
@@ -317,7 +317,7 @@
 			"randomSpawnMaxAmount": 2,
 			"rewardGold": 1500,
 			"rewardExp": 450,
-			"rewardItemId": 0
+			"rewardItemId": 19
 		}
 	]
 }
