@@ -8,13 +8,6 @@ public class MonsterFrozenState : MonsterBaseState
     {
     }
 
-    public override void Enter()
-    {
-        base.Enter();
-
-        monster.FrozenAnim();
-    }
-
     public override void Update()
     {
         base.Update();

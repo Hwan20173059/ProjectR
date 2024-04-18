@@ -52,7 +52,7 @@ public class Monster : MonoBehaviour
     public MonsterStateMachine stateMachine;
 
     public BattleManager battleManager;
-    public BattleCanvas battleCanvas { get {  return battleManager.battleCanvas; } }
+    public BattleCanvas battleCanvas { get { return battleManager.battleCanvas; } }
 
     private void Awake()
     {
@@ -94,7 +94,7 @@ public class Monster : MonoBehaviour
         exp = baseData.exp * level;
         maxCoolTime = baseData.actionCoolTime;
 
-        for(int i = 0; i < baseData.actions.Length; i++)
+        for (int i = 0; i < baseData.actions.Length; i++)
         {
             actions.Add((MonsterAction)baseData.actions[i]);
         }
@@ -119,8 +119,12 @@ public class Monster : MonoBehaviour
     {
         if (value < 0)
         {
+            if (IsFrozen)
+            {
+                IsFrozen = false;
+                RefreshAnim();
+            }
             monsterAnimController.PlayAnim(MonsterAnim.Hit);
-            IsFrozen = false;
         }
         else if (value > 0)
         {
@@ -165,6 +169,8 @@ public class Monster : MonoBehaviour
         IsFrozen = true;
         IsBurn = false;
         burnDamage = 0;
+
+        FrozenAnim();
     }
 
     public void FrozenAnim()
@@ -176,9 +182,13 @@ public class Monster : MonoBehaviour
 
     public void SetStun(float duration)
     {
+        if (IsStun && (maxStunTime - curStunTime > duration)) return;
+
         IsStun = true;
         curStunTime = 0;
         maxStunTime = duration;
+        if (battleEffect != null)
+            battleEffect.SetActive(false);
         battleEffect = battleManager.battleCanvas.SetEffect(3, transform.position); // ¿”Ω√ ¿Ã∆Â∆Æ
     }
 
@@ -197,9 +207,9 @@ public class Monster : MonoBehaviour
         }
     }
 
-    public void SetBurn(int burnDamage,float damageInterval, int burnCount)
+    public void SetBurn(int burnDamage, float damageInterval, int burnCount)
     {
-        if(this.burnDamage <=  burnDamage)
+        if (this.burnDamage <= burnDamage)
         {
             IsFrozen = false;
             IsBurn = true;

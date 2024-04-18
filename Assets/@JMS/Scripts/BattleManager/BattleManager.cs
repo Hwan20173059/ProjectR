@@ -258,7 +258,6 @@ public class BattleManager : MonoBehaviour
             if (monsters[i].stateMachine.currentState == monsters[i].stateMachine.frozenState && !monsters[i].IsFrozen)
             {
                 monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.readyState);
-                monsters[i].RefreshAnim();
             }
         }
     }
