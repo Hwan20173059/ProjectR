@@ -46,27 +46,27 @@ public class CharacterActionState : CharacterBaseState
             case 0: // 정의의 주먹
                 character.StartCoroutine(Attack(1, 1, 0)); break;
             case 1: // 체스말(폰)
-                character.StartCoroutine(DoubleAttack(1, 0)); break;
+                character.StartCoroutine(Attack(1, 10, 2)); break;
             case 2: // 나뭇가지
                 character.StartCoroutine(Heal(30, 1, 1, 0)); break;
             case 3: // 낡은 고서
-                character.StartCoroutine(StraightRangeAttack(1, 1, 1, 0)); break;
-            case 4: // 푸른 장미
-                character.StartCoroutine(AllAttack(1, 4, 0)); break;
-            case 5:
                 character.StartCoroutine(SpeedUpBuff(300, 4)); break;
+            case 4: // 푸른 장미
+                character.StartCoroutine(AllAttack(1, 1, 0)); break;
+            case 5:
+                character.StartCoroutine(DoubleAttack(1, 0)); break;
             case 6:
-                character.StartCoroutine(Attack(1, 10, 2)); break;
+                character.StartCoroutine(FlameAttack(1, 5, 0.2f, 20, 6)); break;
             case 7:
                 character.StartCoroutine(FrozenAttack(1, 1)); break;
             case 8:
                 character.StartCoroutine(StunAttack(1, 10, 0)); break;
             case 9:
-                character.StartCoroutine(FlameAttack(1, 5, 0.2f, 20, 6)); break;
+                character.StartCoroutine(StraightRangeAttack(1, 1, 1, 0)); break;
             case 10:
-                character.StartCoroutine(CrossRangeAttack(1, 1, 0)); break;
+                character.StartCoroutine(CrossRangeAttack(1, 1, 1, 0)); break;
             case 11:
-                character.StartCoroutine(AllDirectionRangeAttack(1, 1, 0)); break;
+                character.StartCoroutine(AllDirectionRangeAttack(1, 1, 1, 0)); break;
             case 12:
                 character.StartCoroutine(DoubleRepeatAttack(1, 10, 2)); break;
             case 13:
@@ -78,23 +78,53 @@ public class CharacterActionState : CharacterBaseState
             case 16:
                 character.StartCoroutine(DoubleFlameAttack(1, 5, 0.2f, 20, 6)); break;
             case 17:
-                character.StartCoroutine(StraightRangeFrozenAttack(1, 1, 0)); break;
+                character.StartCoroutine(DoubleCrossRangeAttack(1, 1, 0)); break;
             case 18:
-                character.StartCoroutine(StraightRangeStunAttack(1, 10, 1, 0)); break;
+                character.StartCoroutine(DoubleAllDirectionRangeAttack(1, 1, 0)); break;
             case 19:
-                character.StartCoroutine(StraightRangeFlameAttack(1, 5, 0.2f, 20, 1, 0)); break;
-            default:
+                character.StartCoroutine(StraightRangeFrozenAttack(1, 1, 1, 0)); break;
+            case 20:
+                character.StartCoroutine(StraightRangeStunAttack(1, 1, 10, 1, 0)); break;
+            case 21:
+                character.StartCoroutine(StraightRangeFlameAttack(1, 1, 5, 0.2f, 20, 1, 0)); break;
+            case 22:
+                character.StartCoroutine(StraightRangeAttack(1, 10, 1, 0)); break;
+            case 23:
+                character.StartCoroutine(CrossRangeFrozenAttack(1, 1, 1, 0)); break;
+            case 24:
+                character.StartCoroutine(CrossRangeStunAttack(1, 1, 10, 1, 0)); break;
+            case 25:
+                character.StartCoroutine(CrossRangeFlameAttack(1, 1, 5, 0.2f, 20, 1, 0)); break;
+            case 26:
+                character.StartCoroutine(CrossRangeAttack(1, 10, 1, 0)); break;
+            case 27:
+                character.StartCoroutine(AllDirectionRangeFrozenAttack(1, 1, 1, 0)); break;
+            case 28:
+                character.StartCoroutine(AllDirectionRangeStunAttack(1, 1, 10, 1, 0)); break;
+            case 29:
+                character.StartCoroutine(AllDirectionRangeFlameAttack(1, 1, 5, 0.2f, 20, 1, 0)); break;
+            case 30:
+                character.StartCoroutine(AllDirectionRangeAttack(1, 10, 1, 0)); break;
+            case 31:
+                character.StartCoroutine(AllFrozenAttack(1, 1, 1)); break;
+            case 32:
+                character.StartCoroutine(AllStunAttack(1, 1, 10, 0)); break;
+            case 33:
+                character.StartCoroutine(AllFlameAttack(1, 1, 5, 0.2f, 20, 6)); break;
+            case 34:
+                character.StartCoroutine(AllAttack(1, 10, 0)); break;
+        default:
                 character.StartCoroutine(Attack(1, 1, 0)); break;
         }
     }
 
     IEnumerator AttackBase(Monster target, int damage, int effectId)
     {
-        battleManager.battleCanvas.SetRepeatEffect(effectId, target.transform.position); // 임시 이펙트
         character.PlayAnim(CharacterAnim.Slash);
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
+        battleManager.battleCanvas.SetRepeatEffect(effectId, target.transform.position); // 임시 이펙트
         target.ChangeHP(-damage);
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 공격!\n{target.monsterName}에게 {damage}의 피해!");
     }
@@ -137,6 +167,63 @@ public class CharacterActionState : CharacterBaseState
             {
                 battleManager.monsters[j].ChangeHP(-damage);
                 battleManager.battleCanvas.SetRepeatEffect(effectId, battleManager.monsters[j].transform.position); // 임시 이펙트
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+    }
+
+    IEnumerator AllFrozenAttackBase(int damage, int effectId)
+    {
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        for (int i = 0; i < battleManager.monsters.Count; i++)
+        {
+            if (!battleManager.monsters[i].IsDead)
+            {
+                battleManager.monsters[i].ChangeHP(-damage);
+                battleManager.monsters[i].SetFrozen();
+                battleManager.battleCanvas.SetRepeatEffect(effectId, battleManager.monsters[i].transform.position); // 임시 이펙트
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+    }
+
+    IEnumerator AllStunAttackBase(int damage, int duration, int effectId)
+    {
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        for (int i = 0; i < battleManager.monsters.Count; i++)
+        {
+            if (!battleManager.monsters[i].IsDead)
+            {
+                battleManager.monsters[i].ChangeHP(-damage);
+                battleManager.monsters[i].SetStun(duration);
+                battleManager.battleCanvas.SetRepeatEffect(effectId, battleManager.monsters[i].transform.position); // 임시 이펙트
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+    }
+
+    IEnumerator AllFlameAttackBase(int damage, int burnDamage, float damageInterval, int burnCount, int effectId)
+    {
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        for (int i = 0; i < battleManager.monsters.Count; i++)
+        {
+            if (!battleManager.monsters[i].IsDead)
+            {
+                battleManager.monsters[i].ChangeHP(-damage);
+                battleManager.monsters[i].SetBurn(burnDamage, damageInterval, burnCount);
+                battleManager.battleCanvas.SetRepeatEffect(effectId, battleManager.monsters[i].transform.position); // 임시 이펙트
             }
         }
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 전체 공격!\n몬스터들에게 {damage}의 데미지 공격!");
@@ -226,6 +313,7 @@ public class CharacterActionState : CharacterBaseState
         for (int i = 0; i < count; i++)
         {
             yield return StraightRangeAttackBase(target, hit, damage, effectId);
+            if (target.IsDead) { break; }
         }
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
@@ -256,7 +344,78 @@ public class CharacterActionState : CharacterBaseState
         battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position); // 임시 이펙트
     }
 
-    IEnumerator CrossRangeAttack(int damageMultiple, int range, int effectId)
+    IEnumerator StraightRangeFrozenAttackBase(Monster target, RaycastHit2D[] hit, int damage, int effectId)
+    {
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        for (int j = 0; j < hit.Length; j++)
+        {
+            if (hit[j].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = hit[j].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetFrozen();
+                }
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 직선 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position); // 임시 이펙트
+    }
+
+    IEnumerator StraightRangeStunAttackBase(Monster target, RaycastHit2D[] hit, int damage, float duration, int effectId)
+    {
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        for (int j = 0; j < hit.Length; j++)
+        {
+            if (hit[j].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = hit[j].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetStun(duration);
+                }
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 직선 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position); // 임시 이펙트
+    }
+
+    IEnumerator StraightRangeFlameAttackBase(Monster target, RaycastHit2D[] hit, int damage, int burnDamage, float damageInterval, int burnCount, int effectId)
+    {
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        for (int j = 0; j < hit.Length; j++)
+        {
+            if (hit[j].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = hit[j].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetBurn(burnDamage, damageInterval, burnCount);
+                }
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 직선 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position); // 임시 이펙트
+    }
+    IEnumerator CrossRangeAttack(int damageMultiple, int count, int range, int effectId)
     {
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
@@ -266,15 +425,40 @@ public class CharacterActionState : CharacterBaseState
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
-        Vector3 leftPos = character.transform.position + (Vector3.left * 1.5f) + (Vector3.left * 2.5f * range);
-        Vector3 rightPos = leftPos + (Vector3.right * 5f) + (Vector3.right * 5f * range);
-        Vector3 upPos = character.transform.position + Vector3.right + (Vector3.up * 2.5f) + (Vector3.up * 2.5f * range);
-        Vector3 downPos = upPos + (Vector3.down * 5f) + (Vector3.down * 5f * range);
+        for (int i = 0; i < count; i++)
+        {
+            yield return CrossRangeAttackBase(target, damage, range, effectId);
+            if (target.IsDead) { break; }
+        }
+
+        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+        character.ChangeAnimState(CharacterAnimState.Ready);
+
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+
+    IEnumerator CrossRangeAttackBase(Monster target, int damage, int range, int effectId)
+    {
+        Vector3 leftPos = target.transform.position + (Vector3.left * 2.5f * range);
+        Vector3 rightPos = target.transform.position + (Vector3.right * 2.5f * range);
+        Vector3 upPos = target.transform.position + (Vector3.up * 2.5f * range);
+        Vector3 downPos = target.transform.position + (Vector3.down * 2.5f * range);
 
         RaycastHit2D[] horizontalHit;
-        horizontalHit = Physics2D.RaycastAll(leftPos, Vector3.right, 5f + (5f * range));
+        horizontalHit = Physics2D.RaycastAll(leftPos, Vector3.right, 5f * range);
         RaycastHit2D[] verticalHit;
-        verticalHit = Physics2D.RaycastAll(upPos, Vector3.down, 5f + (5f * range));
+        verticalHit = Physics2D.RaycastAll(upPos, Vector3.down, 5f * range);
+
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, leftPos); // 임시 이펙트
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, upPos);
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, rightPos);
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, downPos);
 
         for (int i = 0; i < horizontalHit.Length; i++)
         {
@@ -295,25 +479,153 @@ public class CharacterActionState : CharacterBaseState
             }
         }
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 십자 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+    }
 
-        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, leftPos); // 임시 이펙트
-        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, upPos);
-        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, rightPos);
-        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, downPos);
+    IEnumerator CrossRangeFrozenAttackBase(Monster target, int damage, int range, int effectId)
+    {
+        Vector3 leftPos = target.transform.position + (Vector3.left * 2.5f * range);
+        Vector3 rightPos = target.transform.position + (Vector3.right * 2.5f * range);
+        Vector3 upPos = target.transform.position + (Vector3.up * 2.5f * range);
+        Vector3 downPos = target.transform.position + (Vector3.down * 2.5f * range);
+
+        RaycastHit2D[] horizontalHit;
+        horizontalHit = Physics2D.RaycastAll(leftPos, Vector3.right, 5f * range);
+        RaycastHit2D[] verticalHit;
+        verticalHit = Physics2D.RaycastAll(upPos, Vector3.down, 5f * range);
 
         character.PlayAnim(CharacterAnim.Slash);
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
 
-        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
-        character.ChangeAnimState(CharacterAnimState.Ready);
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, leftPos); // 임시 이펙트
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, upPos);
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, rightPos);
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, downPos);
 
-        stateMachine.ChangeState(stateMachine.readyState);
-        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+        for (int i = 0; i < horizontalHit.Length; i++)
+        {
+            if (horizontalHit[i].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = horizontalHit[i].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetFrozen();
+                }
+            }
+        }
+        for (int i = 0; i < verticalHit.Length; i++)
+        {
+            if (verticalHit[i].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = verticalHit[i].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetFrozen();
+                }
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 십자 공격!\n몬스터들에게 {damage}의 데미지 공격!");
     }
+    IEnumerator CrossRangeStunAttackBase(Monster target, int damage, int duration, int range, int effectId)
+    {
+        Vector3 leftPos = target.transform.position + (Vector3.left * 2.5f * range);
+        Vector3 rightPos = target.transform.position + (Vector3.right * 2.5f * range);
+        Vector3 upPos = target.transform.position + (Vector3.up * 2.5f * range);
+        Vector3 downPos = target.transform.position + (Vector3.down * 2.5f * range);
 
-    IEnumerator AllDirectionRangeAttack(int damageMultiple, int range, int effectId)
+        RaycastHit2D[] horizontalHit;
+        horizontalHit = Physics2D.RaycastAll(leftPos, Vector3.right, 5f * range);
+        RaycastHit2D[] verticalHit;
+        verticalHit = Physics2D.RaycastAll(upPos, Vector3.down, 5f * range);
+
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, leftPos); // 임시 이펙트
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, upPos);
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, rightPos);
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, downPos);
+ 
+        for (int i = 0; i < horizontalHit.Length; i++)
+        {
+            if (horizontalHit[i].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = horizontalHit[i].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetStun(duration);
+                }
+            }
+        }
+        for (int i = 0; i < verticalHit.Length; i++)
+        {
+            if (verticalHit[i].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = verticalHit[i].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetStun(duration);
+                }
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 십자 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+    }
+    IEnumerator CrossRangeFlameAttackBase(Monster target, int damage, int burnDamage, float damageInterval, int burnCount, int range, int effectId)
+    {
+        Vector3 leftPos = target.transform.position + (Vector3.left * 2.5f * range);
+        Vector3 rightPos = target.transform.position + (Vector3.right * 2.5f * range);
+        Vector3 upPos = target.transform.position + (Vector3.up * 2.5f * range);
+        Vector3 downPos = target.transform.position + (Vector3.down * 2.5f * range);
+
+        RaycastHit2D[] horizontalHit;
+        horizontalHit = Physics2D.RaycastAll(leftPos, Vector3.right, 5f * range);
+        RaycastHit2D[] verticalHit;
+        verticalHit = Physics2D.RaycastAll(upPos, Vector3.down, 5f * range);
+
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, leftPos); // 임시 이펙트
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, upPos);
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, rightPos);
+        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position, downPos);
+
+        for (int i = 0; i < horizontalHit.Length; i++)
+        {
+            if (horizontalHit[i].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = horizontalHit[i].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetBurn(burnDamage, damageInterval, burnCount);
+                }
+            }
+        }
+        for (int i = 0; i < verticalHit.Length; i++)
+        {
+            if (verticalHit[i].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = verticalHit[i].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetBurn(burnDamage, damageInterval, burnCount);
+                }
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 십자 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+    }
+    IEnumerator AllDirectionRangeAttack(int damageMultiple, int count, int range, int effectId)
     {
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
@@ -323,9 +635,32 @@ public class CharacterActionState : CharacterBaseState
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
 
+        for (int i = 0; i < count; i++)
+        {
+            yield return AllDirectionRangeAttackBase(target, damage, range, effectId);
+            if (target.IsDead) { break; }
+        }
+
+        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+        character.ChangeAnimState(CharacterAnimState.Ready);
+
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+
+    IEnumerator AllDirectionRangeAttackBase(Monster target , int damage, int range, int effectId)
+    {
         RaycastHit2D[] hit;
-        Vector3 attackRange = new Vector3(2 + (3 * range), 2 + (3 * range));
-        hit = Physics2D.BoxCastAll(selectMonsterPosition + (Vector3.up / 2), attackRange, 0, Vector3.zero);
+        Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+        hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
+
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        battleManager.battleCanvas.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
+
         for (int i = 0; i < hit.Length; i++)
         {
             if (hit[i].collider.CompareTag("Monster"))
@@ -336,19 +671,90 @@ public class CharacterActionState : CharacterBaseState
             }
         }
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 범위 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+    }
 
-        battleManager.battleCanvas.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
+    IEnumerator AllDirectionRangeFrozenAttackBase(Monster target, int damage, int range, int effectId)
+    {
+        RaycastHit2D[] hit;
+        Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+        hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
 
         character.PlayAnim(CharacterAnim.Slash);
         while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
         character.PlayAnim(CharacterAnim.Idle);
         yield return waitForEndOfFrame;
 
-        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
-        character.ChangeAnimState(CharacterAnimState.Ready);
+        battleManager.battleCanvas.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
 
-        stateMachine.ChangeState(stateMachine.readyState);
-        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = hit[i].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetFrozen();
+                }
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 범위 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+    }
+
+    IEnumerator AllDirectionRangeStunAttackBase(Monster target, int damage, int duration, int range, int effectId)
+    {
+        RaycastHit2D[] hit;
+        Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+        hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
+
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        battleManager.battleCanvas.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
+
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = hit[i].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetStun(duration);
+                }
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 범위 공격!\n몬스터들에게 {damage}의 데미지 공격!");
+    }
+
+    IEnumerator AllDirectionRangeFlameAttackBase(Monster target, int damage, int burnDamage, float damageInterval, int burnCount, int range, int effectId)
+    {
+        RaycastHit2D[] hit;
+        Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+        hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
+
+        character.PlayAnim(CharacterAnim.Slash);
+        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
+        character.PlayAnim(CharacterAnim.Idle);
+        yield return waitForEndOfFrame;
+
+        battleManager.battleCanvas.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
+
+        for (int i = 0; i < hit.Length; i++)
+        {
+            if (hit[i].collider.CompareTag("Monster"))
+            {
+                Monster hitMonster = hit[i].collider.GetComponent<Monster>();
+                if (!hitMonster.IsDead)
+                {
+                    hitMonster.ChangeHP(-damage);
+                    hitMonster.SetBurn(burnDamage, damageInterval, burnCount);
+                }
+            }
+        }
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 범위 공격!\n몬스터들에게 {damage}의 데미지 공격!");
     }
 
     IEnumerator SpeedUpBuff(int value, int turnCount)
@@ -647,7 +1053,87 @@ public class CharacterActionState : CharacterBaseState
         }
     }
 
-    IEnumerator StraightRangeFrozenAttack(int damageMultiple, int range, int effectId)
+    IEnumerator DoubleCrossRangeAttack(int damageMultiple, int range, int effectId)
+    {
+        if (battleManager.AliveMonsterCount() > 1)
+        {
+            Monster target = battleManager.selectMonster;
+            Monster nextTarget;
+            do
+            {
+                nextTarget = battleManager.monsters[Random.Range(0, battleManager.monsters.Count)];
+            }
+            while (nextTarget == target || nextTarget.IsDead);
+
+            Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
+            Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
+
+            int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+            character.ChangeAnimState(CharacterAnimState.Running);
+
+            while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
+
+            yield return CrossRangeAttackBase(target, damage, range, effectId);
+
+            while (MoveTowardsCharacter(nextMonsterPosition)) { yield return null; }
+
+            yield return CrossRangeAttackBase(nextTarget, damage, range, effectId);
+
+            while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+
+            character.ChangeAnimState(CharacterAnimState.Ready);
+
+            stateMachine.ChangeState(stateMachine.readyState);
+            battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+        }
+        else
+        {
+            character.StartCoroutine(CrossRangeAttack(damageMultiple, 1, range, effectId));
+        }
+    }
+
+    IEnumerator DoubleAllDirectionRangeAttack(int damageMultiple, int range, int effectId)
+    {
+        if (battleManager.AliveMonsterCount() > 1)
+        {
+            Monster target = battleManager.selectMonster;
+            Monster nextTarget;
+            do
+            {
+                nextTarget = battleManager.monsters[Random.Range(0, battleManager.monsters.Count)];
+            }
+            while (nextTarget == target || nextTarget.IsDead);
+
+            Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
+            Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
+
+            int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+            character.ChangeAnimState(CharacterAnimState.Running);
+
+            while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
+
+            yield return AllDirectionRangeAttackBase(target, damage, range, effectId);
+
+            while (MoveTowardsCharacter(nextMonsterPosition)) { yield return null; }
+
+            yield return AllDirectionRangeAttackBase(nextTarget, damage, range, effectId);
+
+            while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+
+            character.ChangeAnimState(CharacterAnimState.Ready);
+
+            stateMachine.ChangeState(stateMachine.readyState);
+            battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+        }
+        else
+        {
+            character.StartCoroutine(AllDirectionRangeAttack(damageMultiple, 1, range, effectId));
+        }
+    }
+
+    IEnumerator StraightRangeFrozenAttack(int damageMultiple, int count, int range, int effectId)
     {
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
@@ -659,24 +1145,11 @@ public class CharacterActionState : CharacterBaseState
 
         RaycastHit2D[] hit;
         hit = Physics2D.RaycastAll(character.transform.position, Vector3.right, 1f + (2.5f * range));
-        for (int i = 0; i < hit.Length; i++)
+        for (int i = 0; i < count; i++)
         {
-            if (hit[i].collider.CompareTag("Monster"))
-            {
-                Monster hitMonster = hit[i].collider.GetComponent<Monster>();
-                if (!hitMonster.IsDead)
-                {
-                    hitMonster.ChangeHP(-damage);
-                    hitMonster.SetFrozen();
-                }
-            }
+            yield return StraightRangeFrozenAttackBase(target, hit, damage, effectId);
+            if (target.IsDead) { break; }
         }
-        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 빙결 직선 공격!\n몬스터들에게 {damage}의 데미지 공격!");
-
-        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position); // 임시 이펙트
-        character.PlayAnim(CharacterAnim.Slash);
-        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
-        character.PlayAnim(CharacterAnim.Idle);
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
         character.ChangeAnimState(CharacterAnimState.Ready);
@@ -685,7 +1158,7 @@ public class CharacterActionState : CharacterBaseState
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
-    IEnumerator StraightRangeStunAttack(int damageMultiple, float duration, int range, int effectId)
+    IEnumerator StraightRangeStunAttack(int damageMultiple, int count, float duration, int range, int effectId)
     {
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
@@ -697,24 +1170,11 @@ public class CharacterActionState : CharacterBaseState
 
         RaycastHit2D[] hit;
         hit = Physics2D.RaycastAll(character.transform.position, Vector3.right, 1f + (2.5f * range));
-        for (int i = 0; i < hit.Length; i++)
+        for (int i = 0; i < count; i++)
         {
-            if (hit[i].collider.CompareTag("Monster"))
-            {
-                Monster hitMonster = hit[i].collider.GetComponent<Monster>();
-                if (!hitMonster.IsDead)
-                {
-                    hitMonster.ChangeHP(-damage);
-                    hitMonster.SetStun(duration);
-                }
-            }
+            yield return StraightRangeStunAttackBase(target, hit, damage, duration, effectId);
+            if (target.IsDead) { break; }
         }
-        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 스턴 직선 공격!\n몬스터들에게 {damage}의 데미지 공격!");
-
-        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position); // 임시 이펙트
-        character.PlayAnim(CharacterAnim.Slash);
-        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
-        character.PlayAnim(CharacterAnim.Idle);
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
         character.ChangeAnimState(CharacterAnimState.Ready);
@@ -723,7 +1183,7 @@ public class CharacterActionState : CharacterBaseState
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
-    IEnumerator StraightRangeFlameAttack(int damageMultiple, int burnDamage, float damageInterval, int burnCount, int range, int effectId)
+    IEnumerator StraightRangeFlameAttack(int damageMultiple, int count, int burnDamage, float damageInterval, int burnCount, int range, int effectId)
     {
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
@@ -735,24 +1195,11 @@ public class CharacterActionState : CharacterBaseState
 
         RaycastHit2D[] hit;
         hit = Physics2D.RaycastAll(character.transform.position, Vector3.right, 1f + (2.5f * range));
-        for (int i = 0; i < hit.Length; i++)
+        for (int i = 0; i < count; i++)
         {
-            if (hit[i].collider.CompareTag("Monster"))
-            {
-                Monster hitMonster = hit[i].collider.GetComponent<Monster>();
-                if (!hitMonster.IsDead)
-                {
-                    hitMonster.ChangeHP(-damage);
-                    hitMonster.SetBurn(burnDamage, damageInterval, burnCount);
-                }
-            }
+            yield return StraightRangeFlameAttackBase(target, hit, damage, burnDamage, damageInterval, burnCount, effectId);
+            if (target.IsDead) { break; }
         }
-        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 직선 공격!\n몬스터들에게 {damage}의 데미지 공격!");
-
-        battleManager.battleCanvas.SetMoveEffect(effectId, target.transform.position); // 임시 이펙트
-        character.PlayAnim(CharacterAnim.Slash);
-        while (1 > GetNormalizedTime(character.animatorController.animator, "Slash")) { yield return null; }
-        character.PlayAnim(CharacterAnim.Idle);
 
         while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
         character.ChangeAnimState(CharacterAnimState.Ready);
@@ -761,4 +1208,185 @@ public class CharacterActionState : CharacterBaseState
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
     }
 
+    IEnumerator CrossRangeFrozenAttack(int damageMultiple, int count, int range, int effectId)
+    {
+        Monster target = battleManager.selectMonster;
+        Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
+
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+        character.ChangeAnimState(CharacterAnimState.Running);
+        while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
+
+        for (int i = 0; i < count; i++)
+        {
+            yield return CrossRangeFrozenAttackBase(target, damage, range, effectId);
+            if (target.IsDead) { break; }
+        }
+
+        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+        character.ChangeAnimState(CharacterAnimState.Ready);
+
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+
+    IEnumerator CrossRangeStunAttack(int damageMultiple, int count, int duration, int range, int effectId)
+    {
+        Monster target = battleManager.selectMonster;
+        Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
+
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+        character.ChangeAnimState(CharacterAnimState.Running);
+        while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
+
+        for (int i = 0; i < count; i++)
+        {
+            yield return CrossRangeStunAttackBase(target, damage, duration, range, effectId);
+            if (target.IsDead) { break; }
+        }
+
+        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+        character.ChangeAnimState(CharacterAnimState.Ready);
+
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+
+    IEnumerator CrossRangeFlameAttack(int damageMultiple, int count, int burnDamage, float damageInterval, int burnCount, int range, int effectId)
+    {
+        Monster target = battleManager.selectMonster;
+        Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
+
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+        character.ChangeAnimState(CharacterAnimState.Running);
+        while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
+
+        for (int i = 0; i < count; i++)
+        {
+            yield return CrossRangeFlameAttackBase(target, damage, burnDamage, damageInterval, burnCount, range, effectId);
+            if (target.IsDead) { break; }
+        }
+
+        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+        character.ChangeAnimState(CharacterAnimState.Ready);
+
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+
+    IEnumerator AllDirectionRangeFrozenAttack(int damageMultiple, int count, int range, int effectId)
+    {
+        Monster target = battleManager.selectMonster;
+        Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
+
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+        character.ChangeAnimState(CharacterAnimState.Running);
+        while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
+
+        for (int i = 0; i < count; i++)
+        {
+            yield return AllDirectionRangeFrozenAttackBase(target, damage, range, effectId);
+            if (target.IsDead) { break; }
+        }
+
+        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+        character.ChangeAnimState(CharacterAnimState.Ready);
+
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+    IEnumerator AllDirectionRangeStunAttack(int damageMultiple, int count, int duration, int range, int effectId)
+    {
+        Monster target = battleManager.selectMonster;
+        Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
+
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+        character.ChangeAnimState(CharacterAnimState.Running);
+        while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
+
+        for (int i = 0; i < count; i++)
+        {
+            yield return AllDirectionRangeStunAttackBase(target, damage, duration, range, effectId);
+            if (target.IsDead) { break; }
+        }
+
+        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+        character.ChangeAnimState(CharacterAnimState.Ready);
+
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+
+    IEnumerator AllDirectionRangeFlameAttack(int damageMultiple, int count, int burnDamage, float damageInterval, int burnCount, int range, int effectId)
+    {
+        Monster target = battleManager.selectMonster;
+        Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
+
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+        character.ChangeAnimState(CharacterAnimState.Running);
+        while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
+
+        for (int i = 0; i < count; i++)
+        {
+            yield return AllDirectionRangeFlameAttackBase(target, damage, burnDamage, damageInterval, burnCount, range, effectId);
+            if (target.IsDead) { break; }
+        }
+
+        while (MoveTowardsCharacter(character.startPosition)) { yield return null; }
+        character.ChangeAnimState(CharacterAnimState.Ready);
+
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+
+    IEnumerator AllFrozenAttack(int damageMultiple, int count, int effectId)
+    {
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+        for (int i = 0; i < count; i++)
+        {
+            yield return AllFrozenAttackBase(damage, effectId);
+
+            if (battleManager.StageClearCheck())
+                break;
+        }
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+
+    IEnumerator AllStunAttack(int damageMultiple, int count, int duration, int effectId)
+    {
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+        for (int i = 0; i < count; i++)
+        {
+            yield return AllStunAttackBase(damage, duration, effectId);
+
+            if (battleManager.StageClearCheck())
+                break;
+        }
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
+
+    IEnumerator AllFlameAttack(int damageMultiple, int count, int burnDamage, float damageInterval, int burnCount, int effectId)
+    {
+        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+
+        for (int i = 0; i < count; i++)
+        {
+            yield return AllFlameAttackBase(damage, burnDamage, damageInterval, burnCount, effectId);
+
+            if (battleManager.StageClearCheck())
+                break;
+        }
+        stateMachine.ChangeState(stateMachine.readyState);
+        battleManager.stateMachine.ChangeState(battleManager.stateMachine.waitState);
+    }
 }
