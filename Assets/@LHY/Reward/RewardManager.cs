@@ -140,6 +140,7 @@ public class RewardManager : MonoBehaviour
 
     private void PopupReward()
     {
+        AudioManager.Instance.PlayRewardSFX();
         rewardUI.SetActive(!rewardUI.activeSelf);
         RewardClear();
     }
@@ -154,6 +155,7 @@ public class RewardManager : MonoBehaviour
 
     public void Off()
     {
+        AudioManager.Instance.PlayUISelectSFX();
         rewardUI.SetActive(!rewardUI.activeSelf);
         RemoveSlot();
         //rewardUI.SetActive(false);

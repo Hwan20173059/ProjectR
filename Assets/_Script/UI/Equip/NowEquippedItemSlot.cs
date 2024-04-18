@@ -46,6 +46,8 @@ public class NowEquippedItemSlot : MonoBehaviour
             detailArea.isEquipping = false;
             detailArea.UnActiveEquippingState();
             inventory.FreshAfterEquip();
+
+            AudioManager.Instance.PlayEquipSFX();
         }
     }
 
@@ -57,6 +59,8 @@ public class NowEquippedItemSlot : MonoBehaviour
             {
                 playerManager.equip[i].isEquipped = false;
                 playerManager.equip[i] = itemManager.baseItem;
+
+                AudioManager.Instance.PlayUnEquipSFX();
                 break;
             }
         }
