@@ -62,6 +62,8 @@ public class TownTutorialManager : MonoBehaviour
 
     public void NextButton()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         switch (tutorialIndex) 
         {
             case 0:
@@ -139,6 +141,8 @@ public class TownTutorialManager : MonoBehaviour
 
     public void PreButton()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         switch (tutorialIndex)
         {
             case 0:
@@ -217,6 +221,8 @@ public class TownTutorialManager : MonoBehaviour
 
     public void CloseButton()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         townTutorial.SetActive(false);
     }
 }

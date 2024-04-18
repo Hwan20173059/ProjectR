@@ -35,6 +35,8 @@ public class BattleTutorialManager : MonoBehaviour
 
     public void NextButton()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         if (imageIndex + 1 > battleTutorialImage.Length - 1)
             return;
         else
@@ -46,6 +48,8 @@ public class BattleTutorialManager : MonoBehaviour
 
     public void PreButton()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         if (imageIndex - 1 < 0)
             return;
         else
@@ -58,6 +62,8 @@ public class BattleTutorialManager : MonoBehaviour
 
     public void CloseButton()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         Time.timeScale = 1f;
         battleTutorial.SetActive(false);
     }

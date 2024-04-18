@@ -21,6 +21,8 @@ public class DungeonTutorialManager : MonoBehaviour
 
     public void NextButton()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         if (imageIndex + 1 > dungeonTutorialImage.Length - 1)
             return;
         else
@@ -32,6 +34,8 @@ public class DungeonTutorialManager : MonoBehaviour
 
     public void PreButton()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         if (imageIndex - 1 < 0)
             return;
         else
@@ -44,6 +48,8 @@ public class DungeonTutorialManager : MonoBehaviour
 
     public void CloseButton()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         dungeonTutorial.SetActive(false);
     }
 }

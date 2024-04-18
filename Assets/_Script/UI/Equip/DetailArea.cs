@@ -98,12 +98,16 @@ public class DetailArea : MonoBehaviour
 
     public void ActiveEquippingState()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         _activateFalseObj.SetActive(true);
         isEquipping = true;
     }
 
     public void UnActiveEquippingState()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         _activateFalseObj.SetActive(false);
         isEquipping = false;
     }
