@@ -19,5 +19,6 @@ public class BattleDefeatPanel : MonoBehaviour
     {
         gameObject.SetActive(false);
         SceneManager.LoadScene("TownScene");
+        AudioManager.Instance.SetState();
     }
 }

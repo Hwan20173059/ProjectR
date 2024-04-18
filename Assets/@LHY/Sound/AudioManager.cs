@@ -123,6 +123,13 @@ public class AudioManager : Singleton<AudioManager>
     {
         sfxCource.PlayOneShot(audios.useItemClip);
     }
+
+    public void ChangeBattleBGM()
+    {
+        bgmSource.clip = audios.battleClip;
+        bgmSource.Play();
+    }
+
     public void ChangeBGM()
     {
         switch (playerState)
