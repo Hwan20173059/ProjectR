@@ -152,7 +152,7 @@ public class PlayerManager : Singleton<PlayerManager>
         currentExp = currentExp - needExp;
         playerLevel++;
 
-        currentExp = currentExp >= needExp ? LevelUp() : currentExp;
+        //currentExp = currentExp >= needExp ? LevelUp() : currentExp;
 
         AudioManager.Instance.PlayLevelUpSFX();
 
@@ -257,6 +257,7 @@ public class PlayerManager : Singleton<PlayerManager>
         saveData.characterListExp = characterExpList;
 
         saveData.equipitemListID = equipitemListID;
+        saveData.equippingitemListID = equippingitemListID;
 
         saveData.itemListID = itemListID;
         saveData.itemListCount = itemListCount;
