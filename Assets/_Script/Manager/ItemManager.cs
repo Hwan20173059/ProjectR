@@ -172,7 +172,10 @@ public class ItemManager : Singleton<ItemManager>
                 AddConsumeItem(int.Parse(itemListID[i]), int.Parse(itemListCount[i]));
 
             for (int i = 0; i < equippingList.Length - 1; i++)
-                PlayerManager.Instance.EquipLoadItem(i, GetEquipItem(int.Parse(equippingList[i])));
+            {
+                int index = eInventory.FindIndex(e => e.data.id == int.Parse(equippingList[i]));
+                PlayerManager.Instance.EquipLoadItem(i, eInventory[i]);
+            }
         }
         else
         {

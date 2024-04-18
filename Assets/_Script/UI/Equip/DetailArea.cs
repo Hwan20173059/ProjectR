@@ -119,6 +119,7 @@ public class DetailArea : MonoBehaviour
             ItemManager.Instance.ReduceConsumeItem(nowConsumeItem, nowConsumeItem.count);
             int charID = nowConsumeItem.data.id - 32;
             playerManager.AddCharacter(charID, 1, 0);
+            itemManager.inventory.FreshConsumeSlot();
         }
         else
         {
