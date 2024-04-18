@@ -55,8 +55,12 @@ public class QuestStep : MonoBehaviour
 
     public void Gacha()
     {
+        print("°¡Ã­ ¹ß»ý");
         if (questType == "Gacha")
+        {
             questCurrentValue++;
+            QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
+        }
         if (questCurrentValue < questClearValue)
         {
             //
@@ -140,7 +144,10 @@ public class QuestStep : MonoBehaviour
     public void ItemEquip(int id)
     {
         if (questType == "ItemEquip")
+        {
             questCurrentValue++;
+            QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
+        }
         if (questCurrentValue < questClearValue)
         {
             //
