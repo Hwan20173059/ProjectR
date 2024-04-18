@@ -30,7 +30,7 @@ public class BattleBackGround : MonoBehaviour
         float _width = spriteRenderer.bounds.size.x;
 
         float worldScreenHeight = (float)(Camera.main.orthographicSize * 2);
-        float worldScreenWidth = worldScreenHeight / Screen.height * (Screen.height * 20f / 9f);
+        float worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
 
         gameObject.transform.localScale = new Vector3(worldScreenWidth / _width, worldScreenHeight / _height, 1);
     }
