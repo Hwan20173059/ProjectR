@@ -69,6 +69,7 @@ public class Inventory : MonoBehaviour //Inventory
         detailArea.ChangeDetailActivation(false);
         equipInventoryUI.SetActive(true);
         detailArea.gameObject.SetActive(true);
+        itemManager.SetEquipMaxSlots();
     }
     public void CloseInventory()
     {
@@ -83,6 +84,7 @@ public class Inventory : MonoBehaviour //Inventory
         detailArea.ChangeDetailActivation(false);
         consumeInventoryUI.SetActive(true);
         detailArea.gameObject.SetActive(true);
+        itemManager.SetConsumeMaxSlots();
     }
 
     public void FreshAfterEquip()

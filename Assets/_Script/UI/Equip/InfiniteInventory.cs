@@ -71,15 +71,15 @@ public class InfiniteInventory : Inventory
     private void SetConsumeMaxSlots(int value)
     {
         if (value <= 36)
-            maxSlots = 36;
+            cmaxSlots = 36;
         else
-            maxSlots = value;
+            cmaxSlots = value;
 
-        if (maxSlots <= slots.Count)
+        if (cmaxSlots <= slots.Count)
         {
             DestroyEmptySlotC();
         }
-        else if (maxSlots > slots.Count)
+        else if (cmaxSlots > slots.Count)
         {
             AddNewSlotC();
         }
@@ -87,7 +87,7 @@ public class InfiniteInventory : Inventory
 
     private void DestroyEmptySlotC()
     {
-        for (int i = maxSlots; i < cslots.Count; i++)
+        for (int i = cmaxSlots; i < cslots.Count; i++)
         {
             Destroy(cslots[i].transform.parent.gameObject);
         }
@@ -97,7 +97,7 @@ public class InfiniteInventory : Inventory
 
     private void AddNewSlotC()
     {
-        int diff = maxSlots - cslots.Count;
+        int diff = cmaxSlots - cslots.Count;
 
         for (int i = 0; i < diff; i++)
         {
