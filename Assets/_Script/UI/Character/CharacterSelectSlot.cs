@@ -8,7 +8,7 @@ public class CharacterSelectSlot : MonoBehaviour
     public CharacterSlot slotPrefab;
     public List<CharacterSlot> characterSlots = new List<CharacterSlot>();
 
-    void Start()
+    void OnEnable()
     {
         // List의 크기에 맞게 Slot 넓이 조절
         RectTransform rectTransform = GetComponent<RectTransform>();
@@ -23,6 +23,15 @@ public class CharacterSelectSlot : MonoBehaviour
             slotPrefab.characterSelectSlot = this;
             characterSlots.Add(Instantiate(slotPrefab, this.transform));
         }
+    }
+
+    void OnDisable()
+    {
+        for (int i = 0; i < characterSlots.Count; i++)
+        {
+            Destroy(characterSlots[i].gameObject);
+        }
+        characterSlots.Clear();
     }
 
     public void RefreshAll() // 모든 슬롯의 상태를 refresh하는 함수
