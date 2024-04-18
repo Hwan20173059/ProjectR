@@ -65,6 +65,8 @@ public class Inventory : MonoBehaviour //Inventory
 
     public void OpenInventory()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         FreshSlot();
         detailArea.ChangeDetailActivation(false);
         equipInventoryUI.SetActive(true);
@@ -73,6 +75,8 @@ public class Inventory : MonoBehaviour //Inventory
     }
     public void CloseInventory()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         equipInventoryUI.SetActive(false);
         consumeInventoryUI.SetActive(false);
         detailArea.gameObject.SetActive(false);
@@ -80,6 +84,8 @@ public class Inventory : MonoBehaviour //Inventory
 
     public void OpenConsumeInventory()
     {
+        AudioManager.Instance.PlayUISelectSFX();
+
         FreshConsumeSlot();
         detailArea.ChangeDetailActivation(false);
         consumeInventoryUI.SetActive(true);
