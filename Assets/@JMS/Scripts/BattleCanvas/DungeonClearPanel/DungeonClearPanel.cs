@@ -20,8 +20,15 @@ public class DungeonClearPanel : MonoBehaviour
     {
         gameObject.SetActive(false);
         if (PlayerManager.Instance.isField == true)
+        {
+            AudioManager.Instance.SetState();
             SceneManager.LoadScene("FieldScene");
+        }
         else if (PlayerManager.Instance.isDungeon == true)
+        {
+            AudioManager.Instance.SetState();
             SceneManager.LoadScene("DungeonScene");
+        }
+        
     }
 }

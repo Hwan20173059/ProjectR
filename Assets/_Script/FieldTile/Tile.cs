@@ -391,6 +391,7 @@ public class Tile : MonoBehaviour
                         tileMapManager.chestPosition = null;
 
                     tileMapManager.playerManager.selectBattleID = battleID;
+                    AudioManager.Instance.ChangeBattleBGM();
                     SceneManager.LoadScene("BattleScene");
                     break;
 

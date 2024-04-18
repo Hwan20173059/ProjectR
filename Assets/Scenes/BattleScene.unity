@@ -643,7 +643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5971382703432353169, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: m_SortingOrder
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7000302407852839742, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: m_AnchorMax.y

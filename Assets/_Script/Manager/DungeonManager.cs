@@ -121,6 +121,7 @@ public class DungeonManager : TileMapManager
         }
 
         playerManager.currentState = CurrentState.field;
+        AudioManager.Instance.SetState();
 
         SceneManager.LoadScene("FieldScene");
     }
