@@ -17,11 +17,45 @@ public class ChangeHpTMP : MonoBehaviour
     {
         if (value < 0)
         {
-            text = $"<size=40>{value}";
+            if (value < -400)
+            {
+                text = $"</size><size=65><#FF0000>{value}!";
+            }
+            else if (value < -200)
+            {
+                text = $"</size><size=50><#FF0000>{value}";
+            }
+            else if (value < -100)
+            {
+                text = $"</size><size=45><#FF0000>{value}";
+            }
+            else
+            {
+                text = $"</size><size=40><#FF0000>{value}";
+            }
+        }
+        else if (value == 0)
+        {
+            text = $"</size><size=40></color>0";
         }
         else
         {
-            text = $"<size=40>+{value}";
+            if (value > 400)
+            {
+                text = $"</size><size=65><#FF0000>+{value}!";
+            }
+            else if (value > 200)
+            {
+                text = $"</size><size=50><#FF0000>+{value}";
+            }
+            else if (value > 100)
+            {
+                text = $"</size><size=45><#FF0000>+{value}";
+            }
+            else
+            {
+                text = $"</size><size=40><#FF0000>+{value}";
+            }
         }
         StartCoroutine(MoveTowardsText());
     }
