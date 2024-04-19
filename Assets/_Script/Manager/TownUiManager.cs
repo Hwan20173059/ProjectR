@@ -51,8 +51,7 @@ public class TownUiManager : MonoBehaviour
         playerManager = PlayerManager.Instance;
         playerManager.townUiManager = this;
 
-        loadingUI.OpenScreen();
-
+        loadingUI.gameObject.SetActive(false);
         playerManager.isField = false;
         playerManager.isTown = true;
 
