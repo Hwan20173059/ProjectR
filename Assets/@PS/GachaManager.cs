@@ -17,6 +17,8 @@ public class GachaManager : MonoBehaviour
 
     private bool gacha10;
     private bool isNowItemHaving;
+    private int maxCharacterIndex;
+    private int maxEquipIndex;
 
     public GachaResult gachaResult;
 
@@ -32,6 +34,22 @@ public class GachaManager : MonoBehaviour
     public void StartGacha(int i)
     {
         AudioManager.Instance.PlayUISelectSFX();
+
+        switch(playerManager.GetPlayerGrade())
+        {
+            case 0:
+                maxCharacterIndex = 37; 
+                maxEquipIndex = 38; 
+                break;
+            case 1:
+                maxCharacterIndex = 41; 
+                maxEquipIndex = 51; 
+                break;
+            case 2:
+                maxCharacterIndex = 45; 
+                maxEquipIndex = 57; 
+                break;
+        }
 
         switch (i)
         {
@@ -68,7 +86,7 @@ public class GachaManager : MonoBehaviour
     public void CharacterGacha()
     {
         isNowItemHaving = true;
-        int randomIndex = Random.Range(32, 45);
+        int randomIndex = Random.Range(32, maxCharacterIndex);
         if (!playerManager.HaveCharacter(randomIndex - 32))
         {
             isNowItemHaving = false;
@@ -90,7 +108,7 @@ public class GachaManager : MonoBehaviour
     {
         GameEventManager.instance.uiEvent.Gacha();
         isNowItemHaving = true;
-        int randomIndex = Random.Range(1, 57);
+        int randomIndex = Random.Range(1, maxEquipIndex);
         if (!itemManager.HaveEquipItem(randomIndex))
         {
             isNowItemHaving = false;
