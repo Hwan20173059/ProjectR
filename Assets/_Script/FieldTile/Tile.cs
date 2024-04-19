@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.U2D;
 using UnityEngine.TextCore.Text;
+using UnityEngine.EventSystems;
 
 public enum TileState
 {
@@ -150,6 +151,15 @@ public class Tile : MonoBehaviour
         }
     }
 
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
+    }
+
     private void OnMouseEnter()
     {
         if (tileMapManager.isPlayerturn == true)
@@ -167,7 +177,7 @@ public class Tile : MonoBehaviour
     {
         Sprite sprite;
 
-        if (tileMapManager.isPlayerturn == true)
+        if (tileMapManager.isPlayerturn == true && !IsPointerOverUIObject())
         {
             switch (tileState)
             {
