@@ -403,9 +403,9 @@ public class BattleManager : MonoBehaviour
             Time.timeScale = 1f;
 
             if (PlayerManager.Instance.isField == true)
-                SceneManager.LoadScene("FieldScene");
+                battleCanvas.CloseScreen("FieldScene");
             else if (PlayerManager.Instance.isDungeon == true)
-                SceneManager.LoadScene("DungeonScene");
+                battleCanvas.CloseScreen("DungeonScene");
         }
         else // ½ÇÆÐ
         {

@@ -1595,7 +1595,7 @@ public class CharacterActionState : CharacterBaseState
         battleManager.battleCanvas.SetRepeatEffect(effectId, target.transform.position); // 임시 이펙트
         target.ChangeHP(-damage);
         character.ChangeHP((int)(damage * (drainPercent / 100f)));
-        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 공격!\n{target.monsterName}에게 {damage}의 피해!");
+        battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 흡혈 공격!\n{target.monsterName}에게 {damage}의 피해!");
     }
 
     IEnumerator ArrowAttack(int damageMultiple, int attackCount, int targetCount, int arrowEffectId)
@@ -1758,7 +1758,7 @@ public class CharacterActionState : CharacterBaseState
 
                 target.ChangeHP(-damage);
                 target.SetBurn(burnDamage, damageInterval, burnCount);
-                battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 화살 공격!\n{target.monsterName}에게 {damage}의 피해!");
+                battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 화염 화살!\n{target.monsterName}에게 {damage}의 피해!");
 
                 if (target.IsDead) break;
             }
@@ -1875,7 +1875,7 @@ public class CharacterActionState : CharacterBaseState
                     }
                 }
                 battleManager.battleCanvas.SetRepeatEffect(rangeAttackEffectId, range * 4, target.transform.position); // 임시 이펙트
-                battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 폭발 화살!\n{damage} 의 범위 피해!");
+                battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 얼음 폭발 화살!\n{damage} 의 범위 피해!");
 
                 if (target.IsDead) break;
             }
@@ -1935,7 +1935,7 @@ public class CharacterActionState : CharacterBaseState
                     }
                 }
                 battleManager.battleCanvas.SetRepeatEffect(rangeAttackEffectId, range * 4, target.transform.position); // 임시 이펙트
-                battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 폭발 화살!\n{damage} 의 범위 피해!");
+                battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 기절 폭발 화살!\n{damage} 의 범위 피해!");
 
                 if (target.IsDead) break;
             }
@@ -1996,7 +1996,7 @@ public class CharacterActionState : CharacterBaseState
                     }
                 }
                 battleManager.battleCanvas.SetRepeatEffect(rangeAttackEffectId, range * 4, target.transform.position); // 임시 이펙트
-                battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 폭발 화살!\n{damage} 의 범위 피해!");
+                battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 화염 폭발 화살!\n{damage} 의 범위 피해!");
 
                 if (target.IsDead) break;
             }
