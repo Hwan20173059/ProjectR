@@ -131,8 +131,9 @@ public class DetailArea : MonoBehaviour
     {
         playerManager.townUiManager.characterUI.CharacterInfoUIRefresh();
 
+        if (nowConsumeItem.count == 1) ChangeDetailActivation(false);
         itemManager.ReduceConsumeItem(nowConsumeItem);
-        int exp = ((nowConsumeItem.data.id - 100) * (nowConsumeItem.data.id - 100)) * 100 + 100;
+        int exp = nowConsumeItem.data.value;
         playerManager.characterList[playerManager.selectedCharacterIndex].ChangeExp(exp);
         itemManager.inventory.FreshConsumeSlot();
     }
