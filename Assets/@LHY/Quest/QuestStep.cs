@@ -89,7 +89,7 @@ public class QuestStep : MonoBehaviour
     }
     public void DungeonClear(int id)
     {
-        if (questType == "DungeonClear")
+        if (questType == "DungeonClear" && (id <= questValueID && id >= questValueID + 3))
         {
             questCurrentValue++;
             QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;

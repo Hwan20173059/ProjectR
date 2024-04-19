@@ -107,7 +107,8 @@ public class QuestManager : MonoBehaviour
         if (quest.info.repeatable == "반복")
         {
             ChangeQuestState(quest.info.id, QuestState.Can_Start);
-            quest.info.questCurrentValue = 0;
+            
+            /*
             if (quest.info.questType == "CollectConsumeItem")
             {
                 print(ItemManager.Instance.GetConsumeItem(quest.info.questValueID).data.consumeName);//치즈 조각
@@ -115,6 +116,15 @@ public class QuestManager : MonoBehaviour
                 ConsumeItem c = ItemManager.Instance.cInventory.Find(i => i.data.id == quest.info.questValueID);
                 ItemManager.Instance.ReduceConsumeItem(c, quest.info.questClearValue);
             }
+            */
+        }
+        if (quest.info.questType == "CollectConsumeItem")
+        {
+            quest.info.questCurrentValue = 0;
+            print(ItemManager.Instance.GetConsumeItem(quest.info.questValueID).data.consumeName);//치즈 조각
+            print(quest.info.questClearValue);
+            ConsumeItem c = ItemManager.Instance.cInventory.Find(i => i.data.id == quest.info.questValueID);
+            ItemManager.Instance.ReduceConsumeItem(c, quest.info.questClearValue);
         }
     }
 
