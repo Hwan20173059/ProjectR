@@ -174,7 +174,7 @@ public class ItemManager : Singleton<ItemManager>
             for (int i = 0; i < equippingList.Length - 1; i++)
             {
                 int index = eInventory.FindIndex(e => e.data.id == int.Parse(equippingList[i]));
-                PlayerManager.Instance.EquipLoadItem(i, eInventory[i]);
+                PlayerManager.Instance.EquipLoadItem(i, eInventory[index]);
             }
         }
         else
