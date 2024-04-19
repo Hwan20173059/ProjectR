@@ -44,6 +44,7 @@ public class TileMapManager : MonoBehaviour
     [Header("UI")]
     public GameObject menuUI;
     public GameObject settingUI;
+    public LoadingUI loadingUI;
 
     public TextMeshProUGUI turnState;
     public TextMeshProUGUI turnIndex;
