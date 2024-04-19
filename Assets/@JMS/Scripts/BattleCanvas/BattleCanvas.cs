@@ -81,6 +81,8 @@ public class BattleCanvas : MonoBehaviour
         menuPanel.Init(this);
         cheatPanel.Init(battleManager);
 
+        cheatPanel.gameObject.SetActive(false);
+
         settings.gameObject.SetActive(false);
 
         loadingUI.OpenScreen();
