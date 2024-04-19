@@ -159,6 +159,14 @@ public class PlayerManager : Singleton<PlayerManager>
 
         return currentExp;
     }
+    
+
+    public int GetPlayerGrade()
+    {
+        if (playerLevel < 10) return 0;
+        else if (playerLevel < 20) return 1;
+        else return 2;
+    }
 
     public void LoadCharacterData()
     {
