@@ -410,7 +410,9 @@ public class Tile : MonoBehaviour
 
                     tileMapManager.playerManager.selectBattleID = battleID;
                     AudioManager.Instance.ChangeBattleBGM();
-                    SceneManager.LoadScene("BattleScene");
+
+                    tileMapManager.loadingUI.gameObject.SetActive(true);
+                    tileMapManager.loadingUI.CloseScreen("BattleScene");
                     break;
 
 
@@ -426,7 +428,8 @@ public class Tile : MonoBehaviour
 
                     PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex].curHP = PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex].maxHP;
 
-                    SceneManager.LoadScene("TownScene");
+                    tileMapManager.loadingUI.gameObject.SetActive(true);
+                    tileMapManager.loadingUI.CloseScreen("TownScene");
                     break;
 
 
@@ -444,7 +447,8 @@ public class Tile : MonoBehaviour
                     else if (PlayerManager.Instance.selectDungeonID == 3)
                         SetCurrentState(CurrentState.dungeon4);
 
-                    SceneManager.LoadScene("DungeonScene");
+                    tileMapManager.loadingUI.gameObject.SetActive(true);
+                    tileMapManager.loadingUI.CloseScreen("DungeonScene");
                     break;
 
                 case TileState.canOpenChest:

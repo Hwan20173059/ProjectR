@@ -38,6 +38,7 @@ public class TownUiManager : MonoBehaviour
     public TownTutorialManager tutorialUI;
     public BuyPopup buyPopup;
     public GameObject resetUI;
+    public LoadingUI loadingUI;
 
     [Header("EquipUI")]
     public Inventory inventory;
@@ -49,6 +50,8 @@ public class TownUiManager : MonoBehaviour
     {
         playerManager = PlayerManager.Instance;
         playerManager.townUiManager = this;
+
+        loadingUI.OpenScreen();
 
         playerManager.isField = false;
         playerManager.isTown = true;
@@ -106,7 +109,9 @@ public class TownUiManager : MonoBehaviour
 
         PlayerManager.Instance.currentState = CurrentState.field;
         AudioManager.Instance.SetState();
-        SceneManager.LoadScene("FieldScene");
+
+        loadingUI.gameObject.SetActive(true);
+        loadingUI.CloseScreen("FieldScene");
     }
 
     public void GuildUIOn()

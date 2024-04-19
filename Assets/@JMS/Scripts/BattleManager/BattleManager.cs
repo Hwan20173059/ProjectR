@@ -403,9 +403,15 @@ public class BattleManager : MonoBehaviour
             Time.timeScale = 1f;
 
             if (PlayerManager.Instance.isField == true)
+            {
+                AudioManager.Instance.SetState();
                 battleCanvas.CloseScreen("FieldScene");
+            }
             else if (PlayerManager.Instance.isDungeon == true)
+            {
+                AudioManager.Instance.SetState();
                 battleCanvas.CloseScreen("DungeonScene");
+            }
         }
         else // ½ÇÆÐ
         {
