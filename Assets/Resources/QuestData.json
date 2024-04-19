@@ -57,12 +57,7 @@
       "repeatable": "일반",
       "displayName": "숲 던전 클리어 하기",
       "description": "숲 던전 클리어 하기",
-      "questValueID": [
-        "4",
-        "5",
-        "6",
-        "7"
-      ],
+      "questValueID": "4",
       "questType": "DungeonClear",
       "questClearValue": "1",
       "minLevel": "5",
@@ -78,7 +73,7 @@
       "questValueID": "0",
       "questType": "CollectConsumeItem",
       "questClearValue": "3",
-      "minLevel": "2",
+      "minLevel": "6",
       "maxLevel": "9999",
       "goldReward": "0",
       "expReward": "100"
@@ -140,12 +135,7 @@
       "repeatable": "일반",
       "displayName": "유적 던전 클리어 하기 (3회)",
       "description": "유적 던전 클리어 하기 (3회)",
-      "questValueID": [
-        "8",
-        "9",
-        "10",
-        "11"
-      ],
+      "questValueID": "8",
       "questType": "DungeonClear",
       "questClearValue": "3",
       "minLevel": "10",
@@ -223,12 +213,7 @@
       "repeatable": "일반",
       "displayName": "바다 던전 클리어 하기 (5회)",
       "description": "바다 던전 클리어 하기 (5회)",
-      "questValueID": [
-        "12",
-        "13",
-        "14",
-        "15"
-      ],
+      "questValueID": "12",
       "questType": "DungeonClear",
       "questClearValue": "5",
       "minLevel": "20",
@@ -306,12 +291,7 @@
       "repeatable": "일반",
       "displayName": "지옥 던전 클리어 하기 (5회)",
       "description": "지옥 던전 클리어 하기 (5회)",
-      "questValueID": [
-        "16",
-        "17",
-        "18",
-        "19"
-      ],
+      "questValueID": "16",
       "questType": "DungeonClear",
       "questClearValue": "5",
       "minLevel": "25",
