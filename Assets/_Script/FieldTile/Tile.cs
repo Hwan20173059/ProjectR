@@ -372,7 +372,7 @@ public class Tile : MonoBehaviour
                     {
                         //tileMapManager.selectImage.sprite = null;
 
-                        tileMapManager.selectText.text = "具积狼 魂";
+                        tileMapManager.selectText.text = "具积狼 剑";
                         break;
                     }
                     else if (dungeonID == 1)
