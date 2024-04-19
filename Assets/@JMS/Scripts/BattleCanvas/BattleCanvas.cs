@@ -26,6 +26,7 @@ public class BattleCanvas : MonoBehaviour
     MenuButton menuButton;
     MenuPanel menuPanel;
     CheatPanel cheatPanel;
+    LoadingUI loadingUI;
 
     InfiniteInventory infiniteInventory;
     Settings settings;
@@ -51,6 +52,7 @@ public class BattleCanvas : MonoBehaviour
         menuButton = GetComponentInChildren<MenuButton>();
         menuPanel = GetComponentInChildren<MenuPanel>();
         cheatPanel = GetComponentInChildren<CheatPanel>();
+        loadingUI = GetComponentInChildren<LoadingUI>();
 
         infiniteInventory = GetComponentInChildren<InfiniteInventory>();
         settings = GetComponentInChildren<Settings>();
@@ -70,8 +72,8 @@ public class BattleCanvas : MonoBehaviour
         actionButtonPanel.Init(battleManager);
         roulettePanel.Init(battleManager);
         nextStagePanel.Init(battleManager);
-        battleDefeatPanel.Init();
-        dungeonClearPanel.Init();
+        battleDefeatPanel.Init(this);
+        dungeonClearPanel.Init(this);
         monsterStatePanel.Init();
         battleTextPanel.Init();
         autoBattlePanel.Init(battleManager);
@@ -80,6 +82,8 @@ public class BattleCanvas : MonoBehaviour
         cheatPanel.Init(battleManager);
 
         settings.gameObject.SetActive(false);
+
+        loadingUI.OpenScreen();
     }
 
     public void CreateCharacterHpBar(Character character)
@@ -240,5 +244,11 @@ public class BattleCanvas : MonoBehaviour
     {
         infiniteInventory.detailArea.ChangeDetailActivation(false);
         infiniteInventory.FreshConsumeSlot();
+    }
+
+    public void CloseScreen(string loadScene)
+    {
+        loadingUI.gameObject.SetActive(true);
+        loadingUI.CloseScreen(loadScene);
     }
 }
