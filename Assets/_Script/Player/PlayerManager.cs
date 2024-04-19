@@ -79,6 +79,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public bool firstDungeon = true;
     public bool firstBattle = true;
 
+    public bool isReset = false;
 
     private void Start()
     {
@@ -281,6 +282,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     private void OnApplicationQuit()
     {
-        SavePlayerData();
+        if (isReset == false)
+            SavePlayerData();
     }
 }

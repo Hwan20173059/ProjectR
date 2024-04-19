@@ -211,18 +211,21 @@ public class QuestManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        foreach (Quest quest in NewquestMap.Values)
+        if (PlayerManager.Instance.isReset == false)
         {
-            /*
-            if (quest.info.questState == QuestState.Requirments_Not || 
-                quest.info.questState == QuestState.Can_Start)
+            foreach (Quest quest in NewquestMap.Values)
             {
-                Debug.Log("yet start");
+                /*
+                if (quest.info.questState == QuestState.Requirments_Not || 
+                    quest.info.questState == QuestState.Can_Start)
+                {
+                    Debug.Log("yet start");
+                }
+                */
+                SaveQuest(quest);
             }
-            */
-            SaveQuest(quest);
+            File.WriteAllText(Application.persistentDataPath + "/QuestSaveData.json", JsonUtility.ToJson(Datas));
         }
-        File.WriteAllText(Application.persistentDataPath + "/QuestSaveData.json", JsonUtility.ToJson(Datas));
     }
 
     [SerializeField] private AllQuestSaveData Datas;
