@@ -18,7 +18,6 @@ public class BattleTutorialManager : MonoBehaviour
         {
             PlayerManager.Instance.firstBattle = false;
             ActiveTutorial();
-            Time.timeScale = 0;
         }
         else 
         {
@@ -64,7 +63,6 @@ public class BattleTutorialManager : MonoBehaviour
     {
         AudioManager.Instance.PlayUISelectSFX();
 
-        Time.timeScale = 1f;
         battleTutorial.SetActive(false);
     }
 }
