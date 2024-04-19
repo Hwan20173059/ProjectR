@@ -51,7 +51,27 @@ public class TownUiManager : MonoBehaviour
         playerManager = PlayerManager.Instance;
         playerManager.townUiManager = this;
 
-        loadingUI.gameObject.SetActive(false);
+        if (playerManager.currentState == CurrentState.title)
+        {
+            loadingUI.gameObject.SetActive(false);
+
+            if (playerManager.selectTownID == 0)
+                playerManager.currentState = CurrentState.town1;
+            else if (playerManager.selectTownID == 1)
+                playerManager.currentState = CurrentState.town2;
+
+            AudioManager.Instance.SetState();
+        }
+        else
+        {
+            loadingUI.OpenScreen();
+
+            if (playerManager.selectTownID == 0)
+                playerManager.currentState = CurrentState.town1;
+            else if (playerManager.selectTownID == 1)
+                playerManager.currentState = CurrentState.town2;
+        }
+
         playerManager.isField = false;
         playerManager.isTown = true;
 

@@ -22,13 +22,6 @@ public class TitleManager : MonoBehaviour
         PlayerManager playerManager = PlayerManager.Instance;
 
         AudioManager.Instance.PlayUISelectSFX();
-
-        if (playerManager.selectTownID == 0)
-            playerManager.currentState = CurrentState.town1;
-        else if(playerManager.selectTownID == 1)
-            playerManager.currentState = CurrentState.town2;
-
-        AudioManager.Instance.SetState();
         SceneManager.LoadScene("TownScene");
     }
 }
