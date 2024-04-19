@@ -37,6 +37,7 @@ public class TownUiManager : MonoBehaviour
     public GameObject talkUI;
     public TownTutorialManager tutorialUI;
     public BuyPopup buyPopup;
+    public GameObject resetUI;
 
     [Header("EquipUI")]
     public Inventory inventory;
@@ -285,6 +286,29 @@ public class TownUiManager : MonoBehaviour
 
     public void ExitGame()
     {
+        Application.Quit();
+    }
+
+    public void ResetPanelOn()
+    {
+        AudioManager.Instance.PlayUISelectSFX();
+        resetUI.SetActive(true);
+    }
+
+    public void ResetPanelOff()
+    {
+        AudioManager.Instance.PlayUISelectSFX();
+        resetUI.SetActive(true);
+    }
+
+    public void DataReset()
+    {
+        System.IO.File.Delete(Application.persistentDataPath + "/SaveDatas.json");
+        System.IO.File.Delete(Application.persistentDataPath + "/QuestSaveData.json");
+
+        playerManager.isReset = true;
+
+        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 }
