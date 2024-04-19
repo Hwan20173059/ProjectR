@@ -36,6 +36,7 @@ public class CharacterUI : MonoBehaviour
 
     public void CharacterInfoUIRefresh()
     {
+        if (playerManager == null) playerManager = PlayerManager.Instance;
         Character character = playerManager.characterList[playerManager.selectedCharacterIndex];
 
         characterImage.sprite = character.sprite;
