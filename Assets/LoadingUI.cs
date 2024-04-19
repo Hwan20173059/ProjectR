@@ -25,13 +25,20 @@ public class LoadingUI : MonoBehaviour
 
     IEnumerator Open()
     {
+        image.fillAmount = 1;
+        image.fillClockwise = false;
+
         while (image.fillAmount > 0) { image.fillAmount -= Time.deltaTime; yield return null; }
         image.fillClockwise = true;
+
         gameObject.SetActive(false);
     }
 
     IEnumerator Close(string loadScene)
     {
+        image.fillAmount = 0;
+        image.fillClockwise = true;
+
         while (image.fillAmount < 1) { image.fillAmount += Time.deltaTime; yield return null; }
         image.fillClockwise = false;
 
