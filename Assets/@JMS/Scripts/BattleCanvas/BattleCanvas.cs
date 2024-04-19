@@ -231,8 +231,7 @@ public class BattleCanvas : MonoBehaviour
 
     public void OnClickItemUseButton()
     {
-        infiniteInventory.consumeInventoryUI.SetActive(true);
-        infiniteInventory.detailArea.gameObject.SetActive(true);
+        infiniteInventory.OpenConsumeInventory();
     }
 
     public void OnClickUseButton()

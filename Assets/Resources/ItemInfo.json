@@ -226,8 +226,8 @@
 			"consumeName": "소형 체력 포션",
 			"type": "HpPotion",
 			"trunCount": 0,
-			"value": 20,
-			"info": "약간의 체력이 회복된다.",
+			"value": 100,
+			"info": "체력이 100 회복된다.",
 			"price": 20,
 			"turnCount": 0
 		},
@@ -237,8 +237,8 @@
 			"consumeName": "중형 체력 포션",
 			"type": "HpPotion",
 			"trunCount": 0,
-			"value": 50,
-			"info": "체력이 회복된다.",
+			"value": 200,
+			"info": "체력이 200 회복된다.",
 			"price": 50,
 			"turnCount": 0
 		},
@@ -248,8 +248,8 @@
 			"consumeName": "대형 체력 포션",
 			"type": "HpPotion",
 			"trunCount": 0,
-			"value": 100,
-			"info": "체력이 대폭 회복된다.",
+			"value": 500,
+			"info": "체력이 500 회복된다.",
 			"price": 100,
 			"turnCount": 0
 		},

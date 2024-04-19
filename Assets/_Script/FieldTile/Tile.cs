@@ -53,7 +53,25 @@ public class Tile : MonoBehaviour
         {
             case TileState.empty:
                 SetTile(TileState.empty);
-                spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+                switch (PlayerManager.Instance.currentState) 
+                {
+                    case CurrentState.field: 
+                        spriteRenderer.sprite = tileMapManager.FieldTile;
+                        break;
+                    case CurrentState.dungeon1:
+                        spriteRenderer.sprite = tileMapManager.Dungeon1Tile;
+                        break;
+                    case CurrentState.dungeon2:
+                        spriteRenderer.sprite = tileMapManager.Dungeon2Tile;
+                        break;
+                    case CurrentState.dungeon3:
+                        spriteRenderer.sprite = tileMapManager.Dungeon3Tile;
+                        break;
+                    case CurrentState.dungeon4:
+                        spriteRenderer.sprite = tileMapManager.Dungeon4Tile;
+                        break;
+                }
+                spriteRenderer.color = new Color(1, 1, 1, 0.6f);
                 break;
 
             case TileState.player:
@@ -69,7 +87,7 @@ public class Tile : MonoBehaviour
 
             case TileState.cantGo:
                 SetTile(TileState.cantGo);
-                spriteRenderer.color = new Color(0, 0, 0, 0.5f);
+                spriteRenderer.color = new Color(0, 0, 0, 0.6f);
                 break;
 
             case TileState.monster:
