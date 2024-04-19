@@ -73,12 +73,6 @@ public class CharacterBaseState : IState
     {
         character.currentStateText = state;
         if (battleManager != null)
-            battleManager.battleCanvas.UpdateCharacterState();
-    }
-    protected void AtkUpdate(string state)
-    {
-        character.currentStateText = state;
-        if(battleManager != null)
-            battleManager.battleCanvas.UpdateCharacterAtk();
+            battleManager.battleCanvas.UpdateCharacterState(battleManager.IsRouletteUsed);
     }
 }

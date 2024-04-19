@@ -19,7 +19,7 @@ public class CharacterActionState : CharacterBaseState
     {
         base.Enter();
 
-        AtkUpdate("공격중");
+        StateUpdate("공격중");
 
         if (battleManager.rouletteResult == RouletteResult.Triple)
         {
@@ -181,7 +181,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -282,7 +282,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator AllAttack(int damageMultiple, int attackCount, int effectId)
     {
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         for (int i = 0; i < attackCount; i++)
         {
@@ -310,7 +310,7 @@ public class CharacterActionState : CharacterBaseState
             Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
             Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
 
-            int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+            int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
             character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -355,7 +355,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -476,7 +476,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -690,7 +690,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -843,7 +843,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -865,7 +865,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -887,7 +887,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -919,7 +919,7 @@ public class CharacterActionState : CharacterBaseState
             Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
             Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
 
-            int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+            int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
             character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -967,7 +967,7 @@ public class CharacterActionState : CharacterBaseState
             Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
             Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
 
-            int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+            int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
             character.ChangeAnimState(CharacterAnimState.Running);
             while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -1008,7 +1008,7 @@ public class CharacterActionState : CharacterBaseState
             Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
             Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
 
-            int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+            int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
             character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -1050,7 +1050,7 @@ public class CharacterActionState : CharacterBaseState
             Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
             Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
 
-            int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+            int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
             character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -1092,7 +1092,7 @@ public class CharacterActionState : CharacterBaseState
             Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
             Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
 
-            int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+            int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
             character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -1134,7 +1134,7 @@ public class CharacterActionState : CharacterBaseState
             Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
             Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
 
-            int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+            int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
             character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -1174,7 +1174,7 @@ public class CharacterActionState : CharacterBaseState
             Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
             Vector3 nextMonsterPosition = nextTarget.transform.position + Vector3.left;
 
-            int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+            int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
             character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -1204,7 +1204,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -1229,7 +1229,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -1254,7 +1254,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -1279,7 +1279,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -1302,7 +1302,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -1325,7 +1325,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -1348,7 +1348,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -1370,7 +1370,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -1393,7 +1393,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
         while (MoveTowardsCharacter(selectMonsterPosition)) { yield return null; }
@@ -1413,7 +1413,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator AllFrozenAttack(int damageMultiple, int attackCount, int effectId)
     {
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         for (int i = 0; i < attackCount; i++)
         {
@@ -1428,7 +1428,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator AllStunAttack(int damageMultiple, int attackCount, int duration, int effectId)
     {
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         for (int i = 0; i < attackCount; i++)
         {
@@ -1443,7 +1443,7 @@ public class CharacterActionState : CharacterBaseState
 
     IEnumerator AllFlameAttack(int damageMultiple, int attackCount, int burnDamage, float damageInterval, int burnCount, int effectId)
     {
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         for (int i = 0; i < attackCount; i++)
         {
@@ -1565,7 +1565,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         Vector3 selectMonsterPosition = target.transform.position + Vector3.left;
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         character.ChangeAnimState(CharacterAnimState.Running);
 
@@ -1603,7 +1603,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         bool[] IsDamaged = new bool[battleManager.monsters.Count];
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
 
@@ -1645,7 +1645,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         bool[] IsDamaged = new bool[battleManager.monsters.Count];
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
 
@@ -1688,7 +1688,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         bool[] IsDamaged = new bool[battleManager.monsters.Count];
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
 
@@ -1732,7 +1732,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         bool[] IsDamaged = new bool[battleManager.monsters.Count];
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
 
@@ -1775,7 +1775,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         bool[] IsDamaged = new bool[battleManager.monsters.Count];
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
 
@@ -1832,7 +1832,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         bool[] IsDamaged = new bool[battleManager.monsters.Count];
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
 
@@ -1892,7 +1892,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         bool[] IsDamaged = new bool[battleManager.monsters.Count];
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
 
@@ -1953,7 +1953,7 @@ public class CharacterActionState : CharacterBaseState
         Monster target = battleManager.selectMonster;
         bool[] IsDamaged = new bool[battleManager.monsters.Count];
 
-        int damage = battleManager.GetChangeValue(character.addBuffAtk) * damageMultiple;
+        int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
         targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
 

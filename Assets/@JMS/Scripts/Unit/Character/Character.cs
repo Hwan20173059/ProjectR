@@ -48,7 +48,7 @@ public class Character : MonoBehaviour
     public CharacterHpBar hpBar;
 
     public BattleManager battleManager;
-    public BattleCanvas battleCanvas { get {  return battleManager.battleCanvas; } }
+    public BattleCanvas battleCanvas { get { return battleManager.battleCanvas; } }
 
     private void Awake()
     {
@@ -143,17 +143,17 @@ public class Character : MonoBehaviour
         curHP = curHP < 0 ? 0 : curHP;
 
         hpBar.SetHpBar();
+        battleCanvas.UpdateCharacterState(battleManager.IsRouletteUsed);
 
-        if(value < 0)
+        if (value < 0)
         {
             animatorController.PlayAnim(CharacterAnim.Hit);
-            battleCanvas.UpdateCharacterState();
         }
-        else if(value > 0)
+        else if (value > 0)
         {
             animatorController.PlayAnim(CharacterAnim.Heal);
-            battleCanvas.UpdateCharacterAtk();
         }
+
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
         battleCanvas.SetChangeHpTMP(value, screenPos);
@@ -175,9 +175,9 @@ public class Character : MonoBehaviour
         curExp = curExp - needExp;
         level++;
         level = level > maxLevel ? maxLevel : level;
-        maxHP = baseData.hp + ( baseData.levelUpHp * level );
+        maxHP = baseData.hp + (baseData.levelUpHp * level);
         curHP += baseData.levelUpHp;
-        atk = baseData.atk + ( baseData.levelUpAtk * level );
+        atk = baseData.atk + (baseData.levelUpAtk * level);
         needExp = 100 + (level * (10 * ((level + 5) / 5)));
         curExp = curExp >= needExp ? LevelUp() : curExp;
         return curExp;

@@ -170,14 +170,12 @@ public class BattleCanvas : MonoBehaviour
         characterStatePanel.UpdateActionBar(character);
     }
 
-
-    public void UpdateCharacterState()
+    public void UpdateCharacterState(bool IsRouletteUsed)
     {
-        characterStatePanel.UpdateCharacterState(character);
-    }
-    public void UpdateCharacterAtk()
-    {
-        characterStatePanel.UpdateCharacterState(character, battleManager);
+        if (IsRouletteUsed)
+            characterStatePanel.UpdateCharacterState(character, battleManager);
+        else
+            characterStatePanel.UpdateCharacterState(character);
     }
 
     public void UpdateMonsterState()

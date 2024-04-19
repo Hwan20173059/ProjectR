@@ -15,10 +15,11 @@ public class CharacterSelectActionState : CharacterBaseState
 
         StateUpdate("행동 선택중");
 
-        battleManager.battleCanvas.RouletteButtonOn();
         battleManager.IsSelectingAction = true;
         battleManager.IsRouletteUsed = false;
         battleManager.useItemCount = 0;
+        battleManager.battleCanvas.RouletteButtonOn();
+        battleManager.battleCanvas.UpdateCharacterState(battleManager.IsRouletteUsed);
         battleManager.stateMachine.ChangeState(battleManager.stateMachine.playerSelectingActionState);
     }
     public override void Exit()

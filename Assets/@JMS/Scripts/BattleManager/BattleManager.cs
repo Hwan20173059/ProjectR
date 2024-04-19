@@ -134,6 +134,13 @@ public class BattleManager : MonoBehaviour
             targetCircle = Instantiate(targetCirclePrefab).GetComponent<TargetCircle>();
             targetCircle.gameObject.SetActive(false);
         }
+
+        for (int i = 0; i < 3; i++)
+        {
+            rouletteEquip.Add(PlayerManager.Instance.equip[i]);
+            rouletteResultIndex.Add(i);
+            rouletteResult = RouletteResult.Different;
+        }
     }
 
     public void SpawnCharacter()
@@ -426,6 +433,7 @@ public class BattleManager : MonoBehaviour
                 character.characterBuffHandler.AddBuff(BuffType.Speed,selectItem.data.value, selectItem.data.turnCount);
                 break;
         }
+        battleCanvas.UpdateCharacterState(IsRouletteUsed);
 
         ItemManager.Instance.ReduceConsumeItem(selectItem);
         battleCanvas.FreshConsumeSlot();
@@ -475,7 +483,7 @@ public class BattleManager : MonoBehaviour
         rouletteResultIndex.Clear();
     }
 
-    public int GetChangeValue(int baseValue)
+    public int GetRouletteValue(int baseValue)
     {
         switch(rouletteResult)
         {

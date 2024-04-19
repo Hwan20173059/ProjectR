@@ -33,7 +33,7 @@ public class CharacterStatePanel : MonoBehaviour
     {
         if (character == null) return;
         characterStateText.text = $"캐릭터 : {character.characterName}\n레벨 : {character.level}\n" +
-            $"체력 : {character.curHP} / {character.maxHP}\n공격력 : <#FF0000>{battlemanager.GetChangeValue(character.addBuffAtk)}</color>\n" +
+            $"체력 : {character.curHP} / {character.maxHP}\n공격력 : <#FF0000>{battlemanager.GetRouletteValue(character.addBuffAtk)}</color>\n" +
             $"경험치 : {character.curExp} / {character.needExp}\n상태 : {character.currentStateText}";
     }
 }

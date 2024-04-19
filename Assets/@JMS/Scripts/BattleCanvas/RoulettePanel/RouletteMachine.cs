@@ -42,7 +42,7 @@ public class RouletteMachine : MonoBehaviour
 
         battleManager.IsUsingRoulette = false;
 
-        battleManager.battleCanvas.UpdateCharacterAtk();
+        battleManager.battleCanvas.UpdateCharacterState(battleManager.IsRouletteUsed);
 
         if (battleManager.IsAutoBattle)
             battleManager.OnClickAttackButton();
@@ -125,7 +125,7 @@ public class RouletteMachine : MonoBehaviour
 
         battleManager.IsUsingRoulette = false;
 
-        battleManager.battleCanvas.UpdateCharacterAtk();
+        battleManager.battleCanvas.UpdateCharacterState(battleManager.IsRouletteUsed);
 
         if (battleManager.IsAutoBattle)
             battleManager.OnClickAttackButton();
