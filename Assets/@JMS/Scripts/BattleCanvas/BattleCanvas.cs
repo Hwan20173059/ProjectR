@@ -101,8 +101,8 @@ public class BattleCanvas : MonoBehaviour
     public void SetChangeHpTMP(int value, Vector3 screenPos)
     {
         GameObject go = objectPool.GetFromPool("ChangeHpTMP");
-        int addPos = Random.Range(-100, 101);
-        Vector3 randomPos = new Vector3(screenPos.x + addPos, screenPos.y + 100);
+        int addPos = Random.Range(-50, 51);
+        Vector3 randomPos = new Vector3(screenPos.x + addPos, screenPos.y + 70);
         go.transform.position = randomPos;
         go.GetComponent<ChangeHpTMP>().SetChangeHpTMP(value);
     }
@@ -138,6 +138,12 @@ public class BattleCanvas : MonoBehaviour
         GameObject go = objectPool.GetFromPool("BattleEffect");
         go.transform.position = startPos + (Vector3.up / 2);
         go.GetComponent<BattleEffect>().SetMoveEffect(id, targetPos);
+    }
+    public void SetMoveEffect(int id, Vector3 startPos, Vector3 targetPos, float angle)
+    {
+        GameObject go = objectPool.GetFromPool("BattleEffect");
+        go.transform.position = startPos + (Vector3.up / 2);
+        go.GetComponent<BattleEffect>().SetMoveEffect(id, targetPos, angle);
     }
 
     public BattleEffect SetEffect(int id, Vector3 startPos)

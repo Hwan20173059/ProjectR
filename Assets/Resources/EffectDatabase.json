@@ -76,6 +76,83 @@
 			"moveSeconds": 0,
 			"movePosX": 0,
 			"movePosY": 0
+		},
+		{
+			"id": 7,
+			"effectName": "일반 화살",
+			"animatorPath": "Effect1/Pixel Arts/arrow/ani_arrow",
+			"effectScale": 2,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0.2,
+			"movePosX": 0,
+			"movePosY": 0
+		},
+		{
+			"id": 8,
+			"effectName": "화염 화살",
+			"animatorPath": "Effect1/Pixel Arts/arrowFire/ani_arrowFire",
+			"effectScale": 2,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0.3,
+			"movePosX": 0,
+			"movePosY": 0
+		},
+		{
+			"id": 9,
+			"effectName": "얼음 화살",
+			"animatorPath": "Effect1/Pixel Arts/arrowIce/ani_arrowIce",
+			"effectScale": 2,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0.3,
+			"movePosX": 0,
+			"movePosY": 0
+		},
+		{
+			"id": 10,
+			"effectName": "특수 공격",
+			"animatorPath": "Effect1/Pixel Arts/hitSpecial/ani_hitSpecial",
+			"effectScale": 1,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0,
+			"movePosX": 0,
+			"movePosY": 0
+		},
+		{
+			"id": 11,
+			"effectName": "얼음 폭발",
+			"animatorPath": "Effect1/Pixel Arts/hitIce/ani_hitIce",
+			"effectScale": 1,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0,
+			"movePosX": 0,
+			"movePosY": 0
+		},
+		{
+			"id": 12,
+			"effectName": "화염 폭발",
+			"animatorPath": "Effect1/Pixel Arts/hitFire/ani_hitFire",
+			"effectScale": 1,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0,
+			"movePosX": 0,
+			"movePosY": 0
+		},
+		{
+			"id": 13,
+			"effectName": "즉사 공격",
+			"animatorPath": "Effect1/Pixel Arts/slashSpecial1/ani_slashSpecial1",
+			"effectScale": 1,
+			"duration": 0,
+			"repeatingCount": 1,
+			"moveSeconds": 0,
+			"movePosX": 0,
+			"movePosY": 0
 		}
 	]
 }

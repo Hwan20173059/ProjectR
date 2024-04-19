@@ -32,6 +32,10 @@ public class BattleEffect : MonoBehaviour
     {
         StartCoroutine(MoveEffect(id, targetPos));
     }
+    public void SetMoveEffect(int id, Vector3 targetPos, float angle)
+    {
+        StartCoroutine(MoveEffect(id, targetPos, angle));
+    }
     public void SetEffect(int id)
     {
         Effect(id);
@@ -120,6 +124,24 @@ public class BattleEffect : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    IEnumerator MoveEffect(int id, Vector3 targetPos, float angle)
+    {
+        ChangeAnimSet(id);
+
+        transform.rotation = Quaternion.Euler(0, 0, angle - 180);
+        Vector3 startPos = transform.position;
+        float moveTIme = 0;
+        float moveSeconds = DataManager.Instance.effectDatabase.GetDataByKey(id).moveSeconds;
+
+        while (LerpEffect(startPos, targetPos, moveTIme))
+        {
+            moveTIme += Time.deltaTime / moveSeconds;
+            yield return null;
+        }
+
+        gameObject.SetActive(false);
+    }
+
     private bool LerpEffect(Vector3 startPos, Vector3 targetPos, float moveTime)
     {
         return targetPos != (transform.position =
@@ -133,11 +155,13 @@ public class BattleEffect : MonoBehaviour
 
     void ChangeAnimSet(int id)
     {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         animator.runtimeAnimatorController = DataManager.Instance.effectDatabase.GetAnimDataByKey(id);
         transform.localScale = new Vector3(5, 5) * DataManager.Instance.effectDatabase.GetDataByKey(id).effectScale;
     }
     void ChangeAnimSet(int id, float effectScale)
     {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         animator.runtimeAnimatorController = DataManager.Instance.effectDatabase.GetAnimDataByKey(id);
         transform.localScale = new Vector3(5, 5) * effectScale;
     }

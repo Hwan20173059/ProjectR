@@ -534,7 +534,7 @@
 			"tripleValue": 45,
 			"tripleChangeType": "ADD",
 			"info": "가장 낮은 계급인 폰이다.",
-			"abilityInfo": "다른 몬스터를 추가로 공격한다."
+			"abilityInfo": "연속 공격을 한다."
 		},
 		{
 			"id": 2,
@@ -548,7 +548,7 @@
 			"tripleValue": 60,
 			"tripleChangeType": "ADD",
 			"info": "멋진 모양의 나뭇가지이다.",
-			"abilityInfo": "체력을 15 회복한다."
+			"abilityInfo": "체력을 회복한다."
 		},
 		{
 			"id": 3,
@@ -562,7 +562,7 @@
 			"tripleValue": 54,
 			"tripleChangeType": "ADD",
 			"info": "바람의 힘이 담긴 깃털이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "캐릭터의 행동력 회복 속도가 크게 상승한다."
 		},
 		{
 			"id": 4,
@@ -576,7 +576,7 @@
 			"tripleValue": 75,
 			"tripleChangeType": "ADD",
 			"info": "착용하면 힘이 느껴지는 반지이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "모든 몬스터에게 피해를 입힌다."
 		},
 		{
 			"id": 5,
@@ -590,7 +590,7 @@
 			"tripleValue": 36,
 			"tripleChangeType": "ADD",
 			"info": "울면 안돼.",
-			"abilityInfo": "?"
+			"abilityInfo": "다른 몬스터를 추가로 공격한다."
 		},
 		{
 			"id": 6,
@@ -604,7 +604,7 @@
 			"tripleValue": 69,
 			"tripleChangeType": "ADD",
 			"info": "이거 하나면 시체 처리까지 완벽하다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상에게 화상을 입힌다."
 		},
 		{
 			"id": 7,
@@ -618,7 +618,7 @@
 			"tripleValue": 66,
 			"tripleChangeType": "ADD",
 			"info": "비록 물고기지만 잡고 휘두르면 위협적이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 빙결상태로 만든다."
 		},
 		{
 			"id": 8,
@@ -632,7 +632,7 @@
 			"tripleValue": 45,
 			"tripleChangeType": "ADD",
 			"info": "형형색색의 예쁜 무지개이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 스턴상태로 만든다."
 		},
 		{
 			"id": 9,
@@ -646,7 +646,7 @@
 			"tripleValue": 54,
 			"tripleChangeType": "ADD",
 			"info": "이거 가져다 팔면 비싸게 받을수 있는건가?",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상의 후방에 위치한 몬스터까지 피해를 입힌다."
 		},
 		{
 			"id": 10,
@@ -660,7 +660,7 @@
 			"tripleValue": 72,
 			"tripleChangeType": "ADD",
 			"info": "트릿 오어 트릭~ 아 반대인가?",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 십자 방향의 몬스터에게 추가로 피해를 입힌다."
 		},
 		{
 			"id": 11,
@@ -674,7 +674,7 @@
 			"tripleValue": 84,
 			"tripleChangeType": "ADD",
 			"info": "닌자들이 투척하는 용도로 사용되는 무기다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입힌다."
 		},
 		{
 			"id": 12,
@@ -688,7 +688,7 @@
 			"tripleValue": 57,
 			"tripleChangeType": "ADD",
 			"info": "맞으면 얼어붙어버릴려나..?",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상에게 연속 공격을 하고, 추가로 랜덤 대상에게 같은 공격을 한다."
 		},
 		{
 			"id": 13,
@@ -702,7 +702,7 @@
 			"tripleValue": 36,
 			"tripleChangeType": "ADD",
 			"info": "매우매우매우 달콤한 꿀이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상의 후방에 위치한 몬스터까지 피해를 입히고, 추가로 랜덤 대상에게 같은 공격을 한다."
 		},
 		{
 			"id": 14,
@@ -716,7 +716,7 @@
 			"tripleValue": 48,
 			"tripleChangeType": "ADD",
 			"info": "이거 옷 맞아? 이불을 뒤집어 쓴거같은데",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 빙결상태로 만들고, 추가로 랜덤 대상에게 같은 공격을 한다."
 		},
 		{
 			"id": 15,
@@ -730,7 +730,7 @@
 			"tripleValue": 66,
 			"tripleChangeType": "ADD",
 			"info": "하나로는 아무쓸모 없어보이지만 다 역할이 있는 법이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 스턴상채로 만들고, 추가로 랜덤 대상에게 같은 공격을 한다."
 		},
 		{
 			"id": 16,
@@ -744,7 +744,7 @@
 			"tripleValue": 54,
 			"tripleChangeType": "ADD",
 			"info": "착용하면 몸이 가벼워지는 느낌이 든다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상에게 화상을 입히고, 추가로 랜덤 대상에게 같은 공격을 한다."
 		},
 		{
 			"id": 17,
@@ -758,7 +758,7 @@
 			"tripleValue": 72,
 			"tripleChangeType": "ADD",
 			"info": "보석상이 보면 환장하겠군..",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 십자 방향의 몬스터에게 추가로 피해를 입히고, 추가로 랜덤 대상에게 같은 공격을 한다."
 		},
 		{
 			"id": 18,
@@ -772,7 +772,7 @@
 			"tripleValue": 63,
 			"tripleChangeType": "ADD",
 			"info": "이런건 도대체 어디서 구해오는거야?",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입힌고, 추가로 랜덤 대상에게 같은 공격을 한다."
 		},
 		{
 			"id": 19,
@@ -786,7 +786,7 @@
 			"tripleValue": 48,
 			"tripleChangeType": "ADD",
 			"info": "그 누구라도 가지고 싶어하는 그것",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상의 후방에 위치한 몬스터까지 피해를 입히고, 빙결상태로 만든다."
 		},
 		{
 			"id": 20,
@@ -800,7 +800,7 @@
 			"tripleValue": 51,
 			"tripleChangeType": "ADD",
 			"info": "네잎이 아니었네..?",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상의 후방에 위치한 몬스터까지 피해를 입히고, 스턴상태로 만든다."
 		},
 		{
 			"id": 21,
@@ -814,7 +814,7 @@
 			"tripleValue": 54,
 			"tripleChangeType": "ADD",
 			"info": "어둠의 마법에 대한 모든것이 적혀있다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상의 후방에 위치한 몬스터까지 피해를 입히고, 추가로 화상을 입힌다."
 		},
 		{
 			"id": 22,
@@ -828,7 +828,7 @@
 			"tripleValue": 144,
 			"tripleChangeType": "ADD",
 			"info": "글자를 알아보기 힘들정도로 낡은 책이다.",
-			"abilityInfo": "후방의 적까지 함께 공격한다."
+			"abilityInfo": "공격 대상의 후방에 위치한 몬스터까지 피해를 입히는 연속 공격."
 		},
 		{
 			"id": 23,
@@ -842,7 +842,7 @@
 			"tripleValue": 150,
 			"tripleChangeType": "ADD",
 			"info": "예쁜 색감의 장미이다.",
-			"abilityInfo": "적 전체를 공격한다."
+			"abilityInfo": "공격 대상을 기준으로 십자 방향의 몬스터에게 추가로 피해를 입히고, 빙결상태로 만든다."
 		},
 		{
 			"id": 24,
@@ -856,7 +856,7 @@
 			"tripleValue": 129,
 			"tripleChangeType": "ADD",
 			"info": "이것은 소금일까 설탕일까..",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 십자 방향의 몬스터에게 추가로 피해를 입히고, 스턴상태로 만든다."
 		},
 		{
 			"id": 25,
@@ -870,7 +870,7 @@
 			"tripleValue": 171,
 			"tripleChangeType": "ADD",
 			"info": "날카로운 낚시 바늘이다 찔리지 않게 조심하자",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 십자 방향의 몬스터에게 추가로 피해를 입히고, 화상상태로 만든다."
 		},
 		{
 			"id": 26,
@@ -884,7 +884,7 @@
 			"tripleValue": 177,
 			"tripleChangeType": "ADD",
 			"info": "마치 푸른 하늘과 같이 맑은 색을 가진 보석이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 십자 방향의 몬스터에게 추가로 피해를 입히는 연속 공격."
 		},
 		{
 			"id": 27,
@@ -898,7 +898,7 @@
 			"tripleValue": 165,
 			"tripleChangeType": "ADD",
 			"info": "날카로운 4방 수리검이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입히고, 빙결상태로 만든다."
 		},
 		{
 			"id": 28,
@@ -912,7 +912,7 @@
 			"tripleValue": 129,
 			"tripleChangeType": "ADD",
 			"info": "순수한 마음이 깃든 꽃이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입히고, 스턴상태로 만든다."
 		},
 		{
 			"id": 29,
@@ -926,7 +926,7 @@
 			"tripleValue": 135,
 			"tripleChangeType": "ADD",
 			"info": "지저귀는 소리가 매우 아름다운 노란 새이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입히고, 화상상태로 만든다."
 		},
 		{
 			"id": 30,
@@ -940,7 +940,7 @@
 			"tripleValue": 141,
 			"tripleChangeType": "ADD",
 			"info": "아뇨 뚱인데요?",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입히는 연속 공격."
 		},
 		{
 			"id": 31,
@@ -954,7 +954,7 @@
 			"tripleValue": 168,
 			"tripleChangeType": "ADD",
 			"info": "이거 들수는 있는건가..?",
-			"abilityInfo": "?"
+			"abilityInfo": "모든 몬스터에게 피해를 입히고, 빙결상태로 만든다."
 		},
 		{
 			"id": 32,
@@ -968,7 +968,7 @@
 			"tripleValue": 141,
 			"tripleChangeType": "ADD",
 			"info": "옷이 날개라더니.. 이럴때 쓰는말이 아닌가?",
-			"abilityInfo": "?"
+			"abilityInfo": "모든 몬스터에게 피해를 입히고, 스턴상태로 만든다."
 		},
 		{
 			"id": 33,
@@ -982,7 +982,7 @@
 			"tripleValue": 123,
 			"tripleChangeType": "ADD",
 			"info": "무언가가 죽고 남은 영혼이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "모든 몬스터에게 피해를 입히고, 화상상태로 만든다."
 		},
 		{
 			"id": 34,
@@ -996,7 +996,7 @@
 			"tripleValue": 174,
 			"tripleChangeType": "ADD",
 			"info": "착용하면 엄청난 힘이 느껴지지만 뭔가 불안해지는 반지이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "모든 몬스터에게 피해를 입히는 연속 공격."
 		},
 		{
 			"id": 35,
@@ -1010,7 +1010,7 @@
 			"tripleValue": 132,
 			"tripleChangeType": "ADD",
 			"info": "모두가 이것을 가지려고 안달이지..",
-			"abilityInfo": "?"
+			"abilityInfo": "즉사급 피해 공격을 한다."
 		},
 		{
 			"id": 36,
@@ -1024,7 +1024,7 @@
 			"tripleValue": 126,
 			"tripleChangeType": "ADD",
 			"info": "섬뜩하게 생겼지만 엄청난 가치를 가지고 있다.",
-			"abilityInfo": "?"
+			"abilityInfo": "모든 몬스터를 빙결 상태로 만들고, 공격 대상에게 즉사급 피해를 입힌다."
 		},
 		{
 			"id": 37,
@@ -1038,7 +1038,7 @@
 			"tripleValue": 135,
 			"tripleChangeType": "ADD",
 			"info": "고귀한 기품이 느껴지는 장갑이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "모든 몬스터를 기절 상태로 만들고, 공격 대상에게 즉사급 피해를 입힌다."
 		},
 		{
 			"id": 38,
@@ -1052,7 +1052,7 @@
 			"tripleValue": 297,
 			"tripleChangeType": "ADD",
 			"info": "주변에만 다가가도 찌릿찌릿하다.",
-			"abilityInfo": "?"
+			"abilityInfo": "모든 몬스터를 화상 상태로 만들고, 공격 대상에게 즉사급 피해를 입힌다."
 		},
 		{
 			"id": 39,
@@ -1066,7 +1066,7 @@
 			"tripleValue": 255,
 			"tripleChangeType": "ADD",
 			"info": "힘을 과하게 추구하면 안되는 법이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "없음"
 		},
 		{
 			"id": 40,
@@ -1080,7 +1080,7 @@
 			"tripleValue": 270,
 			"tripleChangeType": "ADD",
 			"info": "매우 아름다운 색의 보석이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 피해량의 비례해서 체력을 회복한다."
 		},
 		{
 			"id": 41,
@@ -1094,7 +1094,7 @@
 			"tripleValue": 255,
 			"tripleChangeType": "ADD",
 			"info": "무려 천년이나 땅속에 있던 삼이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "화살을 날려 피해를 입힌다."
 		},
 		{
 			"id": 42,
@@ -1108,7 +1108,7 @@
 			"tripleValue": 270,
 			"tripleChangeType": "ADD",
 			"info": "엄청 커다란 나뭇잎이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "얼음 화살을 날려 피해를 입히고, 빙결상태로 만든다."
 		},
 		{
 			"id": 43,
@@ -1122,7 +1122,7 @@
 			"tripleValue": 264,
 			"tripleChangeType": "ADD",
 			"info": "용맹함이 느껴지는 체스말이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "기절 화살을 날려 피해를 입히고, 기절상태로 만든다."
 		},
 		{
 			"id": 44,
@@ -1136,7 +1136,7 @@
 			"tripleValue": 240,
 			"tripleChangeType": "ADD",
 			"info": "이거.. 훔쳐온거 아니야?",
-			"abilityInfo": "?"
+			"abilityInfo": "화염 화살을 날려 피해를 입히고, 화상상태로 만든다."
 		},
 		{
 			"id": 45,
@@ -1150,7 +1150,7 @@
 			"tripleValue": 240,
 			"tripleChangeType": "ADD",
 			"info": "뭐든지 다 가지고 싶어지는 탐욕이 느껴진다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상에게 일반 폭발 화살을 날려, 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입힌다."
 		},
 		{
 			"id": 46,
@@ -1164,7 +1164,7 @@
 			"tripleValue": 285,
 			"tripleChangeType": "ADD",
 			"info": "누가봐도 끼면 안될거같은데?",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상에게 얼음 폭발 화살을 날려, 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입히고, 빙결상태로 만든다."
 		},
 		{
 			"id": 47,
@@ -1178,7 +1178,7 @@
 			"tripleValue": 255,
 			"tripleChangeType": "ADD",
 			"info": "깃털처럼 가볍지만 강철보다 단단한 깃털이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상에게 기절 폭발 화살을 날려, 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입히고, 기절상태로 만든다."
 		},
 		{
 			"id": 48,
@@ -1192,7 +1192,7 @@
 			"tripleValue": 270,
 			"tripleChangeType": "ADD",
 			"info": "정말로 무언가가 쳐다보고 있었다니까..?",
-			"abilityInfo": "?"
+			"abilityInfo": "공격 대상에게 화염 폭발 화살을 날려, 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입히고, 화상상태로 만든다."
 		},
 		{
 			"id": 49,
@@ -1206,7 +1206,7 @@
 			"tripleValue": 276,
 			"tripleChangeType": "ADD",
 			"info": "꺼지지 않는 불꽃으로 감싸여있다.",
-			"abilityInfo": "?"
+			"abilityInfo": "최대 4명의 적에게, 최대 2번의 화살을 날려 피해를 입힌다."
 		},
 		{
 			"id": 50,
@@ -1220,7 +1220,7 @@
 			"tripleValue": 291,
 			"tripleChangeType": "ADD",
 			"info": "빛의 마법에 대한 모든것이 적혀있다.",
-			"abilityInfo": "?"
+			"abilityInfo": "최대 2명의 적에게, 최대 10번의 화살을 날려 피해를 입힌다."
 		},
 		{
 			"id": 51,
@@ -1234,7 +1234,7 @@
 			"tripleValue": 450,
 			"tripleChangeType": "ADD",
 			"info": "왕의 기품이 느껴지는 체스말이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "최대 6명의 적에게, 일반 폭발 화살을 날려, 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입힌다."
 		},
 		{
 			"id": 52,
@@ -1248,7 +1248,7 @@
 			"tripleValue": 420,
 			"tripleChangeType": "ADD",
 			"info": "단연컨데 불은 인류 최고의 보물이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "최대 2명의 적에게, 기절 폭발 화살을 날려, 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입히고, 기절상태로 만든다."
 		},
 		{
 			"id": 53,
@@ -1262,7 +1262,7 @@
 			"tripleValue": 369,
 			"tripleChangeType": "ADD",
 			"info": "세상의 모든것 그 자체",
-			"abilityInfo": "?"
+			"abilityInfo": "최대 2명의 적에게, 얼음 폭발 화살을 날려, 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입히고, 빙결상태로 만든다."
 		},
 		{
 			"id": 54,
@@ -1276,7 +1276,7 @@
 			"tripleValue": 390,
 			"tripleChangeType": "ADD",
 			"info": "태초에 빛이 있었지만 그 이전에 어둠이 있었다.",
-			"abilityInfo": "?"
+			"abilityInfo": "최대 2명의 적에게, 화염 폭발 화살을 날려, 대상을 기준으로 전 방향의 몬스터에게 추가로 피해를 입히고, 화상상태로 만든다."
 		},
 		{
 			"id": 55,
@@ -1290,7 +1290,7 @@
 			"tripleValue": 363,
 			"tripleChangeType": "ADD",
 			"info": "모든 생명은 소중하다.",
-			"abilityInfo": "?"
+			"abilityInfo": "없음"
 		},
 		{
 			"id": 56,
@@ -1304,7 +1304,7 @@
 			"tripleValue": 450,
 			"tripleChangeType": "ADD",
 			"info": "생명은 끝이 있기에 소중한 것이다.",
-			"abilityInfo": "?"
+			"abilityInfo": "연속으로 즉사급 피해 공격을 한다."
 		}
 	]
 }

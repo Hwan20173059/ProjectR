@@ -96,7 +96,7 @@ public class RouletteMachine : MonoBehaviour
             endPos += Vector3.down * 450;
 
         float curSpinTime = 0;
-        float debugTIme = 0;
+
         while (LerpRoulette(roulette, startPos, endPos, curSpinTime))
         {
             if (roulette.transform.localPosition.y <= -450f)
@@ -107,10 +107,8 @@ public class RouletteMachine : MonoBehaviour
             }
 
             curSpinTime += Time.deltaTime / spinSeconds;
-            debugTIme += Time.deltaTime;
             yield return null;
         }
-        Debug.Log($"{debugTIme}");
     }
 
     private bool LerpRoulette(RouletteBase roulette, Vector3 startPos, Vector3 endPos, float curSpinTime)

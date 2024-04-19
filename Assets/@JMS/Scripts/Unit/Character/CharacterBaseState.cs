@@ -63,6 +63,12 @@ public class CharacterBaseState : IState
             Vector3.MoveTowards(character.transform.position, target, character.moveAnimSpeed * Time.deltaTime));
     }
 
+    protected bool LerpCharacter(Vector3 startPos, Vector3 target, float curMoveTime)
+    {
+        return target != (character.transform.position =
+            Vector3.MoveTowards(startPos, target, curMoveTime));
+    }
+
     protected void StateUpdate(string state)
     {
         character.currentStateText = state;

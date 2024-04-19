@@ -62,7 +62,7 @@ public class ChangeHpTMP : MonoBehaviour
 
     IEnumerator MoveTowardsText()
     {
-        Vector3 target = new Vector3(transform.position.x, transform.position.y + 50);
+        Vector3 target = new Vector3(transform.position.x, transform.position.y + 30);
         while (MoveTowardsText(target)) { yield return null; }
         gameObject.SetActive(false);
     }
