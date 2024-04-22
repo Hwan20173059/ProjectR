@@ -11,7 +11,10 @@ public class BattleStartState : BattleBaseState
     public override void Enter()
     {
         base.Enter();
-        if(targetCircle != null)
+
+        battleCanvas.SetStageText();
+
+        if (targetCircle != null)
         {
             targetCircle.gameObject.SetActive(false);
         }
