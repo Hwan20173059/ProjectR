@@ -402,6 +402,8 @@ public class BattleManager : MonoBehaviour
         {
             Time.timeScale = 1f;
 
+            SaveCharacterData();
+
             if (PlayerManager.Instance.isField == true)
             {
                 AudioManager.Instance.SetState();
