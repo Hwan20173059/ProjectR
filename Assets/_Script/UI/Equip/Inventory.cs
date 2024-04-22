@@ -79,6 +79,7 @@ public class Inventory : MonoBehaviour //Inventory
     {
         AudioManager.Instance.PlayUISelectSFX();
 
+        detailArea.UnActiveEquippingState();
         equipInventoryUI.SetActive(false);
         consumeInventoryUI.SetActive(false);
         detailArea.gameObject.SetActive(false);
