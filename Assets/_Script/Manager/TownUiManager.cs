@@ -221,7 +221,6 @@ public class TownUiManager : MonoBehaviour
         {
             inventory.OpenInventory();
         }
-        detailArea.RefreshGoldUI();
     }
 
     public void CInventoryUIOn()
@@ -238,7 +237,6 @@ public class TownUiManager : MonoBehaviour
         {
             inventory.OpenConsumeInventory();
         }
-        detailArea.RefreshGoldUI();
     }
 
     public void OptionUIOn()
@@ -332,7 +330,6 @@ public class TownUiManager : MonoBehaviour
 
         playerManager.isReset = true;
 
-        UnityEditor.EditorApplication.isPlaying = false;
         Application.Quit();
     }
 }

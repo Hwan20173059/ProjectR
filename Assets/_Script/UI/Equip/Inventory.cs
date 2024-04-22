@@ -22,12 +22,13 @@ public class Inventory : MonoBehaviour //Inventory
 
     private ItemManager itemManager;
 
+    /*
     private void OnValidate() // change slots if changed by editor
     {
         slotParent.GetComponentsInChildren<EquipSlot>(includeInactive: true, result: slots);
         cslotParent.GetComponentsInChildren<ConsumeSlot>(includeInactive: true, result: cslots);
     }
-
+    */
     protected virtual void Start()
     {
         itemManager = ItemManager.Instance;
@@ -67,11 +68,12 @@ public class Inventory : MonoBehaviour //Inventory
     {
         AudioManager.Instance.PlayUISelectSFX();
 
+        itemManager.SetEquipMaxSlots();
         FreshSlot();
+        detailArea.RefreshGoldUI();
         detailArea.ChangeDetailActivation(false);
         equipInventoryUI.SetActive(true);
         detailArea.gameObject.SetActive(true);
-        itemManager.SetEquipMaxSlots();
     }
     public void CloseInventory()
     {
@@ -86,11 +88,12 @@ public class Inventory : MonoBehaviour //Inventory
     {
         AudioManager.Instance.PlayUISelectSFX();
 
+        itemManager.SetConsumeMaxSlots();
         FreshConsumeSlot();
+        detailArea.RefreshGoldUI();
         detailArea.ChangeDetailActivation(false);
         consumeInventoryUI.SetActive(true);
         detailArea.gameObject.SetActive(true);
-        itemManager.SetConsumeMaxSlots();
     }
 
     public void FreshAfterEquip()

@@ -372,7 +372,7 @@ public class Tile : MonoBehaviour
                     {
                         //tileMapManager.selectImage.sprite = null;
 
-                        tileMapManager.selectText.text = "具积狼 魂";
+                        tileMapManager.selectText.text = "具积狼 剑";
                         break;
                     }
                     else if (dungeonID == 1)
@@ -493,6 +493,13 @@ public class Tile : MonoBehaviour
                         case 3:
                             RewardManager.instance.RewardPopup(2000, 0, 28);
                             break;
+                    }
+
+                    if (tileMapManager.playerTurnIndex > 0)
+                        tileMapManager.StillPlayerTurn();
+                    else
+                    {
+                        tileMapManager.AEnemyTurn();
                     }
 
                     tileMapManager.isSelect = false;
