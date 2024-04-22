@@ -182,9 +182,12 @@ public class AudioManager : Singleton<AudioManager>
 
     public void SettingsSoundData()
     {
-        SetVolume("Master", PlayerPrefs.GetFloat("Master"));
-        SetVolume("BGM", PlayerPrefs.GetFloat("BGM"));
-        SetVolume("SFX", PlayerPrefs.GetFloat("SFX"));
+        if (PlayerPrefs.HasKey("Master"))
+            SetVolume("Master", PlayerPrefs.GetFloat("Master"));
+        if (PlayerPrefs.HasKey("BGM"))
+            SetVolume("BGM", PlayerPrefs.GetFloat("BGM"));
+        if (PlayerPrefs.HasKey("SFX"))
+            SetVolume("SFX", PlayerPrefs.GetFloat("SFX"));
     }
 
     public void ToggleVolume(string exposedParam, bool isToggledOn)

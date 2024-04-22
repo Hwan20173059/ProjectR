@@ -29,9 +29,12 @@ public class Settings : MonoBehaviour
     }
     private void Start()
     {
-        masterSlider.value = PlayerPrefs.GetFloat("Master");
-        bgmSlider.value = PlayerPrefs.GetFloat("BGM");
-        sfxSlider.value = PlayerPrefs.GetFloat("SFX");
+        if (PlayerPrefs.HasKey("Master"))
+            masterSlider.value = PlayerPrefs.GetFloat("Master");
+        if (PlayerPrefs.HasKey("BGM"))
+            bgmSlider.value = PlayerPrefs.GetFloat("BGM");
+        if (PlayerPrefs.HasKey("SFX"))
+            sfxSlider.value = PlayerPrefs.GetFloat("SFX");
     }
 
     public void ToggleMasterVolume_Callback(bool isToggledOn)
