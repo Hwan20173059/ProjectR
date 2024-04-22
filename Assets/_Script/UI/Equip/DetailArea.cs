@@ -21,12 +21,15 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private Button expUseButton;
     [SerializeField] private GameObject _activateFalseObj;
     [SerializeField] private GameObject mergeFailObj;
+    [SerializeField] private GameObject mergeSuccessObj;
     [SerializeField] private GameObject equipDetail;
     [SerializeField] private TextMeshProUGUI gold;
+    [SerializeField] private Image charImage;
     public ConsumeItem nowConsumeItem;
     public EquipItem nowSelectedEquip;
     public EquipItem lastSelectedEquip;
     public bool isEquipping;
+    public Animator anim;
 
     private void Start()
     {
@@ -120,6 +123,8 @@ public class DetailArea : MonoBehaviour
             int charID = nowConsumeItem.data.id - 32;
             playerManager.AddCharacter(charID, 1, 0);
             itemManager.inventory.FreshConsumeSlot();
+
+            MergeSuccessPopup(nowConsumeItem.consumeSprite);
         }
         else
         {
@@ -165,6 +170,18 @@ public class DetailArea : MonoBehaviour
             itemGrade.text = "레전더리";
             itemGrade.color = new Color(230f / 255f, 160f/255f, 0);
         }
+    }
+
+    public void MergeSuccessPopup(Sprite characterSprite)
+    {
+        charImage.sprite = characterSprite;
+        mergeSuccessObj.SetActive(true);
+        anim.Play("merge");
+    }
+
+    public void MergeSuccessPopupClose()
+    {
+        mergeSuccessObj.SetActive(false);
     }
 
     public void RefreshGoldUI()
