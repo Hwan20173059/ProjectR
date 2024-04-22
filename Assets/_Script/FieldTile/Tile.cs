@@ -495,6 +495,13 @@ public class Tile : MonoBehaviour
                             break;
                     }
 
+                    if (tileMapManager.playerTurnIndex > 0)
+                        tileMapManager.StillPlayerTurn();
+                    else
+                    {
+                        tileMapManager.AEnemyTurn();
+                    }
+
                     tileMapManager.isSelect = false;
 
                     break;

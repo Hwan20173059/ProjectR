@@ -22,12 +22,13 @@ public class Inventory : MonoBehaviour //Inventory
 
     private ItemManager itemManager;
 
+    /*
     private void OnValidate() // change slots if changed by editor
     {
         slotParent.GetComponentsInChildren<EquipSlot>(includeInactive: true, result: slots);
         cslotParent.GetComponentsInChildren<ConsumeSlot>(includeInactive: true, result: cslots);
     }
-
+    */
     protected virtual void Start()
     {
         itemManager = ItemManager.Instance;
