@@ -35,8 +35,8 @@ public class BattleCanvas : MonoBehaviour
 
     ObjectPool objectPool;
 
-    public GameObject characterHpBarPrefab;
-    public GameObject monsterHpBarPrefab;
+    [SerializeField] private Transform unitHpBar;
+    [SerializeField] private Transform characterBuff;
 
     private void Awake()
     {
@@ -96,7 +96,8 @@ public class BattleCanvas : MonoBehaviour
 
     public void SetCharacterHpBar(Character character)
     {
-        GameObject go = Instantiate(characterHpBarPrefab, GameObject.Find("UnitHpBar").transform);
+        GameObject go = objectPool.GetFromPool("CharacterHpBar");
+        go.gameObject.transform.SetParent(unitHpBar);
         CharacterHpBar hpBar = go.GetComponent<CharacterHpBar>();
         hpBar.Init(character);
         character.hpBar = hpBar;
@@ -104,7 +105,8 @@ public class BattleCanvas : MonoBehaviour
 
     public void SetMonsterHpBar(Monster monster)
     {
-        GameObject go = Instantiate(monsterHpBarPrefab, GameObject.Find("UnitHpBar").transform);
+        GameObject go = objectPool.GetFromPool("MonsterHpBar");
+        go.gameObject.transform.SetParent(unitHpBar);
         MonsterHpBar hpBar = go.GetComponent<MonsterHpBar>();
         hpBar.Init(monster);
         monster.hpBar = hpBar;
@@ -170,7 +172,7 @@ public class BattleCanvas : MonoBehaviour
     public BuffIcon SetBuff(Buff buff)
     {
         GameObject go = objectPool.GetFromPool("BuffIcon");
-        go.transform.SetParent(GameObject.Find("CharacterBuff").transform);
+        go.transform.SetParent(characterBuff);
         BuffIcon buffIcon = go.GetComponent<BuffIcon>();
         buffIcon.Init(this, buff);
         return buffIcon;
