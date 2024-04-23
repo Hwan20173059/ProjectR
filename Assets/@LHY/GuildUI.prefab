@@ -1190,6 +1190,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questSlotPrefeb: {fileID: 5236965646042805492, guid: 68a3373787d0884419561526adeb5276, type: 3}
   count: 27
+  canStartButton: {fileID: 2537814270774743059}
+  InProgressButton: {fileID: 421312601208984841}
+  FinishedButton: {fileID: 961918030283134802}
 --- !u!114 &2864023845780018497
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class QuestContents : MonoBehaviour
 {
@@ -8,6 +9,10 @@ public class QuestContents : MonoBehaviour
 
     public GameObject questSlotPrefeb;
     public int count;
+    public GameObject canStartButton;
+    public GameObject InProgressButton;
+    public GameObject FinishedButton;
+
     private void Start()
     {
         for (int i = 0; i < 27; i++)
@@ -32,6 +37,7 @@ public class QuestContents : MonoBehaviour
     public void CanStartStateSelect()
     {
         QuestSelectClear();
+        ButtonColorChange(canStartButton);
         QuestSlot[] allChildren = GetComponentsInChildren<QuestSlot>();
         foreach (QuestSlot child in allChildren)
         {
@@ -47,6 +53,7 @@ public class QuestContents : MonoBehaviour
     public void ProgressStateSelect()
     {
         QuestSelectClear();
+        ButtonColorChange(InProgressButton);
         QuestSlot[] allChildren = GetComponentsInChildren<QuestSlot>();
         foreach (QuestSlot child in allChildren)
         {
@@ -62,6 +69,7 @@ public class QuestContents : MonoBehaviour
     public void FinishedStateSelect()
     {
         QuestSelectClear();
+        ButtonColorChange(FinishedButton);
         QuestSlot[] allChildren = GetComponentsInChildren<QuestSlot>();
         foreach (QuestSlot child in allChildren)
         {
@@ -81,5 +89,14 @@ public class QuestContents : MonoBehaviour
         {
             gameObject.transform.GetChild(i).gameObject.SetActive(true);
         }
+    }
+
+    public void ButtonColorChange(GameObject gameObject)
+    {
+        canStartButton.GetComponent<Image>().color = Color.gray;
+        InProgressButton.GetComponent<Image>().color = Color.gray;
+        FinishedButton.GetComponent<Image>().color = Color.gray;
+
+        gameObject.GetComponent<Image>().color = Color.white;
     }
 }
