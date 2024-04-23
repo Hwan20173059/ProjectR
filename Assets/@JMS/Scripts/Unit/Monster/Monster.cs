@@ -92,6 +92,7 @@ public class Monster : MonoBehaviour
         curHP = maxHP;
         atk = baseData.atk * level;
         exp = baseData.exp * level;
+        curCoolTime = 0f;
         maxCoolTime = baseData.actionCoolTime;
 
         for (int i = 0; i < baseData.actions.Length; i++)

@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 1861630717}
   - component: {fileID: 1861630718}
   - component: {fileID: 1861630719}
+  - component: {fileID: 1861630720}
   m_Layer: 0
   m_Name: BattleManager
   m_TagString: Untagged
@@ -335,8 +336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f7946424b73d74589673be09c37ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 375063816128229675, guid: 39572899e5129a540b97be4f8e59ee06, type: 3}
-  monsterPrefab: {fileID: 8744651542211966483, guid: 8522277ecb46b9d42bd7c7fe752777c7, type: 3}
   targetCirclePrefab: {fileID: 387042340656938697, guid: 1f77bce04544eac49af459f4a8656ff5, type: 3}
   stages: []
   curStage: 0
@@ -354,7 +353,6 @@ MonoBehaviour:
   IsAutoBattle: 0
   useItemCount: 0
   targetCircle: {fileID: 0}
-  monsterPool: {fileID: 0}
   battleCanvas: {fileID: 0}
 --- !u!114 &1861630719
 MonoBehaviour:
@@ -368,6 +366,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6f55ac1c1b7f345984cfb7d4957bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1861630720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861630716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea021e3ab8f4d2419b330db46bf78b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - prefab: {fileID: 375063816128229675, guid: 39572899e5129a540b97be4f8e59ee06, type: 3}
+    tag: Character
+    size: 1
+  - prefab: {fileID: 8744651542211966483, guid: 8522277ecb46b9d42bd7c7fe752777c7, type: 3}
+    tag: Monster
+    size: 2
 --- !u!224 &2141367375 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1089221672241789212, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
@@ -549,6 +566,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2214958757865024703, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2419092018847513823, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -713,6 +734,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7176169719156250935, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7308843217798574181, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: pools.Array.size
       value: 3
@@ -722,13 +747,37 @@ PrefabInstance:
       value: BuffIcon
       objectReference: {fileID: 0}
     - target: {fileID: 7308843217798574181, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: pools.Array.data[3].tag
+      value: Character
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308843217798574181, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: pools.Array.data[4].tag
+      value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308843217798574181, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: pools.Array.data[2].size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308843217798574181, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: pools.Array.data[3].size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308843217798574181, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: pools.Array.data[4].size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7308843217798574181, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: pools.Array.data[2].prefab
       value: 
       objectReference: {fileID: 8987691695399213221, guid: 1f3eb3c050d76f94ba3ccfb6e1689503, type: 3}
+    - target: {fileID: 7308843217798574181, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: pools.Array.data[3].prefab
+      value: 
+      objectReference: {fileID: 375063816128229675, guid: 39572899e5129a540b97be4f8e59ee06, type: 3}
+    - target: {fileID: 7308843217798574181, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: pools.Array.data[4].prefab
+      value: 
+      objectReference: {fileID: 8744651542211966483, guid: 8522277ecb46b9d42bd7c7fe752777c7, type: 3}
     - target: {fileID: 7607452698639871601, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

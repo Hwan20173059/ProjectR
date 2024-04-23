@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Unity.Collections.Unicode;
@@ -17,8 +18,6 @@ public enum RouletteResult
 }
 public class BattleManager : MonoBehaviour
 {
-    public GameObject characterPrefab;
-    public GameObject monsterPrefab;
     public GameObject targetCirclePrefab;
 
     BattleData battleData;
@@ -46,9 +45,10 @@ public class BattleManager : MonoBehaviour
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1f, 0);
     Vector3 monsterSpawnPosition = new Vector3 (-1, 2.5f, 0);
 
+    ObjectPool objectPool;
+
     public TargetCircle targetCircle;
 
-    public GameObject monsterPool;
     public PlayerInput Input {  get; private set; }
 
     public BattleCanvas battleCanvas;
@@ -59,11 +59,15 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
+        objectPool = GetComponent<ObjectPool>();
+        objectPool.Init();
+
         performList = new List<int>();
 
         Input = GetComponent<PlayerInput>();
 
         battleCanvas = GetComponentInChildren<BattleCanvas>();
+
 
         stateMachine = new BattleStateMachine(this);
 
@@ -145,7 +149,7 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnCharacter()
     {
-        GameObject character = Instantiate(characterPrefab);
+        GameObject character = objectPool.GetFromPool("Character");
         character.transform.position = characterSpawnPosition;
         this.character = character.GetComponent<Character>();
         this.character.LoadCharacter(this, PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
@@ -155,11 +159,6 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnMonster()
     {
-        if (monsterPool == null)
-        {
-            GameObject monsterPool = new GameObject("MonsterPool");
-            this.monsterPool = monsterPool;
-        }
 
         int randomSpawnAmount = Random.Range(stages[curStage].randomSpawnMinAmount, stages[curStage].randomSpawnMaxAmount + 1);
         if(randomSpawnAmount > 0)
@@ -167,7 +166,7 @@ public class BattleManager : MonoBehaviour
             for (int i = 0; i < randomSpawnAmount; i++)
             {
                 int monsterIndex = Random.Range(0, stages[curStage].randomSpawnMonsters.Length);
-                GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
+                GameObject monster = objectPool.GetFromPool("Monster");
                 monsters.Add(monster.GetComponent<Monster>());
                 monsters[i].SetMonsterData(DataManager.Instance.monsterDatabase.GetDataByKey(stages[curStage].randomSpawnMonsters[monsterIndex]));
                 monster.transform.position = monsterSpawnPosition;
@@ -179,7 +178,7 @@ public class BattleManager : MonoBehaviour
         {
             for(int i = 0; i < stages[curStage].spawnMonsters.Length; i++)
             {
-                GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
+                GameObject monster = objectPool.GetFromPool("Monster");
                 monsters.Add(monster.GetComponent<Monster>());
                 monsters[randomSpawnAmount + i].SetMonsterData(DataManager.Instance.monsterDatabase.GetDataByKey(stages[curStage].spawnMonsters[i]));
                 monster.transform.position = monsterSpawnPosition;
@@ -225,9 +224,12 @@ public class BattleManager : MonoBehaviour
         battleCanvas.BattleEffectOff();
         battleCanvas.SetStageText();
         character.curCoolTime = 0;
-        Destroy(monsterPool);
-        monsterPool = null;
+        for(int i = 0; i < monsters.Count; i++)
+        {
+            monsters[i].gameObject.SetActive(false);
+        }
         monsters.Clear();
+        selectMonster = null;
         stateMachine.ChangeState(stateMachine.startState);
     }
 
