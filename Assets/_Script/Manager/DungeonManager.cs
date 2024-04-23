@@ -78,6 +78,8 @@ public class DungeonManager : TileMapManager
 
                 PlayerFieldSetting(playerManager.fieldX, playerManager.fieldY);
 
+                currentTile = field.tileRaw[playerManager.fieldY].fieldTiles[playerManager.fieldX];
+
                 if (playerTurnIndex > 0)
                     StillPlayerTurn();
                 else
