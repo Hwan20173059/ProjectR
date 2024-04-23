@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.LowLevel;
 
 public class QuestStep : MonoBehaviour
 {
@@ -91,8 +92,12 @@ public class QuestStep : MonoBehaviour
     {
         if (questType == "DungeonClear")
         {
-            questCurrentValue++;
-            QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
+            if (id >= questValueID && id <= questValueID + 3)
+            {
+                questCurrentValue++;
+                QuestManager.instance.GetQuestByID(questID).info.questCurrentValue = questCurrentValue;
+
+            }
         }
         if (questCurrentValue < questClearValue)
         {

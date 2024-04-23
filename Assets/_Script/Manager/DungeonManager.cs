@@ -134,15 +134,19 @@ public class DungeonManager : TileMapManager
         {
             case 0:
                 RewardManager.instance.RewardPopup(1500, 500, 26);
+                GameEventManager.instance.battleEvent.DungeonClear(4);
                 break;
             case 1:
                 RewardManager.instance.RewardPopup(3000, 1000, 27);
+                GameEventManager.instance.battleEvent.DungeonClear(8);
                 break;
             case 2:
                 RewardManager.instance.RewardPopup(5000, 2000, 27);
+                GameEventManager.instance.battleEvent.DungeonClear(12);
                 break;
             case 3:
                 RewardManager.instance.RewardPopup(10000, 4000, 28);
+                GameEventManager.instance.battleEvent.DungeonClear(16);
                 break;
         }
 
