@@ -92,13 +92,24 @@ public class Monster : MonoBehaviour
         curHP = maxHP;
         atk = baseData.atk * level;
         exp = baseData.exp * level;
-        curCoolTime = 0f;
-        maxCoolTime = baseData.actionCoolTime;
-
         for (int i = 0; i < baseData.actions.Length; i++)
         {
             actions.Add((MonsterAction)baseData.actions[i]);
         }
+        maxCoolTime = baseData.actionCoolTime;
+
+        curCoolTime = 0f;
+
+        IsBurn = false;
+        burnDamage = 0;
+
+        IsStun = false;
+        curStunTime = 0f;
+        maxStunTime = 0f;
+
+        IsFrozen = false;
+
+        RefreshAnim();
 
         spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
         spriteLibrary.spriteLibraryAsset = Resources.Load<SpriteLibraryAsset>(baseData.assetPath);
