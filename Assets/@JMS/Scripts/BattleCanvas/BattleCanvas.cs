@@ -235,6 +235,10 @@ public class BattleCanvas : MonoBehaviour
     {
         monsterStatePanel.gameObject.SetActive(true);
     }
+    public void MonsterStatePanelOff()
+    {
+        monsterStatePanel.gameObject.SetActive(false);
+    }
     private void MenuPanelOn()
     {
         menuPanel.gameObject.SetActive(true);

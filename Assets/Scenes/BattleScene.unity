@@ -336,7 +336,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6f7946424b73d74589673be09c37ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetCirclePrefab: {fileID: 387042340656938697, guid: 1f77bce04544eac49af459f4a8656ff5, type: 3}
   stages: []
   curStage: 0
   rouletteEquip: []
@@ -385,6 +384,9 @@ MonoBehaviour:
   - prefab: {fileID: 8744651542211966483, guid: 8522277ecb46b9d42bd7c7fe752777c7, type: 3}
     tag: Monster
     size: 2
+  - prefab: {fileID: 387042340656938697, guid: 1f77bce04544eac49af459f4a8656ff5, type: 3}
+    tag: TargetCircle
+    size: 1
 --- !u!224 &2141367375 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1089221672241789212, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}

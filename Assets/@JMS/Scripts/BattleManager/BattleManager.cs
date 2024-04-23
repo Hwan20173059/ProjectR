@@ -18,8 +18,6 @@ public enum RouletteResult
 }
 public class BattleManager : MonoBehaviour
 {
-    public GameObject targetCirclePrefab;
-
     BattleData battleData;
     public List<MonsterGroupData> stages = new List<MonsterGroupData>();
     public int curStage;
@@ -133,17 +131,20 @@ public class BattleManager : MonoBehaviour
             stages.Add(DataManager.Instance.monsterGroupDatabase.GetDataByKey(battleData.monsterGroups[i]));
         }
 
-        if (targetCircle == null)
-        {
-            targetCircle = Instantiate(targetCirclePrefab).GetComponent<TargetCircle>();
-            targetCircle.gameObject.SetActive(false);
-        }
-
         for (int i = 0; i < 3; i++)
         {
             rouletteEquip.Add(PlayerManager.Instance.equip[i]);
             rouletteResultIndex.Add(i);
             rouletteResult = RouletteResult.Different;
+        }
+    }
+
+    public void SetTargetCircle()
+    {
+        if (targetCircle == null)
+        {
+            targetCircle = objectPool.GetFromPool("TargetCircle").GetComponent<TargetCircle>();
+            targetCircle.gameObject.SetActive(false);
         }
     }
 
@@ -222,14 +223,17 @@ public class BattleManager : MonoBehaviour
     {
         battleCanvas.NextStagePanelOff();
         battleCanvas.BattleEffectOff();
+        battleCanvas.MonsterStatePanelOff();
         battleCanvas.SetStageText();
-        character.curCoolTime = 0;
+
+        selectMonster = null;
         for(int i = 0; i < monsters.Count; i++)
         {
             monsters[i].gameObject.SetActive(false);
         }
+        character.curCoolTime = 0;
         monsters.Clear();
-        selectMonster = null;
+
         stateMachine.ChangeState(stateMachine.startState);
     }
 
