@@ -27,6 +27,7 @@ public class BattleCanvas : MonoBehaviour
     MenuPanel menuPanel;
     CheatPanel cheatPanel;
     StagePanel stagePanel;
+    BuffDescriptionPanel buffDescriptionPanel;
     LoadingUI loadingUI;
 
     InfiniteInventory infiniteInventory;
@@ -54,6 +55,7 @@ public class BattleCanvas : MonoBehaviour
         menuPanel = GetComponentInChildren<MenuPanel>();
         cheatPanel = GetComponentInChildren<CheatPanel>();
         stagePanel = GetComponentInChildren<StagePanel>();
+        buffDescriptionPanel = GetComponentInChildren<BuffDescriptionPanel>();
         loadingUI = GetComponentInChildren<LoadingUI>();
 
         infiniteInventory = GetComponentInChildren<InfiniteInventory>();
@@ -83,6 +85,7 @@ public class BattleCanvas : MonoBehaviour
         menuPanel.Init(this);
         cheatPanel.Init(battleManager);
         stagePanel.Init(battleManager);
+        buffDescriptionPanel.Init();
 
         cheatPanel.gameObject.SetActive(false);
 
@@ -91,17 +94,17 @@ public class BattleCanvas : MonoBehaviour
         loadingUI.OpenScreen();
     }
 
-    public void CreateCharacterHpBar(Character character)
+    public void SetCharacterHpBar(Character character)
     {
-        GameObject go = Instantiate(characterHpBarPrefab, gameObject.transform.GetChild(0).transform);
+        GameObject go = Instantiate(characterHpBarPrefab, GameObject.Find("UnitHpBar").transform);
         CharacterHpBar hpBar = go.GetComponent<CharacterHpBar>();
         hpBar.Init(character);
         character.hpBar = hpBar;
     }
 
-    public void CreateMonsterHpBar(Monster monster)
+    public void SetMonsterHpBar(Monster monster)
     {
-        GameObject go = Instantiate(monsterHpBarPrefab, gameObject.transform.GetChild(0).transform);
+        GameObject go = Instantiate(monsterHpBarPrefab, GameObject.Find("UnitHpBar").transform);
         MonsterHpBar hpBar = go.GetComponent<MonsterHpBar>();
         hpBar.Init(monster);
         monster.hpBar = hpBar;
@@ -162,6 +165,21 @@ public class BattleCanvas : MonoBehaviour
         BattleEffect effect = go.GetComponent<BattleEffect>();
         effect.SetEffect(id);
         return effect;
+    }
+
+    public BuffIcon SetBuff(Buff buff)
+    {
+        GameObject go = objectPool.GetFromPool("BuffIcon");
+        go.transform.SetParent(GameObject.Find("CharacterBuff").transform);
+        BuffIcon buffIcon = go.GetComponent<BuffIcon>();
+        buffIcon.Init(this, buff);
+        return buffIcon;
+    }
+
+    public void SetBuffText(Buff buff)
+    {
+        buffDescriptionPanel.gameObject.SetActive(true);
+        buffDescriptionPanel.SetBuffText(buff);
     }
 
     public void BattleEffectOff()
@@ -235,6 +253,11 @@ public class BattleCanvas : MonoBehaviour
     {
         nextStagePanel.gameObject.SetActive(false);
     }
+    public void BuffDescriptionPanelOff()
+    {
+        buffDescriptionPanel.gameObject.SetActive(false);
+    }
+
 
     public void OnClickItemUseButton()
     {

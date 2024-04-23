@@ -107,7 +107,7 @@ public class Monster : MonoBehaviour
     {
         if (curCoolTime < maxCoolTime)
         {
-            curCoolTime += Time.deltaTime;
+            curCoolTime += Time.deltaTime * (100 / 100f);
         }
         else
         {

@@ -825,7 +825,7 @@ public class CharacterActionState : CharacterBaseState
     {
         battleManager.battleCanvas.SetRepeatEffect(4, character.transform.position); // 임시 이펙트
 
-        character.characterBuffHandler.AddBuff(BuffType.Speed, speedUpValue, turnCount);
+        character.characterBuffController.AddBuff(BuffType.SPD, "아이템 스킬 버프", speedUpValue, turnCount);
 
         battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 속도가 빨라졌다!");
 

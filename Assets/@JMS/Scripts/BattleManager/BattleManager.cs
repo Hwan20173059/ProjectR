@@ -148,11 +148,9 @@ public class BattleManager : MonoBehaviour
         GameObject character = Instantiate(characterPrefab);
         character.transform.position = characterSpawnPosition;
         this.character = character.GetComponent<Character>();
-        this.character.LoadCharacter(PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
-        this.character.startPosition = character.transform.position;
-        this.character.battleManager = this;
+        this.character.LoadCharacter(this, PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
 
-        battleCanvas.CreateCharacterHpBar(this.character);
+        battleCanvas.SetCharacterHpBar(this.character);
     }
 
     public void SpawnMonster()
@@ -196,7 +194,7 @@ public class BattleManager : MonoBehaviour
             monsters[i].Init(1);
             monsters[i].battleManager = this;
 
-            battleCanvas.CreateMonsterHpBar(monsters[i]);
+            battleCanvas.SetMonsterHpBar(monsters[i]);
         }
 
         monsterSpawnPosition = new Vector3(-1, 2.5f, 0);
@@ -436,10 +434,10 @@ public class BattleManager : MonoBehaviour
                 character.ChangeHP(selectItem.data.value);
                 break;
             case Type.AttackBuffPotion:
-                character.characterBuffHandler.AddBuff(BuffType.Atk, selectItem.data.value, selectItem.data.turnCount);
+                character.characterBuffController.AddBuff(BuffType.ATK, selectItem.data.consumeName, selectItem.data.value, selectItem.data.turnCount);
                 break;
             case Type.SpeedBuffPotion:
-                character.characterBuffHandler.AddBuff(BuffType.Speed,selectItem.data.value, selectItem.data.turnCount);
+                character.characterBuffController.AddBuff(BuffType.SPD, selectItem.data.consumeName, selectItem.data.value, selectItem.data.turnCount + 1);
                 break;
         }
         battleCanvas.UpdateCharacterState(IsRouletteUsed);
