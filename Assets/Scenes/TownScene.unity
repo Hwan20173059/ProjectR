@@ -20449,6 +20449,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 578430766354726480, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578126776486216340, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3578126776486216340, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
+      propertyPath: m_HorizontalFit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3897512979888073454, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913340691174080508, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913340691174080508, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913340691174080508, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913340691174080508, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913340691174080508, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1020
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913340691174080508, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -420
+      objectReference: {fileID: 0}
     - target: {fileID: 9098595595517497184, guid: 0d602ecb989c9024aa5c2ce0c8390768, type: 3}
       propertyPath: m_Name
       value: RewardManager
