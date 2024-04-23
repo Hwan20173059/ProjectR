@@ -711,7 +711,7 @@ public class CharacterActionState : CharacterBaseState
     IEnumerator AllDirectionRangeAttackBase(Monster target, int damage, int range, int effectId)
     {
         RaycastHit2D[] hit;
-        Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+        Vector3 hitScale = new Vector3(1 + (5 * range), 1 + (5 * range));
         hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
 
         character.PlayAnim(CharacterAnim.Slash);
@@ -720,7 +720,7 @@ public class CharacterActionState : CharacterBaseState
         yield return waitForEndOfFrame;
         AudioManager.Instance.PlayHit1SFX(); // 임시 사운드
 
-        battleManager.effectController.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
+        battleManager.effectController.SetRepeatEffect(effectId, 1 + (range * 2), target.transform.position); // 임시 이펙트
 
         for (int i = 0; i < hit.Length; i++)
         {
@@ -737,7 +737,7 @@ public class CharacterActionState : CharacterBaseState
     IEnumerator AllDirectionRangeFrozenAttackBase(Monster target, int damage, int range, int effectId)
     {
         RaycastHit2D[] hit;
-        Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+        Vector3 hitScale = new Vector3(1 + (5 * range), 1 + (5 * range));
         hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
 
         character.PlayAnim(CharacterAnim.Slash);
@@ -746,7 +746,7 @@ public class CharacterActionState : CharacterBaseState
         yield return waitForEndOfFrame;
         AudioManager.Instance.PlayHit1SFX(); // 임시 사운드
 
-        battleManager.effectController.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
+        battleManager.effectController.SetRepeatEffect(effectId, 1 + (range * 2), target.transform.position); // 임시 이펙트
 
         for (int i = 0; i < hit.Length; i++)
         {
@@ -766,7 +766,7 @@ public class CharacterActionState : CharacterBaseState
     IEnumerator AllDirectionRangeStunAttackBase(Monster target, int damage, int duration, int range, int effectId)
     {
         RaycastHit2D[] hit;
-        Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+        Vector3 hitScale = new Vector3(1 + (5 * range), 1 + (5 * range));
         hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
 
         character.PlayAnim(CharacterAnim.Slash);
@@ -775,7 +775,7 @@ public class CharacterActionState : CharacterBaseState
         yield return waitForEndOfFrame;
         AudioManager.Instance.PlayHit1SFX(); // 임시 사운드
 
-        battleManager.effectController.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
+        battleManager.effectController.SetRepeatEffect(effectId, 1 + (range * 2), target.transform.position); // 임시 이펙트
 
         for (int i = 0; i < hit.Length; i++)
         {
@@ -795,7 +795,7 @@ public class CharacterActionState : CharacterBaseState
     IEnumerator AllDirectionRangeFlameAttackBase(Monster target, int damage, int burnDamage, float damageInterval, int burnCount, int range, int effectId)
     {
         RaycastHit2D[] hit;
-        Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+        Vector3 hitScale = new Vector3(1 + (5 * range), 1 + (5 * range));
         hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
 
         character.PlayAnim(CharacterAnim.Slash);
@@ -804,7 +804,7 @@ public class CharacterActionState : CharacterBaseState
         yield return waitForEndOfFrame;
         AudioManager.Instance.PlayHit1SFX(); // 임시 사운드
 
-        battleManager.effectController.SetRepeatEffect(effectId, range * 4, target.transform.position); // 임시 이펙트
+        battleManager.effectController.SetRepeatEffect(effectId, 1 + (range * 2), target.transform.position); // 임시 이펙트
 
         for (int i = 0; i < hit.Length; i++)
         {
@@ -1605,7 +1605,7 @@ public class CharacterActionState : CharacterBaseState
 
         int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
-        targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
+        targetCount = targetCount > battleManager.AliveMonsterCount() ? battleManager.AliveMonsterCount() : targetCount;
 
         for (int i = 0; i < targetCount; i++)
         {
@@ -1647,7 +1647,7 @@ public class CharacterActionState : CharacterBaseState
 
         int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
-        targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
+        targetCount = targetCount > battleManager.AliveMonsterCount() ? battleManager.AliveMonsterCount() : targetCount;
 
         for (int i = 0; i < targetCount; i++)
         {
@@ -1690,7 +1690,7 @@ public class CharacterActionState : CharacterBaseState
 
         int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
-        targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
+        targetCount = targetCount > battleManager.AliveMonsterCount() ? battleManager.AliveMonsterCount() : targetCount;
 
         for (int i = 0; i < targetCount; i++)
         {
@@ -1734,7 +1734,7 @@ public class CharacterActionState : CharacterBaseState
 
         int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
-        targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
+        targetCount = targetCount > battleManager.AliveMonsterCount() ? battleManager.AliveMonsterCount() : targetCount;
 
         for (int i = 0; i < targetCount; i++)
         {
@@ -1777,7 +1777,7 @@ public class CharacterActionState : CharacterBaseState
 
         int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
-        targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
+        targetCount = targetCount > battleManager.AliveMonsterCount() ? battleManager.AliveMonsterCount() : targetCount;
 
         for (int i = 0; i < targetCount; i++)
         {
@@ -1792,7 +1792,7 @@ public class CharacterActionState : CharacterBaseState
             float angle = Mathf.Atan2(arrowTargetPos.y - arrowStartPos.y, arrowTargetPos.x - arrowStartPos.x) * Mathf.Rad2Deg;
 
             RaycastHit2D[] hit;
-            Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+            Vector3 hitScale = new Vector3(1 + (5 * range), 1 + (5 * range));
             hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
 
             for (int j = 0; j < attackCount; j++)
@@ -1814,7 +1814,7 @@ public class CharacterActionState : CharacterBaseState
                             hitMonster.ChangeHP(-damage);
                     }
                 }
-                battleManager.effectController.SetRepeatEffect(rangeAttackEffectId, range * 4, target.transform.position); // 임시 이펙트
+                battleManager.effectController.SetRepeatEffect(rangeAttackEffectId, 1 + (range * 2), target.transform.position); // 임시 이펙트
                 battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 폭발 화살!\n{damage} 의 범위 피해!");
 
                 if (target.IsDead) break;
@@ -1834,7 +1834,7 @@ public class CharacterActionState : CharacterBaseState
 
         int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
-        targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
+        targetCount = targetCount > battleManager.AliveMonsterCount() ? battleManager.AliveMonsterCount() : targetCount;
 
         for (int i = 0; i < targetCount; i++)
         {
@@ -1849,7 +1849,7 @@ public class CharacterActionState : CharacterBaseState
             float angle = Mathf.Atan2(arrowTargetPos.y - arrowStartPos.y, arrowTargetPos.x - arrowStartPos.x) * Mathf.Rad2Deg;
 
             RaycastHit2D[] hit;
-            Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+            Vector3 hitScale = new Vector3(1 + (5 * range), 1 + (5 * range));
             hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
 
             for (int j = 0; j < attackCount; j++)
@@ -1874,7 +1874,7 @@ public class CharacterActionState : CharacterBaseState
                         }
                     }
                 }
-                battleManager.effectController.SetRepeatEffect(rangeAttackEffectId, range * 4, target.transform.position); // 임시 이펙트
+                battleManager.effectController.SetRepeatEffect(rangeAttackEffectId, 1 + (range * 2), target.transform.position); // 임시 이펙트
                 battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 얼음 폭발 화살!\n{damage} 의 범위 피해!");
 
                 if (target.IsDead) break;
@@ -1894,7 +1894,7 @@ public class CharacterActionState : CharacterBaseState
 
         int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
-        targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
+        targetCount = targetCount > battleManager.AliveMonsterCount() ? battleManager.AliveMonsterCount() : targetCount;
 
         for (int i = 0; i < targetCount; i++)
         {
@@ -1909,7 +1909,7 @@ public class CharacterActionState : CharacterBaseState
             float angle = Mathf.Atan2(arrowTargetPos.y - arrowStartPos.y, arrowTargetPos.x - arrowStartPos.x) * Mathf.Rad2Deg;
 
             RaycastHit2D[] hit;
-            Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+            Vector3 hitScale = new Vector3(1 + (5 * range), 1 + (5 * range));
             hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
 
             for (int j = 0; j < attackCount; j++)
@@ -1934,7 +1934,7 @@ public class CharacterActionState : CharacterBaseState
                         }
                     }
                 }
-                battleManager.effectController.SetRepeatEffect(rangeAttackEffectId, range * 4, target.transform.position); // 임시 이펙트
+                battleManager.effectController.SetRepeatEffect(rangeAttackEffectId, 1 + (range * 2), target.transform.position); // 임시 이펙트
                 battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 기절 폭발 화살!\n{damage} 의 범위 피해!");
 
                 if (target.IsDead) break;
@@ -1955,7 +1955,7 @@ public class CharacterActionState : CharacterBaseState
 
         int damage = battleManager.GetRouletteValue(character.addBuffAtk) * damageMultiple;
 
-        targetCount = targetCount > battleManager.monsters.Count ? battleManager.monsters.Count : targetCount;
+        targetCount = targetCount > battleManager.AliveMonsterCount() ? battleManager.AliveMonsterCount() : targetCount;
 
         for (int i = 0; i < targetCount; i++)
         {
@@ -1970,7 +1970,7 @@ public class CharacterActionState : CharacterBaseState
             float angle = Mathf.Atan2(arrowTargetPos.y - arrowStartPos.y, arrowTargetPos.x - arrowStartPos.x) * Mathf.Rad2Deg;
 
             RaycastHit2D[] hit;
-            Vector3 hitScale = new Vector3(2 + (3 * range), 2 + (3 * range));
+            Vector3 hitScale = new Vector3(1 + (5 * range), 1 + (5 * range));
             hit = Physics2D.BoxCastAll(target.transform.position + (Vector3.up / 2), hitScale, 0, Vector3.zero);
 
             for (int j = 0; j < attackCount; j++)
@@ -1995,7 +1995,7 @@ public class CharacterActionState : CharacterBaseState
                         }
                     }
                 }
-                battleManager.effectController.SetRepeatEffect(rangeAttackEffectId, range * 4, target.transform.position); // 임시 이펙트
+                battleManager.effectController.SetRepeatEffect(rangeAttackEffectId, 1 + (range * 2), target.transform.position); // 임시 이펙트
                 battleManager.battleCanvas.UpdateBattleText($"{character.characterName}의 화염 폭발 화살!\n{damage} 의 범위 피해!");
 
                 if (target.IsDead) break;
