@@ -93,10 +93,10 @@ public class QuestContents : MonoBehaviour
 
     public void ButtonColorChange(GameObject gameObject)
     {
-        canStartButton.GetComponent<Image>().color = Color.gray;
-        InProgressButton.GetComponent<Image>().color = Color.gray;
-        FinishedButton.GetComponent<Image>().color = Color.gray;
+        canStartButton.GetComponent<Image>().color = Color.white;
+        InProgressButton.GetComponent<Image>().color = Color.white;
+        FinishedButton.GetComponent<Image>().color = Color.white;
 
-        gameObject.GetComponent<Image>().color = Color.white;
+        gameObject.GetComponent<Image>().color = Color.gray;
     }
 }
