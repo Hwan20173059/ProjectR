@@ -121,54 +121,6 @@ public class BattleCanvas : MonoBehaviour
         go.GetComponent<ChangeHpTMP>().SetChangeHpTMP(value);
     }
 
-    public void SetDurationEffect(int id, Vector3 startPos)
-    {
-        GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = startPos + (Vector3.up / 2);
-        go.GetComponent<BattleEffect>().SetDurationEffect(id);
-    }
-
-    public void SetRepeatEffect(int id, Vector3 startPos)
-    {
-        GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = startPos + (Vector3.up / 2);
-        go.GetComponent<BattleEffect>().SetRepeatEffect(id);
-    }
-    public void SetRepeatEffect(int id, float effectScale, Vector3 startPos)
-    {
-        GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = startPos + (Vector3.up / 2);
-        go.GetComponent<BattleEffect>().SetRepeatEffect(id, effectScale);
-    }
-
-    public void SetMoveEffect(int id, Vector3 startPos)
-    {
-        GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = startPos + (Vector3.up / 2);
-        go.GetComponent<BattleEffect>().SetMoveEffect(id);
-    }
-    public void SetMoveEffect(int id, Vector3 startPos, Vector3 targetPos)
-    {
-        GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = startPos + (Vector3.up / 2);
-        go.GetComponent<BattleEffect>().SetMoveEffect(id, targetPos);
-    }
-    public void SetMoveEffect(int id, Vector3 startPos, Vector3 targetPos, float angle)
-    {
-        GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = startPos + (Vector3.up / 2);
-        go.GetComponent<BattleEffect>().SetMoveEffect(id, targetPos, angle);
-    }
-
-    public BattleEffect SetEffect(int id, Vector3 startPos)
-    {
-        GameObject go = objectPool.GetFromPool("BattleEffect");
-        go.transform.position = startPos + Vector3.up;
-        BattleEffect effect = go.GetComponent<BattleEffect>();
-        effect.SetEffect(id);
-        return effect;
-    }
-
     public BuffIcon SetBuff(Buff buff)
     {
         GameObject go = objectPool.GetFromPool("BuffIcon");
@@ -182,11 +134,6 @@ public class BattleCanvas : MonoBehaviour
     {
         buffDescriptionPanel.gameObject.SetActive(true);
         buffDescriptionPanel.SetBuffText(buff);
-    }
-
-    public void BattleEffectOff()
-    {
-        objectPool.SetActiveFalseAll("BattleEffect");
     }
 
     public void SetRoulette(int resultIndex0, int resultIndex1, int resultIndex2)

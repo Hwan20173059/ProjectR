@@ -190,7 +190,7 @@ public class Monster : MonoBehaviour
         maxStunTime = duration;
         if (battleEffect != null)
             battleEffect.SetActive(false);
-        battleEffect = battleCanvas.SetEffect(3, transform.position); // ¿”Ω√ ¿Ã∆Â∆Æ
+        battleEffect = battleManager.effectController.SetEffect(3, transform.position); // ¿”Ω√ ¿Ã∆Â∆Æ
     }
 
     public void StunTimeUpdate()

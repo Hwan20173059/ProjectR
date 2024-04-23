@@ -30,6 +30,7 @@ public class BattleManager : MonoBehaviour
     public Character character;
     public List<Monster> monsters;
     public Monster selectMonster;
+    public TargetCircle targetCircle;
     public List<int> performList;
     public IState characterPrevState;
     public IState[] monstersPrevState;
@@ -45,11 +46,11 @@ public class BattleManager : MonoBehaviour
 
     ObjectPool objectPool;
 
-    public TargetCircle targetCircle;
-
     public PlayerInput Input {  get; private set; }
 
     public BattleCanvas battleCanvas;
+
+    public BattleEffectController effectController;
 
     public BattleStateMachine stateMachine;
 
@@ -60,14 +61,15 @@ public class BattleManager : MonoBehaviour
         objectPool = GetComponent<ObjectPool>();
         objectPool.Init();
 
-        performList = new List<int>();
-
         Input = GetComponent<PlayerInput>();
 
         battleCanvas = GetComponentInChildren<BattleCanvas>();
 
+        effectController = new BattleEffectController(objectPool);
 
         stateMachine = new BattleStateMachine(this);
+
+        performList = new List<int>();
 
         BattleInit();
     }
@@ -222,9 +224,9 @@ public class BattleManager : MonoBehaviour
     public void NextStageStart()
     {
         battleCanvas.NextStagePanelOff();
-        battleCanvas.BattleEffectOff();
         battleCanvas.MonsterStatePanelOff();
         battleCanvas.SetStageText();
+        effectController.BattleEffectOff();
 
         selectMonster = null;
         for(int i = 0; i < monsters.Count; i++)
