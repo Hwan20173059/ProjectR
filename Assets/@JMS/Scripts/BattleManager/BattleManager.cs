@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Unity.Collections.Unicode;
@@ -17,10 +18,6 @@ public enum RouletteResult
 }
 public class BattleManager : MonoBehaviour
 {
-    public GameObject characterPrefab;
-    public GameObject monsterPrefab;
-    public GameObject targetCirclePrefab;
-
     BattleData battleData;
     public List<MonsterGroupData> stages = new List<MonsterGroupData>();
     public int curStage;
@@ -33,6 +30,7 @@ public class BattleManager : MonoBehaviour
     public Character character;
     public List<Monster> monsters;
     public Monster selectMonster;
+    public TargetCircle targetCircle;
     public List<int> performList;
     public IState characterPrevState;
     public IState[] monstersPrevState;
@@ -46,12 +44,13 @@ public class BattleManager : MonoBehaviour
     Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1f, 0);
     Vector3 monsterSpawnPosition = new Vector3 (-1, 2.5f, 0);
 
-    public TargetCircle targetCircle;
+    ObjectPool objectPool;
 
-    public GameObject monsterPool;
     public PlayerInput Input {  get; private set; }
 
     public BattleCanvas battleCanvas;
+
+    public BattleEffectController effectController;
 
     public BattleStateMachine stateMachine;
 
@@ -59,13 +58,18 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        performList = new List<int>();
+        objectPool = GetComponent<ObjectPool>();
+        objectPool.Init();
 
         Input = GetComponent<PlayerInput>();
 
         battleCanvas = GetComponentInChildren<BattleCanvas>();
 
+        effectController = new BattleEffectController(objectPool);
+
         stateMachine = new BattleStateMachine(this);
+
+        performList = new List<int>();
 
         BattleInit();
     }
@@ -129,12 +133,6 @@ public class BattleManager : MonoBehaviour
             stages.Add(DataManager.Instance.monsterGroupDatabase.GetDataByKey(battleData.monsterGroups[i]));
         }
 
-        if (targetCircle == null)
-        {
-            targetCircle = Instantiate(targetCirclePrefab).GetComponent<TargetCircle>();
-            targetCircle.gameObject.SetActive(false);
-        }
-
         for (int i = 0; i < 3; i++)
         {
             rouletteEquip.Add(PlayerManager.Instance.equip[i]);
@@ -143,9 +141,18 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    public void SetTargetCircle()
+    {
+        if (targetCircle == null)
+        {
+            targetCircle = objectPool.GetFromPool("TargetCircle").GetComponent<TargetCircle>();
+            targetCircle.gameObject.SetActive(false);
+        }
+    }
+
     public void SpawnCharacter()
     {
-        GameObject character = Instantiate(characterPrefab);
+        GameObject character = objectPool.GetFromPool("Character");
         character.transform.position = characterSpawnPosition;
         this.character = character.GetComponent<Character>();
         this.character.LoadCharacter(this, PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
@@ -155,11 +162,6 @@ public class BattleManager : MonoBehaviour
 
     public void SpawnMonster()
     {
-        if (monsterPool == null)
-        {
-            GameObject monsterPool = new GameObject("MonsterPool");
-            this.monsterPool = monsterPool;
-        }
 
         int randomSpawnAmount = Random.Range(stages[curStage].randomSpawnMinAmount, stages[curStage].randomSpawnMaxAmount + 1);
         if(randomSpawnAmount > 0)
@@ -167,7 +169,7 @@ public class BattleManager : MonoBehaviour
             for (int i = 0; i < randomSpawnAmount; i++)
             {
                 int monsterIndex = Random.Range(0, stages[curStage].randomSpawnMonsters.Length);
-                GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
+                GameObject monster = objectPool.GetFromPool("Monster");
                 monsters.Add(monster.GetComponent<Monster>());
                 monsters[i].SetMonsterData(DataManager.Instance.monsterDatabase.GetDataByKey(stages[curStage].randomSpawnMonsters[monsterIndex]));
                 monster.transform.position = monsterSpawnPosition;
@@ -179,7 +181,7 @@ public class BattleManager : MonoBehaviour
         {
             for(int i = 0; i < stages[curStage].spawnMonsters.Length; i++)
             {
-                GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
+                GameObject monster = objectPool.GetFromPool("Monster");
                 monsters.Add(monster.GetComponent<Monster>());
                 monsters[randomSpawnAmount + i].SetMonsterData(DataManager.Instance.monsterDatabase.GetDataByKey(stages[curStage].spawnMonsters[i]));
                 monster.transform.position = monsterSpawnPosition;
@@ -222,12 +224,18 @@ public class BattleManager : MonoBehaviour
     public void NextStageStart()
     {
         battleCanvas.NextStagePanelOff();
-        battleCanvas.BattleEffectOff();
+        battleCanvas.MonsterStatePanelOff();
         battleCanvas.SetStageText();
+        effectController.BattleEffectOff();
+
+        selectMonster = null;
+        for(int i = 0; i < monsters.Count; i++)
+        {
+            monsters[i].gameObject.SetActive(false);
+        }
         character.curCoolTime = 0;
-        Destroy(monsterPool);
-        monsterPool = null;
         monsters.Clear();
+
         stateMachine.ChangeState(stateMachine.startState);
     }
 

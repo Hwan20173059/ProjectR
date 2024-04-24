@@ -11,11 +11,6 @@ public class MonsterHpBar : MonoBehaviour
     RectTransform monsterMaxHpBar;
     RectTransform monsterCurHpBar;
 
-    private void Update()
-    {
-        SetHpBarPosition();
-    }
-
     public void Init(Monster monster)
     {
         this.monster = monster;
@@ -27,6 +22,10 @@ public class MonsterHpBar : MonoBehaviour
             float addScale = (monster.maxHP - 100) / 1000;
             monsterMaxHpBar.localScale = new Vector3(monsterMaxHpBar.localScale.x + addScale, monsterMaxHpBar.localScale.y);
         }
+
+        SetHpBar();
+
+        SetHpBarPosition();
     }
 
     public void SetHpBar()

@@ -14,15 +14,13 @@ public class BattleStartState : BattleBaseState
 
         battleCanvas.SetStageText();
 
-        if (targetCircle != null)
-        {
-            targetCircle.gameObject.SetActive(false);
-        }
         if(character == null)
         {
             battleManager.SpawnCharacter();
         }
         battleManager.SpawnMonster();
+        battleManager.SetTargetCircle();
+
         stateMachine.ChangeState(stateMachine.waitState);
         battleManager.StartCoroutine(battleManager.BattleStart());
     }

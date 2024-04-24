@@ -25,7 +25,7 @@ public class ObjectPool : MonoBehaviour
                 Queue<GameObject> pool = new Queue<GameObject>();
                 for (int p = 0; p < pools[i].size; p++)
                 {
-                    GameObject temp = Instantiate(pools[i].prefab,transform);
+                    GameObject temp = Instantiate(pools[i].prefab, transform);
                     temp.SetActive(false);
                     pool.Enqueue(temp);
                 }

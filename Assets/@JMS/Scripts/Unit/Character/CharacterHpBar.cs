@@ -10,11 +10,6 @@ public class CharacterHpBar : MonoBehaviour
     RectTransform characterMaxHpBar;
     RectTransform characterCurHpBar;
 
-    private void Update()
-    {
-        SetHpBarPosition();
-    }
-
     public void Init(Character character)
     {
         this.character = character;
@@ -28,6 +23,8 @@ public class CharacterHpBar : MonoBehaviour
         }
 
         SetHpBar();
+
+        SetHpBarPosition();
     }
 
     public void SetHpBar()
