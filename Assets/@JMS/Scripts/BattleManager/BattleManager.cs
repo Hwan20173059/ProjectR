@@ -31,7 +31,9 @@ public class BattleManager : MonoBehaviour
     public List<Monster> monsters;
     public Monster selectMonster;
     public TargetCircle targetCircle;
+
     public List<int> performList;
+
     public IState characterPrevState;
     public IState[] monstersPrevState;
     public bool IsSelectingAction = false;
@@ -41,12 +43,12 @@ public class BattleManager : MonoBehaviour
     public bool IsCanUseItem => useItemCount < 3;
     public int useItemCount = 0;
 
-    Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1f, 0);
-    Vector3 monsterSpawnPosition = new Vector3 (-1, 2.5f, 0);
+    Vector3 characterSpawnPosition = new Vector3(-6.5f, 1f, 0);
+    Vector3 monsterSpawnPosition = new Vector3(-1, 2.5f, 0);
 
     ObjectPool objectPool;
 
-    public PlayerInput Input {  get; private set; }
+    public PlayerInput Input { get; private set; }
 
     public BattleCanvas battleCanvas;
 
@@ -59,6 +61,7 @@ public class BattleManager : MonoBehaviour
     private void Awake()
     {
         objectPool = GetComponent<ObjectPool>();
+
         objectPool.Init();
 
         Input = GetComponent<PlayerInput>();
@@ -123,11 +126,11 @@ public class BattleManager : MonoBehaviour
         battleCanvas.UpdateMonsterState();
         battleCanvas.MonsterStatePanelOn();
     }
-    
+
     void BattleInit()
     {
         battleData = DataManager.Instance.battleDatabase.GetDataByKey(PlayerManager.Instance.selectBattleID);
-        
+
         for (int i = 0; i < battleData.monsterGroups.Length; i++)
         {
             stages.Add(DataManager.Instance.monsterGroupDatabase.GetDataByKey(battleData.monsterGroups[i]));
@@ -137,8 +140,9 @@ public class BattleManager : MonoBehaviour
         {
             rouletteEquip.Add(PlayerManager.Instance.equip[i]);
             rouletteResultIndex.Add(i);
-            rouletteResult = RouletteResult.Different;
         }
+
+        rouletteResult = RouletteResult.Different;
     }
 
     public void SetTargetCircle()
@@ -164,7 +168,7 @@ public class BattleManager : MonoBehaviour
     {
 
         int randomSpawnAmount = Random.Range(stages[curStage].randomSpawnMinAmount, stages[curStage].randomSpawnMaxAmount + 1);
-        if(randomSpawnAmount > 0)
+        if (randomSpawnAmount > 0)
         {
             for (int i = 0; i < randomSpawnAmount; i++)
             {
@@ -177,9 +181,9 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if(stages[curStage].spawnMonsters.Length > 0)
+        if (stages[curStage].spawnMonsters.Length > 0)
         {
-            for(int i = 0; i < stages[curStage].spawnMonsters.Length; i++)
+            for (int i = 0; i < stages[curStage].spawnMonsters.Length; i++)
             {
                 GameObject monster = objectPool.GetFromPool("Monster");
                 monsters.Add(monster.GetComponent<Monster>());
@@ -214,6 +218,9 @@ public class BattleManager : MonoBehaviour
     public IEnumerator BattleStart()
     {
         yield return waitFor1Sec;
+
+        battleCanvas.SetStageText();
+
         character.stateMachine.ChangeState(character.stateMachine.readyState);
         foreach (Monster monster in monsters)
         {
@@ -229,7 +236,7 @@ public class BattleManager : MonoBehaviour
         effectController.BattleEffectOff();
 
         selectMonster = null;
-        for(int i = 0; i < monsters.Count; i++)
+        for (int i = 0; i < monsters.Count; i++)
         {
             monsters[i].gameObject.SetActive(false);
         }
@@ -316,9 +323,9 @@ public class BattleManager : MonoBehaviour
 
     public bool StageClearCheck()
     {
-        for(int i = 0; i < monsters.Count; i++)
+        for (int i = 0; i < monsters.Count; i++)
         {
-            if(!(monsters[i].IsDead))
+            if (!(monsters[i].IsDead))
             {
                 return false;
             }
@@ -370,7 +377,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (selectMonster == null || selectMonster.IsDead)
         {
-            for (int i = 0; i < monsters.Count;i++)
+            for (int i = 0; i < monsters.Count; i++)
             {
                 if (monsters[i].IsDead)
                     continue;
@@ -405,7 +412,7 @@ public class BattleManager : MonoBehaviour
 
         int random = Random.Range(1, 101);
 
-        if(successRateOfRunAway >= random) // 성공
+        if (successRateOfRunAway >= random) // 성공
         {
             Time.timeScale = 1f;
 
@@ -500,7 +507,7 @@ public class BattleManager : MonoBehaviour
 
     public int GetRouletteValue(int baseValue)
     {
-        switch(rouletteResult)
+        switch (rouletteResult)
         {
             case RouletteResult.Triple:
                 {

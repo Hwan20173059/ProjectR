@@ -12,8 +12,6 @@ public class BattleStartState : BattleBaseState
     {
         base.Enter();
 
-        battleCanvas.SetStageText();
-
         if(character == null)
         {
             battleManager.SpawnCharacter();
