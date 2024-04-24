@@ -14,6 +14,7 @@ public class DetailArea : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemGrade;
     [SerializeField] private TextMeshProUGUI abilityInfo;
+    [SerializeField] private TextMeshProUGUI attackInfo;
     [SerializeField] private Button _equipButton;
     [SerializeField] private Button _unEquipButton;
     [SerializeField] private Button _useButton;
@@ -47,6 +48,7 @@ public class DetailArea : MonoBehaviour
         itemName.text = e.data.equipName;
         ItemGradeColor(e);
         abilityInfo.text = e.data.abilityInfo;
+        attackInfo.text = "공격력: " + e.data.singleValue;
 
         if (e.data.id != 0)
         {
