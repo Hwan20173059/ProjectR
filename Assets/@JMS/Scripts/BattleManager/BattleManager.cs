@@ -151,8 +151,8 @@ public class BattleManager : MonoBehaviour
         if (targetCircle == null)
         {
             targetCircle = objectPool.GetFromPool("TargetCircle").GetComponent<TargetCircle>();
-            targetCircle.gameObject.SetActive(false);
         }
+        targetCircle.gameObject.SetActive(false);
     }
 
     public void SpawnCharacter()
