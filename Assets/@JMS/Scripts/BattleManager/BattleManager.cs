@@ -442,7 +442,7 @@ public class BattleManager : MonoBehaviour
     {
         if (!IsSelectingAction || !IsCanUseItem)
             return;
-
+        AudioManager.Instance.PlayUseItemSFX(); // 임시 사운드
         useItemCount++;
         battleCanvas.UpdateBattleText($"{selectItem.data.consumeName} 사용!\n\n(남은 아이템 사용 갯수 : {3 - useItemCount})");
         switch (selectItem.type)
