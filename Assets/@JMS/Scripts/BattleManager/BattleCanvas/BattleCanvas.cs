@@ -40,7 +40,6 @@ public class BattleCanvas : MonoBehaviour
     [SerializeField] private Transform useItemSlots;
 
     UseItemSlot selectUseItemSlot;
-    List<UseItemSlot> useItemSlotList = new List<UseItemSlot>();
 
     private void Awake()
     {
@@ -136,7 +135,6 @@ public class BattleCanvas : MonoBehaviour
         go.transform.SetParent(useItemSlots);
         UseItemSlot useItemSlot = go.GetComponent<UseItemSlot>();
         useItemSlot.Init(this, consumeItem);
-        useItemSlotList.Add(useItemSlot);
     }
 
     public void UpdateBuffText(Buff buff)

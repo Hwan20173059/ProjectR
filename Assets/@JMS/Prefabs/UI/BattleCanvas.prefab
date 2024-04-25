@@ -6065,7 +6065,7 @@ MonoBehaviour:
     size: 5
   - prefab: {fileID: 973995505376180650, guid: 7999c13362da77548a0d354dbd65324f, type: 3}
     tag: UseItemSlot
-    size: 4
+    size: 1
 --- !u!1 &4196145966337639236
 GameObject:
   m_ObjectHideFlags: 0
