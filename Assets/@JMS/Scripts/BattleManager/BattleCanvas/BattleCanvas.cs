@@ -69,12 +69,7 @@ public class BattleCanvas : MonoBehaviour
         objectPool.Init();
     }
 
-    private void Start()
-    {
-        Init();
-    }
-
-    void Init()
+    public void Init()
     {
         characterStatePanel.Init();
         actionButtonPanel.Init(battleManager);

@@ -78,6 +78,8 @@ public class BattleManager : MonoBehaviour
     {
         BattleInit();
 
+        battleCanvas.Init();
+
         stateMachine.ChangeState(stateMachine.startState);
 
         Input.ClickActions.MouseClick.started += OnClickStart;
