@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 [System.Serializable]
 public class EquipItem
@@ -158,6 +159,11 @@ public class ItemManager : Singleton<ItemManager>
     public void SetConsumeMaxSlots()
     {
         inventory.cMaxSlots = cInventory.Count;
+    }
+
+    public void SortEquips()
+    {
+        eInventory = eInventory.OrderBy(e => e.data.id).ToList();
     }
 
     public void LoadEquipData()
