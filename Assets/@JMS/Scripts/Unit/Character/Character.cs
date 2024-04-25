@@ -166,6 +166,15 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void UseHpPotionInField(ConsumeItem hpPotion)
+    {
+        AudioManager.Instance.PlayUseItemSFX(); // 임시 사운드
+        curHP += hpPotion.data.value;
+        curHP = curHP > maxHP ? maxHP : curHP;
+
+        ItemManager.Instance.ReduceConsumeItem(hpPotion);
+    }
+
     public void ChangeExp(int value)
     {
         curExp += value;
