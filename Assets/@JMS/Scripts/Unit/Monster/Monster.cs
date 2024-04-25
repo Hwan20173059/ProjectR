@@ -32,6 +32,7 @@ public class Monster : MonoBehaviour
     public bool IsStun;
     public float curStunTime;
     public float maxStunTime;
+    BattleEffect stunEffect;
 
     public bool IsBurn;
     public float curBurnTime;
@@ -39,7 +40,6 @@ public class Monster : MonoBehaviour
     public float burnInterval;
     public int burnCount;
 
-    public BattleEffect battleEffect;
     public MonsterAnimController monsterAnimController { get; private set; }
     public SpriteRenderer spriteRenderer;
     public SpriteLibrary spriteLibrary;
@@ -154,6 +154,7 @@ public class Monster : MonoBehaviour
 
         if (curHP <= 0)
         {
+            if (IsStun) stunEffect.SetActive(false);
             stateMachine.ChangeState(stateMachine.deadState);
         }
 
@@ -194,14 +195,14 @@ public class Monster : MonoBehaviour
 
     public void SetStun(float duration)
     {
-        if (IsStun && (maxStunTime - curStunTime > duration)) return;
+        if ((IsStun && (maxStunTime - curStunTime > duration)) || IsDead) return;
 
         IsStun = true;
         curStunTime = 0;
         maxStunTime = duration;
-        if (battleEffect != null)
-            battleEffect.SetActive(false);
-        battleEffect = battleManager.effectController.SetEffect(3, transform.position); // ¿”Ω√ ¿Ã∆Â∆Æ
+        if (stunEffect == null)
+            stunEffect = battleManager.effectController.SetEffect(3, transform.position); // ¿”Ω√ ¿Ã∆Â∆Æ
+        stunEffect.SetActive(true);
     }
 
     public void StunTimeUpdate()
@@ -213,7 +214,7 @@ public class Monster : MonoBehaviour
         else
         {
             IsStun = false;
-            battleEffect.SetActive(false);
+            stunEffect.SetActive(false);
             curStunTime = 0;
             stateMachine.ChangeState(stateMachine.readyState);
         }
