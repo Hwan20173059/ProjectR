@@ -13,6 +13,7 @@ public class QuestSlot : MonoBehaviour
 
     public int questId;
     public QuestState currentQuestState;
+    public GameObject nof;
 
     private string desc;
     private void Start()
@@ -38,8 +39,6 @@ public class QuestSlot : MonoBehaviour
     public void QuestUpdate()
     {
         currentQuestState = QuestManager.instance.QuestStateCheck(questId).state;
-        //quest = QuestManager.instance.QuestStateCheck(this);
-        //currentQuestState = quest.state;
     }
 
     private void OnDisable()
@@ -54,5 +53,9 @@ public class QuestSlot : MonoBehaviour
         {
             currentQuestState = quest.state;
         }
+        if (currentQuestState == QuestState.Can_Finish)
+            this.GetComponent<Image>().color = Color.green;
+        else
+            this.GetComponent<Image>().color = Color.white;
     }
 }
