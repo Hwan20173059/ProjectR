@@ -13834,27 +13834,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 585670162234245275, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585670162234245275, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585670162234245275, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 135
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585670162234245275, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 135
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585670162234245275, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 67.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 585670162234245275, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -82.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 636126527408855832, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -13868,9 +13868,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: AttackInfo
       objectReference: {fileID: 0}
+    - target: {fileID: 877370905422274826, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 877370905422274826, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 877370905422274826, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1051258968929442880, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1230819738401231231, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_text
@@ -14072,6 +14084,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -474.99988
       objectReference: {fileID: 0}
+    - target: {fileID: 6839343420539773518, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7428174715504285812, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_Name
       value: Inventory
@@ -14124,6 +14140,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -170
       objectReference: {fileID: 0}
+    - target: {fileID: 8927544943373303449, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.87331533
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927544943373303449, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+      propertyPath: m_Color.g
+      value: 0.94981307
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927544943373303449, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9070401820959853924, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -14140,6 +14168,7 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 6775408664627533269, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
     - {fileID: 19748937710209544, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+    - {fileID: 966908837053894596, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       insertIndex: -1
