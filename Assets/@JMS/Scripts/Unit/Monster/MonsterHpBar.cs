@@ -23,17 +23,17 @@ public class MonsterHpBar : MonoBehaviour
             monsterMaxHpBar.localScale = new Vector3(monsterMaxHpBar.localScale.x + addScale, monsterMaxHpBar.localScale.y);
         }
 
-        SetHpBar();
+        UpdateHpBar();
 
-        SetHpBarPosition();
+        UpdateHpBarPosition();
     }
 
-    public void SetHpBar()
+    public void UpdateHpBar()
     {
         monsterCurHpBar.localScale = new Vector3((float)monster.curHP / monster.maxHP, monsterCurHpBar.localScale.y);
     }
 
-    void SetHpBarPosition()
+    void UpdateHpBarPosition()
     {
         if (monster != null)
         {

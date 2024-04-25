@@ -147,7 +147,7 @@ public class Monster : MonoBehaviour
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;
 
-        hpBar.SetHpBar();
+        hpBar.UpdateHpBar();
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
         battleCanvas.SetChangeHpTMP(value, screenPos);

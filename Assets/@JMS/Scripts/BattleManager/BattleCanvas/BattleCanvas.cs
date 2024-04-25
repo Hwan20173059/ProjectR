@@ -28,15 +28,19 @@ public class BattleCanvas : MonoBehaviour
     CheatPanel cheatPanel;
     StagePanel stagePanel;
     BuffDescriptionPanel buffDescriptionPanel;
+    UseItemPanel useItemPanel;
     LoadingUI loadingUI;
 
-    InfiniteInventory infiniteInventory;
     Settings settings;
 
     ObjectPool objectPool;
 
     [SerializeField] private Transform unitHpBar;
     [SerializeField] private Transform characterBuff;
+    [SerializeField] private Transform useItemSlots;
+
+    UseItemSlot selectUseItemSlot;
+    List<UseItemSlot> useItemSlotList = new List<UseItemSlot>();
 
     private void Awake()
     {
@@ -56,9 +60,9 @@ public class BattleCanvas : MonoBehaviour
         cheatPanel = GetComponentInChildren<CheatPanel>();
         stagePanel = GetComponentInChildren<StagePanel>();
         buffDescriptionPanel = GetComponentInChildren<BuffDescriptionPanel>();
+        useItemPanel = GetComponentInChildren<UseItemPanel>();
         loadingUI = GetComponentInChildren<LoadingUI>();
 
-        infiniteInventory = GetComponentInChildren<InfiniteInventory>();
         settings = GetComponentInChildren<Settings>();
 
         objectPool = GetComponent<ObjectPool>();
@@ -84,8 +88,9 @@ public class BattleCanvas : MonoBehaviour
         menuButton.button.onClick.AddListener(MenuPanelOn);
         menuPanel.Init(this);
         cheatPanel.Init(battleManager);
-        stagePanel.Init(battleManager);
+        stagePanel.Init();
         buffDescriptionPanel.Init();
+        useItemPanel.Init(this);
 
         cheatPanel.gameObject.SetActive(false);
 
@@ -130,10 +135,19 @@ public class BattleCanvas : MonoBehaviour
         return buffIcon;
     }
 
-    public void SetBuffText(Buff buff)
+    public void SetUseItemSlot(ConsumeItem consumeItem)
+    {
+        GameObject go = objectPool.GetFromPool("UseItemSlot");
+        go.transform.SetParent(useItemSlots);
+        UseItemSlot useItemSlot = go.GetComponent<UseItemSlot>();
+        useItemSlot.Init(this, consumeItem);
+        useItemSlotList.Add(useItemSlot);
+    }
+
+    public void UpdateBuffText(Buff buff)
     {
         buffDescriptionPanel.gameObject.SetActive(true);
-        buffDescriptionPanel.SetBuffText(buff);
+        buffDescriptionPanel.UpdateBuffText(buff);
     }
 
     public void SetRoulette(int resultIndex0, int resultIndex1, int resultIndex2)
@@ -211,30 +225,47 @@ public class BattleCanvas : MonoBehaviour
         buffDescriptionPanel.gameObject.SetActive(false);
     }
 
-
-    public void OnClickItemUseButton()
-    {
-        infiniteInventory.OpenConsumeInventory();
-    }
-
-    public void OnClickUseButton()
-    {
-        battleManager.UseItem(infiniteInventory.detailArea.nowConsumeItem);
-    }
-    public void FreshConsumeSlot()
-    {
-        infiniteInventory.detailArea.ChangeDetailActivation(false);
-        infiniteInventory.FreshConsumeSlot();
-    }
-
     public void CloseScreen(string loadScene)
     {
         loadingUI.gameObject.SetActive(true);
         loadingUI.CloseScreen(loadScene);
     }
 
-    public void SetStageText()
+    public void UpdateStageText(int curStage, int stageCount)
     {
-        stagePanel.SetStageText();
+        stagePanel.UpdateStageText(curStage, stageCount);
     }
+
+    public void SelectUseItem(UseItemSlot selectUseItemSlot)
+    {
+        if (this.selectUseItemSlot != null)
+            this.selectUseItemSlot.SlotColorClear();
+
+        this.selectUseItemSlot = selectUseItemSlot;
+    }
+
+    public void UseItemPanelOn()
+    {
+        useItemPanel.gameObject.SetActive(true);
+    }
+
+    public void OnClickItemUseButton()
+    {
+        if (selectUseItemSlot == null) { return; }
+
+        battleManager.UseItem(selectUseItemSlot.consumeItem);
+    }
+
+    public void UpdateUseItemSlot()
+    {
+        if (selectUseItemSlot.consumeItem.count <= 0)
+        {
+            selectUseItemSlot.gameObject.SetActive(false);
+            selectUseItemSlot = null;
+        }
+        else
+            selectUseItemSlot.UpdateUseItemSlot();
+
+    }
+
 }

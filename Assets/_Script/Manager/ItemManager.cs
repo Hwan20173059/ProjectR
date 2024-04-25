@@ -62,7 +62,7 @@ public class ItemManager : Singleton<ItemManager>
     public bool HaveEquipItem(int id)
     {
         int index = eInventory.FindIndex(e => e.data.id == id);
-        if(index != -1) return true;
+        if (index != -1) return true;
         else return false;
     }
 
@@ -114,16 +114,24 @@ public class ItemManager : Singleton<ItemManager>
 
     public void ReduceConsumeItem(ConsumeItem consumeItem)
     {
+        //if (cInventory.Contains(consumeItem))
+        //{
+        //    if (consumeItem.count > 1)
+        //    {
+        //        consumeItem.count--;
+        //    }
+        //    else
+        //    {
+        //        cInventory.Remove(consumeItem);
+        //    }
+        //}
+
         if (cInventory.Contains(consumeItem))
         {
-            if(consumeItem.count > 1)
-            {
-                consumeItem.count--;
-            }
-            else
-            {
+            consumeItem.count--;
+
+            if (consumeItem.count <= 0)
                 cInventory.Remove(consumeItem);
-            }
         }
     }
 

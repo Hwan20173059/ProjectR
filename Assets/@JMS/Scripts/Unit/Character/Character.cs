@@ -144,7 +144,7 @@ public class Character : MonoBehaviour
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;
 
-        hpBar.SetHpBar();
+        hpBar.UpdateHpBar();
         battleCanvas.UpdateCharacterState(battleManager.IsRouletteUsed);
 
         if (value < 0)

@@ -20,7 +20,7 @@ public class BuffIcon : MonoBehaviour
         image = GetComponent<Image>();
         typeText = GetComponentInChildren<TextMeshProUGUI>();
 
-        button.onClick.AddListener(SetBuffText);
+        button.onClick.AddListener(UpdateBuffText);
     }
     public void Init(BattleCanvas battleCanvas, Buff buff)
     {
@@ -41,9 +41,9 @@ public class BuffIcon : MonoBehaviour
         
     }
     
-    public void SetBuffText()
+    public void UpdateBuffText()
     {
-        battleCanvas.SetBuffText(buff);
+        battleCanvas.UpdateBuffText(buff);
     }
 
 }

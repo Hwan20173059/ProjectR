@@ -22,17 +22,17 @@ public class CharacterHpBar : MonoBehaviour
             characterMaxHpBar.localScale = new Vector3(characterMaxHpBar.localScale.x + addScale, characterMaxHpBar.localScale.y);
         }
 
-        SetHpBar();
+        UpdateHpBar();
 
-        SetHpBarPosition();
+        UpdateHpBarPosition();
     }
 
-    public void SetHpBar()
+    public void UpdateHpBar()
     {
         characterCurHpBar.localScale = new Vector3((float)character.curHP / character.maxHP, characterCurHpBar.localScale.y);
     }
 
-    void SetHpBarPosition()
+    void UpdateHpBarPosition()
     {
         if (character != null)
         {

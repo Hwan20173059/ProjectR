@@ -12,6 +12,8 @@ public class BattleStartState : BattleBaseState
     {
         base.Enter();
 
+        battleCanvas.UpdateBattleText("전투 시작!");
+
         if(character == null)
         {
             battleManager.SpawnCharacter();

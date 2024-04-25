@@ -46,6 +46,6 @@ public class ActionButtonPanel : MonoBehaviour
 
     void OnClickItemButton()
     {
-        battleManager.battleCanvas.OnClickItemUseButton();
+        battleManager.battleCanvas.UseItemPanelOn();
     }
 }

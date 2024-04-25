@@ -13,7 +13,7 @@ public class BuffDescriptionPanel : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void SetBuffText(Buff buff)
+    public void UpdateBuffText(Buff buff)
     {
         if (buff.type == BuffType.SPD)
         {

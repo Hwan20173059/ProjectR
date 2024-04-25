@@ -1,22 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class StagePanel : MonoBehaviour
 {
-    BattleManager battleManager;
+    TextMeshProUGUI stageText;
 
-    StageTMP stageText;
-
-    public void Init(BattleManager battleManager)
+    public void Init()
     {
-        this.battleManager = battleManager;
-
-        stageText = GetComponentInChildren<StageTMP>();
+        stageText = GetComponentInChildren<TextMeshProUGUI>();
     }
 
-    public void SetStageText()
+    public void UpdateStageText(int curStage, int stageCount)
     {
-        stageText.text = $"Stage {battleManager.curStage + 1} / {battleManager.stages.Count}";
+        stageText.text = $"Stage {curStage + 1} / {stageCount}";
     }
 }

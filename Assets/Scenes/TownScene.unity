@@ -22086,7 +22086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemImage: {fileID: 5535138829145787784}
-  ItemDetail: {fileID: 0}
+  ItemDetail: {fileID: 1556757866}
   itemName: {fileID: 4698376629973663537}
   itemInfo: {fileID: 5759805492533289402}
   itemPrice: {fileID: 7841289861224889243}

@@ -61,29 +61,28 @@ public class BattleManager : MonoBehaviour
     private void Awake()
     {
         objectPool = GetComponent<ObjectPool>();
-
         objectPool.Init();
+
+        effectController = new BattleEffectController(objectPool);
 
         Input = GetComponent<PlayerInput>();
 
         battleCanvas = GetComponentInChildren<BattleCanvas>();
 
-        effectController = new BattleEffectController(objectPool);
-
         stateMachine = new BattleStateMachine(this);
 
         performList = new List<int>();
-
-        BattleInit();
     }
 
     private void Start()
     {
+        BattleInit();
+
+        stateMachine.ChangeState(stateMachine.startState);
+
         Input.ClickActions.MouseClick.started += OnClickStart;
 
         Input.ClickActions.TouchPress.started += OnTouchStart;
-
-        stateMachine.ChangeState(stateMachine.startState);
     }
 
     private void Update()
@@ -219,7 +218,7 @@ public class BattleManager : MonoBehaviour
     {
         yield return waitFor1Sec;
 
-        battleCanvas.SetStageText();
+        battleCanvas.UpdateStageText(curStage, stages.Count);
 
         character.stateMachine.ChangeState(character.stateMachine.readyState);
         foreach (Monster monster in monsters)
@@ -232,7 +231,7 @@ public class BattleManager : MonoBehaviour
     {
         battleCanvas.NextStagePanelOff();
         battleCanvas.MonsterStatePanelOff();
-        battleCanvas.SetStageText();
+        battleCanvas.UpdateStageText(curStage, stages.Count);
         effectController.BattleEffectOff();
 
         selectMonster = null;
@@ -443,6 +442,7 @@ public class BattleManager : MonoBehaviour
             return;
 
         useItemCount++;
+        battleCanvas.UpdateBattleText($"{selectItem.data.consumeName} 사용!\n\n(남은 아이템 사용 갯수 : {3 - useItemCount})");
         switch (selectItem.type)
         {
             case Type.HpPotion:
@@ -458,7 +458,7 @@ public class BattleManager : MonoBehaviour
         battleCanvas.UpdateCharacterState(IsRouletteUsed);
 
         ItemManager.Instance.ReduceConsumeItem(selectItem);
-        battleCanvas.FreshConsumeSlot();
+        battleCanvas.UpdateUseItemSlot();
     }
 
     void SetRoulette()
