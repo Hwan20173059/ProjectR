@@ -6110,7 +6110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMapManager: {fileID: 133293362}
   playerTile: {fileID: 0}
-  cameraSpeed: 10
+  cameraSpeed: 20
   fieldSize: {fileID: 741489266}
   isTurn: 0
 --- !u!1 &1266636784

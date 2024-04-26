@@ -83,9 +83,9 @@ public class TileMapManager : MonoBehaviour
         playerHp.text = "HP " + playerCharacter.curHP + " / " + playerCharacter.maxHP ;
     }
 
-    public void SelectUIRefresh()
+    public void FieldCameraOn()
     {
-        
+        fieldCamera.isTurn = true;
     }
 
     public void PlayerTurn()
@@ -99,7 +99,7 @@ public class TileMapManager : MonoBehaviour
 
         CharacterUIRefresh();
 
-        fieldCamera.isTurn = true;
+        Invoke("FieldCameraOn", 1.5f);
 
         AudioManager.Instance.PlayAttack1SFX();
         turnAnimator.SetTrigger("Turn");

@@ -12,6 +12,8 @@ public class FieldManager : TileMapManager
 
         playerPrefab.GetComponent<SpriteRenderer>().sprite = playerManager.characterList[playerManager.selectedCharacterIndex].sprite;
 
+        fieldCamera.isTurn = false;
+
         loadingUI.OpenScreen();
 
         if (playerManager.firstField == true)

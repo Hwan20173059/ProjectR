@@ -19559,8 +19559,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMapManager: {fileID: 305973024}
   playerTile: {fileID: 0}
-  cameraSpeed: 10
+  cameraSpeed: 20
   fieldSize: {fileID: 1442357347}
+  isTurn: 0
 --- !u!1001 &1258990952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27390,7 +27391,7 @@ PrefabInstance:
     - target: {fileID: 2423000950587867678, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: mergeFailObj
       value: 
-      objectReference: {fileID: 1665030635}
+      objectReference: {fileID: 0}
     - target: {fileID: 2660759684403886594, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: cslots.Array.size
       value: 1
@@ -27568,11 +27569,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05a8a1ebdefb40e4f9d737d79e20d4d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1665030635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 19748937710209544, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
-  m_PrefabInstance: {fileID: 1665030630}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1665030636 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 525118235584779544, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
