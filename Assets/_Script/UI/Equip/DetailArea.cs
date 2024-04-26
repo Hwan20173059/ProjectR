@@ -121,10 +121,11 @@ public class DetailArea : MonoBehaviour
     {
         if (nowConsumeItem.count >= nowConsumeItem.data.value)
         {
-            // ItemManager.Instance.ReduceConsumeItem(nowConsumeItem, nowConsumeItem.count);
+            if (itemManager == null) itemManager = ItemManager.Instance;
+            itemManager.ReduceConsumeItem(nowConsumeItem, nowConsumeItem.count);
             int charID = nowConsumeItem.data.id - 32;
             playerManager.AddCharacter(charID, 1, 0);
-            // itemManager.inventory.FreshConsumeSlot();
+            itemManager.inventory.FreshConsumeSlot();
 
             MergeSuccessPopup(nowConsumeItem.consumeSprite);
         }
