@@ -5901,8 +5901,8 @@ MonoBehaviour:
   consumeInventoryUI: {fileID: 7762724993815395368}
   itemSlotPrefab: {fileID: 9003456527065158837}
   consumeSlotPrefab: {fileID: 7480576857216764398, guid: 989a8a4ce964448498c6c9ffffb848ee, type: 3}
-  maxSlots: 18
-  cmaxSlots: 30
+  maxSlots: 0
+  cmaxSlots: 0
 --- !u!1 &7435754842948060223
 GameObject:
   m_ObjectHideFlags: 0

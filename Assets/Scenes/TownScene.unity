@@ -13916,6 +13916,14 @@ PrefabInstance:
       propertyPath: mergeSuccessObj
       value: 
       objectReference: {fileID: 1419364988}
+    - target: {fileID: 2660759684403886594, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+      propertyPath: maxSlots
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2660759684403886594, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
+      propertyPath: cmaxSlots
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3488998783426070380, guid: 051683c62427b4b4dac28db5356b14c4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

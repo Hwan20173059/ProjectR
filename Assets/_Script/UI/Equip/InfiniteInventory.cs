@@ -75,11 +75,11 @@ public class InfiniteInventory : Inventory
         else
             cmaxSlots = value;
 
-        if (cmaxSlots <= slots.Count)
+        if (cmaxSlots <= cslots.Count)
         {
             DestroyEmptySlotC();
         }
-        else if (cmaxSlots > slots.Count)
+        else if (cmaxSlots > cslots.Count)
         {
             AddNewSlotC();
         }
