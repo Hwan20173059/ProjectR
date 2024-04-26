@@ -481,7 +481,8 @@ public class BattleManager : MonoBehaviour
 
         for(int i = 0; i < 2; i++)
         {
-            int r = Random.Range(1, 101);
+            float r = Random.Range(0, 100f);
+            Debug.Log($"·£´ý ¼ýÀÚ : {r}");
             if (r <= 100 * Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount)))
             {
                 rouletteEquip.Add(PlayerManager.Instance.equip[firstR]);
