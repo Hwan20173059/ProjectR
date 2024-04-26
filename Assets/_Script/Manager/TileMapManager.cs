@@ -99,6 +99,8 @@ public class TileMapManager : MonoBehaviour
 
         CharacterUIRefresh();
 
+        fieldCamera.isTurn = true;
+
         AudioManager.Instance.PlayAttack1SFX();
         turnAnimator.SetTrigger("Turn");
         Invoke("IsPlayerTurnOn", 1.5f);
@@ -127,6 +129,8 @@ public class TileMapManager : MonoBehaviour
     {
         fieldState = FieldState.fieldTurn;
         turnState.text = "몬스터 턴";
+
+        fieldCamera.isTurn = false;
 
         AudioManager.Instance.PlayAttack1SFX();
         turnAnimator.SetTrigger("Turn");
