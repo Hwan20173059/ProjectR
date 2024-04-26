@@ -35,6 +35,6 @@ public class ConsumeSlot : MonoBehaviour
 
     public void OnClickItem()
     {
-        detailArea.ChangeSelectedItem(item);
+        if (item != null) detailArea.ChangeSelectedItem(item);
     }
 }
