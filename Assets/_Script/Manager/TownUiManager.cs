@@ -332,10 +332,4 @@ public class TownUiManager : MonoBehaviour
 
         Application.Quit();
     }
-
-
-    public void CheatButton()
-    {
-        playerManager.gold += 50000;
-    }
 }
