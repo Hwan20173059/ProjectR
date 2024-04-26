@@ -463,16 +463,44 @@ public class BattleManager : MonoBehaviour
         battleCanvas.UpdateUseItemSlot();
     }
 
+    int jackPotFailCount = 0;
     void SetRoulette()
     {
         RouletteClear();
 
-        for (int i = 0; i < 3; i++)
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    int randomIndex = Random.Range(0, 3);
+        //    rouletteEquip.Add(PlayerManager.Instance.equip[randomIndex]);
+        //    rouletteResultIndex.Add(randomIndex);
+        //}
+
+        int firstR = Random.Range(0, 3);
+        rouletteEquip.Add(PlayerManager.Instance.equip[firstR]);
+        rouletteResultIndex.Add(firstR);
+
+        for(int i = 0; i < 2; i++)
         {
-            int randomIndex = Random.Range(0, 3);
-            rouletteEquip.Add(PlayerManager.Instance.equip[randomIndex]);
-            rouletteResultIndex.Add(randomIndex);
+            int r = Random.Range(1, 101);
+            if (r <= 100 * Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount)))
+            {
+                rouletteEquip.Add(PlayerManager.Instance.equip[firstR]);
+                rouletteResultIndex.Add(firstR);
+            }
+            else
+            {
+                int nextR = Random.Range(0, 3);
+                while (nextR == firstR)
+                {
+                    nextR = Random.Range(0, 3);
+                }
+                rouletteEquip.Add(PlayerManager.Instance.equip[nextR]);
+                rouletteResultIndex.Add(nextR);
+            }
         }
+
+        Debug.Log($"°°Àº ·ê·¿ È®·ü : {100 * Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount))}");
+        Debug.Log($"ÀèÆÌ È®·ü : {Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount)) * Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount)) * 100}");
 
         if (rouletteEquip[0] == rouletteEquip[1])
         {
@@ -497,6 +525,11 @@ public class BattleManager : MonoBehaviour
         {
             rouletteResult = RouletteResult.Different;
         }
+
+        if (rouletteResult == RouletteResult.Triple)
+            jackPotFailCount = 0;
+        else
+            jackPotFailCount++;
 
         battleCanvas.SetRoulette(rouletteResultIndex[0], rouletteResultIndex[1], rouletteResultIndex[2]);
     }
