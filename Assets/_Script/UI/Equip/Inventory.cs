@@ -104,4 +104,10 @@ public class Inventory : MonoBehaviour //Inventory
         detailArea.ChangeDetailActivation(false);
         nEquipItemSlot.FreshEquippedSlot();
     }
+
+    public void SortEquipInventory()
+    {
+        itemManager.SortEquips();
+        FreshSlot();
+    }    
 }
