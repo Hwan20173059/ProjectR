@@ -482,7 +482,7 @@ public class BattleManager : MonoBehaviour
         for(int i = 0; i < 2; i++)
         {
             float r = Random.Range(0, 100f);
-            Debug.Log($"·£´ý ¼ýÀÚ : {r}");
+            Debug.Log($"{i + 2}¹ø ·ê·¿ : {r}");
             if (r <= 100 * Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount)))
             {
                 rouletteEquip.Add(PlayerManager.Instance.equip[firstR]);
@@ -501,7 +501,7 @@ public class BattleManager : MonoBehaviour
         }
 
         Debug.Log($"°°Àº ·ê·¿ È®·ü : {100 * Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount))}");
-        Debug.Log($"ÀèÆÌ È®·ü : {Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount)) * Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount)) * 100}");
+        Debug.Log($"ÀèÆÌ È®·ü : {100 * (1f / 9 + (1f / 9 * jackPotFailCount))}");
 
         if (rouletteEquip[0] == rouletteEquip[1])
         {
