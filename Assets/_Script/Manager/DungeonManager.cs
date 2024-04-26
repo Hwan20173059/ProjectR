@@ -22,6 +22,8 @@ public class DungeonManager : TileMapManager
         RefreshBackground();
         playerPrefab.GetComponent<SpriteRenderer>().sprite = playerManager.characterList[playerManager.selectedCharacterIndex].sprite;
 
+        fieldCamera.isTurn = false;
+
         loadingUI.OpenScreen();
 
         if (playerManager.firstDungeon == true)
