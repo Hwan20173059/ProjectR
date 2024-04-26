@@ -19,7 +19,7 @@ public class BattleCanvas : MonoBehaviour
     RoulettePanel roulettePanel;
     NextStagePanel nextStagePanel;
     BattleDefeatPanel battleDefeatPanel;
-    DungeonClearPanel dungeonClearPanel;
+    BattleVictoryPanel battleVictoryPanel;
     MonsterStatePanel monsterStatePanel;
     BattleTextPanel battleTextPanel;
     AutoBattlePanel autoBattlePanel;
@@ -50,7 +50,7 @@ public class BattleCanvas : MonoBehaviour
         roulettePanel = GetComponentInChildren<RoulettePanel>();
         nextStagePanel = GetComponentInChildren<NextStagePanel>();
         battleDefeatPanel = GetComponentInChildren<BattleDefeatPanel>();
-        dungeonClearPanel = GetComponentInChildren<DungeonClearPanel>();
+        battleVictoryPanel = GetComponentInChildren<BattleVictoryPanel>();
         monsterStatePanel = GetComponentInChildren<MonsterStatePanel>();
         battleTextPanel = GetComponentInChildren<BattleTextPanel>();
         autoBattlePanel = GetComponentInChildren<AutoBattlePanel>();
@@ -75,7 +75,7 @@ public class BattleCanvas : MonoBehaviour
         roulettePanel.Init(battleManager);
         nextStagePanel.Init(battleManager);
         battleDefeatPanel.Init(this);
-        dungeonClearPanel.Init(this);
+        battleVictoryPanel.Init(this);
         monsterStatePanel.Init();
         battleTextPanel.Init();
         autoBattlePanel.Init(battleManager);
@@ -185,7 +185,7 @@ public class BattleCanvas : MonoBehaviour
     }
     public void DungeonClearPanelOn()
     {
-        dungeonClearPanel.gameObject.SetActive(true);
+        battleVictoryPanel.gameObject.SetActive(true);
     }
     public void MonsterStatePanelOn()
     {
