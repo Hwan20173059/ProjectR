@@ -128,6 +128,7 @@ public class DetailArea : MonoBehaviour
             itemManager.inventory.FreshConsumeSlot();
 
             MergeSuccessPopup(nowConsumeItem.consumeSprite);
+            ChangeDetailActivation(false);
         }
         else
         {
