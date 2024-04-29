@@ -6,26 +6,16 @@ using UnityEngine.Android;
 using UnityEngine.UIElements;
 using System.IO;
 
-/*
- * QuestManager는 모든 퀘스트를 상태를 전체적으로 관리함.
- * 이벤트 중심
- * Quest는 ID를 중심으로 시작, 퀘스트 이동(다음 스텝), 클리어후 보상 등의 이벤트
- * 플레이어 레벨 등 또한 수신받을 예정
- * QuestStateChange : 퀘스트 변경 이벤트
- */
 public class QuestManager : MonoBehaviour
 {
-    private static Dictionary<string, Quest> questMap;
-
-    public static Dictionary<int, Quest> NewquestMap;
+    public static Dictionary<int, Quest> questMap;
 
     //진행가능 요구사항 현재 레벨만 구현
 
     public static QuestManager instance;
 
     public bool test;
-
-    AudioManager audioManager;
+    [SerializeField] private AllQuestSaveData Datas;
 
     private void Awake()
     {
@@ -37,8 +27,7 @@ public class QuestManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(this.gameObject);
 
-        //questMap = CreatQuestMap();
-        NewquestMap = CreatQuestMaps();
+        questMap = CreatQuestMap();
         if (File.Exists(Application.persistentDataPath + "/QuestSaveData.json"))
             LoadQuest();
     }
@@ -64,7 +53,7 @@ public class QuestManager : MonoBehaviour
 
     private void Update()
     {
-        foreach (Quest quest in NewquestMap.Values)
+        foreach (Quest quest in questMap.Values)
         {
             if (quest.state == QuestState.Requirments_Not && CheckRequirements(quest))
             {
@@ -77,7 +66,7 @@ public class QuestManager : MonoBehaviour
 
     public Quest QuestStateCheck(int id)
     {
-        return NewquestMap[id];
+        return questMap[id];
     }
 
 
@@ -116,35 +105,10 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-
-
-
-    /*
-    private Dictionary<string, Quest> CreatQuestMap()
-    {
-        QuestInfoSO[] allQuest = Resources.LoadAll<QuestInfoSO>("Quests");
-
-        Dictionary<string, Quest> idToQuestMap = new Dictionary<string, Quest>();
-        foreach (QuestInfoSO questInfo in allQuest)
-        {
-            if (idToQuestMap.ContainsKey(questInfo.id))
-            {
-                Debug.Log("ID : " + questInfo.id + " 에 Error");
-            }
-            idToQuestMap.Add(questInfo.id, new Quest(questInfo));
-
-            Debug.Log(questInfo.id + "퀘스트 추가");
-        }
-        return idToQuestMap;
-    }
-    */
-    
-
     public QuestData questData;
     public AllData datas;
-    public QuestSlot questSlotPrefeb;
     public int questCount;
-    private Dictionary<int, Quest> CreatQuestMaps()
+    private Dictionary<int, Quest> CreatQuestMap()
     {
         TextAsset jsonFile = Resources.Load<TextAsset>("QuestData");
         datas = JsonUtility.FromJson<AllData>(jsonFile.text);
@@ -153,7 +117,7 @@ public class QuestManager : MonoBehaviour
         {
             if (idToQuestMap.ContainsKey(questData.id))
             {
-                Debug.Log($"{questData.id} 의 키 값을 찾을 수 없음.");
+                //Debug.Log($"{questData.id} 의 키 값을 찾을 수 없음.");
             }
             idToQuestMap.Add(questData.id, new Quest(questData));
             questCount++;
@@ -190,10 +154,10 @@ public class QuestManager : MonoBehaviour
     //직접 액세스하지 않고 이 메서드를 사용
     public Quest GetQuestByID(int id)
     {
-        Quest quest = NewquestMap[id];
+        Quest quest = questMap[id];
         if (quest == null) 
         {
-            Debug.Log("questMap을 찾지 못함 " + id);
+            //Debug.Log("questMap을 찾지 못함 " + id);
         }
         return quest;
     }
@@ -211,7 +175,7 @@ public class QuestManager : MonoBehaviour
     {
         if (PlayerManager.Instance.isReset == false)
         {
-            foreach (Quest quest in NewquestMap.Values)
+            foreach (Quest quest in questMap.Values)
             {
                 /*
                 if (quest.info.questState == QuestState.Requirments_Not || 
@@ -226,8 +190,6 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private AllQuestSaveData Datas;
-    // QuestSaveData questSaveData;
     public void SaveQuest(Quest quest)
     {
         SaveQuestData saveQuestData = new SaveQuestData
@@ -239,37 +201,11 @@ public class QuestManager : MonoBehaviour
         Datas.questSaveData.Add(saveQuestData);
     }
 
-    
-    //public Quest LoadQuest(QuestData questData)
-    //{
-    //    string FromJsonData = File.ReadAllText("Assets\\Resources\\Quests\\QuestSaveData.json");
-    //    QuestSaveData questSaveData = JsonUtility.FromJson<QuestSaveData>(FromJsonData);
-    //    return;
-        //Quest quest = new Quest(QuestData questdata);
-        //return quest;
-        /*
-        Quest quest = null;
-
-        string serializedData = "asdf";
-
-        QuestData info = JsonUtility.FromJson<QuestData>(serializedData);
-        //quest = new Quest(info, ,);
-        TextAsset jsonFile = Resources.Load<TextAsset>("Quests/QuestSaveData");
-        if (jsonFile != null)
-        {
-            string json = jsonFile.text;
-            tmp = JsonUtility.FromJson<QuestData>(json);
-        }
-        return quest;
-        */
-
-    //}
-
     private void ChangeQuestState(int id, QuestState state)
     {
         Quest quest = GetQuestByID(id);
         quest.state = state;
-        NewquestMap[id].state = state;
+        questMap[id].state = state;
         GameEventManager.instance.questEvent.QuestStateChange(quest);
     }
 
@@ -277,7 +213,7 @@ public class QuestManager : MonoBehaviour
     //test를 위한 cheat button
     public void QuestClear()
     {
-        foreach (Quest quest in NewquestMap.Values)
+        foreach (Quest quest in questMap.Values)
         {
             quest.info.questCurrentValue = 0;
             GameEventManager.instance.questEvent.QuestStateChange(quest);
