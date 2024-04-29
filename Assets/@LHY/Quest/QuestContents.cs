@@ -24,7 +24,26 @@ public class QuestContents : MonoBehaviour
         CanStartStateSelect();
     }
 
+    private void OnEnable()
+    {
+        GameEventManager.instance.questEvent.onStartQuest += StartQuest;
+        GameEventManager.instance.questEvent.onFinishQuest += FinishQuest;
+    }
 
+    private void OnDisable()
+    {
+        GameEventManager.instance.questEvent.onStartQuest -= StartQuest;
+        GameEventManager.instance.questEvent.onFinishQuest -= FinishQuest;
+    }
+
+    private void StartQuest(int id)
+    {
+        CanStartStateSelect();
+    }
+    private void FinishQuest(int id)
+    {
+        ProgressStateSelect();
+    }
     private void QuestListing()
     {
         for (int i = 0; i < questList.Count; i++)
