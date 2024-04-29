@@ -118,7 +118,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void AddCharacter(int id, int level, int exp)
     {
-        if (titleManager.character != null)
+        if (titleManager.character != null && titleManager != null)
         {
             Character character = Instantiate(titleManager.character, this.transform);
             character.spriteRenderer.color = new Color(1, 1, 1, 0);

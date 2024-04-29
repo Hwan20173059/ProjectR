@@ -83,9 +83,9 @@ public class TileMapManager : MonoBehaviour
         playerHp.text = "HP " + playerCharacter.curHP + " / " + playerCharacter.maxHP ;
     }
 
-    public void SelectUIRefresh()
+    public void FieldCameraOn()
     {
-        
+        fieldCamera.isTurn = true;
     }
 
     public void PlayerTurn()
@@ -98,6 +98,8 @@ public class TileMapManager : MonoBehaviour
         turnState.text = "플레이어 턴";
 
         CharacterUIRefresh();
+
+        Invoke("FieldCameraOn", 1.5f);
 
         AudioManager.Instance.PlayAttack1SFX();
         turnAnimator.SetTrigger("Turn");
@@ -128,6 +130,8 @@ public class TileMapManager : MonoBehaviour
         fieldState = FieldState.fieldTurn;
         turnState.text = "몬스터 턴";
 
+        fieldCamera.isTurn = false;
+
         AudioManager.Instance.PlayAttack1SFX();
         turnAnimator.SetTrigger("Turn");
 
@@ -144,27 +148,107 @@ public class TileMapManager : MonoBehaviour
             switch (randomMove)
             {
                 case 0:
-                    if (FieldStateEmptyCheck(X - 1, Y))
+                    if (TileStateCheck(X - 1, Y, TileState.player))
+                    {
+                        playerManager.selectBattleID = fieldMonster[i].battleID;
+
+                        fieldMonster.Remove(fieldMonster[i]);
+                        SaveMonster();
+
+                        playerManager.fieldX = currentTile.indexX;
+                        playerManager.fieldY = currentTile.indexY;
+
+                        if (chestPosition != null)
+                            SaveChest();
+                        else
+                            chestPosition = null;
+
+                        AudioManager.Instance.ChangeBattleBGM();
+
+                        loadingUI.gameObject.SetActive(true);
+                        loadingUI.CloseScreen("BattleScene");
+                    }
+                    else if (FieldStateEmptyCheck(X - 1, Y))
                         MoveTileMonsterState(i, X, Y, X - 1, Y);
                     break;
 
                 case 1:
-                    if (FieldStateEmptyCheck(X + 1, Y))
+                    if (TileStateCheck(X + 1, Y, TileState.player))
+                    {
+                        playerManager.selectBattleID = fieldMonster[i].battleID;
+
+                        fieldMonster.Remove(fieldMonster[i]);
+                        SaveMonster();
+
+                        playerManager.fieldX = currentTile.indexX;
+                        playerManager.fieldY = currentTile.indexY;
+
+                        if (chestPosition != null)
+                            SaveChest();
+                        else
+                            chestPosition = null;
+
+                        AudioManager.Instance.ChangeBattleBGM();
+
+                        loadingUI.gameObject.SetActive(true);
+                        loadingUI.CloseScreen("BattleScene");
+                    }
+                    else if(FieldStateEmptyCheck(X + 1, Y))
                         MoveTileMonsterState(i, X, Y, X + 1, Y);
                     break;
 
                 case 2:
-                    if (FieldStateEmptyCheck(X, Y - 1))
+                    if (TileStateCheck(X, Y - 1, TileState.player))
+                    {
+                        playerManager.selectBattleID = fieldMonster[i].battleID;
+
+                        fieldMonster.Remove(fieldMonster[i]);
+                        SaveMonster();
+
+                        playerManager.fieldX = currentTile.indexX;
+                        playerManager.fieldY = currentTile.indexY;
+
+                        if (chestPosition != null)
+                            SaveChest();
+                        else
+                            chestPosition = null;
+
+                        AudioManager.Instance.ChangeBattleBGM();
+
+                        loadingUI.gameObject.SetActive(true);
+                        loadingUI.CloseScreen("BattleScene");
+                    }
+                    else if(FieldStateEmptyCheck(X, Y - 1))
                         MoveTileMonsterState(i, X, Y, X, Y - 1);
                     break;
 
                 case 3:
-                    if (FieldStateEmptyCheck(X, Y + 1))
+                    if (TileStateCheck(X, Y + 1, TileState.player))
+                    {
+                        playerManager.selectBattleID = fieldMonster[i].battleID;
+
+                        fieldMonster.Remove(fieldMonster[i]);
+                        SaveMonster();
+
+                        playerManager.fieldX = currentTile.indexX;
+                        playerManager.fieldY = currentTile.indexY;
+
+                        if (chestPosition != null)
+                            SaveChest();
+                        else
+                            chestPosition = null;
+
+                        AudioManager.Instance.ChangeBattleBGM();
+
+                        loadingUI.gameObject.SetActive(true);
+                        loadingUI.CloseScreen("BattleScene");
+                    }
+                    else if(FieldStateEmptyCheck(X, Y + 1))
                         MoveTileMonsterState(i, X, Y, X, Y + 1);
                     break;
             }
 
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.1f);
         }
 
         yield return new WaitForSeconds(0.1f);
@@ -428,7 +512,7 @@ public class TileMapManager : MonoBehaviour
 
     protected bool TileStateCheck(int X, int Y, TileState tileState)
     {
-        return field.tileRaw[Y].fieldTiles[X].tileState == tileState;
+        return X > -1 && X < fieldSizeX && Y > -1 && Y < fieldSizeY && field.tileRaw[Y].fieldTiles[X].tileState == tileState;
     }
 
     protected void TileStateSetting(int X, int Y, TileState tileState)

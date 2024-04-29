@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DungeonClearPanel : MonoBehaviour
+public class BattleVictoryPanel : MonoBehaviour
 {
     BattleCanvas battleCanvas;
-    DungeonClearButton dungeonClearButton;
+    BattleVictoryButton battleVictoryButton;
 
     public void Init(BattleCanvas battleCanvas)
     {
         this.battleCanvas = battleCanvas;
 
-        dungeonClearButton = GetComponentInChildren<DungeonClearButton>();
+        battleVictoryButton = GetComponentInChildren<BattleVictoryButton>();
 
-        dungeonClearButton.button.onClick.AddListener(TownSceneLoad);
+        battleVictoryButton.button.onClick.AddListener(SceneLoad);
 
         gameObject.SetActive(false);
     }
 
-    void TownSceneLoad()
+    void SceneLoad()
     {
         gameObject.SetActive(false);
         if (PlayerManager.Instance.isField == true)

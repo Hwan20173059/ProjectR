@@ -48,6 +48,8 @@ public class AutoBattlePanel : MonoBehaviour
         autoBattleOffButton.gameObject.SetActive(true);
 
         battleManager.IsAutoBattle = false;
+
+        PlayerManager.Instance.autoBattle = false;
     }
 
     void OnClickAutoBattleOffButton()
@@ -60,6 +62,8 @@ public class AutoBattlePanel : MonoBehaviour
         {
             battleManager.CharacterAutoSelect();
         }
+
+        PlayerManager.Instance.autoBattle = true;
     }
 
     void OnClickx1OffButton()
@@ -70,6 +74,8 @@ public class AutoBattlePanel : MonoBehaviour
 
         x2OffButton.gameObject.SetActive(true);
         x4OffButton.gameObject.SetActive(true);
+
+        PlayerManager.Instance.battleSpeed = 1;
     }
 
     void OnClickx2OffButton()
@@ -80,6 +86,8 @@ public class AutoBattlePanel : MonoBehaviour
 
         x1OffButton.gameObject.SetActive(true);
         x4OffButton.gameObject.SetActive(true);
+
+        PlayerManager.Instance.battleSpeed = 2;
     }
 
     void OnClickx4OffButton()
@@ -90,5 +98,7 @@ public class AutoBattlePanel : MonoBehaviour
 
         x1OffButton.gameObject.SetActive(true);
         x2OffButton.gameObject.SetActive(true);
+
+        PlayerManager.Instance.battleSpeed = 4;
     }
 }

@@ -1,37 +1,46 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum BuffType
+{
+    ATK,
+    SPD
+}
 
-struct Buff
+public struct Buff
 {
     public BuffType type;
+    public string buffName;
     public int value;
     public int turnCount;
 
-    public Buff(BuffType type, int value, int turnCount)
+    public Buff(BuffType type, string buffName, int value, int turnCount)
     {
+        this.buffName = buffName;
         this.type = type;
         this.value = value;
         this.turnCount = turnCount;
     }
 }
 
-public enum BuffType
-{
-    Atk,
-    Speed
-}
-
-public class CharacterBuffHandler
+public class CharacterBuffController
 {
     List<List<Buff>> buffs;
 
     List<Buff> atkBuffs;
     List<Buff> speedBuffs;
 
-    public void Init()
+    List<BuffIcon> buffIcons;
+
+    BattleManager battleManager;
+
+    public void Init(BattleManager battleManager)
     {
+        this.battleManager = battleManager;
+
         buffs = new List<List<Buff>>();
+
+        buffIcons = new List<BuffIcon>();
 
         atkBuffs = new List<Buff>();
         speedBuffs = new List<Buff>();
@@ -40,22 +49,26 @@ public class CharacterBuffHandler
         buffs.Add(speedBuffs);
     }
 
-    public void AddBuff(BuffType type, int value, int turnCount)
+    public void AddBuff(BuffType type, string buffName, int value, int turnCount)
     {
+        Buff buff = new Buff(type, buffName, value, turnCount);
+
         switch (type)
         {
-            case BuffType.Atk: atkBuffs.Add(new Buff(type, value, turnCount + 1)); break;
-            case BuffType.Speed: speedBuffs.Add(new Buff(type, value, turnCount + 1)); break;
+            case BuffType.ATK: atkBuffs.Add(buff); break;
+            case BuffType.SPD: speedBuffs.Add(buff); break;
         }
-        
+
+        buffIcons.Add(battleManager.battleCanvas.SetBuff(buff));
+
     }
 
     public int GetBuffValue(BuffType type)
     {
         switch (type)
         {
-            case BuffType.Atk: return GetAtkBuffValue();
-            case BuffType.Speed: return GetSpeedBuffValue();
+            case BuffType.ATK: return GetAtkBuffValue();
+            case BuffType.SPD: return GetSpeedBuffValue();
         }
         return 0;
     }
@@ -100,6 +113,21 @@ public class CharacterBuffHandler
                 buffs[i] = temp;
             }
         }
+
+        for (int i = 0; i < buffIcons.Count; i++)
+        {
+            if (buffIcons[i].buff.turnCount == 1)
+            {
+                RemoveBuffIcon(i);
+                break;
+            }
+            else
+            {
+                --buffIcons[i].buff.turnCount;
+            }
+        }
+
+        battleManager.battleCanvas.BuffDescriptionPanelOff();
     }
 
     void RemoveBuff(List<Buff> buffs, int curIdx)
@@ -118,4 +146,24 @@ public class CharacterBuffHandler
             buffs[i] = temp;
         }
     }
+
+    void RemoveBuffIcon(int curIdx)
+    {
+        buffIcons[curIdx].gameObject.SetActive(false);
+        buffIcons.Remove(buffIcons[curIdx]);
+
+        for (int i = curIdx; i < buffIcons.Count; i++)
+        {
+            if (buffIcons[i].buff.turnCount == 1)
+            {
+                RemoveBuffIcon(i);
+                break;
+            }
+            else
+            {
+                --buffIcons[i].buff.turnCount;
+            }
+        }
+    }
+
 }

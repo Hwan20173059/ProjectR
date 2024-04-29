@@ -30,8 +30,8 @@ public class InfiniteInventory : Inventory
 
     private void SetMaxSlots(int value)
     {
-        if (value <= 24)
-            maxSlots = 24;
+        if (value <= 15)
+            maxSlots = 15;
         else
             maxSlots = value;
 
@@ -70,16 +70,16 @@ public class InfiniteInventory : Inventory
 
     private void SetConsumeMaxSlots(int value)
     {
-        if (value <= 36)
-            cmaxSlots = 36;
+        if (value <= 25)
+            cmaxSlots = 25;
         else
             cmaxSlots = value;
 
-        if (cmaxSlots <= slots.Count)
+        if (cmaxSlots <= cslots.Count)
         {
             DestroyEmptySlotC();
         }
-        else if (cmaxSlots > slots.Count)
+        else if (cmaxSlots > cslots.Count)
         {
             AddNewSlotC();
         }

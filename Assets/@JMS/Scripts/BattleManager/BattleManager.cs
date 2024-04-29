@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static Unity.Collections.Unicode;
@@ -17,10 +18,6 @@ public enum RouletteResult
 }
 public class BattleManager : MonoBehaviour
 {
-    public GameObject characterPrefab;
-    public GameObject monsterPrefab;
-    public GameObject targetCirclePrefab;
-
     BattleData battleData;
     public List<MonsterGroupData> stages = new List<MonsterGroupData>();
     public int curStage;
@@ -33,7 +30,10 @@ public class BattleManager : MonoBehaviour
     public Character character;
     public List<Monster> monsters;
     public Monster selectMonster;
+    public TargetCircle targetCircle;
+
     public List<int> performList;
+
     public IState characterPrevState;
     public IState[] monstersPrevState;
     public bool IsSelectingAction = false;
@@ -43,15 +43,16 @@ public class BattleManager : MonoBehaviour
     public bool IsCanUseItem => useItemCount < 3;
     public int useItemCount = 0;
 
-    Vector3 characterSpawnPosition = new Vector3 (-6.5f, 1f, 0);
-    Vector3 monsterSpawnPosition = new Vector3 (-1, 2.5f, 0);
+    Vector3 characterSpawnPosition = new Vector3(-6.5f, 1f, 0);
+    Vector3 monsterSpawnPosition = new Vector3(-1, 2.5f, 0);
 
-    public TargetCircle targetCircle;
+    ObjectPool objectPool;
 
-    public GameObject monsterPool;
-    public PlayerInput Input {  get; private set; }
+    public PlayerInput Input { get; private set; }
 
     public BattleCanvas battleCanvas;
+
+    public BattleEffectController effectController;
 
     public BattleStateMachine stateMachine;
 
@@ -59,7 +60,10 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
-        performList = new List<int>();
+        objectPool = GetComponent<ObjectPool>();
+        objectPool.Init();
+
+        effectController = new BattleEffectController(objectPool);
 
         Input = GetComponent<PlayerInput>();
 
@@ -67,16 +71,20 @@ public class BattleManager : MonoBehaviour
 
         stateMachine = new BattleStateMachine(this);
 
-        BattleInit();
+        performList = new List<int>();
     }
 
     private void Start()
     {
+        BattleInit();
+
+        battleCanvas.Init();
+
+        stateMachine.ChangeState(stateMachine.startState);
+
         Input.ClickActions.MouseClick.started += OnClickStart;
 
         Input.ClickActions.TouchPress.started += OnTouchStart;
-
-        stateMachine.ChangeState(stateMachine.startState);
     }
 
     private void Update()
@@ -119,57 +127,54 @@ public class BattleManager : MonoBehaviour
         battleCanvas.UpdateMonsterState();
         battleCanvas.MonsterStatePanelOn();
     }
-    
+
     void BattleInit()
     {
         battleData = DataManager.Instance.battleDatabase.GetDataByKey(PlayerManager.Instance.selectBattleID);
-        
+
         for (int i = 0; i < battleData.monsterGroups.Length; i++)
         {
             stages.Add(DataManager.Instance.monsterGroupDatabase.GetDataByKey(battleData.monsterGroups[i]));
-        }
-
-        if (targetCircle == null)
-        {
-            targetCircle = Instantiate(targetCirclePrefab).GetComponent<TargetCircle>();
-            targetCircle.gameObject.SetActive(false);
         }
 
         for (int i = 0; i < 3; i++)
         {
             rouletteEquip.Add(PlayerManager.Instance.equip[i]);
             rouletteResultIndex.Add(i);
-            rouletteResult = RouletteResult.Different;
         }
+
+        rouletteResult = RouletteResult.Different;
+    }
+
+    public void SetTargetCircle()
+    {
+        if (targetCircle == null)
+        {
+            targetCircle = objectPool.GetFromPool("TargetCircle").GetComponent<TargetCircle>();
+        }
+        targetCircle.gameObject.SetActive(false);
     }
 
     public void SpawnCharacter()
     {
-        GameObject character = Instantiate(characterPrefab);
+        GameObject character = objectPool.GetFromPool("Character");
         character.transform.position = characterSpawnPosition;
         this.character = character.GetComponent<Character>();
-        this.character.LoadCharacter(PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
-        this.character.startPosition = character.transform.position;
-        this.character.battleManager = this;
+        this.character.LoadCharacter(this, PlayerManager.Instance.characterList[PlayerManager.Instance.selectedCharacterIndex]);
 
-        battleCanvas.CreateCharacterHpBar(this.character);
+        battleCanvas.SetCharacterHpBar(this.character);
     }
 
     public void SpawnMonster()
     {
-        if (monsterPool == null)
-        {
-            GameObject monsterPool = new GameObject("MonsterPool");
-            this.monsterPool = monsterPool;
-        }
 
         int randomSpawnAmount = Random.Range(stages[curStage].randomSpawnMinAmount, stages[curStage].randomSpawnMaxAmount + 1);
-        if(randomSpawnAmount > 0)
+        if (randomSpawnAmount > 0)
         {
             for (int i = 0; i < randomSpawnAmount; i++)
             {
                 int monsterIndex = Random.Range(0, stages[curStage].randomSpawnMonsters.Length);
-                GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
+                GameObject monster = objectPool.GetFromPool("Monster");
                 monsters.Add(monster.GetComponent<Monster>());
                 monsters[i].SetMonsterData(DataManager.Instance.monsterDatabase.GetDataByKey(stages[curStage].randomSpawnMonsters[monsterIndex]));
                 monster.transform.position = monsterSpawnPosition;
@@ -177,11 +182,11 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if(stages[curStage].spawnMonsters.Length > 0)
+        if (stages[curStage].spawnMonsters.Length > 0)
         {
-            for(int i = 0; i < stages[curStage].spawnMonsters.Length; i++)
+            for (int i = 0; i < stages[curStage].spawnMonsters.Length; i++)
             {
-                GameObject monster = Instantiate(monsterPrefab, monsterPool.transform);
+                GameObject monster = objectPool.GetFromPool("Monster");
                 monsters.Add(monster.GetComponent<Monster>());
                 monsters[randomSpawnAmount + i].SetMonsterData(DataManager.Instance.monsterDatabase.GetDataByKey(stages[curStage].spawnMonsters[i]));
                 monster.transform.position = monsterSpawnPosition;
@@ -196,7 +201,7 @@ public class BattleManager : MonoBehaviour
             monsters[i].Init(1);
             monsters[i].battleManager = this;
 
-            battleCanvas.CreateMonsterHpBar(monsters[i]);
+            battleCanvas.SetMonsterHpBar(monsters[i]);
         }
 
         monsterSpawnPosition = new Vector3(-1, 2.5f, 0);
@@ -214,6 +219,9 @@ public class BattleManager : MonoBehaviour
     public IEnumerator BattleStart()
     {
         yield return waitFor1Sec;
+
+        battleCanvas.UpdateStageText(curStage, stages.Count);
+
         character.stateMachine.ChangeState(character.stateMachine.readyState);
         foreach (Monster monster in monsters)
         {
@@ -224,11 +232,18 @@ public class BattleManager : MonoBehaviour
     public void NextStageStart()
     {
         battleCanvas.NextStagePanelOff();
-        battleCanvas.BattleEffectOff();
+        battleCanvas.MonsterStatePanelOff();
+        battleCanvas.UpdateStageText(curStage, stages.Count);
+        effectController.BattleEffectOff();
+
+        selectMonster = null;
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            monsters[i].gameObject.SetActive(false);
+        }
         character.curCoolTime = 0;
-        Destroy(monsterPool);
-        monsterPool = null;
         monsters.Clear();
+
         stateMachine.ChangeState(stateMachine.startState);
     }
 
@@ -309,9 +324,9 @@ public class BattleManager : MonoBehaviour
 
     public bool StageClearCheck()
     {
-        for(int i = 0; i < monsters.Count; i++)
+        for (int i = 0; i < monsters.Count; i++)
         {
-            if(!(monsters[i].IsDead))
+            if (!(monsters[i].IsDead))
             {
                 return false;
             }
@@ -363,7 +378,7 @@ public class BattleManager : MonoBehaviour
         }
         else if (selectMonster == null || selectMonster.IsDead)
         {
-            for (int i = 0; i < monsters.Count;i++)
+            for (int i = 0; i < monsters.Count; i++)
             {
                 if (monsters[i].IsDead)
                     continue;
@@ -398,9 +413,11 @@ public class BattleManager : MonoBehaviour
 
         int random = Random.Range(1, 101);
 
-        if(successRateOfRunAway >= random) // ¼º°ø
+        if (successRateOfRunAway >= random) // ¼º°ø
         {
             Time.timeScale = 1f;
+
+            SaveCharacterData();
 
             if (PlayerManager.Instance.isField == true)
             {
@@ -425,36 +442,66 @@ public class BattleManager : MonoBehaviour
     {
         if (!IsSelectingAction || !IsCanUseItem)
             return;
-
+        AudioManager.Instance.PlayUseItemSFX(); // ÀÓ½Ã »ç¿îµå
         useItemCount++;
+        battleCanvas.UpdateBattleText($"{selectItem.data.consumeName} »ç¿ë!\n\n(³²Àº ¾ÆÀÌÅÛ »ç¿ë °¹¼ö : {3 - useItemCount})");
         switch (selectItem.type)
         {
             case Type.HpPotion:
                 character.ChangeHP(selectItem.data.value);
                 break;
             case Type.AttackBuffPotion:
-                character.characterBuffHandler.AddBuff(BuffType.Atk, selectItem.data.value, selectItem.data.turnCount);
+                character.characterBuffController.AddBuff(BuffType.ATK, selectItem.data.consumeName, selectItem.data.value, selectItem.data.turnCount);
                 break;
             case Type.SpeedBuffPotion:
-                character.characterBuffHandler.AddBuff(BuffType.Speed,selectItem.data.value, selectItem.data.turnCount);
+                character.characterBuffController.AddBuff(BuffType.SPD, selectItem.data.consumeName, selectItem.data.value, selectItem.data.turnCount + 1);
                 break;
         }
         battleCanvas.UpdateCharacterState(IsRouletteUsed);
 
         ItemManager.Instance.ReduceConsumeItem(selectItem);
-        battleCanvas.FreshConsumeSlot();
+        battleCanvas.UpdateUseItemSlot();
     }
 
+    int jackPotFailCount = 0;
     void SetRoulette()
     {
         RouletteClear();
 
-        for (int i = 0; i < 3; i++)
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    int randomIndex = Random.Range(0, 3);
+        //    rouletteEquip.Add(PlayerManager.Instance.equip[randomIndex]);
+        //    rouletteResultIndex.Add(randomIndex);
+        //}
+
+        int firstR = Random.Range(0, 3);
+        rouletteEquip.Add(PlayerManager.Instance.equip[firstR]);
+        rouletteResultIndex.Add(firstR);
+
+        for(int i = 0; i < 2; i++)
         {
-            int randomIndex = Random.Range(0, 3);
-            rouletteEquip.Add(PlayerManager.Instance.equip[randomIndex]);
-            rouletteResultIndex.Add(randomIndex);
+            float r = Random.Range(0, 100f);
+            Debug.Log($"{i + 2}¹ø ·ê·¿ : {r}");
+            if (r <= 100 * Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount)))
+            {
+                rouletteEquip.Add(PlayerManager.Instance.equip[firstR]);
+                rouletteResultIndex.Add(firstR);
+            }
+            else
+            {
+                int nextR = Random.Range(0, 3);
+                while (nextR == firstR)
+                {
+                    nextR = Random.Range(0, 3);
+                }
+                rouletteEquip.Add(PlayerManager.Instance.equip[nextR]);
+                rouletteResultIndex.Add(nextR);
+            }
         }
+
+        Debug.Log($"°°Àº ·ê·¿ È®·ü : {100 * Mathf.Sqrt(1f / 9 + (1f / 9 * jackPotFailCount))}");
+        Debug.Log($"ÀèÆÌ È®·ü : {100 * (1f / 9 + (1f / 9 * jackPotFailCount))}");
 
         if (rouletteEquip[0] == rouletteEquip[1])
         {
@@ -480,6 +527,11 @@ public class BattleManager : MonoBehaviour
             rouletteResult = RouletteResult.Different;
         }
 
+        if (rouletteResult == RouletteResult.Triple)
+            jackPotFailCount = 0;
+        else
+            jackPotFailCount++;
+
         battleCanvas.SetRoulette(rouletteResultIndex[0], rouletteResultIndex[1], rouletteResultIndex[2]);
     }
 
@@ -491,7 +543,7 @@ public class BattleManager : MonoBehaviour
 
     public int GetRouletteValue(int baseValue)
     {
-        switch(rouletteResult)
+        switch (rouletteResult)
         {
             case RouletteResult.Triple:
                 {

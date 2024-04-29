@@ -37,7 +37,7 @@ public class MonsterActionState : MonsterBaseState
         monster.PlayAnim(MonsterAnim.Idle);
         yield return waitForEndOfFrame;
         AudioManager.Instance.PlayAtkRangeHitSFX(); // 임시 사운드
-        battleManager.battleCanvas.SetRepeatEffect(effectId, target.transform.position); // 임시 이펙트
+        battleManager.effectController.SetRepeatEffect(effectId, target.transform.position); // 임시 이펙트
         target.ChangeHP(-damage);
         battleManager.battleCanvas.UpdateBattleText($"{monster.monsterName}의 공격!\n{target.characterName}에게 {damage}의 피해!");
     }

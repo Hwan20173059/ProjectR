@@ -11,15 +11,16 @@ public class BattleStartState : BattleBaseState
     public override void Enter()
     {
         base.Enter();
-        if(targetCircle != null)
-        {
-            targetCircle.gameObject.SetActive(false);
-        }
+
+        battleCanvas.UpdateBattleText("전투 시작!");
+
         if(character == null)
         {
             battleManager.SpawnCharacter();
         }
         battleManager.SpawnMonster();
+        battleManager.SetTargetCircle();
+
         stateMachine.ChangeState(stateMachine.waitState);
         battleManager.StartCoroutine(battleManager.BattleStart());
     }

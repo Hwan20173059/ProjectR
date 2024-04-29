@@ -2973,7 +2973,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 22, y: 13}
+  m_Size: {x: 24, y: 14}
   m_EdgeRadius: 0
 --- !u!4 &741489268
 Transform:
@@ -6110,8 +6110,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tileMapManager: {fileID: 133293362}
   playerTile: {fileID: 0}
-  cameraSpeed: 10
+  cameraSpeed: 20
   fieldSize: {fileID: 741489266}
+  isTurn: 0
 --- !u!1 &1266636784
 GameObject:
   m_ObjectHideFlags: 0

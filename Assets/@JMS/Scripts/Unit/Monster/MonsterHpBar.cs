@@ -11,11 +11,6 @@ public class MonsterHpBar : MonoBehaviour
     RectTransform monsterMaxHpBar;
     RectTransform monsterCurHpBar;
 
-    private void Update()
-    {
-        SetHpBarPosition();
-    }
-
     public void Init(Monster monster)
     {
         this.monster = monster;
@@ -27,19 +22,23 @@ public class MonsterHpBar : MonoBehaviour
             float addScale = (monster.maxHP - 100) / 1000;
             monsterMaxHpBar.localScale = new Vector3(monsterMaxHpBar.localScale.x + addScale, monsterMaxHpBar.localScale.y);
         }
+
+        UpdateHpBar();
+
+        UpdateHpBarPosition();
     }
 
-    public void SetHpBar()
+    public void UpdateHpBar()
     {
         monsterCurHpBar.localScale = new Vector3((float)monster.curHP / monster.maxHP, monsterCurHpBar.localScale.y);
     }
 
-    void SetHpBarPosition()
+    void UpdateHpBarPosition()
     {
         if (monster != null)
         {
-            Vector2 screenPos = Camera.main.WorldToScreenPoint(monster.transform.position);
-            transform.position = new Vector2(screenPos.x, screenPos.y + 90f);
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(monster.transform.position);
+            transform.position = screenPos + Vector3.down * 20f;
         }
     }
 }

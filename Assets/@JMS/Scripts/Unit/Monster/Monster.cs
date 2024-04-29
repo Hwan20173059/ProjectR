@@ -32,6 +32,7 @@ public class Monster : MonoBehaviour
     public bool IsStun;
     public float curStunTime;
     public float maxStunTime;
+    BattleEffect stunEffect;
 
     public bool IsBurn;
     public float curBurnTime;
@@ -39,7 +40,6 @@ public class Monster : MonoBehaviour
     public float burnInterval;
     public int burnCount;
 
-    public BattleEffect battleEffect;
     public MonsterAnimController monsterAnimController { get; private set; }
     public SpriteRenderer spriteRenderer;
     public SpriteLibrary spriteLibrary;
@@ -92,12 +92,24 @@ public class Monster : MonoBehaviour
         curHP = maxHP;
         atk = baseData.atk * level;
         exp = baseData.exp * level;
-        maxCoolTime = baseData.actionCoolTime;
-
         for (int i = 0; i < baseData.actions.Length; i++)
         {
             actions.Add((MonsterAction)baseData.actions[i]);
         }
+        maxCoolTime = baseData.actionCoolTime;
+
+        curCoolTime = 0f;
+
+        IsBurn = false;
+        burnDamage = 0;
+
+        IsStun = false;
+        curStunTime = 0f;
+        maxStunTime = 0f;
+
+        IsFrozen = false;
+
+        RefreshAnim();
 
         spriteRenderer.sprite = Resources.Load<Sprite>(baseData.spritePath);
         spriteLibrary.spriteLibraryAsset = Resources.Load<SpriteLibraryAsset>(baseData.assetPath);
@@ -107,7 +119,7 @@ public class Monster : MonoBehaviour
     {
         if (curCoolTime < maxCoolTime)
         {
-            curCoolTime += Time.deltaTime;
+            curCoolTime += Time.deltaTime * (100 / 100f);
         }
         else
         {
@@ -135,13 +147,14 @@ public class Monster : MonoBehaviour
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;
 
-        hpBar.SetHpBar();
+        hpBar.UpdateHpBar();
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
         battleCanvas.SetChangeHpTMP(value, screenPos);
 
         if (curHP <= 0)
         {
+            if (IsStun) stunEffect.SetActive(false);
             stateMachine.ChangeState(stateMachine.deadState);
         }
 
@@ -182,14 +195,14 @@ public class Monster : MonoBehaviour
 
     public void SetStun(float duration)
     {
-        if (IsStun && (maxStunTime - curStunTime > duration)) return;
+        if ((IsStun && (maxStunTime - curStunTime > duration)) || IsDead) return;
 
         IsStun = true;
         curStunTime = 0;
         maxStunTime = duration;
-        if (battleEffect != null)
-            battleEffect.SetActive(false);
-        battleEffect = battleCanvas.SetEffect(3, transform.position); // ¿”Ω√ ¿Ã∆Â∆Æ
+        if (stunEffect == null)
+            stunEffect = battleManager.effectController.SetEffect(3, transform.position); // ¿”Ω√ ¿Ã∆Â∆Æ
+        stunEffect.SetActive(true);
     }
 
     public void StunTimeUpdate()
@@ -201,7 +214,7 @@ public class Monster : MonoBehaviour
         else
         {
             IsStun = false;
-            battleEffect.SetActive(false);
+            stunEffect.SetActive(false);
             curStunTime = 0;
             stateMachine.ChangeState(stateMachine.readyState);
         }

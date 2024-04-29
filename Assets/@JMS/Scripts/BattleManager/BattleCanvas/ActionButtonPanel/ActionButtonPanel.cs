@@ -10,6 +10,7 @@ public class ActionButtonPanel : MonoBehaviour
     AttackButton attackButton;
     public RouletteButton rouletteButton;
     RunAwayButton runAwayButton;
+    RunAwayDisableButton runAwayDisableButton;
     ItemButton ItemButton;
 
     public void Init(BattleManager battlemanager)
@@ -19,6 +20,7 @@ public class ActionButtonPanel : MonoBehaviour
         attackButton = GetComponentInChildren<AttackButton>();
         rouletteButton = GetComponentInChildren<RouletteButton>();
         runAwayButton = GetComponentInChildren<RunAwayButton>();
+        runAwayDisableButton = GetComponentInChildren<RunAwayDisableButton>();
         ItemButton = GetComponentInChildren<ItemButton>();
 
         attackButton.button.onClick.AddListener(OnClickAttackButton);
@@ -27,6 +29,9 @@ public class ActionButtonPanel : MonoBehaviour
         ItemButton.button.onClick.AddListener(OnClickItemButton);
 
         rouletteButton.button.gameObject.SetActive(false);
+
+        if (!PlayerManager.Instance.isDungeon)
+            runAwayDisableButton.gameObject.SetActive(false);
     }
 
     void OnClickAttackButton()
@@ -46,6 +51,6 @@ public class ActionButtonPanel : MonoBehaviour
 
     void OnClickItemButton()
     {
-        battleManager.battleCanvas.OnClickItemUseButton();
+        battleManager.battleCanvas.UseItemPanelOn();
     }
 }

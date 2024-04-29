@@ -28,7 +28,7 @@ public class Character : MonoBehaviour
     public float curCoolTime;
     public float maxCoolTime;
 
-    public int addBuffAtk { get { return atk + characterBuffHandler.GetBuffValue(BuffType.Atk); } }
+    public int addBuffAtk { get { return atk + characterBuffController.GetBuffValue(BuffType.ATK); } }
 
     public bool IsDead => curHP <= 0;
     public string currentStateText = "대기중";
@@ -41,7 +41,7 @@ public class Character : MonoBehaviour
     public Sprite sprite;
     public SpriteLibrary spriteLibrary;
 
-    public CharacterBuffHandler characterBuffHandler;
+    public CharacterBuffController characterBuffController;
 
     public CharacterStateMachine stateMachine;
 
@@ -56,14 +56,12 @@ public class Character : MonoBehaviour
         spriteLibrary = GetComponentInChildren<SpriteLibrary>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        characterBuffHandler = new CharacterBuffHandler();
+        characterBuffController = new CharacterBuffController();
 
         stateMachine = new CharacterStateMachine(this);
     }
     private void Start()
     {
-        characterBuffHandler.Init();
-
         stateMachine.ChangeState(stateMachine.waitState);
     }
 
@@ -79,8 +77,10 @@ public class Character : MonoBehaviour
         stateMachine.PhysicsUpdate();
     }
 
-    public void LoadCharacter(Character character)
+    public void LoadCharacter(BattleManager battleManager, Character character)
     {
+        this.battleManager = battleManager;
+        startPosition = transform.position;
         baseData = character.baseData;
         characterName = baseData.characterName;
         maxCoolTime = baseData.actionCoolTime;
@@ -92,6 +92,8 @@ public class Character : MonoBehaviour
         curExp = character.curExp;
 
         spriteLibrary.spriteLibraryAsset = character.spriteLibrary.spriteLibraryAsset;
+
+        characterBuffController.Init(battleManager);
     }
 
     public void SaveCharacter(Character saveCharacter)
@@ -124,7 +126,7 @@ public class Character : MonoBehaviour
     {
         if (curCoolTime < maxCoolTime)
         {
-            curCoolTime += Time.deltaTime * ((100 + characterBuffHandler.GetBuffValue(BuffType.Speed)) / 100);
+            curCoolTime += Time.deltaTime * ((100 + characterBuffController.GetBuffValue(BuffType.SPD)) / 100f);
             battleManager.battleCanvas.UpdateActionBar();
         }
         else
@@ -142,7 +144,7 @@ public class Character : MonoBehaviour
         curHP = curHP > maxHP ? maxHP : curHP;
         curHP = curHP < 0 ? 0 : curHP;
 
-        hpBar.SetHpBar();
+        hpBar.UpdateHpBar();
         battleCanvas.UpdateCharacterState(battleManager.IsRouletteUsed);
 
         if (value < 0)
@@ -162,6 +164,15 @@ public class Character : MonoBehaviour
         {
             stateMachine.ChangeState(stateMachine.deadState);
         }
+    }
+
+    public void UseHpPotionInField(ConsumeItem hpPotion)
+    {
+        AudioManager.Instance.PlayUseItemSFX(); // 임시 사운드
+        curHP += hpPotion.data.value;
+        curHP = curHP > maxHP ? maxHP : curHP;
+
+        ItemManager.Instance.ReduceConsumeItem(hpPotion);
     }
 
     public void ChangeExp(int value)
@@ -185,7 +196,7 @@ public class Character : MonoBehaviour
 
     public void ReduceBuffDuration()
     {
-        characterBuffHandler.ReduceBuffDuration();
+        characterBuffController.ReduceBuffDuration();
     }
 
     public void PlayAnim(CharacterAnim anim)
