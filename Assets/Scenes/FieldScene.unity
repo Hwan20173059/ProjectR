@@ -22360,6 +22360,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldTutorial: {fileID: 1391474428}
+  nextButton: {fileID: 330441875}
+  preButton: {fileID: 1524596337}
   tutorialImage: {fileID: 556869281}
   imageIndex: 0
   tutorialIndex: 0

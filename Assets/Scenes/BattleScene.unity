@@ -699,6 +699,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: preButton
+      value: 
+      objectReference: {fileID: 3347963604529829585}
+    - target: {fileID: 8964869908330387400, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+      propertyPath: nextButton
+      value: 
+      objectReference: {fileID: 3347963604529829584}
     - target: {fileID: 9021248386786967644, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -720,6 +728,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+--- !u!1 &3347963604529829584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3900455539613470348, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+  m_PrefabInstance: {fileID: 3347963604529829583}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3347963604529829585 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7465948462077274466, guid: 96193661119dd5940a2cf33e4337fdad, type: 3}
+  m_PrefabInstance: {fileID: 3347963604529829583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6950883233572335082
 PrefabInstance:
   m_ObjectHideFlags: 0
