@@ -125,6 +125,15 @@ public class BattleManager : MonoBehaviour
         battleCanvas.MonsterStatePanelOn();
     }
 
+    void SetTargetCircle()
+    {
+        if (targetCircle == null)
+        {
+            targetCircle = objectPool.GetFromPool("TargetCircle").GetComponent<TargetCircle>();
+        }
+        targetCircle.gameObject.SetActive(false);
+    }
+
     void BattleInit()
     {
         battleData = DataManager.Instance.battleDatabase.GetDataByKey(PlayerManager.Instance.selectBattleID);
@@ -141,15 +150,22 @@ public class BattleManager : MonoBehaviour
         }
 
         rouletteResult = RouletteResult.Different;
+
+        battleCanvas.UpdateStageText(curStage, stages.Count);
     }
 
-    public void SetTargetCircle()
+    public void BattleStart()
     {
-        if (targetCircle == null)
+        if (character == null)
         {
-            targetCircle = objectPool.GetFromPool("TargetCircle").GetComponent<TargetCircle>();
+            SpawnCharacter();
         }
-        targetCircle.gameObject.SetActive(false);
+        SpawnMonster();
+        SetTargetCircle();
+
+        stateMachine.ChangeState(stateMachine.waitState);
+
+        ChangeUnitStateToReady();
     }
 
     public void SpawnCharacter()
@@ -213,35 +229,12 @@ public class BattleManager : MonoBehaviour
             monsterSpawnPosition = new Vector3(monsterSpawnPosition.x + 2.5f, monsterSpawnPosition.y + 2.5f, monsterSpawnPosition.z);
     }
 
-    public IEnumerator BattleStart()
+    public void CheckPerformList()
     {
-        yield return waitFor1Sec;
-
-        battleCanvas.UpdateStageText(curStage, stages.Count);
-
-        character.stateMachine.ChangeState(character.stateMachine.readyState);
-        foreach (Monster monster in monsters)
+        if (performList.Count > 0)
         {
-            monster.stateMachine.ChangeState(monster.stateMachine.readyState);
+            stateMachine.ChangeState(stateMachine.takeActionState);
         }
-    }
-
-    public void NextStageStart()
-    {
-        battleCanvas.NextStagePanelOff();
-        battleCanvas.MonsterStatePanelOff();
-        battleCanvas.UpdateStageText(curStage, stages.Count);
-        effectController.BattleEffectOff();
-
-        selectMonster = null;
-        for (int i = 0; i < monsters.Count; i++)
-        {
-            monsters[i].gameObject.SetActive(false);
-        }
-        character.curCoolTime = 0;
-        monsters.Clear();
-
-        stateMachine.ChangeState(stateMachine.startState);
     }
 
     public void SaveUnitState()
@@ -255,37 +248,45 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    public void LoadUnitState()
+    public void SaveMonsterState()
     {
-        if (!(character.IsDead))
-        {
-            character.stateMachine.ChangeState(characterPrevState); // 캐릭터 상태를 이전 상태로 변경
-        }
-
+        // 몬스터들의 현재 상태 저장
         for (int i = 0; i < monsters.Count; i++)
         {
-            if (!(monsters[i].IsDead))
-            {
-                if (monsters[i].IsFrozen)
-                    monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.frozenState);
-                else if (monsters[i].IsStun)
-                    monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.stunState);
-                else
-                    monsters[i].stateMachine.ChangeState(monstersPrevState[i]); // 몬스터들의 상태를 이전 상태로 변경
-            }
-
-            if (monsters[i].stateMachine.currentState == monsters[i].stateMachine.frozenState && !monsters[i].IsFrozen)
-            {
-                monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.readyState);
-            }
+            monstersPrevState[i] = monsters[i].stateMachine.currentState;
         }
     }
 
+
     public void ChangeUnitStateToWait()
     {
+        SaveUnitState();
+
         // 캐릭터 현재 상태 Wait으로 변경
-        if (!(character.IsDead))
+        if (!character.IsDead)
             character.stateMachine.ChangeState(character.stateMachine.waitState);
+        // 몬스터들의 현재 상태 Wait으로 변경
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            if (!(monsters[i].IsDead))
+                monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.waitState);
+        }
+    }
+
+    public void ChangeUnitStateToReady()
+    {
+        character.stateMachine.ChangeState(character.stateMachine.readyState);
+
+        foreach (Monster monster in monsters)
+        {
+            monster.stateMachine.ChangeState(monster.stateMachine.readyState);
+        }
+    }
+
+    public void ChangeMosterStateToWait()
+    {
+        SaveMonsterState();
+
         // 몬스터들의 현재 상태 Wait으로 변경
         for (int i = 0; i < monsters.Count; i++)
         {
@@ -305,6 +306,67 @@ public class BattleManager : MonoBehaviour
         {
             monsters[performList[0]].stateMachine.ChangeState(monsters[performList[0]].stateMachine.actionState);
         }
+    }
+
+    public void LoadUnitState()
+    {
+        if (!character.IsDead)
+        {
+            character.stateMachine.ChangeState(characterPrevState); // 캐릭터 상태를 이전 상태로 변경
+        }
+
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            if (!monsters[i].IsDead)
+            {
+                if (monsters[i].IsFrozen)
+                    monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.frozenState);
+                else if (monsters[i].IsStun)
+                    monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.stunState);
+                else
+                    monsters[i].stateMachine.ChangeState(monstersPrevState[i]); // 몬스터들의 상태를 이전 상태로 변경
+            }
+
+            if (monsters[i].stateMachine.currentState == monsters[i].stateMachine.frozenState && !monsters[i].IsFrozen)
+            {
+                monsters[i].stateMachine.ChangeState(monstersPrevState[i]);
+            }
+        }
+    }
+
+    public void LoadMonsterState()
+    {
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            if (!monsters[i].IsDead)
+            {
+                if (monsters[i].IsFrozen)
+                    monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.frozenState);
+                else if (monsters[i].IsStun)
+                    monsters[i].stateMachine.ChangeState(monsters[i].stateMachine.stunState);
+                else
+                    monsters[i].stateMachine.ChangeState(monstersPrevState[i]); // 몬스터들의 상태를 이전 상태로 변경
+            }
+
+            if (monsters[i].stateMachine.currentState == monsters[i].stateMachine.frozenState && !monsters[i].IsFrozen)
+            {
+                monsters[i].stateMachine.ChangeState(monstersPrevState[i]);
+            }
+        }
+    }
+    
+    public void PerformAction()
+    {
+        ChangeUnitStateToWait();
+        StartActionByFirstUnit();
+
+        stateMachine.ChangeState(stateMachine.performActionState);
+    }
+
+    public void ActionComplete()
+    {
+        performList.RemoveAt(0);
+        LoadUnitState();
     }
 
     public void BattleOverCheck()
@@ -336,6 +398,47 @@ public class BattleManager : MonoBehaviour
     {
         character.stateMachine.ChangeState(character.stateMachine.waitState);
         stateMachine.ChangeState(stateMachine.victoryState);
+    }
+
+    public void BattleVictory()
+    {
+        curStage++;
+        RewardManager.instance.AddReward(stages[curStage - 1]);
+        if (curStage == stages.Count)
+        {
+            RewardManager.instance.RewardPopup();
+            battleCanvas.DungeonClearPanelOn();
+            //GameEventManager.instance.questEvent.DungeonClear();
+            //GameEventManager.instance.battleEvent.DungeonClear(PlayerManager.Instance.selectDungeonID);
+            Time.timeScale = 1f;
+        }
+        else
+        {
+            if (IsAutoBattle)
+                NextStageStart();
+            else
+            {
+                battleCanvas.NextStagePanelOn();
+            }
+        }
+    }
+
+    public void NextStageStart()
+    {
+        battleCanvas.NextStagePanelOff();
+        battleCanvas.MonsterStatePanelOff();
+        battleCanvas.UpdateStageText(curStage, stages.Count);
+        effectController.BattleEffectOff();
+
+        selectMonster = null;
+        for (int i = 0; i < monsters.Count; i++)
+        {
+            monsters[i].gameObject.SetActive(false);
+        }
+        character.curCoolTime = 0;
+        monsters.Clear();
+
+        stateMachine.ChangeState(stateMachine.startState);
     }
 
     public int AliveMonsterCount()

@@ -11,11 +11,8 @@ public class BattleTakeActionState : BattleBaseState
     public override void Enter()
     {
         base.Enter();
-        battleManager.SaveUnitState();
-        battleManager.ChangeUnitStateToWait();
-        battleManager.StartActionByFirstUnit();
 
-        stateMachine.ChangeState(stateMachine.performActionState);
+        battleManager.PerformAction();
     }
 
 }

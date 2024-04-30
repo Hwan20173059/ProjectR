@@ -63,11 +63,6 @@ public class Monster : MonoBehaviour
         spriteLibrary = GetComponentInChildren<SpriteLibrary>();
     }
 
-    private void Start()
-    {
-        stateMachine.ChangeState(stateMachine.waitState);
-    }
-
     private void Update()
     {
         stateMachine.HandleInput();
@@ -87,6 +82,8 @@ public class Monster : MonoBehaviour
 
     public void Init(int level)
     {
+        stateMachine.ChangeState(stateMachine.waitState);
+
         monsterName = baseData.monsterName;
         maxHP = baseData.hp * level;
         curHP = maxHP;

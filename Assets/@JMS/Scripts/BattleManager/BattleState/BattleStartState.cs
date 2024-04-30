@@ -14,14 +14,6 @@ public class BattleStartState : BattleBaseState
 
         battleCanvas.UpdateBattleText("전투 시작!");
 
-        if(character == null)
-        {
-            battleManager.SpawnCharacter();
-        }
-        battleManager.SpawnMonster();
-        battleManager.SetTargetCircle();
-
-        stateMachine.ChangeState(stateMachine.waitState);
-        battleManager.StartCoroutine(battleManager.BattleStart());
+        battleManager.BattleStart();
     }
 }

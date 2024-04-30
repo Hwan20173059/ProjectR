@@ -175,6 +175,8 @@ public class BattleCanvas : MonoBehaviour
     public void BattleDefeatPanelOn()
     {
         battleDefeatPanel.gameObject.SetActive(true);
+
+        Time.timeScale = 1f;
     }
     public void DungeonClearPanelOn()
     {

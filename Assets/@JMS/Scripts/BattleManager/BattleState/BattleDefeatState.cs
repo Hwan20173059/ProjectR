@@ -12,7 +12,5 @@ public class BattleDefeatState : BattleBaseState
         base.Enter();
 
         battleCanvas.BattleDefeatPanelOn();
-
-        Time.timeScale = 1f;
     }
 }

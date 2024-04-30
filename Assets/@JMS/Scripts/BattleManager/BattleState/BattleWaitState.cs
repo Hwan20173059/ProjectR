@@ -18,9 +18,7 @@ public class BattleWaitState : BattleBaseState
     public override void Update()
     {
         base.Update();
-        if(performList.Count > 0)
-        {
-            stateMachine.ChangeState(stateMachine.takeActionState);
-        }
+
+        battleManager.CheckPerformList();
     }
 }

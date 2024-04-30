@@ -60,10 +60,6 @@ public class Character : MonoBehaviour
 
         stateMachine = new CharacterStateMachine(this);
     }
-    private void Start()
-    {
-        stateMachine.ChangeState(stateMachine.waitState);
-    }
 
     private void Update()
     {
@@ -79,6 +75,8 @@ public class Character : MonoBehaviour
 
     public void LoadCharacter(BattleManager battleManager, Character character)
     {
+        stateMachine.ChangeState(stateMachine.waitState);
+
         this.battleManager = battleManager;
         startPosition = transform.position;
         baseData = character.baseData;

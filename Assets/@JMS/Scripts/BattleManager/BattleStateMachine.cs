@@ -12,7 +12,6 @@ public class BattleStateMachine : StateMachine
     public BattlePerformActionState performActionState {  get; }
     public BattleVictoryState victoryState { get; }
     public BattleDefeatState defeatState { get; }
-    public BattleEndState endState { get; }
 
     public BattleStateMachine(BattleManager battleManager)
     {
@@ -22,7 +21,6 @@ public class BattleStateMachine : StateMachine
         playerSelectingActionState = new BattlePlayerSelectingActionState(this);
         takeActionState = new BattleTakeActionState(this);
         performActionState = new BattlePerformActionState(this);
-        endState = new BattleEndState(this);
         victoryState = new BattleVictoryState(this);
         defeatState = new BattleDefeatState(this);
     }
