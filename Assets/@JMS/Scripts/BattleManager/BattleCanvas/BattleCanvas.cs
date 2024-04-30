@@ -41,10 +41,11 @@ public class BattleCanvas : MonoBehaviour
 
     UseItemSlot selectUseItemSlot;
 
-    private void Awake()
+    public void Init()
     {
         battleManager = GetComponentInParent<BattleManager>();
 
+        objectPool = GetComponent<ObjectPool>();
         characterStatePanel = GetComponentInChildren<CharacterStatePanel>();
         actionButtonPanel = GetComponentInChildren<ActionButtonPanel>();
         roulettePanel = GetComponentInChildren<RoulettePanel>();
@@ -60,16 +61,8 @@ public class BattleCanvas : MonoBehaviour
         stagePanel = GetComponentInChildren<StagePanel>();
         buffDescriptionPanel = GetComponentInChildren<BuffDescriptionPanel>();
         useItemPanel = GetComponentInChildren<UseItemPanel>();
-        loadingUI = GetComponentInChildren<LoadingUI>();
 
-        settings = GetComponentInChildren<Settings>();
-
-        objectPool = GetComponent<ObjectPool>();
         objectPool.Init();
-    }
-
-    public void Init()
-    {
         characterStatePanel.Init();
         actionButtonPanel.Init(battleManager);
         roulettePanel.Init(battleManager);
@@ -78,18 +71,18 @@ public class BattleCanvas : MonoBehaviour
         battleVictoryPanel.Init(this);
         monsterStatePanel.Init();
         battleTextPanel.Init();
-        autoBattlePanel.Init(battleManager);
-        menuButton.button.onClick.AddListener(MenuPanelOn);
+        autoBattlePanel.Init(battleManager, false);
+        menuButton.Init(this);
         menuPanel.Init(this);
         cheatPanel.Init(battleManager);
         stagePanel.Init();
         buffDescriptionPanel.Init();
         useItemPanel.Init(this);
 
-        cheatPanel.gameObject.SetActive(false);
-
+        settings = GetComponentInChildren<Settings>();
         settings.gameObject.SetActive(false);
 
+        loadingUI = GetComponentInChildren<LoadingUI>();
         loadingUI.OpenScreen();
     }
 
@@ -173,7 +166,7 @@ public class BattleCanvas : MonoBehaviour
 
     public void RouletteButtonOn()
     {
-        actionButtonPanel.rouletteButton.gameObject.SetActive(true);
+        actionButtonPanel.RouletteButtonOn();
     }
     public void NextStagePanelOn()
     {
@@ -195,7 +188,7 @@ public class BattleCanvas : MonoBehaviour
     {
         monsterStatePanel.gameObject.SetActive(false);
     }
-    private void MenuPanelOn()
+    public void MenuPanelOn()
     {
         menuPanel.gameObject.SetActive(true);
     }
@@ -207,7 +200,7 @@ public class BattleCanvas : MonoBehaviour
 
     public void RouletteButtonOff()
     {
-        actionButtonPanel.rouletteButton.gameObject.SetActive(false);
+        actionButtonPanel.RouletteButtonOff();
     }
     public void NextStagePanelOff()
     {

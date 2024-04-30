@@ -5,9 +5,22 @@ using UnityEngine.UI;
 
 public class ReturnTownButton : MonoBehaviour
 {
-    public Button button;
-    private void Awake()
+    BattleCanvas battleCanvas;
+
+    Button button;
+
+    public void Init(BattleCanvas battleCanvas)
     {
+        this.battleCanvas = battleCanvas;
+
         button = GetComponent<Button>();
+        button.onClick.AddListener(TownSceneLoad);
+    }
+
+    void TownSceneLoad()
+    {
+        gameObject.SetActive(false);
+        battleCanvas.CloseScreen("TownScene");
+        AudioManager.Instance.SetState();
     }
 }

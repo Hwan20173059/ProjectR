@@ -5,52 +5,37 @@ using UnityEngine.TextCore.Text;
 
 public class ActionButtonPanel : MonoBehaviour
 {
-    BattleManager battleManager;
-
     AttackButton attackButton;
-    public RouletteButton rouletteButton;
+    RouletteButton rouletteButton;
     RunAwayButton runAwayButton;
     RunAwayDisableButton runAwayDisableButton;
     ItemButton ItemButton;
 
-    public void Init(BattleManager battlemanager)
+    public void Init(BattleManager battleManager)
     {
-        battleManager = battlemanager;
-
         attackButton = GetComponentInChildren<AttackButton>();
         rouletteButton = GetComponentInChildren<RouletteButton>();
-        runAwayButton = GetComponentInChildren<RunAwayButton>();
-        runAwayDisableButton = GetComponentInChildren<RunAwayDisableButton>();
         ItemButton = GetComponentInChildren<ItemButton>();
+        runAwayButton = GetComponentInChildren<RunAwayButton>();
 
-        attackButton.button.onClick.AddListener(OnClickAttackButton);
-        rouletteButton.button.onClick.AddListener(OnClickRouletteButton);
-        runAwayButton.button.onClick.AddListener(OnClickRunAwayButton);
-        ItemButton.button.onClick.AddListener(OnClickItemButton);
+        attackButton.Init(battleManager);
+        rouletteButton.Init(battleManager);
+        ItemButton.Init(battleManager);
+        runAwayButton.Init(battleManager);
 
-        rouletteButton.button.gameObject.SetActive(false);
-
+        runAwayDisableButton = GetComponentInChildren<RunAwayDisableButton>();
         if (!PlayerManager.Instance.isDungeon)
             runAwayDisableButton.gameObject.SetActive(false);
+
     }
 
-    void OnClickAttackButton()
+    public void RouletteButtonOn()
     {
-        battleManager.OnClickAttackButton();
+        rouletteButton.RouletteButtonOn();
+    }
+    public void RouletteButtonOff()
+    {
+        rouletteButton.RouletteButtonOff();
     }
 
-    void OnClickRouletteButton()
-    {
-        battleManager.OnClickRouletteButton();
-    }
-
-    void OnClickRunAwayButton()
-    {
-        battleManager.OnClickRunAwayButton();
-    }
-
-    void OnClickItemButton()
-    {
-        battleManager.battleCanvas.UseItemPanelOn();
-    }
 }

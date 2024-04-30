@@ -5,9 +5,30 @@ using UnityEngine.UI;
 
 public class AutoBattleOnButton : MonoBehaviour
 {
-    public Button button;
-    private void Awake()
+    BattleManager battleManager;
+
+    AutoBattlePanel autoBattlePanel;
+
+    Button button;
+
+    public void Init(BattleManager battleManager, AutoBattlePanel autoBattlePanel)
     {
+        this.battleManager = battleManager;
+        this.autoBattlePanel = autoBattlePanel;
+
         button = GetComponent<Button>();
+        button.onClick.AddListener(OnClickAutoBattleOnButton);
     }
+
+    void OnClickAutoBattleOnButton()
+    {
+        autoBattlePanel.autoBattleOffButton.gameObject.SetActive(true);
+
+        PlayerManager.Instance.autoBattle = false;
+
+        if (autoBattlePanel.isSetting) { return; }
+
+        battleManager.IsAutoBattle = false;
+    }
+
 }

@@ -5,9 +5,20 @@ using UnityEngine.UI;
 
 public class NextStageButton : MonoBehaviour
 {
-    public Button button;
-    private void Awake()
+    NextStagePanel nextStagePanel;
+
+    Button button;
+
+    public void Init(NextStagePanel nextStagePanel)
     {
+        this.nextStagePanel = nextStagePanel;
+
         button = GetComponent<Button>();
+        button.onClick.AddListener(NextStageStart);
+    }
+
+    void NextStageStart()
+    {
+        nextStagePanel.NextStageStart();
     }
 }

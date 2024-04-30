@@ -6,7 +6,6 @@ using UnityEngine;
 public class ChangeHpTMP : MonoBehaviour
 {
     TextMeshProUGUI textMeshProUGUI;
-    public string text { get { return textMeshProUGUI.text; } set { textMeshProUGUI.text = value; } }
 
     private void Awake()
     {
@@ -19,42 +18,42 @@ public class ChangeHpTMP : MonoBehaviour
         {
             if (value < -400)
             {
-                text = $"</size><size=65></color><#FF0000>{value}!";
+                textMeshProUGUI.text = $"</size><size=65></color><#FF0000>{value}!";
             }
             else if (value < -200)
             {
-                text = $"</size><size=50></color><#FF0000>{value}";
+                textMeshProUGUI.text = $"</size><size=50></color><#FF0000>{value}";
             }
             else if (value < -100)
             {
-                text = $"</size><size=45></color><#FF0000>{value}";
+                textMeshProUGUI.text = $"</size><size=45></color><#FF0000>{value}";
             }
             else
             {
-                text = $"</size><size=40></color><#FF0000>{value}";
+                textMeshProUGUI.text = $"</size><size=40></color><#FF0000>{value}";
             }
         }
         else if (value == 0)
         {
-            text = $"</size><size=40></color>0";
+            textMeshProUGUI.text = $"</size><size=40></color>0";
         }
         else
         {
             if (value > 400)
             {
-                text = $"</size><size=65></color><#00FF00>+{value}!";
+                textMeshProUGUI.text = $"</size><size=65></color><#00FF00>+{value}!";
             }
             else if (value > 200)
             {
-                text = $"</size><size=50></color><#00FF00>+{value}";
+                textMeshProUGUI.text = $"</size><size=50></color><#00FF00>+{value}";
             }
             else if (value > 100)
             {
-                text = $"</size><size=45></color><#00FF00>+{value}";
+                textMeshProUGUI.text = $"</size><size=45></color><#00FF00>+{value}";
             }
             else
             {
-                text = $"</size><size=40></color><#00FF00>+{value}";
+                textMeshProUGUI.text = $"</size><size=40></color><#00FF00>+{value}";
             }
         }
         StartCoroutine(MoveTowardsText());

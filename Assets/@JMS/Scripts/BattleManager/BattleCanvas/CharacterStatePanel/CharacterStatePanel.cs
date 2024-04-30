@@ -12,28 +12,23 @@ public class CharacterStatePanel : MonoBehaviour
     {
         characterActionBar = GetComponentInChildren<CharacterActionBar>();
         characterStateText = GetComponentInChildren<CharacterStateText>();
+
+        characterActionBar.Init();
+        characterStateText.Init();
     }
 
     public void UpdateActionBar(Character character)
     {
-        if (character != null)
-            characterActionBar.actionBar.transform.localScale =
-                new Vector3(Mathf.Clamp(character.curCoolTime / character.maxCoolTime, 0, 1), 1, 1);
+        characterActionBar.UpdateActionBar(character);
     }
 
     public void UpdateCharacterState(Character character)
     {
-        if (character == null) return;
-        characterStateText.text = $"캐릭터 : {character.characterName}\n레벨 : {character.level}\n" +
-            $"체력 : {character.curHP} / {character.maxHP}\n공격력 : {character.addBuffAtk}\n" +
-            $"경험치 : {character.curExp} / {character.needExp}\n상태 : {character.currentStateText}";
+        characterStateText.UpdateCharacterState(character);
     }
 
     public void UpdateCharacterState(Character character, BattleManager battlemanager)
     {
-        if (character == null) return;
-        characterStateText.text = $"캐릭터 : {character.characterName}\n레벨 : {character.level}\n" +
-            $"체력 : {character.curHP} / {character.maxHP}\n공격력 : <#FF0000>{battlemanager.GetRouletteValue(character.addBuffAtk)}</color>\n" +
-            $"경험치 : {character.curExp} / {character.needExp}\n상태 : {character.currentStateText}";
+        characterStateText.UpdateCharacterState(character, battlemanager);
     }
 }

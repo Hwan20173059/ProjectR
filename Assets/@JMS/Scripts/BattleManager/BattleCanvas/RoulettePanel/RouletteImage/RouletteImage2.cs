@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class RouletteImage2 : MonoBehaviour
 {
-    public Image image;
+    Image image;
 
-    private void Awake()
+    public void Init()
     {
         image = GetComponent<Image>();
+        image.sprite = PlayerManager.Instance.equip[2].equipSprite;
     }
+
 }

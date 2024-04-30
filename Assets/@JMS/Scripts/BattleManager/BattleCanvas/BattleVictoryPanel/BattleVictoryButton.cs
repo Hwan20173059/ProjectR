@@ -1,22 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class BattleVictoryPanel : MonoBehaviour
+public class BattleVictoryButton : MonoBehaviour
 {
     BattleCanvas battleCanvas;
-    BattleVictoryButton battleVictoryButton;
+
+    Button button;
 
     public void Init(BattleCanvas battleCanvas)
     {
         this.battleCanvas = battleCanvas;
 
-        battleVictoryButton = GetComponentInChildren<BattleVictoryButton>();
-
-        battleVictoryButton.button.onClick.AddListener(SceneLoad);
-
-        gameObject.SetActive(false);
+        button = GetComponent<Button>();
+        button.onClick.AddListener(SceneLoad);
     }
 
     void SceneLoad()
@@ -32,6 +30,5 @@ public class BattleVictoryPanel : MonoBehaviour
             AudioManager.Instance.SetState();
             battleCanvas.CloseScreen("DungeonScene");
         }
-        
     }
 }

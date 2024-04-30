@@ -7,25 +7,21 @@ using UnityEngine.UI;
 public class BuffIcon : MonoBehaviour
 {
     BattleCanvas battleCanvas;
+    public Buff buff;
 
     Button button;
     Image image;
     TextMeshProUGUI typeText;
 
-    public Buff buff;
-
-    private void Awake()
-    {
-        button = GetComponent<Button>();
-        image = GetComponent<Image>();
-        typeText = GetComponentInChildren<TextMeshProUGUI>();
-
-        button.onClick.AddListener(UpdateBuffText);
-    }
     public void Init(BattleCanvas battleCanvas, Buff buff)
     {
         this.battleCanvas = battleCanvas;
         this.buff = buff;
+
+        button = GetComponent<Button>();
+        button.onClick.AddListener(UpdateBuffText);
+        image = GetComponent<Image>();
+        typeText = GetComponentInChildren<TextMeshProUGUI>();
 
         switch (buff.type)
         {

@@ -6,10 +6,16 @@ using UnityEngine;
 public class MonsterStateText : MonoBehaviour
 {
     TextMeshProUGUI monsterStateText;
-    public string text { get { return monsterStateText.text; } set { monsterStateText.text = value; } }
 
-    private void Awake()
+    public void Init()
     {
         monsterStateText = GetComponent<TextMeshProUGUI>();
+    }
+
+    public void UpdateMonsterState(Monster selectMonster)
+    {
+        if (selectMonster == null) return;
+
+        monsterStateText.text = $"{selectMonster.monsterName} {selectMonster.curHP} / {selectMonster.maxHP}";
     }
 }

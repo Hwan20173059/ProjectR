@@ -5,9 +5,20 @@ using UnityEngine.UI;
 
 public class RunAwayButton : MonoBehaviour
 {
-    public Button button;
-    private void Awake()
+    BattleManager battleManager;
+
+    Button button;
+
+    public void Init(BattleManager battleManager)
     {
+        this.battleManager = battleManager;
+
         button = GetComponent<Button>();
+        button.onClick.AddListener(OnClickRunAwayButton);
+    }
+
+    void OnClickRunAwayButton()
+    {
+        battleManager.OnClickRunAwayButton();
     }
 }

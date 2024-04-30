@@ -21,16 +21,12 @@ public class RouletteBase : MonoBehaviour
         rouletteImage2 = GetComponentInChildren<RouletteImage2>();
         rouletteImage3 = GetComponentInChildren<RouletteImage3>();
 
-        SetImage();
-        SetPosition(rouletteNumber);
-    }
+        rouletteImage0.Init();
+        rouletteImage1.Init();
+        rouletteImage2.Init();
+        rouletteImage3.Init();
 
-    void SetImage()
-    {
-        rouletteImage0.image.sprite = PlayerManager.Instance.equip[0].equipSprite;
-        rouletteImage1.image.sprite = PlayerManager.Instance.equip[1].equipSprite;
-        rouletteImage2.image.sprite = PlayerManager.Instance.equip[2].equipSprite;
-        rouletteImage3.image.sprite = rouletteImage0.image.sprite;
+        SetPosition(rouletteNumber);
     }
 
     void SetPosition(int rouletteNumber)

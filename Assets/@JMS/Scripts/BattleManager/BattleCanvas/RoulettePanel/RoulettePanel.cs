@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoulettePanel : MonoBehaviour
 {
-    public RouletteMachine rouletteMachine;
+    RouletteMachine rouletteMachine;
 
     public void Init(BattleManager battleManager)
     {

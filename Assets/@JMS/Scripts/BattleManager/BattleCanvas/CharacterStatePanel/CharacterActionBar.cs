@@ -6,9 +6,17 @@ using UnityEngine.UI;
 
 public class CharacterActionBar : MonoBehaviour
 {
-    public Image actionBar;
-    private void Awake()
+    Image actionBar;
+
+    public void Init()
     {
         actionBar = GetComponent<Image>();
+    }
+
+    public void UpdateActionBar(Character character)
+    {
+        if (character != null)
+            actionBar.transform.localScale =
+                new Vector3(Mathf.Clamp(character.curCoolTime / character.maxCoolTime, 0, 1), 1, 1);
     }
 }

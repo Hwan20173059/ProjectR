@@ -7,10 +7,13 @@ public class BattleText : MonoBehaviour
 {
     TextMeshProUGUI battleText;
 
-    public string text { get {  return battleText.text; } set { battleText.text = value; } }
-
-    private void Awake()
+    public void Init()
     {
         battleText = GetComponent<TextMeshProUGUI>();
+    }
+
+    public void UpdateBattleText(string text)
+    {
+        battleText.text = $"{text}";
     }
 }

@@ -60,31 +60,28 @@ public class BattleManager : MonoBehaviour
 
     private void Awake()
     {
+        performList = new List<int>();
+
         objectPool = GetComponent<ObjectPool>();
         objectPool.Init();
-
         effectController = new BattleEffectController(objectPool);
 
         Input = GetComponent<PlayerInput>();
 
         battleCanvas = GetComponentInChildren<BattleCanvas>();
+        battleCanvas.Init();
 
         stateMachine = new BattleStateMachine(this);
-
-        performList = new List<int>();
     }
 
     private void Start()
     {
         BattleInit();
 
-        battleCanvas.Init();
+        Input.ClickActions.MouseClick.started += OnClickStart;
+        Input.ClickActions.TouchPress.started += OnTouchStart;
 
         stateMachine.ChangeState(stateMachine.startState);
-
-        Input.ClickActions.MouseClick.started += OnClickStart;
-
-        Input.ClickActions.TouchPress.started += OnTouchStart;
     }
 
     private void Update()

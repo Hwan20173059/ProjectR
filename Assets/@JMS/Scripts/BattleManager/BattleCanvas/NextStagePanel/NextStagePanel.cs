@@ -14,13 +14,12 @@ public class NextStagePanel : MonoBehaviour
         this.battleManager = battleManager;
 
         nextStageButton = GetComponentInChildren<NextStageButton>();
-
-        nextStageButton.button.onClick.AddListener(NextStageStart);
+        nextStageButton.Init(this);
 
         gameObject.SetActive(false);
     }
 
-    void NextStageStart()
+    public void NextStageStart()
     {
         battleManager.NextStageStart();
     }

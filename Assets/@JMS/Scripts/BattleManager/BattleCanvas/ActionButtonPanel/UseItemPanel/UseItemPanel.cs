@@ -6,17 +6,12 @@ using UnityEngine.UI;
 
 public class UseItemPanel : MonoBehaviour
 {
-    BattleCanvas battleCanvas;
-
     ItemUseButton itemUseButton;
 
     public void Init(BattleCanvas battleCanvas)
     {
-        this.battleCanvas = battleCanvas;
-
         itemUseButton = GetComponentInChildren<ItemUseButton>();
-
-        itemUseButton.button.onClick.AddListener(OnClickItemUseButton);
+        itemUseButton.Init(battleCanvas);
 
         foreach (ConsumeItem consumeItem in ItemManager.Instance.cInventory)
         {
@@ -29,10 +24,5 @@ public class UseItemPanel : MonoBehaviour
         }
 
         gameObject.SetActive(false);
-    }
-
-    private void OnClickItemUseButton()
-    {
-        battleCanvas.OnClickItemUseButton();
     }
 }

@@ -4,101 +4,52 @@ using UnityEngine;
 
 public class AutoBattlePanel : MonoBehaviour
 {
-    BattleManager battleManager;
+    public AutoBattleOffButton autoBattleOffButton;
+    public AutoBattleOnButton autoBattleOnButton;
+    public x1OffButton x1OffButton;
+    public x2OffButton x2OffButton;
+    public x4OffButton x4OffButton;
 
-    AutoBattleOnButton autoBattleOnButton;
-    AutoBattleOffButton autoBattleOffButton;
-    x1OffButton x1OffButton;
-    x2OffButton x2OffButton;
-    x4OffButton x4OffButton;
+    public bool isSetting;
 
-    public void Init(BattleManager battleManager)
+    public void Init(BattleManager battleManager, bool isSetting)
     {
-        this.battleManager = battleManager;
+        this.isSetting = isSetting;
 
-        autoBattleOnButton = GetComponentInChildren<AutoBattleOnButton>();
         autoBattleOffButton = GetComponentInChildren<AutoBattleOffButton>();
+        autoBattleOnButton = GetComponentInChildren<AutoBattleOnButton>();
+
+        autoBattleOffButton.Init(battleManager, this);
+        autoBattleOnButton.Init(battleManager, this);
 
         x1OffButton = GetComponentInChildren<x1OffButton>();
         x2OffButton = GetComponentInChildren<x2OffButton>();
         x4OffButton = GetComponentInChildren<x4OffButton>();
 
-        autoBattleOnButton.button.onClick.AddListener(OnClickAutoBattleOnButton);
-        autoBattleOffButton.button.onClick.AddListener(OnClickAutoBattleOffButton);
-
-        x1OffButton.button.onClick.AddListener(OnClickx1OffButton);
-        x2OffButton.button.onClick.AddListener(OnClickx2OffButton);
-        x4OffButton.button.onClick.AddListener(OnClickx4OffButton);
-
-        x1OffButton.gameObject.SetActive(false);
-
-        if (PlayerManager.Instance.autoBattle)
-            OnClickAutoBattleOffButton();
+        x1OffButton.Init(this);
+        x2OffButton.Init(this);
+        x4OffButton.Init(this);
 
         switch (PlayerManager.Instance.battleSpeed)
         {
-            case 1: OnClickx1OffButton(); break;
-            case 2: OnClickx2OffButton(); break;
-            case 4: OnClickx4OffButton(); break;
+            case 1: OnClickX1OffButton(); break;
+            case 2: OnClickX2OffButton(); break;
+            case 4: OnClickX4OffButton(); break;
         }
     }
 
-    void OnClickAutoBattleOnButton()
+    void OnClickX1OffButton()
     {
-        autoBattleOffButton.gameObject.SetActive(true);
-
-        battleManager.IsAutoBattle = false;
-
-        PlayerManager.Instance.autoBattle = false;
+        x1OffButton.OnClickX1OffButton();
     }
 
-    void OnClickAutoBattleOffButton()
+    void OnClickX2OffButton()
     {
-        autoBattleOffButton.gameObject.SetActive(false);
-
-        battleManager.IsAutoBattle = true;
-
-        if (battleManager.IsSelectingAction)
-        {
-            battleManager.CharacterAutoSelect();
-        }
-
-        PlayerManager.Instance.autoBattle = true;
+        x2OffButton.OnClickX2OffButton();
     }
 
-    void OnClickx1OffButton()
+    void OnClickX4OffButton()
     {
-        Time.timeScale = 1f;
-
-        x1OffButton.gameObject.SetActive(false);
-
-        x2OffButton.gameObject.SetActive(true);
-        x4OffButton.gameObject.SetActive(true);
-
-        PlayerManager.Instance.battleSpeed = 1;
-    }
-
-    void OnClickx2OffButton()
-    {
-        Time.timeScale = 2f;
-
-        x2OffButton.gameObject.SetActive(false);
-
-        x1OffButton.gameObject.SetActive(true);
-        x4OffButton.gameObject.SetActive(true);
-
-        PlayerManager.Instance.battleSpeed = 2;
-    }
-
-    void OnClickx4OffButton()
-    {
-        Time.timeScale = 4f;
-
-        x4OffButton.gameObject.SetActive(false);
-
-        x1OffButton.gameObject.SetActive(true);
-        x2OffButton.gameObject.SetActive(true);
-
-        PlayerManager.Instance.battleSpeed = 4;
+        x4OffButton.OnClickX4OffButton();
     }
 }

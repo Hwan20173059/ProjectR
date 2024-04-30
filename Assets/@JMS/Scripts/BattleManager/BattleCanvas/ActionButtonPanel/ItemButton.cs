@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AttackButton : MonoBehaviour
+public class ItemButton : MonoBehaviour
 {
     BattleManager battleManager;
 
@@ -14,11 +14,11 @@ public class AttackButton : MonoBehaviour
         this.battleManager = battleManager;
 
         button = GetComponent<Button>();
-        button.onClick.AddListener(OnClickAttackButton);
+        button.onClick.AddListener(OnClickItemButton);
     }
 
-    void OnClickAttackButton()
+    void OnClickItemButton()
     {
-        battleManager.OnClickAttackButton();
+        battleManager.battleCanvas.UseItemPanelOn();
     }
 }

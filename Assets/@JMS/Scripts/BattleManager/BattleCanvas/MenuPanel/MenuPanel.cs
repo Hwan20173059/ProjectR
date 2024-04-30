@@ -20,23 +20,16 @@ public class MenuPanel : MonoBehaviour
         settingButton = GetComponentInChildren<SettingButton>();
         gameEndButton = GetComponentInChildren<GameEndButton>();
 
-        continueButton.button.onClick.AddListener(OnClickContinueButton);
-        settingButton.button.onClick.AddListener(OnClickSettingButton);
-        gameEndButton.button.onClick.AddListener(OnClickGameEndButton);
+        continueButton.Init(this);
+        settingButton.Init(this);
+        gameEndButton.Init();
 
         gameObject.SetActive(false);
     }
 
-    void OnClickContinueButton()
-    {
-        gameObject.SetActive(false);
-    }
-    void OnClickSettingButton()
+    public void OnClickSettingButton()
     {
         battleCanvas.SettingsOn();
     }
-    void OnClickGameEndButton()
-    {
-        Application.Quit();
-    }
+
 }

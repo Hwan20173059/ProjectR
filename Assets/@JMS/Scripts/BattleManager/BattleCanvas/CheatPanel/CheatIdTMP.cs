@@ -8,7 +8,7 @@ public class CheatIdTMP : MonoBehaviour
     TextMeshProUGUI TMP;
     public string text { get { return TMP.text; } set { TMP.text = value; } }
 
-    private void Awake()
+    public void Init()
     {
         TMP = GetComponentInChildren<TextMeshProUGUI>();
     }

@@ -7,11 +7,11 @@ public class RouletteMachine : MonoBehaviour
 {
     BattleManager battleManager;
 
-    public Roulette0 roulette0;
-    public Roulette1 roulette1;
-    public Roulette2 roulette2;
+    Roulette0 roulette0;
+    Roulette1 roulette1;
+    Roulette2 roulette2;
 
-    float rouletteSpeed = 3000f;
+    //float rouletteSpeed = 3000f;
 
     public void Init(BattleManager battleManager)
     {
@@ -34,6 +34,8 @@ public class RouletteMachine : MonoBehaviour
         // To operate the ReduceSpeedRoulette, Lerp was used.
     }
 
+    /*
+    //FixedSpeedRoulette
     IEnumerator FixedSpeedRoulette(int resultIndex0, int resultIndex1, int resultIndex2)
     {
         StartCoroutine(MoveTowardsSpinRoulette(roulette0, 6, resultIndex0));
@@ -56,7 +58,7 @@ public class RouletteMachine : MonoBehaviour
             roulette.transform.localPosition = roulette.startPosition;
         }
 
-        while (ResultRoulette(roulette, resultIndex)) { yield return null; }
+        while (ResultMoveRoulette(roulette, resultIndex)) { yield return null; }
     }
 
     bool OneSpinRoulette(RouletteBase roulette)
@@ -65,7 +67,7 @@ public class RouletteMachine : MonoBehaviour
             Vector3.MoveTowards(roulette.transform.localPosition, roulette.endPosition, rouletteSpeed * Time.deltaTime));
     }
 
-    bool ResultRoulette(RouletteBase roulette, int resultIndex)
+    bool ResultMoveRoulette(RouletteBase roulette, int resultIndex)
     {
         if (resultIndex == 1)
         {
@@ -82,7 +84,9 @@ public class RouletteMachine : MonoBehaviour
             return false;
         }
     }
+    */
 
+    // ReduceSpeedRoulette
     IEnumerator LerpSpinRoulette(RouletteBase roulette, int resultIndex, int spinCount, float spinSeconds) //
     {
         Vector3 startPos = roulette.startPosition;

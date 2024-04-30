@@ -16,11 +16,12 @@ public class Settings : MonoBehaviour
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider sfxSlider;
 
+    [SerializeField] private BattleManager battleManager;
     [SerializeField] private AutoBattleSettingPanel autoBattleSettingPanel;
 
     private void Awake()
     {
-        autoBattleSettingPanel.Init();
+        autoBattleSettingPanel.Init(battleManager, true);
         //mixer = GetComponent<AudioMixer>();
     }
     private void Update()

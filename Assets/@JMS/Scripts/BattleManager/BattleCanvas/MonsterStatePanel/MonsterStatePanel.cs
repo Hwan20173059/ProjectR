@@ -9,13 +9,13 @@ public class MonsterStatePanel : MonoBehaviour
     public void Init()
     {
         monsterStateText = GetComponentInChildren<MonsterStateText>();
+        monsterStateText.Init();
 
         gameObject.SetActive(false);
     }
 
     public void UpdateMonsterState(Monster selectMonster)
     {
-        if (selectMonster == null) return;
-        monsterStateText.text = $"{selectMonster.monsterName} {selectMonster.curHP} / {selectMonster.maxHP}";
+        monsterStateText.UpdateMonsterState(selectMonster);
     }
 }
