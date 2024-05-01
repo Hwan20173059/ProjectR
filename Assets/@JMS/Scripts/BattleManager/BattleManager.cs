@@ -25,6 +25,7 @@ public class BattleManager : MonoBehaviour
     public List<EquipItem> rouletteEquip;
     public RouletteResult rouletteResult;
     public List<int> rouletteResultIndex;
+    int jackPotFailCount = 0;
     public int cheatItemId;
 
     public Character character;
@@ -55,8 +56,6 @@ public class BattleManager : MonoBehaviour
     public BattleEffectController effectController;
 
     public BattleStateMachine stateMachine;
-
-    private WaitForSeconds waitFor1Sec = new WaitForSeconds(1f);
 
     private void Awake()
     {
@@ -563,7 +562,6 @@ public class BattleManager : MonoBehaviour
         battleCanvas.UpdateUseItemSlot();
     }
 
-    int jackPotFailCount = 0;
     void SetRoulette()
     {
         RouletteClear();

@@ -43,6 +43,8 @@ public class Character : MonoBehaviour
 
     public CharacterBuffController characterBuffController;
 
+    public CharacterJackPotSkill characterJackPotSkill;
+
     public CharacterStateMachine stateMachine;
 
     public CharacterHpBar hpBar;
@@ -57,6 +59,8 @@ public class Character : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
         characterBuffController = new CharacterBuffController();
+
+        characterJackPotSkill = new CharacterJackPotSkill(this);
 
         stateMachine = new CharacterStateMachine(this);
     }
@@ -206,4 +210,21 @@ public class Character : MonoBehaviour
     {
         animatorController.ChangeAnimState(animState);
     }
+
+    public void CharacterAttack()
+    {
+        if (battleManager.rouletteResult == RouletteResult.Triple)
+        {
+            characterJackPotSkill.JackPotSkill(battleManager.rouletteEquip[0].data.id);
+        }
+        else if (battleManager.rouletteResult == RouletteResult.Cheat)
+        {
+            characterJackPotSkill.JackPotSkill(battleManager.cheatItemId);
+        }
+        else
+        {
+            characterJackPotSkill.Attack();
+        }
+    }
+
 }
