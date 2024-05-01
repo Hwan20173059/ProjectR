@@ -41,15 +41,15 @@ public class BattleCanvas : MonoBehaviour
 
     UseItemSlot selectUseItemSlot;
 
-    public void Init()
+    public void Init(BattleManager battleManager)
     {
-        battleManager = GetComponentInParent<BattleManager>();
+        this.battleManager = battleManager;
 
         objectPool = GetComponent<ObjectPool>();
         characterStatePanel = GetComponentInChildren<CharacterStatePanel>();
         actionButtonPanel = GetComponentInChildren<ActionButtonPanel>();
         roulettePanel = GetComponentInChildren<RoulettePanel>();
-        nextStagePanel = GetComponentInChildren<NextStagePanel>();
+        nextStagePanel = GetComponentInChildren<NextStagePanel>(); 
         battleDefeatPanel = GetComponentInChildren<BattleDefeatPanel>();
         battleVictoryPanel = GetComponentInChildren<BattleVictoryPanel>();
         monsterStatePanel = GetComponentInChildren<MonsterStatePanel>();
@@ -64,17 +64,17 @@ public class BattleCanvas : MonoBehaviour
 
         objectPool.Init();
         characterStatePanel.Init();
-        actionButtonPanel.Init(battleManager);
-        roulettePanel.Init(battleManager);
-        nextStagePanel.Init(battleManager);
+        actionButtonPanel.Init(this.battleManager);
+        roulettePanel.Init(this.battleManager);
+        nextStagePanel.Init(this.battleManager);
         battleDefeatPanel.Init(this);
         battleVictoryPanel.Init(this);
         monsterStatePanel.Init();
         battleTextPanel.Init();
-        autoBattlePanel.Init(battleManager, false);
+        autoBattlePanel.Init(this.battleManager, false);
         menuButton.Init(this);
         menuPanel.Init(this);
-        cheatPanel.Init(battleManager);
+        cheatPanel.Init(this.battleManager);
         stagePanel.Init();
         buffDescriptionPanel.Init();
         useItemPanel.Init(this);

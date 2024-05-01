@@ -68,7 +68,7 @@ public class BattleManager : MonoBehaviour
         Input = GetComponent<PlayerInput>();
 
         battleCanvas = GetComponentInChildren<BattleCanvas>();
-        battleCanvas.Init();
+        battleCanvas.Init(this);
 
         stateMachine = new BattleStateMachine(this);
     }
