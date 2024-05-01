@@ -353,6 +353,29 @@ public class BattleManager : MonoBehaviour
             }
         }
     }
+
+    public void CharacterActionSelecting()
+    {
+        IsSelectingAction = true;
+        IsRouletteUsed = false;
+        battleCanvas.RouletteButtonOn();
+        useItemCount = 0;
+        battleCanvas.UpdateCharacterState(IsRouletteUsed);
+
+        stateMachine.ChangeState(stateMachine.actionSelectingState);
+
+        if (IsAutoBattle)
+            CharacterAutoSelect();
+    }
+
+    public void CharacterSelectAction()
+    {
+        IsSelectingAction = false;
+        IsRouletteUsed = true;
+        useItemCount = 3;
+
+        stateMachine.ChangeState(stateMachine.waitState);
+    }
     
     public void PerformAction()
     {

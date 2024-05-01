@@ -133,10 +133,7 @@ public class Character : MonoBehaviour
         }
         else
         {
-            if (battleManager.IsAutoBattle)
-                stateMachine.ChangeState(stateMachine.autoSelectState);
-            else
-                stateMachine.ChangeState(stateMachine.selectActionState);
+            stateMachine.ChangeState(stateMachine.actionSelectingState);
         }
     }
 
@@ -225,6 +222,20 @@ public class Character : MonoBehaviour
         {
             characterJackPotSkill.Attack();
         }
+    }
+
+    public void CharacterDead()
+    {
+        hpBar.gameObject.SetActive(false);
+
+        animatorController.ChangeAnimState(CharacterAnimState.Dead);
+    }
+
+    public void CharacterRevive()
+    {
+        hpBar.gameObject.SetActive(true);
+
+        animatorController.ChangeAnimState(CharacterAnimState.Idle);
     }
 
 }

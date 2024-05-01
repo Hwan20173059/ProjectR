@@ -15,17 +15,13 @@ public class CharacterDeadState : CharacterBaseState
 
         StateUpdate("행동 불능");
 
-        character.hpBar.gameObject.SetActive(false);
-
-        character.animatorController.ChangeAnimState(CharacterAnimState.Dead);
+        character.CharacterDead();
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        character.hpBar.gameObject.SetActive(true);
-
-        character.animatorController.ChangeAnimState(CharacterAnimState.Idle);
+        character.CharacterRevive();
     }
 }

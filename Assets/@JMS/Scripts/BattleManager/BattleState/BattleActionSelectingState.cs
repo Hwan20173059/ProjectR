@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattlePlayerSelectingActionState : BattleBaseState
+public class BattleActionSelectingState : BattleBaseState
 {
-    public BattlePlayerSelectingActionState(BattleStateMachine battleStateMachine) : base(battleStateMachine)
+    public BattleActionSelectingState(BattleStateMachine battleStateMachine) : base(battleStateMachine)
     {
     }
 

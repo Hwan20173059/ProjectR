@@ -17,6 +17,7 @@ public class CharacterReadyState : CharacterBaseState
     public override void Update()
     {
         base.Update();
+
         character.CoolTimeUpdate();
     }
 }
