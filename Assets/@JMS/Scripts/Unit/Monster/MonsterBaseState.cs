@@ -6,9 +6,7 @@ public class MonsterBaseState : IState
 {
     protected MonsterStateMachine stateMachine;
     protected Monster monster { get { return stateMachine.monster; } }
-    protected BattleManager battleManager { get { return monster.battleManager; } }
-    protected Character character { get { return battleManager.character; } }
-    protected List<int> performList { get { return battleManager.performList; } }
+
     public MonsterBaseState(MonsterStateMachine monsterStateMachine)
     {
         stateMachine = monsterStateMachine;
@@ -36,31 +34,6 @@ public class MonsterBaseState : IState
     public virtual void Update()
     {
         
-    }
-
-
-    protected float GetNormalizedTime(Animator animator, string tag)
-    {
-        AnimatorStateInfo currentInfo = animator.GetCurrentAnimatorStateInfo(0);
-        AnimatorStateInfo nextInfo = animator.GetNextAnimatorStateInfo(0);
-
-        if (animator.IsInTransition(0) && nextInfo.IsTag(tag))
-        {
-            return nextInfo.normalizedTime;
-        }
-        else if (!animator.IsInTransition(0) && currentInfo.IsTag(tag))
-        {
-            return currentInfo.normalizedTime;
-        }
-        else
-        {
-            return 0f;
-        }
-    }
-    protected bool MoveTowardsMonster(Vector3 target)
-    {
-        return target != (monster.transform.position =
-            Vector3.MoveTowards(monster.transform.position, target, monster.moveAnimSpeed * Time.deltaTime));
     }
 
 }

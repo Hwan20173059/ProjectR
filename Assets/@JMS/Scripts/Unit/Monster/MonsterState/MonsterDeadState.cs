@@ -13,27 +13,13 @@ public class MonsterDeadState : MonsterBaseState
     {
         base.Enter();
 
-        monster.hpBar.gameObject.SetActive(false);
-
-        character.ChangeExp(monster.exp);
-
-        monster.ChangeAnimState(MonsterAnimState.Dead);
-
-        Debug.Log(monster.baseData.id + "kill");
-        GameEventManager.instance.battleEvent.KillMonster(monster.baseData.id);
-    }
-
-    public override void Update()
-    {
-        
+        monster.MonsterDead();
     }
 
     public override void Exit()
     {
         base.Exit();
 
-        monster.hpBar.gameObject.SetActive(true);
-
-        monster.ChangeAnimState(MonsterAnimState.Idle);
+        monster.MonsterRevive();
     }
 }

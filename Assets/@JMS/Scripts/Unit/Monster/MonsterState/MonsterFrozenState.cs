@@ -11,6 +11,7 @@ public class MonsterFrozenState : MonsterBaseState
     public override void Update()
     {
         base.Update();
+
         monster.BurnUpdate();
     }
 }

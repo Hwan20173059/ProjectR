@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Xml;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.U2D.Animation;
 using static UnityEngine.GraphicsBuffer;
 
@@ -51,12 +52,16 @@ public class Monster : MonoBehaviour
 
     public MonsterStateMachine stateMachine;
 
+    public MonsterAttackSkill monsterAttackSkill;
+
     public BattleManager battleManager;
     public BattleCanvas battleCanvas { get { return battleManager.battleCanvas; } }
 
     private void Awake()
     {
         stateMachine = new MonsterStateMachine(this);
+
+        monsterAttackSkill = new MonsterAttackSkill(this);
 
         monsterAnimController = GetComponent<MonsterAnimController>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
@@ -120,8 +125,16 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            stateMachine.ChangeState(stateMachine.selectActionState);
+            stateMachine.ChangeState(stateMachine.actionSelectingState);
         }
+    }
+
+    public void MonsterSelectAction()
+    {
+        selectAction = actions[Random.Range(0, actions.Count)];
+        curCoolTime = 0f;
+        battleManager.performList.Add(monsterNumber);
+        stateMachine.ChangeState(stateMachine.readyState);
     }
 
     public void ChangeHP(int value)
@@ -259,6 +272,30 @@ public class Monster : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void MonsterAttack()
+    {
+        monsterAttackSkill.MonsterAttack();
+    }
+
+    public void MonsterDead()
+    {
+        hpBar.gameObject.SetActive(false);
+
+        battleManager.character.ChangeExp(exp);
+
+        ChangeAnimState(MonsterAnimState.Dead);
+
+        Debug.Log(baseData.id + "kill");
+        GameEventManager.instance.battleEvent.KillMonster(baseData.id);
+    }
+
+    public void MonsterRevive()
+    {
+        hpBar.gameObject.SetActive(true);
+
+        ChangeAnimState(MonsterAnimState.Idle);
     }
 
 }

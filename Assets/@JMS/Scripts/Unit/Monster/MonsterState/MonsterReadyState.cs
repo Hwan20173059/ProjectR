@@ -10,6 +10,7 @@ public class MonsterReadyState : MonsterBaseState
     public override void Update()
     {
         base.Update();
+
         monster.CoolTimeUpdate();
         monster.BurnUpdate();
     }
