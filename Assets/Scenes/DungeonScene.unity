@@ -2384,6 +2384,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dungeonTutorial: {fileID: 574387870}
+  nextButton: {fileID: 1805241099}
+  preButton: {fileID: 412971917}
   tutorialImage: {fileID: 1756597515}
   imageIndex: 0
   tutorialIndex: 0

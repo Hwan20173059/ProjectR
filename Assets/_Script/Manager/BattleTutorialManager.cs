@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class BattleTutorialManager : MonoBehaviour
 {
     public GameObject battleTutorial;
+    public GameObject nextButton;
+    public GameObject preButton;
     public Image tutorialImage;
     public int imageIndex;
     public int tutorialIndex;
@@ -30,6 +32,7 @@ public class BattleTutorialManager : MonoBehaviour
         tutorialImage.sprite = battleTutorialImage[0];
         imageIndex = 0;
         tutorialIndex = 0;
+        RefreshButton(battleTutorialImage.Length);
     }
 
     public void NextButton()
@@ -42,6 +45,7 @@ public class BattleTutorialManager : MonoBehaviour
         {
             imageIndex++;
             tutorialImage.sprite = battleTutorialImage[imageIndex];
+            RefreshButton(battleTutorialImage.Length);
         }
     }
 
@@ -55,10 +59,29 @@ public class BattleTutorialManager : MonoBehaviour
         {
             imageIndex--;
             tutorialImage.sprite = battleTutorialImage[imageIndex];
+            RefreshButton(battleTutorialImage.Length);
         }
 
     }
 
+    public void RefreshButton(int index)
+    {
+        if (imageIndex == 0)
+        {
+            preButton.SetActive(false);
+            nextButton.SetActive(true);
+        }
+        else if (imageIndex > 0 && imageIndex < index - 1)
+        {
+            preButton.SetActive(true);
+            nextButton.SetActive(true);
+        }
+        else if (imageIndex == index - 1)
+        {
+            preButton.SetActive(true);
+            nextButton.SetActive(false);
+        }
+    }
     public void CloseButton()
     {
         AudioManager.Instance.PlayUISelectSFX();
